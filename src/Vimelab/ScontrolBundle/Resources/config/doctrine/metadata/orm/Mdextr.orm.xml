@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Mdextr" table="MdExtr">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="bigint" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="hdmov" type="string" column="hdmov" length="1"/>
+    <field name="himov" type="string" column="himov" length="1"/>
+    <field name="hdpal" type="string" column="hdpal" length="1"/>
+    <field name="hipal" type="string" column="hipal" length="1"/>
+    <field name="hdten" type="string" column="hdten" length="1"/>
+    <field name="hiten" type="string" column="hiten" length="1"/>
+    <field name="hdsur" type="string" column="hdsur" length="1"/>
+    <field name="hisur" type="string" column="hisur" length="1"/>
+    <field name="cdmov" type="string" column="cdmov" length="1"/>
+    <field name="cimov" type="string" column="cimov" length="1"/>
+    <field name="cdpal" type="string" column="cdpal" length="1"/>
+    <field name="cipal" type="string" column="cipal" length="1"/>
+    <field name="mdmov" type="string" column="mdmov" length="1"/>
+    <field name="mimov" type="string" column="mimov" length="1"/>
+    <field name="mdpal" type="string" column="mdpal" length="1"/>
+    <field name="mipal" type="string" column="mipal" length="1"/>
+    <field name="mdten" type="string" column="mdten" length="1"/>
+    <field name="miten" type="string" column="miten" length="1"/>
+    <field name="mdhip" type="string" column="mdhip" length="1"/>
+    <field name="mihip" type="string" column="mihip" length="1"/>
+    <field name="mdret" type="string" column="mdret" length="1"/>
+    <field name="miret" type="string" column="miret" length="1"/>
+    <field name="mdsme" type="string" column="mdsme" length="1"/>
+    <field name="misme" type="string" column="misme" length="1"/>
+    <field name="pddef" type="string" column="pddef" length="1"/>
+    <field name="pidef" type="string" column="pidef" length="1"/>
+    <field name="pdins" type="string" column="pdins" length="1"/>
+    <field name="piins" type="string" column="piins" length="1"/>
+    <field name="comentarios" type="text" column="comentarios"/>
+    <many-to-one field="mdhist" target-entity="Mdhist" orphan-removal="">
+      <join-columns>
+        <join-column name="MdHist_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

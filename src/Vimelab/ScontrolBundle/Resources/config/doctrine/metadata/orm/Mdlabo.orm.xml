@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Mdlabo" table="MdLabo">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="bigint" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="estado" type="string" column="estado" length="1"/>
+    <field name="resultado" type="text" column="resultado"/>
+    <many-to-one field="mdexam" target-entity="Mdexam" orphan-removal="">
+      <join-columns>
+        <join-column name="MdExam_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="mdhist" target-entity="Mdhist" orphan-removal="">
+      <join-columns>
+        <join-column name="MdHist_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="ctserv" target-entity="Ctserv" orphan-removal="">
+      <join-columns>
+        <join-column name="CtServ_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

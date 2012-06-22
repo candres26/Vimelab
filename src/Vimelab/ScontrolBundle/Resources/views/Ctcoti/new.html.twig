@@ -1,0 +1,51 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Presupuesto{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Presupuesto</h2>
+
+<form id="vime-form" action="{{ path('ctcoti_create') }}" method="post" {{ form_enctype(form) }}>
+	<input type="submit" style="display: none" id="sender" value="send">
+    <table align="center">
+		<tr><td colspan='2'>{{ form_errors(form.fecha) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.fecha) }}</td><td align="left">{{ form_widget(form.fecha) }}</td></tr>
+		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>		
+		<tr><td colspan='2'>{{ form_errors(form.gbempr) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.gbempr) }}</td><td align="left">{{ form_widget(form.gbempr) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.modalidad) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.modalidad) }}</td><td align="left">{{ form_widget(form.modalidad) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.trabajadores) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.trabajadores) }}</td><td align="left">{{ form_widget(form.trabajadores) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.centros) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.centros) }}</td><td align="left">{{ form_widget(form.centros) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.vencimiento) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.vencimiento) }}</td><td align="left">{{ form_widget(form.vencimiento) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.nivel) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.nivel) }}</td><td align="left">{{ form_widget(form.nivel) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.subtotal) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.subtotal) }}</td><td align="left">{{ form_widget(form.subtotal) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.iva) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.iva) }}</td><td align="left">{{ form_widget(form.iva) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.descuento) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.descuento) }}</td><td align="left">{{ form_widget(form.descuento) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.total) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.total) }}</td><td align="left">{{ form_widget(form.total) }}</td></tr>
+    </table>
+    {{ form_rest(form) }}
+</form>
+
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('ctcoti') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="SimularClick('sender')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

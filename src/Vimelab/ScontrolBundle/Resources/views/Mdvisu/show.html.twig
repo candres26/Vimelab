@@ -1,0 +1,111 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Descripción Visual{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Descripción Visual</h2>
+
+<table class="vime-table-des" align="center">
+    <tbody>
+        <tr>
+            <th align="left">Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th align="left">Historia No.</th>
+            <td>{{ entity.mdhist }}</td>
+        </tr>
+        <tr>
+            <th align="left">Identificación Paciente</th>
+            <td>{{ entity.mdhist.mdpaci }}</td>
+        </tr>
+        <tr>
+            <th align="left">Paciente</th>
+            <td>{{ entity.mdhist.mdpaci.prinom }} {{ entity.mdhist.mdpaci.segnom }} {{ entity.mdhist.mdpaci.priape }} {{ entity.mdhist.mdpaci.segape }}</td>
+        </tr>
+        <tr>
+            <th align="left">Lentes</th>
+            <td>{% if entity.lentes == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Lentes Prueba</th>
+            <td>{% if entity.lentesprueba == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Miopía</th>
+            <td>{% if entity.miopia %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Hipermetropía</th>
+            <td>{% if entity.hipermetropia %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Astigmatísmo</th>
+            <td>{% if entity.miopia %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Bif</th>
+            <td>{% if entity.bif %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Lent</th>
+            <td>{% if entity.lent %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Vcl</th>
+            <td>{% if entity.vcl %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Vl</th>
+            <td>{% if entity.vl %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Vc</th>
+            <td>{% if entity.vc %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Vlod</th>
+            <td>{{ entity.vlod }}</td>
+        </tr>
+        <tr>
+            <th align="left">Vloi</th>
+            <td>{{ entity.vloi }}</td>
+        </tr>
+        <tr>
+            <th align="left">Vlao</th>
+            <td>{{ entity.vlao }}</td>
+        </tr>
+        <tr>
+            <th align="left">Vcod</th>
+            <td>{{ entity.vcod }}</td>
+        </tr>
+        <tr>
+            <th align="left">Vcoi</th>
+            <td>{{ entity.vcoi }}</td>
+        </tr>
+        <tr>
+            <th align="left">Vcao</th>
+            <td>{{ entity.vcao }}</td>
+        </tr>
+    </tbody>
+</table>
+
+	<form id="vime-form" action="{{ path('mdvisu_delete', { 'id': entity.id }) }}" method="post">
+		{{ form_widget(delete_form) }}
+	</form>
+    
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('mdvisu') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="gId('vime-form').submit()"><img src="{{ asset('bundles/scontrol/imagenes/iconos/eliminar.png') }}" title="Eliminar"></td>
+			<td onClick="go('{{ path('mdvisu_edit', { 'id': entity.id }) }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar.png') }}" title="Editar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

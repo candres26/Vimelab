@@ -1,0 +1,54 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}R. Sistemas{% endblock %}
+
+{% block area %}
+
+<h2 align="left">R. Sistemas</h2>
+
+<form id="vime-form" action="{{ path('mdsist_create') }}" method="post" {{ form_enctype(form) }}>
+	<input type="submit" style="display: none" id="sender" value="send">
+   <table align="center">
+		<tr><td colspan='2'>{{ form_errors(form.mdhist) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.mdhist) }}</td><td align="left">{{ form_widget(form.mdhist) }}</td></tr>		
+		<tr><td colspan='2'>{{ form_errors(form.otoscder) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.otoscder) }}</td><td align="left">{{ form_widget(form.otoscder) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.otosciz) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.otosciz) }}</td><td align="left">{{ form_widget(form.otosciz) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.boca) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.boca) }}</td><td align="left">{{ form_widget(form.boca) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.garganta) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.garganta) }}</td><td align="left">{{ form_widget(form.garganta) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.pupilas) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.pupilas) }}</td><td align="left">{{ form_widget(form.pupilas) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.columna) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.columna) }}</td><td align="left">{{ form_widget(form.columna) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.mucosas) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.mucosas) }}</td><td align="left">{{ form_widget(form.mucosas) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.cardiaca) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.cardiaca) }}</td><td align="left">{{ form_widget(form.cardiaca) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.respiratoria) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.respiratoria) }}</td><td align="left">{{ form_widget(form.respiratoria) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.abdominal) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.abdominal) }}</td><td align="left">{{ form_widget(form.abdominal) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.nervioso) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.nervioso) }}</td><td align="left">{{ form_widget(form.nervioso) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.ppl) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.ppl) }}</td><td align="left">{{ form_widget(form.ppl) }}</td></tr>
+    </table>
+    {{ form_rest(form) }}
+</form>
+
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('mdsist') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="SimularClick('sender')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

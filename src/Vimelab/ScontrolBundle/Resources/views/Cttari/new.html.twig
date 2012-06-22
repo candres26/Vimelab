@@ -1,0 +1,34 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Tarífa{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Tarífa</h2>
+
+<form id="vime-form" action="{{ path('cttari_create') }}" method="post" {{ form_enctype(form) }}>
+	<input type="submit" style="display: none" id="sender" value="send">
+    <table align="center">
+		<tr><td colspan='2'>{{ form_errors(form.ctcont) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.ctcont) }}</td><td align="left">{{ form_widget(form.ctcont) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.ctserv) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.ctserv) }}</td><td align="left">{{ form_widget(form.ctserv) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.valor) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.valor) }}</td><td align="left">{{ form_widget(form.valor) }}</td></tr>   
+	</table>
+    {{ form_rest(form) }}
+</form>
+
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('cttari') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="SimularClick('sender')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Editar Hoja de Ruta{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Editar Hoja de Ruta</h2>
+
+<form id="vime-form" action="{{ path('tcruta_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+	<input type="submit" style="display: none" id="sender" value="send">
+	<table style="position: absolute; margin-left: 2%; margin-top: 3%;">
+		<tr><td align="left">{{ form_label(edit_form.estado) }}</td><td align="left"> {{ form_errors(edit_form.estado) }} {{ form_widget(edit_form.estado) }}</td><td></td><td></td><td align="left">{{ form_label(edit_form.ctcont) }}</td><td align="left"> {{ form_errors(edit_form.ctcont) }} {{ form_widget(edit_form.ctcont) }}</td></tr>
+		<tr><td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td></tr>
+		<tr><td align="left">{{ form_label(edit_form.encargado) }}</td><td align="left"> {{ form_errors(edit_form.encargado) }} {{ form_widget(edit_form.encargado) }}</td><td align="left">{{ form_label(edit_form.fplaneada) }}</td><td align="left"> {{ form_errors(edit_form.fplaneada) }} {{ form_widget(edit_form.fplaneada) }}</td><td align="left">{{ form_label(edit_form.fejecutada) }}</td><td align="left"> {{ form_errors(edit_form.fejecutada) }} {{ form_widget(edit_form.fejecutada) }}</td></tr>
+		<tr><td></td><td></td><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>		
+		<tr><td align="left">{{ form_label(edit_form.personal) }}</td><td align="left"> {{ form_errors(edit_form.personal) }} {{ form_widget(edit_form.personal) }}</td><td align="left">{{ form_label(edit_form.datos) }}</td><td align="left"> {{ form_errors(edit_form.datos) }} {{ form_widget(edit_form.datos) }}</td><td align="left">{{ form_label(edit_form.fparciales) }}</td><td align="left"> {{ form_errors(edit_form.fparciales) }} {{ form_widget(edit_form.fparciales) }}</td></tr>
+	</table>
+	<table style="position: absolute; margin-left: 76%; margin-top: 12%;">
+		<tr><td align="left">{{ form_label(edit_form.equipo) }}</td><td align="left"> {{ form_errors(edit_form.equipo) }} {{ form_widget(edit_form.equipo, { 'attr': { 'size': '8' }}) }}</td><td align="left">{{ form_label(edit_form.lugar) }}</td><td align="left"> {{ form_errors(edit_form.lugar) }} {{ form_widget(edit_form.lugar, { 'attr': { 'size': '8' }}) }}</td></tr>
+		<tr><td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td></tr>
+		<tr><td align="left">{{ form_label(edit_form.unidad) }}</td><td colspan='3' align="left"> {{ form_errors(edit_form.unidad) }} {{ form_widget(edit_form.unidad) }}</td></tr>
+	</table>
+	<table style="position: absolute; margin-left: 2%%; margin-top: 30%;">
+		<tr><th>Tipos de Revisión: </th></tr>	
+		<tr><td></td></tr>
+		<tr><td></td></tr>
+		<tr><td></td></tr>
+		<tr><td></td></tr>
+		<tr><td></td></tr>
+		<tr><td align="left">{{ form_label(edit_form.analitica) }}</td><td align="left"> {{ form_errors(edit_form.analitica) }} {{ form_widget(edit_form.analitica) }}</td><td align="left">{{ form_label(edit_form.vision) }}</td><td align="left"> {{ form_errors(edit_form.vision) }} {{ form_widget(edit_form.vision) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.biometria) }}</td><td align="left"> {{ form_errors(edit_form.biometria) }} {{ form_widget(edit_form.biometria) }}</td><td align="left">{{ form_label(edit_form.espirometria) }}</td><td align="left"> {{ form_errors(edit_form.espirometria) }} {{ form_widget(edit_form.espirometria) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.audiometria) }}</td><td align="left"> {{ form_errors(edit_form.audiometria) }} {{ form_widget(edit_form.audiometria) }}</td><td align="left">{{ form_label(edit_form.medica) }}</td><td align="left"> {{ form_errors(edit_form.medica) }} {{ form_widget(edit_form.medica) }}</td></tr>
+	</table>
+	<table style="position: absolute; margin-left: 2%; margin-top: 51%;">
+		<tr><th>Electrocardiogramas: </th></tr>
+		<tr><td></td></tr>
+		<tr><td></td></tr>
+		<tr><td></td></tr>
+		<tr><td></td></tr>
+		<tr><td></td></tr>
+		<tr><td align="left">{{ form_label(edit_form.electro) }}</td><td align="left"> {{ form_errors(edit_form.electro) }} {{ form_widget(edit_form.electro) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.detelectro) }}</td><td align="left"> {{ form_errors(edit_form.detelectro) }} {{ form_widget(edit_form.detelectro) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.comentarios) }}</td><td align="left"> {{ form_errors(edit_form.comentarios) }} {{ form_widget(edit_form.comentarios) }}</td></tr>
+	</table>
+	<table style="position: absolute; margin-left: 32%; margin-top: 30%;">
+		<tr><th>Número de Pruebas: </th></tr>
+		<tr><td></td></tr>
+		<tr><td></td></tr>
+		<tr><td></td></tr>
+		<tr><td></td></tr>
+		<tr><td></td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.ncompletos) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.ncompletos) }}</td><td align="left">{{ form_widget(edit_form.ncompletos) }} </td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.nanaliticas) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.nanaliticas) }}</td><td align="left">{{ form_widget(edit_form.nanaliticas) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.nsolas) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.nsolas) }}</td><td align="left">{{ form_widget(edit_form.nsolas) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.necg) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.necg) }}</td><td align="left">{{ form_widget(edit_form.necg) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.naudiometria) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.naudiometria) }}</td><td align="left">{{ form_widget(edit_form.naudiometria) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.total) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.total) }}</td><td align="left">{{ form_widget(edit_form.total) }}</td></tr>
+    </table>
+    {{ form_rest(edit_form) }}
+</form>
+
+<form id="vime-form-del" action="{{ path('tcruta_delete', { 'id': entity.id }) }}" method="post">
+	{{ form_widget(delete_form) }}
+</form>			
+
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('tcruta') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="gId('vime-form-del').submit()"><img src="{{ asset('bundles/scontrol/imagenes/iconos/eliminar.png') }}" title="Eliminar"></td>
+			<td onClick="SimularClick('sender')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}
+

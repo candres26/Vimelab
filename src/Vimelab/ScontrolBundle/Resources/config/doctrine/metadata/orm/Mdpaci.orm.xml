@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Mdpaci" table="MdPaci">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="bigint" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="identificacion" type="string" column="identificacion" length="20"/>
+    <field name="prinom" type="string" column="prinom" length="25"/>
+    <field name="segnom" type="string" column="segnom" length="25"/>
+    <field name="priape" type="string" column="priape" length="25"/>
+    <field name="segape" type="string" column="segape" length="25"/>
+    <field name="nacimiento" type="date" column="nacimiento"/>
+    <field name="sexo" type="string" column="sexo" length="1"/>
+    <field name="direccion" type="string" column="direccion" length="50"/>
+    <field name="telefono" type="string" column="telefono" length="25"/>
+    <field name="correo" type="string" column="correo" length="50"/>
+    <field name="ingreso" type="date" column="ingreso"/>
+    <many-to-one field="gbciud" target-entity="Gbciud" orphan-removal="">
+      <join-columns>
+        <join-column name="GbCiud_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="gbptra" target-entity="Gbptra" orphan-removal="">
+      <join-columns>
+        <join-column name="GbPtra_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="gbsucu" target-entity="Gbsucu" orphan-removal="">
+      <join-columns>
+        <join-column name="GbSucu_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="tipoide" target-entity="Gbiden" orphan-removal="">
+      <join-columns>
+        <join-column name="tipoide" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

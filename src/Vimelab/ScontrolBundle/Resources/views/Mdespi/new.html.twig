@@ -1,0 +1,59 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Espirometría{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Espirometría</h2>
+
+<form id="vime-form" action="{{ path('mdespi_create') }}" method="post" {{ form_enctype(form) }}>
+	<input type="submit" style="display: none" id="sender" value="send">
+   <table align="center">
+   		<tr><td colspan='2'>{{ form_errors(form.mdhist) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.mdhist) }}</td><td align="left">{{ form_widget(form.mdhist) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.realizado) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.realizado) }}</td><td align="left">{{ form_widget(form.realizado) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.cv) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.cv) }}</td><td align="left">{{ form_widget(form.cv) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.vems) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.vems) }}</td><td align="left">{{ form_widget(form.vems) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.tiff) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.tiff) }}</td><td align="left">{{ form_widget(form.tiff) }}</td></tr>
+    </table>
+    {{ form_rest(form) }}
+</form>
+
+<script text="Javascript">
+	function isMode()
+	{
+		if(gId('vimelab_scontrolbundle_mdespitype_realizado_S').checked)
+		{
+			gId('vimelab_scontrolbundle_mdespitype_cv').disabled = false;
+			gId('vimelab_scontrolbundle_mdespitype_vems').disabled = false;
+			gId('vimelab_scontrolbundle_mdespitype_tiff').disabled = false;
+		}	
+		else
+		{
+			gId('vimelab_scontrolbundle_mdespitype_cv').value = '';
+			gId('vimelab_scontrolbundle_mdespitype_cv').disabled = true;
+			gId('vimelab_scontrolbundle_mdespitype_vems').value = '';
+			gId('vimelab_scontrolbundle_mdespitype_vems').disabled = true;
+			gId('vimelab_scontrolbundle_mdespitype_tiff').value = '';
+			gId('vimelab_scontrolbundle_mdespitype_tiff').disabled = true;
+		}
+	}
+</script>
+
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('mdespi') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="SimularClick('sender')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

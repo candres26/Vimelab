@@ -1,0 +1,54 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Listado de Cargos{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Listado de Cargos</h2>
+
+<input type="text"><img style="cursor: pointer;" onClick="{{ path('gbcarg_show'}}" src="{{ asset('bundles/scontrol/imagenes/stellarium.png') }}" title="Buscar">
+&nbsp;
+<table class="vime-table" align="center" border="1">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td>{{ entity.id }}</a></td>
+            <td>{{ entity.nombre }}</td>
+            <td align="center">
+				<a href="{{ path('gbcarg_show', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/show_index.png') }}" title="Mostrar"></a>
+				<a href="{{ path('gbcarg_edit', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar_index.png') }}" title="Editar"></a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<script text="javascript">
+	function buscar(pline)
+	{
+		alert(pline);
+	}
+</script>
+
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('gbcarg') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="go('{{ path('gbcarg_new') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/agregar.png') }}" title="Agregar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}
+
+

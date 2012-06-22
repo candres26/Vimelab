@@ -1,0 +1,147 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Editar Ant. Personal{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Editar Antecedente Personal</h2>
+
+<form id="vime-form" action="{{ path('hspers_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+	<input type="submit" style="display: none" id="sender" value="send">
+	<table style="position: absolute; margin-left: 2%;">
+		<tr><td colspan='2'>{{ form_errors(edit_form.mdpaci) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.mdpaci) }}</td><td align="left">{{ form_widget(edit_form.mdpaci) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.fecha) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.fecha) }}</td><td align="left">{{ form_widget(edit_form.fecha) }}</td></tr>
+		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>	
+		<tr><td colspan='2'>{{ form_errors(edit_form.evento) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.evento) }}</td><td align="left">{{ form_widget(edit_form.evento) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.operaciones) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.operaciones) }}</td><td align="left">{{ form_widget(edit_form.operaciones) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.productos) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.productos) }}</td><td align="left">{{ form_widget(edit_form.productos) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.riesgos) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.riesgos) }}</td><td align="left">{{ form_widget(edit_form.riesgos) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.texposicion) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.texposicion) }}</td><td align="left">{{ form_widget(edit_form.texposicion) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.proteccion) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.proteccion) }}</td><td align="left">{{ form_widget(edit_form.proteccion) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.ventilacion) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.ventilacion) }}</td><td align="left">{{ form_widget(edit_form.ventilacion) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.temperatura) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.temperatura) }}</td><td align="left">{{ form_widget(edit_form.temperatura) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.horario) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.horario) }}</td><td align="left">{{ form_widget(edit_form.horario) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.turno) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.turno) }}</td><td align="left">{{ form_widget(edit_form.turno) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.rotacion) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.rotacion) }}</td><td align="left">{{ form_widget(edit_form.rotacion) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.visitas) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.visitas) }}</td><td align="left">{{ form_widget(edit_form.visitas) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.bajas) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.bajas) }}</td><td align="left">{{ form_widget(edit_form.bajas) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.medicamentos) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.medicamentos) }}</td><td align="left">{{ form_widget(edit_form.medicamentos) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.fumador) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.fumador) }}</td><td align="left">{{ form_widget(edit_form.fumador) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.detfumador) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.detfumador) }}</td><td align="left">{{ form_widget(edit_form.detfumador) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.bebedor) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.bebedor) }}</td><td align="left">{{ form_widget(edit_form.bebedor) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.detbebedor) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.detbebedor) }}</td><td align="left">{{ form_widget(edit_form.detbebedor) }}</td></tr>
+	</table>
+	<table style="position: absolute; margin-left: 35%;">	
+		<tr><td colspan='2'>{{ form_errors(edit_form.efpulmon) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.efpulmon) }}</td><td align="left">{{ form_widget(edit_form.efpulmon) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.efcorazon) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.efcorazon) }}</td><td align="left">{{ form_widget(edit_form.efcorazon) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.efasma) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.efasma) }}</td><td align="left">{{ form_widget(edit_form.efasma) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.efbronquios) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.efbronquios) }}</td><td align="left">{{ form_widget(edit_form.efbronquios) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.efcirculacion) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.efcirculacion) }}</td><td align="left">{{ form_widget(edit_form.efcirculacion) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.efhigado) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.efhigado) }}</td><td align="left">{{ form_widget(edit_form.efhigado) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.efgastritis) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.efgastritis) }}</td><td align="left">{{ form_widget(edit_form.efgastritis) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.efulcera) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.efulcera) }}</td><td align="left">{{ form_widget(edit_form.efulcera) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.efvesicula) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.efvesicula) }}</td><td align="left">{{ form_widget(edit_form.efvesicula) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.efriñon) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.efriñon) }}</td><td align="left">{{ form_widget(edit_form.efriñon) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.efurinario) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.efurinario) }}</td><td align="left">{{ form_widget(edit_form.efurinario) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.efartrosis) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.efartrosis) }}</td><td align="left">{{ form_widget(edit_form.efartrosis) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.eflumbago) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.eflumbago) }}</td><td align="left">{{ form_widget(edit_form.eflumbago) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.efotros) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.efotros) }}</td><td align="left">{{ form_widget(edit_form.efotros) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.alergias) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.alergias) }}</td><td align="left">{{ form_widget(edit_form.alergias) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.prazucar) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.prazucar) }}</td><td align="left">{{ form_widget(edit_form.prazucar) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.prcolesterol) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.prcolesterol) }}</td><td align="left">{{ form_widget(edit_form.prcolesterol) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.prurico) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.prurico) }}</td><td align="left">{{ form_widget(edit_form.prurico) }}</td></tr>
+	</table>
+	<table style="position: absolute; margin-left: 69%;">	
+		<tr><td colspan='2'>{{ form_errors(edit_form.prhepatitis) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.prhepatitis) }}</td><td align="left">{{ form_widget(edit_form.prhepatitis) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.prtransaminasas) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.prtransaminasas) }}</td><td align="left">{{ form_widget(edit_form.prtransaminasas) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.prhipertension) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.prhipertension) }}</td><td align="left">{{ form_widget(edit_form.prhipertension) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.prhipotension) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.prhipotension) }}</td><td align="left">{{ form_widget(edit_form.prhipotension) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.prsoplos) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.prsoplos) }}</td><td align="left">{{ form_widget(edit_form.prsoplos) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.prarritmias) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.prarritmias) }}</td><td align="left">{{ form_widget(edit_form.prarritmias) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.prhernias) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.prhernias) }}</td><td align="left">{{ form_widget(edit_form.prhernias) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.prdepresion) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.prdepresion) }}</td><td align="left">{{ form_widget(edit_form.prdepresion) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.cbintestinal) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.cbintestinal) }}</td><td align="left">{{ form_widget(edit_form.cbintestinal) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.cborina) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.cborina) }}</td><td align="left">{{ form_widget(edit_form.cborina) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.cbpiel) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.cbpiel) }}</td><td align="left">{{ form_widget(edit_form.cbpiel) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.cbpeso) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.cbpeso) }}</td><td align="left">{{ form_widget(edit_form.cbpeso) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.tetano) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.tetano) }}</td><td align="left">{{ form_widget(edit_form.tetano) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.tetanofecha) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.tetanofecha) }}</td><td align="left">{{ form_widget(edit_form.tetanofecha) }}</td></tr>
+		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.tetanodosis) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.tetanodosis) }}</td><td align="left">{{ form_widget(edit_form.tetanodosis) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.observaciones) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.observaciones) }}</td><td align="left">{{ form_widget(edit_form.observaciones) }}</td></tr>
+    </table>
+    {{ form_rest(edit_form) }}
+</form>
+
+<form id="vime-form-del" action="{{ path('hspers_delete', { 'id': entity.id }) }}" method="post">
+	{{ form_widget(delete_form) }}
+</form>	
+
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('hspers') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="gId('vime-form-del').submit()"><img src="{{ asset('bundles/scontrol/imagenes/iconos/eliminar.png') }}" title="Eliminar"></td>
+			<td onClick="SimularClick('sender')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

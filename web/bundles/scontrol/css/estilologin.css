@@ -1,0 +1,62 @@
+/* --- Propiedades Globales --- */
+
+body
+{
+    background: #BCD4E7;
+    font-family: Helvetica, Arial;
+    font-size: 0.8em;
+}
+
+/* --- Macro Divs --- */
+
+#vime-vista
+{
+	box-shadow: 5px 5px 10px #203982;
+    position: absolute;
+    top: 20%;
+    left: 18%;
+    overflow: auto;
+    width: 65%;
+    height: 40%;
+    background: #FFF;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #0D1A41;
+    border-radius: 10px;
+    padding-top: 60px;
+
+}
+
+#vime-form
+{
+    position: absolute;
+    top: 4%;
+    left: 3%;
+    overflow: auto;
+    width: 35%;
+    min-height: 50%;
+    height: 90%;
+    background: #FFFFFF;
+    text-align: left;
+    font-weight: bold;
+    /*border: 1px dashed #000000;*/
+}
+
+#vime-anima
+{
+	position: absolute;
+	top: 4%;
+	left: 39%;
+	height: 90%;
+	width: 60%;
+	overflow: auto;
+	border-radius: 10px;
+}
+
+.button
+{
+	background-color:#203982; 
+	color:#fff;
+	border-radius: 10px;
+	cursor: pointer;
+}

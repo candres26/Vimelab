@@ -1,0 +1,107 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Descripción Audiometría{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Descripción de Audiometría</h1>
+
+<table class="vime-table-des" align="center">
+    <tbody>
+        <tr>
+            <th align="left">Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th align="left">Historia No.</th>
+            <td>{{ entity.mdhist }}</td>
+        </tr>
+        <tr>
+            <th align="left">Identificación paciente</th>
+            <td>{{ entity.mdhist.mdpaci.identificacion }}</td>
+        </tr>
+        <tr>
+            <th align="left">Paciente</th>
+            <td>{{ entity.mdhist.mdpaci.prinom}} {{ entity.mdhist.mdpaci.segnom}}{{ entity.mdhist.mdpaci.priape}}{{ entity.mdhist.mdpaci.segape}}</td>
+        </tr>
+        <tr>
+            <th align="left">Realizado</th>
+            <td>{{ entity.realizado }}</td>
+        </tr>
+        <tr>
+            <th align="left">D500</th>
+            <td>{{ entity.d500 }}</td>
+        </tr>
+        <tr>
+            <th align="left">I500</th>
+            <td>{{ entity.i500 }}</td>
+        </tr>
+        <tr>
+            <th align="left">D1000</th>
+            <td>{{ entity.d1000 }}</td>
+        </tr>
+        <tr>
+            <th align="left">I1000</th>
+            <td>{{ entity.i1000 }}</td>
+        </tr>
+        <tr>
+            <th align="left">D2000</th>
+            <td>{{ entity.d2000 }}</td>
+        </tr>
+        <tr>
+            <th align="left">I2000</th>
+            <td>{{ entity.i2000 }}</td>
+        </tr>
+        <tr>
+            <th align="left">D3000</th>
+            <td>{{ entity.d3000 }}</td>
+        </tr>
+        <tr>
+            <th align="left">I3000</th>
+            <td>{{ entity.i3000 }}</td>
+        </tr>
+        <tr>
+            <th align="left">D4000</th>
+            <td>{{ entity.d4000 }}</td>
+        </tr>
+        <tr>
+            <th align="left">I4000</th>
+            <td>{{ entity.i4000 }}</td>
+        </tr>
+        <tr>
+            <th align="left">D6000</th>
+            <td>{{ entity.d6000 }}</td>
+        </tr>
+        <tr>
+            <th align="left">I6000</th>
+            <td>{{ entity.i6000 }}</td>
+        </tr>
+        <tr>
+            <th align="left">D8000</th>
+            <td>{{ entity.d8000 }}</td>
+        </tr>
+        <tr>
+            <th align="left">I8000</th>
+            <td>{{ entity.i8000 }}</td>
+        </tr>
+    </tbody>
+</table>
+
+	<form id="vime-form" action="{{ path('mdaudi_delete', { 'id': entity.id }) }}" method="post">
+		{{ form_widget(delete_form) }}
+	</form>
+    
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('mdaudi') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="gId('vime-form').submit()"><img src="{{ asset('bundles/scontrol/imagenes/iconos/eliminar.png') }}" title="Eliminar"></td>
+			<td onClick="go('{{ path('mdaudi_edit', { 'id': entity.id }) }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar.png') }}" title="Editar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

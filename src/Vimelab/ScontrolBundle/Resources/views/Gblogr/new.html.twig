@@ -1,0 +1,37 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Log{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Log</h2>
+
+<form id="vime-form" action="{{ path('gblogr_create') }}" method="post" {{ form_enctype(form) }}>
+	<input type="submit" style="display: none" id="sender" value="send">
+	<table align="center">
+		<tr><td colspan='2'>{{ form_errors(form.gbusua) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.gbusua) }}</td><td align="left">{{ form_widget(form.gbusua) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.fecha) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.fecha) }}</td><td align="left">{{ form_widget(form.fecha) }}</td></tr>
+		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.modulo) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.modulo) }}</td><td align="left">{{ form_widget(form.modulo) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.accion) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.accion) }}</td><td align="left">{{ form_widget(form.accion) }}</td></tr>
+    </table>
+    {{ form_rest(form) }}
+</form>
+
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('gblogr') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="SimularClick('sender')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

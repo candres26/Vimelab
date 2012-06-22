@@ -1,0 +1,183 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Descripción Check List{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Descripción Check List</h2>
+
+<table class="vime-table-des" align="center">
+    <tbody>
+        <tr>
+            <th align="left">Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th align="left">Revisión No.</th>
+            <td>{{ entity.tcrevi }}</td>
+        </tr>
+        <tr>
+            <th align="left">No. trabajadores</th>
+            <td>{{ entity.ntrabajadores }}</td>
+        </tr>
+        <tr>
+            <th align="left">Asesoría</th>
+            <td>{{ entity.asesoria }}</td>
+        </tr>
+        <tr>
+            <th align="left">Comité</th>
+            <td>{{ entity.comite }}</td>
+        </tr>
+        <tr>
+            <th align="left">Descripción</th>
+            <td>{{ entity.descripcion }}</td>
+        </tr>
+        <tr>
+            <th align="left">Características</th>
+            <td>{{ entity.caracteristicas }}</td>
+        </tr>
+        <tr>
+            <th align="left">Psensible</th>
+            <td>{{ entity.psensible }}</td>
+        </tr>
+        <tr>
+            <th align="left">Seguridad</th>
+            <td>{{ entity.seguridad }}</td>
+        </tr>
+        <tr>
+            <th align="left">Mfisico</th>
+            <td>{{ entity.mfisico }}</td>
+        </tr>
+        <tr>
+            <th align="left">Hfisico</th>
+            <td>{{ entity.hfisico }}</td>
+        </tr>
+        <tr>
+            <th align="left">Mquimico</th>
+            <td>{{ entity.mquimico }}</td>
+        </tr>
+        <tr>
+            <th align="left">Hquimico</th>
+            <td>{{ entity.hquimico }}</td>
+        </tr>
+        <tr>
+            <th align="left">Mbiológico</th>
+            <td>{{ entity.mbiologico }}</td>
+        </tr>
+        <tr>
+            <th align="left">Hbiológico</th>
+            <td>{{ entity.hbiologico }}</td>
+        </tr>
+        <tr>
+            <th align="left">Cargas</th>
+            <td>{{ entity.cargas }}</td>
+        </tr>
+        <tr>
+            <th align="left">Carretilleros</th>
+            <td>{{ entity.carretilleros }}</td>
+        </tr>
+        <tr>
+            <th align="left">Repetitivos</th>
+            <td>{{ entity.repetitivos }}</td>
+        </tr>
+        <tr>
+            <th align="left">Ett</th>
+            <td>{{ entity.ett }}</td>
+        </tr>
+        <tr>
+            <th align="left">Limpieza</th>
+            <td>{{ entity.limpieza }}</td>
+        </tr>
+        <tr>
+            <th align="left">Mantenimiento</th>
+            <td>{{ entity.mantenimiento }}</td>
+        </tr>
+        <tr>
+            <th align="left">Otros</th>
+            <td>{{ entity.otros }}</td>
+        </tr>
+        <tr>
+            <th align="left">Emergencia</th>
+            <td>{{ entity.emergencia }}</td>
+        </tr>
+        <tr>
+            <th align="left">Simulacros</th>
+            <td>{{ entity.simulacros }}</td>
+        </tr>
+        <tr>
+            <th align="left">Planos</th>
+            <td>{{ entity.planos }}</td>
+        </tr>
+        <tr>
+            <th align="left">Eplanos</th>
+            <td>{{ entity.eplanos }}</td>
+        </tr>
+        <tr>
+            <th align="left">Textintor</th>
+            <td>{{ entity.textintor }}</td>
+        </tr>
+        <tr>
+            <th align="left">Pemergencia</th>
+            <td>{{ entity.pemergencia }}</td>
+        </tr>
+        <tr>
+            <th align="left">Lemergencia</th>
+            <td>{{ entity.lemergencia }}</td>
+        </tr>
+        <tr>
+            <th align="left">Alarmas</th>
+            <td>{{ entity.alarmas }}</td>
+        </tr>
+        <tr>
+            <th align="left">Selectrico</th>
+            <td>{{ entity.selectrico }}</td>
+        </tr>
+        <tr>
+            <th align="left">Sextintor</th>
+            <td>{{ entity.sextintor }}</td>
+        </tr>
+        <tr>
+            <th align="left">Sevacuación</th>
+            <td>{{ entity.sevacuacion }}</td>
+        </tr>
+        <tr>
+            <th align="left">Slavabos</th>
+            <td>{{ entity.slavabos }}</td>
+        </tr>
+        <tr>
+            <th align="left">Botiquín</th>
+            <td>{{ entity.botiquin }}</td>
+        </tr>
+        <tr>
+            <th align="left">Ascensor</th>
+            <td>{{ entity.ascensor }}</td>
+        </tr>
+        <tr>
+            <th align="left">Bantideslizante</th>
+            <td>{{ entity.bantideslizante }}</td>
+        </tr>
+        <tr>
+            <th align="left">Observaciones</th>
+            <td>{{ entity.observaciones }}</td>
+        </tr>
+    </tbody>
+</table>
+
+	<form id="vime-form" action="{{ path('tcchec_delete', { 'id': entity.id }) }}" method="post">
+		{{ form_widget(delete_form) }}
+	</form>
+    
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('tcchec') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="gId('vime-form').submit()"><img src="{{ asset('bundles/scontrol/imagenes/iconos/eliminar.png') }}" title="Eliminar"></td>
+			<td onClick="go('{{ path('tcchec_edit', { 'id': entity.id }) }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar.png') }}" title="Editar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

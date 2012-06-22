@@ -1,0 +1,42 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Revisión Técnica{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Revisión Técnica</h2>
+
+<form id="vime-form" action="{{ path('tcrevi_create') }}" method="post" {{ form_enctype(form) }}>
+	<input type="submit" style="display: none" id="sender" value="send">
+   <table align="center">
+		<tr><td colspan='2'>{{ form_errors(form.fecha) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.fecha) }}</td><td align="left">{{ form_widget(form.fecha) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.inicio) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.inicio) }}</td><td align="left">{{ form_widget(form.inicio) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.fin) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.fin) }}</td><td align="left">{{ form_widget(form.fin) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.entrevistados) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.entrevistados) }}</td><td align="left">{{ form_widget(form.entrevistados) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.resumen) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.resumen) }}</td><td align="left">{{ form_widget(form.resumen) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.gbsucu) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.gbsucu) }}</td><td align="left">{{ form_widget(form.gbsucu) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.gbpers) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.gbpers) }}</td><td align="left">{{ form_widget(form.gbpers) }}</td></tr>
+    </table>
+    {{ form_rest(form) }}
+</form>
+
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('tcrevi') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="SimularClick('sender')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

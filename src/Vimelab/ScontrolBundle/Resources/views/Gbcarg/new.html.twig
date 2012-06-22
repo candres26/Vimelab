@@ -1,0 +1,30 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Cargo{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Cargo</h2>
+
+<form id="vime-form" action="{{ path('gbcarg_create') }}" method="post" {{ form_enctype(form) }}>
+	<input type="submit" style="display: none" id="sender" value="send">
+    <table align="center">
+	    <tr><td colspan='2'>{{ form_errors(form.nombre) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.nombre) }}</td><td align="left">{{ form_widget(form.nombre) }}</td></tr>
+    </table>
+    {{ form_rest(form) }}
+</form>
+
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('gbcarg') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="SimularClick('sender')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

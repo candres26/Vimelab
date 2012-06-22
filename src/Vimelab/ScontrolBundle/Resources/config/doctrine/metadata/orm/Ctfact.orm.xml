@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Ctfact" table="CtFact">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="bigint" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="fecha" type="date" column="fecha"/>
+    <field name="vencimiento" type="date" column="vencimiento"/>
+    <field name="subtotal" type="decimal" column="subtotal"/>
+    <field name="iva" type="decimal" column="iva"/>
+    <field name="descuento" type="decimal" column="descuento"/>
+    <field name="total" type="decimal" column="total"/>
+    <field name="estado" type="string" column="estado" length="1"/>
+    <field name="detalle" type="text" column="detalle"/>
+    <field name="observaciones" type="text" column="observaciones"/>
+    <many-to-one field="ctcont" target-entity="Ctcont" orphan-removal="">
+      <join-columns>
+        <join-column name="CtCont_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="gbpers" target-entity="Gbpers" orphan-removal="">
+      <join-columns>
+        <join-column name="GbPers_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="gbempr" target-entity="Gbempr" orphan-removal="">
+      <join-columns>
+        <join-column name="GbEmpr_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

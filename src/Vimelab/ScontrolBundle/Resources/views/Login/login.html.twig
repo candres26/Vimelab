@@ -1,0 +1,53 @@
+{% extends "ScontrolBundle::crud.html.twig" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block header  %} 
+
+	<link href="{{ asset('bundles/scontrol/css/estilologin.css') }}" rel="stylesheet" type="text/css" /> 
+	
+{% endblock %}
+
+
+{% block area %}
+
+	{% if error %}
+		<div>{{ error.message }}</div>
+	{% endif %}
+	
+<div id="vime-vista">
+	<div id="vime-form">
+		<h1>Salud Control v. 1.0</h1><br>
+		<form action="{{ path('login_check') }}" method="post">
+		<table>	
+			<tr>
+				<td><label for="username">Usuario:</label></td><td><input id="username" type="text" name="_username" value="{{ last_username }}" /></td>
+			</tr>
+			<tr>
+				<td></td><td></td>
+			</tr>
+			<tr>
+				<td><label for="password">Contraseña:</label></td><td><input id="password" type="password" name="_password" /></td>
+			</tr>
+			<tr>
+				<td></td><td></td>
+			</tr>
+			<tr>
+				<td></td><td></td>
+			</tr>
+			<tr>
+			<td><button type="submit" name="login" class="button"/>Entrar</button></td><td></td>
+			</tr>
+		</table>
+		</form>
+	</div>
+	<div id="vime-anima">
+		<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,2,0" width="500" height="250">
+		<param name=movie value="{{ asset ('bundles/scontrolflash/intro.swf') }}">
+		<param name=quality value=high>
+		<embed src="{{ asset ('bundles/scontrol/flash/intro.swf') }}" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="500" height="250">
+		</embed> 
+		</object> 
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Agudeza Visual{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Agudeza Visual</h2>
+
+<form id="vime-form" action="{{ path('mdvisu_create') }}" method="post" {{ form_enctype(form) }}>
+	<input type="submit" style="display: none" id="sender" value="send">
+	
+	<table style="position: absolute; margin-left: 10%; margin-top: 3.7%;">
+		<tr><td align="left">{{ form_label(form.mdhist) }}</td><td align="left"> {{ form_errors(form.mdhist) }} {{ form_widget(form.mdhist) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.lentes) }}</td><td align="left"> {{ form_errors(form.lentes) }} {{ form_widget(form.lentes) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.lentesprueba) }}</td><td align="left"> {{ form_errors(form.lentesprueba) }} {{ form_widget(form.lentesprueba) }}</td></tr>
+	</table>
+	&nbsp;
+	<table style="position: absolute; margin-left: 33%; margin-top: 1%;">
+		<tr>
+			<td>
+				<table>
+					<tr>
+						<td align="left"> {{ form_label(form.miopia) }} </td><td> {{ form_errors(form.miopia) }} {{ form_widget(form.miopia) }}</td>
+					</tr>
+					<tr>
+						<td align="left"> {{ form_label(form.hipermetropia) }} </td><td> {{ form_errors(form.hipermetropia) }} {{ form_widget(form.hipermetropia) }} </td>
+					</tr>
+					<tr>
+						<td align="left"> {{ form_label(form.astigmatismo) }} </td><td> {{ form_errors(form.astigmatismo) }} {{ form_widget(form.astigmatismo) }} </td>
+					</tr>
+					<tr>
+						<td align="left"> {{ form_label(form.bif) }} </td><td> {{ form_errors(form.bif) }} {{ form_widget(form.bif) }} </td>
+					</tr>
+				</table>
+			</td>
+			<td>
+				<table>
+					<tr>
+						<td align="left"> {{ form_label(form.lent) }} </td><td> {{ form_errors(form.lent) }} {{ form_widget(form.lent) }} </td>
+					</tr>
+					<tr>
+						<td align="left"> {{ form_label(form.vcl) }} </td><td> {{ form_errors(form.vcl) }} {{ form_widget(form.vcl) }} </td>
+					</tr>
+					<tr>
+						<td align="left"> {{ form_label(form.vl) }} </td><td> {{ form_errors(form.vl) }} {{ form_widget(form.vl) }} </td>
+					</tr>
+					<tr>
+						<td align="left"> {{ form_label(form.vc) }} </td><td> {{ form_errors(form.vc) }} {{ form_widget(form.vc) }} </td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	
+	</table>
+	&nbsp;
+	<table style="position: absolute; margin-left: 60%; margin-top: 1%;">
+		<tr>
+			<th></th><th>OD</th><th>OI</th><th>AO</th>
+		</tr>
+		<tr>
+			<td>VL</td><td> {{ form_errors(form.vlod) }}  {{ form_widget(form.vlod, { 'attr': { 'size': '1' }}) }} </td><td> {{ form_errors(form.vloi) }} {{ form_widget(form.vloi, { 'attr': { 'size': '1' }}) }} </td><td> {{ form_errors(form.vlao) }} {{ form_widget(form.vlao, { 'attr': { 'size': '1' }}) }} </td>
+		</tr>
+		<tr>
+			<td>VC</td><td> {{ form_errors(form.vcod) }} {{ form_widget(form.vcod, { 'attr': { 'size': '1' }}) }} </td><td> {{ form_errors(form.vcoi) }} {{ form_widget(form.vcoi, { 'attr': { 'size': '1' }}) }} </td><td> {{ form_errors(form.vcao) }} {{ form_widget(form.vcao, { 'attr': { 'size': '1' }}) }} </td>
+		</tr>	
+	</table>
+	
+   <table align="center" style="display: none;">
+		<tr><td align="left">{{ form_label(form.vlod) }}</td><td align="left"></td></tr>
+		<tr><td align="left">{{ form_label(form.vloi) }}</td><td align="left"></td></tr>
+		<tr><td align="left">{{ form_label(form.vlao) }}</td><td align="left"></td></tr>
+		<tr><td align="left">{{ form_label(form.vcod) }}</td><td align="left"></td></tr>
+		<tr><td align="left">{{ form_label(form.vcoi) }}</td><td align="left"></td></tr>
+		<tr><td align="left">{{ form_label(form.vcao) }}</td><td align="left"></td></tr>
+    </table>
+    {{ form_rest(form) }}
+</form>
+
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('mdvisu') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="SimularClick('sender')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

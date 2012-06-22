@@ -1,0 +1,125 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Descripción Contrato{% endblock %}
+
+{% block area %}
+<h2 align="left">Descripción de Contrato</h2>
+
+<table class="vime-table-des" align="center">
+	<tbody>	
+		<tr>
+			<th align="left">No. Contrato</th>
+			<td>{{ entity.id }}</td>
+		</tr>
+		<tr>
+			<th align="left">Fecha</th>
+			<td>{{ entity.fecha|date('Y-m-d') }}</td>
+		</tr>
+		<tr>
+			<th align="left">Empresa</th>
+			<td>{{ entity.gbempr.nombre }}</td>
+		</tr>
+		<tr>
+			<th align="left">Identificación empresa</th>
+			<td>{{ entity.gbempr.identificacion }}</td>
+		</tr>
+		<tr>
+			<th align="left">Fecha inicio contrato</th>
+			<td>{{ entity.inicio|date('Y-m-d') }}</td>		
+		</tr> 
+		<tr>
+			<th align="left">Fecha fin contrato</th>
+			<td>{{ entity.fin|date('Y-m-d') }}</td>
+		</tr>
+		<tr>
+			<th align="left">Identificación Contratista</th>
+			<td>{{ entity.identcontratista }}</td>
+		</tr>
+		<tr>
+			<th align="left">Cargo Contratista</th>
+			<td>{{ entity.cargocontratista }}</td>
+		</tr>
+		<tr>
+			<th align="left">Nombre Contratista</th>
+			<td>{{ entity.nombrecontratista }}</td>
+		</tr>
+		<tr>
+			<th align="left">Dirección Contratista</th>
+			<td>{{ entity.direccioncontratista }}</td>
+		</tr>
+		<tr>
+			<th align="left">Identificación Contratante</th>
+			<td>{{ entity.identcontratante }}</td>
+		</tr>		
+		<tr>
+			<th align="left">Cargo Contratante</th>
+			<td>{{ entity.cargocontratante }}</td>
+		</tr>
+		<tr>
+			<th align="left">Nombre Contratante</th>
+			<td>{{ entity.nombrecontratante }}</td>
+		</tr>
+		<tr>
+			<th align="left">Dirección Contratante</th>
+			<td>{{ entity.direccioncontratante }}</td>
+		</tr>
+		<tr>
+			<th align="left">Ciudad Firma</th>
+			<td>{{ entity.firmagbciud.nombre }}</td>
+		</tr>
+		<tr>
+			<th align="left">Ciudad Legal</th>
+			<td>{{ entity.legalgbciud.nombre }}</td>
+		</tr>
+		<tr>
+			<th align="left">Revisión</th>
+			<td>{{ entity.revision }}</td>
+		</tr>		
+		<tr>
+			<th align="left">Aviso</th>
+			<td>{{ entity.aviso }}</td>
+		</tr>		
+		<tr>
+			<th align="left">Costo Vigencia</th>
+			<td>{{ entity.costovigencia }}</td>
+		</tr>		
+		<tr>
+			<th align="left">Subtotal</th>
+			<td>{{ entity.subtotal }}</td>
+		</tr>		
+		<tr>
+			<th align="left">Iva</th>
+			<td>{{ entity.iva }}</td>
+		</tr>		
+		<tr>
+			<th align="left">Descuento</th>
+			<td>{{ entity.descuento }}</td>
+		</tr>		
+		<tr>
+			<th align="left">Total</th>
+			<td>{{ entity.total }}</td>
+		</tr>		
+		<tr>
+			<th align="left">Saldo</th>
+			<td>{{ entity.saldo }}</td>
+		</tr>
+    </tbody>
+</table>
+	
+	<form id="vime-form" action="{{ path('ctcont_delete', { 'id': entity.id }) }}" method="post">
+		{{ form_widget(delete_form) }}
+	</form>
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('ctcont') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="gId('vime-form').submit()"><img src="{{ asset('bundles/scontrol/imagenes/iconos/eliminar.png') }}" title="Eliminar"></td>
+			<td onClick="go('{{ path('ctcont_edit', { 'id': entity.id }) }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar.png') }}" title="Editar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

@@ -1,0 +1,7 @@
+parameters:
+#    scontrol.example.class: Vimelab\ScontrolBundle\Example
+
+services:
+#    scontrol.example:
+#        class: %scontrol.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

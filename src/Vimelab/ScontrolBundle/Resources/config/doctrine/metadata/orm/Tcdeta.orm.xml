@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Tcdeta" table="TcDeta">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="bigint" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="evitable" type="string" column="evitable" length="1"/>
+    <field name="estimacion" type="string" column="estimacion" length="1"/>
+    <field name="probabilidad" type="string" column="probabilidad" length="1"/>
+    <field name="consecuencia" type="string" column="consecuencia" length="1"/>
+    <field name="detalle" type="text" column="detalle"/>
+    <many-to-one field="tcrevi" target-entity="Tcrevi" orphan-removal="">
+      <join-columns>
+        <join-column name="TcRevi_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="tcaspe" target-entity="Tcaspe" orphan-removal="">
+      <join-columns>
+        <join-column name="TcAspe_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

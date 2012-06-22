@@ -1,0 +1,55 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Descripción Revisión{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Descripción de Revisión</h2>
+
+<table class="vime-table-des" align="center">
+    <tbody>
+        <tr>
+            <th align="left">Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th align="left">Fecha</th>
+            <td>{{ entity.fecha|date('Y-m-d') }}</td>
+        </tr>
+        <tr>
+            <th align="left">Inicio</th>
+            <td>{{ entity.inicio }}</td>
+        </tr>
+        <tr>
+            <th align="left">Fin</th>
+            <td>{{ entity.fin }}</td>
+        </tr>
+        <tr>
+            <th align="left">Entrevistados</th>
+            <td>{{ entity.entrevistados }}</td>
+        </tr>
+        <tr>
+            <th align="left">Resumen</th>
+            <td>{{ entity.resumen }}</td>
+        </tr>
+    </tbody>
+</table>
+
+	<form id="vime-form" action="{{ path('tcrevi_delete', { 'id': entity.id }) }}" method="post">
+		{{ form_widget(delete_form) }}
+	</form>
+    
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('tcrevi') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="gId('vime-form').submit()"><img src="{{ asset('bundles/scontrol/imagenes/iconos/eliminar.png') }}" title="Eliminar"></td>
+			<td onClick="go('{{ path('tcrevi_edit', { 'id': entity.id }) }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar.png') }}" title="Editar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

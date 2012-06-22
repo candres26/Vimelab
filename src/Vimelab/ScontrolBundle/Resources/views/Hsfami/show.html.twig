@@ -1,0 +1,51 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Descripción Ant. Familiar{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Descripción Antecedente Familiar</h2>
+
+<table class="vime-table-des" align="center">
+    <tbody>
+        <tr>
+            <th align="left">Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th align="left">Identificación</th>
+            <td>{{ entity.mdpaci.identificacion }}</td>
+        </tr>
+        <tr>
+            <th align="left">Nombre paciente</th>
+            <td>{{ entity.mdpaci.prinom }} {{ entity.mdpaci.segnom }} {{ entity.mdpaci.priape }} {{ entity.mdpaci.segape }}</td>
+        </tr>
+        <tr>
+            <th align="left">Familiar</th>
+            <td>{{ entity.familiar }}</td>
+        </tr>
+        <tr>
+            <th align="left">Detalle</th>
+            <td>{{ entity.detalle }}</td>
+        </tr>
+    </tbody>
+</table>
+
+	<form id="vime-form" action="{{ path('hsfami_delete', { 'id': entity.id }) }}" method="post">
+		{{ form_widget(delete_form) }}
+	</form>
+    
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('hsfami') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="gId('vime-form').submit()"><img src="{{ asset('bundles/scontrol/imagenes/iconos/eliminar.png') }}" title="Eliminar"></td>
+			<td onClick="go('{{ path('hsfami_edit', { 'id': entity.id }) }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar.png') }}" title="Editar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

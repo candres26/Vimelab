@@ -1,0 +1,106 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Check List{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Lista de Chequeo</h2>
+
+<form id="vime-form" action="{{ path('tcchec_create') }}" method="post" {{ form_enctype(form) }}>
+	<input type="submit" style="display: none" id="sender" value="send">
+	<table style="position: absolute; margin-left: 1%; margin-top: 1%;">
+		<tr><td colspan='2'>{{ form_errors(form.tcrevi) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.tcrevi) }}</td><td align="left">{{ form_widget(form.tcrevi) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.ntrabajadores) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.ntrabajadores) }}</td><td align="left">{{ form_widget(form.ntrabajadores) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.asesoria) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.asesoria) }}</td><td align="left">{{ form_widget(form.asesoria) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.comite) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.comite) }}</td><td align="left">{{ form_widget(form.comite) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.descripcion) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.descripcion) }}</td><td align="left">{{ form_widget(form.descripcion) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.caracteristicas) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.caracteristicas) }}</td><td align="left">{{ form_widget(form.caracteristicas) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.psensible) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.psensible) }}</td><td align="left">{{ form_widget(form.psensible) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.seguridad) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.seguridad) }}</td><td align="left">{{ form_widget(form.seguridad) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.mfisico) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.mfisico) }}</td><td align="left">{{ form_widget(form.mfisico) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.hfisico) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.hfisico) }}</td><td align="left">{{ form_widget(form.hfisico) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.mquimico) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.mquimico) }}</td><td align="left">{{ form_widget(form.mquimico) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.hquimico) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.hquimico) }}</td><td align="left">{{ form_widget(form.hquimico) }}</td></tr>		
+	</table>
+	<table style="position: absolute; margin-left: 35%; margin-top: 1%;">
+		<tr><td colspan='2'>{{ form_errors(form.mbiologico) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.mbiologico) }}</td><td align="left">{{ form_widget(form.mbiologico) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.hbiologico) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.hbiologico) }}</td><td align="left">{{ form_widget(form.hbiologico) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.cargas) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.cargas) }}</td><td align="left">{{ form_widget(form.cargas) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.carretilleros) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.carretilleros) }}</td><td align="left">{{ form_widget(form.carretilleros) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.repetitivos) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.repetitivos) }}</td><td align="left">{{ form_widget(form.repetitivos) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.ett) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.ett) }}</td><td align="left">{{ form_widget(form.ett) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.limpieza) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.limpieza) }}</td><td align="left">{{ form_widget(form.limpieza) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.mantenimiento) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.mantenimiento) }}</td><td align="left">{{ form_widget(form.mantenimiento) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.otros) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.otros) }}</td><td align="left">{{ form_widget(form.otros) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.emergencia) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.emergencia) }}</td><td align="left">{{ form_widget(form.emergencia) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.simulacros) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.simulacros) }}</td><td align="left">{{ form_widget(form.simulacros) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.planos) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.planos) }}</td><td align="left">{{ form_widget(form.planos) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.eplanos) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.eplanos) }}</td><td align="left">{{ form_widget(form.eplanos) }}</td></tr>
+	</table>
+	<table style="position: absolute; margin-left: 65%; margin-top: 1%;">
+		<tr><td colspan='2'>{{ form_errors(form.textintor) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.textintor) }}</td><td align="left">{{ form_widget(form.textintor) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.pemergencia) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.pemergencia) }}</td><td align="left">{{ form_widget(form.pemergencia) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.lemergencia) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.lemergencia) }}</td><td align="left">{{ form_widget(form.lemergencia) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.alarmas) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.alarmas) }}</td><td align="left">{{ form_widget(form.alarmas) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.selectrico) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.selectrico) }}</td><td align="left">{{ form_widget(form.selectrico) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.sextintor) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.sextintor) }}</td><td align="left">{{ form_widget(form.sextintor) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.sevacuacion) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.sevacuacion) }}</td><td align="left">{{ form_widget(form.sevacuacion) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.slavabos) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.slavabos) }}</td><td align="left">{{ form_widget(form.slavabos) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.botiquin) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.botiquin) }}</td><td align="left">{{ form_widget(form.botiquin) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.ascensor) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.ascensor) }}</td><td align="left">{{ form_widget(form.ascensor) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.bantideslizante) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.bantideslizante) }}</td><td align="left">{{ form_widget(form.bantideslizante) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.observaciones) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.observaciones) }}</td><td align="left">{{ form_widget(form.observaciones) }}</td></tr>
+    </table>
+    {{ form_rest(form) }}
+</form>
+
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('tcchec') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="SimularClick('sender')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

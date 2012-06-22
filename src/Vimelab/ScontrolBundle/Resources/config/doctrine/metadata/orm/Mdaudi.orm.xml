@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Mdaudi" table="MdAudi">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="bigint" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="realizado" type="string" column="realizado" length="1"/>
+    <field name="d500" type="decimal" column="d500"/>
+    <field name="i500" type="decimal" column="i500"/>
+    <field name="d1000" type="decimal" column="d1000"/>
+    <field name="i1000" type="decimal" column="i1000"/>
+    <field name="d2000" type="decimal" column="d2000"/>
+    <field name="i2000" type="decimal" column="i2000"/>
+    <field name="d3000" type="decimal" column="d3000"/>
+    <field name="i3000" type="decimal" column="i3000"/>
+    <field name="d4000" type="decimal" column="d4000"/>
+    <field name="i4000" type="decimal" column="i4000"/>
+    <field name="d6000" type="decimal" column="d6000"/>
+    <field name="i6000" type="decimal" column="i6000"/>
+    <field name="d8000" type="decimal" column="d8000"/>
+    <field name="i8000" type="decimal" column="i8000"/>
+    <many-to-one field="mdhist" target-entity="Mdhist" orphan-removal="">
+      <join-columns>
+        <join-column name="MdHist_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

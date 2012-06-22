@@ -1,0 +1,95 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Descripción Paciente{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Descripción de Paciente</h2>
+
+<table class="vime-table-des" align="center">
+    <tbody>
+        <tr>
+            <th align="left">Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th align="left">Sucursal</th>
+            <td>{{ entity.gbsucu.nombre }}</td>
+        </tr>
+        <tr>
+            <th align="left">Puesto de trabajo</th>
+            <td>{{ entity.gbptra.nombre }}</td>
+        </tr>
+        <tr>
+            <th align="left">Identificación</th>
+            <td>{{ entity.identificacion }}</td>
+        </tr>
+        <tr>
+            <th align="left">Tipo identificación</th>
+            <td>{{ entity.tipoide.detalle }}</td>
+        </tr>
+        <tr>
+            <th align="left">Primer nombre</th>
+            <td>{{ entity.prinom }}</td>
+        </tr>
+        <tr>
+            <th align="left">Segundo nombre</th>
+            <td>{{ entity.segnom }}</td>
+        </tr>
+        <tr>
+            <th align="left">Primer apellido</th>
+            <td>{{ entity.priape }}</td>
+        </tr>
+        <tr>
+            <th align="left">Segundo apellido</th>
+            <td>{{ entity.segape }}</td>
+        </tr>
+        <tr>
+            <th align="left">Nacimiento</th>
+            <td>{{ entity.nacimiento|date('Y-m-d') }}</td>
+        </tr>
+        <tr>
+            <th align="left">Sexo</th>
+            <td>{{ entity.sexo }}</td>
+        </tr>
+        <tr>
+            <th align="left">Dirección</th>
+            <td>{{ entity.direccion }}</td>
+        </tr>
+        <tr>
+            <th align="left">Ciudad</th>
+            <td>{{ entity.gbciud.nombre }}</td>
+        </tr>
+        <tr>
+            <th align="left">Teléfono</th>
+            <td>{{ entity.telefono }}</td>
+        </tr>
+        <tr>
+            <th align="left">Correo</th>
+            <td>{{ entity.correo }}</td>
+        </tr>
+        <tr>
+            <th align="left">Ingreso</th>
+            <td>{{ entity.ingreso|date('Y-m-d') }}</td>
+        </tr>
+    </tbody>
+</table>
+
+	<form id="vime-form" action="{{ path('mdpaci_delete', { 'id': entity.id }) }}" method="post">
+		{{ form_widget(delete_form) }}
+	</form>
+    
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('mdpaci') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="gId('vime-form').submit()"><img src="{{ asset('bundles/scontrol/imagenes/iconos/eliminar.png') }}" title="Eliminar"></td>
+			<td onClick="go('{{ path('mdpaci_edit', { 'id': entity.id }) }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar.png') }}" title="Editar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Hspers" table="HsPers">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="bigint" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="fecha" type="date" column="fecha"/>
+    <field name="evento" type="string" column="evento" length="1"/>
+    <field name="operaciones" type="text" column="operaciones"/>
+    <field name="productos" type="text" column="productos"/>
+    <field name="riesgos" type="text" column="riesgos"/>
+    <field name="texposicion" type="text" column="texposicion"/>
+    <field name="proteccion" type="text" column="proteccion"/>
+    <field name="ventilacion" type="text" column="ventilacion"/>
+    <field name="temperatura" type="text" column="temperatura"/>
+    <field name="horario" type="text" column="horario"/>
+    <field name="turno" type="text" column="turno"/>
+    <field name="rotacion" type="text" column="rotacion"/>
+    <field name="visitas" type="text" column="visitas"/>
+    <field name="bajas" type="text" column="bajas"/>
+    <field name="medicamentos" type="text" column="medicamentos"/>
+    <field name="fumador" type="string" column="fumador" length="1"/>
+    <field name="detfumador" type="text" column="detfumador"/>
+    <field name="bebedor" type="string" column="bebedor" length="1"/>
+    <field name="detbebedor" type="text" column="detbebedor"/>
+    <field name="efpulmon" type="text" column="efpulmon"/>
+    <field name="efcorazon" type="text" column="efcorazon"/>
+    <field name="efasma" type="text" column="efasma"/>
+    <field name="efbronquios" type="text" column="efbronquios"/>
+    <field name="efcirculacion" type="text" column="efcirculacion"/>
+    <field name="efhigado" type="text" column="efhigado"/>
+    <field name="efgastritis" type="text" column="efgastritis"/>
+    <field name="efulcera" type="text" column="efulcera"/>
+    <field name="efvesicula" type="text" column="efvesicula"/>
+    <field name="efriñon" type="text" column="efriñon"/>
+    <field name="efurinario" type="text" column="efurinario"/>
+    <field name="efartrosis" type="text" column="efartrosis"/>
+    <field name="eflumbago" type="text" column="eflumbago"/>
+    <field name="efotros" type="text" column="efotros"/>
+    <field name="alergias" type="text" column="alergias"/>
+    <field name="prazucar" type="text" column="prazucar"/>
+    <field name="prcolesterol" type="text" column="prcolesterol"/>
+    <field name="prurico" type="text" column="prurico"/>
+    <field name="prhepatitis" type="text" column="prhepatitis"/>
+    <field name="prtransaminasas" type="text" column="prtransaminasas"/>
+    <field name="prhipertension" type="text" column="prhipertension"/>
+    <field name="prhipotension" type="text" column="prhipotension"/>
+    <field name="prsoplos" type="text" column="prsoplos"/>
+    <field name="prarritmias" type="text" column="prarritmias"/>
+    <field name="prhernias" type="text" column="prhernias"/>
+    <field name="prdepresion" type="text" column="prdepresion"/>
+    <field name="cbintestinal" type="text" column="cbintestinal"/>
+    <field name="cborina" type="text" column="cborina"/>
+    <field name="cbpiel" type="text" column="cbpiel"/>
+    <field name="cbpeso" type="text" column="cbpeso"/>
+    <field name="tetano" type="string" column="tetano" length="1"/>
+    <field name="tetanofecha" type="date" column="tetanofecha"/>
+    <field name="tetanodosis" type="text" column="tetanodosis"/>
+    <field name="observaciones" type="text" column="observaciones"/>
+    <many-to-one field="mdpaci" target-entity="Mdpaci" orphan-removal="">
+      <join-columns>
+        <join-column name="MdPaci_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

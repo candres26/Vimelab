@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Mdbiom" table="MdBiom">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="bigint" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="talla" type="decimal" column="talla"/>
+    <field name="peso" type="decimal" column="peso"/>
+    <field name="pulso" type="decimal" column="pulso"/>
+    <field name="fres" type="decimal" column="fres"/>
+    <field name="pasisto" type="decimal" column="pasisto"/>
+    <field name="padiasto" type="decimal" column="padiasto"/>
+    <many-to-one field="mdhist" target-entity="Mdhist" orphan-removal="">
+      <join-columns>
+        <join-column name="MdHist_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

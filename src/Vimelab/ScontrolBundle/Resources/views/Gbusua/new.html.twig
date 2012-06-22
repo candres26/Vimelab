@@ -1,0 +1,34 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Usuario{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Usuario</h2>
+
+<form id="vime-form" action="{{ path('gbusua_create') }}" method="post" {{ form_enctype(form) }}>
+	<input type="submit" style="display: none" id="sender" value="send">
+	<table align="center">
+		<tr><td colspan='2'>{{ form_errors(form.nombre) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.nombre) }}</td><td align="left">{{ form_widget(form.nombre) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.clave) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.clave) }}</td><td align="left">{{ form_widget(form.clave) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.gbpers) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.gbpers) }}</td><td align="left">{{ form_widget(form.gbpers) }}</td></tr>
+    </table>
+    {{ form_rest(form) }}
+</form>
+
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('gbusua') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="SimularClick('sender')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

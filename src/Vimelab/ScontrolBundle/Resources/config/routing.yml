@@ -1,0 +1,1185 @@
+# Default Routes
+getUser:
+    pattern:  /getuser
+    defaults: { _controller: ScontrolBundle:Default:getUser }
+# CtCont Routes
+ctcont:
+    pattern:  /ctcont
+    defaults: { _controller: ScontrolBundle:Ctcont:index }
+ctcont_show:
+    pattern:  /ctcont/{id}/show
+    defaults: { _controller: ScontrolBundle:Ctcont:show }
+ctcont_new:
+    pattern:  /ctcont/new
+    defaults: { _controller: ScontrolBundle:Ctcont:new }
+ctcont_create:
+    pattern:  /ctcont/create
+    defaults: { _controller: ScontrolBundle:Ctcont:create }
+ctcont_edit:
+    pattern:  /ctcont/{id}/edit
+    defaults: { _controller: ScontrolBundle:Ctcont:edit }
+ctcont_update:
+    pattern:  /ctcont/{id}/update
+    defaults: { _controller: ScontrolBundle:Ctcont:update }
+ctcont_delete:
+    pattern:  /ctcont/{id}/delete
+    defaults: { _controller: ScontrolBundle:Ctcont:delete }
+    
+ctcont_filter:
+    pattern:  /ctcont/{param}/filter
+    defaults: { _controller: ScontrolBundle:Ctcont:filter }
+
+# CtCoti Routes
+ctcoti:
+    pattern:  /ctcoti
+    defaults: { _controller: ScontrolBundle:Ctcoti:index }
+ctcoti_show:
+    pattern:  /ctcoti/{id}/show
+    defaults: { _controller: ScontrolBundle:Ctcoti:show }
+ctcoti_new:
+    pattern:  /ctcoti/new
+    defaults: { _controller: ScontrolBundle:Ctcoti:new }
+ctcoti_create:
+    pattern:  /ctcoti/create
+    defaults: { _controller: ScontrolBundle:Ctcoti:create }
+ctcoti_edit:
+    pattern:  /ctcoti/{id}/edit
+    defaults: { _controller: ScontrolBundle:Ctcoti:edit }
+ctcoti_update:
+    pattern:  /ctcoti/{id}/update
+    defaults: { _controller: ScontrolBundle:Ctcoti:update }
+ctcoti_delete:
+    pattern:  /ctcoti/{id}/delete
+    defaults: { _controller: ScontrolBundle:Ctcoti:delete }
+
+ctcoti_filter:
+    pattern:  /ctcoti/{param}/filter
+    defaults: { _controller: ScontrolBundle:Ctcoti:filter }
+
+# CtFact Routes
+ctfact:
+    pattern:  /ctfact
+    defaults: { _controller: ScontrolBundle:Ctfact:index }
+ctfact_show:
+    pattern:  /ctfact/{id}/show
+    defaults: { _controller: ScontrolBundle:Ctfact:show }
+ctfact_new:
+    pattern:  /ctfact/new
+    defaults: { _controller: ScontrolBundle:Ctfact:new }
+ctfact_create:
+    pattern:  /ctfact/create
+    defaults: { _controller: ScontrolBundle:Ctfact:create }
+ctfact_edit:
+    pattern:  /ctfact/{id}/edit
+    defaults: { _controller: ScontrolBundle:Ctfact:edit }
+ctfact_update:
+    pattern:  /ctfact/{id}/update
+    defaults: { _controller: ScontrolBundle:Ctfact:update }
+ctfact_delete:
+    pattern:  /ctfact/{id}/delete
+    defaults: { _controller: ScontrolBundle:Ctfact:delete }
+   
+ctfact_filter:
+    pattern:  /ctfact/{param}/filter
+    defaults: { _controller: ScontrolBundle:Ctfact:filter }
+
+# CtServ Routes
+ctserv:
+    pattern:  /ctserv
+    defaults: { _controller: ScontrolBundle:Ctserv:index }
+ctserv_show:
+    pattern:  /ctserv/{id}/show
+    defaults: { _controller: ScontrolBundle:Ctserv:show }
+ctserv_new:
+    pattern:  /ctserv/new
+    defaults: { _controller: ScontrolBundle:Ctserv:new }
+ctserv_create:
+    pattern:  /ctserv/create
+    defaults: { _controller: ScontrolBundle:Ctserv:create }
+ctserv_edit:
+    pattern:  /ctserv/{id}/edit
+    defaults: { _controller: ScontrolBundle:Ctserv:edit }
+ctserv_update:
+    pattern:  /ctserv/{id}/update
+    defaults: { _controller: ScontrolBundle:Ctserv:update }
+ctserv_delete:
+    pattern:  /ctserv/{id}/delete
+    defaults: { _controller: ScontrolBundle:Ctserv:delete }
+    
+ctserv_filter:
+    pattern:  /ctserv/{param}/filter
+    defaults: { _controller: ScontrolBundle:Ctserv:filter }
+
+# CtTari Routes
+cttari:
+    pattern:  /cttari
+    defaults: { _controller: ScontrolBundle:Cttari:index }
+cttari_show:
+    pattern:  /cttari/{id}/show
+    defaults: { _controller: ScontrolBundle:Cttari:show }
+cttari_new:
+    pattern:  /cttari/new
+    defaults: { _controller: ScontrolBundle:Cttari:new }
+cttari_create:
+    pattern:  /cttari/create
+    defaults: { _controller: ScontrolBundle:Cttari:create }
+cttari_edit:
+    pattern:  /cttari/{id}/edit
+    defaults: { _controller: ScontrolBundle:Cttari:edit }
+cttari_update:
+    pattern:  /cttari/{id}/update
+    defaults: { _controller: ScontrolBundle:Cttari:update }
+cttari_delete:
+    pattern:  /cttari/{id}/delete
+    defaults: { _controller: ScontrolBundle:Cttari:delete }
+    
+cttari_filter:
+    pattern:  /cttari/{param}/filter
+    defaults: { _controller: ScontrolBundle:Cttari:filter }
+
+# GbAcls Routes
+gbacls:
+    pattern:  /gbacls
+    defaults: { _controller: ScontrolBundle:Gbacls:index }
+gbacls_show:
+    pattern:  /gbacls/{id}/show
+    defaults: { _controller: ScontrolBundle:Gbacls:show }
+gbacls_new:
+    pattern:  /gbacls/new
+    defaults: { _controller: ScontrolBundle:Gbacls:new }
+gbacls_create:
+    pattern:  /gbacls/create
+    defaults: { _controller: ScontrolBundle:Gbacls:create }
+gbacls_edit:
+    pattern:  /gbacls/{id}/edit
+    defaults: { _controller: ScontrolBundle:Gbacls:edit }
+gbacls_update:
+    pattern:  /gbacls/{id}/update
+    defaults: { _controller: ScontrolBundle:Gbacls:update }
+gbacls_delete:
+    pattern:  /gbacls/{id}/delete
+    defaults: { _controller: ScontrolBundle:Gbacls:delete }
+
+gbacls_filter:
+    pattern:  /gbacls/{param}/filter
+    defaults: { _controller: ScontrolBundle:Gbacls:filter }
+# GbCarg Routes
+gbcarg:
+    pattern:  /gbcarg
+    defaults: { _controller: ScontrolBundle:Gbcarg:index }
+gbcarg_show:
+    pattern:  /gbcarg/{id}/show
+    defaults: { _controller: ScontrolBundle:Gbcarg:show }
+gbcarg_new:
+    pattern:  /gbcarg/new
+    defaults: { _controller: ScontrolBundle:Gbcarg:new }
+gbcarg_create:
+    pattern:  /gbcarg/create
+    defaults: { _controller: ScontrolBundle:Gbcarg:create }
+gbcarg_edit:
+    pattern:  /gbcarg/{id}/edit
+    defaults: { _controller: ScontrolBundle:Gbcarg:edit }
+gbcarg_update:
+    pattern:  /gbcarg/{id}/update
+    defaults: { _controller: ScontrolBundle:Gbcarg:update }
+gbcarg_delete:
+    pattern:  /gbcarg/{id}/delete
+    defaults: { _controller: ScontrolBundle:Gbcarg:delete }
+
+gbcarg_filter:
+    pattern:  /gbcarg/{param}/filter
+    defaults: { _controller: ScontrolBundle:Gbcarg:filter }
+# GbCiud Routes
+gbciud:
+    pattern:  /gbciud
+    defaults: { _controller: ScontrolBundle:Gbciud:index }
+gbciud_show:
+    pattern:  /gbciud/{id}/show
+    defaults: { _controller: ScontrolBundle:Gbciud:show }
+gbciud_new:
+    pattern:  /gbciud/new
+    defaults: { _controller: ScontrolBundle:Gbciud:new }
+gbciud_create:
+    pattern:  /gbciud/create
+    defaults: { _controller: ScontrolBundle:Gbciud:create }
+gbciud_edit:
+    pattern:  /gbciud/{id}/edit
+    defaults: { _controller: ScontrolBundle:Gbciud:edit }
+gbciud_update:
+    pattern:  /gbciud/{id}/update
+    defaults: { _controller: ScontrolBundle:Gbciud:update }
+gbciud_delete:
+    pattern:  /gbciud/{id}/delete
+    defaults: { _controller: ScontrolBundle:Gbciud:delete }
+
+gbciud_filter:
+    pattern:  /gbciud/{param}/filter
+    defaults: { _controller: ScontrolBundle:Gbciud:filter }
+
+# GbCnae Routes
+gbcnae:
+    pattern:  /gbcnae
+    defaults: { _controller: ScontrolBundle:Gbcnae:index }
+gbcnae_show:
+    pattern:  /gbcnae/{id}/show
+    defaults: { _controller: ScontrolBundle:Gbcnae:show }
+gbcnae_new:
+    pattern:  /gbcnae/new
+    defaults: { _controller: ScontrolBundle:Gbcnae:new }
+gbcnae_create:
+    pattern:  /gbcnae/create
+    defaults: { _controller: ScontrolBundle:Gbcnae:create }
+gbcnae_edit:
+    pattern:  /gbcnae/{id}/edit
+    defaults: { _controller: ScontrolBundle:Gbcnae:edit }
+gbcnae_update:
+    pattern:  /gbcnae/{id}/update
+    defaults: { _controller: ScontrolBundle:Gbcnae:update }
+gbcnae_delete:
+    pattern:  /gbcnae/{id}/delete
+    defaults: { _controller: ScontrolBundle:Gbcnae:delete }
+    
+gbcnae_filter:
+    pattern:  /gbcnae/{param}/filter
+    defaults: { _controller: ScontrolBundle:Gbcnae:filter }
+
+# GbDepa Routes
+gbdepa:
+    pattern:  /gbdepa
+    defaults: { _controller: ScontrolBundle:Gbdepa:index }
+gbdepa_show:
+    pattern:  /gbdepa/{id}/show
+    defaults: { _controller: ScontrolBundle:Gbdepa:show }
+gbdepa_new:
+    pattern:  /gbdepa/new
+    defaults: { _controller: ScontrolBundle:Gbdepa:new }
+gbdepa_create:
+    pattern:  /gbdepa/create
+    defaults: { _controller: ScontrolBundle:Gbdepa:create }
+gbdepa_edit:
+    pattern:  /gbdepa/{id}/edit
+    defaults: { _controller: ScontrolBundle:Gbdepa:edit }
+gbdepa_update:
+    pattern:  /gbdepa/{id}/update
+    defaults: { _controller: ScontrolBundle:Gbdepa:update }
+gbdepa_delete:
+    pattern:  /gbdepa/{id}/delete
+    defaults: { _controller: ScontrolBundle:Gbdepa:delete }
+    
+gbdepa_filter:
+    pattern:  /gbdepa/{param}/filter
+    defaults: { _controller: ScontrolBundle:Gbdepa:filter }
+
+# Gbempr Routes
+gbempr:
+    pattern:  /gbempr
+    defaults: { _controller: ScontrolBundle:Gbempr:index }
+gbempr_show:
+    pattern:  /gbempr/{id}/show
+    defaults: { _controller: ScontrolBundle:Gbempr:show }
+gbempr_new:
+    pattern:  /gbempr/new
+    defaults: { _controller: ScontrolBundle:Gbempr:new }
+gbempr_create:
+    pattern:  /gbempr/create
+    defaults: { _controller: ScontrolBundle:Gbempr:create }
+gbempr_edit:
+    pattern:  /gbempr/{id}/edit
+    defaults: { _controller: ScontrolBundle:Gbempr:edit }
+gbempr_update:
+    pattern:  /gbempr/{id}/update
+    defaults: { _controller: ScontrolBundle:Gbempr:update }
+gbempr_delete:
+    pattern:  /gbempr/{id}/delete
+    defaults: { _controller: ScontrolBundle:Gbempr:delete }
+    
+gbempr_filter:
+    pattern:  /gbempr/{param}/filter
+    defaults: { _controller: ScontrolBundle:Gbempr:filter }
+
+# GbIden Routes
+gbiden:
+    pattern:  /gbiden
+    defaults: { _controller: ScontrolBundle:Gbiden:index }
+gbiden_show:
+    pattern:  /gbiden/{id}/show
+    defaults: { _controller: ScontrolBundle:Gbiden:show }
+gbiden_new:
+    pattern:  /gbiden/new
+    defaults: { _controller: ScontrolBundle:Gbiden:new }
+gbiden_create:
+    pattern:  /gbiden/create
+    defaults: { _controller: ScontrolBundle:Gbiden:create }
+gbiden_edit:
+    pattern:  /gbiden/{id}/edit
+    defaults: { _controller: ScontrolBundle:Gbiden:edit }
+gbiden_update:
+    pattern:  /gbiden/{id}/update
+    defaults: { _controller: ScontrolBundle:Gbiden:update }
+gbiden_delete:
+    pattern:  /gbiden/{id}/delete
+    defaults: { _controller: ScontrolBundle:Gbiden:delete }
+    
+gbiden_filter:
+    pattern:  /gbiden/{param}/filter
+    defaults: { _controller: ScontrolBundle:Gbiden:filter }
+
+# GbLogr Routes
+gblogr:
+    pattern:  /gblogr
+    defaults: { _controller: ScontrolBundle:Gblogr:index }
+gblogr_show:
+    pattern:  /gblogr/{id}/show
+    defaults: { _controller: ScontrolBundle:Gblogr:show }
+gblogr_new:
+    pattern:  /gblogr/new
+    defaults: { _controller: ScontrolBundle:Gblogr:new }
+gblogr_create:
+    pattern:  /gblogr/create
+    defaults: { _controller: ScontrolBundle:Gblogr:create }
+gblogr_edit:
+    pattern:  /gblogr/{id}/edit
+    defaults: { _controller: ScontrolBundle:Gblogr:edit }
+gblogr_update:
+    pattern:  /gblogr/{id}/update
+    defaults: { _controller: ScontrolBundle:Gblogr:update }
+gblogr_delete:
+    pattern:  /gblogr/{id}/delete
+    defaults: { _controller: ScontrolBundle:Gblogr:delete }
+    
+gblogr_filter:
+    pattern:  /gblogr/{param}/filter
+    defaults: { _controller: ScontrolBundle:Gblogr:filter }
+
+# GbPais Routes
+gbpais:
+    pattern:  /gbpais
+    defaults: { _controller: ScontrolBundle:Gbpais:index }
+gbpais_show:
+    pattern:  /gbpais/{id}/show
+    defaults: { _controller: ScontrolBundle:Gbpais:show }
+gbpais_new:
+    pattern:  /gbpais/new
+    defaults: { _controller: ScontrolBundle:Gbpais:new }
+gbpais_create:
+    pattern:  /gbpais/create
+    defaults: { _controller: ScontrolBundle:Gbpais:create }
+gbpais_edit:
+    pattern:  /gbpais/{id}/edit
+    defaults: { _controller: ScontrolBundle:Gbpais:edit }
+gbpais_update:
+    pattern:  /gbpais/{id}/update
+    defaults: { _controller: ScontrolBundle:Gbpais:update }
+gbpais_delete:
+    pattern:  /gbpais/{id}/delete
+    defaults: { _controller: ScontrolBundle:Gbpais:delete }
+
+gbpais_filter:
+    pattern:  /gbpais/{param}/filter
+    defaults: { _controller: ScontrolBundle:Gbpais:filter }
+
+# GbPers Routes
+gbpers:
+    pattern:  /gbpers
+    defaults: { _controller: ScontrolBundle:Gbpers:index }
+gbpers_show:
+    pattern:  /gbpers/{id}/show
+    defaults: { _controller: ScontrolBundle:Gbpers:show }
+gbpers_new:
+    pattern:  /gbpers/new
+    defaults: { _controller: ScontrolBundle:Gbpers:new }
+gbpers_create:
+    pattern:  /gbpers/create
+    defaults: { _controller: ScontrolBundle:Gbpers:create }
+gbpers_edit:
+    pattern:  /gbpers/{id}/edit
+    defaults: { _controller: ScontrolBundle:Gbpers:edit }
+gbpers_update:
+    pattern:  /gbpers/{id}/update
+    defaults: { _controller: ScontrolBundle:Gbpers:update }
+gbpers_delete:
+    pattern:  /gbpers/{id}/delete
+    defaults: { _controller: ScontrolBundle:Gbpers:delete }
+
+gbpers_filter:
+    pattern:  /gbpers/{param}/filter
+    defaults: { _controller: ScontrolBundle:Gbpers:filter }
+# GbPtra Routes
+gbptra:
+    pattern:  /gbptra
+    defaults: { _controller: ScontrolBundle:Gbptra:index }
+gbptra_show:
+    pattern:  /gbptra/{id}/show
+    defaults: { _controller: ScontrolBundle:Gbptra:show }
+gbptra_new:
+    pattern:  /gbptra/new
+    defaults: { _controller: ScontrolBundle:Gbptra:new }
+gbptra_create:
+    pattern:  /gbptra/create
+    defaults: { _controller: ScontrolBundle:Gbptra:create }
+gbptra_edit:
+    pattern:  /gbptra/{id}/edit
+    defaults: { _controller: ScontrolBundle:Gbptra:edit }
+gbptra_update:
+    pattern:  /gbptra/{id}/update
+    defaults: { _controller: ScontrolBundle:Gbptra:update }
+gbptra_delete:
+    pattern:  /gbptra/{id}/delete
+    defaults: { _controller: ScontrolBundle:Gbptra:delete }
+
+gbptra_filter:
+    pattern:  /gbptra/{param}/filter
+    defaults: { _controller: ScontrolBundle:Gbptra:filter }
+# GbSucu Routes
+gbsucu:
+    pattern:  /gbsucu
+    defaults: { _controller: ScontrolBundle:Gbsucu:index }
+gbsucu_show:
+    pattern:  /gbsucu/{id}/show
+    defaults: { _controller: ScontrolBundle:Gbsucu:show }
+gbsucu_new:
+    pattern:  /gbsucu/new
+    defaults: { _controller: ScontrolBundle:Gbsucu:new }
+gbsucu_create:
+    pattern:  /gbsucu/create
+    defaults: { _controller: ScontrolBundle:Gbsucu:create }
+gbsucu_edit:
+    pattern:  /gbsucu/{id}/edit
+    defaults: { _controller: ScontrolBundle:Gbsucu:edit }
+gbsucu_update:
+    pattern:  /gbsucu/{id}/update
+    defaults: { _controller: ScontrolBundle:Gbsucu:update }
+gbsucu_delete:
+    pattern:  /gbsucu/{id}/delete
+    defaults: { _controller: ScontrolBundle:Gbsucu:delete }
+    
+gbsucu_filter:
+    pattern:  /gbsucu/{param}/filter
+    defaults: { _controller: ScontrolBundle:Gbsucu:filter }
+
+# GbUsua Routes
+gbusua:
+    pattern:  /gbusua
+    defaults: { _controller: ScontrolBundle:Gbusua:index }
+gbusua_show:
+    pattern:  /gbusua/{id}/show
+    defaults: { _controller: ScontrolBundle:Gbusua:show }
+gbusua_new:
+    pattern:  /gbusua/new
+    defaults: { _controller: ScontrolBundle:Gbusua:new }
+gbusua_create:
+    pattern:  /gbusua/create
+    defaults: { _controller: ScontrolBundle:Gbusua:create }
+gbusua_edit:
+    pattern:  /gbusua/{id}/edit
+    defaults: { _controller: ScontrolBundle:Gbusua:edit }
+gbusua_update:
+    pattern:  /gbusua/{id}/update
+    defaults: { _controller: ScontrolBundle:Gbusua:update }
+gbusua_delete:
+    pattern:  /gbusua/{id}/delete
+    defaults: { _controller: ScontrolBundle:Gbusua:delete }
+    
+gbusua_filter:
+    pattern:  /gbusua/{param}/filter
+    defaults: { _controller: ScontrolBundle:Gbusua:filter }
+
+# HsFami Routes
+hsfami:
+    pattern:  /hsfami
+    defaults: { _controller: ScontrolBundle:Hsfami:index }
+hsfami_show:
+    pattern:  /hsfami/{id}/show
+    defaults: { _controller: ScontrolBundle:Hsfami:show }
+hsfami_new:
+    pattern:  /hsfami/new
+    defaults: { _controller: ScontrolBundle:Hsfami:new }
+hsfami_create:
+    pattern:  /hsfami/create
+    defaults: { _controller: ScontrolBundle:Hsfami:create }
+hsfami_edit:
+    pattern:  /hsfami/{id}/edit
+    defaults: { _controller: ScontrolBundle:Hsfami:edit }
+hsfami_update:
+    pattern:  /hsfami/{id}/update
+    defaults: { _controller: ScontrolBundle:Hsfami:update }
+hsfami_delete:
+    pattern:  /hsfami/{id}/delete
+    defaults: { _controller: ScontrolBundle:Hsfami:delete }
+    
+hsfami_filter:
+    pattern:  /hsfami/{param}/filter
+    defaults: { _controller: ScontrolBundle:Hsfami:filter }
+
+# HsLabo Routes
+hslabo:
+    pattern:  /hslabo
+    defaults: { _controller: ScontrolBundle:Hslabo:index }
+hslabo_show:
+    pattern:  /hslabo/{id}/show
+    defaults: { _controller: ScontrolBundle:Hslabo:show }
+hslabo_new:
+    pattern:  /hslabo/new
+    defaults: { _controller: ScontrolBundle:Hslabo:new }
+hslabo_create:
+    pattern:  /hslabo/create
+    defaults: { _controller: ScontrolBundle:Hslabo:create }
+hslabo_edit:
+    pattern:  /hslabo/{id}/edit
+    defaults: { _controller: ScontrolBundle:Hslabo:edit }
+hslabo_update:
+    pattern:  /hslabo/{id}/update
+    defaults: { _controller: ScontrolBundle:Hslabo:update }
+hslabo_delete:
+    pattern:  /hslabo/{id}/delete
+    defaults: { _controller: ScontrolBundle:Hslabo:delete }
+    
+hslabo_filter:
+    pattern:  /hslabo/{param}/filter
+    defaults: { _controller: ScontrolBundle:Hslabo:filter }
+
+# HsPers Routes
+hspers:
+    pattern:  /hspers
+    defaults: { _controller: ScontrolBundle:Hspers:index }
+hspers_show:
+    pattern:  /hspers/{id}/show
+    defaults: { _controller: ScontrolBundle:Hspers:show }
+hspers_new:
+    pattern:  /hspers/new
+    defaults: { _controller: ScontrolBundle:Hspers:new }
+hspers_create:
+    pattern:  /hspers/create
+    defaults: { _controller: ScontrolBundle:Hspers:create }
+hspers_edit:
+    pattern:  /hspers/{id}/edit
+    defaults: { _controller: ScontrolBundle:Hspers:edit }
+hspers_update:
+    pattern:  /hspers/{id}/update
+    defaults: { _controller: ScontrolBundle:Hspers:update }
+hspers_delete:
+    pattern:  /hspers/{id}/delete
+    defaults: { _controller: ScontrolBundle:Hspers:delete }
+    
+hspers_filter:
+    pattern:  /hspers/{param}/filter
+    defaults: { _controller: ScontrolBundle:Hspers:filter }
+
+# MdAudi Routes
+mdaudi:
+    pattern:  /mdaudi
+    defaults: { _controller: ScontrolBundle:Mdaudi:index }
+mdaudi_show:
+    pattern:  /mdaudi/{id}/show
+    defaults: { _controller: ScontrolBundle:Mdaudi:show }
+mdaudi_new:
+    pattern:  /mdaudi/new
+    defaults: { _controller: ScontrolBundle:Mdaudi:new }
+mdaudi_create:
+    pattern:  /mdaudi/create
+    defaults: { _controller: ScontrolBundle:Mdaudi:create }
+mdaudi_edit:
+    pattern:  /mdaudi/{id}/edit
+    defaults: { _controller: ScontrolBundle:Mdaudi:edit }
+mdaudi_update:
+    pattern:  /mdaudi/{id}/update
+    defaults: { _controller: ScontrolBundle:Mdaudi:update }
+mdaudi_delete:
+    pattern:  /mdaudi/{id}/delete
+    defaults: { _controller: ScontrolBundle:Mdaudi:delete }
+    
+mdaudi_filter:
+    pattern:  /mdaudi/{param}/filter
+    defaults: { _controller: ScontrolBundle:Mdaudi:filter }
+
+# MdBiom Routes
+mdbiom:
+    pattern:  /mdbiom
+    defaults: { _controller: ScontrolBundle:Mdbiom:index }
+mdbiom_show:
+    pattern:  /mdbiom/{id}/show
+    defaults: { _controller: ScontrolBundle:Mdbiom:show }
+mdbiom_new:
+    pattern:  /mdbiom/new
+    defaults: { _controller: ScontrolBundle:Mdbiom:new }
+mdbiom_create:
+    pattern:  /mdbiom/create
+    defaults: { _controller: ScontrolBundle:Mdbiom:create }
+mdbiom_edit:
+    pattern:  /mdbiom/{id}/edit
+    defaults: { _controller: ScontrolBundle:Mdbiom:edit }
+mdbiom_update:
+    pattern:  /mdbiom/{id}/update
+    defaults: { _controller: ScontrolBundle:Mdbiom:update }
+mdbiom_delete:
+    pattern:  /mdbiom/{id}/delete
+    defaults: { _controller: ScontrolBundle:Mdbiom:delete }
+
+mdbiom_filter:
+    pattern:  /mdbiom/{param}/filter
+    defaults: { _controller: ScontrolBundle:Mdbiom:filter }
+
+# MdDiag Routes
+mddiag:
+    pattern:  /mddiag
+    defaults: { _controller: ScontrolBundle:Mddiag:index }
+mddiag_show:
+    pattern:  /mddiag/{id}/show
+    defaults: { _controller: ScontrolBundle:Mddiag:show }
+mddiag_new:
+    pattern:  /mddiag/new
+    defaults: { _controller: ScontrolBundle:Mddiag:new }
+mddiag_create:
+    pattern:  /mddiag/create
+    defaults: { _controller: ScontrolBundle:Mddiag:create }
+mddiag_edit:
+    pattern:  /mddiag/{id}/edit
+    defaults: { _controller: ScontrolBundle:Mddiag:edit }
+mddiag_update:
+    pattern:  /mddiag/{id}/update
+    defaults: { _controller: ScontrolBundle:Mddiag:update }
+mddiag_delete:
+    pattern:  /mddiag/{id}/delete
+    defaults: { _controller: ScontrolBundle:Mddiag:delete }
+    
+mddiag_filter:
+    pattern:  /mddiag/{param}/filter
+    defaults: { _controller: ScontrolBundle:Mddiag:filter }
+
+# MdEspi Routes
+mdespi:
+    pattern:  /mdespi
+    defaults: { _controller: ScontrolBundle:Mdespi:index }
+mdespi_show:
+    pattern:  /mdespi/{id}/show
+    defaults: { _controller: ScontrolBundle:Mdespi:show }
+mdespi_new:
+    pattern:  /mdespi/new
+    defaults: { _controller: ScontrolBundle:Mdespi:new }
+mdespi_create:
+    pattern:  /mdespi/create
+    defaults: { _controller: ScontrolBundle:Mdespi:create }
+mdespi_edit:
+    pattern:  /mdespi/{id}/edit
+    defaults: { _controller: ScontrolBundle:Mdespi:edit }
+mdespi_update:
+    pattern:  /mdespi/{id}/update
+    defaults: { _controller: ScontrolBundle:Mdespi:update }
+mdespi_delete:
+    pattern:  /mdespi/{id}/delete
+    defaults: { _controller: ScontrolBundle:Mdespi:delete }
+
+mdespi_filter:
+    pattern:  /mdespi/{param}/filter
+    defaults: { _controller: ScontrolBundle:Mdespi:filter }
+
+# MdExam Routes
+mdexam:
+    pattern:  /mdexam
+    defaults: { _controller: ScontrolBundle:Mdexam:index }
+mdexam_show:
+    pattern:  /mdexam/{id}/show
+    defaults: { _controller: ScontrolBundle:Mdexam:show }
+mdexam_new:
+    pattern:  /mdexam/new
+    defaults: { _controller: ScontrolBundle:Mdexam:new }
+mdexam_create:
+    pattern:  /mdexam/create
+    defaults: { _controller: ScontrolBundle:Mdexam:create }
+mdexam_edit:
+    pattern:  /mdexam/{id}/edit
+    defaults: { _controller: ScontrolBundle:Mdexam:edit }
+mdexam_update:
+    pattern:  /mdexam/{id}/update
+    defaults: { _controller: ScontrolBundle:Mdexam:update }
+mdexam_delete:
+    pattern:  /mdexam/{id}/delete
+    defaults: { _controller: ScontrolBundle:Mdexam:delete }
+
+mdexam_filter:
+    pattern:  /mdexam/{param}/filter
+    defaults: { _controller: ScontrolBundle:Mdexam:filter }
+
+# MdExtr Routes
+mdextr:
+    pattern:  /mdextr
+    defaults: { _controller: ScontrolBundle:Mdextr:index }
+mdextr_show:
+    pattern:  /mdextr/{id}/show
+    defaults: { _controller: ScontrolBundle:Mdextr:show }
+mdextr_new:
+    pattern:  /mdextr/new
+    defaults: { _controller: ScontrolBundle:Mdextr:new }
+mdextr_create:
+    pattern:  /mdextr/create
+    defaults: { _controller: ScontrolBundle:Mdextr:create }
+mdextr_edit:
+    pattern:  /mdextr/{id}/edit
+    defaults: { _controller: ScontrolBundle:Mdextr:edit }
+mdextr_update:
+    pattern:  /mdextr/{id}/update
+    defaults: { _controller: ScontrolBundle:Mdextr:update }
+mdextr_delete:
+    pattern:  /mdextr/{id}/delete
+    defaults: { _controller: ScontrolBundle:Mdextr:delete }
+    
+mdextr_filter:
+    pattern:  /mdextr/{param}/filter
+    defaults: { _controller: ScontrolBundle:Mdextr:filter }
+
+# MdHist Routes
+mdhist:
+    pattern:  /mdhist
+    defaults: { _controller: ScontrolBundle:Mdhist:index }
+mdhist_show:
+    pattern:  /mdhist/{id}/show
+    defaults: { _controller: ScontrolBundle:Mdhist:show }
+mdhist_new:
+    pattern:  /mdhist/new
+    defaults: { _controller: ScontrolBundle:Mdhist:new }
+mdhist_create:
+    pattern:  /mdhist/create
+    defaults: { _controller: ScontrolBundle:Mdhist:create }
+mdhist_edit:
+    pattern:  /mdhist/{id}/edit
+    defaults: { _controller: ScontrolBundle:Mdhist:edit }
+mdhist_update:
+    pattern:  /mdhist/{id}/update
+    defaults: { _controller: ScontrolBundle:Mdhist:update }
+mdhist_delete:
+    pattern:  /mdhist/{id}/delete
+    defaults: { _controller: ScontrolBundle:Mdhist:delete }
+    
+mdhist_filter:
+    pattern:  /mdhist/{param}/filter
+    defaults: { _controller: ScontrolBundle:Mdhist:filter }
+
+# MdLabo Routes
+mdlabo:
+    pattern:  /mdlabo
+    defaults: { _controller: ScontrolBundle:Mdlabo:index }
+mdlabo_show:
+    pattern:  /mdlabo/{id}/show
+    defaults: { _controller: ScontrolBundle:Mdlabo:show }
+mdlabo_new:
+    pattern:  /mdlabo/new
+    defaults: { _controller: ScontrolBundle:Mdlabo:new }
+mdlabo_create:
+    pattern:  /mdlabo/create
+    defaults: { _controller: ScontrolBundle:Mdlabo:create }
+mdlabo_edit:
+    pattern:  /mdlabo/{id}/edit
+    defaults: { _controller: ScontrolBundle:Mdlabo:edit }
+mdlabo_update:
+    pattern:  /mdlabo/{id}/update
+    defaults: { _controller: ScontrolBundle:Mdlabo:update }
+mdlabo_delete:
+    pattern:  /mdlabo/{id}/delete
+    defaults: { _controller: ScontrolBundle:Mdlabo:delete }
+
+mdlabo_filter:
+    pattern:  /mdlabo/{param}/filter
+    defaults: { _controller: ScontrolBundle:Mdlabo:filter }
+# MdPaci Routes
+mdpaci:
+    pattern:  /mdpaci
+    defaults: { _controller: ScontrolBundle:Mdpaci:index }
+mdpaci_show:
+    pattern:  /mdpaci/{id}/show
+    defaults: { _controller: ScontrolBundle:Mdpaci:show }
+mdpaci_new:
+    pattern:  /mdpaci/new
+    defaults: { _controller: ScontrolBundle:Mdpaci:new }
+mdpaci_create:
+    pattern:  /mdpaci/create
+    defaults: { _controller: ScontrolBundle:Mdpaci:create }
+mdpaci_edit:
+    pattern:  /mdpaci/{id}/edit
+    defaults: { _controller: ScontrolBundle:Mdpaci:edit }
+mdpaci_update:
+    pattern:  /mdpaci/{id}/update
+    defaults: { _controller: ScontrolBundle:Mdpaci:update }
+mdpaci_delete:
+    pattern:  /mdpaci/{id}/delete
+    defaults: { _controller: ScontrolBundle:Mdpaci:delete }
+    
+mdpaci_filter:
+    pattern:  /mdpaci/{param}/filter
+    defaults: { _controller: ScontrolBundle:Mdpaci:filter }
+
+# MdPato Routes
+mdpato:
+    pattern:  /mdpato
+    defaults: { _controller: ScontrolBundle:Mdpato:index }
+mdpato_show:
+    pattern:  /mdpato/{id}/show
+    defaults: { _controller: ScontrolBundle:Mdpato:show }
+mdpato_new:
+    pattern:  /mdpato/new
+    defaults: { _controller: ScontrolBundle:Mdpato:new }
+mdpato_create:
+    pattern:  /mdpato/create
+    defaults: { _controller: ScontrolBundle:Mdpato:create }
+mdpato_edit:
+    pattern:  /mdpato/{id}/edit
+    defaults: { _controller: ScontrolBundle:Mdpato:edit }
+mdpato_update:
+    pattern:  /mdpato/{id}/update
+    defaults: { _controller: ScontrolBundle:Mdpato:update }
+mdpato_delete:
+    pattern:  /mdpato/{id}/delete
+    defaults: { _controller: ScontrolBundle:Mdpato:delete }
+
+mdpato_filter:
+    pattern:  /mdpato/{param}/filter
+    defaults: { _controller: ScontrolBundle:Mdpato:filter }
+# MdProc Routes
+mdproc:
+    pattern:  /mdproc
+    defaults: { _controller: ScontrolBundle:Mdproc:index }
+mdproc_show:
+    pattern:  /mdproc/{id}/show
+    defaults: { _controller: ScontrolBundle:Mdproc:show }
+mdproc_new:
+    pattern:  /mdproc/new
+    defaults: { _controller: ScontrolBundle:Mdproc:new }
+mdproc_create:
+    pattern:  /mdproc/create
+    defaults: { _controller: ScontrolBundle:Mdproc:create }
+mdproc_edit:
+    pattern:  /mdproc/{id}/edit
+    defaults: { _controller: ScontrolBundle:Mdproc:edit }
+mdproc_update:
+    pattern:  /mdproc/{id}/update
+    defaults: { _controller: ScontrolBundle:Mdproc:update }
+mdproc_delete:
+    pattern:  /mdproc/{id}/delete
+    defaults: { _controller: ScontrolBundle:Mdproc:delete }
+    
+mdproc_filter:
+    pattern:  /mdproc/{param}/filter
+    defaults: { _controller: ScontrolBundle:Mdproc:filter }
+
+# MdProt Routes
+mdprot:
+    pattern:  /mdprot
+    defaults: { _controller: ScontrolBundle:Mdprot:index }
+mdprot_show:
+    pattern:  /mdprot/{id}/show
+    defaults: { _controller: ScontrolBundle:Mdprot:show }
+mdprot_new:
+    pattern:  /mdprot/new
+    defaults: { _controller: ScontrolBundle:Mdprot:new }
+mdprot_create:
+    pattern:  /mdprot/create
+    defaults: { _controller: ScontrolBundle:Mdprot:create }
+mdprot_edit:
+    pattern:  /mdprot/{id}/edit
+    defaults: { _controller: ScontrolBundle:Mdprot:edit }
+mdprot_update:
+    pattern:  /mdprot/{id}/update
+    defaults: { _controller: ScontrolBundle:Mdprot:update }
+mdprot_delete:
+    pattern:  /mdprot/{id}/delete
+    defaults: { _controller: ScontrolBundle:Mdprot:delete }
+
+mdprot_filter:
+    pattern:  /mdprot/{param}/filter
+    defaults: { _controller: ScontrolBundle:Mdprot:filter }
+
+# MdQues Routes
+mdques:
+    pattern:  /mdques
+    defaults: { _controller: ScontrolBundle:Mdques:index }
+mdques_show:
+    pattern:  /mdques/{id}/show
+    defaults: { _controller: ScontrolBundle:Mdques:show }
+mdques_new:
+    pattern:  /mdques/new
+    defaults: { _controller: ScontrolBundle:Mdques:new }
+mdques_create:
+    pattern:  /mdques/create
+    defaults: { _controller: ScontrolBundle:Mdques:create }
+mdques_edit:
+    pattern:  /mdques/{id}/edit
+    defaults: { _controller: ScontrolBundle:Mdques:edit }
+mdques_update:
+    pattern:  /mdques/{id}/update
+    defaults: { _controller: ScontrolBundle:Mdques:update }
+mdques_delete:
+    pattern:  /mdques/{id}/delete
+    defaults: { _controller: ScontrolBundle:Mdques:delete }
+
+mdques_filter:
+    pattern:  /mdques/{param}/filter
+    defaults: { _controller: ScontrolBundle:Mdques:filter }
+
+# MdResp Routes
+mdresp:
+    pattern:  /mdresp
+    defaults: { _controller: ScontrolBundle:Mdresp:index }
+mdresp_show:
+    pattern:  /mdresp/{id}/show
+    defaults: { _controller: ScontrolBundle:Mdresp:show }
+mdresp_new:
+    pattern:  /mdresp/new
+    defaults: { _controller: ScontrolBundle:Mdresp:new }
+mdresp_create:
+    pattern:  /mdresp/create
+    defaults: { _controller: ScontrolBundle:Mdresp:create }
+mdresp_edit:
+    pattern:  /mdresp/{id}/edit
+    defaults: { _controller: ScontrolBundle:Mdresp:edit }
+mdresp_update:
+    pattern:  /mdresp/{id}/update
+    defaults: { _controller: ScontrolBundle:Mdresp:update }
+mdresp_delete:
+    pattern:  /mdresp/{id}/delete
+    defaults: { _controller: ScontrolBundle:Mdresp:delete }
+    
+mdresp_filter:
+    pattern:  /mdresp/{param}/filter
+    defaults: { _controller: ScontrolBundle:Mdresp:filter }
+
+# MdSist Routes
+mdsist:
+    pattern:  /mdsist
+    defaults: { _controller: ScontrolBundle:Mdsist:index }
+mdsist_show:
+    pattern:  /mdsist/{id}/show
+    defaults: { _controller: ScontrolBundle:Mdsist:show }
+mdsist_new:
+    pattern:  /mdsist/new
+    defaults: { _controller: ScontrolBundle:Mdsist:new }
+mdsist_create:
+    pattern:  /mdsist/create
+    defaults: { _controller: ScontrolBundle:Mdsist:create }
+mdsist_edit:
+    pattern:  /mdsist/{id}/edit
+    defaults: { _controller: ScontrolBundle:Mdsist:edit }
+mdsist_update:
+    pattern:  /mdsist/{id}/update
+    defaults: { _controller: ScontrolBundle:Mdsist:update }
+mdsist_delete:
+    pattern:  /mdsist/{id}/delete
+    defaults: { _controller: ScontrolBundle:Mdsist:delete }
+    
+mdsist_filter:
+    pattern:  /mdsist/{param}/filter
+    defaults: { _controller: ScontrolBundle:Mdsist:filter }
+
+# MdVisu Routes
+mdvisu:
+    pattern:  /mdvisu
+    defaults: { _controller: ScontrolBundle:Mdvisu:index }
+mdvisu_show:
+    pattern:  /mdvisu/{id}/show
+    defaults: { _controller: ScontrolBundle:Mdvisu:show }
+mdvisu_new:
+    pattern:  /mdvisu/new
+    defaults: { _controller: ScontrolBundle:Mdvisu:new }
+mdvisu_create:
+    pattern:  /mdvisu/create
+    defaults: { _controller: ScontrolBundle:Mdvisu:create }
+mdvisu_edit:
+    pattern:  /mdvisu/{id}/edit
+    defaults: { _controller: ScontrolBundle:Mdvisu:edit }
+mdvisu_update:
+    pattern:  /mdvisu/{id}/update
+    defaults: { _controller: ScontrolBundle:Mdvisu:update }
+mdvisu_delete:
+    pattern:  /mdvisu/{id}/delete
+    defaults: { _controller: ScontrolBundle:Mdvisu:delete }
+
+mdvisu_filter:
+    pattern:  /mdvisu/{param}/filter
+    defaults: { _controller: ScontrolBundle:Mdvisu:filter }
+
+# TcAspe Routes
+tcaspe:
+    pattern:  /tcaspe
+    defaults: { _controller: ScontrolBundle:Tcaspe:index }
+tcaspe_show:
+    pattern:  /tcaspe/{id}/show
+    defaults: { _controller: ScontrolBundle:Tcaspe:show }
+tcaspe_new:
+    pattern:  /tcaspe/new
+    defaults: { _controller: ScontrolBundle:Tcaspe:new }
+tcaspe_create:
+    pattern:  /tcaspe/create
+    defaults: { _controller: ScontrolBundle:Tcaspe:create }
+tcaspe_edit:
+    pattern:  /tcaspe/{id}/edit
+    defaults: { _controller: ScontrolBundle:Tcaspe:edit }
+tcaspe_update:
+    pattern:  /tcaspe/{id}/update
+    defaults: { _controller: ScontrolBundle:Tcaspe:update }
+tcaspe_delete:
+    pattern:  /tcaspe/{id}/delete
+    defaults: { _controller: ScontrolBundle:Tcaspe:delete }
+    
+tcaspe_filter:
+    pattern:  /tcaspe/{param}/filter
+    defaults: { _controller: ScontrolBundle:Tcaspe:filter }
+
+# TcCapa Routes
+tccapa:
+    pattern:  /tccapa
+    defaults: { _controller: ScontrolBundle:Tccapa:index }
+tccapa_show:
+    pattern:  /tccapa/{id}/show
+    defaults: { _controller: ScontrolBundle:Tccapa:show }
+tccapa_new:
+    pattern:  /tccapa/new
+    defaults: { _controller: ScontrolBundle:Tccapa:new }
+tccapa_create:
+    pattern:  /tccapa/create
+    defaults: { _controller: ScontrolBundle:Tccapa:create }
+tccapa_edit:
+    pattern:  /tccapa/{id}/edit
+    defaults: { _controller: ScontrolBundle:Tccapa:edit }
+tccapa_update:
+    pattern:  /tccapa/{id}/update
+    defaults: { _controller: ScontrolBundle:Tccapa:update }
+tccapa_delete:
+    pattern:  /tccapa/{id}/delete
+    defaults: { _controller: ScontrolBundle:Tccapa:delete }
+    
+tccapa_filter:
+    pattern:  /tccapa/{param}/filter
+    defaults: { _controller: ScontrolBundle:Tccapa:filter }
+
+# TcChec Routes
+tcchec:
+    pattern:  /tcchec
+    defaults: { _controller: ScontrolBundle:Tcchec:index }
+tcchec_show:
+    pattern:  /tcchec/{id}/show
+    defaults: { _controller: ScontrolBundle:Tcchec:show }
+tcchec_new:
+    pattern:  /tcchec/new
+    defaults: { _controller: ScontrolBundle:Tcchec:new }
+tcchec_create:
+    pattern:  /tcchec/create
+    defaults: { _controller: ScontrolBundle:Tcchec:create }
+tcchec_edit:
+    pattern:  /tcchec/{id}/edit
+    defaults: { _controller: ScontrolBundle:Tcchec:edit }
+tcchec_update:
+    pattern:  /tcchec/{id}/update
+    defaults: { _controller: ScontrolBundle:Tcchec:update }
+tcchec_delete:
+    pattern:  /tcchec/{id}/delete
+    defaults: { _controller: ScontrolBundle:Tcchec:delete }
+    
+tcchec_filter:
+    pattern:  /tcchec/{param}/filter
+    defaults: { _controller: ScontrolBundle:Tcchec:filter }
+
+# TcCurs Routes
+tccurs:
+    pattern:  /tccurs
+    defaults: { _controller: ScontrolBundle:Tccurs:index }
+tccurs_show:
+    pattern:  /tccurs/{id}/show
+    defaults: { _controller: ScontrolBundle:Tccurs:show }
+tccurs_new:
+    pattern:  /tccurs/new
+    defaults: { _controller: ScontrolBundle:Tccurs:new }
+tccurs_create:
+    pattern:  /tccurs/create
+    defaults: { _controller: ScontrolBundle:Tccurs:create }
+tccurs_edit:
+    pattern:  /tccurs/{id}/edit
+    defaults: { _controller: ScontrolBundle:Tccurs:edit }
+tccurs_update:
+    pattern:  /tccurs/{id}/update
+    defaults: { _controller: ScontrolBundle:Tccurs:update }
+tccurs_delete:
+    pattern:  /tccurs/{id}/delete
+    defaults: { _controller: ScontrolBundle:Tccurs:delete }
+    
+tccurs_filter:
+    pattern:  /tccurs/{param}/filter
+    defaults: { _controller: ScontrolBundle:Tccurs:filter }
+
+# TcDeta Routes
+tcdeta:
+    pattern:  /tcdeta
+    defaults: { _controller: ScontrolBundle:Tcdeta:index }
+tcdeta_show:
+    pattern:  /tcdeta/{id}/show
+    defaults: { _controller: ScontrolBundle:Tcdeta:show }
+tcdeta_new:
+    pattern:  /tcdeta/new
+    defaults: { _controller: ScontrolBundle:Tcdeta:new }
+tcdeta_create:
+    pattern:  /tcdeta/create
+    defaults: { _controller: ScontrolBundle:Tcdeta:create }
+tcdeta_edit:
+    pattern:  /tcdeta/{id}/edit
+    defaults: { _controller: ScontrolBundle:Tcdeta:edit }
+tcdeta_update:
+    pattern:  /tcdeta/{id}/update
+    defaults: { _controller: ScontrolBundle:Tcdeta:update }
+tcdeta_delete:
+    pattern:  /tcdeta/{id}/delete
+    defaults: { _controller: ScontrolBundle:Tcdeta:delete }
+    
+tcdeta_filter:
+    pattern:  /tcdeta/{param}/filter
+    defaults: { _controller: ScontrolBundle:Tcdeta:filter }
+
+# TcRevi Routes
+tcrevi:
+    pattern:  /tcrevi
+    defaults: { _controller: ScontrolBundle:Tcrevi:index }
+tcrevi_show:
+    pattern:  /tcrevi/{id}/show
+    defaults: { _controller: ScontrolBundle:Tcrevi:show }
+tcrevi_new:
+    pattern:  /tcrevi/new
+    defaults: { _controller: ScontrolBundle:Tcrevi:new }
+tcrevi_create:
+    pattern:  /tcrevi/create
+    defaults: { _controller: ScontrolBundle:Tcrevi:create }
+tcrevi_edit:
+    pattern:  /tcrevi/{id}/edit
+    defaults: { _controller: ScontrolBundle:Tcrevi:edit }
+tcrevi_update:
+    pattern:  /tcrevi/{id}/update
+    defaults: { _controller: ScontrolBundle:Tcrevi:update }
+tcrevi_delete:
+    pattern:  /tcrevi/{id}/delete
+    defaults: { _controller: ScontrolBundle:Tcrevi:delete }
+    
+tcrevi_filter:
+    pattern:  /tcrevi/{param}/filter
+    defaults: { _controller: ScontrolBundle:Tcrevi:filter }
+
+# TcRuta Routes
+tcruta:
+    pattern:  /tcruta
+    defaults: { _controller: ScontrolBundle:Tcruta:index }
+tcruta_show:
+    pattern:  /tcruta/{id}/show
+    defaults: { _controller: ScontrolBundle:Tcruta:show }
+tcruta_new:
+    pattern:  /tcruta/new
+    defaults: { _controller: ScontrolBundle:Tcruta:new }
+tcruta_create:
+    pattern:  /tcruta/create
+    defaults: { _controller: ScontrolBundle:Tcruta:create }
+tcruta_edit:
+    pattern:  /tcruta/{id}/edit
+    defaults: { _controller: ScontrolBundle:Tcruta:edit }
+tcruta_update:
+    pattern:  /tcruta/{id}/update
+    defaults: { _controller: ScontrolBundle:Tcruta:update }
+tcruta_delete:
+    pattern:  /tcruta/{id}/delete
+    defaults: { _controller: ScontrolBundle:Tcruta:delete }
+  
+tcruta_filter:
+    pattern:  /tcruta/{param}/filter
+    defaults: { _controller: ScontrolBundle:Tcruta:filter }

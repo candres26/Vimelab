@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Tcchec" table="TcChec">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="bigint" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="ntrabajadores" type="integer" column="ntrabajadores"/>
+    <field name="asesoria" type="string" column="asesoria" length="50"/>
+    <field name="comite" type="string" column="comite" length="1"/>
+    <field name="descripcion" type="text" column="descripcion"/>
+    <field name="caracteristicas" type="text" column="caracteristicas"/>
+    <field name="psensible" type="text" column="psensible"/>
+    <field name="seguridad" type="text" column="seguridad"/>
+    <field name="mfisico" type="string" column="mfisico" length="1"/>
+    <field name="hfisico" type="text" column="hfisico"/>
+    <field name="mquimico" type="string" column="mquimico" length="1"/>
+    <field name="hquimico" type="text" column="hquimico"/>
+    <field name="mbiologico" type="string" column="mbiologico" length="1"/>
+    <field name="hbiologico" type="text" column="hbiologico"/>
+    <field name="cargas" type="text" column="cargas"/>
+    <field name="carretilleros" type="string" column="carretilleros" length="1"/>
+    <field name="repetitivos" type="string" column="repetitivos" length="1"/>
+    <field name="ett" type="string" column="ett" length="1"/>
+    <field name="limpieza" type="string" column="limpieza" length="1"/>
+    <field name="mantenimiento" type="string" column="mantenimiento" length="1"/>
+    <field name="otros" type="text" column="otros"/>
+    <field name="emergencia" type="string" column="emergencia" length="1"/>
+    <field name="simulacros" type="string" column="simulacros" length="1"/>
+    <field name="planos" type="string" column="planos" length="1"/>
+    <field name="eplanos" type="string" column="eplanos" length="1"/>
+    <field name="textintor" type="string" column="textintor" length="1"/>
+    <field name="pemergencia" type="string" column="pemergencia" length="1"/>
+    <field name="lemergencia" type="string" column="lemergencia" length="1"/>
+    <field name="alarmas" type="string" column="alarmas" length="1"/>
+    <field name="selectrico" type="string" column="selectrico" length="1"/>
+    <field name="sextintor" type="string" column="sextintor" length="1"/>
+    <field name="sevacuacion" type="string" column="sevacuacion" length="1"/>
+    <field name="slavabos" type="string" column="slavabos" length="1"/>
+    <field name="botiquin" type="string" column="botiquin" length="1"/>
+    <field name="ascensor" type="string" column="ascensor" length="1"/>
+    <field name="bantideslizante" type="string" column="bantideslizante" length="1"/>
+    <field name="observaciones" type="text" column="observaciones"/>
+    <many-to-one field="tcrevi" target-entity="Tcrevi" orphan-removal="">
+      <join-columns>
+        <join-column name="TcRevi_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

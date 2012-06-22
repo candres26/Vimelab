@@ -1,0 +1,71 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Descripción Biometría{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Descripción de Biometría</h2>
+
+<table class="vime-table-des" align="center">
+    <tbody>
+        <tr>
+            <th align="left">Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th align="left">Historia No.</th>
+            <td>{{ entity.mdhist }}</td>
+        </tr>
+        <tr>
+            <th align="left">Identificación paciente</th>
+            <td>{{ entity.mdhist.mdpaci }}</td>
+        </tr>
+        <tr>
+            <th align="left">Paciente</th>
+            <td>{{ entity.mdhist.mdpaci.prinom }} {{ entity.mdhist.mdpaci.segnom }} {{ entity.mdhist.mdpaci.priape }} {{ entity.mdhist.mdpaci.segape }}</td>
+        </tr>
+        <tr>
+            <th align="left">Talla</th>
+            <td>{{ entity.talla }}</td>
+        </tr>
+        <tr>
+            <th align="left">Peso</th>
+            <td>{{ entity.peso }}</td>
+        </tr>
+        <tr>
+            <th align="left">Pulso</th>
+            <td>{{ entity.pulso }}</td>
+        </tr>
+        <tr>
+            <th align="left">Fres</th>
+            <td>{{ entity.fres }}</td>
+        </tr>
+        <tr>
+            <th align="left">Pasisto</th>
+            <td>{{ entity.pasisto }}</td>
+        </tr>
+        <tr>
+            <th align="left">Padiasto</th>
+            <td>{{ entity.padiasto }}</td>
+        </tr>
+    </tbody>
+</table>
+
+	<form id="vime-form" action="{{ path('mdbiom_delete', { 'id': entity.id }) }}" method="post">
+		{{ form_widget(delete_form) }}
+	</form>
+    
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('mdbiom') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="gId('vime-form').submit()"><img src="{{ asset('bundles/scontrol/imagenes/iconos/eliminar.png') }}" title="Eliminar"></td>
+			<td onClick="go('{{ path('mdbiom_edit', { 'id': entity.id }) }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar.png') }}" title="Editar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

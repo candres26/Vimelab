@@ -1,0 +1,69 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Editar Paciente{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Editar Paciente</h2>
+
+<form id="vime-form" action="{{ path('mdpaci_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+	<input type="submit" style="display: none" id="sender" value="send">
+   <table style="position: absolute; margin-left: 4%;">
+		<tr><td colspan='2'>{{ form_errors(edit_form.identificacion) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.identificacion) }}</td><td align="left">{{ form_widget(edit_form.identificacion) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.tipoide) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.tipoide) }}</td><td align="left">{{ form_widget(edit_form.tipoide) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.prinom) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.prinom) }}</td><td align="left">{{ form_widget(edit_form.prinom) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.segnom) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.segnom) }}</td><td align="left">{{ form_widget(edit_form.segnom) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.priape) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.priape) }}</td><td align="left">{{ form_widget(edit_form.priape) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.segape) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.segape) }}</td><td align="left">{{ form_widget(edit_form.segape) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.nacimiento) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.nacimiento) }}</td><td align="left">{{ form_widget(edit_form.nacimiento) }}</td></tr>
+		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.sexo) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.sexo) }}</td><td align="left">{{ form_widget(edit_form.sexo) }}</td></tr>
+	</table>
+    <table style="position: absolute; margin-left: 45%;">
+		<tr><td colspan='2'>{{ form_errors(edit_form.direccion) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.direccion) }}</td><td align="left">{{ form_widget(edit_form.direccion) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.telefono) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.telefono) }}</td><td align="left">{{ form_widget(edit_form.telefono) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.correo) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.correo) }}</td><td align="left">{{ form_widget(edit_form.correo) }}</td></tr>
+		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">E-mail: (Ej: admin@vimelab.com)</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.ingreso) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.ingreso) }}</td><td align="left">{{ form_widget(edit_form.ingreso) }}</td></tr>
+		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.gbciud) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.gbciud) }}</td><td align="left">{{ form_widget(edit_form.gbciud) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.gbptra) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.gbptra) }}</td><td align="left">{{ form_widget(edit_form.gbptra) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.gbsucu) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.gbsucu) }}</td><td align="left">{{ form_widget(edit_form.gbsucu) }}</td></tr>
+    </table>
+    {{ form_rest(edit_form) }}
+</form>
+
+<form id="vime-form-del" action="{{ path('mdpaci_delete', { 'id': entity.id }) }}" method="post">
+	{{ form_widget(delete_form) }}
+</form>			
+
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('mdpaci') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="gId('vime-form-del').submit()"><img src="{{ asset('bundles/scontrol/imagenes/iconos/eliminar.png') }}" title="Eliminar"></td>
+			<td onClick="SimularClick('sender')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}
+

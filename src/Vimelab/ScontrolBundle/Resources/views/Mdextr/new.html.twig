@@ -1,0 +1,162 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Extremidades{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Extremidades</h2>
+
+<form id="vime-form" action="{{ path('mdextr_create') }}" method="post" {{ form_enctype(form) }}>
+	<input type="submit" style="display: none" id="sender" value="send">
+	<table>
+		<tr><td colspan='2'>{{ form_errors(form.mdhist) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.mdhist) }}</td><td align="left">{{ form_widget(form.mdhist) }}</td></tr>
+	</table>
+	<table border="1" style="position: absolute; margin-left: 15%; margin-top: 3.5%;">
+		<tr>
+			<th align="left" width="150">Hombros</th><th width="100">Derecho</th><th width="100">Izquierdo</th>
+		</tr>
+		<tr>
+			<td align="left">Movilidad / Dolor</td><td> {{ form_errors(form.hdmov) }} {{ form_widget(form.hdmov) }} </td><td> {{ form_errors(form.himov) }} {{ form_widget(form.himov) }} </td>
+		</tr>
+		<tr>
+			<td align="left">Palpación</td><td> {{ form_errors(form.hdpal) }} {{ form_widget(form.hdpal) }} </td><td> {{ form_errors(form.hipal) }} {{ form_widget(form.hipal) }} </td>
+		</tr>
+		<tr>
+			<td align="left">Tendón Bicipital</td><td> {{ form_errors(form.hdten) }} {{ form_widget(form.hdten) }} </td><td> {{ form_errors(form.hiten) }} {{ form_widget(form.hiten) }} </td>
+		</tr>
+		<tr>
+			<td align="left">Surco Acromio - humeral</td><td> {{ form_errors(form.hdsur) }} {{ form_widget(form.hdsur) }} </td><td> {{ form_errors(form.hisur) }} {{ form_widget(form.hisur) }} </td>
+		</tr>
+	</table>
+	&nbsp;
+	<table border="1" style="position: absolute; margin-left: 50%; margin-top: 1%;">
+		<tr>
+			<th align="left" width="150">Codos</th><th width="100">Derecho</th><th width="100">Izquierdo</th>
+		</tr>
+		<tr>
+			<td align="left" >Movilidad / Dolor</td><td> {{ form_errors(form.cdmov) }} {{ form_widget(form.cdmov) }} </td><td> {{ form_errors(form.cimov) }} {{ form_widget(form.cimov) }} </td>
+		</tr>
+		<tr>
+			<td align="left">Palpación</td><td> {{ form_errors(form.cdpal) }} {{ form_widget(form.cdpal) }} </td><td> {{ form_errors(form.cipal) }} {{ form_widget(form.cipal) }} </td>
+		</tr>
+	</table>
+	&nbsp;
+	<table border="1" style="position: absolute; margin-left: 15%; margin-top: 28%;">
+		<tr>
+			<th align="left" width="150">Muñecas  y Manos</th><th width="100">Derecho</th><th width="100">Izquierdo</th>
+		</tr>
+		<tr>
+			<td align="left">Movilidad / Dolor</td><td> {{ form_errors(form.mdmov) }} {{ form_widget(form.mdmov) }} </td><td> {{ form_errors(form.mimov) }} {{ form_widget(form.mimov) }} </td>
+		</tr>
+		<tr>
+			<td align="left">Palpación</td><td> {{ form_errors(form.mdpal) }} {{ form_widget(form.mdpal) }} </td><td> {{ form_errors(form.mipal) }} {{ form_widget(form.mipal) }} </td>
+		</tr>
+		<tr>
+			<td align="left">Atrofia Tenar</td><td> {{ form_errors(form.mdten) }} {{ form_widget(form.mdten) }} </td><td> {{ form_errors(form.miten) }} {{ form_widget(form.miten) }} </td>
+		</tr>
+		<tr>
+			<td align="left">Atrofia Hipotenar</td><td> {{ form_errors(form.mdhip) }} {{ form_widget(form.mdhip) }} </td><td> {{ form_errors(form.mihip) }} {{ form_widget(form.mihip) }} </td>
+		</tr>
+		<tr>
+			<td align="left">Retracción de Dupultren</td><td> {{ form_errors(form.mdret) }} {{ form_widget(form.mdret) }} </td><td> {{ form_errors(form.miret) }} {{ form_widget(form.miret) }} </td>
+		</tr>
+		<tr>
+			<td align="left">Sme. del túnel carpiano</td><td> {{ form_errors(form.mdsme) }} {{ form_widget(form.mdsme) }} </td><td> {{ form_errors(form.misme) }} {{ form_widget(form.misme) }} </td>
+		</tr>
+	</table>
+	&nbsp;
+	<table border="1" style="position: absolute; margin-left: 50%; margin-top: 28%;">
+		<tr>
+			<th align="left" width="150">Extremidades Inferiores</th><th width="100">Derecho</th><th width="100">Izquierdo</th>
+		</tr>
+		<tr>
+			<td align="left">Movilidad / Dolor</td><td>{{ form_errors(form.pdmov) }}  {{ form_widget(form.pdmov) }}</td><td>{{ form_errors(form.pimov) }} {{ form_widget(form.pimov) }} </td>
+		</tr>
+		<tr>
+			<td align="left">Deformidades / Atrofias</td><td> {{ form_errors(form.pddef) }}  {{ form_widget(form.pddef) }} </td><td> {{ form_errors(form.pidef) }} {{ form_widget(form.pidef) }} </td>
+		</tr>
+		<tr>
+			<td align="left">Insuficiencia venosa</td><td> {{ form_errors(form.pdins) }} {{ form_widget(form.pdins) }} </td><td> {{ form_errors(form.piins) }} {{ form_widget(form.piins) }} </td>
+		</tr>
+		<tr>
+			<td align="left">Comentarios</td><td colspan="2"> {{ form_errors(form.comentarios) }} {{ form_widget(form.comentarios) }} </td>
+		</tr>
+	</table>
+	
+	<table align="center" style="display: none">
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.hdmov) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.himov) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.hdpal) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.hipal) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.hdten) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.hiten) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.hdsur) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.hisur) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.cdmov) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.cimov) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.cdpal) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.cipal) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.mdmov) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.mimov) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.mdpal) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.mipal) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.mdten) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.miten) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.mdhip) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.mihip) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.mdret) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.miret) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.mdsme) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.misme) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.pddef) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.pidef) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.pdins) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.piins) }}</td><td align="left"></td></tr>
+		<tr><td colspan='2'></td></tr>
+		<tr><td align="left">{{ form_label(form.comentarios) }}</td><td align="left"></td></tr>
+    </table>
+    {{ form_rest(form) }}
+</form>
+
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('mdextr') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="SimularClick('sender')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

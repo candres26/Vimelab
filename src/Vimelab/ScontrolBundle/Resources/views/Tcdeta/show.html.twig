@@ -1,0 +1,67 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Descripción Detalle{% endblock %}
+
+{% block area %}
+
+<h2  align="left">Descripción de Detalle</h2>
+
+<table class="vime-table-des" align="center">
+    <tbody>
+        <tr>
+            <th align="left">Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th align="left">Revisión</th>
+            <td>{{ entity.tcrevi }}</td>
+        </tr>
+        <tr>
+            <th align="left">Código Aspecto</th>
+            <td>{{ entity.tcaspe.codigo }}</td>
+        </tr>
+        <tr>
+            <th align="left">Aspecto</th>
+            <td>{{ entity.tcaspe.nombre }}</td>
+        </tr>
+        <tr>
+            <th align="left">Evitable</th>
+            <td>{{ entity.evitable }}</td>
+        </tr>
+        <tr>
+            <th align="left">Estimación</th>
+            <td>{{ entity.estimacion }}</td>
+        </tr>
+        <tr>
+            <th align="left">Probabilidad</th>
+            <td>{{ entity.probabilidad }}</td>
+        </tr>
+        <tr>
+            <th align="left">Consecuencia</th>
+            <td>{{ entity.consecuencia }}</td>
+        </tr>
+        <tr>
+            <th align="left">Detalle</th>
+            <td>{{ entity.detalle }}</td>
+        </tr>
+    </tbody>
+</table>
+
+	<form id="vime-form" action="{{ path('tcdeta_delete', { 'id': entity.id }) }}" method="post">
+		{{ form_widget(delete_form) }}
+	</form>
+    
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('tcdeta') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="gId('vime-form').submit()"><img src="{{ asset('bundles/scontrol/imagenes/iconos/eliminar.png') }}" title="Eliminar"></td>
+			<td onClick="go('{{ path('tcdeta_edit', { 'id': entity.id }) }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar.png') }}" title="Editar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

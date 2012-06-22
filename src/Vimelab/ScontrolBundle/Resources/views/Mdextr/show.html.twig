@@ -1,0 +1,171 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Descripción Extremidades{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Descripción de Extremidades</h2>
+
+<table class="vime-table-des" align="center">
+    <tbody>
+        <tr>
+            <th align="left">Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th align="left">Historia No.</th>
+            <td>{{ entity.mdhist }}</td>
+        </tr>
+        <tr>
+            <th align="left">Identificación paciente</th>
+            <td>{{ entity.mdhist.mdpaci }}</td>
+        </tr>
+        <tr>
+            <th align="left">Paciente</th>
+            <td>{{ entity.mdhist.mdpaci.prinom }} {{ entity.mdhist.mdpaci.segnom }} {{ entity.mdhist.mdpaci.priape }} {{ entity.mdhist.mdpaci.segape }}</td>
+        </tr>
+        <tr>
+            <th align="left">Hdmov</th>
+            <td>{{ entity.hdmov }}</td>
+        </tr>
+        <tr>
+            <th align="left">Himov</th>
+            <td>{{ entity.himov }}</td>
+        </tr>
+        <tr>
+            <th align="left">Hdpal</th>
+            <td>{{ entity.hdpal }}</td>
+        </tr>
+        <tr>
+            <th align="left">Hipal</th>
+            <td>{{ entity.hipal }}</td>
+        </tr>
+        <tr>
+            <th align="left">Hdten</th>
+            <td>{{ entity.hdten }}</td>
+        </tr>
+        <tr>
+            <th align="left">Hiten</th>
+            <td>{{ entity.hiten }}</td>
+        </tr>
+        <tr>
+            <th align="left">Hdsur</th>
+            <td>{{ entity.hdsur }}</td>
+        </tr>
+        <tr>
+            <th align="left">Hisur</th>
+            <td>{{ entity.hisur }}</td>
+        </tr>
+        <tr>
+            <th align="left">Cdmov</th>
+            <td>{{ entity.cdmov }}</td>
+        </tr>
+        <tr>
+            <th align="left">Cimov</th>
+            <td>{{ entity.cimov }}</td>
+        </tr>
+        <tr>
+            <th align="left">Cdpal</th>
+            <td>{{ entity.cdpal }}</td>
+        </tr>
+        <tr>
+            <th align="left">Cipal</th>
+            <td>{{ entity.cipal }}</td>
+        </tr>
+        <tr>
+            <th align="left">Mdmov</th>
+            <td>{{ entity.mdmov }}</td>
+        </tr>
+        <tr>
+            <th align="left">Mimov</th>
+            <td>{{ entity.mimov }}</td>
+        </tr>
+        <tr>
+            <th align="left">Mdpal</th>
+            <td>{{ entity.mdpal }}</td>
+        </tr>
+        <tr>
+            <th align="left">Mipal</th>
+            <td>{{ entity.mipal }}</td>
+        </tr>
+        <tr>
+            <th align="left">Mdten</th>
+            <td>{{ entity.mdten }}</td>
+        </tr>
+        <tr>
+            <th align="left">Miten</th>
+            <td>{{ entity.miten }}</td>
+        </tr>
+        <tr>
+            <th align="left">Mdhip</th>
+            <td>{{ entity.mdhip }}</td>
+        </tr>
+        <tr>
+            <th align="left">Mihip</th>
+            <td>{{ entity.mihip }}</td>
+        </tr>
+        <tr>
+            <th align="left">Mdret</th>
+            <td>{{ entity.mdret }}</td>
+        </tr>
+        <tr>
+            <th align="left">Miret</th>
+            <td>{{ entity.miret }}</td>
+        </tr>
+        <tr>
+            <th align="left">Mdsme</th>
+            <td>{{ entity.mdsme }}</td>
+        </tr>
+        <tr>
+            <th align="left">Misme</th>
+            <td>{{ entity.misme }}</td>
+        </tr>
+        <tr>
+            <th align="left">Pdmov</th>
+            <td>{{ entity.pdmov }}</td>
+        </tr>
+        <tr>
+            <th align="left">Pimov</th>
+            <td>{{ entity.pimov }}</td>
+        </tr>
+        <tr>
+            <th align="left">Pddef</th>
+            <td>{{ entity.pddef }}</td>
+        </tr>
+        <tr>
+            <th align="left">Pidef</th>
+            <td>{{ entity.pidef }}</td>
+        </tr>
+        <tr>
+            <th align="left">Pdins</th>
+            <td>{{ entity.pdins }}</td>
+        </tr>
+        <tr>
+            <th align="left">Piins</th>
+            <td>{{ entity.piins }}</td>
+        </tr>
+        <tr>
+            <th align="left">Comentarios</th>
+            <td>{{ entity.comentarios }}</td>
+        </tr>
+    </tbody>
+</table>
+
+	<form id="vime-form" action="{{ path('mdextr_delete', { 'id': entity.id }) }}" method="post">
+		{{ form_widget(delete_form) }}
+	</form>
+    
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('mdextr') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="gId('vime-form').submit()"><img src="{{ asset('bundles/scontrol/imagenes/iconos/eliminar.png') }}" title="Eliminar"></td>
+			<td onClick="go('{{ path('mdextr_edit', { 'id': entity.id }) }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar.png') }}" title="Editar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

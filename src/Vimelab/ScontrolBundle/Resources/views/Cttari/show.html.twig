@@ -1,0 +1,47 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Descripción Tarifa{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Descripción de Tarifa</h2>
+
+<table class="vime-table-des" align="center">
+    <tbody>
+        <tr>
+            <th align="left">Id Tarífa</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th align="left">Id Servicio</th>
+            <td>{{ entity.ctserv }}</td>
+        </tr>
+        <tr>
+            <th align="left">No. Contrato</th>
+            <td>{{ entity.ctcont }}</td>
+        </tr>
+        <tr>
+            <th align="left">Valor</th>
+            <td>{{ entity.valor }}</td>
+        </tr>
+    </tbody>
+</table>
+
+	<form id="vime-form" action="{{ path('cttari_delete', { 'id': entity.id }) }}" method="post">
+		{{ form_widget(delete_form) }}
+	</form>
+    
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('cttari') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="gId('vime-form').submit()"><img src="{{ asset('bundles/scontrol/imagenes/iconos/eliminar.png') }}" title="Eliminar"></td>
+			<td onClick="go('{{ path('cttari_edit', { 'id': entity.id }) }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar.png') }}" title="Editar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

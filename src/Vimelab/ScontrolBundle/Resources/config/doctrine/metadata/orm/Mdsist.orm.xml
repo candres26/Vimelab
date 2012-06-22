@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Mdsist" table="MdSist">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="bigint" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="otoscder" type="string" column="otoscder" length="1"/>
+    <field name="otosciz" type="string" column="otosciz" length="1"/>
+    <field name="boca" type="string" column="boca" length="1"/>
+    <field name="garganta" type="string" column="garganta" length="1"/>
+    <field name="pupilas" type="string" column="pupilas" length="1"/>
+    <field name="columna" type="string" column="columna" length="1"/>
+    <field name="mucosas" type="string" column="mucosas" length="1"/>
+    <field name="cardiaca" type="string" column="cardiaca" length="1"/>
+    <field name="respiratoria" type="string" column="respiratoria" length="1"/>
+    <field name="abdominal" type="string" column="abdominal" length="1"/>
+    <field name="nervioso" type="string" column="nervioso" length="1"/>
+    <field name="ppl" type="string" column="ppl" length="1"/>
+    <many-to-one field="mdhist" target-entity="Mdhist" orphan-removal="">
+      <join-columns>
+        <join-column name="MdHist_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

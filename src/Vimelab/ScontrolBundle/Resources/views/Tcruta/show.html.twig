@@ -1,0 +1,139 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Descripción Hoja Ruta{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Descripción Hoja de Ruta</h2>
+
+<table class="vime-table-des" align="center">
+    <tbody>
+        <tr>
+            <th align="left">Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th align="left">Contrato No.</th>
+            <td>{{ entity.ctcont }}</td>
+        </tr>
+        <tr>
+            <th align="left">Fecha planeada</th>
+            <td>{{ entity.fplaneada|date('Y-m-d') }}</td>
+        </tr>
+        <tr>
+            <th align="left">Fecha ejecutada</th>
+            <td>{{ entity.fejecutada|date('Y-m-d') }}</td>
+        </tr>
+        <tr>
+            <th align="left">Personal</th>
+            <td>{{ entity.personal }}</td>
+        </tr>
+        <tr>
+            <th align="left">Unidad</th>
+            <td>{{ entity.unidad }}</td>
+        </tr>
+        <tr>
+            <th align="left">Equipo</th>
+            <td>{{ entity.equipo }}</td>
+        </tr>
+        <tr>
+            <th align="left">Lugar</th>
+            <td>{{ entity.lugar }}</td>
+        </tr>
+        <tr>
+            <th align="left">Encargado</th>
+            <td>{{ entity.encargado }}</td>
+        </tr>
+        <tr>
+            <th align="left">Datos</th>
+            <td>{{ entity.datos }}</td>
+        </tr>
+        <tr>
+            <th align="left">Fparciales</th>
+            <td>{{ entity.fparciales }}</td>
+        </tr>
+        <tr>
+            <th align="left">Analítica</th>
+            <td>{{ entity.analitica }}</td>
+        </tr>
+        <tr>
+            <th align="left">Biometría</th>
+            <td>{{ entity.biometria }}</td>
+        </tr>
+        <tr>
+            <th align="left">Audiometría</th>
+            <td>{{ entity.audiometria }}</td>
+        </tr>
+        <tr>
+            <th align="left">Visión</th>
+            <td>{{ entity.vision }}</td>
+        </tr>
+        <tr>
+            <th align="left">Espirometría</th>
+            <td>{{ entity.espirometria }}</td>
+        </tr>
+        <tr>
+            <th align="left">Médica</th>
+            <td>{{ entity.medica }}</td>
+        </tr>
+        <tr>
+            <th align="left">Electro</th>
+            <td>{{ entity.electro }}</td>
+        </tr>
+        <tr>
+            <th align="left">Detalle electro</th>
+            <td>{{ entity.detelectro }}</td>
+        </tr>
+        <tr>
+            <th align="left">Comentarios</th>
+            <td>{{ entity.comentarios }}</td>
+        </tr>
+        <tr>
+            <th align="left">No. Reco. Completos</th>
+            <td>{{ entity.ncompletos }}</td>
+        </tr>
+        <tr>
+            <th align="left">No. analíticas</th>
+            <td>{{ entity.nanaliticas }}</td>
+        </tr>
+        <tr>
+            <th align="left">Analíticas solas</th>
+            <td>{{ entity.nsolas }}</td>
+        </tr>
+        <tr>
+            <th align="left">No. ECG</th>
+            <td>{{ entity.necg }}</td>
+        </tr>
+        <tr>
+            <th align="left">No. audiometría</th>
+            <td>{{ entity.naudiometria }}</td>
+        </tr>
+        <tr>
+            <th align="left">Total Reco.</th>
+            <td>{{ entity.total }}</td>
+        </tr>
+        <tr>
+            <th align="left">Estado</th>
+            <td>{{ entity.estado }}</td>
+        </tr>
+    </tbody>
+</table>
+
+	<form id="vime-form" action="{{ path('tcruta_delete', { 'id': entity.id }) }}" method="post">
+		{{ form_widget(delete_form) }}
+	</form>
+    
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('tcruta') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="gId('vime-form').submit()"><img src="{{ asset('bundles/scontrol/imagenes/iconos/eliminar.png') }}" title="Eliminar"></td>
+			<td onClick="go('{{ path('tcruta_edit', { 'id': entity.id }) }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar.png') }}" title="Editar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

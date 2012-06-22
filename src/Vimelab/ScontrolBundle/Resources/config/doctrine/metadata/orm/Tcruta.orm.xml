@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Tcruta" table="TcRuta">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="bigint" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="fplaneada" type="date" column="fplaneada"/>
+    <field name="fejecutada" type="datetime" column="fejecutada"/>
+    <field name="personal" type="text" column="personal"/>
+    <field name="unidad" type="text" column="unidad"/>
+    <field name="equipo" type="text" column="equipo"/>
+    <field name="lugar" type="string" column="lugar" length="100"/>
+    <field name="encargado" type="string" column="encargado" length="100"/>
+    <field name="datos" type="text" column="datos"/>
+    <field name="fparciales" type="text" column="fparciales"/>
+    <field name="analitica" type="string" column="analitica" length="1"/>
+    <field name="biometria" type="string" column="biometria" length="1"/>
+    <field name="audiometria" type="string" column="audiometria" length="1"/>
+    <field name="vision" type="string" column="vision" length="1"/>
+    <field name="espirometria" type="string" column="espirometria" length="1"/>
+    <field name="medica" type="string" column="medica" length="1"/>
+    <field name="electro" type="string" column="electro" length="1"/>
+    <field name="detelectro" type="text" column="detelectro"/>
+    <field name="comentarios" type="text" column="comentarios"/>
+    <field name="ncompletos" type="integer" column="ncompletos"/>
+    <field name="nanaliticas" type="integer" column="nanaliticas"/>
+    <field name="nsolas" type="integer" column="nsolas"/>
+    <field name="necg" type="integer" column="necg"/>
+    <field name="naudiometria" type="integer" column="naudiometria"/>
+    <field name="total" type="integer" column="total"/>
+    <field name="estado" type="string" column="estado" length="1"/>
+    <many-to-one field="ctcont" target-entity="Ctcont" orphan-removal="">
+      <join-columns>
+        <join-column name="CtCont_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

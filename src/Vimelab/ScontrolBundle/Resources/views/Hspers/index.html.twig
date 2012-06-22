@@ -1,0 +1,72 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Listado de Ant. Personales{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Listado de Antecedentes Personales</h2>
+
+<input placeholder="Digite su búsqueda" type="text" id="filterTXT"  size="50" style="font-family: Arial; font-size: 10pt; background-color: #FFF; border-radius: 5px; color: #324E8A;"><img style="cursor: pointer; position: absolute; margin-left: 1%; " onClick="buscar()" src="{{ asset('bundles/scontrol/imagenes/applet.png') }}" title="Buscar">
+<br>
+<br>
+<table class="vime-table" align="center" border="1">
+    <thead>
+        <tr>
+			<th>Id</th>
+			<th>Identificación</th>
+            <th>Paciente</th>
+            <th>Alergias</th>
+            <th>Vacunación Tetano</th>
+            <th>Fecha Vacuna</th>
+            <th>Observaciones</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+			<td>{{ entity.id }}</td>
+			<td>{{ entity.mdpaci.identificacion }}</td>
+            <td>{{ entity.MdPaci.prinom }} {{ entity.MdPaci.segnom }} {{ entity.MdPaci.priape }} {{ entity.MdPaci.segape }}</td>
+            <td>{{ entity.alergias }}</td>
+            <td>{{ entity.tetano }}</td>
+            <td>{% if entity.tetanofecha %}{{ entity.tetanofecha|date('d-m-Y') }}{% endif%}</td>
+            <td>{{ entity.observaciones }}</td>
+            <td align="center">
+				<a href="{{ path('hspers_show', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/show_index.png') }}" title="Mostrar"></a>
+				<a href="{{ path('hspers_edit', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar_index.png') }}" title="Editar"></a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<script text="javascript">
+	
+	var basePath = "{{ path('hspers') }}";
+	
+	function buscar(elem)
+	{
+		if(document.getElementById("filterTXT").value != '')
+		{
+			val = document.getElementById("filterTXT").value;
+			location = basePath+"/"+val+"/filter";
+		}
+		else
+			alert("Necesita Definir Un Parámetro De Busqueda!");
+	}
+	
+</script>
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('hspers') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="go('{{ path('hspers_new') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/agregar.png') }}" title="Agregar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

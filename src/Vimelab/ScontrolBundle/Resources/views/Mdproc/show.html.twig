@@ -1,0 +1,41 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Descripción Procedimiento{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Descripción de Procedimiento</h2>
+
+<table class="vime-table-des" align="center">
+    <tbody>
+        <tr>
+            <th align="left">Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+			<th align="left">Puesto de trabajo</th>
+			<td>{{ entity.GbPtra.nombre }}</td>
+        </tr>
+			<th align="left">Protocolo</th>
+			<td>{{ entity.MdProt.nombre }}</td>
+    </tbody>
+</table>
+
+	<form id="vime-form" action="{{ path('mdproc_delete', { 'id': entity.id }) }}" method="post">
+		{{ form_widget(delete_form) }}
+	</form>
+    
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('mdproc') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="gId('vime-form').submit()"><img src="{{ asset('bundles/scontrol/imagenes/iconos/eliminar.png') }}" title="Eliminar"></td>
+			<td onClick="go('{{ path('mdproc_edit', { 'id': entity.id }) }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar.png') }}" title="Editar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

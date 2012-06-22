@@ -1,0 +1,255 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Descripción Ant. Personal{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Descripción Antecedente Personal</h2>
+
+<table class="vime-table-des" align="center">
+    <tbody>
+        <tr>
+            <th align="left">Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th align="left">Fecha</th>
+            <td>{{ entity.fecha|date('Y-m-d') }}</td>
+        </tr>
+        <tr>
+            <th align="left">Identificación</th>
+            <td>{{ entity.mdpaci.identificacion }}</td>
+        </tr>
+        <tr>
+            <th align="left">Nombre paciente</th>
+            <td>{{ entity.mdpaci.prinom }} {{ entity.mdpaci.segnom }} {{ entity.mdpaci.priape }} {{ entity.mdpaci.segape }}</td>
+        </tr>
+        <tr>
+            <th align="left">Evento</th>
+            <td>{{ entity.evento }}</td>
+        </tr>
+        <tr>
+            <th align="left">Operaciones</th>
+            <td>{{ entity.operaciones }}</td>
+        </tr>
+        <tr>
+            <th align="left">Productos</th>
+            <td>{{ entity.productos }}</td>
+        </tr>
+        <tr>
+            <th align="left">Riesgos</th>
+            <td>{{ entity.riesgos }}</td>
+        </tr>
+        <tr>
+            <th align="left">Texposición</th>
+            <td>{{ entity.texposicion }}</td>
+        </tr>
+        <tr>
+            <th align="left">Protección</th>
+            <td>{{ entity.proteccion }}</td>
+        </tr>
+        <tr>
+            <th align="left">Ventilación</th>
+            <td>{{ entity.ventilacion }}</td>
+        </tr>
+        <tr>
+            <th align="left">Temperatura</th>
+            <td>{{ entity.temperatura }}</td>
+        </tr>
+        <tr>
+            <th align="left">Horario</th>
+            <td>{{ entity.horario }}</td>
+        </tr>
+        <tr>
+            <th align="left">Turno</th>
+            <td>{{ entity.turno }}</td>
+        </tr>
+        <tr>
+            <th align="left">Rotación</th>
+            <td>{{ entity.rotacion }}</td>
+        </tr>
+        <tr>
+            <th align="left">Visitas</th>
+            <td>{{ entity.visitas }}</td>
+        </tr>
+        <tr>
+            <th align="left">Bajas</th>
+            <td>{{ entity.bajas }}</td>
+        </tr>
+        <tr>
+            <th align="left">Medicamentos</th>
+            <td>{{ entity.medicamentos }}</td>
+        </tr>
+        <tr>
+            <th align="left">Fumador</th>
+            <td>{{ entity.fumador }}</td>
+        </tr>
+        <tr>
+            <th align="left">Detfumador</th>
+            <td>{{ entity.detfumador }}</td>
+        </tr>
+        <tr>
+            <th align="left">Bebedor</th>
+            <td>{{ entity.bebedor }}</td>
+        </tr>
+        <tr>
+            <th align="left">Detbebedor</th>
+            <td>{{ entity.detbebedor }}</td>
+        </tr>
+        <tr>
+            <th align="left">Efpulmon</th>
+            <td>{{ entity.efpulmon }}</td>
+        </tr>
+        <tr>
+            <th align="left">Efcorazón</th>
+            <td>{{ entity.efcorazon }}</td>
+        </tr>
+        <tr>
+            <th align="left">Efasma</th>
+            <td>{{ entity.efasma }}</td>
+        </tr>
+        <tr>
+            <th align="left">Efbronquios</th>
+            <td>{{ entity.efbronquios }}</td>
+        </tr>
+        <tr>
+            <th align="left">Efcirculación</th>
+            <td>{{ entity.efcirculacion }}</td>
+        </tr>
+        <tr>
+            <th align="left">Efhigado</th>
+            <td>{{ entity.efhigado }}</td>
+        </tr>
+        <tr>
+            <th align="left">Efgastritis</th>
+            <td>{{ entity.efgastritis }}</td>
+        </tr>
+        <tr>
+            <th align="left">Efulcera</th>
+            <td>{{ entity.efulcera }}</td>
+        </tr>
+        <tr>
+            <th align="left">Efvesícula</th>
+            <td>{{ entity.efvesicula }}</td>
+        </tr>
+        <tr>
+            <th align="left">Efriñon</th>
+            <td>{{ entity.efriñon }}</td>
+        </tr>
+        <tr>
+            <th align="left">Efurinario</th>
+            <td>{{ entity.efurinario }}</td>
+        </tr>
+        <tr>
+            <th align="left">Efartrosis</th>
+            <td>{{ entity.efartrosis }}</td>
+        </tr>
+        <tr>
+            <th align="left">Eflumbago</th>
+            <td>{{ entity.eflumbago }}</td>
+        </tr>
+        <tr>
+            <th align="left">Efotros</th>
+            <td>{{ entity.efotros }}</td>
+        </tr>
+        <tr>
+            <th align="left">Alergias</th>
+            <td>{{ entity.alergias }}</td>
+        </tr>
+        <tr>
+            <th align="left">Prazucar</th>
+            <td>{{ entity.prazucar }}</td>
+        </tr>
+        <tr>
+            <th align="left">Prcolesterol</th>
+            <td>{{ entity.prcolesterol }}</td>
+        </tr>
+        <tr>
+            <th align="left">Prurico</th>
+            <td>{{ entity.prurico }}</td>
+        </tr>
+        <tr>
+            <th align="left">Prhepatitis</th>
+            <td>{{ entity.prhepatitis }}</td>
+        </tr>
+        <tr>
+            <th align="left">Prtransaminasas</th>
+            <td>{{ entity.prtransaminasas }}</td>
+        </tr>
+        <tr>
+            <th align="left">Prhipertension</th>
+            <td>{{ entity.prhipertension }}</td>
+        </tr>
+        <tr>
+            <th align="left">Prhipotension</th>
+            <td>{{ entity.prhipotension }}</td>
+        </tr>
+        <tr>
+            <th align="left">Prsoplos</th>
+            <td>{{ entity.prsoplos }}</td>
+        </tr>
+        <tr>
+            <th align="left">Prarritmias</th>
+            <td>{{ entity.prarritmias }}</td>
+        </tr>
+        <tr>
+            <th align="left">Prhernias</th>
+            <td>{{ entity.prhernias }}</td>
+        </tr>
+        <tr>
+            <th align="left">Prdepresion</th>
+            <td>{{ entity.prdepresion }}</td>
+        </tr>
+        <tr>
+            <th align="left">Cbintestinal</th>
+            <td>{{ entity.cbintestinal }}</td>
+        </tr>
+        <tr>
+            <th align="left">Cborina</th>
+            <td>{{ entity.cborina }}</td>
+        </tr>
+        <tr>
+            <th align="left">Cbpiel</th>
+            <td>{{ entity.cbpiel }}</td>
+        </tr>
+        <tr>
+            <th align="left">Cbpeso</th>
+            <td>{{ entity.cbpeso }}</td>
+        </tr>
+        <tr>
+            <th align="left">Tetano</th>
+            <td>{{ entity.tetano }}</td>
+        </tr>
+        <tr>
+            <th align="left">Tetanofecha</th>
+            <td>{{ entity.tetanofecha|date('Y-m-d') }}</td>
+        </tr>
+        <tr>
+            <th align="left">Tetanodosis</th>
+            <td>{{ entity.tetanodosis }}</td>
+        </tr>
+        <tr>
+            <th align="left">Observaciones</th>
+            <td>{{ entity.observaciones }}</td>
+        </tr>
+    </tbody>
+</table>
+
+	<form id="vime-form" action="{{ path('hspers_delete', { 'id': entity.id }) }}" method="post">
+		{{ form_widget(delete_form) }}
+	</form>
+    
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('hspers') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="gId('vime-form').submit()"><img src="{{ asset('bundles/scontrol/imagenes/iconos/eliminar.png') }}" title="Eliminar"></td>
+			<td onClick="go('{{ path('hspers_edit', { 'id': entity.id }) }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar.png') }}" title="Editar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

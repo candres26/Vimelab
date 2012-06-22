@@ -1,0 +1,34 @@
+security:
+    encoders:
+        Vimelab\ScontrolBundle\Entity\Gbusua:
+            algorithm: sha512
+            encode-as-base64: true
+            iterations: 11
+
+    providers:
+        user_db:
+            entity: { class: Vimelab\ScontrolBundle\Entity\Gbusua, property: nombre }
+
+    firewalls:
+        main:
+            pattern: /.*
+            provider: user_db
+            form_login:
+                login_path: /login
+                check_path: /login_check
+                remember_me: true
+            logout:
+                path: /logout
+                target: /login
+            remember_me:
+                key: =FON9p-xJCXRA3Er{\@"mK%Tz1a-zW3"RLC@q+^s
+                lifetime: 300
+                path: /.*
+                domain: ~
+            security: true
+            anonymous: true
+
+
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /*, roles: ROLE_USER}

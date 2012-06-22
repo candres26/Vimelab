@@ -1,0 +1,47 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Editar Biometría{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Editar Biometría</h2>
+
+<form id="vime-form" action="{{ path('mdbiom_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+	<input type="submit" style="display: none" id="sender" value="send">
+	<table align="center">
+		<tr><td colspan='2'>{{ form_errors(edit_form.mdhist) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.mdhist) }}</td><td align="left">{{ form_widget(edit_form.mdhist) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.talla) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.talla) }}</td><td align="left">{{ form_widget(edit_form.talla) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.peso) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.peso) }}</td><td align="left">{{ form_widget(edit_form.peso) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.pulso) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.pulso) }}</td><td align="left">{{ form_widget(edit_form.pulso) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.fres) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.fres) }}</td><td align="left">{{ form_widget(edit_form.fres) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.pasisto) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.pasisto) }}</td><td align="left">{{ form_widget(edit_form.pasisto) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.padiasto) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.padiasto) }}</td><td align="left">{{ form_widget(edit_form.padiasto) }}</td></tr>
+    </table>
+    {{ form_rest(edit_form) }}
+</form>
+
+<form id="vime-form-del" action="{{ path('mdbiom_delete', { 'id': entity.id }) }}" method="post">
+	{{ form_widget(delete_form) }}
+</form>			
+
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('mdbiom') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="gId('vime-form-del').submit()"><img src="{{ asset('bundles/scontrol/imagenes/iconos/eliminar.png') }}" title="Eliminar"></td>
+			<td onClick="SimularClick('sender')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Tipo Identificación{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Tipo Identificación</h2>
+
+<form id="vime-form" action="{{ path('gbiden_create') }}" method="post" {{ form_enctype(form) }}>
+	<input type="submit" style="display: none" id="sender" value="send">
+	<table align="center">
+		<tr><td colspan='2'>{{ form_errors(form.sigla) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.sigla) }}</td><td align="left">{{ form_widget(form.sigla) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.detalle) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.detalle) }}</td><td align="left">{{ form_widget(form.detalle) }}</td></tr>
+    </table>
+    {{ form_rest(form) }}
+</form>
+
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('gbiden') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="SimularClick('sender')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Editar Detalle{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Editar Detalle</h2>
+
+<form id="vime-form" action="{{ path('tcdeta_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+	<input type="submit" style="display: none" id="sender" value="send">
+   <table align="center">
+   		<tr><td colspan='2'>{{ form_errors(edit_form.tcrevi) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.tcrevi) }}</td><td align="left">{{ form_widget(edit_form.tcrevi) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.tcaspe) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.tcaspe) }}</td><td align="left">{{ form_widget(edit_form.tcaspe) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.evitable) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.evitable) }}</td><td align="left">{{ form_widget(edit_form.evitable) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.estimacion) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.estimacion) }}</td><td align="left">{{ form_widget(edit_form.estimacion) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.probabilidad) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.probabilidad) }}</td><td align="left">{{ form_widget(edit_form.probabilidad) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.consecuencia) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.consecuencia) }}</td><td align="left">{{ form_widget(edit_form.consecuencia) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.detalle) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.detalle) }}</td><td align="left">{{ form_widget(edit_form.detalle) }}</td></tr>
+    </table>
+    {{ form_rest(edit_form) }}
+</form>
+
+<form id="vime-form-del" action="{{ path('tcdeta_delete', { 'id': entity.id }) }}" method="post">
+	{{ form_widget(delete_form) }}
+</form>			
+
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('tcdeta') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="gId('vime-form-del').submit()"><img src="{{ asset('bundles/scontrol/imagenes/iconos/eliminar.png') }}" title="Eliminar"></td>
+			<td onClick="SimularClick('sender')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

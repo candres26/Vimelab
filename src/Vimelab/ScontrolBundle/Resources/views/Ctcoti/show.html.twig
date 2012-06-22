@@ -1,0 +1,76 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Descripción Presupuesto{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Descripción de Presupuesto</h2>
+
+<table class="vime-table-des" align="center">
+    <tbody>
+        <tr>
+            <th align="left">Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th align="left">Fecha</th>
+            <td>{{ entity.fecha|date('Y-m-d') }}</td>
+        </tr>
+        <tr>
+            <th align="left">Modalidad</th>
+            <td>{{ entity.modalidad }}</td>
+        </tr>
+        <tr>
+            <th align="left">Trabajadores</th>
+            <td>{{ entity.trabajadores }}</td>
+        </tr>
+        <tr>
+            <th align="left">Centros</th>
+            <td>{{ entity.centros }}</td>
+        </tr>
+        <tr>
+            <th align="left">Vencimiento</th>
+            <td>{{ entity.vencimiento }}</td>
+        </tr>
+        <tr>
+            <th align="left">Nivel</th>
+            <td>{{ entity.nivel }}</td>
+        </tr>
+        <tr>
+            <th align="left">Subtotal</th>
+            <td>{{ entity.subtotal }}</td>
+        </tr>
+        <tr>
+            <th align="left">Iva</th>
+            <td>{{ entity.iva }}</td>
+        </tr>
+        <tr>
+            <th align="left">Descuento</th>
+            <td>{{ entity.descuento }}</td>
+        </tr>
+        <tr>
+            <th align="left">Total</th>
+            <td>{{ entity.total }}</td>
+        </tr>
+    </tbody>
+</table>
+
+	<form id="vime-form" action="{{ path('ctcoti_delete', { 'id': entity.id }) }}" method="post">
+		{{ form_widget(delete_form) }}
+	</form>
+
+
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('ctcoti') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="gId('vime-form').submit()"><img src="{{ asset('bundles/scontrol/imagenes/iconos/eliminar.png') }}" title="Eliminar"></td>
+			<td onClick="go('{{ path('ctcoti_edit', { 'id': entity.id }) }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar.png') }}" title="Editar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

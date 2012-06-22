@@ -1,0 +1,45 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Antecedente Laboral{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Antecendente Laboral</h2>
+
+<form id="vime-form" action="{{ path('hslabo_create') }}" method="post" {{ form_enctype(form) }}>
+	<input type="submit" style="display: none" id="sender" value="send">
+	<table align="center">
+		<tr><td colspan='2'>{{ form_errors(form.mdpaci) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.mdpaci) }}</td><td align="left">{{ form_widget(form.mdpaci) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.edad) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.edad) }}</td><td align="left">{{ form_widget(form.edad) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.empresa) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.empresa) }}</td><td align="left">{{ form_widget(form.empresa) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.fingreso) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.fingreso) }}</td><td align="left">{{ form_widget(form.fingreso) }}</td></tr>
+		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.actividad) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.actividad) }}</td><td align="left">{{ form_widget(form.actividad) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.puesto) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.puesto) }}</td><td align="left">{{ form_widget(form.puesto) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.riesgo) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.riesgo) }}</td><td align="left">{{ form_widget(form.riesgo) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.duracion) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.duracion) }}</td><td align="left">{{ form_widget(form.duracion) }}</td></tr>
+    </table>
+    {{ form_rest(form) }}
+</form>
+
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('hslabo') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="SimularClick('sender')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

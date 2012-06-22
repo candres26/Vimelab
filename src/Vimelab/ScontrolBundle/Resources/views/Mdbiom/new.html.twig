@@ -1,0 +1,42 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Biometría{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Biometría</h2>
+
+<form id="vime-form" action="{{ path('mdbiom_create') }}" method="post" {{ form_enctype(form) }}>
+	<input type="submit" style="display: none" id="sender" value="send">
+	<table align="center">
+		<tr><td colspan='2'>{{ form_errors(form.mdhist) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.mdhist) }}</td><td align="left">{{ form_widget(form.mdhist) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.talla) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.talla) }}</td><td align="left">{{ form_widget(form.talla) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.peso) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.peso) }}</td><td align="left">{{ form_widget(form.peso) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.pulso) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.pulso) }}</td><td align="left">{{ form_widget(form.pulso) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.fres) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.fres) }}</td><td align="left">{{ form_widget(form.fres) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.pasisto) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.pasisto) }}</td><td align="left">{{ form_widget(form.pasisto) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.padiasto) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.padiasto) }}</td><td align="left">{{ form_widget(form.padiasto) }}</td></tr>
+    </table>
+    {{ form_rest(form) }}
+</form>
+
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('mdbiom') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="SimularClick('sender')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

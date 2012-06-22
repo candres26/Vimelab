@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Vimelab - {% block title %}{% endblock %}</title>
+        <meta name="description" content="{% block metadesc %} Metadescripción común {% endblock %}">
+       
+		<script language="JavaScript" src="{{ asset('bundles/scontrol/js/general.js') }}" /></script>	
+		<script language="JavaScript" src="{{ asset('bundles/scontrol/js/ice/ajax.js') }}" /></script>
+		<script language="JavaScript" src="{{ asset('bundles/scontrol/js/ice/basico.js') }}" /></script>
+		<script language="JavaScript" src="{{ asset('bundles/scontrol/js/ice/dom.js') }}" /></script>
+		
+		{% block header %}{% endblock %}
+        
+        <link rel="shortcut icon" href="{{ asset('bundles/scontrol/imagenes/iconos/favicon.ico') }}" />
+    </head>
+    <body id= '{% block pageid '' %}' onLoad='init()'>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

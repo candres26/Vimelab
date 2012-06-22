@@ -1,0 +1,42 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Detalle{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Detalle</h2>
+
+<form id="vime-form" action="{{ path('tcdeta_create') }}" method="post" {{ form_enctype(form) }}>
+	<input type="submit" style="display: none" id="sender" value="send">
+   <table align="center">
+   		<tr><td colspan='2'>{{ form_errors(form.tcrevi) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.tcrevi) }}</td><td align="left">{{ form_widget(form.tcrevi) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.tcaspe) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.tcaspe) }}</td><td align="left">{{ form_widget(form.tcaspe) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.evitable) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.evitable) }}</td><td align="left">{{ form_widget(form.evitable) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.estimacion) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.estimacion) }}</td><td align="left">{{ form_widget(form.estimacion) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.probabilidad) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.probabilidad) }}</td><td align="left">{{ form_widget(form.probabilidad) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.consecuencia) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.consecuencia) }}</td><td align="left">{{ form_widget(form.consecuencia) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.detalle) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.detalle) }}</td><td align="left">{{ form_widget(form.detalle) }}</td></tr>
+    </table>
+    {{ form_rest(form) }}
+</form>
+
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('tcdeta') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="SimularClick('sender')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

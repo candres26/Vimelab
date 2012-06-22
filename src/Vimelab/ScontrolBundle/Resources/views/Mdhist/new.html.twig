@@ -1,0 +1,37 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Historia{% endblock %}
+
+{% block area %}
+<h2 align="left">Historia</h2>
+
+<form id="vime-form" action="{{ path('mdhist_create') }}" method="post" {{ form_enctype(form) }}>
+	<input type="submit" style="display: none" id="sender" value="send">
+   <table align="center">
+		<tr><td colspan='2'>{{ form_errors(form.menstru) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.menstru) }}</td><td align="left">{{ form_widget(form.menstru) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.tipo) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.tipo) }}</td><td align="left">{{ form_widget(form.tipo) }}</td></tr>
+   		<tr><td colspan='2'>{{ form_errors(form.mdpaci) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.mdpaci) }}</td><td align="left">{{ form_widget(form.mdpaci) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.gbpers) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.gbpers) }}</td><td align="left">{{ form_widget(form.gbpers) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.tcruta) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.tcruta) }}</td><td align="left">{{ form_widget(form.tcruta) }}</td></tr>
+    </table>
+    {{ form_rest(form) }}
+</form>
+
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('mdhist') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="SimularClick('sender')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

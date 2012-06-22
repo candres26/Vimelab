@@ -1,0 +1,66 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Listado de Ciudades{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Listado de Ciudades</h2>
+
+<input placeholder="Digite su búsqueda" type="text" id="filterTXT"  size="50" style="font-family: Arial; font-size: 10pt; background-color: #FFF; border-radius: 5px; color: #324E8A;"><img style="cursor: pointer; position: absolute; margin-left: 1%; " onClick="buscar()" src="{{ asset('bundles/scontrol/imagenes/applet.png') }}" title="Buscar">
+<br>
+<br>
+<table class="vime-table" align="center" border="1">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>Província</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td>{{ entity.id }}</td>
+            <td>{{ entity.codigo }}</td>
+            <td>{{ entity.nombre }}</td>
+            <td>{{ entity.gbdepa.nombre }}</td>
+            <td align="center">
+				<a href="{{ path('gbciud_show', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/show_index.png') }}" title="Mostrar"></a>
+				<a href="{{ path('gbciud_edit', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar_index.png') }}" title="Editar"></a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<script text="javascript">
+	
+	var basePath = "{{ path('gbciud') }}";
+	
+	function buscar(elem)
+	{
+		if(document.getElementById("filterTXT").value != '')
+		{
+			val = document.getElementById("filterTXT").value;
+			location = basePath+"/"+val+"/filter";
+		}
+		else
+			alert("Necesita Definir Un Parámetro De Busqueda!");
+	}
+	
+</script>
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('gbciud') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="go('{{ path('gbciud_new') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/agregar.png') }}" title="Agregar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

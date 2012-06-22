@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Gbsucu" table="GbSucu">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nombre" type="string" column="nombre" length="100"/>
+    <field name="telefono" type="string" column="telefono" length="25"/>
+    <field name="tele2" type="string" column="tele2" length="25"/>
+    <field name="fax" type="string" column="fax" length="25"/>
+    <field name="contacto" type="string" column="contacto" length="25"/>
+    <field name="direccion" type="string" column="direccion" length="50"/>
+    <field name="correo" type="string" column="correo" length="50"/>
+    <many-to-one field="gbempr" target-entity="Gbempr" orphan-removal="">
+      <join-columns>
+        <join-column name="GbEmpr_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="gbciud" target-entity="Gbciud" orphan-removal="">
+      <join-columns>
+        <join-column name="GbCiud_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

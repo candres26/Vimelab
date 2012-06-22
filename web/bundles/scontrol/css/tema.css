@@ -1,0 +1,291 @@
+body{
+	background: #45568a;
+	font-family: tahoma, arial, helvetica;
+	font-size: 12px;
+	padding: 0px;
+	margin: 0px;
+}
+
+h2
+{
+	font-family: helvetica, arial;
+	font-size: 22px;
+}
+
+.exitBtn
+{
+	cursor: pointer; 
+	background: black;
+	color: white;
+	border: 1px solid red; 
+	border-radius: 10px; 
+	font-size: 0.8em; 
+	padding: 2px;
+}
+
+.exitBtn:hover
+{
+	background: white;
+	color: black;
+}
+
+#vime-cabecera{
+	background: url("../imagenes/fondo.png") no-repeat;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	right: 0%;
+	height: 10%;
+	width: 100%;
+}
+
+#vime-barra{
+	position: absolute;
+	top: 9%;
+	left: 0%;
+	right: 0%;
+	height: 3%;
+	width: 100%;
+	background: #f2f2f2;
+	border-top: 1px solid #c8bebe;
+	border-bottom: 1px solid #c8bebe;
+}
+
+#titulo_form{
+	top: 3px;
+	left: 2px;
+	position: absolute;
+}
+
+#msg_estado{
+	top: 3px;
+	left: 50%;
+	position: absolute;
+}
+
+#vime-menu
+{
+    position: absolute;
+    top: 13%;
+    left: 0%;
+    overflow: auto;
+    width: 14%;
+    height: 81%;
+    background: #f2f2f2;
+    text-align: left;
+    border: 1px solid #c8bebe;
+    font-size: 14px;
+}
+
+#vime-menu table
+{
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+}
+
+#vime-menu td
+{
+    background: #e5e5e5;
+}
+
+#vime-menu td:hover
+{
+    background: #7E8DBB;
+}
+
+
+#vime-vista
+{
+    position: absolute;
+    top: 13%;
+    right: 0%;
+    width: 85%;
+    height: 81%;
+    background: #f2f2f2;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #c8bebe;
+}
+
+#vime-area
+{
+    position: absolute;
+    padding-top: 3%;
+    top: 1%;
+    left: 1%;
+    overflow: auto;
+    width: 98%;
+    height: 92%;
+    min-height: 50%;
+    text-align: center;
+    color: #45568a;
+    border: 2px inset #BFBFBF;
+    padding-left: 4px;
+}
+
+.button
+{
+	background-color:#203982; 
+	color:#fff;
+	cursor: pointer;
+	border-radius: 6px;
+}
+
+.vime-table
+{
+	display: table;
+	width: 98%;
+	background: #FFF; /*#dee7ec;*/
+	border-spacing: 0;
+	border-collapse: collapse;
+	border-top-width: 1px;
+	border-right-width: 2px;
+	border-left-width: 1px;
+	border-bottom-width: 2px;
+	border-top-style: outset;
+	border-right-style: outset;
+	border-left-style: outset;
+	border-bottom-style: outset;
+	border-top-color: #558FA6;	
+	border-right-color: #558FA6;	
+	border-left-color: #558FA6;
+	border-bottom-color: #558FA6;
+	
+}
+
+.vime-table tr:hover
+{
+	background: #f9fbcc;
+}
+
+.vime-table th
+{
+	width: 10px;
+	height: 10px;
+	background: #45568a;
+	color: #fff;
+	font-family: Arial;
+	font-size: 13px;
+}
+
+.vime-table td
+{
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #7ca6b8;
+}
+
+
+.vime-table-des
+{
+	display: table;
+	width: 60%;
+	background: #FFF; /*#dee7ec;*/
+	border-spacing: 0;
+	border-collapse: collapse;
+	border-top-width: 1px;
+	border-right-width: 2px;
+	border-left-width: 1px;
+	border-bottom-width: 2px;
+	border-top-style: outset;
+	border-right-style: outset;
+	border-left-style: outset;
+	border-bottom-style: outset;
+	border-top-color: #558FA6;	
+	border-right-color: #558FA6;	
+	border-left-color: #558FA6;
+	border-bottom-color: #558FA6;	
+}
+
+.vime-table-des tr:hover
+{
+	background: #f9fbcc;
+}
+
+.vime-table-des th
+{
+	width: 10px;
+	height: 10px;
+	background: #45568a;
+	color: #fff;
+	font-family: Arial;
+	font-size: 14px;
+	white-space: nowrap;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #fffff;
+}
+
+.vime-table-des td
+{
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #7ca6b8;
+}
+
+#vime-pie
+{
+	position: absolute;
+	top: 95%;
+	left: 0%;
+	bottom: 0%;
+	height: 4%;
+	width: 100%; 
+	background: #f2f2f2;
+	border-top: 1px solid #c8bebe;
+	border-bottom: 1px solid #c8bebe;
+	text-align: center;
+}
+
+
+
+.Menu
+{
+	height: 18px;
+	padding-left: 6px;
+	overflow: hidden;
+	cursor: pointer;
+	border-bottom: 1px solid #FFFFFF;
+}
+
+.Menu:hover
+{
+	height: auto;
+	border-bottom: 1px solid #000000;
+	background: #FFFFFF;
+}
+
+.Menu table
+{
+	width: 100%;
+}
+
+.Menu tr:hover
+{
+	background: #5773cf;
+}
+
+.vime-action
+{
+	position: absolute;
+	overflow: hidden;
+	top: 15%;
+	left: 16%;
+	width: 15px;
+	height: 38px;
+	background: #DDD8D8;
+	box-shadow: 5px 5px 10px #C6C6C6;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-top: 1px solid silver;
+	border-bottom: 1px solid silver;
+	border-right: 1px solid silver;
+	border-style: 1px outset;
+}
+
+.vime-action:hover
+{
+	width: auto;
+	cursor: pointer;
+}

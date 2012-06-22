@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Mdvisu" table="MdVisu">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="bigint" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="lentes" type="string" column="lentes" length="1"/>
+    <field name="lentesprueba" type="string" column="lentesprueba" length="1"/>
+    <field name="miopia" type="string" column="miopia" length="1"/>
+    <field name="hipermetropia" type="string" column="hipermetropia" length="1"/>
+    <field name="astigmatismo" type="string" column="astigmatismo" length="1"/>
+    <field name="bif" type="string" column="bif" length="1"/>
+    <field name="lent" type="string" column="lent" length="1"/>
+    <field name="vcl" type="string" column="vcl" length="1"/>
+    <field name="vl" type="string" column="vl" length="1"/>
+    <field name="vc" type="string" column="vc" length="1"/>
+    <field name="vlod" type="string" column="vlod" length="1"/>
+    <field name="vloi" type="string" column="vloi" length="1"/>
+    <field name="vlao" type="string" column="vlao" length="1"/>
+    <field name="vcod" type="string" column="vcod" length="1"/>
+    <field name="vcoi" type="string" column="vcoi" length="1"/>
+    <field name="vcao" type="string" column="vcao" length="1"/>
+    <many-to-one field="mdhist" target-entity="Mdhist" orphan-removal="">
+      <join-columns>
+        <join-column name="MdHist_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

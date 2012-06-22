@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Hslabo" table="HsLabo">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="empresa" type="string" column="empresa" length="50"/>
+    <field name="fingreso" type="date" column="fingreso"/>
+    <field name="actividad" type="text" column="actividad"/>
+    <field name="puesto" type="text" column="puesto"/>
+    <field name="riesgo" type="text" column="riesgo"/>
+    <field name="duracion" type="integer" column="duracion"/>
+    <field name="edad" type="integer" column="edad"/>
+    <many-to-one field="mdpaci" target-entity="Mdpaci" orphan-removal="">
+      <join-columns>
+        <join-column name="MdPaci_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

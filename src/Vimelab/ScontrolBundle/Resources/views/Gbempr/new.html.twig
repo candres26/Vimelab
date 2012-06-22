@@ -1,0 +1,45 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Empresa{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Empresa</h2>
+
+<form id="vime-form" action="{{ path('gbempr_create') }}" method="post" {{ form_enctype(form) }}>
+	<input type="submit" style="display: none" id="sender" value="send">
+	<table align="center">
+		<tr><td colspan='2'>{{ form_errors(form.nombre) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.nombre) }}</td><td align="left">{{ form_widget(form.nombre) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.identificacion) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.identificacion) }}</td><td align="left">{{ form_widget(form.identificacion) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.tipoide) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.tipoide) }}</td><td align="left">{{ form_widget(form.tipoide) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.gbcnae) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.gbcnae) }}</td><td align="left">{{ form_widget(form.gbcnae) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.tipo) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.tipo) }}</td><td align="left">{{ form_widget(form.tipo) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.rplegal) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.rplegal) }}</td><td align="left">{{ form_widget(form.rplegal) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.identrplegal) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.identrplegal) }}</td><td align="left">{{ form_widget(form.identrplegal) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.web) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.web) }}</td><td align="left">{{ form_widget(form.web) }}</td></tr>
+    </table>
+    
+    {{ form_rest(form) }}
+</form>
+
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('gbempr') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="SimularClick('sender')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}
