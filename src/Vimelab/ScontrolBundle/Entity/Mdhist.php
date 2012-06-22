@@ -22,9 +22,9 @@ class Mdhist
     private $id;
 
     /**
-     * @var boolean menstru
+     * @var string menstru
      *
-     * @ORM\Column(name="menstru", type="boolean", nullable=false)
+     * @ORM\Column(name="menstru", type="string", nullable=false)
      */
     private $menstru;
 
@@ -80,7 +80,7 @@ class Mdhist
     /**
      * Set menstru
      *
-     * @param boolean $menstru
+     * @param string $menstru
      */
     public function setMenstru($menstru)
     {
@@ -90,7 +90,7 @@ class Mdhist
     /**
      * Get menstru
      *
-     * @return boolean
+     * @return string
      */
     public function getMenstru()
     {

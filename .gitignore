@@ -1,2 +1,4 @@
-app/cache/*.log
-app/logs/*.php
+app/cache/*
+app/logs/*
+*.cache.*
+*.log
