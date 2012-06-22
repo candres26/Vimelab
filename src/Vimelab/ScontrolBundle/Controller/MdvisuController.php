@@ -114,6 +114,7 @@ class MdvisuController extends Controller
 				$em->persist($entity);
 				$em->flush();
 
+				Tool::logger($this, $entity->getId());
 				return $this->redirect($this->generateUrl('mdvisu_show', array('id' => $entity->getId())));
 				
 			}
@@ -185,7 +186,8 @@ class MdvisuController extends Controller
 			if ($editForm->isValid()) {
 				$em->persist($entity);
 				$em->flush();
-
+				
+				Tool::logger($this, $id);
 				return $this->redirect($this->generateUrl('mdvisu_edit', array('id' => $id)));
 			}
 
@@ -223,8 +225,10 @@ class MdvisuController extends Controller
 
 				$em->remove($entity);
 				$em->flush();
+				
+				Tool::logger($this, $id);
 			}
-
+			
 			return $this->redirect($this->generateUrl('mdvisu'));
 		}else
 			return $this->render("ScontrolBundle::alertas.html.twig");

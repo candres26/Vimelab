@@ -16,20 +16,17 @@
             <th>Fecha</th>
 			<th>Usuario</th>
             <th>Modulo</th>
-            <th>Acciones</th>
+            <th>Acción</th>
         </tr>
     </thead>
     <tbody>
     {% for entity in entities %}
         <tr>
             <td>{{ entity.id }}</td>
-            <td>{% if entity.fecha %}{{ entity.fecha|date('Y-m-d') }}{% endif%}</td>
+            <td>{% if entity.fecha %}{{ entity.fecha|date('Y-m-d H:i:s') }}{% endif%}</td>
             <td>{{ entity.gbusua.nombre }}</td>
             <td>{{ entity.modulo }}</td>
-            <td align="center">
-				<a href="{{ path('gblogr_show', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/show_index.png') }}" title="Mostrar"></a>
-				<a href="{{ path('gblogr_edit', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar_index.png') }}" title="Editar"></a>
-            </td>
+            <td>{{ entity.accion }}</td>
         </tr>
     {% endfor %}
     </tbody>

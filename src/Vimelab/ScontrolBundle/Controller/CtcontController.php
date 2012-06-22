@@ -117,6 +117,7 @@ class CtcontController extends Controller
 				$em->persist($entity);
 				$em->flush();
 
+				Tool::logger($this, $entity->getId());
 				return $this->redirect($this->generateUrl('ctcont_show', array('id' => $entity->getId())));
 				
 			}
