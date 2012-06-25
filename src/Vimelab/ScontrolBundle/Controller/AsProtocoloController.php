@@ -14,7 +14,8 @@ class AsProtocoloController extends Controller
         {	
 			$em = $this->getDoctrine()->getEntityManager();
 			$empresas = $em->getRepository('ScontrolBundle:Gbempr')->findBy(array(), array('nombre' => 'ASC'));
-			return $this->render("ScontrolBundle:AsProtocolo:index.html.twig", array('empresas' => $empresas));
+			$protocolos = $em->getRepository('ScontrolBundle:Mdprot')->findBy(array(), array('nombre' => 'ASC'));
+			return $this->render("ScontrolBundle:AsProtocolo:index.html.twig", array('empresas' => $empresas, "protocolos" => $protocolos));
 		}
 		else
 			return $this->render("ScontrolBundle::alertas.html.twig");

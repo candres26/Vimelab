@@ -16,13 +16,20 @@
 				<td>
 					<select id='asEmpr' onchange="getPuestos(this)">
 						<option value='@'>Seleccione...</option>
-						{% for e in empresas%}
+						{% for e in empresas %}
 							<option value='{{ e.id }}'>{{ e.nombre }}</option>
 						{% endfor %}		
 					</select>
 				</td>
 				<td><select id='asPtra'><option value='@'>Seleccione...</option></select></td>
-				<td><select id='asProt'><option value='@'>Seleccione...</option></select></td>
+				<td>
+					<select id='asProt'>
+						<option value='@'>Seleccione...</option>
+						{% for p in protocolos %}
+							<option value='{{ p.id }}'>{{ p.nombre }}</option>
+						{% endfor %}
+					</select>
+				</td>
 				
 			</tr>
 		</table>		
@@ -43,6 +50,8 @@
 					setPuestos
 				);
 			}
+			else
+				gId('asPtra').innerHTML = optINI;
 		}
 		
 		function setPuestos(response)
