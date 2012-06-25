@@ -251,7 +251,7 @@ h2
 
 .Menu:hover
 {
-	height: auto;
+	/*height: auto;*/
 	border-bottom: 1px solid #000000;
 	background: #FFFFFF;
 }

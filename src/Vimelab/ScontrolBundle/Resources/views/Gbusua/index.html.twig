@@ -16,7 +16,6 @@
             <th>Identificación</th>
             <th>Nombre</th>
             <th>Usuario</th>
-            <th>Clave</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -27,7 +26,6 @@
             <td>{{ entity.gbpers.identificacion }}</td>
             <td>{{ entity.gbpers.prinom }} {{ entity.gbpers.segnom }} {{ entity.gbpers.priape }} {{ entity.gbpers.segape }}</td>
             <td>{{ entity.nombre }}</td>
-            <td>{{ entity.clave }}</td>
             <td align="center">
 				<a href="{{ path('gbusua_show', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/show_index.png') }}" title="Mostrar"></a>
 				<a href="{{ path('gbusua_edit', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar_index.png') }}" title="Editar"></a>

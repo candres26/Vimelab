@@ -188,7 +188,13 @@ class GbusuaController extends Controller
 
 			$editForm->bindRequest($request);
 
-			if ($editForm->isValid()) {
+			if ($editForm->isValid()) 
+			{
+				$factory = $this->get('security.encoder_factory');
+				$encoder = $factory->getEncoder($entity);
+				$pass = $encoder->encodePassword($entity->getClave(), $entity->getSalt());
+				$entity->setClave($pass);
+				
 				$em->persist($entity);
 				$em->flush();
 

@@ -3,3 +3,4 @@ app/cache/*
 app/logs/*
 *.cache.*
 *.log
+.project

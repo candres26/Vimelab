@@ -38,4 +38,11 @@ class GbptraRepository extends EntityRepository
         $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Gbptra m JOIN m.gbempr l WHERE m.nombre LIKE '%$parametro%' or l.nombre LIKE '%$parametro%' ORDER BY m.id ASC");
         return $querry->getResult();
     }
+	
+	public function getForEmpresa($id)
+	{
+		$em = $this->getEntityManager();
+        $querry = $em->createQuery("SELECT p FROM ScontrolBundle:Gbptra p JOIN p.gbempr e WHERE e.id = $id ORDER BY p.nombre ASC");
+        return $querry->getResult();
+	}
 }

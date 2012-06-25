@@ -1,0 +1,68 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %} Listado Contratos{% endblock %}
+
+{% block area %}
+	
+	<div id='asMain' style="background: red">
+		<table style="margin: auto; width: 80%;">
+			<tr>
+				<td><b>Empresa</b></td>
+				<td><b>Puesto De Trabajo</b></td>
+				<td><b>Protocolos</b></td>				
+			</tr>
+			
+			<tr>
+				<td>
+					<select id='asEmpr' onchange="getPuestos(this)">
+						<option value='@'>Seleccione...</option>
+						{% for e in empresas%}
+							<option value='{{ e.id }}'>{{ e.nombre }}</option>
+						{% endfor %}		
+					</select>
+				</td>
+				<td><select id='asPtra'><option value='@'>Seleccione...</option></select></td>
+				<td><select id='asProt'><option value='@'>Seleccione...</option></select></td>
+				
+			</tr>
+		</table>		
+	</div>
+
+	<script language="JavaScript">
+		
+		var optINI = "<option value='@'>Seleccione...</option>";
+		
+		function getPuestos(elem)
+		{
+			if(elem.value != '@')
+			{
+				ajaxAction
+				(
+					new Hash(['asEmpr']),
+					"{{ path('as_protocolo_getPuesto') }}",
+					setPuestos
+				);
+			}
+		}
+		
+		function setPuestos(response)
+		{
+			code = '';
+			arr = response.responseText.split('|:|');
+			
+			for (i = 0; i < arr.length; i++)
+			{
+				pp = arr[i].split('=>');
+				code += "<option value='"+pp[0]+"'>"+pp[1]+"</option>";
+			}
+			
+			gId('asPtra').innerHTML = optINI+code;
+		}
+		
+		function getProtocolos()
+		{
+			
+		}
+	
+	</script>
+{% endblock %}

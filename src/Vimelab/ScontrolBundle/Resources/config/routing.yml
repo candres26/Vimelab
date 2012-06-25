@@ -1183,3 +1183,10 @@ tcruta_delete:
 tcruta_filter:
     pattern:  /tcruta/{param}/filter
     defaults: { _controller: ScontrolBundle:Tcruta:filter }
+#RUTAS PARA ASISTENTES
+as_protocolo:
+    pattern: /asprot
+    defaults: { _controller: ScontrolBundle:AsProtocolo:index }
+as_protocolo_getPuesto:
+    pattern: /asprot/getpuesto
+    defaults: { _controller: ScontrolBundle:AsProtocolo:getPuesto }
