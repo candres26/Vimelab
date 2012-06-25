@@ -7,3 +7,20 @@ $ mkdir app/logs
 # chmod -R 777 app/cache
 # chmod -R 777 app/logs
 
+En caso de no tener el archivo app/config/parameters.ini, debe crearse con el siguiente contenido:
+
+[parameters]
+    database_driver="pdo_mysql"
+    database_host="host"
+    database_port=""
+    database_name="db"
+    database_user="user"
+    database_password="pass"
+    mailer_transport="smtp"
+    mailer_host="localhost"
+    mailer_user=""
+    mailer_password=""
+    locale="es"
+    secret="--hash generado--"
+
+No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
