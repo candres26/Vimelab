@@ -14,51 +14,51 @@
         </tr>
         <tr>
             <th align="left">Otosc. Dcha.</th>
-            <td>{{ entity.otoscder }}</td>
+            <td>{% if entity.otoscder == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Otosc. Izqda.</th>
-            <td>{{ entity.otosciz }}</td>
+            <td>{% if entity.otosciz == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Boca</th>
-            <td>{{ entity.boca }}</td>
+            <td>{% if entity.boca == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Garganta</th>
-            <td>{{ entity.garganta }}</td>
+            <td>{% if entity.garganta == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Pupílas</th>
-            <td>{{ entity.pupilas }}</td>
+            <td>{% if entity.pupilas == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Expl. Columna.</th>
-            <td>{{ entity.columna }}</td>
+            <td>{% if entity.columna == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Piel y Mucosas</th>
-            <td>{{ entity.mucosas }}</td>
+            <td>{% if entity.mucosas == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Ausc. Cardíaca</th>
-            <td>{{ entity.cardiaca }}</td>
+            <td>{% if entity.cardiaca == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Ausc. Respiratoria</th>
-            <td>{{ entity.respiratoria }}</td>
+            <td>{% if entity.respiratoria == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Palpación Abdominal</th>
-            <td>{{ entity.abdominal }}</td>
+            <td>{% if entity.abdominal == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Sist. Nervioso</th>
-            <td>{{ entity.nervioso }}</td>
+            <td>{% if entity.nervioso == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">PPL</th>
-            <td>{{ entity.ppl }}</td>
+            <td>{% if entity.ppl == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
     </tbody>
 </table>

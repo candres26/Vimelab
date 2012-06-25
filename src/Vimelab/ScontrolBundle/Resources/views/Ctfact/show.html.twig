@@ -50,7 +50,7 @@
         </tr>
         <tr>
             <th align="left">Estado</th>
-            <td>{{ entity.estado }}</td>
+            <td>{% if entity.estado == 'A' %} Activo {% else %} Inactivo {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Detalle</th>

@@ -33,7 +33,7 @@
         </tr>
         <tr>
             <th align="left">Menstruación</th>
-            <td>{{ entity.menstru }}</td>
+            <td>{% if entity.menstru == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Tipo</th>

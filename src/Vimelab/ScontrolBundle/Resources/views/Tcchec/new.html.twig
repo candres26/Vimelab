@@ -1,6 +1,6 @@
 {% extends "ScontrolBundle::layout.html.twig" %}
 
-{% block title %}Check List{% endblock %}
+{% block title %}Lista de Chequeo{% endblock %}
 
 {% block area %}
 
@@ -8,7 +8,7 @@
 
 <form id="vime-form" action="{{ path('tcchec_create') }}" method="post" {{ form_enctype(form) }}>
 	<input type="submit" style="display: none" id="sender" value="send">
-	<table style="position: absolute; margin-left: 1%; margin-top: 1%;">
+	<table style="position: absolute; margin-left: 0.2%; margin-top: 1%;">
 		<tr><td colspan='2'>{{ form_errors(form.tcrevi) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.tcrevi) }}</td><td align="left">{{ form_widget(form.tcrevi) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.ntrabajadores) }}</td></tr>
@@ -34,7 +34,7 @@
 		<tr><td colspan='2'>{{ form_errors(form.hquimico) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.hquimico) }}</td><td align="left">{{ form_widget(form.hquimico) }}</td></tr>		
 	</table>
-	<table style="position: absolute; margin-left: 35%; margin-top: 1%;">
+	<table style="position: absolute; margin-left: 37%; margin-top: 1%;">
 		<tr><td colspan='2'>{{ form_errors(form.mbiologico) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.mbiologico) }}</td><td align="left">{{ form_widget(form.mbiologico) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.hbiologico) }}</td></tr>
@@ -61,14 +61,14 @@
 		<tr><td align="left">{{ form_label(form.planos) }}</td><td align="left">{{ form_widget(form.planos) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.eplanos) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.eplanos) }}</td><td align="left">{{ form_widget(form.eplanos) }}</td></tr>
-	</table>
-	<table style="position: absolute; margin-left: 65%; margin-top: 1%;">
 		<tr><td colspan='2'>{{ form_errors(form.textintor) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.textintor) }}</td><td align="left">{{ form_widget(form.textintor) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.pemergencia) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.pemergencia) }}</td><td align="left">{{ form_widget(form.pemergencia) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.lemergencia) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.lemergencia) }}</td><td align="left">{{ form_widget(form.lemergencia) }}</td></tr>
+	</table>
+	<table style="position: absolute; margin-left: 72%; margin-top: 1%;">
 		<tr><td colspan='2'>{{ form_errors(form.alarmas) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.alarmas) }}</td><td align="left">{{ form_widget(form.alarmas) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.selectrico) }}</td></tr>

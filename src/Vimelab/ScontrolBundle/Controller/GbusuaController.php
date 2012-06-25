@@ -120,6 +120,7 @@ class GbusuaController extends Controller
 				$em->persist($entity);
 				$em->flush();
 
+				Tool::logger($this, $entity->getId());
 				return $this->redirect($this->generateUrl('gbusua_show', array('id' => $entity->getId())));
 
 			}
@@ -192,6 +193,7 @@ class GbusuaController extends Controller
 				$em->persist($entity);
 				$em->flush();
 
+				Tool::logger($this, $entity->getId());
 				return $this->redirect($this->generateUrl('gbusua_edit', array('id' => $id)));
 			}
 
@@ -229,6 +231,8 @@ class GbusuaController extends Controller
 
 				$em->remove($entity);
 				$em->flush();
+				
+				Tool::logger($this, $entity->getId());
 			}
 
 			return $this->redirect($this->generateUrl('gbusua'));

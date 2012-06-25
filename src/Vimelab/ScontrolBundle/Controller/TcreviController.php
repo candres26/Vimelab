@@ -114,6 +114,7 @@ class TcreviController extends Controller
 				$em->persist($entity);
 				$em->flush();
 
+				Tool::logger($this, $entity->getId());
 				return $this->redirect($this->generateUrl('tcrevi_show', array('id' => $entity->getId())));
 				
 			}
@@ -186,6 +187,7 @@ class TcreviController extends Controller
 				$em->persist($entity);
 				$em->flush();
 
+				Tool::logger($this, $entity->getId());
 				return $this->redirect($this->generateUrl('tcrevi_edit', array('id' => $id)));
 			}
 
@@ -223,6 +225,8 @@ class TcreviController extends Controller
 
 				$em->remove($entity);
 				$em->flush();
+				
+				Tool::logger($this, $entity->getId());
 			}
 
 			return $this->redirect($this->generateUrl('tcrevi'));

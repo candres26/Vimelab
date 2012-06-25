@@ -9,14 +9,14 @@
 <form id="vime-form" action="{{ path('hsfami_create') }}" method="post" {{ form_enctype(form) }}>
 	<input type="submit" style="display: none" id="sender" value="send">
 	<table align="center">
-		<tr><td colspan='2'>{{ form_errors(form.familiar) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.familiar) }}</td><td align="left">{{ form_widget(form.familiar) }}</td></tr>
-		<tr><td colspan='2'>{{ form_errors(form.detalle) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.detalle) }}</td><td align="left">{{ form_widget(form.detalle) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.mdpaci) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.mdpaci) }}</td><td align="left">{{ form_widget(form.mdpaci) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.mdpato) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.mdpato) }}</td><td align="left">{{ form_widget(form.mdpato) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.familiar) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.familiar) }}</td><td align="left">{{ form_widget(form.familiar) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.detalle) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.detalle) }}</td><td align="left">{{ form_widget(form.detalle) }}</td></tr>
     </table>
     {{ form_rest(form) }}
 </form>

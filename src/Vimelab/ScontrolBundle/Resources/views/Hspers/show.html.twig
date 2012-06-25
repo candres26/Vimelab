@@ -25,35 +25,35 @@
             <td>{{ entity.mdpaci.prinom }} {{ entity.mdpaci.segnom }} {{ entity.mdpaci.priape }} {{ entity.mdpaci.segape }}</td>
         </tr>
         <tr>
-            <th align="left">Evento</th>
-            <td>{{ entity.evento }}</td>
+            <th align="left">Accidentes en el último año</th>
+            <td>{% if entity.evento == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Operaciones</th>
+            <th align="left">Operaciones habituales</th>
             <td>{{ entity.operaciones }}</td>
         </tr>
         <tr>
-            <th align="left">Productos</th>
+            <th align="left">Productos que manipula</th>
             <td>{{ entity.productos }}</td>
         </tr>
         <tr>
-            <th align="left">Riesgos</th>
+            <th align="left">Riesgos a los que se expone</th>
             <td>{{ entity.riesgos }}</td>
         </tr>
         <tr>
-            <th align="left">Texposición</th>
+            <th align="left">Tiempo de exposición</th>
             <td>{{ entity.texposicion }}</td>
         </tr>
         <tr>
-            <th align="left">Protección</th>
+            <th align="left">Protección adoptada</th>
             <td>{{ entity.proteccion }}</td>
         </tr>
         <tr>
-            <th align="left">Ventilación</th>
+            <th align="left">Ventilación ambiental</th>
             <td>{{ entity.ventilacion }}</td>
         </tr>
         <tr>
-            <th align="left">Temperatura</th>
+            <th align="left">Temperatura ambiental</th>
             <td>{{ entity.temperatura }}</td>
         </tr>
         <tr>
@@ -69,87 +69,87 @@
             <td>{{ entity.rotacion }}</td>
         </tr>
         <tr>
-            <th align="left">Visitas</th>
+            <th align="left">No. Visítas al médico</th>
             <td>{{ entity.visitas }}</td>
         </tr>
         <tr>
-            <th align="left">Bajas</th>
+            <th align="left">No. días de baja laboral</th>
             <td>{{ entity.bajas }}</td>
         </tr>
         <tr>
-            <th align="left">Medicamentos</th>
+            <th align="left">Medicamentos en uso</th>
             <td>{{ entity.medicamentos }}</td>
         </tr>
         <tr>
             <th align="left">Fumador</th>
-            <td>{{ entity.fumador }}</td>
+            <td>{% if entity.fumador == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Detfumador</th>
+            <th align="left">Detalles fumador</th>
             <td>{{ entity.detfumador }}</td>
         </tr>
         <tr>
             <th align="left">Bebedor</th>
-            <td>{{ entity.bebedor }}</td>
+            <td>{% if entity.bebedor == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Detbebedor</th>
+            <th align="left">Detalles bebedor</th>
             <td>{{ entity.detbebedor }}</td>
         </tr>
         <tr>
-            <th align="left">Efpulmon</th>
+            <th align="left">Enfermedades pulmón</th>
             <td>{{ entity.efpulmon }}</td>
         </tr>
         <tr>
-            <th align="left">Efcorazón</th>
+            <th align="left">Enfermedades corazón</th>
             <td>{{ entity.efcorazon }}</td>
         </tr>
         <tr>
-            <th align="left">Efasma</th>
+            <th align="left">Enfermedades asma</th>
             <td>{{ entity.efasma }}</td>
         </tr>
         <tr>
-            <th align="left">Efbronquios</th>
+            <th align="left">Enfermedades bronquios</th>
             <td>{{ entity.efbronquios }}</td>
         </tr>
         <tr>
-            <th align="left">Efcirculación</th>
+            <th align="left">Enfermedades circulación</th>
             <td>{{ entity.efcirculacion }}</td>
         </tr>
         <tr>
-            <th align="left">Efhigado</th>
+            <th align="left">Enfermedades hígado</th>
             <td>{{ entity.efhigado }}</td>
         </tr>
         <tr>
-            <th align="left">Efgastritis</th>
+            <th align="left">Enfermedades gastritis</th>
             <td>{{ entity.efgastritis }}</td>
         </tr>
         <tr>
-            <th align="left">Efulcera</th>
+            <th align="left">Enfermedades úlcera</th>
             <td>{{ entity.efulcera }}</td>
         </tr>
         <tr>
-            <th align="left">Efvesícula</th>
+            <th align="left">Cólicos de vesícula</th>
             <td>{{ entity.efvesicula }}</td>
         </tr>
         <tr>
-            <th align="left">Efriñon</th>
+            <th align="left">Cólicos de riñon</th>
             <td>{{ entity.efriñon }}</td>
         </tr>
         <tr>
-            <th align="left">Efurinario</th>
+            <th align="left">Infecciones urinarias</th>
             <td>{{ entity.efurinario }}</td>
         </tr>
         <tr>
-            <th align="left">Efartrosis</th>
+            <th align="left">Artrosis</th>
             <td>{{ entity.efartrosis }}</td>
         </tr>
         <tr>
-            <th align="left">Eflumbago</th>
+            <th align="left">Lumbagos</th>
             <td>{{ entity.eflumbago }}</td>
         </tr>
         <tr>
-            <th align="left">Efotros</th>
+            <th align="left">Otros</th>
             <td>{{ entity.efotros }}</td>
         </tr>
         <tr>
@@ -157,75 +157,75 @@
             <td>{{ entity.alergias }}</td>
         </tr>
         <tr>
-            <th align="left">Prazucar</th>
+            <th align="left">Azúcar / Glucosa en sangre</th>
             <td>{{ entity.prazucar }}</td>
         </tr>
         <tr>
-            <th align="left">Prcolesterol</th>
+            <th align="left">Colesterol</th>
             <td>{{ entity.prcolesterol }}</td>
         </tr>
         <tr>
-            <th align="left">Prurico</th>
+            <th align="left">Ácido úrico</th>
             <td>{{ entity.prurico }}</td>
         </tr>
         <tr>
-            <th align="left">Prhepatitis</th>
+            <th align="left">Hepatitis</th>
             <td>{{ entity.prhepatitis }}</td>
         </tr>
         <tr>
-            <th align="left">Prtransaminasas</th>
+            <th align="left">Transaminasas altas</th>
             <td>{{ entity.prtransaminasas }}</td>
         </tr>
         <tr>
-            <th align="left">Prhipertension</th>
+            <th align="left">Tensión alta</th>
             <td>{{ entity.prhipertension }}</td>
         </tr>
         <tr>
-            <th align="left">Prhipotension</th>
+            <th align="left">Tensión baja</th>
             <td>{{ entity.prhipotension }}</td>
         </tr>
         <tr>
-            <th align="left">Prsoplos</th>
+            <th align="left">Soplos</th>
             <td>{{ entity.prsoplos }}</td>
         </tr>
         <tr>
-            <th align="left">Prarritmias</th>
+            <th align="left">Arrítmias</th>
             <td>{{ entity.prarritmias }}</td>
         </tr>
         <tr>
-            <th align="left">Prhernias</th>
+            <th align="left">Hernias</th>
             <td>{{ entity.prhernias }}</td>
         </tr>
         <tr>
-            <th align="left">Prdepresion</th>
+            <th align="left">Síntomas de depresión</th>
             <td>{{ entity.prdepresion }}</td>
         </tr>
         <tr>
-            <th align="left">Cbintestinal</th>
+            <th align="left">Cambios intestinales</th>
             <td>{{ entity.cbintestinal }}</td>
         </tr>
         <tr>
-            <th align="left">Cborina</th>
+            <th align="left">Cambios en la orina</th>
             <td>{{ entity.cborina }}</td>
         </tr>
         <tr>
-            <th align="left">Cbpiel</th>
+            <th align="left">Cambios en la piel</th>
             <td>{{ entity.cbpiel }}</td>
         </tr>
         <tr>
-            <th align="left">Cbpeso</th>
+            <th align="left">Cambios de peso</th>
             <td>{{ entity.cbpeso }}</td>
         </tr>
         <tr>
-            <th align="left">Tetano</th>
-            <td>{{ entity.tetano }}</td>
+            <th align="left">Vacuna tetano</th>
+            <td>{% if entity.tetano == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Tetanofecha</th>
+            <th align="left">Fecha vacuna</th>
             <td>{{ entity.tetanofecha|date('Y-m-d') }}</td>
         </tr>
         <tr>
-            <th align="left">Tetanodosis</th>
+            <th align="left">Dosis vacuna</th>
             <td>{{ entity.tetanodosis }}</td>
         </tr>
         <tr>

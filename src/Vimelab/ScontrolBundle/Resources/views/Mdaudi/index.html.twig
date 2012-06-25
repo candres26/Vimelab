@@ -29,7 +29,7 @@
             <td>{{ entity.mdhist.mdpaci }}</td>
             <td>{{ entity.mdhist.mdpaci.prinom }} {{ entity.mdhist.mdpaci.segnom }} {{ entity.mdhist.mdpaci.priape }} {{ entity.mdhist.mdpaci.segape }}</td>
             <td>{{ entity.mdhist.tcruta.fejecutada.format('Y-m-d') }}</td>
-            <td>{{ entity.realizado }}</td>
+            <td>{% if entity.realizado == 'S' %} SI {% else %} NO {% endif %}</td>
             <td align="center">
 				<a href="{{ path('mdaudi_show', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/show_index.png') }}" title="Mostrar"></a>
 				<a href="{{ path('mdaudi_edit', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar_index.png') }}" title="Editar"></a>

@@ -26,7 +26,7 @@
         </tr>
         <tr>
             <th align="left">Realizado</th>
-            <td>{{ entity.realizado }}</td>
+            <td>{% if entity.realizado == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">D500</th>

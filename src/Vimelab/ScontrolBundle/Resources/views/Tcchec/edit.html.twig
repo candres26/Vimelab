@@ -1,6 +1,6 @@
 {% extends "ScontrolBundle::layout.html.twig" %}
 
-{% block title %}Editar Check List{% endblock %}
+{% block title %}Editar Lista de Chequeo{% endblock %}
 
 {% block area %}
 
@@ -8,7 +8,7 @@
 
 <form id="vime-form" action="{{ path('tcchec_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
 	<input type="submit" style="display: none" id="sender" value="send">
-	<table style="position: absolute; margin-left: 1%; margin-top: 1%;">
+	<table style="position: absolute; margin-left: 0.2%; margin-top: 1%;">
 		<tr><td colspan='2'>{{ form_errors(edit_form.tcrevi) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.tcrevi) }}</td><td align="left">{{ form_widget(edit_form.tcrevi) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.ntrabajadores) }}</td></tr>
@@ -34,7 +34,7 @@
 		<tr><td colspan='2'>{{ form_errors(edit_form.hquimico) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.hquimico) }}</td><td align="left">{{ form_widget(edit_form.hquimico) }}</td></tr>
 	</table>
-	<table style="position: absolute; margin-left: 35%; margin-top: 1%;">	
+	<table style="position: absolute; margin-left: 37%; margin-top: 1%;">	
 		<tr><td colspan='2'>{{ form_errors(edit_form.mbiologico) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.mbiologico) }}</td><td align="left">{{ form_widget(edit_form.mbiologico) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.hbiologico) }}</td></tr>
@@ -61,14 +61,14 @@
 		<tr><td align="left">{{ form_label(edit_form.planos) }}</td><td align="left">{{ form_widget(edit_form.planos) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.eplanos) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.eplanos) }}</td><td align="left">{{ form_widget(edit_form.eplanos) }}</td></tr>
-	</table>
-	<table style="position: absolute; margin-left: 65%; margin-top: 1%;">	
 		<tr><td colspan='2'>{{ form_errors(edit_form.textintor) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.textintor) }}</td><td align="left">{{ form_widget(edit_form.textintor) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.pemergencia) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.pemergencia) }}</td><td align="left">{{ form_widget(edit_form.pemergencia) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.lemergencia) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.lemergencia) }}</td><td align="left">{{ form_widget(edit_form.lemergencia) }}</td></tr>
+	</table>
+	<table style="position: absolute; margin-left: 72%; margin-top: 1%;">	
 		<tr><td colspan='2'>{{ form_errors(edit_form.alarmas) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.alarmas) }}</td><td align="left">{{ form_widget(edit_form.alarmas) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.selectrico) }}</td></tr>

@@ -115,6 +115,7 @@ class CtcotiController extends Controller
 				$em->persist($entity);
 				$em->flush();
 
+				Tool::logger($this, $entity->getId());
 				return $this->redirect($this->generateUrl('ctcoti_show', array('id' => $entity->getId())));
 				
 			}
@@ -187,6 +188,7 @@ class CtcotiController extends Controller
 				$em->persist($entity);
 				$em->flush();
 
+				Tool::logger($this, $entity->getId());
 				return $this->redirect($this->generateUrl('ctcoti_edit', array('id' => $id)));
 			}
 
@@ -224,6 +226,8 @@ class CtcotiController extends Controller
 
 				$em->remove($entity);
 				$em->flush();
+				
+				Tool::logger($this, $entity->getId());
 			}
 
 			return $this->redirect($this->generateUrl('ctcoti'));

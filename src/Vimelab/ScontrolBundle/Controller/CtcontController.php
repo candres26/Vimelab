@@ -191,7 +191,8 @@ class CtcontController extends Controller
 			if ($editForm->isValid()) {
 				$em->persist($entity);
 				$em->flush();
-
+				
+				Tool::logger($this, $entity->getId());
 				return $this->redirect($this->generateUrl('ctcont_edit', array('id' => $id)));
 			}
 
@@ -230,6 +231,8 @@ class CtcontController extends Controller
 
 				$em->remove($entity);
 				$em->flush();
+				
+				Tool::logger($this, $entity->getId());
 			}
 
 			return $this->redirect($this->generateUrl('ctcont'));

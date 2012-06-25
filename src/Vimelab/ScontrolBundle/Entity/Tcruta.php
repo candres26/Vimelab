@@ -85,44 +85,44 @@ class Tcruta
     private $fparciales;
 
     /**
-     * @var string $analitica
+     * @var boolean $analitica
      *
-     * @ORM\Column(name="analitica", type="string", length=1, nullable=false)
+     * @ORM\Column(name="analitica", type="boolean", length=1, nullable=false)
      */
     private $analitica;
 
     /**
-     * @var string $biometria
+     * @var boolean $biometria
      *
-     * @ORM\Column(name="biometria", type="string", length=1, nullable=false)
+     * @ORM\Column(name="biometria", type="boolean", length=1, nullable=false)
      */
     private $biometria;
 
     /**
-     * @var string $audiometria
+     * @var boolean $audiometria
      *
-     * @ORM\Column(name="audiometria", type="string", length=1, nullable=false)
+     * @ORM\Column(name="audiometria", type="boolean", length=1, nullable=false)
      */
     private $audiometria;
 
     /**
-     * @var string $vision
+     * @var boolean $vision
      *
-     * @ORM\Column(name="vision", type="string", length=1, nullable=false)
+     * @ORM\Column(name="vision", type="boolean", length=1, nullable=false)
      */
     private $vision;
 
     /**
-     * @var string $espirometria
+     * @var boolean $espirometria
      *
-     * @ORM\Column(name="espirometria", type="string", length=1, nullable=false)
+     * @ORM\Column(name="espirometria", type="boolean", length=1, nullable=false)
      */
     private $espirometria;
 
     /**
-     * @var string $medica
+     * @var boolean $medica
      *
-     * @ORM\Column(name="medica", type="string", length=1, nullable=false)
+     * @ORM\Column(name="medica", type="boolean", length=1, nullable=false)
      */
     private $medica;
 
@@ -401,7 +401,7 @@ class Tcruta
     /**
      * Set analitica
      *
-     * @param string $analitica
+     * @param boolean $analitica
      */
     public function setAnalitica($analitica)
     {
@@ -411,7 +411,7 @@ class Tcruta
     /**
      * Get analitica
      *
-     * @return string
+     * @return boolean
      */
     public function getAnalitica()
     {
@@ -421,7 +421,7 @@ class Tcruta
     /**
      * Set biometria
      *
-     * @param string $biometria
+     * @param boolean $biometria
      */
     public function setBiometria($biometria)
     {
@@ -431,7 +431,7 @@ class Tcruta
     /**
      * Get biometria
      *
-     * @return string
+     * @return boolean
      */
     public function getBiometria()
     {
@@ -441,7 +441,7 @@ class Tcruta
     /**
      * Set audiometria
      *
-     * @param string $audiometria
+     * @param boolean $audiometria
      */
     public function setAudiometria($audiometria)
     {
@@ -451,7 +451,7 @@ class Tcruta
     /**
      * Get audiometria
      *
-     * @return string
+     * @return boolean
      */
     public function getAudiometria()
     {
@@ -461,7 +461,7 @@ class Tcruta
     /**
      * Set vision
      *
-     * @param string $vision
+     * @param boolean $vision
      */
     public function setVision($vision)
     {
@@ -471,7 +471,7 @@ class Tcruta
     /**
      * Get vision
      *
-     * @return string
+     * @return boolean
      */
     public function getVision()
     {
@@ -481,7 +481,7 @@ class Tcruta
     /**
      * Set espirometria
      *
-     * @param string $espirometria
+     * @param boolean $espirometria
      */
     public function setEspirometria($espirometria)
     {
@@ -491,7 +491,7 @@ class Tcruta
     /**
      * Get espirometria
      *
-     * @return string
+     * @return boolean
      */
     public function getEspirometria()
     {
@@ -501,7 +501,7 @@ class Tcruta
     /**
      * Set medica
      *
-     * @param string $medica
+     * @param boolean $medica
      */
     public function setMedica($medica)
     {
@@ -511,7 +511,7 @@ class Tcruta
     /**
      * Get medica
      *
-     * @return string
+     * @return boolean
      */
     public function getMedica()
     {

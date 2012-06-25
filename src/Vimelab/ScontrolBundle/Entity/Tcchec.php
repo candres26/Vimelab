@@ -134,30 +134,30 @@ class Tcchec
     private $repetitivos;
 
     /**
-     * @var string $ett
+     * @var boolean $ett
      *
-     * @ORM\Column(name="ett", type="string", length=1, nullable=false)
+     * @ORM\Column(name="ett", type="boolean", length=1, nullable=false)
      */
     private $ett;
 
     /**
-     * @var string $limpieza
+     * @var boolean $limpieza
      *
-     * @ORM\Column(name="limpieza", type="string", length=1, nullable=false)
+     * @ORM\Column(name="limpieza", type="boolean", length=1, nullable=false)
      */
     private $limpieza;
 
     /**
-     * @var string $mantenimiento
+     * @var boolean $mantenimiento
      *
-     * @ORM\Column(name="mantenimiento", type="string", length=1, nullable=false)
+     * @ORM\Column(name="mantenimiento", type="boolean", length=1, nullable=false)
      */
     private $mantenimiento;
 
     /**
-     * @var text $otros
+     * @var boolean $otros
      *
-     * @ORM\Column(name="otros", type="text", nullable=true)
+     * @ORM\Column(name="otros", type="boolean", nullable=true)
      */
     private $otros;
 
@@ -618,7 +618,7 @@ class Tcchec
     /**
      * Set ett
      *
-     * @param string $ett
+     * @param boolean $ett
      */
     public function setEtt($ett)
     {
@@ -628,7 +628,7 @@ class Tcchec
     /**
      * Get ett
      *
-     * @return string
+     * @return boolean
      */
     public function getEtt()
     {
@@ -638,7 +638,7 @@ class Tcchec
     /**
      * Set limpieza
      *
-     * @param string $limpieza
+     * @param boolean $limpieza
      */
     public function setLimpieza($limpieza)
     {
@@ -648,7 +648,7 @@ class Tcchec
     /**
      * Get limpieza
      *
-     * @return string
+     * @return boolean
      */
     public function getLimpieza()
     {
@@ -658,7 +658,7 @@ class Tcchec
     /**
      * Set mantenimiento
      *
-     * @param string $mantenimiento
+     * @param boolean $mantenimiento
      */
     public function setMantenimiento($mantenimiento)
     {
@@ -668,7 +668,7 @@ class Tcchec
     /**
      * Get mantenimiento
      *
-     * @return string
+     * @return boolean
      */
     public function getMantenimiento()
     {
@@ -678,7 +678,7 @@ class Tcchec
     /**
      * Set otros
      *
-     * @param text $otros
+     * @param boolean $otros
      */
     public function setOtros($otros)
     {
@@ -688,7 +688,7 @@ class Tcchec
     /**
      * Get otros
      *
-     * @return text
+     * @return boolean
      */
     public function getOtros()
     {
