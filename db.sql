@@ -163,7 +163,7 @@ CREATE TABLE `CtServ` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `codigo` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `iva` decimal(3,2) unsigned NOT NULL DEFAULT '0.00',
+  `iva` decimal(5,2) unsigned NOT NULL DEFAULT '0.00',
   `tipo` int(1) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `codigo` (`codigo`)
@@ -176,7 +176,7 @@ CREATE TABLE `CtServ` (
 
 LOCK TABLES `CtServ` WRITE;
 /*!40000 ALTER TABLE `CtServ` DISABLE KEYS */;
-INSERT INTO `CtServ` VALUES (1,'23333','Rev Posturas','9.99',1),(2,'00023','Revisión Instalaciones','9.99',2);
+INSERT INTO `CtServ` VALUES (1,'23333','Rev Posturas','15.00',1),(2,'00023','Revisión Instalaciones','9.99',2);
 /*!40000 ALTER TABLE `CtServ` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -423,7 +423,7 @@ CREATE TABLE `GbLogr` (
   PRIMARY KEY (`id`),
   KEY `GbUsua_id` (`GbUsua_id`),
   CONSTRAINT `GbLogr_ibfk_1` FOREIGN KEY (`GbUsua_id`) REFERENCES `GbUsua` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -432,7 +432,7 @@ CREATE TABLE `GbLogr` (
 
 LOCK TABLES `GbLogr` WRITE;
 /*!40000 ALTER TABLE `GbLogr` DISABLE KEYS */;
-INSERT INTO `GbLogr` VALUES (1,'2012-06-21 21:23:05',1,'Mdvisu','create'),(2,'2012-06-21 21:34:51',1,'Mdvisu','delete ID: '),(3,'2012-06-21 21:35:28',1,'Mdvisu','update ID: 2'),(4,'2012-06-21 21:39:02',1,'Mdvisu','create ID: 20'),(5,'2012-06-21 21:39:41',1,'Mdvisu','update ID: 2'),(6,'2012-06-21 21:39:54',1,'Mdvisu','delete ID: 2');
+INSERT INTO `GbLogr` VALUES (1,'2012-06-21 21:23:05',1,'Mdvisu','create'),(2,'2012-06-21 21:34:51',1,'Mdvisu','delete ID: '),(3,'2012-06-21 21:35:28',1,'Mdvisu','update ID: 2'),(4,'2012-06-21 21:39:02',1,'Mdvisu','create ID: 20'),(5,'2012-06-21 21:39:41',1,'Mdvisu','update ID: 2'),(6,'2012-06-21 21:39:54',1,'Mdvisu','delete ID: 2'),(7,'2012-06-22 08:45:06',1,'Mdvisu','create ID: 21');
 /*!40000 ALTER TABLE `GbLogr` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -506,7 +506,7 @@ CREATE TABLE `GbPers` (
 
 LOCK TABLES `GbPers` WRITE;
 /*!40000 ALTER TABLE `GbPers` DISABLE KEYS */;
-INSERT INTO `GbPers` VALUES (1,1,1,1,'1071452369','Felipe','Ernesto','Cardenas','Barragan','2011-12-02','NULO','NULO','NULO',1,'2012-12-02',1,'I'),(2,1,1,1,'11303202','Miguel','Camilo','Fernandez','Toledo','1991-02-28','3112038569','Manzana Verde','miguelacho@gmail.com',2,'2012-02-15',1,'I'),(3,2,2,2,'11205879','Carlos','Andres','Reyes','Andrade','1984-10-15','3112381572','Manz N Casa 9 B/ Santa Isabel','karlitos@gmail.com',2,'2010-10-01',1,'A');
+INSERT INTO `GbPers` VALUES (1,1,1,1,'1071452369','Felipe','Ernesto','Cardenas','Barragan','2011-12-02','NULO','NULO','NULO',1,'2012-12-02',0,'A'),(2,1,1,1,'11303202','Miguel','Camilo','Fernandez','Toledo','1991-02-28','3112038569','Manzana Verde','miguelacho@gmail.com',2,'2012-02-15',1,'I'),(3,2,2,2,'11205879','Carlos','Andres','Reyes','Andrade','1984-10-15','3112381572','Manz N Casa 9 B/ Santa Isabel','karlitos@gmail.com',2,'2010-10-01',1,'A');
 /*!40000 ALTER TABLE `GbPers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -773,7 +773,7 @@ CREATE TABLE `MdAudi` (
   PRIMARY KEY (`id`),
   KEY `MdHist_id` (`MdHist_id`),
   CONSTRAINT `MdAudi_ibfk_1` FOREIGN KEY (`MdHist_id`) REFERENCES `MdHist` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -782,7 +782,7 @@ CREATE TABLE `MdAudi` (
 
 LOCK TABLES `MdAudi` WRITE;
 /*!40000 ALTER TABLE `MdAudi` DISABLE KEYS */;
-INSERT INTO `MdAudi` VALUES (1,1,'S','0','5','5','5','5','5','5','5','5','5','5','5','-5','5'),(2,1,'S','','','','','','','','','','','','','',''),(3,1,'N','5','','','','','','','','','','','','',''),(4,1,'S','-5','85','80','50','15','40','45','15','20','40','0','45','0','70'),(5,1,'S','10','10','10','10','10','10','10','10','10','10','10','0','10','0'),(6,1,'S','','-5','25','100','10','40','15','55','25','60','30','65','5','85'),(7,1,'N','0','0','0','0','0','0','0','0','0','0','0','0','0','0'),(8,1,'N','','','','','','','','','','','','','',''),(9,2,'S','40','5','10','50','-5','80','15','40','35','35','55','85','10','5');
+INSERT INTO `MdAudi` VALUES (1,1,'S','0','5','5','5','5','5','5','5','5','5','5','5','-5','5'),(2,1,'S','','','','','','','','','','','','','',''),(3,1,'N','5','','','','','','','','','','','','',''),(4,1,'S','-5','85','80','50','15','40','45','15','20','40','0','45','0','70'),(5,1,'S','10','10','10','10','10','10','10','10','10','10','10','0','10','0'),(6,1,'S','','-5','25','100','10','40','15','55','25','60','30','65','5','85'),(7,1,'N','0','0','0','0','0','0','0','0','0','0','0','0','0','0'),(8,1,'N','','','','','','','','','','','','','',''),(9,2,'S','40','5','10','50','-5','80','15','40','35','35','55','85','10','5'),(10,1,'S','','','','','','','','','15','','','','','');
 /*!40000 ALTER TABLE `MdAudi` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -814,7 +814,7 @@ CREATE TABLE `MdBiom` (
 
 LOCK TABLES `MdBiom` WRITE;
 /*!40000 ALTER TABLE `MdBiom` DISABLE KEYS */;
-INSERT INTO `MdBiom` VALUES (1,2,'9.99','9.99','9.99','0.00','9.99','9.99'),(2,1,'64.00','78.00','110.00','35.00','120.00','80.00'),(3,2,'64.00','78.00','110.00','35.00','120.00','80.00');
+INSERT INTO `MdBiom` VALUES (1,2,'64.00','9.99','9.99','0.00','9.99','9.99'),(2,1,'64.00','78.00','110.00','35.00','120.00','80.00'),(3,2,'64.00','78.00','110.00','35.00','120.00','80.00');
 /*!40000 ALTER TABLE `MdBiom` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -991,7 +991,7 @@ CREATE TABLE `MdHist` (
 
 LOCK TABLES `MdHist` WRITE;
 /*!40000 ALTER TABLE `MdHist` DISABLE KEYS */;
-INSERT INTO `MdHist` VALUES (1,1,1,1,'0',2),(2,1,2,2,'0',1),(3,1,1,1,'0',0),(4,1,1,1,'N',1),(5,1,1,2,'S',3);
+INSERT INTO `MdHist` VALUES (1,1,1,1,'S',2),(2,1,2,2,'0',1),(3,1,1,1,'0',0),(4,1,1,1,'N',1),(5,1,1,2,'S',3);
 /*!40000 ALTER TABLE `MdHist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1283,7 +1283,7 @@ CREATE TABLE `MdVisu` (
   PRIMARY KEY (`id`),
   KEY `MdHist_id` (`MdHist_id`),
   CONSTRAINT `MdVisu_ibfk_1` FOREIGN KEY (`MdHist_id`) REFERENCES `MdHist` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1292,7 +1292,7 @@ CREATE TABLE `MdVisu` (
 
 LOCK TABLES `MdVisu` WRITE;
 /*!40000 ALTER TABLE `MdVisu` DISABLE KEYS */;
-INSERT INTO `MdVisu` VALUES (3,2,'S','N',1,0,1,1,0,1,0,0,'2','3','9','6','5','6'),(4,1,'S','S',1,1,0,0,0,1,1,0,'1','1','1','1','5','2'),(5,2,'N','N',0,1,1,1,1,1,1,1,'1','1','1','1','1','1'),(6,2,'S','S',0,1,0,0,1,0,0,0,'1','1','1','1','1','1'),(7,2,'S','N',1,0,1,1,0,0,0,0,'2','3','4','5','6','2'),(8,1,'S','S',0,1,0,1,0,0,0,0,'1','1','1','2','2','2'),(9,1,'S','S',0,1,0,1,0,0,0,0,'1','1','1','2','2','2'),(10,1,'S','S',0,1,0,1,0,0,0,0,'1','1','1','2','2','2'),(11,1,'S','S',0,1,0,1,0,0,0,0,'1','1','1','2','2','2'),(12,2,'S','N',1,0,1,0,0,0,0,0,'1','1','1','1','1','1'),(13,2,'S','N',1,0,1,0,0,0,0,0,'1','1','1','1','1','1'),(14,1,'S','N',1,0,0,0,0,0,0,0,'1','1','1','1','1','1'),(15,1,'S','N',1,0,0,0,0,0,0,0,'1','1','1','1','1','1'),(16,1,'S','N',1,0,0,0,0,0,0,0,'1','1','1','1','1','1'),(17,1,'S','N',1,0,0,0,0,0,0,0,'1','1','1','1','1','1'),(18,1,'S','N',1,0,0,0,0,0,0,0,'1','1','1','1','1','1'),(19,1,'S','N',1,0,0,0,0,0,0,0,'1','1','1','1','1','1'),(20,1,'S','N',0,1,1,0,0,0,0,0,'2','3','3','3','3','3');
+INSERT INTO `MdVisu` VALUES (3,2,'S','N',1,0,1,1,0,1,0,0,'2','3','9','6','5','6'),(4,1,'S','S',1,1,0,0,0,1,1,0,'1','1','1','1','5','2'),(5,2,'N','N',0,1,1,1,1,1,1,1,'1','1','1','1','1','1'),(6,2,'S','S',0,1,0,0,1,0,0,0,'1','1','1','1','1','1'),(7,2,'S','N',1,0,1,1,0,0,0,0,'2','3','4','5','6','2'),(8,1,'S','S',0,1,0,1,0,0,0,0,'1','1','1','2','2','2'),(9,1,'S','S',0,1,0,1,0,0,0,0,'1','1','1','2','2','2'),(10,1,'S','S',0,1,0,1,0,0,0,0,'1','1','1','2','2','2'),(11,1,'S','S',0,1,0,1,0,0,0,0,'1','1','1','2','2','2'),(12,2,'S','N',1,0,1,0,0,0,0,0,'1','1','1','1','1','1'),(13,2,'S','N',1,0,1,0,0,0,0,0,'1','1','1','1','1','1'),(14,1,'S','N',1,0,0,0,0,0,0,0,'1','1','1','1','1','1'),(15,1,'S','N',1,0,0,0,0,0,0,0,'1','1','1','1','1','1'),(16,1,'S','N',1,0,0,0,0,0,0,0,'1','1','1','1','1','1'),(17,1,'S','N',1,0,0,0,0,0,0,0,'1','1','1','1','1','1'),(18,1,'S','N',1,0,0,0,0,0,0,0,'1','1','1','1','1','1'),(19,1,'S','N',1,0,0,0,0,0,0,0,'1','1','1','1','1','1'),(20,1,'S','N',0,1,1,0,0,0,0,0,'2','3','3','3','3','3'),(21,2,'S','N',1,0,1,0,0,0,0,0,'1','1','1','1','1','1');
 /*!40000 ALTER TABLE `MdVisu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1378,15 +1378,15 @@ CREATE TABLE `TcChec` (
   `cargas` text COLLATE utf8_unicode_ci NOT NULL,
   `carretilleros` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `repetitivos` char(1) COLLATE utf8_unicode_ci NOT NULL,
-  `ett` char(1) COLLATE utf8_unicode_ci NOT NULL,
-  `limpieza` char(1) COLLATE utf8_unicode_ci NOT NULL,
-  `mantenimiento` char(1) COLLATE utf8_unicode_ci NOT NULL,
-  `otros` text COLLATE utf8_unicode_ci,
+  `ett` tinyint(1) NOT NULL,
+  `limpieza` tinyint(1) NOT NULL,
+  `mantenimiento` tinyint(1) NOT NULL,
+  `otros` tinyint(1) NOT NULL,
   `emergencia` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `simulacros` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `planos` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `eplanos` char(1) COLLATE utf8_unicode_ci NOT NULL,
-  `textintor` char(1) COLLATE utf8_unicode_ci NOT NULL,
+  `textintor` char(3) COLLATE utf8_unicode_ci NOT NULL,
   `pemergencia` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `lemergencia` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `alarmas` char(1) COLLATE utf8_unicode_ci NOT NULL,
@@ -1401,7 +1401,7 @@ CREATE TABLE `TcChec` (
   PRIMARY KEY (`id`),
   KEY `TcRevi_id` (`TcRevi_id`),
   CONSTRAINT `TcChec_ibfk_1` FOREIGN KEY (`TcRevi_id`) REFERENCES `TcRevi` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1410,7 +1410,7 @@ CREATE TABLE `TcChec` (
 
 LOCK TABLES `TcChec` WRITE;
 /*!40000 ALTER TABLE `TcChec` DISABLE KEYS */;
-INSERT INTO `TcChec` VALUES (1,1,2,'j','j','j','j','j','j','j','j','j','h','j','j','j','j','j','j','j','j','j','j','j','j','j','j','j','j','j','j','j','j','j','j','j','j','j');
+INSERT INTO `TcChec` VALUES (1,1,2,'j','S','j','j','j','j','S','j','S','h','S','j','j','S','N',0,1,0,1,'N','S','N','I','ABC','S','S','S','N','S','N','S','S','N','S','j'),(2,1,2,'No se','S','Bueno','Bueno','Bueno','Bueno','N','Bueno','S','Bueno','S','Bueno','Aja','S','N',1,1,0,1,'S','N','N','I','CO2','N','N','N','N','N','N','S','S','S','S','No ninguna');
 /*!40000 ALTER TABLE `TcChec` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1535,12 +1535,12 @@ CREATE TABLE `TcRuta` (
   `encargado` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `datos` text COLLATE utf8_unicode_ci NOT NULL,
   `fparciales` text COLLATE utf8_unicode_ci NOT NULL,
-  `analitica` char(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
-  `biometria` char(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
-  `audiometria` char(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
-  `vision` char(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
-  `espirometria` char(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
-  `medica` char(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
+  `analitica` tinyint(1) NOT NULL,
+  `biometria` tinyint(1) NOT NULL,
+  `audiometria` tinyint(1) NOT NULL,
+  `vision` tinyint(1) NOT NULL,
+  `espirometria` tinyint(1) NOT NULL,
+  `medica` tinyint(1) NOT NULL,
   `electro` char(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
   `detelectro` text COLLATE utf8_unicode_ci NOT NULL,
   `comentarios` text COLLATE utf8_unicode_ci,
@@ -1563,7 +1563,7 @@ CREATE TABLE `TcRuta` (
 
 LOCK TABLES `TcRuta` WRITE;
 /*!40000 ALTER TABLE `TcRuta` DISABLE KEYS */;
-INSERT INTO `TcRuta` VALUES (1,1,'2007-10-10','2007-10-10 00:00:00','35135','13521','351351','351','531','51','3','1','3','3','1','5','n','2','kj','jkñ',2000000103,1,1,1,232,3213,'A');
+INSERT INTO `TcRuta` VALUES (1,1,'2007-10-10','2007-10-10 00:00:00','35135','13521','351351','351','531','51','3',1,3,3,1,5,0,'S','kj','jkñ',2000000103,1,1,1,232,3213,'A');
 /*!40000 ALTER TABLE `TcRuta` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1576,4 +1576,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-06-21 22:34:07
+-- Dump completed on 2012-06-25  8:49:42

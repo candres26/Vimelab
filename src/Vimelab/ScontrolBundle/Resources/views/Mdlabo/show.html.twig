@@ -29,7 +29,7 @@
         </tr>
         <tr>
             <th align="left">Realizado</th>
-            <td>{{ entity.estado }}</td>
+            <td>{% if entity.estado == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Resultado</th>

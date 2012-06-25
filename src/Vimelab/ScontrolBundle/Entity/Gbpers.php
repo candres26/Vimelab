@@ -99,9 +99,9 @@ class Gbpers
     private $pdatos;
 
     /**
-     * @var boolean $estado
+     * @var string $estado
      *
-     * @ORM\Column(name="estado", type="boolean", nullable=false)
+     * @ORM\Column(name="estado", type="string", nullable=false)
      */
     private $estado;
 
@@ -380,7 +380,7 @@ class Gbpers
     /**
      * Set estado
      *
-     * @param boolean $estado
+     * @param string $estado
      */
     public function setEstado($estado)
     {
@@ -390,7 +390,7 @@ class Gbpers
     /**
      * Get estado
      *
-     * @return boolean
+     * @return string
      */
     public function getEstado()
     {

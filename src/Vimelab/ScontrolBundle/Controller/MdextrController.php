@@ -114,6 +114,7 @@ class MdextrController extends Controller
 				$em->persist($entity);
 				$em->flush();
 
+				Tool::logger($this, $entity->getId());
 				return $this->redirect($this->generateUrl('mdextr_show', array('id' => $entity->getId())));
 				
 			}
@@ -187,6 +188,7 @@ class MdextrController extends Controller
 				$em->persist($entity);
 				$em->flush();
 
+				Tool::logger($this, $entity->getId());
 				return $this->redirect($this->generateUrl('mdextr_edit', array('id' => $id)));
 			}
 
@@ -224,6 +226,8 @@ class MdextrController extends Controller
 
 				$em->remove($entity);
 				$em->flush();
+				
+				Tool::logger($this, $entity->getId());
 			}
 
 			return $this->redirect($this->generateUrl('mdextr'));

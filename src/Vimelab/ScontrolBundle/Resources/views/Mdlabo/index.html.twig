@@ -28,7 +28,7 @@
             <td>{{ entity.mdhist.mdpaci }}</td>
             <td>{{ entity.mdhist.mdpaci.prinom }} {{ entity.mdhist.mdpaci.segnom }} {{ entity.mdhist.mdpaci.priape }} {{ entity.mdhist.mdpaci.segape }}</td>
             <td>{{ entity.mdexam.nombre }}</td>
-            <td>{{ entity.estado }}</td>
+            <td>{% if entity.estado == 'S' %} SI {% else %} NO {% endif %}</td>
             <td align="center">
 				<a href="{{ path('mdlabo_show', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/show_index.png') }}" title="Mostrar"></a>
 				<a href="{{ path('mdlabo_edit', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar_index.png') }}" title="Editar"></a>

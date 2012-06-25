@@ -30,7 +30,7 @@
             <td>{% if entity.vencimiento %}{{ entity.vencimiento|date('Y-m-d') }}{% endif%}</td>
             <td>{{ entity.descuento }}</td>
             <td>{{ entity.total }}</td>
-            <td>{{ entity.estado }}</td>
+            <td>{% if entity.estado == 'A' %} Activo {% else %} Inactivo {% endif %}</td>
             <td align="center">
 				<a href="{{ path('ctfact_show', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/show_index.png') }}" title="Mostrar"></a>
 				<a href="{{ path('ctfact_edit', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar_index.png') }}" title="Editar"></a>

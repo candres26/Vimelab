@@ -53,11 +53,11 @@
         </tr>
         <tr>
             <th align="left">Protección de datos</th>
-            <td>{{ entity.pdatos }}</td>
+            <td>{% if entity.pdatos == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Estado</th>
-            <td>{{ entity.estado }}</td>
+            <td>{% if entity.estado == 'A' %} Activo {% else %} Inactivo {% endif %}</td>
         </tr>
     </tbody>
 </table>

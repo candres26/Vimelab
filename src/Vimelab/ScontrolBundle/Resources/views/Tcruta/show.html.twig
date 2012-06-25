@@ -54,31 +54,31 @@
         </tr>
         <tr>
             <th align="left">Analítica</th>
-            <td>{{ entity.analitica }}</td>
+            <td>{% if entity.analitica == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Biometría</th>
-            <td>{{ entity.biometria }}</td>
+            <td>{% if entity.biometria == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Audiometría</th>
-            <td>{{ entity.audiometria }}</td>
+            <td>{% if entity.audiometria == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Visión</th>
-            <td>{{ entity.vision }}</td>
+            <td>{% if entity.vision == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Espirometría</th>
-            <td>{{ entity.espirometria }}</td>
+            <td>{% if entity.espirometria == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Médica</th>
-            <td>{{ entity.medica }}</td>
+            <td>{% if entity.medica == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Electro</th>
-            <td>{{ entity.electro }}</td>
+            <td>{% if entity.electro == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Detalle electro</th>
@@ -114,7 +114,7 @@
         </tr>
         <tr>
             <th align="left">Estado</th>
-            <td>{{ entity.estado }}</td>
+            <td>{% if entity.estado == 'A' %} Activo {% else %} Inactivo {% endif %}</td>
         </tr>
     </tbody>
 </table>

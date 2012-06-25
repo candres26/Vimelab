@@ -114,6 +114,7 @@ class CtfactController extends Controller
 				$em->persist($entity);
 				$em->flush();
 
+				Tool::logger($this, $entity->getId());
 				return $this->redirect($this->generateUrl('ctfact_show', array('id' => $entity->getId())));
 				
 			}
@@ -185,7 +186,8 @@ class CtfactController extends Controller
 			if ($editForm->isValid()) {
 				$em->persist($entity);
 				$em->flush();
-
+				
+				Tool::logger($this, $entity->getId());
 				return $this->redirect($this->generateUrl('ctfact_edit', array('id' => $id)));
 			}
 
@@ -223,6 +225,8 @@ class CtfactController extends Controller
 
 				$em->remove($entity);
 				$em->flush();
+				
+				Tool::logger($this, $entity->getId());
 			}
 
 			return $this->redirect($this->generateUrl('ctfact'));

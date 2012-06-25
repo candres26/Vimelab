@@ -8,6 +8,10 @@
 <form id="vime-form" action="{{ path('gbsucu_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
 	<input type="submit" style="display: none" id="sender" value="send">
 	<table align="center">
+		<tr><td colspan='2'>{{ form_errors(edit_form.gbempr) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.gbempr) }}</td><td align="left">{{ form_widget(edit_form.gbempr) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.gbciud) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.gbciud) }}</td><td align="left">{{ form_widget(edit_form.gbciud) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.nombre) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.nombre) }}</td><td align="left">{{ form_widget(edit_form.nombre) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.telefono) }}</td></tr>
@@ -22,10 +26,6 @@
 		<tr><td align="left">{{ form_label(edit_form.direccion) }}</td><td align="left">{{ form_widget(edit_form.direccion) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.correo) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.correo) }}</td><td align="left">{{ form_widget(edit_form.correo) }}</td></tr>
-		<tr><td colspan='2'>{{ form_errors(edit_form.gbempr) }}</td></tr>
-		<tr><td align="left">{{ form_label(edit_form.gbempr) }}</td><td align="left">{{ form_widget(edit_form.gbempr) }}</td></tr>
-		<tr><td colspan='2'>{{ form_errors(edit_form.gbciud) }}</td></tr>
-		<tr><td align="left">{{ form_label(edit_form.gbciud) }}</td><td align="left">{{ form_widget(edit_form.gbciud) }}</td></tr>
     </table>
     {{ form_rest(edit_form) }}
 </form>

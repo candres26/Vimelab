@@ -25,124 +25,124 @@
             <td>{{ entity.mdhist.mdpaci.prinom }} {{ entity.mdhist.mdpaci.segnom }} {{ entity.mdhist.mdpaci.priape }} {{ entity.mdhist.mdpaci.segape }}</td>
         </tr>
         <tr>
-            <th align="left">Hdmov</th>
-            <td>{{ entity.hdmov }}</td>
+            <th align="left">Movilidad / Dolor Hombro Der.</th>
+            <td>{% if entity.hdmov == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Himov</th>
-            <td>{{ entity.himov }}</td>
+            <th align="left">Movilidad / Dolor Hombro Izq.</th>
+            <td>{% if entity.himov == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Hdpal</th>
-            <td>{{ entity.hdpal }}</td>
+            <th align="left">Palpación Hombro Der.</th>
+            <td>{% if entity.hdpal == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Hipal</th>
-            <td>{{ entity.hipal }}</td>
+            <th align="left">Palpación Hombro Izq.</th>
+            <td>{% if entity.hipal == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Hdten</th>
-            <td>{{ entity.hdten }}</td>
+            <th align="left">Tendón Bicipital Hombro Der.</th>
+            <td>{% if entity.hdten == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Hiten</th>
-            <td>{{ entity.hiten }}</td>
+            <th align="left">Tendón Bicipital Hombro Izq.</th>
+            <td>{% if entity.hiten == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Hdsur</th>
-            <td>{{ entity.hdsur }}</td>
+            <th align="left">Surco Acromio - Humeral Hombro Der.</th>
+            <td>{% if entity.hdsur == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Hisur</th>
-            <td>{{ entity.hisur }}</td>
+            <th align="left">Surco Acromio - Humeral Hombro Der.</th>
+            <td>{% if entity.hisur == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Cdmov</th>
-            <td>{{ entity.cdmov }}</td>
+            <th align="left">Movilidad / Dolor Codo Der.</th>
+            <td>{% if entity.cdmov == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Cimov</th>
-            <td>{{ entity.cimov }}</td>
+            <th align="left">Movilidad / Dolor Codo Izq.</th>
+            <td>{% if entity.cimov == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Cdpal</th>
-            <td>{{ entity.cdpal }}</td>
+            <th align="left">Palpación Codo Der.</th>
+            <td>{% if entity.cdpal == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Cipal</th>
-            <td>{{ entity.cipal }}</td>
+            <th align="left">Palpación Codo Izq.</th>
+            <td>{% if entity.cipal == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Mdmov</th>
-            <td>{{ entity.mdmov }}</td>
+            <th align="left">Movilidad / Dolor Muñeca y Mano Der.</th>
+            <td>{% if entity.hdmov == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Mimov</th>
-            <td>{{ entity.mimov }}</td>
+            <th align="left">Movilidad / Dolor Muñeca y Mano Izq.</th>
+            <td>{% if entity.himov == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Mdpal</th>
-            <td>{{ entity.mdpal }}</td>
+            <th align="left">Palpación Muñeca y Mano Der.</th>
+            <td>{% if entity.mdpal == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Mipal</th>
-            <td>{{ entity.mipal }}</td>
+            <th align="left">Palpación Muñeca y Mano Izq.</th>
+            <td>{% if entity.mipal == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Mdten</th>
-            <td>{{ entity.mdten }}</td>
+            <th align="left">Atrofia Tenar Muñeca y Mano Der.</th>
+            <td>{% if entity.mdten == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Miten</th>
-            <td>{{ entity.miten }}</td>
+            <th align="left">Atrofia Tenar Muñeca y Mano Izq.</th>
+            <td>{% if entity.miten == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Mdhip</th>
-            <td>{{ entity.mdhip }}</td>
+            <th align="left">Atrofia Hipotenar Muñeca y Mano Der.</th>
+            <td>{% if entity.mdhip == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Mihip</th>
-            <td>{{ entity.mihip }}</td>
+            <th align="left">Atrofia Hipotenar Muñeca y Mano Izq.</th>
+            <td>{% if entity.mihip == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Mdret</th>
-            <td>{{ entity.mdret }}</td>
+            <th align="left">Retracción de Dupultren Muñeca y Mano Der.</th>
+            <td>{% if entity.mdret == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Miret</th>
-            <td>{{ entity.miret }}</td>
+            <th align="left">Retracción de Dupultren Muñeca y Mano Izq.</th>
+            <td>{% if entity.miret == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Mdsme</th>
-            <td>{{ entity.mdsme }}</td>
+            <th align="left">Sme. del túnel carpiano Muñeca y Mano Der.</th>
+            <td>{% if entity.mdsme == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Misme</th>
-            <td>{{ entity.misme }}</td>
+            <th align="left">Sme. del túnel carpiano Muñeca y Mano Izq.</th>
+            <td>{% if entity.misme == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Pdmov</th>
-            <td>{{ entity.pdmov }}</td>
+            <th align="left">Movilidad / Dolor Extremidad Inferior Der.</th>
+            <td>{% if entity.pdmov == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Pimov</th>
-            <td>{{ entity.pimov }}</td>
+            <th align="left">Movilidad / Dolor Extremidad Inferior Izq.</th>
+            <td>{% if entity.pimov == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Pddef</th>
-            <td>{{ entity.pddef }}</td>
+            <th align="left">Deformidades / Atrofias Extremidad Inferior Der.</th>
+            <td>{% if entity.pddef == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Pidef</th>
-            <td>{{ entity.pidef }}</td>
+            <th align="left">Deformidades / Atrofias Extremidad Inferior Izq.</th>
+            <td>{% if entity.pidef == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Pdins</th>
-            <td>{{ entity.pdins }}</td>
+            <th align="left">Insuficiencia Venosa Extremidad Inferior Der.</th>
+            <td>{% if entity.pdins == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Piins</th>
-            <td>{{ entity.piins }}</td>
+            <th align="left">Insuficiencia Venosa Extremidad Inferior Izq.</th>
+            <td>{% if entity.piins == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Comentarios</th>

@@ -117,6 +117,7 @@ class GbaclsController extends Controller
 				$em->persist($entity);
 				$em->flush();
 
+				Tool::logger($this, $entity->getId());
 				return $this->redirect($this->generateUrl('gbacls_show', array('id' => $entity->getId())));
 				
 			}
@@ -189,6 +190,7 @@ class GbaclsController extends Controller
 				$em->persist($entity);
 				$em->flush();
 
+				Tool::logger($this, $entity->getId());
 				return $this->redirect($this->generateUrl('gbacls_edit', array('id' => $id)));
 			}
 
@@ -226,6 +228,8 @@ class GbaclsController extends Controller
 
 				$em->remove($entity);
 				$em->flush();
+				
+				Tool::logger($this, $entity->getId());
 			}
 
 			return $this->redirect($this->generateUrl('gbacls'));

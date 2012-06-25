@@ -1,10 +1,10 @@
 {% extends "ScontrolBundle::layout.html.twig" %}
 
-{% block title %}Descripción Check List{% endblock %}
+{% block title %}Descripción Lista de Chequeo{% endblock %}
 
 {% block area %}
 
-<h2 align="left">Descripción Check List</h2>
+<h2 align="left">Descripción Lista de Chequeo</h2>
 
 <table class="vime-table-des" align="center">
     <tbody>
@@ -25,47 +25,47 @@
             <td>{{ entity.asesoria }}</td>
         </tr>
         <tr>
-            <th align="left">Comité</th>
-            <td>{{ entity.comite }}</td>
+            <th align="left">Comité de Seguridad y Salud</th>
+            <td>{% if entity.comite == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Descripción</th>
+            <th align="left">Descripción del Local</th>
             <td>{{ entity.descripcion }}</td>
         </tr>
         <tr>
-            <th align="left">Características</th>
+            <th align="left">Características de los sitios de trabajo</th>
             <td>{{ entity.caracteristicas }}</td>
         </tr>
         <tr>
-            <th align="left">Psensible</th>
+            <th align="left">Personal Especialmente Sensible</th>
             <td>{{ entity.psensible }}</td>
         </tr>
         <tr>
-            <th align="left">Seguridad</th>
+            <th align="left">Seguridad (Equipo de Trabajo)</th>
             <td>{{ entity.seguridad }}</td>
         </tr>
         <tr>
-            <th align="left">Mfisico</th>
-            <td>{{ entity.mfisico }}</td>
+            <th align="left">Físicos (precisen medición)</th>
+            <td>{% if entity.mfisico == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Hfisico</th>
+            <th align="left">Higiene - Contaminantes Físicos</th>
             <td>{{ entity.hfisico }}</td>
         </tr>
         <tr>
-            <th align="left">Mquimico</th>
-            <td>{{ entity.mquimico }}</td>
+            <th align="left">Químicos (precisen medición)</th>
+            <td>{% if entity.mquimico == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Hquimico</th>
+            <th align="left">Higiene - Contaminantes Químicos</th>
             <td>{{ entity.hquimico }}</td>
         </tr>
         <tr>
-            <th align="left">Mbiológico</th>
-            <td>{{ entity.mbiologico }}</td>
+            <th align="left">Biológicos (precisen medición)</th>
+            <td>{% if entity.mbiologico == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Hbiológico</th>
+            <th align="left">Higiene - Contaminantes Biológicos</th>
             <td>{{ entity.hbiologico }}</td>
         </tr>
         <tr>
@@ -73,88 +73,88 @@
             <td>{{ entity.cargas }}</td>
         </tr>
         <tr>
-            <th align="left">Carretilleros</th>
-            <td>{{ entity.carretilleros }}</td>
+            <th align="left">Formación Carretilleros</th>
+            <td>{% if entity.carretilleros == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Repetitivos</th>
-            <td>{{ entity.repetitivos }}</td>
+            <th align="left">Movimientos Repetitivos</th>
+            <td>{% if entity.repetitivos == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Ett</th>
-            <td>{{ entity.ett }}</td>
+            <th align="left">Personal ETT</th>
+            <td>{% if entity.ett == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Limpieza</th>
-            <td>{{ entity.limpieza }}</td>
+            <td>{% if entity.limpieza == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Mantenimiento</th>
-            <td>{{ entity.mantenimiento }}</td>
+            <td>{% if entity.mantenimiento == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Otros</th>
-            <td>{{ entity.otros }}</td>
+            <td>{% if entity.otros == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Emergencia</th>
-            <td>{{ entity.emergencia }}</td>
+            <th align="left">Plan de Emergencia</th>
+            <td>{% if entity.emergencia == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Simulacros</th>
-            <td>{{ entity.simulacros }}</td>
+            <th align="left">Realización Simulacros</th>
+            <td>{% if entity.simulacros == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Planos</th>
-            <td>{{ entity.planos }}</td>
+            <td>{% if entity.planos == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Eplanos</th>
-            <td>{{ entity.eplanos }}</td>
+            <th align="left">Estado del Plano</th>
+            <td>{% if entity.eplanos == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Textintor</th>
-            <td>{{ entity.textintor }}</td>
+            <th align="left">Tipo de Extintor</th>
+            <td>{% if entity.textintor == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Pemergencia</th>
-            <td>{{ entity.pemergencia }}</td>
+            <th align="left">Puertas de Emergencia</th>
+            <td>{% if entity.pemergencia == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Lemergencia</th>
-            <td>{{ entity.lemergencia }}</td>
+            <th align="left">Luces de Emergencia</th>
+            <td>{% if entity.lemergencia == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Alarmas</th>
-            <td>{{ entity.alarmas }}</td>
+            <th align="left">Detector de Incendios / Alarma</th>
+            <td>{% if entity.alarmas == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Selectrico</th>
-            <td>{{ entity.selectrico }}</td>
+            <th align="left">Señalización Eléctrico</th>
+            <td>{% if entity.selectrico == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Sextintor</th>
-            <td>{{ entity.sextintor }}</td>
+            <th align="left">Señalización Extintores</th>
+            <td>{% if entity.sextintor == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Sevacuación</th>
-            <td>{{ entity.sevacuacion }}</td>
+            <th align="left">Señalización Vías de Evacuación</th>
+            <td>{% if entity.sevacuacion == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Slavabos</th>
-            <td>{{ entity.slavabos }}</td>
+            <th align="left">Señalización Lavabos</th>
+            <td>{% if entity.slavabos == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Botiquín</th>
-            <td>{{ entity.botiquin }}</td>
+            <td>{% if entity.botiquin == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Ascensor</th>
-            <td>{{ entity.ascensor }}</td>
+            <th align="left">Ascensor o Montacargas</th>
+            <td>{% if entity.ascensor == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
-            <th align="left">Bantideslizante</th>
-            <td>{{ entity.bantideslizante }}</td>
+            <th align="left">Bases Antideslizantes</th>
+            <td>{% if entity.bantideslizante == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Observaciones</th>
