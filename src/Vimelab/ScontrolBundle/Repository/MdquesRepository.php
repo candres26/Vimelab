@@ -38,4 +38,11 @@ class MdquesRepository extends EntityRepository
         $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Mdques m JOIN m.mdprot l WHERE m.pregunta LIKE '%$parametro%' or l.nombre LIKE '%$parametro%' ORDER BY m.id ASC");
         return $querry->getResult();
     }
+	
+	public function getForProtocolo($id)
+	{
+		$em = $this->getEntityManager();
+        $querry = $em->createQuery("SELECT q FROM ScontrolBundle:Mdques q JOIN q.mdprot p WHERE p.id = $id ORDER BY q.pregunta ASC");
+        return $querry->getResult();
+	}
 }

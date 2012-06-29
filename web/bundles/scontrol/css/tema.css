@@ -1,4 +1,5 @@
-body{
+body
+{
 	background: #45568a;
 	font-family: tahoma, arial, helvetica;
 	font-size: 12px;
@@ -121,7 +122,7 @@ h2
     text-align: center;
     color: #45568a;
     border: 2px inset #BFBFBF;
-    padding-left: 4px;
+    padding-left: 1%;
 }
 
 .button
@@ -288,4 +289,44 @@ h2
 {
 	width: auto;
 	cursor: pointer;
+}
+
+/* --- POPUP --- */
+
+.tPop
+{
+	z-index: 0;
+	background: #000;
+	color: #FFF;
+	display: none;
+	position: absolute;
+	overflow: auto;
+	font-size: 0.8em;
+	font-family: serif;
+	top: 14.5%;
+	right: 0.5%;
+	width: 10%;
+	height: 10%;
+	padding: 10px;
+	border: 2px solid black;
+	border-radius: 10px;
+	-moz-border-radius:10px;
+	-webkit-border-radius: 10px;
+	box-shadow: -4px 4px 5px #5B725C;
+	-webkit-box-shadow: -4px 4px 5px #5B725C;
+    -moz-box-shadow: -4px 4px 5px #5B725C;
+}
+
+.tPopTab
+{
+	width: 100%;
+	height: 100%;
+}
+
+.tPopIn
+{
+	text-align: center;
+	vertical-align: middle;
+	font-weight: bold;
+	font-style: italic;
 }

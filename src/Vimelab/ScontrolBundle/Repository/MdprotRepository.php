@@ -38,4 +38,11 @@ class MdprotRepository extends EntityRepository
         $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Mdprot m WHERE m.nombre LIKE '%$parametro%' or m.codigo LIKE '%$parametro%' ORDER BY m.id ASC");
         return $querry->getResult();
     }
+    
+	public function listAll()
+	{
+		$em = $this->getEntityManager();
+        $querry = $em->createQuery("SELECT p FROM ScontrolBundle:Mdprot p WHERE 1 = 1 ORDER BY p.nombre ASC");
+        return $querry->getResult();
+	}
 }

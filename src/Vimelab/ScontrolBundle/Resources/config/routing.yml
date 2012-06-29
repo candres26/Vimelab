@@ -1190,3 +1190,18 @@ as_protocolo:
 as_protocolo_getPuesto:
     pattern: /asprot/getpuesto
     defaults: { _controller: ScontrolBundle:AsProtocolo:getPuesto }
+as_protocolo_newPuesto:
+    pattern: /asprot/newpuesto
+    defaults: { _controller: ScontrolBundle:AsProtocolo:newPuesto }
+as_protocolo_newProtocolo:
+    pattern: /asprot/newprotocolo
+    defaults: { _controller: ScontrolBundle:AsProtocolo:newProtocolo }
+as_protocolo_getQues:
+    pattern: /asprot/getQues
+    defaults: { _controller: ScontrolBundle:AsProtocolo:getQues }
+as_protocolo_delQues:
+    pattern: /asprot/delQues
+    defaults: { _controller: ScontrolBundle:AsProtocolo:delQues }
+as_protocolo_addQues:
+    pattern: /asprot/addQues
+    defaults: { _controller: ScontrolBundle:AsProtocolo:addQues }

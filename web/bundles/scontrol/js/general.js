@@ -16,3 +16,15 @@ function SimularClick(idObjete)
 	var objecte = document.getElementById(idObjete);
 	var canceled = !objecte.dispatchEvent(nouEvent);
 }
+
+function popup(datm)
+{
+	if(datm != undefined)
+		msg = datm;
+	else
+		msg = "...!";
+	
+	gId('popin').innerHTML = msg;
+	aparecer('pop', 0, 70);
+	window.setTimeout ("desaparecer('pop', 70)", 5000);
+}

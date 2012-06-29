@@ -1,15 +1,24 @@
 {% extends "ScontrolBundle::layout.html.twig" %}
 
-{% block title %} Listado Contratos{% endblock %}
+{% block title %} Asistente De Protocolos {% endblock %}
 
 {% block area %}
 	
-	<div id='asMain' style="background: red">
-		<table style="margin: auto; width: 80%;">
+	<div id='asMain'>
+		<table id='asMainTab'>
 			<tr>
 				<td><b>Empresa</b></td>
 				<td><b>Puesto De Trabajo</b></td>
-				<td><b>Protocolos</b></td>				
+				<td><b>Protocolo</b></td>				
+			</tr>
+			
+			<tr>
+				<td>&nbsp;</td>
+				<td><img onclick="if(gId('asEmpr').value != '@'){changeArea('asAreaTrab')}else{popup('Debe Seleccionar Una Empresa!.')}" src="{{ asset('bundles/scontrol/imagenes/iconos/agregar.png') }}" title="Nuevo Puesto De Trabajo"></td>
+				<td>
+					<img onclick="changeArea('asAreaProt')" src="{{ asset('bundles/scontrol/imagenes/iconos/agregar.png') }}" title="Nuevo Protocolo">
+					<img onclick="if(gId('asProt').value != '@'){checkPreg()}else{popup('Debe Seleccionar Un Protocolo!.')}" src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Preguntas Del Protocolo">
+				</td>
 			</tr>
 			
 			<tr>
@@ -23,7 +32,7 @@
 				</td>
 				<td><select id='asPtra'><option value='@'>Seleccione...</option></select></td>
 				<td>
-					<select id='asProt'>
+					<select id='asProt' onchange="checkProt(this)">
 						<option value='@'>Seleccione...</option>
 						{% for p in protocolos %}
 							<option value='{{ p.id }}'>{{ p.nombre }}</option>
@@ -32,12 +41,199 @@
 				</td>
 				
 			</tr>
+			
+			<tr>
+				
+				<td colspan='3' style="height: 80%; text-align: center;">
+					
+					<div id='asArea'>
+							
+							<div id='asAreaProt'>
+								
+								<table style='height: 100%; width: 100%;'>
+									
+									<tr>
+										<td>
+											<table style='margin: auto;'>
+												<tr><td colspan='2'><h3>Nuevo Protocolo</h3></td></tr>
+												<tr>
+													<td align='left'><b>Código:</b></td><td><input id='newProCode' type='text' maxlength='5'/></td>
+												</tr>
+												<tr>
+													<td align='left'><b>Nombre:</b></td><td><input id='newProName' type='text' maxlength='50'/></td>
+												</tr>
+												<tr>
+													<td colspan='2'><input type='button' onclick='newProtocolo()' value='CREAR'/><input type='button' onClick='cancelaProt()' value='CANCELAR'/></td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+								
+							</div>
+							
+							<div id='asAreaTrab'>
+								
+								<table style='height: 100%; width: 100%;'>
+									
+									<tr>
+										<td>
+											<table style='margin: auto;'>
+												<tr><td colspan='2'><h3>Nuevo Puesto De Trabajo</h3></td></tr>
+												<tr>
+													<td align='left'><b>Nombre:</b></td><td><input id='newTraName' type='text' maxlength='50' /></td>
+												</tr>
+												<tr>
+													<td colspan='2'><input type='button' onclick='newTrabajo()' value='CREAR'/><input type='button' onClick='cancelaTrab()' value='CANCELAR'/></td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+								
+							</div>
+							
+							<div id='asAreaPreg'>
+								
+								<div style='position: absolute; top: 10%; left: 2%; width: 50%; height: 80%; overflow: auto; background: #fff; border: 1px solid black;'>										
+									<table id='tabPreg'></table>
+								</div>
+								
+								<div style='position: absolute; top: 10%; right: 2%; width: 45%; height: 80%;'>										
+									<table style='width: 100%; height: 100%; '>
+										<tr>
+											<td align='left' >
+												<img onclick="addQuest()" src="{{ asset('bundles/scontrol/imagenes/iconos/add.png') }}" title="Agregar Pregunta">
+												<br>
+												<img onclick="delQuest()" src="{{ asset('bundles/scontrol/imagenes/iconos/rem.png') }}" title="Remover Pregunta">
+											</td>
+											
+											<td>
+												<h3>Pregunta?:</h3>
+												<textarea id='protQues' cols="35" rows="12"></textarea>
+											</td>
+								
+										</tr>
+									</table>
+								</div>
+							</div>
+							
+							<div id='asAreaAsis'>
+								
+							</div>
+							
+					</div>
+					
+				</td>
+								
+			</tr>
 		</table>		
 	</div>
 
 	<script language="JavaScript">
 		
 		var optINI = "<option value='@'>Seleccione...</option>";
+		var idQues = 0;
+		
+		function changeArea(id)
+		{
+			hide('asAreaProt');
+			hide('asAreaTrab');
+			hide('asAreaPreg');
+			hide('asAreaAsis');
+			
+			gId(id).style.display = 'block';
+		}
+		
+		function checkPreg()
+		{
+			getQuest();
+			changeArea('asAreaPreg');
+		}
+		
+		function checkProt(elem)
+		{
+			if(elem.value != '@')
+			{
+				if(gId('asAreaPreg').style.display == 'block')
+					getQuest();
+			}
+		}
+		
+		function cancelaTrab()
+		{
+			changeArea('asAreaAsis');
+			gId('newTraName').value = '';
+		}
+		
+		function cancelaProt()
+		{
+			changeArea('asAreaAsis');
+			gId('newProCode').value = '';
+			gId('newProName').value = '';
+		}
+		
+		function newTrabajo()
+		{
+			if(gId('asEmpr').value != '@' && gId('newTraName').value != '')
+			{
+				ajaxAction
+				(
+					new Hash(['asEmpr', 'newTraName']),
+					"{{ path('as_protocolo_newPuesto') }}",
+					setPuestos
+				);
+				cancelaTrab();
+			}
+			else
+				popup("Debe seleccinar una empresa y suministrar un nombre válido!.");
+		}
+		
+		function newProtocolo()
+		{
+			if(gId('newProCode').value != '' && gId('newProName').value != '')
+			{
+				ajaxAction
+				(
+					new Hash(['newProCode', 'newProName']),
+					"{{ path('as_protocolo_newProtocolo') }}",
+					setProtocolos
+				);
+				cancelaProt();
+			}
+			else
+				popup("Debe suministrar un código y nombre válidos!.");
+		}
+		
+		function delQuest()
+		{
+			if(idQues != 0)
+			{
+				ajaxAction
+				(
+					new Hash(['*id => '+idQues]),
+					"{{ path('as_protocolo_delQues') }}",
+					getQuest
+				);
+			}
+			else
+				popup("Debe Selecionar Una Pregunta!");
+		}
+		
+		function addQuest()
+		{
+			if(gId('asProt').value != '@' && gId('protQues').value != '')
+			{
+				ajaxAction
+				(
+					new Hash(['asProt', 'protQues']),
+					"{{ path('as_protocolo_addQues') }}",
+					getQuest
+				);
+			}
+			else
+				popup("Debe Selecionar Un Protocolo Y Suministrar Una Pregunta Válida!");
+		}
 		
 		function getPuestos(elem)
 		{
@@ -54,24 +250,188 @@
 				gId('asPtra').innerHTML = optINI;
 		}
 		
-		function setPuestos(response)
-		{
-			code = '';
-			arr = response.responseText.split('|:|');
-			
-			for (i = 0; i < arr.length; i++)
-			{
-				pp = arr[i].split('=>');
-				code += "<option value='"+pp[0]+"'>"+pp[1]+"</option>";
-			}
-			
-			gId('asPtra').innerHTML = optINI+code;
-		}
 		
 		function getProtocolos()
 		{
 			
 		}
+		
+		function getQuest(response)
+		{
+			if(response != undefined)
+			{
+				if(response.responseText == '!')
+					popup("Pregunta Eliminada Con Exito!");
+				else if(response.responseText == '%')
+					popup("La Pregunta Esta En Uso, Imposible Eliminarla!");
+				else if(response.responseText == '!!')
+				{
+					gId('protQues').value = '';
+					popup("Pregunta Agregada Con Exito!");
+				}
+				else
+					popup("Imposible Agregar Pregunta!");
+			}
+			
+			if(gId('asProt').value != '@')
+			{
+				ajaxAction
+				(
+					new Hash(['asProt']),
+					"{{ path('as_protocolo_getQues') }}",
+					setQuest
+				);
+			}
+			else
+				popup("Debe Selecionar Un Protocolo!");
+		}
+		
+		function setPuestos(response)
+		{
+			if(response.responseText.substring(0, 1) != '%')
+			{
+				code = '';
+				
+				if(response.responseText.substring(0, 1) == '!')
+				{
+					arr = response.responseText.substring(1).split('|:|');
+					popup("Nuevo Puesto Creado!");
+				}
+				else
+					arr = response.responseText.split('|:|');
+				
+				for (i = 0; i < arr.length; i++)
+				{
+					pp = arr[i].split('=>');
+					code += "<option value='"+pp[0]+"'>"+pp[1]+"</option>";
+				}
+	
+				gId('asPtra').innerHTML = optINI+code;
+			}
+			else
+				popup("Ningun Puesto De Trabjajo Asosciado A Esta Empresa!.");
+		}
+		
+		function setProtocolos(response)
+		{
+			if(response.responseText.substring(0, 1) != '%')
+			{
+				code = '';
+				
+				if(response.responseText.substring(0, 1) == '!')
+				{
+					arr = response.responseText.substring(1).split('|:|');
+					popup("Nuevo Protocolo Creado!");
+				}
+				else
+					arr = response.responseText.split('|:|');
+				
+				for (i = 0; i < arr.length; i++)
+				{
+					pp = arr[i].split('=>');
+					code += "<option value='"+pp[0]+"'>"+pp[1]+"</option>";
+				}
+	
+				gId('asProt').innerHTML = optINI+code;
+			}
+			else
+				popup("Ningun Protocolo Definido!.");
+		}
+		
+		function setQuest(response)
+		{
+			if(response.responseText.substring(0, 1) != '%')
+			{
+				code = '';
+				arr = response.responseText.split('|:|');
+				
+				for (i = 0; i < arr.length; i++)
+				{
+					pp = arr[i].split('=>');
+					code += "<tr> <td title='Click Para Selecionar' onClick='selQues(this)' id='"+pp[0]+"'>"+pp[1]+"</td></tr>";
+				}
+	
+				gId('tabPreg').innerHTML = code;
+			}
+			else
+				gId('tabPreg').innerHTML = "<tr><td><h3>Ninguna Pregunta Asociada A Este Protocolo!.<h3></td></tr>";
+			
+			idQues = 0;
+		}
+		
+		function selQues(elem)
+		{
+			par = gId('tabPreg');
+			rows = par.rows;
+			
+			for(i = 0; i < rows.length; i++)
+				rows[i].cells[0].style.background = '';
+			
+			if(idQues != elem.id)
+			{
+				idQues = elem.id;
+				elem.style.background = '#D7DFE6';
+			}
+			else
+				idQues = 0;
+		}
 	
 	</script>
+	
+	<style type="text/css">
+		#asMain
+		{
+			position: absolute; width: 98%; height: 90%;
+		}
+		
+		#asMain img
+		{
+			cursor: pointer;
+		}
+		
+		#asMainTab
+		{
+			margin: auto; width: 90%; height: 100%;
+		}
+		
+		#asArea
+		{
+			border: 1px solid #1E90FF; position: absolute; left: 2%; bottom: 2%; width: 96%; height: 70%;
+		}
+		
+		#asAreaProt
+		{
+			width: 100%; height: 100%; display: none;
+		}
+		
+		#asAreaTrab
+		{
+			width: 100%; height: 100%; display: none;
+		}
+		
+		#asAreaPreg
+		{
+			position: absolute; width: 100%; height: 100%; display: none;
+		}
+		
+		#tabPreg
+		{
+			width: 100%; height: auto%;
+		} 
+		
+		#tabPreg td
+		{
+			border: 1px solid blue; cursor: pointer;
+		} 
+		
+		#tabPreg td:hover
+		{
+			background: #D7DFE6;
+		} 
+		
+		#asAreaAsis
+		{
+			background: blue; width: 100%; height: 100%;
+		}
+	</style>
 {% endblock %}
