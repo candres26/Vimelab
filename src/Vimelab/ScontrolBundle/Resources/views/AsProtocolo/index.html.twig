@@ -220,7 +220,7 @@
 		
 		#tabProto
 		{
-			width: 100%; height: auto%;
+			width: 100%; height: auto;
 		} 
 		
 		#tabProto td
@@ -401,7 +401,7 @@
 		
 		function getProcesos(response)
 		{
-			if(response != undefined)
+			if(typeof response != 'undefined')
 			{
 				if(response.responseText == '!')
 					popup("Protocolo Eliminado Con Exito!");
@@ -426,7 +426,7 @@
 		
 		function getQuest(response)
 		{
-			if(response != undefined)
+			if(typeof response != 'undefined')
 			{
 				if(response.responseText == '!')
 					popup("Pregunta Eliminada Con Exito!");

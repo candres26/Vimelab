@@ -18,8 +18,15 @@ function setUser(response)
 	gId('sisuser').innerHTML = response.responseText;
 }
 
-function foldMenu(elem)
+function launch(event)
 {
+	location = this.id;
+}
+
+function foldMenu(event)
+{	
+	elem = this;
+	
 	if(elem.style.height == '' || elem.style.height == '18px')
 		elem.style.height = 'auto';
 	else

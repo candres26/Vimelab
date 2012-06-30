@@ -12,30 +12,30 @@
 	
 	</div>
 	<div id="vime-barra" align='right'>
-		<table style="padding-right: 50px; font-weight: bold;"><tr><td align='right'>Usuario Activo:</td><td id='sisuser'></td><td width='100px'></td><td onclick="go('{{ path('logout') }}')" class='exitBtn'>CERRAR SESIÓN</td></tr></table>
+		<table style="padding-right: 50px; font-weight: bold;"><tr><td align='right'>Usuario Activo:</td><td id='sisuser'>&nbsp;</td><td width='100px'>&nbsp;</td><td id="{{ path('logout') }}" class='exitBtn'>CERRAR SESIÓN</td></tr></table>
 	</div>
 	<div id="vime-menu">
 		
-		<div class='Menu' onclick='foldMenu(this)'>
+		<div id="vimeMenu1" class='Menu'>
 			<b>Generales</b>
 			<table>
-				<tr><td onclick="go('{{ path('gbacls') }}')">Control de Acceso</td></tr>
-				<tr><td onclick="go('{{ path('gbcarg') }}')">Cargos</td></tr>
-				<tr><td onclick="go('{{ path('gbciud') }}')">Ciudades</td></tr>
-				<tr><td onclick="go('{{ path('gbcnae') }}')">CNAE</td></tr>
-				<tr><td onclick="go('{{ path('gbdepa') }}')">Província</td></tr>
-				<tr><td onclick="go('{{ path('gbempr') }}')">Empresas</td></tr>
-				<tr><td onclick="go('{{ path('gbiden') }}')">Identificación</td></tr>
-				<tr><td onclick="go('{{ path('gblogr') }}')">Logs</td></tr>
-				<tr><td onclick="go('{{ path('gbpais') }}')">País</td></tr>
-				<tr><td onclick="go('{{ path('gbpers') }}')">Personal</td></tr>
-				<tr><td onclick="go('{{ path('gbptra') }}')">Puesto de Trabajo</td></tr>
-				<tr><td onclick="go('{{ path('gbsucu') }}')">Sucursal</td></tr>
-				<tr><td onclick="go('{{ path('gbusua') }}')">Usuario</td></tr>
+				<tr><td id="{{ path('gbacls') }}">Control de Acceso</td></tr>
+				<tr><td id="{{ path('gbcarg') }}">Cargos</td></tr>
+				<tr><td id="{{ path('gbciud') }}">Ciudades</td></tr>
+				<tr><td id="{{ path('gbcnae') }}">CNAE</td></tr>
+				<tr><td id="{{ path('gbdepa') }}">Província</td></tr>
+				<tr><td id="{{ path('gbempr') }}">Empresas</td></tr>
+				<tr><td id="{{ path('gbiden') }}">Identificación</td></tr>
+				<tr><td id="{{ path('gblogr') }}">Logs</td></tr>
+				<tr><td id="{{ path('gbpais') }}">País</td></tr>
+				<tr><td id="{{ path('gbpers') }}">Personal</td></tr>
+				<tr><td id="{{ path('gbptra') }}">Puesto de Trabajo</td></tr>
+				<tr><td id="{{ path('gbsucu') }}">Sucursal</td></tr>
+				<tr><td id="{{ path('gbusua') }}">Usuario</td></tr>
 			</table>
         </div>
         
-        <div class='Menu' onclick='foldMenu(this)'>
+        <div id="vimeMenu2" class='Menu'>
 			<b>Contables</b>
 			<table>
 				<tr><td onclick="go('{{ path('ctcont') }}')">Contrato</td></tr>
@@ -46,7 +46,7 @@
 			</table>
         </div>
 
-        <div class='Menu' onclick='foldMenu(this)'>
+        <div id="vimeMenu3" class='Menu'>
 			<b>Antecedentes</b>
 			<table>
 				<tr><td onclick="go('{{ path('hsfami') }}')">Familiar</td></tr>
@@ -55,7 +55,7 @@
 			</table>
         </div>
             
-        <div class='Menu' onclick='foldMenu(this)'>
+        <div id="vimeMenu4" class='Menu'>
 			<b>Médicas</b>
 			<table>
 				<tr><td onclick="go('{{ path('mdaudi') }}')">Audiometría</td></tr>
@@ -77,7 +77,7 @@
 			</table>
 		</div>
             
-        <div class='Menu' onclick='foldMenu(this)'>
+        <div id="vimeMenu5" class='Menu'>
 			<b>Técnicas</b>
 			<table>
 				<tr><td onclick="go('{{ path('tcaspe') }}')">Aspectos Técnicos</td></tr>
@@ -90,7 +90,7 @@
 			</table>
 		</div>
         
-        <div class='Menu' onclick='foldMenu(this)'>
+        <div id="vimeMenu6" class='Menu'>
 			<b>Asistentes</b>
 			<table>
 				<tr><td onclick="go('{{ path('as_ubica') }}')">Ubicaciones</td></tr>
@@ -132,8 +132,25 @@
 		/** Init Global **/
 		
 		window.onload = function()
-		{
+		{			
 			getUser("{{ path('getUser') }}");
+			
+			gId("{{ path('logout') }}").onclick = launch;
+			
+			for(i = 1; i < 7; i++)
+			{
+				elem = gId("vimeMenu"+i);
+				elem.onclick = foldMenu;
+				
+				rows = gTag(elem, 'table')[0].rows;
+				
+				for(j = 0; j < rows.length; j++)
+					rows[j].cells[0].onclick = launch;
+			}
+			
+			if( typeof $init != "undefined")
+				$init();
 		}
+		
 	</script>
 {% endblock %}
