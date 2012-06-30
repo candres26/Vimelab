@@ -5,6 +5,7 @@ namespace Vimelab\ScontrolBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Vimelab\ScontrolBundle\Entity\Gbptra;
 use Vimelab\ScontrolBundle\Entity\Mdprot;
+use Vimelab\ScontrolBundle\Entity\Mdproc;
 use Vimelab\ScontrolBundle\Entity\Mdques;
 use Symfony\Component\HttpFoundation\Response;
 use Vimelab\ScontrolBundle\Tool\Tool;
@@ -156,6 +157,87 @@ class AsProtocoloController extends Controller
 				$entity  = new Mdques();
 				$entity->setMdprot($prot);
 				$entity->setPregunta($request->request->get('protQues'));
+				$em->persist($entity);
+				$em->flush();
+				
+				return new Response('!!');
+			}
+			else
+				return $this->redirect($this->generateUrl('as_protocolo'));
+		}
+		else
+			return $this->render("ScontrolBundle::alertas.html.twig");
+	}
+	
+	public function getProcesoAction()
+	{
+		if(Tool::isGrant($this))
+        {
+        	$request = $this->getRequest();
+        	if($request->isXmlHttpRequest())
+			{
+				$em = $this->getDoctrine()->getEntityManager();
+				
+				$proc = $em->getRepository('ScontrolBundle:Mdproc')->getForTrab($request->request->get('asPtra'));
+				
+				$parr = array();
+				foreach($proc as $caso)
+					$parr[] = $caso->getId().'=>'.$caso->getMdprot()->getCodigo().'=>'.$caso->getGbptra()->getNombre().'=>'.$caso->getMdprot()->getNombre();
+				
+				$parr = join('|:|', $parr);
+				$parr = $parr == '' ? '%' : $parr;
+				
+				return new Response($parr);
+			}
+			else
+				return $this->redirect($this->generateUrl('as_protocolo'));
+		}
+		else
+			return $this->render("ScontrolBundle::alertas.html.twig");
+	}
+	
+	public function delProtoAction()
+	{
+		if(Tool::isGrant($this))
+        {
+        	$request = $this->getRequest();
+        	if($request->isXmlHttpRequest())
+			{
+				try
+				{	
+					$em = $this->getDoctrine()->getEntityManager();
+					$entity = $em->getRepository('ScontrolBundle:Mdproc')->find($request->request->get('id'));
+					$em->remove($entity);
+					$em->flush();
+					
+					return new Response("!");
+				}
+				catch (\Exception $e)
+				{
+					return new Response("%");
+				}
+			}
+			else
+				return $this->redirect($this->generateUrl('as_protocolo'));
+		}
+		else
+			return $this->render("ScontrolBundle::alertas.html.twig");
+	}
+	
+	public function addProtoAction()
+	{
+		if(Tool::isGrant($this))
+        {
+        	$request = $this->getRequest();
+        	if($request->isXmlHttpRequest())
+			{
+				$em = $this->getDoctrine()->getEntityManager();
+				
+				$pues = $em->getRepository('ScontrolBundle:Gbptra')->findOneById($request->request->get('asPtra'));
+				$prot = $em->getRepository('ScontrolBundle:Mdprot')->findOneById($request->request->get('asProt'));
+				$entity  = new Mdproc();
+				$entity->setGbptra($pues);
+				$entity->setMdprot($prot);
 				$em->persist($entity);
 				$em->flush();
 				

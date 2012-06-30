@@ -30,7 +30,7 @@
 						{% endfor %}		
 					</select>
 				</td>
-				<td><select id='asPtra'><option value='@'>Seleccione...</option></select></td>
+				<td><select id='asPtra' onchange="getProcesos()"><option value='@'>Seleccione...</option></select></td>
 				<td>
 					<select id='asProt' onchange="checkProt(this)">
 						<option value='@'>Seleccione...</option>
@@ -63,7 +63,7 @@
 													<td align='left'><b>Nombre:</b></td><td><input id='newProName' type='text' maxlength='50'/></td>
 												</tr>
 												<tr>
-													<td colspan='2'><input type='button' onclick='newProtocolo()' value='CREAR'/><input type='button' onClick='cancelaProt()' value='CANCELAR'/></td>
+													<td colspan='2'><input class='btn' type='button' onclick='newProtocolo()' value='CREAR'/><input class='btn' type='button' onClick='cancelaProt()' value='CANCELAR'/></td>
 												</tr>
 											</table>
 										</td>
@@ -84,7 +84,7 @@
 													<td align='left'><b>Nombre:</b></td><td><input id='newTraName' type='text' maxlength='50' /></td>
 												</tr>
 												<tr>
-													<td colspan='2'><input type='button' onclick='newTrabajo()' value='CREAR'/><input type='button' onClick='cancelaTrab()' value='CANCELAR'/></td>
+													<td colspan='2'><input class='btn' type='button' onclick='newTrabajo()' value='CREAR'/><input class='btn' type='button' onClick='cancelaTrab()' value='CANCELAR'/></td>
 												</tr>
 											</table>
 										</td>
@@ -112,13 +112,33 @@
 												<h3>Pregunta?:</h3>
 												<textarea id='protQues' cols="35" rows="12"></textarea>
 											</td>
-								
+										</tr>
+										
+										<tr>
+											<td align='right' colspan='2'><img onclick="returnGen()" src="{{ asset('bundles/scontrol/imagenes/iconos/ant.png') }}" title="Regresar"></td>
 										</tr>
 									</table>
 								</div>
+								
 							</div>
 							
 							<div id='asAreaAsis'>
+								
+								<div style='position: absolute; top: 10%; left: 2%; width: 90%; height: 80%; overflow: auto; background: #fff; border: 1px solid black;'>										
+									<table id='tabProto'></table>
+								</div>
+								
+								<div style='position: absolute; top: 10%; right: 2%; width: 15%; height: 80%;'>										
+									<table style='width: 100%; height: 100%; '>
+										<tr>
+											<td align='right' >
+												<img onclick="addProto()" src="{{ asset('bundles/scontrol/imagenes/iconos/add.png') }}" title="Agregar Protocolo">
+												<br>
+												<img onclick="delProto()" src="{{ asset('bundles/scontrol/imagenes/iconos/rem.png') }}" title="Remover Protocolo">
+											</td>						
+										</tr>
+									</table>
+								</div>
 								
 							</div>
 							
@@ -134,6 +154,7 @@
 		
 		var optINI = "<option value='@'>Seleccione...</option>";
 		var idQues = 0;
+		var idProc = 0;
 		
 		function changeArea(id)
 		{
@@ -158,6 +179,12 @@
 				if(gId('asAreaPreg').style.display == 'block')
 					getQuest();
 			}
+		}
+		
+		function returnGen()
+		{
+			getProcesos();
+			changeArea('asAreaAsis');
 		}
 		
 		function cancelaTrab()
@@ -235,6 +262,36 @@
 				popup("Debe Selecionar Un Protocolo Y Suministrar Una Pregunta Válida!");
 		}
 		
+		function delProto()
+		{
+			if(idProc != 0)
+			{
+				ajaxAction
+				(
+					new Hash(['*id => '+idProc]),
+					"{{ path('as_protocolo_delProto') }}",
+					getProcesos
+				);
+			}
+			else
+				popup("Debe Selecionar Una Pregunta!");
+		}
+		
+		function addProto()
+		{
+			if(gId('asProt').value != '@' && gId('asPtra').value != '@')
+			{
+				ajaxAction
+				(
+					new Hash(['asProt', 'asPtra']),
+					"{{ path('as_protocolo_addProto') }}",
+					getProcesos
+				);
+			}
+			else
+				popup("Debe Selecionar Un Puesto De Trabajo Y Un Protocolo!");
+		}
+		
 		function getPuestos(elem)
 		{
 			if(elem.value != '@')
@@ -251,9 +308,29 @@
 		}
 		
 		
-		function getProtocolos()
+		function getProcesos(response)
 		{
+			if(response != undefined)
+			{
+				if(response.responseText == '!')
+					popup("Protocolo Eliminado Con Exito!");
+				else if(response.responseText == '%')
+					popup("El Protocolo Esta En Uso, Imposible Eliminarla!");
+				else if(response.responseText == '!!')
+					popup("Protocolo Agregado Con Exito!");
+				else
+					popup("Imposible Agregar Protocolo!");
+			}
 			
+			if(gId('asPtra').value != '@')
+			{
+				ajaxAction
+				(
+					new Hash(['asPtra']),
+					"{{ path('as_protocolo_getProceso') }}",
+					setProcesos
+				);
+			}
 		}
 		
 		function getQuest(response)
@@ -375,6 +452,44 @@
 			else
 				idQues = 0;
 		}
+		
+		function setProcesos(response)
+		{
+			if(response.responseText.substring(0, 1) != '%')
+			{
+				code = '';
+				arr = response.responseText.split('|:|');
+				
+				for (i = 0; i < arr.length; i++)
+				{
+					pp = arr[i].split('=>');
+					code += "<tr title='Click Para Selecionar' onClick='selProto(this)' id='"+pp[0]+"'><td>"+pp[1]+"</td><td>"+pp[2]+"</td><td>"+pp[3]+"</td></tr>";
+				}
+	
+				gId('tabProto').innerHTML = code;
+			}
+			else
+				gId('tabProto').innerHTML = "<tr><td><h3>Ningun Protocolo Asociado A Este Puesto De Trabajo!.<h3></td></tr>";
+			
+			idProc = 0;
+		}
+		
+		function selProto(elem)
+		{
+			par = gId('tabProto');
+			rows = par.rows;
+			
+			for(i = 0; i < rows.length; i++)
+				rows[i].style.background = '';
+			
+			if(idProc != elem.id)
+			{
+				idProc = elem.id;
+				elem.style.background = '#D7DFE6';
+			}
+			else
+				idProc = 0;
+		}
 	
 	</script>
 	
@@ -387,6 +502,20 @@
 		#asMain img
 		{
 			cursor: pointer;
+		}
+		
+		.btn
+		{
+			background-color:#203982; 
+			color:#fff;
+			border-radius: 10px;
+			cursor: pointer;
+		}
+		
+		.btn:hover
+		{
+			background-color:#FFFFFF; 
+			color:#000000;
 		}
 		
 		#asMainTab
@@ -429,9 +558,24 @@
 			background: #D7DFE6;
 		} 
 		
+		#tabProto
+		{
+			width: 100%; height: auto%;
+		} 
+		
+		#tabProto td
+		{
+			border: 1px solid blue; cursor: pointer;
+		} 
+		
+		#tabProto tr:hover
+		{
+			background: #D7DFE6;
+		} 
+		
 		#asAreaAsis
 		{
-			background: blue; width: 100%; height: 100%;
+			width: 100%; height: 100%;
 		}
 	</style>
 {% endblock %}

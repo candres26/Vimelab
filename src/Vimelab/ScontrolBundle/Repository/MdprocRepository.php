@@ -38,4 +38,11 @@ class MdprocRepository extends EntityRepository
         $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Mdproc m JOIN m.mdprot l JOIN m.gbptra k WHERE l.nombre LIKE '%$parametro%' OR k.nombre LIKE '%$parametro%' ORDER BY m.id ASC");
         return $querry->getResult();
     }
+	
+	public function getForTrab($id)
+	{
+		$em = $this->getEntityManager();
+        $querry = $em->createQuery("SELECT p FROM ScontrolBundle:Mdproc p JOIN p.gbptra g WHERE g.id = $id ORDER BY g.nombre ASC");
+        return $querry->getResult();
+	}
 }

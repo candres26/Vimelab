@@ -1205,3 +1205,12 @@ as_protocolo_delQues:
 as_protocolo_addQues:
     pattern: /asprot/addQues
     defaults: { _controller: ScontrolBundle:AsProtocolo:addQues }
+as_protocolo_getProceso:
+    pattern: /asprot/getProceso
+    defaults: { _controller: ScontrolBundle:AsProtocolo:getProceso }
+as_protocolo_addProto:
+    pattern: /asprot/addProto
+    defaults: { _controller: ScontrolBundle:AsProtocolo:addProto }
+as_protocolo_delProto:
+    pattern: /asprot/delProto
+    defaults: { _controller: ScontrolBundle:AsProtocolo:delProto }
