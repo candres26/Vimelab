@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends 'ScontrolBundle::base.html.twig' %}
 
 {% block header %}
 	
@@ -7,30 +7,6 @@
 {% endblock %}
 
 {% block body %}
-	<script text="JavaScript">
-		function getUser()
-		{
-			ajaxAction
-			(
-				new Hash(['*tok => 0']),
-				"{{ path('getUser') }}",
-				setUser
-			);
-		}
-		
-		function setUser(response)
-		{
-			gId('sisuser').innerHTML = response.responseText;
-		}
-		
-		function foldMenu(elem)
-		{
-			if(elem.style.height == '' || elem.style.height == '18px')
-				elem.style.height = 'auto';
-			else
-				elem.style.height = '18px';
-		}
-	</script>
 
 	<div id="vime-cabecera">
 	
@@ -117,6 +93,7 @@
         <div class='Menu' onclick='foldMenu(this)'>
 			<b>Asistentes</b>
 			<table>
+				<tr><td onclick="go('{{ path('as_ubica') }}')">Ubicaciones</td></tr>
 				<tr><td onclick="go('{{ path('as_protocolo') }}')">Protocolos</td></tr>
 			</table>
 		</div>
@@ -129,9 +106,9 @@
     </div>
     
 
-{% block action %}
-
-{% endblock %}
+	{% block action %}
+	
+	{% endblock %}
 	
     
     <div id="vime-pie">
@@ -139,9 +116,24 @@
     </div>
 
 	
-{% block lateral %}
-	
+	{% block lateral %}
 		
+			
+	{% endblock %}
+
 {% endblock %}
 
+{% block script %}
+	
+	{% block uscript %}{% endblock %}
+	
+	<script type="text/javascript">
+		
+		/** Init Global **/
+		
+		window.onload = function()
+		{
+			getUser("{{ path('getUser') }}");
+		}
+	</script>
 {% endblock %}

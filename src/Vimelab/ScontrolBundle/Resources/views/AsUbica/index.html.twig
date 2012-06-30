@@ -1,0 +1,175 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %} Asistente De Ubicaciones {% endblock %}
+
+{% block area %}
+	
+	<div id='asMain'>
+		<table id='asMainTab'>
+			<tr>
+				<td><b>País</b></td>
+				<td><b>Província</b></td>				
+			</tr>
+			
+			<tr>
+				<td><img src="{{ asset('bundles/scontrol/imagenes/iconos/agregar.png') }}" title="Nuevo País"></td>
+				<td><img src="{{ asset('bundles/scontrol/imagenes/iconos/agregar.png') }}" title="Nuevo Província"></td>
+			</tr>
+			
+			<tr>
+				<td>
+					<select id='asEmpr'>
+						<option value='@'>Seleccione...</option>
+						{% for p in paises %}
+							<option value="{{ p.id }}">{{ p.nombre }}</option>
+						{% endfor %}		
+					</select>
+				</td>
+				
+				<td>
+					<select id='asPtra'>
+						<option value='@'>Seleccione...</option>
+						<!-- CAMPO AJAX -->
+					</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan='3' style="height: 80%; text-align: center;">
+					
+					<div id='asArea'>
+						
+						<div id='asAreaDiv'>
+								
+								<div id='asDivTab'>										
+									<table id='asTab'><!-- CAMPO AJAX --></table>
+								</div>
+								
+								<div id='asDivCon'>										
+									
+									<table id='asCon'>
+										
+										<tr>
+											<td align='left' >
+												<img src="{{ asset('bundles/scontrol/imagenes/iconos/add.png') }}" title="Agregar Ciudad">
+												<br>
+												<img src="{{ asset('bundles/scontrol/imagenes/iconos/rem.png') }}" title="Remover Ciudad">
+											</td>
+											
+											<td align="center">
+												
+												<table>
+													<tr>
+														<td align="left"><b>Código:</b></td>
+														<td align="left"><input id="asCode" type="text" maxlength="3"/></td>
+													</tr>
+													
+													<tr><td colspan="2">&nbsp;</td></tr>
+													
+													<tr>
+														<td align="left"><b>Nombre:</b></td>
+														<td align="left"><input id="asName" type="text" maxlength="50"/></td>
+													</tr>
+												</table>
+												
+											</td>
+										</tr>
+									
+									</table>
+								
+								</div>
+								
+							</div>
+						
+					</div>		
+					
+				</td>				
+			</tr>
+		</table>		
+	</div>
+
+	<style type="text/css">
+		
+		#asMain
+		{
+			position: absolute; width: 98%; height: 90%;
+		}
+		
+		#asMain img
+		{
+			cursor: pointer;
+		}
+		
+		#asMain button
+		{
+			background-color:#203982; 
+			color:#fff;
+			border-radius: 10px;
+			cursor: pointer;
+		}
+		
+		#asMain button:hover
+		{
+			background-color:#FFFFFF; 
+			color:#000000;
+		}
+		
+		#asMainTab
+		{
+			margin: auto; width: 90%; height: 100%;
+		}
+		
+		#asArea
+		{
+			border: 1px solid #1E90FF; position: absolute; left: 2%; bottom: 2%; width: 96%; height: 70%;
+		}
+		
+		#asAreaDiv
+		{
+			position: absolute; width: 100%; height: 100%;
+		}
+		
+		#asDivTab
+		{
+			position: absolute; top: 10%; left: 2%; width: 65%; height: 80%; overflow: auto; background: #fff; border: 1px solid black;
+		}
+		
+		#asTab
+		{
+			width: 100%; height: auto%;
+		}
+		
+		#asTab td
+		{
+			border: 1px solid blue; cursor: pointer;
+		} 
+		
+		#asTab tr:hover
+		{
+			background: #D7DFE6;
+		}
+		
+		#asDivCon
+		{
+			position: absolute; top: 10%; right: 2%; width: 30%; height: 80%;
+		}
+		
+		#asCon
+		{
+			width: 100%; height: 100%;
+		}
+		 
+	</style>
+	
+	<script type="text/javascript">
+		
+		var $optIni = "<option value='@'>Seleccione...</option>";
+		var $idCiud = 0;
+		
+		window.onload = function() 
+		{
+			popup("Listo!");
+		}
+	</script>
+	
+{% endblock %}

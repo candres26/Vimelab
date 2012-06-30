@@ -1183,7 +1183,16 @@ tcruta_delete:
 tcruta_filter:
     pattern:  /tcruta/{param}/filter
     defaults: { _controller: ScontrolBundle:Tcruta:filter }
-#RUTAS PARA ASISTENTES
+#   --- RUTAS PARA ASISTENTES ---
+#
+#            Ubicaciones
+#
+as_ubica:
+    pattern: /asubic
+    defaults: { _controller: ScontrolBundle:AsUbica:index }
+#
+#            Protocolos
+#
 as_protocolo:
     pattern: /asprot
     defaults: { _controller: ScontrolBundle:AsProtocolo:index }
