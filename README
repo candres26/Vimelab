@@ -26,3 +26,5 @@ En caso de no tener el archivo app/config/parameters.ini, debe crearse con el si
 No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 
 Mejorando estandares JavaScript y TWIG, grandes cambios en el modelo de funciones, en base.html.twig (movida a src) y layout.html.twig.
+
+* Asitente De Ubicaciones Terminado

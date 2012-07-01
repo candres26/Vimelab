@@ -1190,6 +1190,27 @@ tcruta_filter:
 as_ubica:
     pattern: /asubic
     defaults: { _controller: ScontrolBundle:AsUbica:index }
+as_ubica_getProvs:
+    pattern: /asubic/getprovs
+    defaults: { _controller: ScontrolBundle:AsUbica:getProvs }
+as_ubica_getPaises:
+    pattern: /asubic/getpaises
+    defaults: { _controller: ScontrolBundle:AsUbica:getPaises }
+as_ubica_addPais:
+    pattern: /asubic/addpais
+    defaults: { _controller: ScontrolBundle:AsUbica:addPais }
+as_ubica_addProv:
+    pattern: /asubic/addprov
+    defaults: { _controller: ScontrolBundle:AsUbica:addProv }
+as_ubica_getCiuds:
+    pattern: /asubic/getciuds
+    defaults: { _controller: ScontrolBundle:AsUbica:getCiuds }
+as_ubica_addCiud:
+    pattern: /asubic/addciud
+    defaults: { _controller: ScontrolBundle:AsUbica:addCiud }
+as_ubica_delCiud:
+    pattern: /asubic/delciud
+    defaults: { _controller: ScontrolBundle:AsUbica:delCiud }
 #
 #            Protocolos
 #
