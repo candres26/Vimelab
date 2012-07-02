@@ -38,4 +38,11 @@ class GbdepaRepository extends EntityRepository
         $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Gbdepa m JOIN m.gbpais l WHERE m.nombre LIKE '%$parametro%' or m.codigo LIKE '%$parametro%' or l.nombre LIKE '%$parametro%' ORDER BY m.id ASC");
         return $querry->getResult();
     }
+	
+	public function getForPais($id)
+	{
+		$em = $this->getEntityManager();
+        $querry = $em->createQuery("SELECT d FROM ScontrolBundle:Gbdepa d JOIN d.gbpais p WHERE p.id = $id ORDER BY d.nombre ASC");
+        return $querry->getResult();
+	}
 }

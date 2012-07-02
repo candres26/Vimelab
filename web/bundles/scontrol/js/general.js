@@ -3,9 +3,34 @@ function go(dir)
     location = dir;
 }
 
-function init()
+function getUser(path)
 {
-	getUser();
+	ajaxAction
+	(
+		new Hash(['*tok => 0']),
+		path,
+		setUser
+	);
+}
+
+function setUser(response)
+{
+	gId('sisuser').innerHTML = response.responseText;
+}
+
+function launch(event)
+{
+	location = this.id;
+}
+
+function foldMenu(event)
+{	
+	elem = this;
+	
+	if(elem.style.height == '' || elem.style.height == '18px')
+		elem.style.height = 'auto';
+	else
+		elem.style.height = '18px';
 }
 
 function SimularClick(idObjete)

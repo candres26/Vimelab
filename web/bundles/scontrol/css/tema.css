@@ -215,7 +215,7 @@ h2
 	white-space: nowrap;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
-	border-bottom-color: #fffff;
+	border-bottom-color: #FFFFFF;
 }
 
 .vime-table-des td
@@ -282,7 +282,6 @@ h2
 	border-top: 1px solid silver;
 	border-bottom: 1px solid silver;
 	border-right: 1px solid silver;
-	border-style: 1px outset;
 }
 
 .vime-action:hover

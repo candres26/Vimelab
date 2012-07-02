@@ -30,7 +30,7 @@
 						{% endfor %}		
 					</select>
 				</td>
-				<td><select id='asPtra' onchange="getProcesos()"><option value='@'>Seleccione...</option></select></td>
+				<td><select id='asPtra'  onchange="getProcesos()"><option value='@'>Seleccione...</option></select></td>
 				<td>
 					<select id='asProt' onchange="checkProt(this)">
 						<option value='@'>Seleccione...</option>
@@ -63,7 +63,7 @@
 													<td align='left'><b>Nombre:</b></td><td><input id='newProName' type='text' maxlength='50'/></td>
 												</tr>
 												<tr>
-													<td colspan='2'><input class='btn' type='button' onclick='newProtocolo()' value='CREAR'/><input class='btn' type='button' onClick='cancelaProt()' value='CANCELAR'/></td>
+													<td colspan='2'><input class='btn' type='button' onclick='newProtocolo()' value='CREAR'/><input class='btn' type='button' onclick='cancelaProt()' value='CANCELAR'/></td>
 												</tr>
 											</table>
 										</td>
@@ -84,7 +84,7 @@
 													<td align='left'><b>Nombre:</b></td><td><input id='newTraName' type='text' maxlength='50' /></td>
 												</tr>
 												<tr>
-													<td colspan='2'><input class='btn' type='button' onclick='newTrabajo()' value='CREAR'/><input class='btn' type='button' onClick='cancelaTrab()' value='CANCELAR'/></td>
+													<td colspan='2'><input class='btn' type='button' onclick='newTrabajo()' value='CREAR'/><input class='btn' type='button' onclick='cancelaTrab()' value='CANCELAR'/></td>
 												</tr>
 											</table>
 										</td>
@@ -115,7 +115,7 @@
 										</tr>
 										
 										<tr>
-											<td align='right' colspan='2'><img onclick="returnGen()" src="{{ asset('bundles/scontrol/imagenes/iconos/ant.png') }}" title="Regresar"></td>
+											<td align='right' colspan='2'><img oncli="returnGen()" src="{{ asset('bundles/scontrol/imagenes/iconos/ant.png') }}" title="Regresar"></td>
 										</tr>
 									</table>
 								</div>
@@ -149,8 +149,99 @@
 			</tr>
 		</table>		
 	</div>
+	
+{% endblock %}
 
-	<script language="JavaScript">
+{% block style %}
+	<style type="text/css">
+		#asMain
+		{
+			position: absolute; width: 98%; height: 90%;
+		}
+		
+		#asMain img
+		{
+			cursor: pointer;
+		}
+		
+		.btn
+		{
+			background-color:#203982; 
+			color:#fff;
+			border-radius: 10px;
+			cursor: pointer;
+		}
+		
+		.btn:hover
+		{
+			background-color:#FFFFFF; 
+			color:#000000;
+		}
+		
+		#asMainTab
+		{
+			margin: auto; width: 90%; height: 100%;
+		}
+		
+		#asArea
+		{
+			border: 1px solid #1E90FF; position: absolute; left: 2%; bottom: 2%; width: 96%; height: 70%;
+		}
+		
+		#asAreaProt
+		{
+			width: 100%; height: 100%; display: none;
+		}
+		
+		#asAreaTrab
+		{
+			width: 100%; height: 100%; display: none;
+		}
+		
+		#asAreaPreg
+		{
+			position: absolute; width: 100%; height: 100%; display: none;
+		}
+		
+		#tabPreg
+		{
+			width: 100%; height: auto%;
+		} 
+		
+		#tabPreg td
+		{
+			border: 1px solid blue; cursor: pointer;
+		} 
+		
+		#tabPreg td:hover
+		{
+			background: #D7DFE6;
+		} 
+		
+		#tabProto
+		{
+			width: 100%; height: auto;
+		} 
+		
+		#tabProto td
+		{
+			border: 1px solid blue; cursor: pointer;
+		} 
+		
+		#tabProto tr:hover
+		{
+			background: #D7DFE6;
+		} 
+		
+		#asAreaAsis
+		{
+			width: 100%; height: 100%;
+		}
+	</style>
+{% endblock %}
+
+{% block uscript %}
+	<script type="text/javascript">
 		
 		var optINI = "<option value='@'>Seleccione...</option>";
 		var idQues = 0;
@@ -274,7 +365,7 @@
 				);
 			}
 			else
-				popup("Debe Selecionar Una Pregunta!");
+				popup("Debe Selecionar Un Protocolo!");
 		}
 		
 		function addProto()
@@ -310,7 +401,7 @@
 		
 		function getProcesos(response)
 		{
-			if(response != undefined)
+			if(typeof response != 'undefined')
 			{
 				if(response.responseText == '!')
 					popup("Protocolo Eliminado Con Exito!");
@@ -335,7 +426,7 @@
 		
 		function getQuest(response)
 		{
-			if(response != undefined)
+			if(typeof response != 'undefined')
 			{
 				if(response.responseText == '!')
 					popup("Pregunta Eliminada Con Exito!");
@@ -492,90 +583,4 @@
 		}
 	
 	</script>
-	
-	<style type="text/css">
-		#asMain
-		{
-			position: absolute; width: 98%; height: 90%;
-		}
-		
-		#asMain img
-		{
-			cursor: pointer;
-		}
-		
-		.btn
-		{
-			background-color:#203982; 
-			color:#fff;
-			border-radius: 10px;
-			cursor: pointer;
-		}
-		
-		.btn:hover
-		{
-			background-color:#FFFFFF; 
-			color:#000000;
-		}
-		
-		#asMainTab
-		{
-			margin: auto; width: 90%; height: 100%;
-		}
-		
-		#asArea
-		{
-			border: 1px solid #1E90FF; position: absolute; left: 2%; bottom: 2%; width: 96%; height: 70%;
-		}
-		
-		#asAreaProt
-		{
-			width: 100%; height: 100%; display: none;
-		}
-		
-		#asAreaTrab
-		{
-			width: 100%; height: 100%; display: none;
-		}
-		
-		#asAreaPreg
-		{
-			position: absolute; width: 100%; height: 100%; display: none;
-		}
-		
-		#tabPreg
-		{
-			width: 100%; height: auto%;
-		} 
-		
-		#tabPreg td
-		{
-			border: 1px solid blue; cursor: pointer;
-		} 
-		
-		#tabPreg td:hover
-		{
-			background: #D7DFE6;
-		} 
-		
-		#tabProto
-		{
-			width: 100%; height: auto%;
-		} 
-		
-		#tabProto td
-		{
-			border: 1px solid blue; cursor: pointer;
-		} 
-		
-		#tabProto tr:hover
-		{
-			background: #D7DFE6;
-		} 
-		
-		#asAreaAsis
-		{
-			width: 100%; height: 100%;
-		}
-	</style>
 {% endblock %}

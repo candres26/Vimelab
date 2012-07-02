@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends 'ScontrolBundle::base.html.twig' %}
 
 {% block header %}
 	
@@ -7,117 +7,94 @@
 {% endblock %}
 
 {% block body %}
-	<script text="JavaScript">
-		function getUser()
-		{
-			ajaxAction
-			(
-				new Hash(['*tok => 0']),
-				"{{ path('getUser') }}",
-				setUser
-			);
-		}
-		
-		function setUser(response)
-		{
-			gId('sisuser').innerHTML = response.responseText;
-		}
-		
-		function foldMenu(elem)
-		{
-			if(elem.style.height == '' || elem.style.height == '18px')
-				elem.style.height = 'auto';
-			else
-				elem.style.height = '18px';
-		}
-	</script>
 
 	<div id="vime-cabecera">
 	
 	</div>
 	<div id="vime-barra" align='right'>
-		<table style="padding-right: 50px; font-weight: bold;"><tr><td align='right'>Usuario Activo:</td><td id='sisuser'></td><td width='100px'></td><td onclick="go('{{ path('logout') }}')" class='exitBtn'>CERRAR SESIÓN</td></tr></table>
+		<table style="padding-right: 50px; font-weight: bold;"><tr><td align='right'>Usuario Activo:</td><td id='sisuser'>&nbsp;</td><td width='100px'>&nbsp;</td><td id="{{ path('logout') }}" class='exitBtn'>CERRAR SESIÓN</td></tr></table>
 	</div>
 	<div id="vime-menu">
 		
-		<div class='Menu' onclick='foldMenu(this)'>
+		<div id="vimeMenu1" class='Menu'>
 			<b>Generales</b>
 			<table>
-				<tr><td onclick="go('{{ path('gbacls') }}')">Control de Acceso</td></tr>
-				<tr><td onclick="go('{{ path('gbcarg') }}')">Cargos</td></tr>
-				<tr><td onclick="go('{{ path('gbciud') }}')">Ciudades</td></tr>
-				<tr><td onclick="go('{{ path('gbcnae') }}')">CNAE</td></tr>
-				<tr><td onclick="go('{{ path('gbdepa') }}')">Província</td></tr>
-				<tr><td onclick="go('{{ path('gbempr') }}')">Empresas</td></tr>
-				<tr><td onclick="go('{{ path('gbiden') }}')">Identificación</td></tr>
-				<tr><td onclick="go('{{ path('gblogr') }}')">Logs</td></tr>
-				<tr><td onclick="go('{{ path('gbpais') }}')">País</td></tr>
-				<tr><td onclick="go('{{ path('gbpers') }}')">Personal</td></tr>
-				<tr><td onclick="go('{{ path('gbptra') }}')">Puesto de Trabajo</td></tr>
-				<tr><td onclick="go('{{ path('gbsucu') }}')">Sucursal</td></tr>
-				<tr><td onclick="go('{{ path('gbusua') }}')">Usuario</td></tr>
+				<tr><td id="{{ path('gbacls') }}">Control de Acceso</td></tr>
+				<tr><td id="{{ path('gbcarg') }}">Cargos</td></tr>
+				<tr><td id="{{ path('gbciud') }}">Ciudades</td></tr>
+				<tr><td id="{{ path('gbcnae') }}">CNAE</td></tr>
+				<tr><td id="{{ path('gbdepa') }}">Província</td></tr>
+				<tr><td id="{{ path('gbempr') }}">Empresas</td></tr>
+				<tr><td id="{{ path('gbiden') }}">Identificación</td></tr>
+				<tr><td id="{{ path('gblogr') }}">Logs</td></tr>
+				<tr><td id="{{ path('gbpais') }}">País</td></tr>
+				<tr><td id="{{ path('gbpers') }}">Personal</td></tr>
+				<tr><td id="{{ path('gbptra') }}">Puesto de Trabajo</td></tr>
+				<tr><td id="{{ path('gbsucu') }}">Sucursal</td></tr>
+				<tr><td id="{{ path('gbusua') }}">Usuario</td></tr>
 			</table>
         </div>
         
-        <div class='Menu' onclick='foldMenu(this)'>
+        <div id="vimeMenu2" class='Menu'>
 			<b>Contables</b>
 			<table>
-				<tr><td onclick="go('{{ path('ctcont') }}')">Contrato</td></tr>
-				<tr><td onclick="go('{{ path('ctcoti') }}')">Presupuesto</td></tr>
-				<tr><td onclick="go('{{ path('ctfact') }}')">Factura</td></tr>
-				<tr><td onclick="go('{{ path('ctserv') }}')">Servicios</td></tr>
-				<tr><td onclick="go('{{ path('cttari') }}')">Tarifas</td></tr>
+				<tr><td id="{{ path('ctcont') }}">Contrato</td></tr>
+				<tr><td id="{{ path('ctcoti') }}">Presupuesto</td></tr>
+				<tr><td id="{{ path('ctfact') }}">Factura</td></tr>
+				<tr><td id="{{ path('ctserv') }}">Servicios</td></tr>
+				<tr><td id="{{ path('cttari') }}">Tarifas</td></tr>
 			</table>
         </div>
 
-        <div class='Menu' onclick='foldMenu(this)'>
+        <div id="vimeMenu3" class='Menu'>
 			<b>Antecedentes</b>
 			<table>
-				<tr><td onclick="go('{{ path('hsfami') }}')">Familiar</td></tr>
-				<tr><td onclick="go('{{ path('hslabo') }}')">Laboral</td></tr>
-				<tr><td onclick="go('{{ path('hspers') }}')">Personal</td></tr>
+				<tr><td id="{{ path('hsfami') }}">Familiar</td></tr>
+				<tr><td id="{{ path('hslabo') }}">Laboral</td></tr>
+				<tr><td id="{{ path('hspers') }}">Personal</td></tr>
 			</table>
         </div>
             
-        <div class='Menu' onclick='foldMenu(this)'>
+        <div id="vimeMenu4" class='Menu'>
 			<b>Médicas</b>
 			<table>
-				<tr><td onclick="go('{{ path('mdaudi') }}')">Audiometría</td></tr>
-				<tr><td onclick="go('{{ path('mdbiom') }}')">Biometría</td></tr>
-				<tr><td onclick="go('{{ path('mddiag') }}')">Diagnósticos</td></tr>
-				<tr><td onclick="go('{{ path('mdespi') }}')">Espirometría</td></tr>
-				<tr><td onclick="go('{{ path('mdexam') }}')">Exámenes</td></tr>
-				<tr><td onclick="go('{{ path('mdextr') }}')">Extremidades</td></tr>
-				<tr><td onclick="go('{{ path('mdhist') }}')">Hístoria</td></tr>
-				<tr><td onclick="go('{{ path('mdlabo') }}')">Ordenes Laboratorio</td></tr>
-				<tr><td onclick="go('{{ path('mdpaci') }}')">Pacientes</td></tr>
-				<tr><td onclick="go('{{ path('mdpato') }}')">Patología</td></tr>
-				<tr><td onclick="go('{{ path('mdproc') }}')">Procedimiento</td></tr>
-				<tr><td onclick="go('{{ path('mdprot') }}')">Protocolo</td></tr>
-				<tr><td onclick="go('{{ path('mdques') }}')">Prot. Cuestionario</td></tr>
-				<tr><td onclick="go('{{ path('mdresp') }}')">Prot. Respuestas</td></tr>
-				<tr><td onclick="go('{{ path('mdsist') }}')">Revisión Sistemas</td></tr>
-				<tr><td onclick="go('{{ path('mdvisu') }}')">Agudeza Visual</td></tr>
+				<tr><td id="{{ path('mdaudi') }}">Audiometría</td></tr>
+				<tr><td id="{{ path('mdbiom') }}">Biometría</td></tr>
+				<tr><td id="{{ path('mddiag') }}">Diagnósticos</td></tr>
+				<tr><td id="{{ path('mdespi') }}">Espirometría</td></tr>
+				<tr><td id="{{ path('mdexam') }}">Exámenes</td></tr>
+				<tr><td id="{{ path('mdextr') }}">Extremidades</td></tr>
+				<tr><td id="{{ path('mdhist') }}">Hístoria</td></tr>
+				<tr><td id="{{ path('mdlabo') }}">Ordenes Laboratorio</td></tr>
+				<tr><td id="{{ path('mdpaci') }}">Pacientes</td></tr>
+				<tr><td id="{{ path('mdpato') }}">Patología</td></tr>
+				<tr><td id="{{ path('mdproc') }}">Procedimiento</td></tr>
+				<tr><td id="{{ path('mdprot') }}">Protocolo</td></tr>
+				<tr><td id="{{ path('mdques') }}">Prot. Cuestionario</td></tr>
+				<tr><td id="{{ path('mdresp') }}">Prot. Respuestas</td></tr>
+				<tr><td id="{{ path('mdsist') }}">Revisión Sistemas</td></tr>
+				<tr><td id="{{ path('mdvisu') }}">Agudeza Visual</td></tr>
 			</table>
 		</div>
             
-        <div class='Menu' onclick='foldMenu(this)'>
+        <div id="vimeMenu5" class='Menu'>
 			<b>Técnicas</b>
 			<table>
-				<tr><td onclick="go('{{ path('tcaspe') }}')">Aspectos Técnicos</td></tr>
-				<tr><td onclick="go('{{ path('tccapa') }}')">Capacitaciones</td></tr>
-				<tr><td onclick="go('{{ path('tcchec') }}')">Lista de Chequeo</td></tr>
-				<tr><td onclick="go('{{ path('tccurs') }}')">Cursos</td></tr>
-				<tr><td onclick="go('{{ path('tcdeta') }}')">Detalle</td></tr>
-				<tr><td onclick="go('{{ path('tcrevi') }}')">Revisión Técnica</td></tr>
-				<tr><td onclick="go('{{ path('tcruta') }}')">Hoja de Ruta</td></tr>
+				<tr><td id="{{ path('tcaspe') }}">Aspectos Técnicos</td></tr>
+				<tr><td id="{{ path('tccapa') }}">Capacitaciones</td></tr>
+				<tr><td id="{{ path('tcchec') }}">Lista de Chequeo</td></tr>
+				<tr><td id="{{ path('tccurs') }}">Cursos</td></tr>
+				<tr><td id="{{ path('tcdeta') }}">Detalle</td></tr>
+				<tr><td id="{{ path('tcrevi') }}">Revisión Técnica</td></tr>
+				<tr><td id="{{ path('tcruta') }}">Hoja de Ruta</td></tr>
 			</table>
 		</div>
         
-        <div class='Menu' onclick='foldMenu(this)'>
+        <div id="vimeMenu6" class='Menu'>
 			<b>Asistentes</b>
 			<table>
-				<tr><td onclick="go('{{ path('as_protocolo') }}')">Protocolos</td></tr>
+				<tr><td id="{{ path('as_ubica') }}">Ubicaciones</td></tr>
+				<tr><td id="{{ path('as_protocolo') }}">Protocolos</td></tr>
 			</table>
 		</div>
     </div>
@@ -129,9 +106,9 @@
     </div>
     
 
-{% block action %}
-
-{% endblock %}
+	{% block action %}
+	
+	{% endblock %}
 	
     
     <div id="vime-pie">
@@ -139,9 +116,41 @@
     </div>
 
 	
-{% block lateral %}
-	
+	{% block lateral %}
 		
+			
+	{% endblock %}
+
 {% endblock %}
 
+{% block script %}
+	
+	{% block uscript %}{% endblock %}
+	
+	<script type="text/javascript">
+		
+		/** Init Global **/
+		
+		window.onload = function()
+		{			
+			getUser("{{ path('getUser') }}");
+			
+			gId("{{ path('logout') }}").onclick = launch;
+			
+			for(i = 1; i < 7; i++)
+			{
+				elem = gId("vimeMenu"+i);
+				elem.onclick = foldMenu;
+				
+				rows = gTag(elem, 'table')[0].rows;
+				
+				for(j = 0; j < rows.length; j++)
+					rows[j].cells[0].onclick = launch;
+			}
+			
+			if( typeof $init != "undefined")
+				$init();
+		}
+		
+	</script>
 {% endblock %}

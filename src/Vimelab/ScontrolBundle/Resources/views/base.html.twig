@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Vimelab - {% block title %}{% endblock %}</title>
+        <meta name="description" content="{% block metadesc %} Metadescripción común {% endblock %}">
+       
+		<script type="text/javascript" src="{{ asset('bundles/scontrol/js/general.js') }}">/*--- Include ---*/</script>	
+		<script type="text/javascript" src="{{ asset('bundles/scontrol/js/ice/ajax.js') }}">/*--- Include ---*/</script>
+		<script type="text/javascript" src="{{ asset('bundles/scontrol/js/ice/basico.js') }}">/*--- Include ---*/</script>
+		<script type="text/javascript" src="{{ asset('bundles/scontrol/js/ice/dom.js') }}">/*--- Include ---*/ </script>
+		
+		{% block header %}{% endblock %}
+        
+        <link rel="shortcut icon" href="{{ asset('bundles/scontrol/imagenes/iconos/favicon.ico') }}" />
+    
+    </head>
+    
+    <body>
+        {% block body %}{% endblock %}
+        
+        <div class='tPop' id='pop'>
+			<table class='tPopTab'>
+				<tr>
+					<td class='tPopIn' id='popin'> </td>
+				</tr>
+			</table>
+		</div>
+		
+		{% block style %}{% endblock %}
+		
+		{% block script %}{% endblock %}
+		
+    </body>
+</html>

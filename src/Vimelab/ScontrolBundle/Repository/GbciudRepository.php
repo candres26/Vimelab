@@ -38,4 +38,11 @@ class GbciudRepository extends EntityRepository
         $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Gbciud m JOIN m.gbdepa l WHERE m.nombre LIKE '%$parametro%' or m.codigo LIKE '%$parametro%' or l.nombre LIKE '%$parametro%' ORDER BY m.id ASC");
         return $querry->getResult();
     }
+    
+    public function getForDepa($id)
+    {
+        $em = $this->getEntityManager();
+        $querry = $em->createQuery("SELECT c FROM ScontrolBundle:Gbciud c JOIN c.gbdepa d WHERE d.id = $id ORDER BY c.nombre ASC");
+        return $querry->getResult();
+    }
 }

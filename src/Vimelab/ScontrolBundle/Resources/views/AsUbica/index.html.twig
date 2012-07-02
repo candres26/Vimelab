@@ -1,0 +1,537 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %} Asistente De Ubicaciones {% endblock %}
+
+{% block area %}
+	
+	<div id='asMain'>
+		<table id='asMainTab'>
+			<tr>
+				<td><b>País</b></td>
+				<td><b>Província</b></td>				
+			</tr>
+			
+			<tr>
+				<td><img id="btnNewPais" src="{{ asset('bundles/scontrol/imagenes/iconos/agregar.png') }}" title="Nuevo País"></td>
+				<td><img id="btnNewProv" src="{{ asset('bundles/scontrol/imagenes/iconos/agregar.png') }}" title="Nuevo Província"></td>
+			</tr>
+			
+			<tr>
+				<td>
+					<select id='asPais'>
+						<option value='@'>Seleccione...</option>
+						{% for p in paises %}
+							<option value="{{ p.id }}">{{ p.nombre }}</option>
+						{% endfor %}		
+					</select>
+				</td>
+				
+				<td>
+					<select id='asProv'>
+						<option value='@'>Seleccione...</option>
+						<!-- CAMPO AJAX -->
+					</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<td id="asCell" colspan='2'>
+					
+					<div id='asArea'>
+						
+						<div id='asAreaDiv'>
+								
+							<div id='asDivTab'>										
+								<table id='asTab'><!-- CAMPO AJAX --></table>
+							</div>
+							
+							<div id='asDivCon'>										
+								
+								<table id='asCon'>
+									
+									<tr>
+										<td align='left' >
+											<img id="btnAddCiu" src="{{ asset('bundles/scontrol/imagenes/iconos/add.png') }}" title="Agregar Ciudad">
+											<br>
+											<img id="btnRemCiu" src="{{ asset('bundles/scontrol/imagenes/iconos/rem.png') }}" title="Remover Ciudad">
+										</td>
+										
+										<td align="center">
+											
+											<table>
+												<tr>
+													<td align="left"><b>Código:</b></td>
+													<td align="left"><input id="asCode" type="text" maxlength="5"/></td>
+												</tr>
+												
+												<tr><td colspan="2">&nbsp;</td></tr>
+												
+												<tr>
+													<td align="left"><b>Nombre:</b></td>
+													<td align="left"><input id="asName" type="text" maxlength="50"/></td>
+												</tr>
+											</table>
+											
+										</td>
+									</tr>
+								
+								</table>
+							
+							</div>
+							
+						</div>
+						
+						<div id='asAreaPais'>
+							
+							<table id='asAreaPaisCon'>
+								<tr>
+									<td align="center">
+										
+										<table>
+											
+											<tr>
+												<td align="center" colspan="2"><h3>Nuevo País</h3></td>
+											</tr>
+											
+											<tr>
+												<td align="left"><b>Código</b></td>
+												<td align="left"><input id='paisCode' maxlength="3"/></td>
+											</tr>
+											
+											<tr>
+												<td align="left"><b>Nombre</b></td>
+												<td align="left"><input id='paisName' maxlength="50"/></td>
+											</tr>
+											
+											<tr>
+												<td align="center" colspan="2">
+													<button id="btnCrePais">CREAR</button>
+													<button id="btnCanPais">CANCELAR</button>
+												</td>
+											</tr>
+											
+										</table>
+										
+									</td>
+								</tr>
+							</table>
+							
+						</div>
+						
+						<div id='asAreaProv'>
+							
+							<table id='asAreaProvCon'>
+								<tr>
+									<td align="center">
+										
+										<table>
+											
+											<tr>
+												<td align="center" colspan="2"><h3>Nueva Província</h3></td>
+											</tr>
+											
+											<tr>
+												<td align="left"><b>Código</b></td>
+												<td align="left"><input id='provCode' maxlength="2"/></td>
+											</tr>
+											
+											<tr>
+												<td align="left"><b>Nombre</b></td>
+												<td align="left"><input id='provName' maxlength="50"/></td>
+											</tr>
+											
+											<tr>
+												<td align="center" colspan="2">
+													<button id="btnCreProv">CREAR</button>
+													<button id="btnCanProv">CANCELAR</button>
+												</td>
+											</tr>
+											
+										</table>
+										
+									</td>
+								</tr>
+							</table>
+							
+						</div>
+						
+					</div>		
+					
+				</td>				
+			</tr>
+		</table>		
+	</div>
+{% endblock %}
+
+{% block style %}
+	<style type="text/css">
+		
+		#asMain
+		{
+			position: absolute; width: 98%; height: 90%;
+		}
+		
+		#asMain img
+		{
+			cursor: pointer;
+		}
+		
+		#asMain button
+		{
+			background-color:#203982; 
+			color:#fff;
+			border-radius: 10px;
+			cursor: pointer;
+		}
+		
+		#asMain button:hover
+		{
+			background-color:#FFFFFF; 
+			color:#000000;
+		}
+		
+		#asMainTab
+		{
+			margin: auto; width: 90%; height: 100%;
+		}
+		
+		#asCell
+		{
+			height: 80%; text-align: center;
+		}
+		
+		#asArea
+		{
+			border: 1px solid #1E90FF; position: absolute; left: 2%; bottom: 2%; width: 96%; height: 70%;
+		}
+		
+		#asAreaDiv
+		{
+			position: absolute; width: 100%; height: 100%;
+		}
+		
+		#asDivTab
+		{
+			position: absolute; top: 10%; left: 2%; width: 65%; height: 80%; overflow: auto; background: #fff; border: 1px solid black;
+		}
+		
+		#asTab
+		{
+			width: 100%; height: auto;
+		}
+		
+		#asTab td
+		{
+			border: 1px solid blue; cursor: pointer;
+		} 
+		
+		#asTab tr:hover
+		{
+			background: #D7DFE6;
+		}
+		
+		#asDivCon
+		{
+			position: absolute; top: 10%; right: 2%; width: 30%; height: 80%;
+		}
+		
+		#asCon
+		{
+			width: 100%; height: 100%;
+		}
+		
+		#asAreaPais, #asAreaProv
+		{
+			width: 100%; height: 100%; display: none;
+		}
+		
+		#asAreaPaisCon, #asAreaProvCon
+		{
+			width: 100%; height: 100%;
+		} 
+	</style>
+
+{% endblock %}
+
+{% block uscript %}
+	<script type="text/javascript">
+		
+		var $optIni = "<option value='@'>Seleccione...</option>";
+		var $idCiud = 0;
+		
+		function $init()
+		{
+			gId('btnNewPais').onclick = viewPais;
+			gId('btnNewProv').onclick = viewProv;
+			gId('btnCrePais').onclick = addPais;
+			gId('btnCanPais').onclick = retPais;
+			gId('btnCreProv').onclick = addProv;
+			gId('btnCanProv').onclick = retProv;
+			gId('btnAddCiu').onclick = addCiu;
+			gId('btnRemCiu').onclick = remCiu;
+			gId('asTab').onclick = selCiud;
+			gId('asPais').onchange = listProvs;
+			gId('asProv').onchange = listCiuds;
+		}
+		
+		function changeArea(id)
+		{
+			hide('asAreaDiv');
+			hide('asAreaPais');
+			hide('asAreaProv');
+			
+			gId(id).style.display = 'block';
+		}
+		
+		function viewPais(event)
+		{
+			changeArea('asAreaPais');
+		}
+		
+		function viewProv(event)
+		{
+			if(gId('asPais').value != '@')
+				changeArea('asAreaProv');
+			else
+				popup("Debe Selecionar Un País!");
+		}
+		
+		function listProvs(event)
+		{
+			getProvs();
+		}
+		
+		function listCiuds(event)
+		{
+			getCiuds();
+		}
+		
+		function selCiud(event)
+		{	
+			if(event.target.nodeName == 'TD')
+			{
+				elem = event.target.parentNode;
+				tab = gId('asTab');
+				rows = tab.rows;
+				
+				for(i = 0; i < rows.length; i++)
+					rows[i].style.background = '';
+				
+				if($idCiud != elem.id)
+				{
+					$idCiud  = elem.id;
+					elem.style.background = '#D7DFE6';
+				}
+				else
+					$idCiud  = 0;
+			}
+		}
+		
+		function addPais(event)
+		{
+			if(gId("paisCode").value != '' && gId("paisName").value != '')
+			{
+				ajaxAction
+				(
+					new Hash(['paisCode', 'paisName']),
+					"{{ path('as_ubica_addPais') }}",
+					getPaises
+				);
+				
+				retPais();
+			}
+			else
+				popup("Debe Suministrar Un Código Y Un Nombre Válidos!");
+		}
+		
+		function retPais(event)
+		{
+			gId("paisCode").value = '';
+			gId("paisName").value = '';
+			changeArea("asAreaDiv");
+		}
+		
+		
+		function getPaises(response)
+		{
+			if(typeof response != 'undefined')
+			{
+				if(response.responseText.substring(0, 1) == '!')
+					popup("País Agregado Con Exito!");
+				else
+					popup("Imposible Agregar El País!.");	
+			}
+			
+			ajaxAction
+			(
+				new Hash(['*tok => 0']),
+				"{{ path('as_ubica_getPaises') }}",
+				setPaises
+			);
+		}
+		
+		function setPaises(response)
+		{
+			if(response.responseText.substring(0, 1) != '%')
+			{
+				code = '';
+				
+				arr = response.responseText.split('|:|');
+				
+				for (i = 0; i < arr.length; i++)
+				{
+					pp = arr[i].split('=>');
+					code += "<option value='"+pp[0]+"'>"+pp[1]+"</option>";
+				}
+	
+				gId('asPais').innerHTML = $optIni+code;
+			}
+			else
+				popup("Ninguna País Encontrado!.");
+		}
+		
+		function addProv(event)
+		{
+			if(gId("asPais").value != '@' && gId("provCode").value != '' && gId("provName").value != '')
+			{
+				ajaxAction
+				(
+					new Hash(['asPais', 'provCode', 'provName']),
+					"{{ path('as_ubica_addProv') }}",
+					getProvs
+				);
+				
+				retPais();
+			}
+			else
+				popup("Debe Selecionar Un País Y Suministrar Un Código Y Un Nombre Válidos!");
+		}
+				
+		function retProv(event)
+		{
+			gId("provCode").value = '';
+			gId("provName").value = '';
+			changeArea("asAreaDiv");
+		}
+		
+		function getProvs(response)
+		{
+			if(typeof response != 'undefined')
+			{
+				if(response.responseText.substring(0, 1) == '!')
+					popup("Província Agregada Con Exito!");
+				else
+					popup("Imposible Agregar La Província!.");	
+			}
+			
+			if(gId('asPais').value != '@')
+			{
+				ajaxAction
+				(
+					new Hash(['asPais']),
+					"{{ path('as_ubica_getProvs') }}",
+					setProvs
+				);
+			}
+		}
+		
+		function setProvs(response)
+		{
+			if(response.responseText.substring(0, 1) != '%')
+			{
+				code = '';
+				
+				arr = response.responseText.split('|:|');
+				
+				for (i = 0; i < arr.length; i++)
+				{
+					pp = arr[i].split('=>');
+					code += "<option value='"+pp[0]+"'>"+pp[1]+"</option>";
+				}
+	
+				gId('asProv').innerHTML = $optIni+code;
+			}
+			else
+				popup("Ninguna Província Asociada A Este País!.");
+		}
+		
+		function addCiu(event)
+		{
+			if(gId("asProv").value != '@' && gId("asCode").value != '' && gId("asName").value != '')
+			{
+				ajaxAction
+				(
+					new Hash(['asProv', 'asCode', 'asName']),
+					"{{ path('as_ubica_addCiud') }}",
+					getCiuds
+				);
+				
+				gId("asCode").value = '';
+				gId("asName").value = '';
+			}
+			else
+				popup("Debe Selecionar Una Província Y Suministrar Un Código Y Un Nombre Válidos!");
+		}
+		
+		function remCiu(event)
+		{
+			if($idCiud != 0)
+			{
+				ajaxAction
+				(
+					new Hash(['*id => '+$idCiud]),
+					"{{ path('as_ubica_delCiud') }}",
+					getCiuds
+				);
+			}
+			else
+				popup("Debe Selecionar Una Ciudad!");
+		}
+		
+		function getCiuds(response)
+		{
+			if(typeof response != 'undefined')
+			{
+				if(response.responseText.substring(0, 1) == '!')
+					popup("Ciudad Agregada Con Exito!");
+				else if(response.responseText.substring(0, 1) == '#')
+					popup("Imposible Agregar La Ciudad!.");
+				else if(response.responseText.substring(0, 1) == '&')
+					popup("Ciudad Eliminada Con Exito!");	
+				else
+					popup("Imposible Eliminar La Ciudad!.");	
+			}
+			
+			if(gId('asProv').value != '@')
+			{
+				ajaxAction
+				(
+					new Hash(['asProv']),
+					"{{ path('as_ubica_getCiuds') }}",
+					setCiuds
+				);
+			}
+		}
+		
+		function setCiuds(response)
+		{
+			if(response.responseText.substring(0, 1) != '%')
+			{
+				code = '';
+				
+				arr = response.responseText.split('|:|');
+				
+				for (i = 0; i < arr.length; i++)
+				{
+					pp = arr[i].split('=>');
+					code += "<tr id='"+pp[0]+"'><td>"+pp[1]+"</td><td>"+pp[2]+"</td><td>"+pp[3]+"</td><td>"+pp[4]+"</td></tr>";
+				}
+	
+				gId('asTab').innerHTML = code;
+			}
+			else
+				gId('asTab').innerHTML = "<tr><td><h3>Ninguna Ciudad Encontrada!</h3></td></tr>";
+		}
+	</script>
+	
+{% endblock %}
