@@ -8,7 +8,7 @@
 
 <form id="vime-form" action="{{ path('tcchec_create') }}" method="post" {{ form_enctype(form) }}>
 	<input type="submit" style="display: none" id="sender" value="send">
-	<table style="position: absolute; margin-left: 0.2%; margin-top: 1%;">
+	<table style="position: absolute; margin-left: 6%; margin-top: 1%;">
 		<tr><td colspan='2'>{{ form_errors(form.tcrevi) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.tcrevi) }}</td><td align="left">{{ form_widget(form.tcrevi) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.ntrabajadores) }}</td></tr>
@@ -32,19 +32,19 @@
 		<tr><td colspan='2'>{{ form_errors(form.mquimico) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.mquimico) }}</td><td align="left">{{ form_widget(form.mquimico) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.hquimico) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.hquimico) }}</td><td align="left">{{ form_widget(form.hquimico) }}</td></tr>		
-	</table>
-	<table style="position: absolute; margin-left: 37%; margin-top: 1%;">
+		<tr><td align="left">{{ form_label(form.hquimico) }}</td><td align="left">{{ form_widget(form.hquimico) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.mbiologico) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.mbiologico) }}</td><td align="left">{{ form_widget(form.mbiologico) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.hbiologico) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.hbiologico) }}</td><td align="left">{{ form_widget(form.hbiologico) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.cargas) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.cargas) }}</td><td align="left">{{ form_widget(form.cargas) }}</td></tr>
+	</table>
+	<table style="position: absolute; margin-left: 57%; margin-top: 1%;">
 		<tr><td colspan='2'>{{ form_errors(form.carretilleros) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.carretilleros) }}</td><td align="left">{{ form_widget(form.carretilleros) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.carretilleros) }}</td><td align="left">{{ form_widget(form.carretilleros) }}</td></tr>		
 		<tr><td colspan='2'>{{ form_errors(form.repetitivos) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.repetitivos) }}</td><td align="left">{{ form_widget(form.repetitivos) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.repetitivos) }}</td><td align="left">{{ form_widget(form.repetitivos) }}</td></tr>		
 		<tr><td colspan='2'>{{ form_errors(form.ett) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.ett) }}</td><td align="left">{{ form_widget(form.ett) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.limpieza) }}</td></tr>
@@ -67,8 +67,6 @@
 		<tr><td align="left">{{ form_label(form.pemergencia) }}</td><td align="left">{{ form_widget(form.pemergencia) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.lemergencia) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.lemergencia) }}</td><td align="left">{{ form_widget(form.lemergencia) }}</td></tr>
-	</table>
-	<table style="position: absolute; margin-left: 72%; margin-top: 1%;">
 		<tr><td colspan='2'>{{ form_errors(form.alarmas) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.alarmas) }}</td><td align="left">{{ form_widget(form.alarmas) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.selectrico) }}</td></tr>
@@ -86,8 +84,8 @@
 		<tr><td colspan='2'>{{ form_errors(form.bantideslizante) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.bantideslizante) }}</td><td align="left">{{ form_widget(form.bantideslizante) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.observaciones) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.observaciones) }}</td><td align="left">{{ form_widget(form.observaciones) }}</td></tr>
-    </table>
+		<tr><td align="left">{{ form_label(form.observaciones) }}</td><td align="left">{{ form_widget(form.observaciones) }}</td></tr>	
+	</table>
     {{ form_rest(form) }}
 </form>
 

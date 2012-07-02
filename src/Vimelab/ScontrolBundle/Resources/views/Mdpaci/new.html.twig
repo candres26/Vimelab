@@ -8,7 +8,7 @@
 
 <form id="vime-form" action="{{ path('mdpaci_create') }}" method="post" {{ form_enctype(form) }}>
 	<input type="submit" style="display: none" id="sender" value="send">
-   <table style="position: absolute; margin-left: 4%;">
+   <table style="position: absolute; margin-left: 15%;">
 		<tr><td colspan='2'>{{ form_errors(form.identificacion) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.identificacion) }}</td><td align="left">{{ form_widget(form.identificacion) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.tipoide) }}</td></tr>
@@ -27,7 +27,7 @@
 		<tr><td colspan='2'>{{ form_errors(form.sexo) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.sexo) }}</td><td align="left">{{ form_widget(form.sexo) }}</td></tr>
 	</table>
-    <table style="position: absolute; margin-left: 45%;">
+    <table style="position: absolute; margin-left: 55%;">
 		<tr><td colspan='2'>{{ form_errors(form.direccion) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.direccion) }}</td><td align="left">{{ form_widget(form.direccion) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.telefono) }}</td></tr>
