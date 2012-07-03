@@ -1244,3 +1244,9 @@ as_protocolo_addProto:
 as_protocolo_delProto:
     pattern: /asprot/delProto
     defaults: { _controller: ScontrolBundle:AsProtocolo:delProto }
+#
+#            Seguridad
+#
+as_secu:
+    pattern: /assecu
+    defaults: { _controller: ScontrolBundle:AsSecu:index }

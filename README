@@ -28,4 +28,5 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 Mejorando estandares JavaScript y TWIG, grandes cambios en el modelo de funciones, en base.html.twig (movida a src) y layout.html.twig.
 
 * Asitente De Ubicaciones Terminado, control de paises, províncias y ciudades.
-* Tabla GbVars Agregada, para lavergar datos de procesos y asistentes.
+* Tabla GbVars Agregada, para alojar datos de procesos y asistentes.
+* Esquema de vistas para asistentes mejoradas.
