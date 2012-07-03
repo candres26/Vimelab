@@ -71,7 +71,7 @@ CREATE TABLE `CtCont` (
 
 LOCK TABLES `CtCont` WRITE;
 /*!40000 ALTER TABLE `CtCont` DISABLE KEYS */;
-INSERT INTO `CtCont` VALUES (1,1,1,'2007-01-01','2007-01-01','2007-01-01',1,'3163131','bkj','Miguel','knl',1,'kn','lkknl','Carlos','lklkn',2,2,'k',1,3613,'31.00','1.00','3.00','311.00','31.00'),(2,1,1,'2012-02-12','2012-02-15','2012-04-30',1,'223366454','Obrero','Camilo Contreras','Manzv cs # 22-33',1,'23666698','fsfsñopñj','Carlos Alzate','piyvfytf',1,1,'g',1,62569698,'566625.00','9.99','5.00','6698213.00','222223647.00');
+INSERT INTO `CtCont` VALUES (1,1,1,'2007-01-01','2007-01-01','2007-01-01',1,'3163131','bkj','Miguel','knl',1,'kn','lkknl','Carlos','lklkn',2,2,'k',1,3613,'31.00','1.00','3.00','311.00','31.00'),(2,1,1,'2012-02-12','2012-02-15','2012-04-30',1,'223366454','Obrero','Camilo Contreras','Manzv cs # 22-33',1,'23666698','fsfsñopñj','Carlos Alzate','piyvfytf',1,2,'g',1,62569698,'566625.00','9.99','5.00','6698213.00','222223647.00');
 /*!40000 ALTER TABLE `CtCont` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -250,7 +250,7 @@ CREATE TABLE `GbCarg` (
   `nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -259,7 +259,7 @@ CREATE TABLE `GbCarg` (
 
 LOCK TABLES `GbCarg` WRITE;
 /*!40000 ALTER TABLE `GbCarg` DISABLE KEYS */;
-INSERT INTO `GbCarg` VALUES (2,'Médico'),(1,'SYSTEM ADMIN');
+INSERT INTO `GbCarg` VALUES (3,'Almacenista'),(2,'Médico'),(1,'SYSTEM ADMIN');
 /*!40000 ALTER TABLE `GbCarg` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -315,6 +315,47 @@ LOCK TABLES `GbCnae` WRITE;
 /*!40000 ALTER TABLE `GbCnae` DISABLE KEYS */;
 INSERT INTO `GbCnae` VALUES (1,'NULO','NULO'),(2,'Comercio','Comercializadora');
 /*!40000 ALTER TABLE `GbCnae` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `GbCorp`
+--
+
+DROP TABLE IF EXISTS `GbCorp`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `GbCorp` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `identificacion` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `EmpresaGbIden_id` tinyint(2) unsigned NOT NULL,
+  `nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `rplegal` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `identrplegal` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `RepresentanteGbIden_id` tinyint(2) unsigned NOT NULL,
+  `direccion` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `GbCiud_id` int(5) unsigned NOT NULL,
+  `telefono` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `fax` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `correo` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `web` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `logo` text COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`id`),
+  KEY `EmpresaGbIden_id` (`EmpresaGbIden_id`),
+  KEY `RepresentanteGbIden_id` (`RepresentanteGbIden_id`),
+  KEY `GbCiud_id` (`GbCiud_id`),
+  CONSTRAINT `GbCorp_ibfk_1` FOREIGN KEY (`EmpresaGbIden_id`) REFERENCES `GbIden` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `GbCorp_ibfk_2` FOREIGN KEY (`RepresentanteGbIden_id`) REFERENCES `GbIden` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `GbCorp_ibfk_3` FOREIGN KEY (`GbCiud_id`) REFERENCES `GbCiud` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `GbCorp`
+--
+
+LOCK TABLES `GbCorp` WRITE;
+/*!40000 ALTER TABLE `GbCorp` DISABLE KEYS */;
+/*!40000 ALTER TABLE `GbCorp` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -423,7 +464,7 @@ CREATE TABLE `GbLogr` (
   PRIMARY KEY (`id`),
   KEY `GbUsua_id` (`GbUsua_id`),
   CONSTRAINT `GbLogr_ibfk_1` FOREIGN KEY (`GbUsua_id`) REFERENCES `GbUsua` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -432,7 +473,7 @@ CREATE TABLE `GbLogr` (
 
 LOCK TABLES `GbLogr` WRITE;
 /*!40000 ALTER TABLE `GbLogr` DISABLE KEYS */;
-INSERT INTO `GbLogr` VALUES (1,'2012-06-21 21:23:05',1,'Mdvisu','create'),(2,'2012-06-21 21:34:51',1,'Mdvisu','delete ID: '),(3,'2012-06-21 21:35:28',1,'Mdvisu','update ID: 2'),(4,'2012-06-21 21:39:02',1,'Mdvisu','create ID: 20'),(5,'2012-06-21 21:39:41',1,'Mdvisu','update ID: 2'),(6,'2012-06-21 21:39:54',1,'Mdvisu','delete ID: 2'),(7,'2012-06-22 08:45:06',1,'Mdvisu','create ID: 21');
+INSERT INTO `GbLogr` VALUES (1,'2012-06-21 21:23:05',1,'Mdvisu','create'),(2,'2012-06-21 21:34:51',1,'Mdvisu','delete ID: '),(3,'2012-06-21 21:35:28',1,'Mdvisu','update ID: 2'),(4,'2012-06-21 21:39:02',1,'Mdvisu','create ID: 20'),(5,'2012-06-21 21:39:41',1,'Mdvisu','update ID: 2'),(6,'2012-06-21 21:39:54',1,'Mdvisu','delete ID: 2'),(7,'2012-06-22 08:45:06',1,'Mdvisu','create ID: 21'),(8,'2012-06-25 09:21:25',1,'Ctcont','update ID: 2'),(9,'2012-06-25 09:30:05',1,'Ctserv','create ID: 3'),(10,'2012-06-25 09:30:37',1,'Ctserv','delete ID: '),(11,'2012-06-29 21:02:19',1,'Gbcarg','create ID: 3');
 /*!40000 ALTER TABLE `GbLogr` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1576,4 +1617,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-06-25  8:49:42
+-- Dump completed on 2012-07-02 18:34:34

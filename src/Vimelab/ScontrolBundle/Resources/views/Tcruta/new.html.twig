@@ -8,66 +8,66 @@
 
 <form id="vime-form" action="{{ path('tcruta_create') }}" method="post" {{ form_enctype(form) }}>
 	<input type="submit" style="display: none" id="sender" value="send">
-	<table style="position: absolute; margin-left: 2%; margin-top: 3%;">
-		<tr><td align="left">{{ form_label(form.estado) }}</td><td align="left"> {{ form_errors(form.estado) }} {{ form_widget(form.estado) }}</td><td></td><td></td><td align="left">{{ form_label(form.ctcont) }}</td><td align="left"> {{ form_errors(form.ctcont) }} {{ form_widget(form.ctcont) }}</td></tr>
+	<table style="position: relative; margin-left: 17%; margin-top: 3%;">
+		<tr><td align="left">{{ form_label(form.estado) }}</td><td align="left"> {{ form_errors(form.estado) }} {{ form_widget(form.estado) }} </td><td align="left">{{ form_label(form.ctcont) }}</td><td align="left"> {{ form_errors(form.ctcont) }} {{ form_widget(form.ctcont) }} </td></tr>
+		<tr><td align="left">{{ form_label(form.encargado) }}</td><td align="left"> {{ form_errors(form.encargado) }} {{ form_widget(form.encargado) }}</td><td align="left">{{ form_label(form.fplaneada) }}</td><td align="left"> {{ form_errors(form.fplaneada) }} {{ form_widget(form.fplaneada) }} </td></tr>
+		<tr><td ></td><td></td><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>
+		<tr><td align="left">{{ form_label(form.fejecutada) }}</td><td align="left"> {{ form_errors(form.fejecutada) }} {{ form_widget(form.fejecutada) }} </td><td align="left"> {{ form_label(form.personal) }} </td><td align="left"> {{ form_errors(form.personal) }} {{ form_widget(form.personal) }} </td></tr>
+		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td><td></td><td></td></tr>
+		<tr><td align="left">{{ form_label(form.datos) }}</td><td align="left"> {{ form_errors(form.datos) }} {{ form_widget(form.datos) }}</td><td align="left">{{ form_label(form.fparciales) }}</td><td align="left"> {{ form_errors(form.fparciales) }} {{ form_widget(form.fparciales) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.equipo) }}</td><td align="left"> {{ form_errors(form.equipo) }} {{ form_widget(form.equipo) }}</td><td align="left">{{ form_label(form.lugar) }}</td><td align="left"> {{ form_errors(form.lugar) }} {{ form_widget(form.lugar) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.unidad) }}</td><td align="left"> {{ form_errors(form.unidad) }} {{ form_widget(form.unidad) }}</td><td></td><td></td></tr>
 		<tr><td></td><td></td><td></td><td></td></tr>
 		<tr><td></td><td></td><td></td><td></td></tr>
-		<tr><td></td><td></td><td></td><td></td></tr>
-		<tr><td></td><td></td><td></td><td></td></tr>
-		<tr><td></td><td></td><td></td><td></td></tr>
-		<tr><td align="left">{{ form_label(form.encargado) }}</td><td align="left"> {{ form_errors(form.encargado) }} {{ form_widget(form.encargado) }}</td><td align="left">{{ form_label(form.fplaneada) }}</td><td align="left"> {{ form_errors(form.fplaneada) }} {{ form_widget(form.fplaneada) }}</td><td align="left">{{ form_label(form.fejecutada) }}</td><td align="left"> {{ form_errors(form.fejecutada) }} {{ form_widget(form.fejecutada) }}</td></tr>
-		<tr><td></td><td></td><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>		
-		<tr><td align="left">{{ form_label(form.personal) }}</td><td align="left"> {{ form_errors(form.personal) }} {{ form_widget(form.personal) }}</td><td align="left">{{ form_label(form.datos) }}</td><td align="left"> {{ form_errors(form.datos) }} {{ form_widget(form.datos) }}</td><td align="left">{{ form_label(form.fparciales) }}</td><td align="left"> {{ form_errors(form.fparciales) }} {{ form_widget(form.fparciales) }}</td></tr>
+		<tr>
+			<td colspan="2">
+				<table>
+					<tr><th>Tipos de Revisión: </th></tr>	
+					<tr><td></td></tr>
+					<tr><td></td></tr>
+					<tr><td></td></tr>
+					<tr><td></td></tr>
+					<tr><td></td></tr>
+					<tr><td align="left">{{ form_label(form.analitica) }}</td><td> {{ form_errors(form.analitica) }} {{ form_widget(form.analitica) }} </td><td align="left"> {{ form_label(form.vision) }} </td><td> {{ form_errors(form.vision) }} {{ form_widget(form.vision) }} </td></tr>
+					<tr><td align="left">{{ form_label(form.biometria) }}</td><td align="left"> {{ form_errors(form.biometria) }} {{ form_widget(form.biometria) }} </td><td align="left"> {{ form_label(form.espirometria) }} </td><td> {{ form_errors(form.espirometria) }} {{ form_widget(form.espirometria) }} </td></tr>
+					<tr><td align="left">{{ form_label(form.audiometria) }}</td><td align="left"> {{ form_errors(form.audiometria) }} {{ form_widget(form.audiometria) }}</td><td align="left">{{ form_label(form.medica) }}</td><td align="left"> {{ form_errors(form.medica) }} {{ form_widget(form.medica) }}</td></tr>
+					<tr><td></td></tr>
+					<tr><td></td></tr>
+					<tr><td></td></tr>
+					<tr><td></td></tr>
+					<tr><td></td></tr>
+				</table>
+			</td>
+			<td colspan="2">
+				<table>
+					<tr><th>Electrocardiogramas: </th></tr>
+					<tr><td></td></tr>
+					<tr><td></td></tr>
+					<tr><td></td></tr>
+					<tr><td></td></tr>
+					<tr><td></td></tr>
+					<tr><td align="left">{{ form_label(form.electro) }}</td><td align="left"> {{ form_errors(form.electro) }} {{ form_widget(form.electro) }}</td></tr>
+					<tr><td align="left">{{ form_label(form.detelectro) }}</td><td align="left"> {{ form_errors(form.detelectro) }} {{ form_widget(form.detelectro) }}</td></tr>
+					<tr><td align="left">{{ form_label(form.comentarios) }}</td><td align="left"> {{ form_errors(form.comentarios) }} {{ form_widget(form.comentarios) }}</td></tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4">
+				<table>
+					<tr><th>Número de Pruebas: </th></tr>
+					<tr><td></td></tr>
+					<tr><td></td></tr>
+					<tr><td></td></tr>
+					<tr><td></td></tr>
+					<tr><td></td></tr>
+					<tr><td align="left">{{ form_label(form.ncompletos) }}</td><td align="left"> {{ form_errors(form.ncompletos) }} {{ form_widget(form.ncompletos) }} </td> <td align="left">{{ form_label(form.necg) }}</td><td align="left"> {{ form_errors(form.necg) }} {{ form_widget(form.necg) }}</td></tr>
+					<tr><td align="left">{{ form_label(form.nanaliticas) }}</td><td align="left"> {{ form_errors(form.nanaliticas) }} {{ form_widget(form.nanaliticas) }}</td> <td align="left">{{ form_label(form.naudiometria) }}</td><td align="left"> {{ form_errors(form.naudiometria) }} {{ form_widget(form.naudiometria) }}</td></tr>
+					<tr><td align="left">{{ form_label(form.nsolas) }}</td><td align="left"> {{ form_errors(form.nsolas) }} {{ form_widget(form.nsolas) }}</td> <td align="left">{{ form_label(form.total) }}</td><td align="left"> {{ form_errors(form.total) }} {{ form_widget(form.total) }}</td></tr>
+				</table>
+			</td>
+		</tr>	
 	</table>
-	<table style="position: absolute; margin-left: 76%; margin-top: 12%;">
-		<tr><td align="left">{{ form_label(form.equipo) }}</td><td align="left"> {{ form_errors(form.equipo) }} {{ form_widget(form.equipo, { 'attr': { 'size': '8' }}) }}</td><td align="left">{{ form_label(form.lugar) }}</td><td align="left"> {{ form_errors(form.lugar) }} {{ form_widget(form.lugar, { 'attr': { 'size': '8' }}) }}</td></tr>
-		<tr><td></td><td></td><td></td><td></td></tr>
-		<tr><td></td><td></td><td></td><td></td></tr>
-		<tr><td></td><td></td><td></td><td></td></tr>
-		<tr><td align="left">{{ form_label(form.unidad) }}</td><td colspan='3' align="left"> {{ form_errors(form.unidad) }} {{ form_widget(form.unidad) }}</td></tr>
-	</table>
-	<table style="position: absolute; margin-left: 2%%; margin-top: 30%;">
-		<tr><th>Tipos de Revisión: </th></tr>	
-		<tr><td></td></tr>
-		<tr><td></td></tr>
-		<tr><td></td></tr>
-		<tr><td></td></tr>
-		<tr><td></td></tr>
-		<tr><td align="left">{{ form_label(form.analitica) }}</td><td align="left"> {{ form_errors(form.analitica) }} {{ form_widget(form.analitica) }}</td><td align="left">{{ form_label(form.vision) }}</td><td align="left"> {{ form_errors(form.vision) }} {{ form_widget(form.vision) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.biometria) }}</td><td align="left"> {{ form_errors(form.biometria) }} {{ form_widget(form.biometria) }}</td><td align="left">{{ form_label(form.espirometria) }}</td><td align="left"> {{ form_errors(form.espirometria) }} {{ form_widget(form.espirometria) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.audiometria) }}</td><td align="left"> {{ form_errors(form.audiometria) }} {{ form_widget(form.audiometria) }}</td><td align="left">{{ form_label(form.medica) }}</td><td align="left"> {{ form_errors(form.medica) }} {{ form_widget(form.medica) }}</td></tr>
-	</table>
-	<table style="position: absolute; margin-left: 2%; margin-top: 51%;">
-		<tr><th>Electrocardiogramas: </th></tr>
-		<tr><td></td></tr>
-		<tr><td></td></tr>
-		<tr><td></td></tr>
-		<tr><td></td></tr>
-		<tr><td></td></tr>
-		<tr><td align="left">{{ form_label(form.electro) }}</td><td align="left"> {{ form_errors(form.electro) }} {{ form_widget(form.electro) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.detelectro) }}</td><td align="left"> {{ form_errors(form.detelectro) }} {{ form_widget(form.detelectro) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.comentarios) }}</td><td align="left"> {{ form_errors(form.comentarios) }} {{ form_widget(form.comentarios) }}</td></tr>
-	</table>
-	<table style="position: absolute; margin-left: 32%; margin-top: 30%;">
-		<tr><th>Número de Pruebas: </th></tr>
-		<tr><td></td></tr>
-		<tr><td></td></tr>
-		<tr><td></td></tr>
-		<tr><td></td></tr>
-		<tr><td></td></tr>
-		<tr><td colspan='2'>{{ form_errors(form.ncompletos) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.ncompletos) }}</td><td align="left">{{ form_widget(form.ncompletos) }} </td></tr>
-		<tr><td colspan='2'>{{ form_errors(form.nanaliticas) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.nanaliticas) }}</td><td align="left">{{ form_widget(form.nanaliticas) }}</td></tr>
-		<tr><td colspan='2'>{{ form_errors(form.nsolas) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.nsolas) }}</td><td align="left">{{ form_widget(form.nsolas) }}</td></tr>
-		<tr><td colspan='2'>{{ form_errors(form.necg) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.necg) }}</td><td align="left">{{ form_widget(form.necg) }}</td></tr>
-		<tr><td colspan='2'>{{ form_errors(form.naudiometria) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.naudiometria) }}</td><td align="left">{{ form_widget(form.naudiometria) }}</td></tr>
-		<tr><td colspan='2'>{{ form_errors(form.total) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.total) }}</td><td align="left">{{ form_widget(form.total) }}</td></tr>
-    </table>
     {{ form_rest(form) }}
 </form>
 
