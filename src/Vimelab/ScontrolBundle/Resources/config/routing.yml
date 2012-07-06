@@ -351,6 +351,33 @@ gblogr_filter:
     pattern:  /gblogr/{param}/filter
     defaults: { _controller: ScontrolBundle:Gblogr:filter }
 
+# GbCorp Routes
+gbcorp:
+    pattern:  /gbcorp
+    defaults: { _controller: ScontrolBundle:Gbcorp:index }
+gbcorp_show:
+    pattern:  /gbcorp/{id}/show
+    defaults: { _controller: ScontrolBundle:Gbcorp:show }
+gbcorp_new:
+    pattern:  /gbcorp/new
+    defaults: { _controller: ScontrolBundle:Gbcorp:new }
+gbcorp_create:
+    pattern:  /gbcorp/create
+    defaults: { _controller: ScontrolBundle:Gbcorp:create }
+gbcorp_edit:
+    pattern:  /gbcorp/{id}/edit
+    defaults: { _controller: ScontrolBundle:Gbcorp:edit }
+gbcorp_update:
+    pattern:  /gbcorp/{id}/update
+    defaults: { _controller: ScontrolBundle:Gbcorp:update }
+gbcorp_delete:
+    pattern:  /gbcorp/{id}/delete
+    defaults: { _controller: ScontrolBundle:Gbcorp:delete }
+    
+gbcorp_filter:
+    pattern:  /gbcorp/{param}/filter
+    defaults: { _controller: ScontrolBundle:Gbcorp:filter }
+
 # GbPais Routes
 gbpais:
     pattern:  /gbpais

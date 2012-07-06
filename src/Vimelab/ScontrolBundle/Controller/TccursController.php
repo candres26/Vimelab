@@ -188,7 +188,7 @@ class TccursController extends Controller
 				$em->flush();
 
 				Tool::logger($this, $entity->getId());
-				return $this->redirect($this->generateUrl('tccurs_edit', array('id' => $id)));
+				return $this->redirect($this->generateUrl('tccurs_show', array('id' => $id)));
 			}
 
 			return array(

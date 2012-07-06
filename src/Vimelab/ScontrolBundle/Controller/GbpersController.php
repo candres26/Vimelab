@@ -188,7 +188,7 @@ class GbpersController extends Controller
 				$em->flush();
 
 				Tool::logger($this, $entity->getId());
-				return $this->redirect($this->generateUrl('gbpers_edit', array('id' => $id)));
+				return $this->redirect($this->generateUrl('gbpers_show', array('id' => $id)));
 			}
 
 			return array(

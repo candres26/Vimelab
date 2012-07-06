@@ -188,7 +188,7 @@ class MdlaboController extends Controller
 				$em->flush();
 
 				Tool::logger($this, $entity->getId());
-				return $this->redirect($this->generateUrl('mdlabo_edit', array('id' => $id)));
+				return $this->redirect($this->generateUrl('mdlabo_show', array('id' => $id)));
 			}
 
 			return array(

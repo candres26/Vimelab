@@ -334,23 +334,43 @@ class Gbcorp
     }
 
     /**
-     * Set gbempr
+     * Set empresagbiden
      *
-     * @param Vimelab\ScontrolBundle\Entity\Gbempr $gbempr
+     * @param Vimelab\ScontrolBundle\Entity\Gbiden $empresagbiden
      */
-    public function setGbempr(\Vimelab\ScontrolBundle\Entity\Gbempr $gbempr)
+    public function setEmpresagbiden(\Vimelab\ScontrolBundle\Entity\Gbiden $empresagbiden)
     {
-        $this->gbempr = $gbempr;
+        $this->empresagbiden = $empresagbiden;
     }
 
     /**
-     * Get gbempr
+     * Get empresagbiden
      *
-     * @return Vimelab\ScontrolBundle\Entity\Gbempr
+     * @return Vimelab\ScontrolBundle\Entity\Gbiden
      */
-    public function getGbempr()
+    public function getEmpresagbiden()
     {
-        return $this->gbempr;
+        return $this->empresagbiden;
+    }
+    
+    /**
+     * Set representantegbiden
+     *
+     * @param Vimelab\ScontrolBundle\Entity\Gbiden $representantegbiden
+     */
+    public function setRepresentantegbiden(\Vimelab\ScontrolBundle\Entity\Gbiden $representantegbiden)
+    {
+        $this->representantegbiden = $representantegbiden;
+    }
+
+    /**
+     * Get representantegbiden
+     *
+     * @return Vimelab\ScontrolBundle\Entity\Gbiden
+     */
+    public function getRepresentantegbiden()
+    {
+        return $this->representantegbiden;
     }
 
     /**

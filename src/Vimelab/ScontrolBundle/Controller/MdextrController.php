@@ -189,7 +189,7 @@ class MdextrController extends Controller
 				$em->flush();
 
 				Tool::logger($this, $entity->getId());
-				return $this->redirect($this->generateUrl('mdextr_edit', array('id' => $id)));
+				return $this->redirect($this->generateUrl('mdextr_show', array('id' => $id)));
 			}
 
 			return array(

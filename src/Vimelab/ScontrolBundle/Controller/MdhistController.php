@@ -188,7 +188,7 @@ class MdhistController extends Controller
 				$em->flush();
 
 				Tool::logger($this, $entity->getId());
-				return $this->redirect($this->generateUrl('mdhist_edit', array('id' => $id)));
+				return $this->redirect($this->generateUrl('mdhist_show', array('id' => $id)));
 			}
 
 			return array(
