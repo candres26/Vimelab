@@ -193,6 +193,7 @@ class AsUbicaController extends Controller
 					$entity->setCodigo($request->request->get('asCode'));
 					$entity->setNombre($request->request->get('asName'));
 					$em->persist($entity);
+					
 					$em->flush();
 					
 					return new Response('!');

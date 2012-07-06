@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.1.63, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.24, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: dbsalud
 -- ------------------------------------------------------
--- Server version	5.1.63-0ubuntu0.11.10.1
+-- Server version	5.5.24-4
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -71,7 +71,7 @@ CREATE TABLE `CtCont` (
 
 LOCK TABLES `CtCont` WRITE;
 /*!40000 ALTER TABLE `CtCont` DISABLE KEYS */;
-INSERT INTO `CtCont` VALUES (1,1,1,'2007-01-01','2007-01-01','2007-01-01',1,'3163131','bkj','Miguel','knl',1,'kn','lkknl','Carlos','lklkn',2,2,'k',1,3613,'31.00','1.00','3.00','311.00','31.00'),(2,1,1,'2012-02-12','2012-02-15','2012-04-30',1,'223366454','Obrero','Camilo Contreras','Manzv cs # 22-33',1,'23666698','fsfsñopñj','Carlos Alzate','piyvfytf',1,2,'g',1,62569698,'566625.00','9.99','5.00','6698213.00','222223647.00');
+INSERT INTO `CtCont` VALUES (1,1,1,'2007-01-01','2007-01-01','2007-01-01',1,'3163131','bkj','Miguel','knl',1,'kn','lkknl','Carlos','lklkn',2,2,'k',1,3613,31.00,1.00,3.00,311.00,31.00),(2,1,1,'2012-02-12','2012-02-15','2012-04-30',1,'223366454','Obrero','Camilo Contreras','Manzv cs # 22-33',1,'23666698','fsfsñopñj','Carlos Alzate','piyvfytf',1,2,'g',1,62569698,566625.00,9.99,5.00,6698213.00,222223647.00);
 /*!40000 ALTER TABLE `CtCont` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,7 +148,7 @@ CREATE TABLE `CtFact` (
 
 LOCK TABLES `CtFact` WRITE;
 /*!40000 ALTER TABLE `CtFact` DISABLE KEYS */;
-INSERT INTO `CtFact` VALUES (1,1,1,1,'2012-05-07','2012-05-30','89223.00','16.00','5.00','19654665.00','A','Servicio','Pago con billetes viejos'),(2,1,1,1,'2012-05-04','2012-05-30','566998.00','16.00','2.00','99999999.99','A','Lalala','También pago con billetes viejos');
+INSERT INTO `CtFact` VALUES (1,1,1,1,'2012-05-07','2012-05-30',89223.00,16.00,5.00,19654665.00,'A','Servicio','Pago con billetes viejos'),(2,1,1,1,'2012-05-04','2012-05-30',566998.00,16.00,2.00,99999999.99,'A','Lalala','También pago con billetes viejos');
 /*!40000 ALTER TABLE `CtFact` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -176,7 +176,7 @@ CREATE TABLE `CtServ` (
 
 LOCK TABLES `CtServ` WRITE;
 /*!40000 ALTER TABLE `CtServ` DISABLE KEYS */;
-INSERT INTO `CtServ` VALUES (1,'23333','Rev Posturas','15.00',1),(2,'00023','Revisión Instalaciones','9.99',2);
+INSERT INTO `CtServ` VALUES (1,'23333','Rev Posturas',15.00,1),(2,'00023','Revisión Instalaciones',9.99,2);
 /*!40000 ALTER TABLE `CtServ` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -206,7 +206,7 @@ CREATE TABLE `CtTari` (
 
 LOCK TABLES `CtTari` WRITE;
 /*!40000 ALTER TABLE `CtTari` DISABLE KEYS */;
-INSERT INTO `CtTari` VALUES (1,2,1,'56000.00'),(2,1,1,'720000.00');
+INSERT INTO `CtTari` VALUES (1,2,1,56000.00),(2,1,1,720000.00);
 /*!40000 ALTER TABLE `CtTari` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -644,6 +644,31 @@ INSERT INTO `GbUsua` VALUES (1,1,'root','wg1HV7zlQXAkgYpMBDyviLg9jGo2eb5KuASDH0j
 UNLOCK TABLES;
 
 --
+-- Table structure for table `GbVars`
+--
+
+DROP TABLE IF EXISTS `GbVars`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `GbVars` (
+  `id` bigint(99) unsigned NOT NULL AUTO_INCREMENT,
+  `tipo` char(1) COLLATE utf8_unicode_ci NOT NULL,
+  `nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `valor` text COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `GbVars`
+--
+
+LOCK TABLES `GbVars` WRITE;
+/*!40000 ALTER TABLE `GbVars` DISABLE KEYS */;
+/*!40000 ALTER TABLE `GbVars` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `HsFami`
 --
 
@@ -855,7 +880,7 @@ CREATE TABLE `MdBiom` (
 
 LOCK TABLES `MdBiom` WRITE;
 /*!40000 ALTER TABLE `MdBiom` DISABLE KEYS */;
-INSERT INTO `MdBiom` VALUES (1,2,'64.00','9.99','9.99','0.00','9.99','9.99'),(2,1,'64.00','78.00','110.00','35.00','120.00','80.00'),(3,2,'64.00','78.00','110.00','35.00','120.00','80.00');
+INSERT INTO `MdBiom` VALUES (1,2,64.00,9.99,9.99,0.00,9.99,9.99),(2,1,64.00,78.00,110.00,35.00,120.00,80.00),(3,2,64.00,78.00,110.00,35.00,120.00,80.00);
 /*!40000 ALTER TABLE `MdBiom` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1617,4 +1642,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-07-02 18:34:34
+-- Dump completed on 2012-07-03 10:23:30
