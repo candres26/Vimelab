@@ -1,0 +1,86 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Descripción Corporación{% endblock %}
+
+{% block area %}
+<h2 align="left">Descripción Corporación</h2>
+
+<table class="vime-table-des" align="center">
+    <tbody>
+        <tr>
+            <th align="left">Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th align="left">Identificación</th>
+            <td>{{ entity.identificacion }}</td>
+        </tr>
+        <tr>
+            <th align="left">Tipo de Identificación</th>
+            <td>{{ entity.empresagbiden }}</td>
+        </tr>
+        <tr>
+            <th align="left">Nombre Empresa</th>
+            <td>{{ entity.nombre }}</td>
+        </tr>
+		<tr>
+            <th align="left">Representante Legal</th>
+            <td>{{ entity.rplegal }}</td>
+        </tr>
+		<tr>
+            <th align="left">Identificación Representante</th>
+            <td>{{ entity.identrplegal }}</td>
+        </tr>
+		<tr>
+            <th align="left">Tipo de Identificación</th>
+            <td>{{ entity.representantegbiden }}</td>
+        </tr>
+		<tr>
+            <th align="left">Ciudad</th>
+            <td>{{ entity.gbciud.nombre }}</td>
+        </tr>
+		<tr>
+            <th align="left">Dirección</th>
+            <td>{{ entity.representantegbiden }}</td>
+        </tr>
+		<tr>
+            <th align="left">Teléfono</th>
+            <td>{{ entity.telefono }}</td>
+        </tr>
+		<tr>
+            <th align="left">Fax</th>
+            <td>{{ entity.fax }}</td>
+        </tr>
+		<tr>
+            <th align="left">Correo</th>
+            <td>{{ entity.correo }}</td>
+        </tr>
+		<tr>
+            <th align="left">Website</th>
+            <td>{{ entity.web }}</td>
+        </tr>
+		<tr>
+            <th align="left">Logo</th>
+            <td>{{ entity.logo }}</td>
+        </tr>
+    </tbody>
+</table>
+
+	<form id="vime-form" action="{{ path('gbcorp_delete', { 'id': entity.id }) }}" method="post">
+		{{ form_widget(delete_form) }}
+	</form>
+    
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('gbcorp') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="gId('vime-form').submit()"><img src="{{ asset('bundles/scontrol/imagenes/iconos/eliminar.png') }}" title="Eliminar"></td>
+			<td onClick="go('{{ path('gbcorp_edit', { 'id': entity.id }) }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar.png') }}" title="Editar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

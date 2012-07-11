@@ -188,7 +188,7 @@ class MdsistController extends Controller
 				$em->flush();
 
 				Tool::logger($this, $entity->getId());
-				return $this->redirect($this->generateUrl('mdsist_edit', array('id' => $id)));
+				return $this->redirect($this->generateUrl('mdsist_show', array('id' => $id)));
 			}
 
 			return array(

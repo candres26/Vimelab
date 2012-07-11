@@ -188,7 +188,7 @@ class MdvisuController extends Controller
 				$em->flush();
 				
 				Tool::logger($this, $entity->getId());
-				return $this->redirect($this->generateUrl('mdvisu_edit', array('id' => $id)));
+				return $this->redirect($this->generateUrl('mdvisu_show', array('id' => $id)));
 			}
 
 			return array(

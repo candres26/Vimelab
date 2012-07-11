@@ -351,6 +351,33 @@ gblogr_filter:
     pattern:  /gblogr/{param}/filter
     defaults: { _controller: ScontrolBundle:Gblogr:filter }
 
+# GbCorp Routes
+gbcorp:
+    pattern:  /gbcorp
+    defaults: { _controller: ScontrolBundle:Gbcorp:index }
+gbcorp_show:
+    pattern:  /gbcorp/{id}/show
+    defaults: { _controller: ScontrolBundle:Gbcorp:show }
+gbcorp_new:
+    pattern:  /gbcorp/new
+    defaults: { _controller: ScontrolBundle:Gbcorp:new }
+gbcorp_create:
+    pattern:  /gbcorp/create
+    defaults: { _controller: ScontrolBundle:Gbcorp:create }
+gbcorp_edit:
+    pattern:  /gbcorp/{id}/edit
+    defaults: { _controller: ScontrolBundle:Gbcorp:edit }
+gbcorp_update:
+    pattern:  /gbcorp/{id}/update
+    defaults: { _controller: ScontrolBundle:Gbcorp:update }
+gbcorp_delete:
+    pattern:  /gbcorp/{id}/delete
+    defaults: { _controller: ScontrolBundle:Gbcorp:delete }
+    
+gbcorp_filter:
+    pattern:  /gbcorp/{param}/filter
+    defaults: { _controller: ScontrolBundle:Gbcorp:filter }
+
 # GbPais Routes
 gbpais:
     pattern:  /gbpais
@@ -1250,9 +1277,12 @@ as_protocolo_delProto:
 as_secu:
     pattern: /assecu
     defaults: { _controller: ScontrolBundle:AsSecu:index }
+<<<<<<< HEAD
 as_secu_addCarg:
     pattern: /assecu/addcarg
     defaults: { _controller: ScontrolBundle:AsSecu:addCargo }
 as_secu_getCarg:
     pattern: /assecu/getcarg
     defaults: { _controller: ScontrolBundle:AsSecu:getCargo }
+=======
+>>>>>>> 8c0e8c30b7e3a6bef0b05540919883d2966662df

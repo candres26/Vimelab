@@ -188,7 +188,7 @@ class GbdepaController extends Controller
 				$em->flush();
 
 				Tool::logger($this, $entity->getId());
-				return $this->redirect($this->generateUrl('gbdepa_edit', array('id' => $id)));
+				return $this->redirect($this->generateUrl('gbdepa_show', array('id' => $id)));
 			}
 
 			return array(
