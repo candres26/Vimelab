@@ -30,3 +30,4 @@ Mejorando estandares JavaScript y TWIG, grandes cambios en el modelo de funcione
 * Asitente De Ubicaciones Terminado, control de paises, províncias y ciudades.
 * Tabla GbVars Agregada, para alojar datos de procesos y asistentes.
 * Esquema de vistas para asistentes mejoradas.
+* INtegracion de asistentes con formularios maestros lograda usando IFRAMES.
