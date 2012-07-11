@@ -1250,3 +1250,9 @@ as_protocolo_delProto:
 as_secu:
     pattern: /assecu
     defaults: { _controller: ScontrolBundle:AsSecu:index }
+as_secu_addCarg:
+    pattern: /assecu/addcarg
+    defaults: { _controller: ScontrolBundle:AsSecu:addCargo }
+as_secu_getCarg:
+    pattern: /assecu/getcarg
+    defaults: { _controller: ScontrolBundle:AsSecu:getCargo }

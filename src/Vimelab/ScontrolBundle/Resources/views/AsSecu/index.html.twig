@@ -7,19 +7,83 @@
 	<div id='asMain'>
 		
 		<table id='asMainTab'>
+			
 			<tr>
-				<td id="asCell" colspan='2'>
-					
-				</td>				
+				<td><b>Cargo</b></td>
+				<td><b>Personal</b></td>
+				<td><b>Usuario</b></td>				
 			</tr>
+			
+			<tr>
+				<td><img id="btnNewCarg" src="{{ asset('bundles/scontrol/imagenes/iconos/agregar.png') }}" title="Nuevo Cargo"></td>
+				<td><img id="btnNewPers" src="{{ asset('bundles/scontrol/imagenes/iconos/agregar.png') }}" title="Nuevo Personal"></td>
+				<td><img id="btnNewUsua" src="{{ asset('bundles/scontrol/imagenes/iconos/agregar.png') }}" title="Nuevo Usuario"></td>
+			</tr>
+			
+			<tr>
+				<td>
+					<select id='selCarg'>
+						<option value='@'>Seleccione...</option>
+						{% for c in cargos %}
+							<option value="{{ c.id }}">{{ c.nombre }}</option>
+						{% endfor %}
+					</select>
+				</td>
+			
+				<td>
+					<select id='selPers'>
+						<option value='@'>Seleccione...</option>
+					</select>
+				</td>
+			
+				<td>
+					<select id='selUsua'>
+						<option value='@'>Seleccione...</option>
+					</select>
+				</td>
+			</tr>
+			
 		</table>
 		
 		<div id='asArea'>
-						
-			<div id='asAreaDiv'>
-					
+			
+			<div id='asAreaAcls'><!--- * ---></div>
+			
+			<div id='asAreaCarg'>
+				
+				<table id='asAreaCargCon'>
+					<tr>
+						<td align="center">
+							
+							<table>
 								
+								<tr>
+									<td align="center" colspan="2"><h3>Nuevo Cargo</h3></td>
+								</tr>
+																
+								<tr>
+									<td align="left"><b>Nombre</b></td>
+									<td align="left"><input id='cargName' maxlength="50"/></td>
+								</tr>
+								
+								<tr>
+									<td align="center" colspan="2">
+										<button id="btnCreCarg">CREAR</button>
+										<button id="btnCanCarg">CANCELAR</button>
+									</td>
+								</tr>
+								
+							</table>
+							
+						</td>
+					</tr>
+				</table>
+				
 			</div>
+			
+			<div id='asAreaPers'><!--- * ---></div>
+			
+			<div id='asAreaUsua'><!--- * ---></div>
 			
 		</div>
 					
@@ -55,7 +119,7 @@
 		
 		#asMainTab
 		{
-			margin: auto; width: 90%; height: 100%;
+			margin: auto; width: 90%; height: 20%;
 		}
 		
 		#asCell
@@ -68,9 +132,29 @@
 			border: 1px solid #1E90FF; position: absolute; left: 2%; bottom: 2%; width: 96%; height: 70%;
 		}
 		
-		#asAreaDiv
+		#asAreaAcls
 		{
-			position: absolute; width: 100%; height: 100%;
+			width: 100%; height: 100%; background: red;	
+		}
+		
+		#asAreaCarg
+		{
+			width: 100%; height: 100%; display: none;	
+		}
+		
+		#asAreaCargCon
+		{
+			width: 100%; height: 100%;	
+		}
+		
+		#asAreaPers
+		{
+			width: 100%; height: 100%; background: yellow; display: none;	
+		}
+		
+		#asAreaUsua
+		{
+			width: 100%; height: 100%; background: green; display: none;	
 		}
 		
 	</style>
@@ -79,6 +163,103 @@
 
 {% block uscript %}
 	<script type="text/javascript">
+		
+		var $optIni = "<option value='@'>Seleccione...</option>";
+		
+		function $init()
+		{
+			gId('btnNewCarg').onclick = viewCarg;
+			gId('btnNewPers').onclick = viewPers;
+			gId('btnNewUsua').onclick = viewUsua;
+			gId('btnCreCarg').onclick = newCarg;
+			gId('btnCanCarg').onclick = canCarg;
+		}
+
+		function changeArea(id)
+		{
+			hide('asAreaAcls');
+			hide('asAreaCarg');
+			hide('asAreaPers');
+			hide('asAreaUsua');
+			
+			gId(id).style.display = 'block';
+		}
+		
+		function viewCarg()
+		{
+			changeArea('asAreaCarg')
+		}
+		
+		function viewPers()
+		{
+			changeArea('asAreaPers')
+		}
+		
+		function viewUsua()
+		{
+			changeArea('asAreaUsua')
+		}
+		
+		function newCarg()
+		{
+			if(gId('cargName').value != '')
+			{
+				ajaxAction
+				(
+					new Hash(['cargName']),
+					"{{ path('as_secu_addCarg') }}",
+					getCarg
+				);
+			}
+			else
+				popup("Debe Suministrar Un Nombre Válido!");
+			
+			canCarg();
+		}
+		
+		function canCarg()
+		{
+			gId('cargName').value = '';
+			changeArea('asAreaAcls');
+		}
+		
+		function getCarg(response)
+		{
+			if(typeof response != 'undefined')
+			{
+				if(response.responseText.substring(0, 1) == '!')
+					popup("Cargo Agregado Con Exito!");
+				else
+					popup("Imposible Agregar El Cargo!.");	
+			}
+			
+			ajaxAction
+			(
+				new Hash(['*tok => 0']),
+				"{{ path('as_secu_getCarg') }}",
+				setCarg
+			);
+		}
+		
+		function setCarg(response)
+		{
+			if(response.responseText.substring(0, 1) != '%')
+			{
+				code = '';
+				
+				arr = response.responseText.split('|:|');
+				
+				for (i = 0; i < arr.length; i++)
+				{
+					pp = arr[i].split('=>');
+					code += "<option value='"+pp[0]+"'>"+pp[1]+"</option>";
+				}
+	
+				gId('selCarg').innerHTML = $optIni+code;
+			}
+			else
+				popup("Ninguna Cargo Encontrado!.");
+		}
 		
 	</script>
 	
