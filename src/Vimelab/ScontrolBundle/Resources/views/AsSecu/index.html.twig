@@ -90,7 +90,42 @@
 				</div>
 			</div>
 			
-			<div id='asAreaUsua'><!--- * ---></div>
+			<div id='asAreaUsua'>
+				
+				<table id='asAreaUsuaCon'>
+					<tr>
+						<td align="center">
+							
+							<table>
+								
+								<tr>
+									<td align="center" colspan="2"><h3>Nuevo Usuario</h3></td>
+								</tr>
+																
+								<tr>
+									<td align="left"><b>Nombre</b></td>
+									<td align="left"><input type='text' id='usuaName' maxlength="50"/></td>
+								</tr>
+								
+								<tr>
+									<td align="left"><b>Clave</b></td>
+									<td align="left"><input type='password' id='usuaPass' maxlength="50"/></td>
+								</tr>
+								
+								<tr>
+									<td align="center" colspan="2">
+										<button id="btnCreUsua">CREAR</button>
+										<button id="btnCanUsua">CANCELAR</button>
+									</td>
+								</tr>
+								
+							</table>
+							
+						</td>
+					</tr>
+				</table>
+				
+			</div>
 			
 		</div>
 					
@@ -149,7 +184,7 @@
 			width: 100%; height: 100%; display: none;	
 		}
 		
-		#asAreaCargCon
+		#asAreaCargCon, #asAreaUsuaCon
 		{
 			width: 100%; height: 100%;	
 		}
@@ -171,7 +206,7 @@
 		
 		#asAreaUsua
 		{
-			width: 100%; height: 100%; background: green; display: none;	
+			width: 100%; height: 100%; display: none;	
 		}
 		
 	</style>
@@ -192,7 +227,10 @@
 			gId('btnCanCarg').onclick = canCarg;
 			gId('btnCrePers').onclick = newPers;
 			gId('btnCanPers').onclick = canPers;
+			gId('btnCreUsua').onclick = newUsua;
+			gId('btnCanUsua').onclick = canUsua;
 			gId('selCarg').onchange = selectPers;
+			gId('selPers').onchange = selectUsua;
 			
 			gId('asIfPers').onload = selectPers;
 		}
@@ -224,7 +262,10 @@
 		
 		function viewUsua(event)
 		{
-			changeArea('asAreaUsua')
+			if(gId('selPers').value != '@')
+				changeArea('asAreaUsua')
+			else
+				popup('Debe Selecionar Un Personal');
 		}
 		
 		function selectPers(event)
@@ -234,6 +275,12 @@
 				
 			if(gId('selCarg').value != '@')
 				getPers()
+		}
+		
+		function selectUsua(event)
+		{	
+			if(gId('selPers').value != '@')
+				getUsua()
 		}
 		
 		function newCarg(event)
@@ -258,6 +305,23 @@
 			ifSimularClick('asIfPers', 'sender');
 		}
 		
+		function newUsua(event)
+		{
+			if(gId('selPers').value != '@' && gId('usuaName').value != '' && gId('usuaPass').value != '')
+			{
+				ajaxAction
+				(
+					new Hash(['selPers', 'usuaName', 'usuaPass']),
+					"{{ path('as_secu_addUsua') }}",
+					getUsua
+				);
+			}
+			else
+				popup('Debe Selecionar Un Personal Y Suministrar Un Nombre y Clave Válidos!');
+			
+			canUsua();
+		}
+		
 		function canCarg(event)
 		{
 			gId('cargName').value = '';
@@ -265,8 +329,14 @@
 		}
 		
 		function canPers(event)
+		{ 
+			changeArea('asAreaAcls');
+		}
+		
+		function canUsua(event)
 		{
-			gId('asIfPers').contentWindow.location.reload(); 
+			gId('usuaName').value = '';
+			gId('usuaPass').value = '';
 			changeArea('asAreaAcls');
 		}
 		
@@ -306,6 +376,24 @@
 			);
 		}
 		
+		function getUsua(response)
+		{
+			if(typeof response != 'undefined')
+			{
+				if(response.responseText.substring(0, 1) == '!')
+					popup("Usuario Agregado Con Exito!");
+				else
+					popup("Imposible Agregar El Usuario!.");	
+			}
+			
+			ajaxAction
+			(
+				new Hash(['selPers']),
+				"{{ path('as_secu_getUsua') }}",
+				setUsua
+			);
+		}
+		
 		function setCarg(response)
 		{
 			code = '';
@@ -340,6 +428,24 @@
 			else
 				popup("Ningún Personal Encontrado!.");
 			gId('selPers').innerHTML = $optIni+code;
+		}
+		
+		function setUsua(response)
+		{
+			code = '';
+			if(response.responseText.substring(0, 1) != '%')
+			{
+				arr = response.responseText.split('|:|');
+				
+				for (i = 0; i < arr.length; i++)
+				{
+					pp = arr[i].split('=>');
+					code += "<option value='"+pp[0]+"'>"+pp[1]+"</option>";
+				}
+			}
+			else
+				popup("Ningún Usuario Encontrado!.");
+			gId('selUsua').innerHTML = $optIni+code;
 		}
 		
 	</script>

@@ -1280,9 +1280,15 @@ as_secu:
 as_secu_addCarg:
     pattern: /assecu/addcarg
     defaults: { _controller: ScontrolBundle:AsSecu:addCargo }
+as_secu_addUsua:
+    pattern: /assecu/addusua
+    defaults: { _controller: ScontrolBundle:AsSecu:addUsua }
 as_secu_getCarg:
     pattern: /assecu/getcarg
     defaults: {_controller: ScontrolBundle:AsSecu:getCargo }
 as_secu_getPers:
     pattern: /assecu/getpers
     defaults: {_controller: ScontrolBundle:AsSecu:getPers }
+as_secu_getUsua:
+    pattern: /assecu/getusua
+    defaults: {_controller: ScontrolBundle:AsSecu:getUsua }

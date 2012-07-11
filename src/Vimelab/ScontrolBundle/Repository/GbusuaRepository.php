@@ -38,4 +38,11 @@ class GbusuaRepository extends EntityRepository
         $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Gbusua m JOIN m.gbpers l WHERE m.nombre LIKE '%$parametro%' or l.identificacion LIKE '%$parametro%' ORDER BY m.id ASC");
         return $querry->getResult();
     }
+	
+	public function getForPersonal($id)
+	{
+		$em = $this->getEntityManager();
+        $querry = $em->createQuery("SELECT u FROM ScontrolBundle:Gbusua u JOIN u.gbpers p WHERE p.id = $id ORDER BY u.nombre ASC");
+        return $querry->getResult();
+	}
 }
