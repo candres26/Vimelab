@@ -81,7 +81,14 @@
 				
 			</div>
 			
-			<div id='asAreaPers'><!--- * ---></div>
+			<div id='asAreaPers'>
+				<iframe id='asIfPers' src="{{ path('gbpers_new', { 'lv': 2 }) }}"><!-- FRAME --></iframe>
+				
+				<div id="asAreaPersCnt">
+					<button id="btnCrePers">CREAR</button>
+					<button id="btnCanPers">CANCELAR</button>	
+				</div>
+			</div>
 			
 			<div id='asAreaUsua'><!--- * ---></div>
 			
@@ -95,7 +102,7 @@
 		
 		#asMain
 		{
-			position: absolute; width: 98%; height: 90%;
+			position: absolute; top: 1%; left: 1%; width: 98%; height: 98%;
 		}
 		
 		#asMain img
@@ -129,7 +136,7 @@
 		
 		#asArea
 		{
-			border: 1px solid #1E90FF; position: absolute; left: 2%; bottom: 2%; width: 96%; height: 70%;
+			border: 1px solid #1E90FF; position: absolute; left: 1%; bottom: 0%; width: 98%; height: 78%;
 		}
 		
 		#asAreaAcls
@@ -149,7 +156,17 @@
 		
 		#asAreaPers
 		{
-			width: 100%; height: 100%; background: yellow; display: none;	
+			width: 100%; height: 100%; display: none;	
+		}
+		
+		#asAreaPersCnt
+		{
+			position: absolute; bottom: 1%; left: 20%; width: 60%; height: auto;
+		}
+		
+		#asIfPers
+		{
+			width: 100%; height: 90%; border: none; 
 		}
 		
 		#asAreaUsua
@@ -173,6 +190,16 @@
 			gId('btnNewUsua').onclick = viewUsua;
 			gId('btnCreCarg').onclick = newCarg;
 			gId('btnCanCarg').onclick = canCarg;
+			gId('btnCrePers').onclick = newPers;
+			gId('btnCanPers').onclick = canPers;
+			gId('selCarg').onchange = selectPers;
+			
+			gId('asIfPers').onload = selectPers;
+		}
+		
+		function test()
+		{
+			alert('x');
 		}
 
 		function changeArea(id)
@@ -185,22 +212,31 @@
 			gId(id).style.display = 'block';
 		}
 		
-		function viewCarg()
+		function viewCarg(event)
 		{
 			changeArea('asAreaCarg')
 		}
 		
-		function viewPers()
+		function viewPers(event)
 		{
 			changeArea('asAreaPers')
 		}
 		
-		function viewUsua()
+		function viewUsua(event)
 		{
 			changeArea('asAreaUsua')
 		}
 		
-		function newCarg()
+		function selectPers(event)
+		{
+			if(this.id == 'asIfPers')
+				popup(gIf('asIfPers', 'RMSG').value);
+				
+			if(gId('selCarg').value != '@')
+				getPers()
+		}
+		
+		function newCarg(event)
 		{
 			if(gId('cargName').value != '')
 			{
@@ -217,9 +253,20 @@
 			canCarg();
 		}
 		
-		function canCarg()
+		function newPers(event)
+		{
+			ifSimularClick('asIfPers', 'sender');
+		}
+		
+		function canCarg(event)
 		{
 			gId('cargName').value = '';
+			changeArea('asAreaAcls');
+		}
+		
+		function canPers(event)
+		{
+			gId('asIfPers').contentWindow.location.reload(); 
 			changeArea('asAreaAcls');
 		}
 		
@@ -241,12 +288,29 @@
 			);
 		}
 		
+		function getPers(response)
+		{
+			if(typeof response != 'undefined')
+			{
+				if(response.responseText.substring(0, 1) == '!')
+					popup("Personal Agregado Con Exito!");
+				else
+					popup("Imposible Agregar El Personal!.");	
+			}
+			
+			ajaxAction
+			(
+				new Hash(['selCarg']),
+				"{{ path('as_secu_getPers') }}",
+				setPers
+			);
+		}
+		
 		function setCarg(response)
 		{
+			code = '';
 			if(response.responseText.substring(0, 1) != '%')
 			{
-				code = '';
-				
 				arr = response.responseText.split('|:|');
 				
 				for (i = 0; i < arr.length; i++)
@@ -254,11 +318,28 @@
 					pp = arr[i].split('=>');
 					code += "<option value='"+pp[0]+"'>"+pp[1]+"</option>";
 				}
-	
-				gId('selCarg').innerHTML = $optIni+code;
 			}
 			else
-				popup("Ninguna Cargo Encontrado!.");
+				popup("Ningún Cargo Encontrado!.");
+			gId('selCarg').innerHTML = $optIni+code;
+		}
+		
+		function setPers(response)
+		{
+			code = '';
+			if(response.responseText.substring(0, 1) != '%')
+			{
+				arr = response.responseText.split('|:|');
+				
+				for (i = 0; i < arr.length; i++)
+				{
+					pp = arr[i].split('=>');
+					code += "<option value='"+pp[0]+"'>"+pp[1]+"</option>";
+				}
+			}
+			else
+				popup("Ningún Personal Encontrado!.");
+			gId('selPers').innerHTML = $optIni+code;
 		}
 		
 	</script>

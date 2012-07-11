@@ -481,4 +481,15 @@ class Gbpers
     {
         return $this->identificacion;
     }
+	
+	public function getFullName()
+	{
+		$tmp = '';
+		$tmp = $this->priape != '' ? $tmp.' '.$this->priape : $tmp;
+		$tmp = $this->segape != '' ? $tmp.' '.$this->segape : $tmp;
+		$tmp = $this->prinom != '' ? $tmp.' '.$this->prinom : $tmp;
+		$tmp = $this->segnom != '' ? $tmp.' '.$this->segnom : $tmp;
+		
+		return $tmp;
+	}
 }

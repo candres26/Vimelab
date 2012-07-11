@@ -1,0 +1,55 @@
+{% extends "ScontrolBundle::_layout.html.twig" %}
+
+{% block area %}
+
+<input type='hidden' id='RMSG'/ value='{{ RMSG }}'>
+
+<h2 align="left">Personal</h2>
+
+<form id="vime-form" action="{{ path('gbpers_create', { 'lv': 2 }) }}" method="post" {{ form_enctype(form) }}>
+	<input type="submit" style="display: none" id="sender" value="send">
+	<table style="position: absolute; margin-left: 4%;">
+		<tr><td colspan='2'>{{ form_errors(form.identificacion) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.identificacion) }}</td><td align="left">{{ form_widget(form.identificacion) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.prinom) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.prinom) }}</td><td align="left">{{ form_widget(form.prinom) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.segnom) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.segnom) }}</td><td align="left">{{ form_widget(form.segnom) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.priape) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.priape) }}</td><td align="left">{{ form_widget(form.priape) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.segape) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.segape) }}</td><td align="left">{{ form_widget(form.segape) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.nacimiento) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.nacimiento) }}</td><td align="left">{{ form_widget(form.nacimiento) }}</td></tr>
+		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>		
+		<tr><td colspan='2'>{{ form_errors(form.telefono) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.telefono) }}</td><td align="left">{{ form_widget(form.telefono) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.direccion) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.direccion) }}</td><td align="left">{{ form_widget(form.direccion) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.correo) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.correo) }}</td><td align="left">{{ form_widget(form.correo) }}</td></tr>
+		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">E-mail: (Ej: admin@vimelab.com)</td></tr>
+    </table>
+    <table style="position: absolute; margin-left: 45%;">		
+		<tr><td colspan='2'>{{ form_errors(form.ingreso) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.ingreso) }}</td><td align="left">{{ form_widget(form.ingreso) }}</td></tr>
+		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>		
+		<tr><td colspan='2'>{{ form_errors(form.pdatos) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.pdatos) }}</td><td align="left">{{ form_widget(form.pdatos) }}</td></tr>
+		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Acepta los términos de Protección de datos</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.estado) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.estado) }}</td><td align="left">{{ form_widget(form.estado) }}</td></tr>
+		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Marque para activar usuario</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.gbciud) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.gbciud) }}</td><td align="left">{{ form_widget(form.gbciud) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.gbiden) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.gbiden) }}</td><td align="left">{{ form_widget(form.gbiden) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.gbcarg) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.gbcarg) }}</td><td align="left">{{ form_widget(form.gbcarg) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.gbsucu) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.gbsucu) }}</td><td align="left">{{ form_widget(form.gbsucu) }}</td></tr>
+    </table>
+    {{ form_rest(form) }}
+</form>
+
+{% endblock %}

@@ -413,11 +413,11 @@ gbpers_show:
     pattern:  /gbpers/{id}/show
     defaults: { _controller: ScontrolBundle:Gbpers:show }
 gbpers_new:
-    pattern:  /gbpers/new
-    defaults: { _controller: ScontrolBundle:Gbpers:new }
+    pattern:  /gbpers/new/{lv}
+    defaults: { _controller: ScontrolBundle:Gbpers:new, lv: 1 }
 gbpers_create:
-    pattern:  /gbpers/create
-    defaults: { _controller: ScontrolBundle:Gbpers:create }
+    pattern:  /gbpers/create/{lv}
+    defaults: { _controller: ScontrolBundle:Gbpers:create, lv: 1 }
 gbpers_edit:
     pattern:  /gbpers/{id}/edit
     defaults: { _controller: ScontrolBundle:Gbpers:edit }
@@ -1282,4 +1282,7 @@ as_secu_addCarg:
     defaults: { _controller: ScontrolBundle:AsSecu:addCargo }
 as_secu_getCarg:
     pattern: /assecu/getcarg
-    defaults: { _controller: ScontrolBundle:AsSecu:getCargo }
+    defaults: {_controller: ScontrolBundle:AsSecu:getCargo }
+as_secu_getPers:
+    pattern: /assecu/getpers
+    defaults: {_controller: ScontrolBundle:AsSecu:getPers }

@@ -1,0 +1,17 @@
+{% extends 'ScontrolBundle::base.html.twig' %}
+
+{% block header %}
+	
+	<link href="{{ asset('bundles/scontrol/css/tema.css') }}" rel="stylesheet" type="text/css" />
+
+{% endblock %}
+
+{% block body %}
+
+	<div id="_vime-vista">
+		<div id="_vime-area">
+			{% block area %}{% endblock %}
+		</div>
+    </div>
+    
+{% endblock %}

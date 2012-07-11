@@ -115,7 +115,7 @@
 										</tr>
 										
 										<tr>
-											<td align='right' colspan='2'><img oncli="returnGen()" src="{{ asset('bundles/scontrol/imagenes/iconos/ant.png') }}" title="Regresar"></td>
+											<td align='right' colspan='2'><img onclick="returnGen()" src="{{ asset('bundles/scontrol/imagenes/iconos/ant.png') }}" title="Regresar"></td>
 										</tr>
 									</table>
 								</div>
@@ -456,10 +456,9 @@
 		
 		function setPuestos(response)
 		{
+			code = '';
 			if(response.responseText.substring(0, 1) != '%')
 			{
-				code = '';
-				
 				if(response.responseText.substring(0, 1) == '!')
 				{
 					arr = response.responseText.substring(1).split('|:|');
@@ -473,19 +472,17 @@
 					pp = arr[i].split('=>');
 					code += "<option value='"+pp[0]+"'>"+pp[1]+"</option>";
 				}
-	
-				gId('asPtra').innerHTML = optINI+code;
 			}
 			else
 				popup("Ningun Puesto De Trabjajo Asosciado A Esta Empresa!.");
+			gId('asPtra').innerHTML = optINI+code;
 		}
 		
 		function setProtocolos(response)
 		{
+			code = '';
 			if(response.responseText.substring(0, 1) != '%')
 			{
-				code = '';
-				
 				if(response.responseText.substring(0, 1) == '!')
 				{
 					arr = response.responseText.substring(1).split('|:|');
@@ -499,18 +496,17 @@
 					pp = arr[i].split('=>');
 					code += "<option value='"+pp[0]+"'>"+pp[1]+"</option>";
 				}
-	
-				gId('asProt').innerHTML = optINI+code;
 			}
 			else
 				popup("Ningun Protocolo Definido!.");
+			gId('asProt').innerHTML = optINI+code;
 		}
 		
 		function setQuest(response)
 		{
+			code = '';
 			if(response.responseText.substring(0, 1) != '%')
 			{
-				code = '';
 				arr = response.responseText.split('|:|');
 				
 				for (i = 0; i < arr.length; i++)
@@ -546,9 +542,9 @@
 		
 		function setProcesos(response)
 		{
+			code = '';
 			if(response.responseText.substring(0, 1) != '%')
 			{
-				code = '';
 				arr = response.responseText.split('|:|');
 				
 				for (i = 0; i < arr.length; i++)

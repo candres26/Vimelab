@@ -4,6 +4,7 @@ namespace Vimelab\ScontrolBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Vimelab\ScontrolBundle\Entity\Gbcarg;
+use Vimelab\ScontrolBundle\Entity\Gbpers;
 use Vimelab\ScontrolBundle\Entity\Gbvars;
 use Symfony\Component\HttpFoundation\Response;
 use Vimelab\ScontrolBundle\Tool\Tool;
@@ -37,6 +38,33 @@ class AsSecuController extends Controller
 				$parr = array();
 				foreach($cargos as $caso)
 					$parr[] = $caso->getId().'=>'.$caso->getNombre();
+				
+				$parr = join('|:|', $parr);
+				$parr = $parr == '' ? '%' : $parr;
+				
+				return new Response($parr);
+			}
+			else
+				return $this->redirect($this->generateUrl('as_secu'));
+		}
+		else
+			return $this->render("ScontrolBundle::alertas.html.twig");
+	}
+	
+	public function getPersAction()
+	{
+		if(Tool::isGrant($this))
+        {
+        	$request = $this->getRequest();
+        	if($request->isXmlHttpRequest())
+			{
+				$em = $this->getDoctrine()->getEntityManager();
+				
+				$pers = $em->getRepository('ScontrolBundle:Gbpers')->getForCargo($request->request->get('selCarg'));
+				
+				$parr = array();
+				foreach($pers as $caso)
+					$parr[] = $caso->getId().'=>'.$caso->getFullName();
 				
 				$parr = join('|:|', $parr);
 				$parr = $parr == '' ? '%' : $parr;

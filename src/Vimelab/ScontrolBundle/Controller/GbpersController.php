@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Vimelab\ScontrolBundle\Entity\Gbpers;
 use Vimelab\ScontrolBundle\Form\GbpersType;
+use Symfony\Component\HttpFoundation\Response;
 use Vimelab\ScontrolBundle\Tool\Tool;
 
 /**
@@ -78,17 +79,17 @@ class GbpersController extends Controller
      * @Route("/new", name="gbpers_new")
      * @Template()
      */
-    public function newAction()
+    public function newAction($lv)
     {
 		if(Tool::isGrant($this))
 		{
 			$entity = new Gbpers();
 			$form   = $this->createForm(new GbpersType(), $entity);
-
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
+			
+			if($lv == 1)
+				return array('entity' => $entity, 'form'   => $form->createView());
+			else
+				return $this->render("ScontrolBundle:Gbpers:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));	
 		}else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
@@ -100,7 +101,7 @@ class GbpersController extends Controller
      * @Method("post")
      * @Template("ScontrolBundle:Gbpers:new.html.twig")
      */
-    public function createAction()
+    public function createAction($lv)
     {
 		if(Tool::isGrant($this))
 		{
@@ -109,21 +110,40 @@ class GbpersController extends Controller
 			$form    = $this->createForm(new GbpersType(), $entity);
 			$form->bindRequest($request);
 
-			if ($form->isValid()) {
-				$em = $this->getDoctrine()->getEntityManager();
-				$em->persist($entity);
-				$em->flush();
-
-				Tool::logger($this, $entity->getId());
-				return $this->redirect($this->generateUrl('gbpers_show', array('id' => $entity->getId())));
-				
+			if ($form->isValid()) 
+			{
+				try
+				{	
+					$em = $this->getDoctrine()->getEntityManager();
+					$em->persist($entity);
+					$em->flush();
+	
+					Tool::logger($this, $entity->getId());
+					
+					if($lv == 1)
+						return $this->redirect($this->generateUrl('gbpers_show', array('id' => $entity->getId())));
+					else
+					{
+						$entity = new Gbpers();
+						$form   = $this->createForm(new GbpersType(), $entity);	
+						return $this->render("ScontrolBundle:Gbpers:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'Personal Creado Con Exito!'));
+					}
+				}
+				catch(\Exception $e)
+				{
+					if($lv == 1)
+						return array('entity' => $entity, 'form'   => $form->createView());
+					else	
+						return $this->render("ScontrolBundle:Gbpers:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'Imposible Crear Personal, Error Referencial!'));
+				}
 			}
 
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
-		}else
+			if($lv == 1)
+				return array('entity' => $entity, 'form'   => $form->createView());
+			else
+				return $this->render("ScontrolBundle:Gbpers:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView()));
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
