@@ -47,7 +47,54 @@
 		
 		<div id='asArea'>
 			
-			<div id='asAreaAcls'><!--- * ---></div>
+			<div id='asAreaAcls'>
+				
+				<div id='asDivTab'>										
+					<table id='asTab'><!-- CAMPO AJAX --></table>
+				</div>
+							
+				<div id='asAreaAclsCon'>										
+				
+					<table id='asAreaAclsConInt'>
+						
+						<tr>
+							<td align='left' >
+								<img id="btnAddACL" src="{{ asset('bundles/scontrol/imagenes/iconos/add.png') }}" title="Agregar ACL">
+								<br>
+								<img id="btnRemACL" src="{{ asset('bundles/scontrol/imagenes/iconos/clean.png') }}" title="Limpiar ACL">
+							</td>
+							
+							<td align="center">
+								
+								<table>
+									<tr>
+										<td align="left"><b>Módulo:</b></td>
+										<td align="left">
+											<select id='selMod'>
+												<option value='@'>Seleccione...</option>
+												{% for k, v in modulos %}
+													<option value="{{ k }}">{{ v }}</option>
+												{% endfor %}
+											</select>
+										</td>
+									</tr>
+									
+									<tr><td colspan="2">&nbsp;</td></tr>
+									
+									<tr>
+										<td align="left"><b>Acción:</b></td>
+										<td align="left"><select id='selAct'><option value='@'>Seleccione...</option></select></td>
+									</tr>
+								</table>
+								
+							</td>
+						</tr>
+					
+					</table>
+				
+				</div>
+				
+			</div>
 			
 			<div id='asAreaCarg'>
 				
@@ -81,9 +128,51 @@
 				
 			</div>
 			
-			<div id='asAreaPers'><!--- * ---></div>
+			<div id='asAreaPers'>
+				<iframe id='asIfPers' src="{{ path('gbpers_new', { 'lv': 2 }) }}"><!-- FRAME --></iframe>
+				
+				<div id="asAreaPersCnt">
+					<button id="btnCrePers">CREAR</button>
+					<button id="btnCanPers">CANCELAR</button>	
+				</div>
+			</div>
 			
-			<div id='asAreaUsua'><!--- * ---></div>
+			<div id='asAreaUsua'>
+				
+				<table id='asAreaUsuaCon'>
+					<tr>
+						<td align="center">
+							
+							<table>
+								
+								<tr>
+									<td align="center" colspan="2"><h3>Nuevo Usuario</h3></td>
+								</tr>
+																
+								<tr>
+									<td align="left"><b>Nombre</b></td>
+									<td align="left"><input type='text' id='usuaName' maxlength="50"/></td>
+								</tr>
+								
+								<tr>
+									<td align="left"><b>Clave</b></td>
+									<td align="left"><input type='password' id='usuaPass' maxlength="50"/></td>
+								</tr>
+								
+								<tr>
+									<td align="center" colspan="2">
+										<button id="btnCreUsua">CREAR</button>
+										<button id="btnCanUsua">CANCELAR</button>
+									</td>
+								</tr>
+								
+							</table>
+							
+						</td>
+					</tr>
+				</table>
+				
+			</div>
 			
 		</div>
 					
@@ -95,7 +184,7 @@
 		
 		#asMain
 		{
-			position: absolute; width: 98%; height: 90%;
+			position: absolute; top: 1%; left: 1%; width: 98%; height: 98%;
 		}
 		
 		#asMain img
@@ -129,12 +218,12 @@
 		
 		#asArea
 		{
-			border: 1px solid #1E90FF; position: absolute; left: 2%; bottom: 2%; width: 96%; height: 70%;
+			border: 1px solid #1E90FF; position: absolute; left: 1%; bottom: 0%; width: 98%; height: 78%;
 		}
 		
 		#asAreaAcls
 		{
-			width: 100%; height: 100%; background: red;	
+			width: 100%; height: 100%;	
 		}
 		
 		#asAreaCarg
@@ -142,19 +231,59 @@
 			width: 100%; height: 100%; display: none;	
 		}
 		
-		#asAreaCargCon
+		#asAreaCargCon, #asAreaUsuaCon
 		{
 			width: 100%; height: 100%;	
 		}
 		
 		#asAreaPers
 		{
-			width: 100%; height: 100%; background: yellow; display: none;	
+			width: 100%; height: 100%; display: none;	
+		}
+		
+		#asAreaPersCnt
+		{
+			position: absolute; bottom: 1%; left: 20%; width: 60%; height: auto;
+		}
+		
+		#asIfPers
+		{
+			width: 100%; height: 90%; border: none; 
 		}
 		
 		#asAreaUsua
 		{
-			width: 100%; height: 100%; background: green; display: none;	
+			width: 100%; height: 100%; display: none;	
+		}
+		
+		#asDivTab
+		{
+			position: absolute; top: 10%; left: 2%; width: 65%; height: 80%; overflow: auto; background: #fff; border: 1px solid black;
+		}
+		
+		#asTab
+		{
+			width: 100%; height: auto;
+		}
+		
+		#asTab td
+		{
+			border: 1px solid blue; cursor: pointer;
+		} 
+		
+		#asTab tr:hover
+		{
+			background: #D7DFE6;
+		}
+		
+		#asAreaAclsCon
+		{
+			position: absolute; top: 10%; right: 2%; width: 30%; height: 80%;
+		}
+		
+		#asAreaAclsConInt
+		{
+			width: 100%; height: 100%;
 		}
 		
 	</style>
@@ -165,6 +294,7 @@
 	<script type="text/javascript">
 		
 		var $optIni = "<option value='@'>Seleccione...</option>";
+		var $modoIf = 0;
 		
 		function $init()
 		{
@@ -173,8 +303,42 @@
 			gId('btnNewUsua').onclick = viewUsua;
 			gId('btnCreCarg').onclick = newCarg;
 			gId('btnCanCarg').onclick = canCarg;
+			gId('btnCrePers').onclick = newPers;
+			gId('btnCanPers').onclick = canPers;
+			gId('btnCreUsua').onclick = newUsua;
+			gId('btnCanUsua').onclick = canUsua;
+			gId('btnAddACL').onclick = addAcl;
+			gId('btnRemACL').onclick = delAcl;
+			gId('selCarg').onchange = selectPers;
+			gId('selPers').onchange = selectUsua;
+			gId('selUsua').onchange = masterSel;
+			gId('selMod').onchange = selectAct;
+			
+			gId('asIfPers').onload = loadIf;	
 		}
-
+		
+		function loadIf(event)
+		{
+			if(gIf('asIfPers', 'RMSG').value != 'LOAD')
+			{
+				changeArea('asAreaAcls');
+				popup(gIf('asIfPers', 'RMSG').value);
+			}
+			
+			if($modoIf == 0)
+				changeArea('asAreaPers');
+			
+			if($modoIf != 1)
+				selectPers();
+			
+			$modoIf = 0;
+		}
+		
+		function masterSel(event)
+		{
+			getAcl();
+		}
+		
 		function changeArea(id)
 		{
 			hide('asAreaAcls');
@@ -185,22 +349,44 @@
 			gId(id).style.display = 'block';
 		}
 		
-		function viewCarg()
+		function viewCarg(event)
 		{
-			changeArea('asAreaCarg')
+			changeArea('asAreaCarg');
 		}
 		
-		function viewPers()
+		function viewPers(event)
 		{
-			changeArea('asAreaPers')
+			$modoIf = 0;
+			gId('asIfPers').contentWindow.document.location = "{{ path('gbpers_new', { 'lv': 2 }) }}";
 		}
 		
-		function viewUsua()
+		function viewUsua(event)
 		{
-			changeArea('asAreaUsua')
+			if(gId('selPers').value != '@')
+				changeArea('asAreaUsua');
+			else
+				popup('Debe Selecionar Un Personal');
 		}
 		
-		function newCarg()
+		function selectPers(event)
+		{	
+			if(gId('selCarg').value != '@')
+				getPers()
+		}
+		
+		function selectUsua(event)
+		{	
+			if(gId('selPers').value != '@')
+				getUsua()
+		}
+		
+		function selectAct(event)
+		{	
+			if(gId('selMod').value != '@')
+				getAct()
+		}
+		
+		function newCarg(event)
 		{
 			if(gId('cargName').value != '')
 			{
@@ -217,9 +403,46 @@
 			canCarg();
 		}
 		
-		function canCarg()
+		function newPers(event)
+		{
+			$modoIf = 2;
+			ifSimularClick('asIfPers', 'sender');
+		}
+		
+		function newUsua(event)
+		{
+			if(gId('selPers').value != '@' && gId('usuaName').value != '' && gId('usuaPass').value != '')
+			{
+				ajaxAction
+				(
+					new Hash(['selPers', 'usuaName', 'usuaPass']),
+					"{{ path('as_secu_addUsua') }}",
+					getUsua
+				);
+			}
+			else
+				popup('Debe Selecionar Un Personal Y Suministrar Un Nombre y Clave Válidos!');
+			
+			canUsua();
+		}
+		
+		function canCarg(event)
 		{
 			gId('cargName').value = '';
+			changeArea('asAreaAcls');
+		}
+		
+		function canPers(event)
+		{ 
+			$modoIf = 1;
+			changeArea('asAreaAcls');
+			gId('asIfPers').contentWindow.document.location = "{{ path('gbpers_new', { 'lv': 2 }) }}";
+		}
+		
+		function canUsua(event)
+		{
+			gId('usuaName').value = '';
+			gId('usuaPass').value = '';
 			changeArea('asAreaAcls');
 		}
 		
@@ -241,12 +464,57 @@
 			);
 		}
 		
+		function getPers(response)
+		{
+			if(typeof response != 'undefined')
+			{
+				if(response.responseText.substring(0, 1) == '!')
+					popup("Personal Agregado Con Exito!");
+				else
+					popup("Imposible Agregar El Personal!.");	
+			}
+			
+			ajaxAction
+			(
+				new Hash(['selCarg']),
+				"{{ path('as_secu_getPers') }}",
+				setPers
+			);
+		}
+		
+		function getUsua(response)
+		{
+			if(typeof response != 'undefined')
+			{
+				if(response.responseText.substring(0, 1) == '!')
+					popup("Usuario Agregado Con Exito!");
+				else
+					popup("Imposible Agregar El Usuario!.");	
+			}
+			
+			ajaxAction
+			(
+				new Hash(['selPers']),
+				"{{ path('as_secu_getUsua') }}",
+				setUsua
+			);
+		}
+				
+		function getAct()
+		{
+			ajaxAction
+			(
+				new Hash(['selMod']),
+				"{{ path('as_secu_getAct') }}",
+				setAct
+			);
+		}
+		
 		function setCarg(response)
 		{
+			code = '';
 			if(response.responseText.substring(0, 1) != '%')
 			{
-				code = '';
-				
 				arr = response.responseText.split('|:|');
 				
 				for (i = 0; i < arr.length; i++)
@@ -254,11 +522,133 @@
 					pp = arr[i].split('=>');
 					code += "<option value='"+pp[0]+"'>"+pp[1]+"</option>";
 				}
-	
-				gId('selCarg').innerHTML = $optIni+code;
 			}
 			else
-				popup("Ninguna Cargo Encontrado!.");
+				popup("Ningún Cargo Encontrado!.");
+			gId('selCarg').innerHTML = $optIni+code;
+		}
+		
+		function setPers(response)
+		{
+			code = '';
+			if(response.responseText.substring(0, 1) != '%')
+			{
+				arr = response.responseText.split('|:|');
+				
+				for (i = 0; i < arr.length; i++)
+				{
+					pp = arr[i].split('=>');
+					code += "<option value='"+pp[0]+"'>"+pp[1]+"</option>";
+				}
+			}
+			else
+				popup("Ningún Personal Encontrado!.");
+			gId('selPers').innerHTML = $optIni+code;
+		}
+		
+		function setUsua(response)
+		{
+			code = '';
+			if(response.responseText.substring(0, 1) != '%')
+			{
+				arr = response.responseText.split('|:|');
+				
+				for (i = 0; i < arr.length; i++)
+				{
+					pp = arr[i].split('=>');
+					code += "<option value='"+pp[0]+"'>"+pp[1]+"</option>";
+				}
+			}
+			else
+				popup("Ningún Usuario Encontrado!.");
+			gId('selUsua').innerHTML = $optIni+code;
+		}
+		
+		function setAct(response)
+		{
+			code = '';
+			if(response.responseText.substring(0, 1) != '%')
+			{
+				arr = response.responseText.split('|:|');
+				
+				for (i = 0; i < arr.length; i++)
+				{
+					pp = arr[i].split('=>');
+					code += "<option value='"+pp[0]+"'>"+pp[1]+"</option>";
+				}
+			}
+			else
+				popup("Ninguna Acción Encontrada!.");
+			gId('selAct').innerHTML = $optIni+code;
+		}
+		
+		function addAcl(event)
+		{
+			if(gId('selUsua').value != '@' && gId('selMod').value != '@' && gId('selAct').value != '@')
+			{
+				ajaxAction
+				(
+					new Hash(['selUsua', 'selMod', 'selAct']),
+					"{{ path('as_secu_addAcl') }}",
+					getAcl
+				);
+			}
+			else
+				popup("Debe Seleccionar Usuario, Módulo y Acción!");
+		}
+		
+		function delAcl(event)
+		{
+			if(gId('selUsua').value != '@')
+			{
+				if(confirm("Por razones de seguridad, esta acción eliminara todos los privilegios del usuario seleccionado!. SEGURO QUE DESEA CONTINUAR?"))
+				{
+					ajaxAction
+					(
+						new Hash(['selUsua']),
+						"{{ path('as_secu_delAcl') }}",
+						getAcl
+					);
+				}
+			}
+			else
+				popup("Debe Seleccionar un Usuario!");
+		}
+		
+		function getAcl(response)
+		{
+			if(typeof response != 'undefined')
+				popup(response.responseText);
+				
+			if(gId('selUsua').value != '@')
+			{
+				ajaxAction
+				(
+					new Hash(['selUsua']),
+					"{{ path('as_secu_getAcl') }}",
+					setAcl
+				);
+			}
+		}
+		
+		function setAcl(response)
+		{
+			code = '';
+			if(response.responseText != '%')
+			{
+				arr = response.responseText.split('|:|');
+				
+				for (i = 0; i < arr.length; i++)
+				{
+					pp = arr[i].split(':');
+					
+					code += "<tr><td><b>"+pp[0]+"</b></td><td>"+pp[1]+"</td></tr>";
+				}
+	
+				gId('asTab').innerHTML = code;
+			}
+			else
+				gId('asTab').innerHTML = "<tr><td><h3>Ningún Privilegio Asignado!</h3></td></tr>";
 		}
 		
 	</script>

@@ -420,11 +420,11 @@ gbpers_show:
     pattern:  /gbpers/{id}/show
     defaults: { _controller: ScontrolBundle:Gbpers:show }
 gbpers_new:
-    pattern:  /gbpers/new
-    defaults: { _controller: ScontrolBundle:Gbpers:new }
+    pattern:  /gbpers/new/{lv}
+    defaults: { _controller: ScontrolBundle:Gbpers:new, lv: 1 }
 gbpers_create:
-    pattern:  /gbpers/create
-    defaults: { _controller: ScontrolBundle:Gbpers:create }
+    pattern:  /gbpers/create/{lv}
+    defaults: { _controller: ScontrolBundle:Gbpers:create, lv: 1 }
 gbpers_edit:
     pattern:  /gbpers/{id}/edit
     defaults: { _controller: ScontrolBundle:Gbpers:edit }
@@ -1223,61 +1223,61 @@ tcruta_filter:
 #
 as_ubica:
     pattern: /asubic
-    defaults: { _controller: ScontrolBundle:AsUbica:index }
+    defaults: { _controller: ScontrolBundle:AsUbic:index }
 as_ubica_getProvs:
     pattern: /asubic/getprovs
-    defaults: { _controller: ScontrolBundle:AsUbica:getProvs }
+    defaults: { _controller: ScontrolBundle:AsUbic:getProvs }
 as_ubica_getPaises:
     pattern: /asubic/getpaises
-    defaults: { _controller: ScontrolBundle:AsUbica:getPaises }
+    defaults: { _controller: ScontrolBundle:AsUbic:getPaises }
 as_ubica_addPais:
     pattern: /asubic/addpais
-    defaults: { _controller: ScontrolBundle:AsUbica:addPais }
+    defaults: { _controller: ScontrolBundle:AsUbic:addPais }
 as_ubica_addProv:
     pattern: /asubic/addprov
-    defaults: { _controller: ScontrolBundle:AsUbica:addProv }
+    defaults: { _controller: ScontrolBundle:AsUbic:addProv }
 as_ubica_getCiuds:
     pattern: /asubic/getciuds
-    defaults: { _controller: ScontrolBundle:AsUbica:getCiuds }
+    defaults: { _controller: ScontrolBundle:AsUbic:getCiuds }
 as_ubica_addCiud:
     pattern: /asubic/addciud
-    defaults: { _controller: ScontrolBundle:AsUbica:addCiud }
+    defaults: { _controller: ScontrolBundle:AsUbic:addCiud }
 as_ubica_delCiud:
     pattern: /asubic/delciud
-    defaults: { _controller: ScontrolBundle:AsUbica:delCiud }
+    defaults: { _controller: ScontrolBundle:AsUbic:delCiud }
 #
 #            Protocolos
 #
 as_protocolo:
     pattern: /asprot
-    defaults: { _controller: ScontrolBundle:AsProtocolo:index }
+    defaults: { _controller: ScontrolBundle:AsProt:index }
 as_protocolo_getPuesto:
     pattern: /asprot/getpuesto
-    defaults: { _controller: ScontrolBundle:AsProtocolo:getPuesto }
+    defaults: { _controller: ScontrolBundle:AsProt:getPuesto }
 as_protocolo_newPuesto:
     pattern: /asprot/newpuesto
-    defaults: { _controller: ScontrolBundle:AsProtocolo:newPuesto }
+    defaults: { _controller: ScontrolBundle:AsProt:newPuesto }
 as_protocolo_newProtocolo:
     pattern: /asprot/newprotocolo
-    defaults: { _controller: ScontrolBundle:AsProtocolo:newProtocolo }
+    defaults: { _controller: ScontrolBundle:AsProt:newProtocolo }
 as_protocolo_getQues:
-    pattern: /asprot/getQues
-    defaults: { _controller: ScontrolBundle:AsProtocolo:getQues }
+    pattern: /asprot/getques
+    defaults: { _controller: ScontrolBundle:AsProt:getQues }
 as_protocolo_delQues:
-    pattern: /asprot/delQues
-    defaults: { _controller: ScontrolBundle:AsProtocolo:delQues }
+    pattern: /asprot/delques
+    defaults: { _controller: ScontrolBundle:AsProt:delQues }
 as_protocolo_addQues:
-    pattern: /asprot/addQues
-    defaults: { _controller: ScontrolBundle:AsProtocolo:addQues }
+    pattern: /asprot/addques
+    defaults: { _controller: ScontrolBundle:AsProt:addQues }
 as_protocolo_getProceso:
-    pattern: /asprot/getProceso
-    defaults: { _controller: ScontrolBundle:AsProtocolo:getProceso }
+    pattern: /asprot/getproceso
+    defaults: { _controller: ScontrolBundle:AsProt:getProceso }
 as_protocolo_addProto:
-    pattern: /asprot/addProto
-    defaults: { _controller: ScontrolBundle:AsProtocolo:addProto }
+    pattern: /asprot/addproto
+    defaults: { _controller: ScontrolBundle:AsProt:addProto }
 as_protocolo_delProto:
-    pattern: /asprot/delProto
-    defaults: { _controller: ScontrolBundle:AsProtocolo:delProto }
+    pattern: /asprot/delproto
+    defaults: { _controller: ScontrolBundle:AsProt:delProto }
 #
 #            Seguridad
 #
@@ -1287,6 +1287,27 @@ as_secu:
 as_secu_addCarg:
     pattern: /assecu/addcarg
     defaults: { _controller: ScontrolBundle:AsSecu:addCargo }
+as_secu_addUsua:
+    pattern: /assecu/addusua
+    defaults: { _controller: ScontrolBundle:AsSecu:addUsua }
 as_secu_getCarg:
     pattern: /assecu/getcarg
-    defaults: { _controller: ScontrolBundle:AsSecu:getCargo }
+    defaults: {_controller: ScontrolBundle:AsSecu:getCargo }
+as_secu_getPers:
+    pattern: /assecu/getpers
+    defaults: {_controller: ScontrolBundle:AsSecu:getPers }
+as_secu_getUsua:
+    pattern: /assecu/getusua
+    defaults: {_controller: ScontrolBundle:AsSecu:getUsua }
+as_secu_getAct:
+    pattern: /assecu/getact
+    defaults: {_controller: ScontrolBundle:AsSecu:getAct }
+as_secu_addAcl:
+    pattern: /assecu/addacl
+    defaults: {_controller: ScontrolBundle:AsSecu:addAcl }
+as_secu_delAcl:
+    pattern: /assecu/delacl
+    defaults: {_controller: ScontrolBundle:AsSecu:delAcl }
+as_secu_getAcl:
+    pattern: /assecu/getacl
+    defaults: {_controller: ScontrolBundle:AsSecu:getAcl }

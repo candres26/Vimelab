@@ -3,6 +3,11 @@ function gId(name)
     return document.getElementById(name);
 }
 
+function gIf(ifId, obId)
+{
+	return document.getElementById(ifId).contentWindow.document.getElementById(obId);
+}
+
 function gTag(elem, tag)
 {
     return elem.getElementsByTagName(tag);

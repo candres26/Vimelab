@@ -38,4 +38,11 @@ class GbpersRepository extends EntityRepository
         $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Gbpers m WHERE m.identificacion LIKE '%$parametro%' or m.estado LIKE '%$parametro%'  ORDER BY m.id ASC");
         return $querry->getResult();
     }
+	
+	public function getForCargo($id)
+	{
+		$em = $this->getEntityManager();
+        $querry = $em->createQuery("SELECT p FROM ScontrolBundle:Gbpers p JOIN p.gbcarg c WHERE c.id = $id and p.estado = 'A' ORDER BY p.priape ASC");
+        return $querry->getResult();
+	}
 }

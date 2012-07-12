@@ -372,10 +372,9 @@
 		
 		function setPaises(response)
 		{
+			code = '';
 			if(response.responseText.substring(0, 1) != '%')
 			{
-				code = '';
-				
 				arr = response.responseText.split('|:|');
 				
 				for (i = 0; i < arr.length; i++)
@@ -383,11 +382,10 @@
 					pp = arr[i].split('=>');
 					code += "<option value='"+pp[0]+"'>"+pp[1]+"</option>";
 				}
-	
-				gId('asPais').innerHTML = $optIni+code;
 			}
 			else
 				popup("Ninguna País Encontrado!.");
+			gId('asPais').innerHTML = $optIni+code;
 		}
 		
 		function addProv(event)
@@ -437,10 +435,9 @@
 		
 		function setProvs(response)
 		{
+			code = '';
 			if(response.responseText.substring(0, 1) != '%')
 			{
-				code = '';
-				
 				arr = response.responseText.split('|:|');
 				
 				for (i = 0; i < arr.length; i++)
@@ -448,11 +445,10 @@
 					pp = arr[i].split('=>');
 					code += "<option value='"+pp[0]+"'>"+pp[1]+"</option>";
 				}
-	
-				gId('asProv').innerHTML = $optIni+code;
 			}
 			else
 				popup("Ninguna Província Asociada A Este País!.");
+			gId('asProv').innerHTML = $optIni+code;
 		}
 		
 		function addCiu(event)
@@ -515,10 +511,9 @@
 		
 		function setCiuds(response)
 		{
+			code = '';
 			if(response.responseText.substring(0, 1) != '%')
 			{
-				code = '';
-				
 				arr = response.responseText.split('|:|');
 				
 				for (i = 0; i < arr.length; i++)

@@ -38,4 +38,19 @@ class GbaclsRepository extends EntityRepository
         $querry = $em->createQuery("SELECT m, l FROM ScontrolBundle:Gbacls m JOIN m.gbusua l WHERE l.nombre LIKE '%$parametro%' OR m.modulo LIKE '%$parametro%' ORDER BY l.id ASC");
         return $querry->getResult();
     }
+	
+	public function getExist($usu, $mod, $act)
+    {
+        $em = $this->getEntityManager();
+        $querry = $em->createQuery("SELECT COUNT(o) FROM ScontrolBundle:Gbacls o JOIN o.gbusua u WHERE u.id = $usu AND o.modulo = '$mod' AND o.accion = '$act'");
+        $resul = $querry->getSingleScalarResult();
+        return $resul;
+    }
+	
+	public function getInUser($usu)
+    {
+        $em = $this->getEntityManager();
+        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Gbacls o JOIN o.gbusua u WHERE u.id = $usu ORDER BY o.modulo ASC");
+     	return $querry->getResult();
+    }
 }

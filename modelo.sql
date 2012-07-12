@@ -66,15 +66,6 @@ CREATE TABLE `CtCont` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `CtCont`
---
-
-LOCK TABLES `CtCont` WRITE;
-/*!40000 ALTER TABLE `CtCont` DISABLE KEYS */;
-/*!40000 ALTER TABLE `CtCont` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `CtCoti`
 --
 
@@ -99,15 +90,6 @@ CREATE TABLE `CtCoti` (
   CONSTRAINT `CtCoti_ibfk_1` FOREIGN KEY (`GbEmpr_id`) REFERENCES `GbEmpr` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `CtCoti`
---
-
-LOCK TABLES `CtCoti` WRITE;
-/*!40000 ALTER TABLE `CtCoti` DISABLE KEYS */;
-/*!40000 ALTER TABLE `CtCoti` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `CtFact`
@@ -141,15 +123,6 @@ CREATE TABLE `CtFact` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `CtFact`
---
-
-LOCK TABLES `CtFact` WRITE;
-/*!40000 ALTER TABLE `CtFact` DISABLE KEYS */;
-/*!40000 ALTER TABLE `CtFact` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `CtServ`
 --
 
@@ -166,15 +139,6 @@ CREATE TABLE `CtServ` (
   UNIQUE KEY `codigo` (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `CtServ`
---
-
-LOCK TABLES `CtServ` WRITE;
-/*!40000 ALTER TABLE `CtServ` DISABLE KEYS */;
-/*!40000 ALTER TABLE `CtServ` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `CtTari`
@@ -197,15 +161,6 @@ CREATE TABLE `CtTari` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `CtTari`
---
-
-LOCK TABLES `CtTari` WRITE;
-/*!40000 ALTER TABLE `CtTari` DISABLE KEYS */;
-/*!40000 ALTER TABLE `CtTari` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `GbAcls`
 --
 
@@ -224,15 +179,6 @@ CREATE TABLE `GbAcls` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `GbAcls`
---
-
-LOCK TABLES `GbAcls` WRITE;
-/*!40000 ALTER TABLE `GbAcls` DISABLE KEYS */;
-/*!40000 ALTER TABLE `GbAcls` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `GbCarg`
 --
 
@@ -246,16 +192,6 @@ CREATE TABLE `GbCarg` (
   UNIQUE KEY `nombre` (`nombre`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `GbCarg`
---
-
-LOCK TABLES `GbCarg` WRITE;
-/*!40000 ALTER TABLE `GbCarg` DISABLE KEYS */;
-INSERT INTO `GbCarg` VALUES (1,'SYSTEM');
-/*!40000 ALTER TABLE `GbCarg` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `GbCiud`
@@ -277,16 +213,6 @@ CREATE TABLE `GbCiud` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `GbCiud`
---
-
-LOCK TABLES `GbCiud` WRITE;
-/*!40000 ALTER TABLE `GbCiud` DISABLE KEYS */;
-INSERT INTO `GbCiud` VALUES (1,1,'S0000','SYSTEM');
-/*!40000 ALTER TABLE `GbCiud` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `GbCnae`
 --
 
@@ -300,16 +226,6 @@ CREATE TABLE `GbCnae` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `GbCnae`
---
-
-LOCK TABLES `GbCnae` WRITE;
-/*!40000 ALTER TABLE `GbCnae` DISABLE KEYS */;
-INSERT INTO `GbCnae` VALUES (1,'SYSTEM','SYSTEM');
-/*!40000 ALTER TABLE `GbCnae` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `GbCorp`
@@ -344,15 +260,6 @@ CREATE TABLE `GbCorp` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `GbCorp`
---
-
-LOCK TABLES `GbCorp` WRITE;
-/*!40000 ALTER TABLE `GbCorp` DISABLE KEYS */;
-/*!40000 ALTER TABLE `GbCorp` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `GbDepa`
 --
 
@@ -370,16 +277,6 @@ CREATE TABLE `GbDepa` (
   CONSTRAINT `GbDepa_ibfk_1` FOREIGN KEY (`GbPais_id`) REFERENCES `GbPais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `GbDepa`
---
-
-LOCK TABLES `GbDepa` WRITE;
-/*!40000 ALTER TABLE `GbDepa` DISABLE KEYS */;
-INSERT INTO `GbDepa` VALUES (1,1,'S0','SYSTEM');
-/*!40000 ALTER TABLE `GbDepa` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `GbEmpr`
@@ -408,16 +305,6 @@ CREATE TABLE `GbEmpr` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `GbEmpr`
---
-
-LOCK TABLES `GbEmpr` WRITE;
-/*!40000 ALTER TABLE `GbEmpr` DISABLE KEYS */;
-INSERT INTO `GbEmpr` VALUES (1,'S0',1,1,'S','SYSTEM','SYSTEM','SYSTEM','SYSTEM');
-/*!40000 ALTER TABLE `GbEmpr` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `GbIden`
 --
 
@@ -431,16 +318,6 @@ CREATE TABLE `GbIden` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `GbIden`
---
-
-LOCK TABLES `GbIden` WRITE;
-/*!40000 ALTER TABLE `GbIden` DISABLE KEYS */;
-INSERT INTO `GbIden` VALUES (1,'SYS','SYSTEM');
-/*!40000 ALTER TABLE `GbIden` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `GbLogr`
@@ -462,15 +339,6 @@ CREATE TABLE `GbLogr` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `GbLogr`
---
-
-LOCK TABLES `GbLogr` WRITE;
-/*!40000 ALTER TABLE `GbLogr` DISABLE KEYS */;
-/*!40000 ALTER TABLE `GbLogr` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `GbPais`
 --
 
@@ -485,16 +353,6 @@ CREATE TABLE `GbPais` (
   UNIQUE KEY `codigo` (`codigo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `GbPais`
---
-
-LOCK TABLES `GbPais` WRITE;
-/*!40000 ALTER TABLE `GbPais` DISABLE KEYS */;
-INSERT INTO `GbPais` VALUES (1,'S00','SYSTEM');
-/*!40000 ALTER TABLE `GbPais` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `GbPers`
@@ -535,16 +393,6 @@ CREATE TABLE `GbPers` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `GbPers`
---
-
-LOCK TABLES `GbPers` WRITE;
-/*!40000 ALTER TABLE `GbPers` DISABLE KEYS */;
-INSERT INTO `GbPers` VALUES (1,1,1,1,'SYSTEM','SYSTEM','SYSTEM','SYSTEM','SYSTEM','0000-00-00','SYSTEM','SYSTEM','SYSTEM',1,'0000-00-00',0,'A');
-/*!40000 ALTER TABLE `GbPers` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `GbPtra`
 --
 
@@ -560,15 +408,6 @@ CREATE TABLE `GbPtra` (
   CONSTRAINT `GbPtra_ibfk_1` FOREIGN KEY (`GbEmpr_id`) REFERENCES `GbEmpr` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `GbPtra`
---
-
-LOCK TABLES `GbPtra` WRITE;
-/*!40000 ALTER TABLE `GbPtra` DISABLE KEYS */;
-/*!40000 ALTER TABLE `GbPtra` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `GbSucu`
@@ -597,16 +436,6 @@ CREATE TABLE `GbSucu` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `GbSucu`
---
-
-LOCK TABLES `GbSucu` WRITE;
-/*!40000 ALTER TABLE `GbSucu` DISABLE KEYS */;
-INSERT INTO `GbSucu` VALUES (1,1,1,'SYSTEM','SYSTEM','SYSTEM','SYSTEM','SYSTEM','SYSTEM','SYSTEM');
-/*!40000 ALTER TABLE `GbSucu` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `GbUsua`
 --
 
@@ -626,16 +455,6 @@ CREATE TABLE `GbUsua` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `GbUsua`
---
-
-LOCK TABLES `GbUsua` WRITE;
-/*!40000 ALTER TABLE `GbUsua` DISABLE KEYS */;
-INSERT INTO `GbUsua` VALUES (1,1,'root','wg1HV7zlQXAkgYpMBDyviLg9jGo2eb5KuASDH0j9+pP3v9ex3lUTbf6J36lcJvxsThuE6F581+R8eiCBn1EFig==');
-/*!40000 ALTER TABLE `GbUsua` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `GbVars`
 --
 
@@ -651,16 +470,6 @@ CREATE TABLE `GbVars` (
   UNIQUE KEY `nombre` (`nombre`)
 ) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `GbVars`
---
-
-LOCK TABLES `GbVars` WRITE;
-/*!40000 ALTER TABLE `GbVars` DISABLE KEYS */;
-INSERT INTO `GbVars` VALUES (1,'M','msdic','ctcont=>Contratos|-|asprot=>Asistente De Protocolos|-|index=>Ingresar'),(2,'S','asprot','Asistente De Protocolos|-|*|-|asprot/index|:|asprot/getpuesto|:|asprot/newpuesto|:|asprot/newprotocolo|:|asprot/getques|:|asprot/delques|:|asprot/addques|:|asprot/getproceso|:|asprot/addproto|:|asprot/delproto'),(3,'S','assecu',''),(4,'S','asubic',''),(5,'S','ctcont','Contratos|-|!|-|ctcont/index=>Ingresar|:|ctcont/show=>Ver|:|ctcont/new=>Nuevo|:|ctcont/create=>Guardar|:|ctcont/edit=>Editar|:|ctcont/update=>Actualizar|:|ctcont/delete=>Borrar'),(6,'S','ctcoti',''),(7,'S','ctfact',''),(8,'S','ctserv',''),(9,'S','cttari',''),(10,'S','gbacls',''),(11,'S','gbcarg',''),(12,'S','gbciud',''),(13,'S','gbcnae',''),(14,'S','gbcorp',''),(15,'S','gbdepa',''),(16,'S','gbempr',''),(17,'S','gbiden',''),(18,'S','gblogr',''),(19,'S','gbpais',''),(20,'S','gbpers',''),(21,'S','gbptra',''),(22,'S','gbsucu',''),(23,'S','gbusua',''),(24,'S','hsfami',''),(25,'S','hslabo',''),(26,'S','hspers',''),(27,'S','mdaudi',''),(28,'S','mdbiom',''),(29,'S','mddiag',''),(30,'S','mdespi',''),(31,'S','mdexam',''),(32,'S','mdextr',''),(33,'S','mdhist',''),(34,'S','mdlabo',''),(35,'S','mdpaci',''),(36,'S','mdpato',''),(37,'S','mdproc',''),(38,'S','mdprot',''),(39,'S','mdques',''),(40,'S','mdresp',''),(41,'S','mdsist',''),(42,'S','mdvisu',''),(43,'S','tcaspe',''),(44,'S','tccapa',''),(45,'S','tcchec',''),(46,'S','tccurs',''),(47,'S','tcdeta',''),(48,'S','tcrevi',''),(49,'S','tcruta','');
-/*!40000 ALTER TABLE `GbVars` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `HsFami`
@@ -684,15 +493,6 @@ CREATE TABLE `HsFami` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `HsFami`
---
-
-LOCK TABLES `HsFami` WRITE;
-/*!40000 ALTER TABLE `HsFami` DISABLE KEYS */;
-/*!40000 ALTER TABLE `HsFami` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `HsLabo`
 --
 
@@ -714,15 +514,6 @@ CREATE TABLE `HsLabo` (
   CONSTRAINT `HsLabo_ibfk_1` FOREIGN KEY (`MdPaci_id`) REFERENCES `MdPaci` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `HsLabo`
---
-
-LOCK TABLES `HsLabo` WRITE;
-/*!40000 ALTER TABLE `HsLabo` DISABLE KEYS */;
-/*!40000 ALTER TABLE `HsLabo` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `HsPers`
@@ -794,15 +585,6 @@ CREATE TABLE `HsPers` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `HsPers`
---
-
-LOCK TABLES `HsPers` WRITE;
-/*!40000 ALTER TABLE `HsPers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `HsPers` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `MdAudi`
 --
 
@@ -834,15 +616,6 @@ CREATE TABLE `MdAudi` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `MdAudi`
---
-
-LOCK TABLES `MdAudi` WRITE;
-/*!40000 ALTER TABLE `MdAudi` DISABLE KEYS */;
-/*!40000 ALTER TABLE `MdAudi` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `MdBiom`
 --
 
@@ -865,15 +638,6 @@ CREATE TABLE `MdBiom` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `MdBiom`
---
-
-LOCK TABLES `MdBiom` WRITE;
-/*!40000 ALTER TABLE `MdBiom` DISABLE KEYS */;
-/*!40000 ALTER TABLE `MdBiom` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `MdDiag`
 --
 
@@ -891,15 +655,6 @@ CREATE TABLE `MdDiag` (
   CONSTRAINT `MdDiag_ibfk_2` FOREIGN KEY (`MdPato_id`) REFERENCES `MdPato` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `MdDiag`
---
-
-LOCK TABLES `MdDiag` WRITE;
-/*!40000 ALTER TABLE `MdDiag` DISABLE KEYS */;
-/*!40000 ALTER TABLE `MdDiag` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `MdEspi`
@@ -922,15 +677,6 @@ CREATE TABLE `MdEspi` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `MdEspi`
---
-
-LOCK TABLES `MdEspi` WRITE;
-/*!40000 ALTER TABLE `MdEspi` DISABLE KEYS */;
-/*!40000 ALTER TABLE `MdEspi` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `MdExam`
 --
 
@@ -946,15 +692,6 @@ CREATE TABLE `MdExam` (
   UNIQUE KEY `codigo` (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `MdExam`
---
-
-LOCK TABLES `MdExam` WRITE;
-/*!40000 ALTER TABLE `MdExam` DISABLE KEYS */;
-/*!40000 ALTER TABLE `MdExam` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `MdExtr`
@@ -1004,15 +741,6 @@ CREATE TABLE `MdExtr` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `MdExtr`
---
-
-LOCK TABLES `MdExtr` WRITE;
-/*!40000 ALTER TABLE `MdExtr` DISABLE KEYS */;
-/*!40000 ALTER TABLE `MdExtr` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `MdHist`
 --
 
@@ -1037,15 +765,6 @@ CREATE TABLE `MdHist` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `MdHist`
---
-
-LOCK TABLES `MdHist` WRITE;
-/*!40000 ALTER TABLE `MdHist` DISABLE KEYS */;
-/*!40000 ALTER TABLE `MdHist` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `MdLabo`
 --
 
@@ -1068,15 +787,6 @@ CREATE TABLE `MdLabo` (
   CONSTRAINT `MdLabo_ibfk_3` FOREIGN KEY (`MdExam_id`) REFERENCES `MdExam` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `MdLabo`
---
-
-LOCK TABLES `MdLabo` WRITE;
-/*!40000 ALTER TABLE `MdLabo` DISABLE KEYS */;
-/*!40000 ALTER TABLE `MdLabo` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `MdPaci`
@@ -1116,15 +826,6 @@ CREATE TABLE `MdPaci` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `MdPaci`
---
-
-LOCK TABLES `MdPaci` WRITE;
-/*!40000 ALTER TABLE `MdPaci` DISABLE KEYS */;
-/*!40000 ALTER TABLE `MdPaci` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `MdPato`
 --
 
@@ -1140,15 +841,6 @@ CREATE TABLE `MdPato` (
   UNIQUE KEY `codigo` (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `MdPato`
---
-
-LOCK TABLES `MdPato` WRITE;
-/*!40000 ALTER TABLE `MdPato` DISABLE KEYS */;
-/*!40000 ALTER TABLE `MdPato` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `MdProc`
@@ -1170,15 +862,6 @@ CREATE TABLE `MdProc` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `MdProc`
---
-
-LOCK TABLES `MdProc` WRITE;
-/*!40000 ALTER TABLE `MdProc` DISABLE KEYS */;
-/*!40000 ALTER TABLE `MdProc` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `MdProt`
 --
 
@@ -1193,15 +876,6 @@ CREATE TABLE `MdProt` (
   UNIQUE KEY `codigo` (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `MdProt`
---
-
-LOCK TABLES `MdProt` WRITE;
-/*!40000 ALTER TABLE `MdProt` DISABLE KEYS */;
-/*!40000 ALTER TABLE `MdProt` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `MdQues`
@@ -1219,15 +893,6 @@ CREATE TABLE `MdQues` (
   CONSTRAINT `MdQues_ibfk_1` FOREIGN KEY (`MdProt_id`) REFERENCES `MdProt` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `MdQues`
---
-
-LOCK TABLES `MdQues` WRITE;
-/*!40000 ALTER TABLE `MdQues` DISABLE KEYS */;
-/*!40000 ALTER TABLE `MdQues` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `MdResp`
@@ -1249,15 +914,6 @@ CREATE TABLE `MdResp` (
   CONSTRAINT `MdResp_ibfk_2` FOREIGN KEY (`MdHist_id`) REFERENCES `MdHist` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `MdResp`
---
-
-LOCK TABLES `MdResp` WRITE;
-/*!40000 ALTER TABLE `MdResp` DISABLE KEYS */;
-/*!40000 ALTER TABLE `MdResp` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `MdSist`
@@ -1286,15 +942,6 @@ CREATE TABLE `MdSist` (
   CONSTRAINT `MdSist_ibfk_1` FOREIGN KEY (`MdHist_id`) REFERENCES `MdHist` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `MdSist`
---
-
-LOCK TABLES `MdSist` WRITE;
-/*!40000 ALTER TABLE `MdSist` DISABLE KEYS */;
-/*!40000 ALTER TABLE `MdSist` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `MdVisu`
@@ -1329,15 +976,6 @@ CREATE TABLE `MdVisu` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `MdVisu`
---
-
-LOCK TABLES `MdVisu` WRITE;
-/*!40000 ALTER TABLE `MdVisu` DISABLE KEYS */;
-/*!40000 ALTER TABLE `MdVisu` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `TcAspe`
 --
 
@@ -1356,15 +994,6 @@ CREATE TABLE `TcAspe` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `TcAspe`
---
-
-LOCK TABLES `TcAspe` WRITE;
-/*!40000 ALTER TABLE `TcAspe` DISABLE KEYS */;
-/*!40000 ALTER TABLE `TcAspe` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `TcCapa`
 --
 
@@ -1381,15 +1010,6 @@ CREATE TABLE `TcCapa` (
   UNIQUE KEY `codigo` (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `TcCapa`
---
-
-LOCK TABLES `TcCapa` WRITE;
-/*!40000 ALTER TABLE `TcCapa` DISABLE KEYS */;
-/*!40000 ALTER TABLE `TcCapa` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `TcChec`
@@ -1444,15 +1064,6 @@ CREATE TABLE `TcChec` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `TcChec`
---
-
-LOCK TABLES `TcChec` WRITE;
-/*!40000 ALTER TABLE `TcChec` DISABLE KEYS */;
-/*!40000 ALTER TABLE `TcChec` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `TcCurs`
 --
 
@@ -1475,15 +1086,6 @@ CREATE TABLE `TcCurs` (
   CONSTRAINT `TcCurs_ibfk_2` FOREIGN KEY (`TcCapa_id`) REFERENCES `TcCapa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `TcCurs`
---
-
-LOCK TABLES `TcCurs` WRITE;
-/*!40000 ALTER TABLE `TcCurs` DISABLE KEYS */;
-/*!40000 ALTER TABLE `TcCurs` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `TcDeta`
@@ -1510,15 +1112,6 @@ CREATE TABLE `TcDeta` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `TcDeta`
---
-
-LOCK TABLES `TcDeta` WRITE;
-/*!40000 ALTER TABLE `TcDeta` DISABLE KEYS */;
-/*!40000 ALTER TABLE `TcDeta` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `TcRevi`
 --
 
@@ -1541,15 +1134,6 @@ CREATE TABLE `TcRevi` (
   CONSTRAINT `TcRevi_ibfk_2` FOREIGN KEY (`GbPers_id`) REFERENCES `GbPers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `TcRevi`
---
-
-LOCK TABLES `TcRevi` WRITE;
-/*!40000 ALTER TABLE `TcRevi` DISABLE KEYS */;
-/*!40000 ALTER TABLE `TcRevi` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `TcRuta`
@@ -1591,15 +1175,6 @@ CREATE TABLE `TcRuta` (
   CONSTRAINT `TcRuta_ibfk_1` FOREIGN KEY (`CtCont_id`) REFERENCES `CtCont` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `TcRuta`
---
-
-LOCK TABLES `TcRuta` WRITE;
-/*!40000 ALTER TABLE `TcRuta` DISABLE KEYS */;
-/*!40000 ALTER TABLE `TcRuta` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -1610,4 +1185,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-07-12 15:49:35
+-- Dump completed on 2012-07-12 15:39:36

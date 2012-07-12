@@ -6,6 +6,8 @@ use Vimelab\ScontrolBundle\Entity\Gblogr;
 
 class Tool
 {
+	public $mdic = array();
+	
 	public static function isGrant($controller)
 	{
 		
@@ -64,5 +66,30 @@ class Tool
         
         $em->persist($log);
 		$em->flush();
+	}
+	
+	public function initDic($controller, $dict='msdic')
+	{
+		$request = $controller->getRequest();
+		$em = $controller->getDoctrine()->getEntityManager();
+		
+		$var = $em->getRepository('ScontrolBundle:Gbvars')->findOneByNombre($dict);
+		
+		$dic = explode('|-|', $var->getValor());
+		$this->mdic = array();
+		
+		foreach($dic as $caso)
+		{
+			$tmp = explode('=>', $caso);
+			$this->mdic[$tmp[0]] = $tmp[1];
+		}
+	}
+	
+	public function traduce($word)
+	{
+		if(isset($this->mdic[$word]))
+			return $this->mdic[$word];
+		else
+			return $word;
 	}
 }

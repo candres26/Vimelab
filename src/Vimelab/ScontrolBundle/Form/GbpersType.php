@@ -12,9 +12,9 @@ class GbpersType extends AbstractType
         $builder
             ->add('identificacion', 'text', array('label' => 'Identificación'))
             ->add('prinom', 'text', array('label' => 'Primer nombre'))
-            ->add('segnom', 'text', array('label' => 'Segundo nombre'))
+            ->add('segnom', 'text', array('label' => 'Segundo nombre','required' => false))
             ->add('priape', 'text', array('label' => 'Primer apellido'))
-            ->add('segape', 'text', array('label' => 'Segundo apellido'))
+            ->add('segape', 'text', array('label' => 'Segundo apellido','required' => false))
             ->add('nacimiento', 'date', array('widget' => 'single_text', 'format' => 'y-MM-dd'))
             ->add('telefono', 'text', array('label' => 'Teléfono'))
             ->add('direccion', 'text', array('label' => 'Dirección'))
