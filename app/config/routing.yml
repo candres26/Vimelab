@@ -4,8 +4,8 @@ ScontrolBundle:
 
 #Index Producción
 Index_prod:
-    pattern: /
-    defaults: { _controller: ScontrolBundle:Mdhist:index }
+    pattern:  /
+    defaults: { _controller: ScontrolBundle:Home:index }
 
 # Seguridad
 login:
