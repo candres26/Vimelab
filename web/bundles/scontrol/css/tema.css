@@ -12,22 +12,32 @@ h2
 	font-family: helvetica, arial;
 	font-size: 22px;
 }
-
+.home {
+	cursor: pointer;
+	color: #000; 
+	font-size: 0.9em; 
+	padding-bottom: 0.1px;
+	padding-top: 0.1px;
+	padding-left: 1px;
+	padding-right: 1px;
+}
+.home:hover{
+	color: #6D6D6D;
+}
 .exitBtn
 {
-	cursor: pointer; 
-	background: black;
-	color: white;
-	border: 1px solid red; 
-	border-radius: 10px; 
-	font-size: 0.8em; 
-	padding: 2px;
+	cursor: pointer;
+	color: #000; 
+	font-size: 0.9em; 
+	padding-bottom: 0.1px;
+	padding-top: 0.1px;
+	padding-left: 1px;
+	padding-right: 1px;
 }
 
 .exitBtn:hover
 {
-	background: white;
-	color: black;
+	color: #6D6D6D;
 }
 
 #vime-cabecera{
@@ -114,7 +124,7 @@ h2
     position: absolute;
     padding-top: 3%;
     top: 1%;
-    left: 1%;
+    left: 0.5%;
     overflow: auto;
     width: 98%;
     height: 92%;
@@ -247,13 +257,17 @@ h2
 	padding-left: 6px;
 	overflow: hidden;
 	cursor: pointer;
-	border-bottom: 1px solid #FFFFFF;
+	border-bottom: 2px outset #898787;
+	border-top: 1px outset #898787;
+	border-left: 1px solid #898787;
+	border-right: 2px outset #898787;
 }
 
 .Menu:hover
 {
 	/*height: auto;*/
-	border-bottom: 1px solid #000000;
+	border-top: 2px outset #C4C4C4;
+	border-bottom: 1px solid #C4C4C4;
 	background: #FFFFFF;
 }
 
@@ -272,7 +286,7 @@ h2
 	position: absolute;
 	overflow: hidden;
 	top: 15%;
-	left: 16%;
+	left: 15.5%;
 	width: 15px;
 	height: 38px;
 	background: #DDD8D8;
