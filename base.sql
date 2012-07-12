@@ -1406,7 +1406,7 @@ CREATE TABLE `TcChec` (
   `comite` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `descripcion` text COLLATE utf8_unicode_ci NOT NULL,
   `caracteristicas` text COLLATE utf8_unicode_ci NOT NULL,
-  `psensible` text COLLATE utf8_unicode_ci NOT NULL,
+  `psensible` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `seguridad` text COLLATE utf8_unicode_ci NOT NULL,
   `mfisico` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `hfisico` text COLLATE utf8_unicode_ci NOT NULL,
@@ -1414,6 +1414,7 @@ CREATE TABLE `TcChec` (
   `hquimico` text COLLATE utf8_unicode_ci NOT NULL,
   `mbiologico` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `hbiologico` text COLLATE utf8_unicode_ci NOT NULL,
+  `rangocargas` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `cargas` text COLLATE utf8_unicode_ci NOT NULL,
   `carretilleros` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `repetitivos` char(1) COLLATE utf8_unicode_ci NOT NULL,
@@ -1438,8 +1439,7 @@ CREATE TABLE `TcChec` (
   `bantideslizante` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `observaciones` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `TcRevi_id` (`TcRevi_id`),
-  CONSTRAINT `TcChec_ibfk_1` FOREIGN KEY (`TcRevi_id`) REFERENCES `TcRevi` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `TcRevi_id` (`TcRevi_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

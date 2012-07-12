@@ -62,7 +62,7 @@ CREATE TABLE `CtCont` (
   CONSTRAINT `CtCont_ibfk_6` FOREIGN KEY (`ContratistaGbIden_id`) REFERENCES `GbIden` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `CtCont_ibfk_7` FOREIGN KEY (`FirmaGbCiud_id`) REFERENCES `GbCiud` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `CtCont_ibfk_8` FOREIGN KEY (`LegalGbCiud_id`) REFERENCES `GbCiud` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +71,6 @@ CREATE TABLE `CtCont` (
 
 LOCK TABLES `CtCont` WRITE;
 /*!40000 ALTER TABLE `CtCont` DISABLE KEYS */;
-INSERT INTO `CtCont` VALUES (1,1,1,'2007-01-01','2007-01-01','2007-01-01',1,'3163131','bkj','Miguel','knl',1,'kn','lkknl','Carlos','lklkn',2,2,'k',1,3613,31.00,1.00,3.00,311.00,31.00),(2,1,1,'2012-02-12','2012-02-15','2012-04-30',1,'223366454','Obrero','Camilo Contreras','Manzv cs # 22-33',1,'23666698','fsfsñopñj','Carlos Alzate','piyvfytf',1,2,'g',1,62569698,566625.00,9.99,5.00,6698213.00,222223647.00);
 /*!40000 ALTER TABLE `CtCont` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,7 +97,7 @@ CREATE TABLE `CtCoti` (
   PRIMARY KEY (`id`),
   KEY `GbEmpr_id` (`GbEmpr_id`),
   CONSTRAINT `CtCoti_ibfk_1` FOREIGN KEY (`GbEmpr_id`) REFERENCES `GbEmpr` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107,7 +106,6 @@ CREATE TABLE `CtCoti` (
 
 LOCK TABLES `CtCoti` WRITE;
 /*!40000 ALTER TABLE `CtCoti` DISABLE KEYS */;
-INSERT INTO `CtCoti` VALUES (1,1,'2012-03-10','contado','5266','2','2','2','123356','123','1233','12344555'),(2,1,'2011-10-01','Credito','Miguel Antonio','Centro','2011-12-15','moszc','2621661','12665616','25663','666921123'),(3,2,'2012-06-04','Contado','andres','3','2012-12-15','3','893233','12','2','78962332');
 /*!40000 ALTER TABLE `CtCoti` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,7 +137,7 @@ CREATE TABLE `CtFact` (
   CONSTRAINT `CtFact_ibfk_1` FOREIGN KEY (`GbPers_id`) REFERENCES `GbPers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `CtFact_ibfk_2` FOREIGN KEY (`GbEmpr_id`) REFERENCES `GbEmpr` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `CtFact_ibfk_3` FOREIGN KEY (`CtCont_id`) REFERENCES `CtCont` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,7 +146,6 @@ CREATE TABLE `CtFact` (
 
 LOCK TABLES `CtFact` WRITE;
 /*!40000 ALTER TABLE `CtFact` DISABLE KEYS */;
-INSERT INTO `CtFact` VALUES (1,1,1,1,'2012-05-07','2012-05-30',89223.00,16.00,5.00,19654665.00,'A','Servicio','Pago con billetes viejos'),(2,1,1,1,'2012-05-04','2012-05-30',566998.00,16.00,2.00,99999999.99,'A','Lalala','También pago con billetes viejos');
 /*!40000 ALTER TABLE `CtFact` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -167,7 +164,7 @@ CREATE TABLE `CtServ` (
   `tipo` int(1) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `codigo` (`codigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -176,7 +173,6 @@ CREATE TABLE `CtServ` (
 
 LOCK TABLES `CtServ` WRITE;
 /*!40000 ALTER TABLE `CtServ` DISABLE KEYS */;
-INSERT INTO `CtServ` VALUES (1,'23333','Rev Posturas',15.00,1),(2,'00023','Revisión Instalaciones',9.99,2);
 /*!40000 ALTER TABLE `CtServ` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -197,7 +193,7 @@ CREATE TABLE `CtTari` (
   KEY `CtCont_id` (`CtCont_id`),
   CONSTRAINT `CtTari_ibfk_1` FOREIGN KEY (`CtServ_id`) REFERENCES `CtServ` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `CtTari_ibfk_2` FOREIGN KEY (`CtCont_id`) REFERENCES `CtCont` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -206,7 +202,6 @@ CREATE TABLE `CtTari` (
 
 LOCK TABLES `CtTari` WRITE;
 /*!40000 ALTER TABLE `CtTari` DISABLE KEYS */;
-INSERT INTO `CtTari` VALUES (1,2,1,56000.00),(2,1,1,720000.00);
 /*!40000 ALTER TABLE `CtTari` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -225,7 +220,7 @@ CREATE TABLE `GbAcls` (
   PRIMARY KEY (`id`),
   KEY `GbUsua_id` (`GbUsua_id`),
   CONSTRAINT `GbAcls_ibfk_1` FOREIGN KEY (`GbUsua_id`) REFERENCES `GbUsua` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -234,7 +229,6 @@ CREATE TABLE `GbAcls` (
 
 LOCK TABLES `GbAcls` WRITE;
 /*!40000 ALTER TABLE `GbAcls` DISABLE KEYS */;
-INSERT INTO `GbAcls` VALUES (1,2,'ctcont','index'),(2,3,'ctfact','index'),(3,4,'ctcont','index'),(4,4,'ctcont','new');
 /*!40000 ALTER TABLE `GbAcls` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -250,7 +244,7 @@ CREATE TABLE `GbCarg` (
   `nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -259,7 +253,7 @@ CREATE TABLE `GbCarg` (
 
 LOCK TABLES `GbCarg` WRITE;
 /*!40000 ALTER TABLE `GbCarg` DISABLE KEYS */;
-INSERT INTO `GbCarg` VALUES (3,'Almacenista'),(2,'Médico'),(1,'SYSTEM ADMIN');
+INSERT INTO `GbCarg` VALUES (1,'SYSTEM');
 /*!40000 ALTER TABLE `GbCarg` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -279,7 +273,7 @@ CREATE TABLE `GbCiud` (
   UNIQUE KEY `codigo` (`codigo`),
   KEY `GbDepa_id` (`GbDepa_id`),
   CONSTRAINT `GbCiud_ibfk_1` FOREIGN KEY (`GbDepa_id`) REFERENCES `GbDepa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -288,7 +282,7 @@ CREATE TABLE `GbCiud` (
 
 LOCK TABLES `GbCiud` WRITE;
 /*!40000 ALTER TABLE `GbCiud` DISABLE KEYS */;
-INSERT INTO `GbCiud` VALUES (1,1,'00000','SYSTEM'),(2,2,'0006','Bogotá');
+INSERT INTO `GbCiud` VALUES (1,1,'S0000','SYSTEM');
 /*!40000 ALTER TABLE `GbCiud` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -304,7 +298,7 @@ CREATE TABLE `GbCnae` (
   `act_econ` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `alternativo` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -313,7 +307,7 @@ CREATE TABLE `GbCnae` (
 
 LOCK TABLES `GbCnae` WRITE;
 /*!40000 ALTER TABLE `GbCnae` DISABLE KEYS */;
-INSERT INTO `GbCnae` VALUES (1,'NULO','NULO'),(2,'Comercio','Comercializadora');
+INSERT INTO `GbCnae` VALUES (1,'SYSTEM','SYSTEM');
 /*!40000 ALTER TABLE `GbCnae` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -374,7 +368,7 @@ CREATE TABLE `GbDepa` (
   UNIQUE KEY `codigo` (`codigo`),
   KEY `GbPais_id` (`GbPais_id`),
   CONSTRAINT `GbDepa_ibfk_1` FOREIGN KEY (`GbPais_id`) REFERENCES `GbPais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -383,7 +377,7 @@ CREATE TABLE `GbDepa` (
 
 LOCK TABLES `GbDepa` WRITE;
 /*!40000 ALTER TABLE `GbDepa` DISABLE KEYS */;
-INSERT INTO `GbDepa` VALUES (1,1,'00','SYSTEM'),(2,2,'11','Cundinamarca');
+INSERT INTO `GbDepa` VALUES (1,1,'S0','SYSTEM');
 /*!40000 ALTER TABLE `GbDepa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -410,7 +404,7 @@ CREATE TABLE `GbEmpr` (
   KEY `tipoide` (`tipoide`),
   CONSTRAINT `GbEmpr_ibfk_1` FOREIGN KEY (`GbCnae_id`) REFERENCES `GbCnae` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `GbEmpr_ibfk_2` FOREIGN KEY (`tipoide`) REFERENCES `GbIden` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -419,7 +413,7 @@ CREATE TABLE `GbEmpr` (
 
 LOCK TABLES `GbEmpr` WRITE;
 /*!40000 ALTER TABLE `GbEmpr` DISABLE KEYS */;
-INSERT INTO `GbEmpr` VALUES (1,'000000000000000000000000N',1,1,'N','SYSTEM','NULO','NULO','NULO'),(2,'114045061',3,2,'N','Salsamentaria','Miguel Cabrera','11202555','www.salsamentaria.com');
+INSERT INTO `GbEmpr` VALUES (1,'S0',1,1,'S','SYSTEM','SYSTEM','SYSTEM','SYSTEM');
 /*!40000 ALTER TABLE `GbEmpr` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -435,7 +429,7 @@ CREATE TABLE `GbIden` (
   `sigla` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
   `detalle` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -444,7 +438,7 @@ CREATE TABLE `GbIden` (
 
 LOCK TABLES `GbIden` WRITE;
 /*!40000 ALTER TABLE `GbIden` DISABLE KEYS */;
-INSERT INTO `GbIden` VALUES (1,'NULL','NULO'),(2,'DNI','Documento Nacional de Identidad'),(3,'DN2','Cosa'),(4,'DN3','Otra Cosa');
+INSERT INTO `GbIden` VALUES (1,'SYS','SYSTEM');
 /*!40000 ALTER TABLE `GbIden` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -464,7 +458,7 @@ CREATE TABLE `GbLogr` (
   PRIMARY KEY (`id`),
   KEY `GbUsua_id` (`GbUsua_id`),
   CONSTRAINT `GbLogr_ibfk_1` FOREIGN KEY (`GbUsua_id`) REFERENCES `GbUsua` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -473,7 +467,6 @@ CREATE TABLE `GbLogr` (
 
 LOCK TABLES `GbLogr` WRITE;
 /*!40000 ALTER TABLE `GbLogr` DISABLE KEYS */;
-INSERT INTO `GbLogr` VALUES (1,'2012-06-21 21:23:05',1,'Mdvisu','create'),(2,'2012-06-21 21:34:51',1,'Mdvisu','delete ID: '),(3,'2012-06-21 21:35:28',1,'Mdvisu','update ID: 2'),(4,'2012-06-21 21:39:02',1,'Mdvisu','create ID: 20'),(5,'2012-06-21 21:39:41',1,'Mdvisu','update ID: 2'),(6,'2012-06-21 21:39:54',1,'Mdvisu','delete ID: 2'),(7,'2012-06-22 08:45:06',1,'Mdvisu','create ID: 21'),(8,'2012-06-25 09:21:25',1,'Ctcont','update ID: 2'),(9,'2012-06-25 09:30:05',1,'Ctserv','create ID: 3'),(10,'2012-06-25 09:30:37',1,'Ctserv','delete ID: '),(11,'2012-06-29 21:02:19',1,'Gbcarg','create ID: 3');
 /*!40000 ALTER TABLE `GbLogr` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -490,7 +483,7 @@ CREATE TABLE `GbPais` (
   `nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `codigo` (`codigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -499,7 +492,7 @@ CREATE TABLE `GbPais` (
 
 LOCK TABLES `GbPais` WRITE;
 /*!40000 ALTER TABLE `GbPais` DISABLE KEYS */;
-INSERT INTO `GbPais` VALUES (1,'000','SYSTEM'),(2,'123','Colombia');
+INSERT INTO `GbPais` VALUES (1,'S00','SYSTEM');
 /*!40000 ALTER TABLE `GbPais` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -538,7 +531,7 @@ CREATE TABLE `GbPers` (
   CONSTRAINT `GbPers_ibfk_2` FOREIGN KEY (`GbCiud_id`) REFERENCES `GbCiud` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `GbPers_ibfk_3` FOREIGN KEY (`GbIden_id`) REFERENCES `GbIden` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `GbPers_ibfk_4` FOREIGN KEY (`GbCarg_id`) REFERENCES `GbCarg` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -547,7 +540,7 @@ CREATE TABLE `GbPers` (
 
 LOCK TABLES `GbPers` WRITE;
 /*!40000 ALTER TABLE `GbPers` DISABLE KEYS */;
-INSERT INTO `GbPers` VALUES (1,1,1,1,'1071452369','Felipe','Ernesto','Cardenas','Barragan','2011-12-02','NULO','NULO','NULO',1,'2012-12-02',0,'A'),(2,1,1,1,'11303202','Miguel','Camilo','Fernandez','Toledo','1991-02-28','3112038569','Manzana Verde','miguelacho@gmail.com',2,'2012-02-15',1,'I'),(3,2,2,2,'11205879','Carlos','Andres','Reyes','Andrade','1984-10-15','3112381572','Manz N Casa 9 B/ Santa Isabel','karlitos@gmail.com',2,'2010-10-01',1,'A');
+INSERT INTO `GbPers` VALUES (1,1,1,1,'SYSTEM','SYSTEM','SYSTEM','SYSTEM','SYSTEM','0000-00-00','SYSTEM','SYSTEM','SYSTEM',1,'0000-00-00',0,'A');
 /*!40000 ALTER TABLE `GbPers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -565,7 +558,7 @@ CREATE TABLE `GbPtra` (
   PRIMARY KEY (`id`),
   KEY `GbEmpr_id` (`GbEmpr_id`),
   CONSTRAINT `GbPtra_ibfk_1` FOREIGN KEY (`GbEmpr_id`) REFERENCES `GbEmpr` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -574,7 +567,6 @@ CREATE TABLE `GbPtra` (
 
 LOCK TABLES `GbPtra` WRITE;
 /*!40000 ALTER TABLE `GbPtra` DISABLE KEYS */;
-INSERT INTO `GbPtra` VALUES (1,'Obrero',1);
 /*!40000 ALTER TABLE `GbPtra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -601,7 +593,7 @@ CREATE TABLE `GbSucu` (
   KEY `GbEmpr_id` (`GbEmpr_id`),
   CONSTRAINT `GbSucu_ibfk_1` FOREIGN KEY (`GbEmpr_id`) REFERENCES `GbEmpr` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `GbSucu_ibfk_2` FOREIGN KEY (`GbCiud_id`) REFERENCES `GbCiud` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -610,7 +602,7 @@ CREATE TABLE `GbSucu` (
 
 LOCK TABLES `GbSucu` WRITE;
 /*!40000 ALTER TABLE `GbSucu` DISABLE KEYS */;
-INSERT INTO `GbSucu` VALUES (1,1,1,'SYSTEM','NULO',NULL,NULL,NULL,'NULO','NULO'),(2,1,2,'Repuestos S.A.','8359662','8365123','8369521','Miguel Castro','Cra. 3 No 11-25','repuestosadmin@repuestos.com');
+INSERT INTO `GbSucu` VALUES (1,1,1,'SYSTEM','SYSTEM','SYSTEM','SYSTEM','SYSTEM','SYSTEM','SYSTEM');
 /*!40000 ALTER TABLE `GbSucu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -630,7 +622,7 @@ CREATE TABLE `GbUsua` (
   UNIQUE KEY `nombre` (`nombre`),
   KEY `GbPers_id` (`GbPers_id`),
   CONSTRAINT `GbUsua_ibfk_1` FOREIGN KEY (`GbPers_id`) REFERENCES `GbPers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -639,7 +631,7 @@ CREATE TABLE `GbUsua` (
 
 LOCK TABLES `GbUsua` WRITE;
 /*!40000 ALTER TABLE `GbUsua` DISABLE KEYS */;
-INSERT INTO `GbUsua` VALUES (1,1,'root','wg1HV7zlQXAkgYpMBDyviLg9jGo2eb5KuASDH0j9+pP3v9ex3lUTbf6J36lcJvxsThuE6F581+R8eiCBn1EFig=='),(2,1,'andru','icJWLNcWchzLd0NihEBbHCBNLfwbGdOX4DxtyxTR0/3w2B69bSH5ULsPtbasoOBavi/nfzfnSak9ZGGr17L1HA=='),(3,1,'Carlos','icJWLNcWchzLd0NihEBbHCBNLfwbGdOX4DxtyxTR0/3w2B69bSH5ULsPtbasoOBavi/nfzfnSak9ZGGr17L1HA=='),(4,2,'javier','icJWLNcWchzLd0NihEBbHCBNLfwbGdOX4DxtyxTR0/3w2B69bSH5ULsPtbasoOBavi/nfzfnSak9ZGGr17L1HA=='),(5,3,'voldemort','icJWLNcWchzLd0NihEBbHCBNLfwbGdOX4DxtyxTR0/3w2B69bSH5ULsPtbasoOBavi/nfzfnSak9ZGGr17L1HA==');
+INSERT INTO `GbUsua` VALUES (1,1,'root','wg1HV7zlQXAkgYpMBDyviLg9jGo2eb5KuASDH0j9+pP3v9ex3lUTbf6J36lcJvxsThuE6F581+R8eiCBn1EFig==');
 /*!40000 ALTER TABLE `GbUsua` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -655,8 +647,9 @@ CREATE TABLE `GbVars` (
   `tipo` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `valor` text COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nombre` (`nombre`)
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -665,6 +658,7 @@ CREATE TABLE `GbVars` (
 
 LOCK TABLES `GbVars` WRITE;
 /*!40000 ALTER TABLE `GbVars` DISABLE KEYS */;
+INSERT INTO `GbVars` VALUES (1,'M','msdic','ctcont=>Contratos|-|asprot=>Asistente De Protocolos|-|index=>Ingresar'),(2,'S','asprot','Asistente De Protocolos|-|*|-|asprot/index|:|asprot/getpuesto|:|asprot/newpuesto|:|asprot/newprotocolo|:|asprot/getques|:|asprot/delques|:|asprot/addques|:|asprot/getproceso|:|asprot/addproto|:|asprot/delproto'),(3,'S','assecu',''),(4,'S','asubic',''),(5,'S','ctcont','Contratos|-|!|-|ctcont/index=>Ingresar|:|ctcont/show=>Ver|:|ctcont/new=>Nuevo|:|ctcont/create=>Guardar|:|ctcont/edit=>Editar|:|ctcont/update=>Actualizar|:|ctcont/delete=>Borrar'),(6,'S','ctcoti',''),(7,'S','ctfact',''),(8,'S','ctserv',''),(9,'S','cttari',''),(10,'S','gbacls',''),(11,'S','gbcarg',''),(12,'S','gbciud',''),(13,'S','gbcnae',''),(14,'S','gbcorp',''),(15,'S','gbdepa',''),(16,'S','gbempr',''),(17,'S','gbiden',''),(18,'S','gblogr',''),(19,'S','gbpais',''),(20,'S','gbpers',''),(21,'S','gbptra',''),(22,'S','gbsucu',''),(23,'S','gbusua',''),(24,'S','hsfami',''),(25,'S','hslabo',''),(26,'S','hspers',''),(27,'S','mdaudi',''),(28,'S','mdbiom',''),(29,'S','mddiag',''),(30,'S','mdespi',''),(31,'S','mdexam',''),(32,'S','mdextr',''),(33,'S','mdhist',''),(34,'S','mdlabo',''),(35,'S','mdpaci',''),(36,'S','mdpato',''),(37,'S','mdproc',''),(38,'S','mdprot',''),(39,'S','mdques',''),(40,'S','mdresp',''),(41,'S','mdsist',''),(42,'S','mdvisu',''),(43,'S','tcaspe',''),(44,'S','tccapa',''),(45,'S','tcchec',''),(46,'S','tccurs',''),(47,'S','tcdeta',''),(48,'S','tcrevi',''),(49,'S','tcruta','');
 /*!40000 ALTER TABLE `GbVars` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -686,7 +680,7 @@ CREATE TABLE `HsFami` (
   KEY `MdPato_id` (`MdPato_id`),
   CONSTRAINT `HsFami_ibfk_1` FOREIGN KEY (`MdPaci_id`) REFERENCES `MdPaci` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `HsFami_ibfk_2` FOREIGN KEY (`MdPato_id`) REFERENCES `MdPato` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -695,7 +689,6 @@ CREATE TABLE `HsFami` (
 
 LOCK TABLES `HsFami` WRITE;
 /*!40000 ALTER TABLE `HsFami` DISABLE KEYS */;
-INSERT INTO `HsFami` VALUES (1,1,1,'Abuelo','añsdas'),(2,1,1,'Tia','Fumadora');
 /*!40000 ALTER TABLE `HsFami` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -719,7 +712,7 @@ CREATE TABLE `HsLabo` (
   PRIMARY KEY (`id`),
   KEY `MdPaci_id` (`MdPaci_id`),
   CONSTRAINT `HsLabo_ibfk_1` FOREIGN KEY (`MdPaci_id`) REFERENCES `MdPaci` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -728,7 +721,6 @@ CREATE TABLE `HsLabo` (
 
 LOCK TABLES `HsLabo` WRITE;
 /*!40000 ALTER TABLE `HsLabo` DISABLE KEYS */;
-INSERT INTO `HsLabo` VALUES (1,1,'Construcciones Ladrillito','2011-06-15','Carretillero','Carretillero jefe','Alto',3,28);
 /*!40000 ALTER TABLE `HsLabo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -798,7 +790,7 @@ CREATE TABLE `HsPers` (
   PRIMARY KEY (`id`),
   KEY `MdPaci_id` (`MdPaci_id`),
   CONSTRAINT `HsPers_ibfk_1` FOREIGN KEY (`MdPaci_id`) REFERENCES `MdPaci` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -807,7 +799,6 @@ CREATE TABLE `HsPers` (
 
 LOCK TABLES `HsPers` WRITE;
 /*!40000 ALTER TABLE `HsPers` DISABLE KEYS */;
-INSERT INTO `HsPers` VALUES (1,1,'1982-01-05','N','nada','muchos','muchoos','3 años','ninguna','poca','mucha','8 horas','noche','jum','aja','306','ninguno','S','12 al día por 6 años','S','20 cervezas diarias','si','no','si','si','no','si','si','si','no','no','si','no','si','si','si','si','si','si','no','no','no','no','si','si','no','no','no','no','no','no','S','2011-12-03','much','ninguna');
 /*!40000 ALTER TABLE `HsPers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -839,7 +830,7 @@ CREATE TABLE `MdAudi` (
   PRIMARY KEY (`id`),
   KEY `MdHist_id` (`MdHist_id`),
   CONSTRAINT `MdAudi_ibfk_1` FOREIGN KEY (`MdHist_id`) REFERENCES `MdHist` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -848,7 +839,6 @@ CREATE TABLE `MdAudi` (
 
 LOCK TABLES `MdAudi` WRITE;
 /*!40000 ALTER TABLE `MdAudi` DISABLE KEYS */;
-INSERT INTO `MdAudi` VALUES (1,1,'S','0','5','5','5','5','5','5','5','5','5','5','5','-5','5'),(2,1,'S','','','','','','','','','','','','','',''),(3,1,'N','5','','','','','','','','','','','','',''),(4,1,'S','-5','85','80','50','15','40','45','15','20','40','0','45','0','70'),(5,1,'S','10','10','10','10','10','10','10','10','10','10','10','0','10','0'),(6,1,'S','','-5','25','100','10','40','15','55','25','60','30','65','5','85'),(7,1,'N','0','0','0','0','0','0','0','0','0','0','0','0','0','0'),(8,1,'N','','','','','','','','','','','','','',''),(9,2,'S','40','5','10','50','-5','80','15','40','35','35','55','85','10','5'),(10,1,'S','','','','','','','','','15','','','','','');
 /*!40000 ALTER TABLE `MdAudi` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -871,7 +861,7 @@ CREATE TABLE `MdBiom` (
   PRIMARY KEY (`id`),
   KEY `MdHist_id` (`MdHist_id`),
   CONSTRAINT `MdBiom_ibfk_1` FOREIGN KEY (`MdHist_id`) REFERENCES `MdHist` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -880,7 +870,6 @@ CREATE TABLE `MdBiom` (
 
 LOCK TABLES `MdBiom` WRITE;
 /*!40000 ALTER TABLE `MdBiom` DISABLE KEYS */;
-INSERT INTO `MdBiom` VALUES (1,2,64.00,9.99,9.99,0.00,9.99,9.99),(2,1,64.00,78.00,110.00,35.00,120.00,80.00),(3,2,64.00,78.00,110.00,35.00,120.00,80.00);
 /*!40000 ALTER TABLE `MdBiom` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -900,7 +889,7 @@ CREATE TABLE `MdDiag` (
   KEY `MdPato_id` (`MdPato_id`),
   CONSTRAINT `MdDiag_ibfk_1` FOREIGN KEY (`MdHist_id`) REFERENCES `MdHist` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `MdDiag_ibfk_2` FOREIGN KEY (`MdPato_id`) REFERENCES `MdPato` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -909,7 +898,6 @@ CREATE TABLE `MdDiag` (
 
 LOCK TABLES `MdDiag` WRITE;
 /*!40000 ALTER TABLE `MdDiag` DISABLE KEYS */;
-INSERT INTO `MdDiag` VALUES (1,1,1);
 /*!40000 ALTER TABLE `MdDiag` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -930,7 +918,7 @@ CREATE TABLE `MdEspi` (
   PRIMARY KEY (`id`),
   KEY `MdHist_id` (`MdHist_id`),
   CONSTRAINT `MdEspi_ibfk_1` FOREIGN KEY (`MdHist_id`) REFERENCES `MdHist` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -939,7 +927,6 @@ CREATE TABLE `MdEspi` (
 
 LOCK TABLES `MdEspi` WRITE;
 /*!40000 ALTER TABLE `MdEspi` DISABLE KEYS */;
-INSERT INTO `MdEspi` VALUES (1,1,'N',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `MdEspi` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -957,7 +944,7 @@ CREATE TABLE `MdExam` (
   `alternativo` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `codigo` (`codigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -966,7 +953,6 @@ CREATE TABLE `MdExam` (
 
 LOCK TABLES `MdExam` WRITE;
 /*!40000 ALTER TABLE `MdExam` DISABLE KEYS */;
-INSERT INTO `MdExam` VALUES (1,'EX001','GLUCOSA','GLUCOSA');
 /*!40000 ALTER TABLE `MdExam` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1014,7 +1000,7 @@ CREATE TABLE `MdExtr` (
   PRIMARY KEY (`id`),
   KEY `MdHist_id` (`MdHist_id`),
   CONSTRAINT `MdExtr_ibfk_1` FOREIGN KEY (`MdHist_id`) REFERENCES `MdHist` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1023,7 +1009,6 @@ CREATE TABLE `MdExtr` (
 
 LOCK TABLES `MdExtr` WRITE;
 /*!40000 ALTER TABLE `MdExtr` DISABLE KEYS */;
-INSERT INTO `MdExtr` VALUES (1,1,'S','S','N','N','S','S','N','S','S','S','S','S','S','S','S','N','S','S','S','N','S','S','S','N','S','N','N','N','N','N','Hola mundo');
 /*!40000 ALTER TABLE `MdExtr` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1048,7 +1033,7 @@ CREATE TABLE `MdHist` (
   CONSTRAINT `MdHist_ibfk_1` FOREIGN KEY (`MdPaci_id`) REFERENCES `MdPaci` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `MdHist_ibfk_2` FOREIGN KEY (`GbPers_id`) REFERENCES `GbPers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `MdHist_ibfk_3` FOREIGN KEY (`TcRuta_id`) REFERENCES `TcRuta` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1057,7 +1042,6 @@ CREATE TABLE `MdHist` (
 
 LOCK TABLES `MdHist` WRITE;
 /*!40000 ALTER TABLE `MdHist` DISABLE KEYS */;
-INSERT INTO `MdHist` VALUES (1,1,1,1,'S',2),(2,1,2,2,'0',1),(3,1,1,1,'0',0),(4,1,1,1,'N',1),(5,1,1,2,'S',3);
 /*!40000 ALTER TABLE `MdHist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1082,7 +1066,7 @@ CREATE TABLE `MdLabo` (
   CONSTRAINT `MdLabo_ibfk_1` FOREIGN KEY (`MdHist_id`) REFERENCES `MdHist` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `MdLabo_ibfk_2` FOREIGN KEY (`CtServ_id`) REFERENCES `CtServ` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `MdLabo_ibfk_3` FOREIGN KEY (`MdExam_id`) REFERENCES `MdExam` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1091,7 +1075,6 @@ CREATE TABLE `MdLabo` (
 
 LOCK TABLES `MdLabo` WRITE;
 /*!40000 ALTER TABLE `MdLabo` DISABLE KEYS */;
-INSERT INTO `MdLabo` VALUES (1,1,1,1,'S','120'),(2,2,1,1,'N','Alto');
 /*!40000 ALTER TABLE `MdLabo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1129,7 +1112,7 @@ CREATE TABLE `MdPaci` (
   CONSTRAINT `MdPaci_ibfk_2` FOREIGN KEY (`GbPtra_id`) REFERENCES `GbPtra` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `MdPaci_ibfk_3` FOREIGN KEY (`GbSucu_id`) REFERENCES `GbSucu` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `MdPaci_ibfk_4` FOREIGN KEY (`tipoide`) REFERENCES `GbIden` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1138,7 +1121,6 @@ CREATE TABLE `MdPaci` (
 
 LOCK TABLES `MdPaci` WRITE;
 /*!40000 ALTER TABLE `MdPaci` DISABLE KEYS */;
-INSERT INTO `MdPaci` VALUES (1,'2233655',2,2,'Marco','Antonio','Cabrera','Muñoz','1983-10-03','M',2,'Manz S Casa 5','83529123','asdasd@gmail.com',1,'2007-04-02'),(2,'11205878',2,2,'Carlos','Andres','Reyes','Andrade','1984-10-12','M',2,'Manz N Casa 9 Santa Rita','3122391621','karlihos@gmail.com',1,'2007-04-02');
 /*!40000 ALTER TABLE `MdPaci` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1156,7 +1138,7 @@ CREATE TABLE `MdPato` (
   `alternativo` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `codigo` (`codigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1165,7 +1147,6 @@ CREATE TABLE `MdPato` (
 
 LOCK TABLES `MdPato` WRITE;
 /*!40000 ALTER TABLE `MdPato` DISABLE KEYS */;
-INSERT INTO `MdPato` VALUES (1,'23655','Hepatitis','Hepa'),(2,'2256336','Rubeola','Rubeola');
 /*!40000 ALTER TABLE `MdPato` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1185,7 +1166,7 @@ CREATE TABLE `MdProc` (
   KEY `MdProt_id` (`MdProt_id`),
   CONSTRAINT `MdProc_ibfk_1` FOREIGN KEY (`MdProt_id`) REFERENCES `MdProt` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `MdProc_ibfk_2` FOREIGN KEY (`GbPtra_id`) REFERENCES `GbPtra` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1194,7 +1175,6 @@ CREATE TABLE `MdProc` (
 
 LOCK TABLES `MdProc` WRITE;
 /*!40000 ALTER TABLE `MdProc` DISABLE KEYS */;
-INSERT INTO `MdProc` VALUES (1,1,1);
 /*!40000 ALTER TABLE `MdProc` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1211,7 +1191,7 @@ CREATE TABLE `MdProt` (
   `nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `codigo` (`codigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1220,7 +1200,6 @@ CREATE TABLE `MdProt` (
 
 LOCK TABLES `MdProt` WRITE;
 /*!40000 ALTER TABLE `MdProt` DISABLE KEYS */;
-INSERT INTO `MdProt` VALUES (1,'001','Prueba');
 /*!40000 ALTER TABLE `MdProt` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1238,7 +1217,7 @@ CREATE TABLE `MdQues` (
   PRIMARY KEY (`id`),
   KEY `MdProt_id` (`MdProt_id`),
   CONSTRAINT `MdQues_ibfk_1` FOREIGN KEY (`MdProt_id`) REFERENCES `MdProt` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1247,7 +1226,6 @@ CREATE TABLE `MdQues` (
 
 LOCK TABLES `MdQues` WRITE;
 /*!40000 ALTER TABLE `MdQues` DISABLE KEYS */;
-INSERT INTO `MdQues` VALUES (1,1,'Como se llama');
 /*!40000 ALTER TABLE `MdQues` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1269,7 +1247,7 @@ CREATE TABLE `MdResp` (
   KEY `MdHist_id` (`MdHist_id`),
   CONSTRAINT `MdResp_ibfk_1` FOREIGN KEY (`MdQues_id`) REFERENCES `MdQues` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `MdResp_ibfk_2` FOREIGN KEY (`MdHist_id`) REFERENCES `MdHist` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1278,7 +1256,6 @@ CREATE TABLE `MdResp` (
 
 LOCK TABLES `MdResp` WRITE;
 /*!40000 ALTER TABLE `MdResp` DISABLE KEYS */;
-INSERT INTO `MdResp` VALUES (1,1,1,'A','Andres'),(2,1,1,'I','Carlos');
 /*!40000 ALTER TABLE `MdResp` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1307,7 +1284,7 @@ CREATE TABLE `MdSist` (
   PRIMARY KEY (`id`),
   KEY `MdHist_id` (`MdHist_id`),
   CONSTRAINT `MdSist_ibfk_1` FOREIGN KEY (`MdHist_id`) REFERENCES `MdHist` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1316,7 +1293,6 @@ CREATE TABLE `MdSist` (
 
 LOCK TABLES `MdSist` WRITE;
 /*!40000 ALTER TABLE `MdSist` DISABLE KEYS */;
-INSERT INTO `MdSist` VALUES (1,2,'S','S','S','S','N','S','S','S','S','N','S','N');
 /*!40000 ALTER TABLE `MdSist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1349,7 +1325,7 @@ CREATE TABLE `MdVisu` (
   PRIMARY KEY (`id`),
   KEY `MdHist_id` (`MdHist_id`),
   CONSTRAINT `MdVisu_ibfk_1` FOREIGN KEY (`MdHist_id`) REFERENCES `MdHist` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1358,7 +1334,6 @@ CREATE TABLE `MdVisu` (
 
 LOCK TABLES `MdVisu` WRITE;
 /*!40000 ALTER TABLE `MdVisu` DISABLE KEYS */;
-INSERT INTO `MdVisu` VALUES (3,2,'S','N',1,0,1,1,0,1,0,0,'2','3','9','6','5','6'),(4,1,'S','S',1,1,0,0,0,1,1,0,'1','1','1','1','5','2'),(5,2,'N','N',0,1,1,1,1,1,1,1,'1','1','1','1','1','1'),(6,2,'S','S',0,1,0,0,1,0,0,0,'1','1','1','1','1','1'),(7,2,'S','N',1,0,1,1,0,0,0,0,'2','3','4','5','6','2'),(8,1,'S','S',0,1,0,1,0,0,0,0,'1','1','1','2','2','2'),(9,1,'S','S',0,1,0,1,0,0,0,0,'1','1','1','2','2','2'),(10,1,'S','S',0,1,0,1,0,0,0,0,'1','1','1','2','2','2'),(11,1,'S','S',0,1,0,1,0,0,0,0,'1','1','1','2','2','2'),(12,2,'S','N',1,0,1,0,0,0,0,0,'1','1','1','1','1','1'),(13,2,'S','N',1,0,1,0,0,0,0,0,'1','1','1','1','1','1'),(14,1,'S','N',1,0,0,0,0,0,0,0,'1','1','1','1','1','1'),(15,1,'S','N',1,0,0,0,0,0,0,0,'1','1','1','1','1','1'),(16,1,'S','N',1,0,0,0,0,0,0,0,'1','1','1','1','1','1'),(17,1,'S','N',1,0,0,0,0,0,0,0,'1','1','1','1','1','1'),(18,1,'S','N',1,0,0,0,0,0,0,0,'1','1','1','1','1','1'),(19,1,'S','N',1,0,0,0,0,0,0,0,'1','1','1','1','1','1'),(20,1,'S','N',0,1,1,0,0,0,0,0,'2','3','3','3','3','3'),(21,2,'S','N',1,0,1,0,0,0,0,0,'1','1','1','1','1','1');
 /*!40000 ALTER TABLE `MdVisu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1377,7 +1352,7 @@ CREATE TABLE `TcAspe` (
   `medida` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`),
   UNIQUE KEY `codigo` (`codigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1386,7 +1361,6 @@ CREATE TABLE `TcAspe` (
 
 LOCK TABLES `TcAspe` WRITE;
 /*!40000 ALTER TABLE `TcAspe` DISABLE KEYS */;
-INSERT INTO `TcAspe` VALUES (1,'233666','Revisión','Personalizado','3.66');
 /*!40000 ALTER TABLE `TcAspe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1405,7 +1379,7 @@ CREATE TABLE `TcCapa` (
   `duracion` int(10) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `codigo` (`codigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1414,7 +1388,6 @@ CREATE TABLE `TcCapa` (
 
 LOCK TABLES `TcCapa` WRITE;
 /*!40000 ALTER TABLE `TcCapa` DISABLE KEYS */;
-INSERT INTO `TcCapa` VALUES (1,'00001','Trabajo en alturas','Completo curso de capacitacion',15);
 /*!40000 ALTER TABLE `TcCapa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1433,7 +1406,7 @@ CREATE TABLE `TcChec` (
   `comite` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `descripcion` text COLLATE utf8_unicode_ci NOT NULL,
   `caracteristicas` text COLLATE utf8_unicode_ci NOT NULL,
-  `psensible` text COLLATE utf8_unicode_ci NOT NULL,
+  `psensible` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `seguridad` text COLLATE utf8_unicode_ci NOT NULL,
   `mfisico` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `hfisico` text COLLATE utf8_unicode_ci NOT NULL,
@@ -1441,6 +1414,7 @@ CREATE TABLE `TcChec` (
   `hquimico` text COLLATE utf8_unicode_ci NOT NULL,
   `mbiologico` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `hbiologico` text COLLATE utf8_unicode_ci NOT NULL,
+  `rangocargas` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `cargas` text COLLATE utf8_unicode_ci NOT NULL,
   `carretilleros` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `repetitivos` char(1) COLLATE utf8_unicode_ci NOT NULL,
@@ -1465,9 +1439,8 @@ CREATE TABLE `TcChec` (
   `bantideslizante` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `observaciones` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `TcRevi_id` (`TcRevi_id`),
-  CONSTRAINT `TcChec_ibfk_1` FOREIGN KEY (`TcRevi_id`) REFERENCES `TcRevi` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `TcRevi_id` (`TcRevi_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1476,7 +1449,6 @@ CREATE TABLE `TcChec` (
 
 LOCK TABLES `TcChec` WRITE;
 /*!40000 ALTER TABLE `TcChec` DISABLE KEYS */;
-INSERT INTO `TcChec` VALUES (1,1,2,'j','S','j','j','j','j','S','j','S','h','S','j','j','S','N',0,1,0,1,'N','S','N','I','ABC','S','S','S','N','S','N','S','S','N','S','j'),(2,1,2,'No se','S','Bueno','Bueno','Bueno','Bueno','N','Bueno','S','Bueno','S','Bueno','Aja','S','N',1,1,0,1,'S','N','N','I','CO2','N','N','N','N','N','N','S','S','S','S','No ninguna');
 /*!40000 ALTER TABLE `TcChec` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1501,7 +1473,7 @@ CREATE TABLE `TcCurs` (
   KEY `TcCapa_id` (`TcCapa_id`),
   CONSTRAINT `TcCurs_ibfk_1` FOREIGN KEY (`MdPaci_id`) REFERENCES `MdPaci` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `TcCurs_ibfk_2` FOREIGN KEY (`TcCapa_id`) REFERENCES `TcCapa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1510,7 +1482,6 @@ CREATE TABLE `TcCurs` (
 
 LOCK TABLES `TcCurs` WRITE;
 /*!40000 ALTER TABLE `TcCurs` DISABLE KEYS */;
-INSERT INTO `TcCurs` VALUES (1,1,1,'Hierros CIA','2007-01-01','2007-01-01','Manuel Campos','Taller'),(2,1,1,'Hierros CIA LTDA','2012-09-01','2012-09-30','Manuel Campos','Taller');
 /*!40000 ALTER TABLE `TcCurs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1535,7 +1506,7 @@ CREATE TABLE `TcDeta` (
   KEY `TcAspe_id` (`TcAspe_id`),
   CONSTRAINT `TcDeta_ibfk_1` FOREIGN KEY (`TcRevi_id`) REFERENCES `TcRevi` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `TcDeta_ibfk_2` FOREIGN KEY (`TcAspe_id`) REFERENCES `TcAspe` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1544,7 +1515,6 @@ CREATE TABLE `TcDeta` (
 
 LOCK TABLES `TcDeta` WRITE;
 /*!40000 ALTER TABLE `TcDeta` DISABLE KEYS */;
-INSERT INTO `TcDeta` VALUES (1,1,1,'2','2','2','2','Ninguno');
 /*!40000 ALTER TABLE `TcDeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1569,7 +1539,7 @@ CREATE TABLE `TcRevi` (
   KEY `GbPers_id` (`GbPers_id`),
   CONSTRAINT `TcRevi_ibfk_1` FOREIGN KEY (`GbSucu_id`) REFERENCES `GbSucu` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `TcRevi_ibfk_2` FOREIGN KEY (`GbPers_id`) REFERENCES `GbPers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1578,7 +1548,6 @@ CREATE TABLE `TcRevi` (
 
 LOCK TABLES `TcRevi` WRITE;
 /*!40000 ALTER TABLE `TcRevi` DISABLE KEYS */;
-INSERT INTO `TcRevi` VALUES (1,2,2,'2012-08-15','04:06:00','08:00:00','Andres','Nada raro');
 /*!40000 ALTER TABLE `TcRevi` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1620,7 +1589,7 @@ CREATE TABLE `TcRuta` (
   PRIMARY KEY (`id`),
   KEY `CtCont_id` (`CtCont_id`),
   CONSTRAINT `TcRuta_ibfk_1` FOREIGN KEY (`CtCont_id`) REFERENCES `CtCont` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1629,7 +1598,6 @@ CREATE TABLE `TcRuta` (
 
 LOCK TABLES `TcRuta` WRITE;
 /*!40000 ALTER TABLE `TcRuta` DISABLE KEYS */;
-INSERT INTO `TcRuta` VALUES (1,1,'2007-10-10','2007-10-10 00:00:00','35135','13521','351351','351','531','51','3',1,3,3,1,5,0,'S','kj','jkñ',2000000103,1,1,1,232,3213,'A');
 /*!40000 ALTER TABLE `TcRuta` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1642,4 +1610,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-07-03 10:23:30
+-- Dump completed on 2012-07-12 15:49:35

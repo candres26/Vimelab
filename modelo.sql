@@ -190,7 +190,7 @@ CREATE TABLE `GbCarg` (
   `nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -209,7 +209,7 @@ CREATE TABLE `GbCiud` (
   UNIQUE KEY `codigo` (`codigo`),
   KEY `GbDepa_id` (`GbDepa_id`),
   CONSTRAINT `GbCiud_ibfk_1` FOREIGN KEY (`GbDepa_id`) REFERENCES `GbDepa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -224,7 +224,7 @@ CREATE TABLE `GbCnae` (
   `act_econ` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `alternativo` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -275,7 +275,7 @@ CREATE TABLE `GbDepa` (
   UNIQUE KEY `codigo` (`codigo`),
   KEY `GbPais_id` (`GbPais_id`),
   CONSTRAINT `GbDepa_ibfk_1` FOREIGN KEY (`GbPais_id`) REFERENCES `GbPais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -301,7 +301,7 @@ CREATE TABLE `GbEmpr` (
   KEY `tipoide` (`tipoide`),
   CONSTRAINT `GbEmpr_ibfk_1` FOREIGN KEY (`GbCnae_id`) REFERENCES `GbCnae` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `GbEmpr_ibfk_2` FOREIGN KEY (`tipoide`) REFERENCES `GbIden` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -316,7 +316,7 @@ CREATE TABLE `GbIden` (
   `sigla` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
   `detalle` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -351,7 +351,7 @@ CREATE TABLE `GbPais` (
   `nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `codigo` (`codigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -389,7 +389,7 @@ CREATE TABLE `GbPers` (
   CONSTRAINT `GbPers_ibfk_2` FOREIGN KEY (`GbCiud_id`) REFERENCES `GbCiud` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `GbPers_ibfk_3` FOREIGN KEY (`GbIden_id`) REFERENCES `GbIden` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `GbPers_ibfk_4` FOREIGN KEY (`GbCarg_id`) REFERENCES `GbCarg` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -432,7 +432,7 @@ CREATE TABLE `GbSucu` (
   KEY `GbEmpr_id` (`GbEmpr_id`),
   CONSTRAINT `GbSucu_ibfk_1` FOREIGN KEY (`GbEmpr_id`) REFERENCES `GbEmpr` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `GbSucu_ibfk_2` FOREIGN KEY (`GbCiud_id`) REFERENCES `GbCiud` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -451,7 +451,7 @@ CREATE TABLE `GbUsua` (
   UNIQUE KEY `nombre` (`nombre`),
   KEY `GbPers_id` (`GbPers_id`),
   CONSTRAINT `GbUsua_ibfk_1` FOREIGN KEY (`GbPers_id`) REFERENCES `GbPers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -468,7 +468,7 @@ CREATE TABLE `GbVars` (
   `valor` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1026,7 +1026,7 @@ CREATE TABLE `TcChec` (
   `comite` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `descripcion` text COLLATE utf8_unicode_ci NOT NULL,
   `caracteristicas` text COLLATE utf8_unicode_ci NOT NULL,
-  `psensible` text COLLATE utf8_unicode_ci NOT NULL,
+  `psensible` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `seguridad` text COLLATE utf8_unicode_ci NOT NULL,
   `mfisico` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `hfisico` text COLLATE utf8_unicode_ci NOT NULL,
@@ -1034,6 +1034,7 @@ CREATE TABLE `TcChec` (
   `hquimico` text COLLATE utf8_unicode_ci NOT NULL,
   `mbiologico` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `hbiologico` text COLLATE utf8_unicode_ci NOT NULL,
+  `rangocargas` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `cargas` text COLLATE utf8_unicode_ci NOT NULL,
   `carretilleros` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `repetitivos` char(1) COLLATE utf8_unicode_ci NOT NULL,
@@ -1058,8 +1059,7 @@ CREATE TABLE `TcChec` (
   `bantideslizante` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `observaciones` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `TcRevi_id` (`TcRevi_id`),
-  CONSTRAINT `TcChec_ibfk_1` FOREIGN KEY (`TcRevi_id`) REFERENCES `TcRevi` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `TcRevi_id` (`TcRevi_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1185,4 +1185,4 @@ CREATE TABLE `TcRuta` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-07-11 22:08:36
+-- Dump completed on 2012-07-12 15:39:36
