@@ -9,7 +9,7 @@ use Vimelab\ScontrolBundle\Entity\Gbciud;
 use Symfony\Component\HttpFoundation\Response;
 use Vimelab\ScontrolBundle\Tool\Tool;
 
-class AsUbicaController extends Controller
+class AsUbicController extends Controller
 {
 	public function indexAction()
 	{
@@ -17,7 +17,7 @@ class AsUbicaController extends Controller
         {
 			$em = $this->getDoctrine()->getEntityManager();
 			$paises = $em->getRepository('ScontrolBundle:Gbpais')->findBy(array(), array('nombre' => 'ASC'));		
-			return $this->render('ScontrolBundle:AsUbica:index.html.twig', array('paises' => $paises));
+			return $this->render('ScontrolBundle:AsUbic:index.html.twig', array('paises' => $paises));
 		}
 		else
 			return $this->render('ScontrolBundle::alertas.html.twig');

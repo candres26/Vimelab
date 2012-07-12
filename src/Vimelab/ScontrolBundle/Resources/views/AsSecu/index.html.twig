@@ -47,7 +47,47 @@
 		
 		<div id='asArea'>
 			
-			<div id='asAreaAcls'><!--- * ---></div>
+			<div id='asAreaAcls'>
+				
+				<div id='asDivTab'>										
+					<table id='asTab'><!-- CAMPO AJAX --></table>
+				</div>
+							
+				<div id='asAreaAclsCon'>										
+				
+					<table id='asAreaAclsConInt'>
+						
+						<tr>
+							<td align='left' >
+								<img id="btnAddACL" src="{{ asset('bundles/scontrol/imagenes/iconos/add.png') }}" title="Agregar ACL">
+								<br>
+								<img id="btnRemACL" src="{{ asset('bundles/scontrol/imagenes/iconos/clean.png') }}" title="Limpiar ACL">
+							</td>
+							
+							<td align="center">
+								
+								<table>
+									<tr>
+										<td align="left"><b>Módulo:</b></td>
+										<td align="left"><select id='selMod'><option value='@'>Seleccione...</option></select></td>
+									</tr>
+									
+									<tr><td colspan="2">&nbsp;</td></tr>
+									
+									<tr>
+										<td align="left"><b>Acción:</b></td>
+										<td align="left"><select id='selAct'><option value='@'>Seleccione...</option></select></td>
+									</tr>
+								</table>
+								
+							</td>
+						</tr>
+					
+					</table>
+				
+				</div>
+				
+			</div>
 			
 			<div id='asAreaCarg'>
 				
@@ -176,7 +216,7 @@
 		
 		#asAreaAcls
 		{
-			width: 100%; height: 100%; background: red;	
+			width: 100%; height: 100%;	
 		}
 		
 		#asAreaCarg
@@ -209,6 +249,36 @@
 			width: 100%; height: 100%; display: none;	
 		}
 		
+		#asDivTab
+		{
+			position: absolute; top: 10%; left: 2%; width: 65%; height: 80%; overflow: auto; background: #fff; border: 1px solid black;
+		}
+		
+		#asTab
+		{
+			width: 100%; height: auto;
+		}
+		
+		#asTab td
+		{
+			border: 1px solid blue; cursor: pointer;
+		} 
+		
+		#asTab tr:hover
+		{
+			background: #D7DFE6;
+		}
+		
+		#asAreaAclsCon
+		{
+			position: absolute; top: 10%; right: 2%; width: 30%; height: 80%;
+		}
+		
+		#asAreaAclsConInt
+		{
+			width: 100%; height: 100%;
+		}
+		
 	</style>
 
 {% endblock %}
@@ -229,17 +299,15 @@
 			gId('btnCanPers').onclick = canPers;
 			gId('btnCreUsua').onclick = newUsua;
 			gId('btnCanUsua').onclick = canUsua;
+			gId('btnAddACL').onclick = addAcl;
 			gId('selCarg').onchange = selectPers;
 			gId('selPers').onchange = selectUsua;
+			gId('selUsua').onchange = selectMod;
+			gId('selMod').onchange = selectAct;
 			
 			gId('asIfPers').onload = selectPers;
 		}
 		
-		function test()
-		{
-			alert('x');
-		}
-
 		function changeArea(id)
 		{
 			hide('asAreaAcls');
@@ -281,6 +349,18 @@
 		{	
 			if(gId('selPers').value != '@')
 				getUsua()
+		}
+		
+		function selectMod(event)
+		{	
+			if(gId('selUsua').value != '@')
+				getMod()
+		}
+		
+		function selectAct(event)
+		{	
+			if(gId('selMod').value != '@')
+				getAct()
 		}
 		
 		function newCarg(event)
@@ -394,6 +474,26 @@
 			);
 		}
 		
+		function getMod()
+		{
+			ajaxAction
+			(
+				new Hash(['*tok => 0']),
+				"{{ path('as_secu_getMod') }}",
+				setMod
+			);
+		}
+		
+		function getAct()
+		{
+			ajaxAction
+			(
+				new Hash(['selMod']),
+				"{{ path('as_secu_getAct') }}",
+				setAct
+			);
+		}
+		
 		function setCarg(response)
 		{
 			code = '';
@@ -446,6 +546,62 @@
 			else
 				popup("Ningún Usuario Encontrado!.");
 			gId('selUsua').innerHTML = $optIni+code;
+		}
+		
+		function setMod(response)
+		{
+			code = '';
+			if(response.responseText.substring(0, 1) != '%')
+			{
+				arr = response.responseText.split('|:|');
+				
+				for (i = 0; i < arr.length; i++)
+				{
+					pp = arr[i].split('=>');
+					code += "<option value='"+pp[0]+"'>"+pp[1]+"</option>";
+				}
+			}
+			else
+				popup("Ningún Módulo Encontrado!.");
+			gId('selMod').innerHTML = $optIni+code;
+		}
+		
+		function setAct(response)
+		{
+			code = '';
+			if(response.responseText.substring(0, 1) != '%')
+			{
+				arr = response.responseText.split('|:|');
+				
+				for (i = 0; i < arr.length; i++)
+				{
+					pp = arr[i].split('=>');
+					code += "<option value='"+pp[0]+"'>"+pp[1]+"</option>";
+				}
+			}
+			else
+				popup("Ninguna Acción Encontrada!.");
+			gId('selAct').innerHTML = $optIni+code;
+		}
+		
+		function addAcl(event)
+		{
+			if(gId('selUsua').value != '@' && gId('selMod').value != '@' && gId('selAct').value != '@')
+			{
+				ajaxAction
+				(
+					new Hash(['selUsua', 'selMod', 'selAct']),
+					"{{ path('as_secu_addAcl') }}",
+					setAcl
+				);
+			}
+			else
+				popup("Debe Seleccionar Usuario, Módulo y Acción!");
+		}
+		
+		function setAcl(response)
+		{
+			alert(response.responseText);
 		}
 		
 	</script>

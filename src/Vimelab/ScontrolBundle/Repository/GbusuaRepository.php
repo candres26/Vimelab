@@ -42,7 +42,7 @@ class GbusuaRepository extends EntityRepository
 	public function getForPersonal($id)
 	{
 		$em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT u FROM ScontrolBundle:Gbusua u JOIN u.gbpers p WHERE p.id = $id ORDER BY u.nombre ASC");
+        $querry = $em->createQuery("SELECT u FROM ScontrolBundle:Gbusua u JOIN u.gbpers p WHERE p.id = $id AND u.nombre != 'root' ORDER BY u.nombre ASC");
         return $querry->getResult();
 	}
 }

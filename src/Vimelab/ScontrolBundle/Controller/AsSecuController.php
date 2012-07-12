@@ -7,6 +7,7 @@ use Vimelab\ScontrolBundle\Entity\Gbcarg;
 use Vimelab\ScontrolBundle\Entity\Gbpers;
 use Vimelab\ScontrolBundle\Entity\Gbusua;
 use Vimelab\ScontrolBundle\Entity\Gbvars;
+use Vimelab\ScontrolBundle\Entity\Gbacls;
 use Symfony\Component\HttpFoundation\Response;
 use Vimelab\ScontrolBundle\Tool\Tool;
 
@@ -147,7 +148,7 @@ class AsSecuController extends Controller
 				
 				try
 				{
-					$pers = $pais = $em->getRepository('ScontrolBundle:Gbpers')->findOneById($request->request->get('selPers'));	
+					$pers = $em->getRepository('ScontrolBundle:Gbpers')->findOneById($request->request->get('selPers'));	
 						
 					$entity = new Gbusua();
 					$entity->setGbpers($pers);
@@ -173,5 +174,143 @@ class AsSecuController extends Controller
 		}
 		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
+	}
+	
+	public function getModAction()
+	{
+		if(Tool::isGrant($this))
+        {
+        	$request = $this->getRequest();
+        	if($request->isXmlHttpRequest())
+			{
+				$em = $this->getDoctrine()->getEntityManager();
+				
+				$mods = $em->getRepository('ScontrolBundle:Gbvars')->findBy(array('tipo' => 'S'), array('nombre' => 'ASC'));
+				
+				$parr = array();
+				foreach($mods as $caso)
+				{
+					$parr[] = $this->exNom($caso);
+				}
+				
+				$parr = join('|:|', $parr);
+				$parr = $parr == '' ? '%' : $parr;
+				
+				return new Response($parr);
+			}
+			else
+				return $this->redirect($this->generateUrl('as_secu'));
+		}
+		else
+			return $this->render("ScontrolBundle::alertas.html.twig");
+	}
+	
+	public function getActAction()
+	{
+		if(Tool::isGrant($this))
+        {
+        	$request = $this->getRequest();
+        	if($request->isXmlHttpRequest())
+			{
+				$em = $this->getDoctrine()->getEntityManager();
+				
+				$mod = $em->getRepository('ScontrolBundle:Gbvars')->findOneById($request->request->get('selMod'));
+				
+				$tar = explode('|-|', $mod->getValor());
+				
+				if(isset($tar[1]))
+				{
+					if($tar[1] == '*')
+						$parr = '*=>Acceso Completo';
+					else
+						$parr = '*=>Acceso Completo|:|'.$tar[2];
+				}
+				else
+					$parr = '%';
+					
+				return new Response($parr);
+			}
+			else
+				return $this->redirect($this->generateUrl('as_secu'));
+		}
+		else
+			return $this->render("ScontrolBundle::alertas.html.twig");
+	}
+	
+	public function addAclAction()
+	{
+		if(Tool::isGrant($this))
+        {
+        	$request = $this->getRequest();
+        	if($request->isXmlHttpRequest())
+			{
+				$em = $this->getDoctrine()->getEntityManager();
+				
+				$usu = $request->request->get('selUsua');
+				$mod = $request->request->get('selMod');
+				$act = $request->request->get('selAct');
+				
+				$ousu = $em->getRepository('ScontrolBundle:Gbusua')->findOneById($usu);
+				$omod = $em->getRepository('ScontrolBundle:Gbvars')->findOneById($mod);
+				
+				$rmod = array();
+				$ract = array();
+				
+				if($act == '*')
+				{
+					$tmp = explode('|-|', $omod->getValor());
+					$tmp = explode('|:|', $tmp[2]);
+						
+					foreach($tmp as $caso)
+					{
+						$tcs = explode('=>', $caso);
+						$tcs = explode('/', $tcs[0]);
+						$rmod[] = $tcs[0];
+						$ract[] = $tcs[1];
+					}
+					
+				}
+				else 
+				{
+					$tcs = explode('/', $act);
+					$rmod[] = $tcs[0];
+					$ract[] = $tcs[1];
+				}
+				
+				$ct = 0;
+				for($i = 0; $i < count($rmod); $i++)
+				{
+					$acls = $em->getRepository('ScontrolBundle:Gbacls')->getExist($ousu->getId(), $rmod[$i], $ract[$i]);
+					$ct += $acls;
+					if($acls == 0)
+					{
+						$obj = new Gbacls();
+						$obj->setGbusua($ousu);
+						$obj->setModulo($rmod[$i]);
+						$obj->setAccion($ract[$i]);
+						$em->persist($obj);
+					}
+					
+					$em->flush();
+				}
+				
+				return new Response($ct);
+			}
+			else
+				return $this->redirect($this->generateUrl('as_secu'));
+		}
+		else
+			return $this->render("ScontrolBundle::alertas.html.twig");
+	}
+	
+	private function exNom($caso)
+	{
+		$tmp = $caso->getValor();
+		$tar = explode('|-|', $tmp);
+		
+		if($caso->getValor() != '')
+			return $caso->getId().'=>'.$tar[0];
+		else
+			return $caso->getId().'=>'.$caso->getNombre();
 	}
 }
