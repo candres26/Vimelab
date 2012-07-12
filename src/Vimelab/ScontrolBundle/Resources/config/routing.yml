@@ -2,6 +2,13 @@
 getUser:
     pattern:  /getuser
     defaults: { _controller: ScontrolBundle:Default:getUser }
+    
+# Home
+
+home:
+    pattern:  /home
+    defaults: { _controller: ScontrolBundle:Home:index }
+
 # CtCont Routes
 ctcont:
     pattern:  /ctcont

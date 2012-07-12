@@ -57,9 +57,9 @@ class Tcchec
     private $caracteristicas;
 
     /**
-     * @var text $psensible
+     * @var string $psensible
      *
-     * @ORM\Column(name="psensible", type="text", nullable=false)
+     * @ORM\Column(name="psensible", type="string", length=1, nullable=false)
      */
     private $psensible;
 
@@ -111,6 +111,13 @@ class Tcchec
      * @ORM\Column(name="hbiologico", type="text", nullable=false)
      */
     private $hbiologico;
+
+    /**
+     * @var string $rangocargas
+     *
+     * @ORM\Column(name="rangocargas", type="string", length=1, nullable=false)
+     */
+    private $rangocargas;
 
     /**
      * @var text $cargas
@@ -398,7 +405,7 @@ class Tcchec
     /**
      * Set psensible
      *
-     * @param text $psensible
+     * @param string $psensible
      */
     public function setPsensible($psensible)
     {
@@ -408,7 +415,7 @@ class Tcchec
     /**
      * Get psensible
      *
-     * @return text
+     * @return string
      */
     public function getPsensible()
     {
@@ -553,6 +560,26 @@ class Tcchec
     public function getHbiologico()
     {
         return $this->hbiologico;
+    }
+
+    /**
+     * Set rangocargas
+     *
+     * @param string $cargas
+     */
+    public function setRangocargas($rangocargas)
+    {
+        $this->rangocargas = $rangocargas;
+    }
+
+    /**
+     * Get rangocargas
+     *
+     * @return string
+     */
+    public function getRangocargas()
+    {
+        return $this->rangocargas;
     }
 
     /**

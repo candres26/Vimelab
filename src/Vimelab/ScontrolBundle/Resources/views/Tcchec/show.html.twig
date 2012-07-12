@@ -38,7 +38,7 @@
         </tr>
         <tr>
             <th align="left">Personal Especialmente Sensible</th>
-            <td>{{ entity.psensible }}</td>
+            <td>{% if entity.psensible == '1' %} Menor de 18 años {% else %} {% if entity.psensible == '2' %} Embarazada {% else %} Disminuido físico o psíquico {% endif %} {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Seguridad (Equipo de Trabajo)</th>
@@ -69,7 +69,11 @@
             <td>{{ entity.hbiologico }}</td>
         </tr>
         <tr>
-            <th align="left">Cargas</th>
+            <th align="left">Rango de Cargas</th>
+            <td>{% if entity.rangocargas == '1' %} 0 a 5 Kg {% else %} {% if entity.rangocargas == '2' %} 5 a 20 Kg {% else %} Más de 20 Kg {% endif %} {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Manipulación de Cargas</th>
             <td>{{ entity.cargas }}</td>
         </tr>
         <tr>

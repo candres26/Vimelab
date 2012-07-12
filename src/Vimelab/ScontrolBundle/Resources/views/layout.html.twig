@@ -9,10 +9,10 @@
 {% block body %}
 
 	<div id="vime-cabecera">
-	
+		
 	</div>
 	<div id="vime-barra" align='right'>
-		<table style="padding-right: 50px; font-weight: bold;"><tr><td align='right'>Usuario Activo:</td><td id='sisuser'>&nbsp;</td><td width='100px'>&nbsp;</td><td id="{{ path('logout') }}" class='exitBtn'>Cerrar Sesión</td></tr></table>
+		<table style="position: relative; padding-right: 50px; font-weight: bold; z-index: 2; margin-top: -0.4%;"><tr><td align='right'>Usuario Activo:</td><td id='sisuser'>&nbsp;</td><td></td><td><img src="{{ asset('bundles/scontrol/imagenes/system-users.png') }}"></td><td width='100px'>&nbsp;</td><td id="{{ path('home') }}" class="home">Home</td><td><img src="{{ asset('bundles/scontrol/imagenes/user-home.png') }}"></td><td></td><td id="{{ path('logout') }}" class='exitBtn'>Cerrar Sesión</td><td><img src="{{ asset('bundles/scontrol/imagenes/stock_lock.png') }}"></td></tr></table>
 	</div>
 	<div id="vime-menu">
 		
@@ -138,6 +138,7 @@
 			getUser("{{ path('getUser') }}");
 			
 			gId("{{ path('logout') }}").onclick = launch;
+			gId("{{ path('home') }}").onclick = launch;
 			
 			for(i = 1; i < 7; i++)
 			{
