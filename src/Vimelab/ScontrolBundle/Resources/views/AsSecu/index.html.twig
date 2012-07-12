@@ -69,7 +69,14 @@
 								<table>
 									<tr>
 										<td align="left"><b>Módulo:</b></td>
-										<td align="left"><select id='selMod'><option value='@'>Seleccione...</option></select></td>
+										<td align="left">
+											<select id='selMod'>
+												<option value='@'>Seleccione...</option>
+												{% for k, v in modulos %}
+													<option value="{{ k }}">{{ v }}</option>
+												{% endfor %}
+											</select>
+										</td>
 									</tr>
 									
 									<tr><td colspan="2">&nbsp;</td></tr>
@@ -287,6 +294,7 @@
 	<script type="text/javascript">
 		
 		var $optIni = "<option value='@'>Seleccione...</option>";
+		var $modoIf = 0;
 		
 		function $init()
 		{
@@ -300,12 +308,35 @@
 			gId('btnCreUsua').onclick = newUsua;
 			gId('btnCanUsua').onclick = canUsua;
 			gId('btnAddACL').onclick = addAcl;
+			gId('btnRemACL').onclick = delAcl;
 			gId('selCarg').onchange = selectPers;
 			gId('selPers').onchange = selectUsua;
-			gId('selUsua').onchange = selectMod;
+			gId('selUsua').onchange = masterSel;
 			gId('selMod').onchange = selectAct;
 			
-			gId('asIfPers').onload = selectPers;
+			gId('asIfPers').onload = loadIf;	
+		}
+		
+		function loadIf(event)
+		{
+			if(gIf('asIfPers', 'RMSG').value != 'LOAD')
+			{
+				changeArea('asAreaAcls');
+				popup(gIf('asIfPers', 'RMSG').value);
+			}
+			
+			if($modoIf == 0)
+				changeArea('asAreaPers');
+			
+			if($modoIf != 1)
+				selectPers();
+			
+			$modoIf = 0;
+		}
+		
+		function masterSel(event)
+		{
+			getAcl();
 		}
 		
 		function changeArea(id)
@@ -320,27 +351,25 @@
 		
 		function viewCarg(event)
 		{
-			changeArea('asAreaCarg')
+			changeArea('asAreaCarg');
 		}
 		
 		function viewPers(event)
 		{
-			changeArea('asAreaPers')
+			$modoIf = 0;
+			gId('asIfPers').contentWindow.document.location = "{{ path('gbpers_new', { 'lv': 2 }) }}";
 		}
 		
 		function viewUsua(event)
 		{
 			if(gId('selPers').value != '@')
-				changeArea('asAreaUsua')
+				changeArea('asAreaUsua');
 			else
 				popup('Debe Selecionar Un Personal');
 		}
 		
 		function selectPers(event)
-		{
-			if(this.id == 'asIfPers')
-				popup(gIf('asIfPers', 'RMSG').value);
-				
+		{	
 			if(gId('selCarg').value != '@')
 				getPers()
 		}
@@ -349,12 +378,6 @@
 		{	
 			if(gId('selPers').value != '@')
 				getUsua()
-		}
-		
-		function selectMod(event)
-		{	
-			if(gId('selUsua').value != '@')
-				getMod()
 		}
 		
 		function selectAct(event)
@@ -382,6 +405,7 @@
 		
 		function newPers(event)
 		{
+			$modoIf = 2;
 			ifSimularClick('asIfPers', 'sender');
 		}
 		
@@ -410,7 +434,9 @@
 		
 		function canPers(event)
 		{ 
+			$modoIf = 1;
 			changeArea('asAreaAcls');
+			gId('asIfPers').contentWindow.document.location = "{{ path('gbpers_new', { 'lv': 2 }) }}";
 		}
 		
 		function canUsua(event)
@@ -473,17 +499,7 @@
 				setUsua
 			);
 		}
-		
-		function getMod()
-		{
-			ajaxAction
-			(
-				new Hash(['*tok => 0']),
-				"{{ path('as_secu_getMod') }}",
-				setMod
-			);
-		}
-		
+				
 		function getAct()
 		{
 			ajaxAction
@@ -548,24 +564,6 @@
 			gId('selUsua').innerHTML = $optIni+code;
 		}
 		
-		function setMod(response)
-		{
-			code = '';
-			if(response.responseText.substring(0, 1) != '%')
-			{
-				arr = response.responseText.split('|:|');
-				
-				for (i = 0; i < arr.length; i++)
-				{
-					pp = arr[i].split('=>');
-					code += "<option value='"+pp[0]+"'>"+pp[1]+"</option>";
-				}
-			}
-			else
-				popup("Ningún Módulo Encontrado!.");
-			gId('selMod').innerHTML = $optIni+code;
-		}
-		
 		function setAct(response)
 		{
 			code = '';
@@ -592,16 +590,65 @@
 				(
 					new Hash(['selUsua', 'selMod', 'selAct']),
 					"{{ path('as_secu_addAcl') }}",
-					setAcl
+					getAcl
 				);
 			}
 			else
 				popup("Debe Seleccionar Usuario, Módulo y Acción!");
 		}
 		
+		function delAcl(event)
+		{
+			if(gId('selUsua').value != '@')
+			{
+				if(confirm("Por razones de seguridad, esta acción eliminara todos los privilegios del usuario seleccionado!. SEGURO QUE DESEA CONTINUAR?"))
+				{
+					ajaxAction
+					(
+						new Hash(['selUsua']),
+						"{{ path('as_secu_delAcl') }}",
+						getAcl
+					);
+				}
+			}
+			else
+				popup("Debe Seleccionar un Usuario!");
+		}
+		
+		function getAcl(response)
+		{
+			if(typeof response != 'undefined')
+				popup(response.responseText);
+				
+			if(gId('selUsua').value != '@')
+			{
+				ajaxAction
+				(
+					new Hash(['selUsua']),
+					"{{ path('as_secu_getAcl') }}",
+					setAcl
+				);
+			}
+		}
+		
 		function setAcl(response)
 		{
-			alert(response.responseText);
+			code = '';
+			if(response.responseText != '%')
+			{
+				arr = response.responseText.split('|:|');
+				
+				for (i = 0; i < arr.length; i++)
+				{
+					pp = arr[i].split(':');
+					
+					code += "<tr><td><b>"+pp[0]+"</b></td><td>"+pp[1]+"</td></tr>";
+				}
+	
+				gId('asTab').innerHTML = code;
+			}
+			else
+				gId('asTab').innerHTML = "<tr><td><h3>Ningún Privilegio Asignado!</h3></td></tr>";
 		}
 		
 	</script>

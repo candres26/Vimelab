@@ -1292,12 +1292,15 @@ as_secu_getPers:
 as_secu_getUsua:
     pattern: /assecu/getusua
     defaults: {_controller: ScontrolBundle:AsSecu:getUsua }
-as_secu_getMod:
-    pattern: /assecu/getmod
-    defaults: {_controller: ScontrolBundle:AsSecu:getMod }
 as_secu_getAct:
     pattern: /assecu/getact
     defaults: {_controller: ScontrolBundle:AsSecu:getAct }
 as_secu_addAcl:
     pattern: /assecu/addacl
     defaults: {_controller: ScontrolBundle:AsSecu:addAcl }
+as_secu_delAcl:
+    pattern: /assecu/delacl
+    defaults: {_controller: ScontrolBundle:AsSecu:delAcl }
+as_secu_getAcl:
+    pattern: /assecu/getacl
+    defaults: {_controller: ScontrolBundle:AsSecu:getAcl }

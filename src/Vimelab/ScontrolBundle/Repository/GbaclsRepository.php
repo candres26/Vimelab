@@ -46,4 +46,11 @@ class GbaclsRepository extends EntityRepository
         $resul = $querry->getSingleScalarResult();
         return $resul;
     }
+	
+	public function getInUser($usu)
+    {
+        $em = $this->getEntityManager();
+        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Gbacls o JOIN o.gbusua u WHERE u.id = $usu ORDER BY o.modulo ASC");
+     	return $querry->getResult();
+    }
 }

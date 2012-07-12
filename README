@@ -33,4 +33,6 @@ Mejorando estandares JavaScript y TWIG, grandes cambios en el modelo de funcione
 * Integracion de asistentes con formularios maestros lograda usando IFRAMES.
 * Asistente de seguridad casi listo, creacion de personal y usuarios.
 * Modelo de varibles para ACL Diseñado.
-* Archivos SQL de control; modelo.sql contiene la estructura de la DB, base.sql contiene la estructura y los datos m{inimos para comenzar (usuario root), db.sql contiene datos de prueba volatiles, vars.sql contiene los datos minimos de las variables (aun en construcción). 
+* Archivos SQL de control; modelo.sql contiene la estructura de la DB, base.sql contiene la estructura y los datos m{inimos para comenzar (usuario root), db.sql contiene datos de prueba volatiles, vars.sql contiene los datos minimos de las variables (aun en construcción).
+* Sitema de dicionarios creado en base a GbVars.
+* Asistente de seguridad terminado.

@@ -141,7 +141,7 @@ class GbpersController extends Controller
 			if($lv == 1)
 				return array('entity' => $entity, 'form'   => $form->createView());
 			else
-				return $this->render("ScontrolBundle:Gbpers:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView()));
+				return $this->render("ScontrolBundle:Gbpers:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
 		}
 		else
 			return $this->render("ScontrolBundle::alertas.html.twig");

@@ -20,7 +20,7 @@ class AsSecuController extends Controller
 			$em = $this->getDoctrine()->getEntityManager();
 			$cargos = $em->getRepository('ScontrolBundle:Gbcarg')->findBy(array(), array('nombre' => 'ASC'));
 			
-			return $this->render('ScontrolBundle:AsSecu:index.html.twig', array('cargos' => $cargos));
+			return $this->render('ScontrolBundle:AsSecu:index.html.twig', array('cargos' => $cargos, 'modulos' => $this->getMod()));
 		}
 		else
 			return $this->render('ScontrolBundle::alertas.html.twig');
@@ -176,35 +176,6 @@ class AsSecuController extends Controller
 			return $this->render("ScontrolBundle::alertas.html.twig");
 	}
 	
-	public function getModAction()
-	{
-		if(Tool::isGrant($this))
-        {
-        	$request = $this->getRequest();
-        	if($request->isXmlHttpRequest())
-			{
-				$em = $this->getDoctrine()->getEntityManager();
-				
-				$mods = $em->getRepository('ScontrolBundle:Gbvars')->findBy(array('tipo' => 'S'), array('nombre' => 'ASC'));
-				
-				$parr = array();
-				foreach($mods as $caso)
-				{
-					$parr[] = $this->exNom($caso);
-				}
-				
-				$parr = join('|:|', $parr);
-				$parr = $parr == '' ? '%' : $parr;
-				
-				return new Response($parr);
-			}
-			else
-				return $this->redirect($this->generateUrl('as_secu'));
-		}
-		else
-			return $this->render("ScontrolBundle::alertas.html.twig");
-	}
-	
 	public function getActAction()
 	{
 		if(Tool::isGrant($this))
@@ -281,9 +252,9 @@ class AsSecuController extends Controller
 				for($i = 0; $i < count($rmod); $i++)
 				{
 					$acls = $em->getRepository('ScontrolBundle:Gbacls')->getExist($ousu->getId(), $rmod[$i], $ract[$i]);
-					$ct += $acls;
 					if($acls == 0)
 					{
+						$ct += 1;
 						$obj = new Gbacls();
 						$obj->setGbusua($ousu);
 						$obj->setModulo($rmod[$i]);
@@ -294,7 +265,7 @@ class AsSecuController extends Controller
 					$em->flush();
 				}
 				
-				return new Response($ct);
+				return new Response($ct.' Privilegios Asignados!');
 			}
 			else
 				return $this->redirect($this->generateUrl('as_secu'));
@@ -303,14 +274,101 @@ class AsSecuController extends Controller
 			return $this->render("ScontrolBundle::alertas.html.twig");
 	}
 	
+	public function delAclAction()
+	{
+		if(Tool::isGrant($this))
+        {
+        	$request = $this->getRequest();
+        	if($request->isXmlHttpRequest())
+			{
+				$em = $this->getDoctrine()->getEntityManager();
+				
+				$usu = $request->request->get('selUsua');
+				$acls = $em->getRepository('ScontrolBundle:Gbacls')->getInUser($usu);
+				$ct = 0;
+				
+				foreach ($acls as $caso) 
+				{
+					$ct += 1;
+					$em->remove($caso);
+				}
+				
+				$em->flush();
+				
+				return new Response($ct.' Privilegios Eliminados!');
+			}
+			else
+				return $this->redirect($this->generateUrl('as_secu'));
+		}
+		else
+			return $this->render("ScontrolBundle::alertas.html.twig");
+	}
+
+	public function getAclAction()
+	{
+		if(Tool::isGrant($this))
+        {
+        	$request = $this->getRequest();
+        	if($request->isXmlHttpRequest())
+			{
+				$em = $this->getDoctrine()->getEntityManager();
+				
+				$usu = $request->request->get('selUsua');
+				$acls = $em->getRepository('ScontrolBundle:Gbacls')->getInUser($usu);
+				
+				$tar = array();
+				$tol = new Tool();
+				$tol->initDic($this);
+				foreach($acls as $caso)
+				{
+					if(isset($tar[$caso->getModulo()]))
+						$tar[$caso->getModulo()] = $tar[$caso->getModulo()].','.$tol->traduce($caso->getAccion());
+					else
+						$tar[$caso->getModulo()] = $tol->traduce($caso->getAccion());
+				}
+				
+				$parr = array();
+				foreach($tar as $k => $v)
+					$parr[] = $tol->traduce($k).':'.$v;
+				
+				$parr = join('|:|', $parr);
+				$parr = $parr == '' ? '%' : $parr;
+				
+				return new Response($parr);
+				
+				
+			}
+			else
+				return $this->redirect($this->generateUrl('as_secu'));
+		}
+		else
+			return $this->render("ScontrolBundle::alertas.html.twig");
+	}
+	
+	private function getMod()
+	{
+		$em = $this->getDoctrine()->getEntityManager();
+				
+		$mods = $em->getRepository('ScontrolBundle:Gbvars')->findBy(array('tipo' => 'S'), array('nombre' => 'ASC'));
+				
+		$parr = array();
+		foreach($mods as $caso)
+		{
+			$tmp = 	$this->exNom($caso);
+			$parr[$tmp[0]] = $tmp[1];
+		}
+		
+		return $parr;
+	}
+	
 	private function exNom($caso)
 	{
 		$tmp = $caso->getValor();
 		$tar = explode('|-|', $tmp);
 		
 		if($caso->getValor() != '')
-			return $caso->getId().'=>'.$tar[0];
+			return array($caso->getId(), $tar[0]);
 		else
-			return $caso->getId().'=>'.$caso->getNombre();
+			return array($caso->getId(), $caso->getNombre());
 	}
 }
