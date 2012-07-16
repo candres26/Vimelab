@@ -12,8 +12,8 @@ class HslaboType extends AbstractType
         $builder
             ->add('empresa')
             ->add('fingreso', 'date', array('label' => 'Fecha ingreso','widget' => 'single_text', 'format' => 'y-MM-dd'))
-            ->add('actividad')
-            ->add('puesto')
+            ->add('actividad', 'textarea', array('label' => 'Actividades que desempeñaba'))
+            ->add('puesto', 'textarea', array('label' => 'Puesto que ocupaba'))
             ->add('riesgo')
             ->add('duracion')
             ->add('edad')

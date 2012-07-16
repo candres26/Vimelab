@@ -34,8 +34,40 @@ class MdhistRepository extends EntityRepository
 
     public function getFilter($parametro)
     {
+		$ape = '';
+		$nom = '';
+		$ced = '';
+		
+		$parametro = preg_replace('/: +/', ':', $parametro);
+		
+		$tmp = explode(' ', $parametro);
+		foreach($tmp as $caso)
+		{
+			$tar = explode(':', $caso);
+			if(count($tar) == 2)
+			{
+				if(trim(strtoupper($tar[0])) == 'A')
+					$ape = trim($tar[1]);
+				
+				if(trim(strtoupper($tar[0])) == 'N')
+					$nom = trim($tar[1]);
+			}
+			else
+				$ced = $caso;
+		}	
+		
+		$sar = array();
+		if($ced != '')
+			$sar[] = "l.identificacion LIKE '%$ced%'";
+		if($nom != '')
+			$sar[] = "l.prinom LIKE '%$nom%' or l.segnom LIKE '%$nom%' ";
+		if($ape != '')
+			$sar[] = "l.priape LIKE '%$ape%' or l.segape LIKE '%$ape%' ";
+			
+		$sar = join(' or ', $sar);
+		
         $em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Mdhist m JOIN m.mdpaci l JOIN m.tcruta k WHERE m.id LIKE '%$parametro%' or l.identificacion LIKE '%$parametro%' or k.id LIKE '%$parametro%' ORDER BY m.id ASC");
+        $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Mdhist m JOIN m.mdpaci l WHERE $sar ORDER BY m.id ASC");
         return $querry->getResult();
     }
 }

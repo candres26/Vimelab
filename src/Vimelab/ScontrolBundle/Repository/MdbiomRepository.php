@@ -34,8 +34,40 @@ class MdbiomRepository extends EntityRepository
 
     public function getFilter($parametro)
     {
+		$ape = '';
+		$nom = '';
+		$ced = '';
+		
+		$parametro = preg_replace('/: +/', ':', $parametro);
+		
+		$tmp = explode(' ', $parametro);
+		foreach($tmp as $caso)
+		{
+			$tar = explode(':', $caso);
+			if(count($tar) == 2)
+			{
+				if(trim(strtoupper($tar[0])) == 'A')
+					$ape = trim($tar[1]);
+				
+				if(trim(strtoupper($tar[0])) == 'N')
+					$nom = trim($tar[1]);
+			}
+			else
+				$ced = $caso;
+		}	
+		
+		$sar = array();
+		if($ced != '')
+			$sar[] = "k.identificacion LIKE '%$ced%'";
+		if($nom != '')
+			$sar[] = "k.prinom LIKE '%$nom%' or k.segnom LIKE '%$nom%' ";
+		if($ape != '')
+			$sar[] = "k.priape LIKE '%$ape%' or k.segape LIKE '%$ape%' ";
+			
+		$sar = join(' or ', $sar);
+		
         $em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Mdbiom m JOIN m.mdhist l JOIN l.mdpaci k WHERE l.id LIKE '%$parametro%' or k.identificacion LIKE '%$parametro%' ORDER BY m.id ASC");
+        $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Mdbiom m JOIN m.mdhist l JOIN l.mdpaci k WHERE $sar ORDER BY m.id ASC");
         return $querry->getResult();
     }
 }

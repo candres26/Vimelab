@@ -15,7 +15,7 @@ class TcchecType extends AbstractType
             ->add('comite', 'choice', array('choices' => array('S' => 'SI', 'N' => 'NO'), 'expanded' => 'true','label' => 'Comité de Seguridad y Salud'))
             ->add('descripcion', 'textarea', array('label' => 'Descripción del local'))
             ->add('caracteristicas', 'textarea', array('label' => 'Características de los sitios de trabajo'))
-            ->add('psensible', 'choice', array('choices' => array('1' => 'Menor de 18 años', '2' => 'Embarazada', '3' => 'Disminuido físico o psíquico'), 'required' => 'false', 'label' => 'Personal especialmente sensible'))
+            ->add('psensible', 'choice', array('choices' => array('4' => 'Menor de 18 años', '2' => 'Embarazada', '1' => 'Disminuido físico o psíquico', '5' => 'Menor de 18 años y Embarazada',  '7' => 'Menor de 18 años y Disminuido físico o psíquico', '3' => 'Embarazada y Disminuido físico o psíquico', '6' => 'Menor de 18 años, Embarazada y Disminuido físico o psíquico'), 'required' => 'false', 'label' => 'Personal especialmente sensible', 'attr' => array('style'=>'width: 48%;')))
             ->add('seguridad', 'textarea', array('label' => 'Seguridad (Equipo de Trabajo)'))
             ->add('mfisico', 'choice', array('choices' => array('S' => 'SI', 'N' => 'NO'), 'expanded' => 'true','label' => 'Físicos (precisen medición)'))
             ->add('hfisico', 'textarea', array('label' => 'Higiene - Contaminantes Físicos'))

@@ -21,8 +21,8 @@ class Tool
         {
             $arr1 = explode('\\', $request->attributes->get('_controller'));
             $arr2 = explode('::', $arr1[count($arr1)-1]);
-            $cont = str_replace('Controller', '', $arr2[0]);
-            $acti = str_replace('Action', '', $arr2[1]);
+            $cont = strtolower(str_replace('Controller', '', $arr2[0]));
+            $acti = strtolower(str_replace('Action', '', $arr2[1]));
 
             $casos = $em->getRepository('ScontrolBundle:Gbacls')->findBy(array('modulo' => $cont, 'accion' => $acti));
             $user = $em->getRepository('ScontrolBundle:Gbusua')->findOneBy(array('nombre' => $ussys));

@@ -38,7 +38,8 @@
         </tr>
         <tr>
             <th align="left">Personal Especialmente Sensible</th>
-            <td>{% if entity.psensible == '1' %} Menor de 18 años {% else %} {% if entity.psensible == '2' %} Embarazada {% else %} Disminuido físico o psíquico {% endif %} {% endif %}</td>
+            <td>{% if entity.psensible == '1' %} Disminuido físico o psíquico {% else %} {% if entity.psensible == '2' %} Embarazada {% else %} {% if entity.psensible == '3' %} Embarazada y Disminuido físico o psíquico {% else %} {% if entity.psensible == '4' %} Menor de 18 años {% else %} {% if entity.psensible == '5' %} Menor de 18 años y Embarazada {% else %} {% if entity.psensible == '6' %} Menor de 18 años embarazada y Disminuído físico o psiquico {% else %} {% if entity.psensible == '7' %} Menor de 18 años y Disminuído físico o psiquico {% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %} {% endif %}</td>
+            <!--<td>{% if entity.psensible == '1' %} Menor de 18 años {% else %} {% if entity.psensible == '2' %} Embarazada {% else %} Disminuido físico o psíquico {% endif %} {% endif %}</td>-->
         </tr>
         <tr>
             <th align="left">Seguridad (Equipo de Trabajo)</th>

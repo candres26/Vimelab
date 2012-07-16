@@ -12,9 +12,10 @@
 		<tr><td colspan='2'>{{ form_errors(form.mdhist) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.mdhist) }}</td><td align="left">{{ form_widget(form.mdhist) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.talla) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.talla) }}</td><td align="left">{{ form_widget(form.talla) }} cm</td></tr>
+		<tr><td align="left">{{ form_label(form.talla) }}</td><td align="left" id='imcTalla'>{{ form_widget(form.talla) }} cm</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.peso) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.peso) }}</td><td align="left">{{ form_widget(form.peso) }} kg</td></tr>
+		<tr><td align="left">{{ form_label(form.peso) }}</td><td align="left" id='imcPeso'>{{ form_widget(form.peso) }} kg</td></tr>
+		<tr><td align="left">I.M.C</td><td align="left"><input type='text' id='imcVal' readonly='true' />&nbsp;<b id='imcTipo'></b></td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.pulso) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.pulso) }}</td><td align="left">{{ form_widget(form.pulso) }} p/s</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.fres) }}</td></tr>
@@ -27,6 +28,51 @@
     {{ form_rest(form) }}
 </form>
 
+{% endblock %}
+
+{% block uscript %}
+	<script type="text/javascript">
+		
+		function $init(event)
+		{
+			gId('imcVal').onfocus = getImc;
+		}
+		
+		function getImc(event)
+		{
+			peso = gId('imcPeso').childNodes[0].value;
+			talla = gId('imcTalla').childNodes[0].value;
+			
+			if(talla != '' && peso != '')
+			{
+				talla = parseInt(talla)/100;
+				peso = parseInt(peso);
+				
+				imc = peso / (talla*talla);
+				
+				tipo = '';
+				if(imc <= 18)
+					tipo = 'Peso menor que el normal';
+				else if(imc >= 18.1 && imc <= 24.9)
+					tipo = 'Peso normal';
+				else if(imc >= 25 && imc <= 29.9)
+					tipo = 'Sobrepeso';
+				else
+				{ 
+					if(imc >= 30 && imc <= 34.9)
+						tipo = 'Obesidad Tipo I';
+					else if(imc >= 35 && imc <= 39.9)
+						tipo = 'Obesidad Tipo II';
+					else if(imc >= 40)
+						tipo = 'Obesidad Tipo III';
+				}
+				
+				gId('imcVal').value = imc.toFixed(2);
+				gId('imcTipo').innerHTML = tipo;
+			}
+		}
+		
+	</script>
 {% endblock %}
 
 {% block action %}
