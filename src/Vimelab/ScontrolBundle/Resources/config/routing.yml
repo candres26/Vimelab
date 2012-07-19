@@ -2,6 +2,9 @@
 getUser:
     pattern:  /getuser
     defaults: { _controller: ScontrolBundle:Default:getUser }
+setKey:
+    pattern:  /setkey
+    defaults: { _controller: ScontrolBundle:Default:setKey }
     
 # Home
 
@@ -1285,13 +1288,13 @@ as_secu:
     pattern: /assecu
     defaults: { _controller: ScontrolBundle:AsSecu:index }
 as_secu_addCarg:
-    pattern: /assecu/addcarg
+    pattern: /assecu/addcargo
     defaults: { _controller: ScontrolBundle:AsSecu:addCargo }
 as_secu_addUsua:
     pattern: /assecu/addusua
     defaults: { _controller: ScontrolBundle:AsSecu:addUsua }
 as_secu_getCarg:
-    pattern: /assecu/getcarg
+    pattern: /assecu/getcargo
     defaults: {_controller: ScontrolBundle:AsSecu:getCargo }
 as_secu_getPers:
     pattern: /assecu/getpers

@@ -384,3 +384,40 @@ h2
 	font-weight: bold;
 	font-style: italic;
 }
+
+/* --- CAMBIO CLAVE --- */
+
+.dfZone
+{
+	display: none;
+	position: absolute;
+	right: 1%;
+	bottom: 7%;
+	width: auto;
+	height: auto;
+	z-index: 0;
+	background: #000;
+	color: #FFF;
+	padding: 10px;
+	border: 2px solid black;
+	border-radius: 10px;
+	-moz-border-radius:10px;
+	-webkit-border-radius: 10px;
+	box-shadow: -4px 4px 5px #5B725C;
+	-webkit-box-shadow: -4px 4px 5px #5B725C;
+    -moz-box-shadow: -4px 4px 5px #5B725C;	
+}
+
+.dfZone button
+{
+	background-color: #000; 
+	color:#fff;
+	border-radius: 10px;
+	cursor: pointer;
+}
+		
+.dfZone button:hover
+{
+	background-color:#FFFFFF; 
+	color:#000000;
+}

@@ -12,7 +12,16 @@
 		
 	</div>
 	<div id="vime-barra" align='right'>
-		<table style="position: relative; padding-right: 50px; font-weight: bold; z-index: 2; margin-top: -0.3%;"><tr><td width='100px'>&nbsp;</td><td><img title="Home" id="{{ path('home') }}" class="home" src="{{ asset('bundles/scontrol/imagenes/home.png') }}"></td><td></td><td><img title="Cerrar sesión" class='exitBtn' id="{{ path('logout') }}" src="{{ asset('bundles/scontrol/imagenes/cerrar.png') }}"></td><td></td><td></td><td></td><td></td><td><img title="Usuario" src="{{ asset('bundles/scontrol/imagenes/system-users.png') }}"></td><td></td><td id='sisuser'>&nbsp;</td><td width='100px'>&nbsp;</td><td>&nbsp;</td></tr></table>
+		<table border='0' style="position: relative; padding-right: 50px; font-weight: bold; z-index: 2; margin-top: -0.3%;">
+			<tr>
+				<td><img title="Home" id="{{ path('home') }}" class="home" src="{{ asset('bundles/scontrol/imagenes/home.png') }}"></td>
+				<td><img title="Cambiar Clave" class='exitBtn' id="{{ path('setKey') }}" src="{{ asset('bundles/scontrol/imagenes/edit-key.png') }}">
+				<td><img title="Cerrar sesión" class='exitBtn' id="{{ path('logout') }}" src="{{ asset('bundles/scontrol/imagenes/cerrar.png') }}">
+				<td><img title="Usuario" src="{{ asset('bundles/scontrol/imagenes/system-users.png') }}"></td>
+				<td id='sisuser'>&nbsp;</td>
+				<td width='50px'>&nbsp;</td>
+			</tr>
+		</table>
 	</div>
 	<div id="vime-menu">
 		
@@ -108,20 +117,51 @@
     </div>
     
 
-	{% block action %}
+	{% block action %}{% endblock %}
 	
-	{% endblock %}
-	
+	{% block lateral %}{% endblock %}
     
     <div id="vime-pie">
 		SaludControl v1.0 - 2012 ©
     </div>
-
 	
-	{% block lateral %}
-		
-			
-	{% endblock %}
+	<div id='dfSetKey' class='dfZone'>
+			<table>
+				
+				<tr>
+					<td align="center" colspan="2"><h3>Cambiar Clave</h3></td>
+				</tr>
+										
+				<tr>
+					<td align="left"><b>Clave Actual:</b></td>
+					<td align="left"><input type='password' id='keyPass0' maxlength="50"/></td>
+				</tr>
+				<tr>
+					<td align="left"><b>Nueva Clave:</b></td>
+					<td align="left"><input type='password' id='keyPass1' maxlength="50"/></td>
+				</tr>
+				<tr>
+					<td align="left"><b>Confirmar Clave:</b></td>
+					<td align="left"><input type='password' id='keyPass2' maxlength="50"/></td>
+				</tr>
+				
+				<tr>
+					<td align="center" colspan="2">
+						<button id="btnSavKey">GUARDAR</button>
+						<button id="btnCanKey">CANCELAR</button>
+					</td>
+				</tr>
+				
+			</table>
+		</div>
+        
+        <div class='tPop' id='pop'>
+			<table class='tPopTab'>
+				<tr>
+					<td class='tPopIn' id='popin'> </td>
+				</tr>
+			</table>
+		</div>
 
 {% endblock %}
 
@@ -140,6 +180,12 @@
 			gId("{{ path('logout') }}").onclick = launch;
 			gId("{{ path('home') }}").onclick = launch;
 			
+			/* Cambio Clave */
+			gId("{{ path('setKey') }}").onclick = $viewEditKey;
+			gId("btnSavKey").onclick = $savEditKey;			
+			gId("btnCanKey").onclick = $canEditKey;			
+			/* --- */
+			
 			for(i = 1; i < 7; i++)
 			{
 				elem = gId("vimeMenu"+i);
@@ -153,6 +199,46 @@
 			
 			if( typeof $init != "undefined")
 				$init();
+		}
+		
+		function $viewEditKey(event)
+		{
+			aparecer('dfSetKey');
+		}
+		
+		function $canEditKey(event)
+		{
+			gId("keyPass0").value = '';
+			gId("keyPass1").value = '';
+			gId("keyPass2").value = '';
+			desaparecer('dfSetKey');
+		}
+		
+		function $savEditKey(event)
+		{
+			if(gId('keyPass0').value != '' && gId('keyPass1').value != '' & gId('keyPass2').value != '')
+			{
+				if(gId('keyPass1').value == gId('keyPass2').value != '')
+				{
+					ajaxAction
+					(
+						new Hash(['keyPass0', 'keyPass1']),
+						"{{ path('setKey') }}",
+						$setEditKey
+					)
+					
+					$canEditKey();
+				}
+				else
+					popup("Las Claves Suministradas No Coinciden");
+			}
+			else
+				popup('Debe Proporcionar Su Clave Actual Y Una Nueva Clave Confirmada!');
+		}
+		
+		function $setEditKey(response)
+		{
+			popup(response.responseText);
 		}
 		
 	</script>
