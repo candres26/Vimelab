@@ -40,3 +40,11 @@ Mejorando estandares JavaScript y TWIG, grandes cambios en el modelo de funcione
 * Proceso para cambiar clave.
 * MsgBox con mensaje de error en el login.
 * Layout y Base modificados.
+* Integrci{on con calendario virtual.
+ 
+ NOTA DE PENDIENTES.
+ - Calendario de GbPers. pendiente por incluir en los demas módulos.
+ - Revisar vistas de Hoja de ruta, faltan etiquetas por modificar.
+ - Llenar campo diccionario de GbVars para completar las traducciones.
+ - Colocar mensaje de como usar la busqueda A: N:.
+

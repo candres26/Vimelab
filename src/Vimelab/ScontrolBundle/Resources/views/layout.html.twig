@@ -15,8 +15,8 @@
 		<table border='0' style="position: relative; padding-right: 50px; font-weight: bold; z-index: 2; margin-top: -0.3%;">
 			<tr>
 				<td><img title="Home" id="{{ path('home') }}" class="home" src="{{ asset('bundles/scontrol/imagenes/home.png') }}"></td>
-				<td><img title="Cambiar Clave" class='exitBtn' id="{{ path('setKey') }}" src="{{ asset('bundles/scontrol/imagenes/edit-key.png') }}">
-				<td><img title="Cerrar sesión" class='exitBtn' id="{{ path('logout') }}" src="{{ asset('bundles/scontrol/imagenes/cerrar.png') }}">
+				<td><img title="Cambiar Clave" class='exitBtn' id="{{ path('setKey') }}" src="{{ asset('bundles/scontrol/imagenes/edit-key.png') }}"></td>
+				<td><img title="Cerrar sesión" class='exitBtn' id="{{ path('logout') }}" src="{{ asset('bundles/scontrol/imagenes/cerrar.png') }}"></td>
 				<td><img title="Usuario" src="{{ asset('bundles/scontrol/imagenes/system-users.png') }}"></td>
 				<td id='sisuser'>&nbsp;</td>
 				<td width='50px'>&nbsp;</td>
@@ -199,46 +199,6 @@
 			
 			if( typeof $init != "undefined")
 				$init();
-		}
-		
-		function $viewEditKey(event)
-		{
-			aparecer('dfSetKey');
-		}
-		
-		function $canEditKey(event)
-		{
-			gId("keyPass0").value = '';
-			gId("keyPass1").value = '';
-			gId("keyPass2").value = '';
-			desaparecer('dfSetKey');
-		}
-		
-		function $savEditKey(event)
-		{
-			if(gId('keyPass0').value != '' && gId('keyPass1').value != '' & gId('keyPass2').value != '')
-			{
-				if(gId('keyPass1').value == gId('keyPass2').value != '')
-				{
-					ajaxAction
-					(
-						new Hash(['keyPass0', 'keyPass1']),
-						"{{ path('setKey') }}",
-						$setEditKey
-					)
-					
-					$canEditKey();
-				}
-				else
-					popup("Las Claves Suministradas No Coinciden");
-			}
-			else
-				popup('Debe Proporcionar Su Clave Actual Y Una Nueva Clave Confirmada!');
-		}
-		
-		function $setEditKey(response)
-		{
-			popup(response.responseText);
 		}
 		
 	</script>

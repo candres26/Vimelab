@@ -30,6 +30,18 @@
 
 {% endblock %}
 
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('mdbiom') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+			<td onClick="SimularClick('sender')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}
+
 {% block uscript %}
 	<script type="text/javascript">
 		
@@ -73,16 +85,4 @@
 		}
 		
 	</script>
-{% endblock %}
-
-{% block action %}
-<div class="vime-action">
-	<table>
-		<tr>
-			<td>&nbsp;&nbsp;&nbsp;</td>
-			<td onClick="go('{{ path('mdbiom') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
-			<td onClick="SimularClick('sender')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
-		</tr>
-	</table>
-</div>
 {% endblock %}

@@ -15,3 +15,20 @@
     </div>
     
 {% endblock %}
+
+{% block script %}
+	
+	{% block uscript %}{% endblock %}
+	
+	<script type="text/javascript">
+		
+		/** Init Global **/
+		
+		window.onload = function()
+		{			
+			if( typeof $init != "undefined")
+				$init();
+		}
+		
+	</script>
+{% endblock %}

@@ -1,3 +1,5 @@
+var calendar = null;
+
 function go(dir)
 {
     location = dir;
@@ -61,4 +63,112 @@ function popup(datm)
 	gId('popin').innerHTML = msg;
 	aparecer('pop', 0, 70);
 	window.setTimeout ("desaparecer('pop', 70)", 5000);
+}
+
+function showCalendar(ids, format)
+{
+	if(gId('VX'+ids) == null)
+	{
+		calendar = new Calendar();
+		calendar.setFormat(format);
+		creaPop('VX'+ids, calendar.draw(ids, 'loadDate'), 0, 0);
+	}
+	else
+	{
+		removeNode('VX'+ids);
+	}
+}
+
+function loadDate(data, elem)
+{
+	if(data.innerHTML == '&lt;')
+	{
+		calendar.decMonth();
+		gId('VX'+elem).innerHTML = calendar.draw(elem, 'loadDate');
+	}
+	else if(data.innerHTML == '&gt;')
+	{
+		calendar.incMonth();
+		gId('VX'+elem).innerHTML = calendar.draw(elem, 'loadDate');
+	}
+	else if(data.innerHTML == '&gt;&gt;')
+	{
+		calendar.incYear();
+		gId('VX'+elem).innerHTML = calendar.draw(elem, 'loadDate');
+	}
+	else if(data.innerHTML == '&lt;&lt;')
+	{
+		calendar.decYear();
+		gId('VX'+elem).innerHTML = calendar.draw(elem, 'loadDate');
+	}
+	else if(data.innerHTML == '+&gt;')
+	{
+		for(i = 0; i < 10; i++)
+			calendar.incYear();
+		gId('VX'+elem).innerHTML = calendar.draw(elem, 'loadDate');
+	}
+	else if(data.innerHTML == '&lt;+')
+	{
+		for(i = 0; i < 10; i++)
+			calendar.decYear();
+		gId('VX'+elem).innerHTML = calendar.draw(elem, 'loadDate');
+	}
+	else 
+	{
+		if(data.innerHTML != 'X')
+		{
+			calendar.setDay(parseInt(data.innerHTML));
+			gId(elem).value = calendar.getDate();
+		}
+		
+		removeNode('VX'+elem);
+		gId(elem).focus();
+	}
+}
+
+function $viewEditKey(event)
+{
+	aparecer('dfSetKey');
+}
+
+function $canEditKey(event)
+{
+	gId("keyPass0").value = '';
+	gId("keyPass1").value = '';
+	gId("keyPass2").value = '';
+	desaparecer('dfSetKey');
+}
+
+function $savEditKey(event)
+{
+	if(gId('keyPass0').value != '' && gId('keyPass1').value != '' & gId('keyPass2').value != '')
+	{
+		if(gId('keyPass1').value == gId('keyPass2').value != '')
+		{
+			ajaxAction
+			(
+				new Hash(['keyPass0', 'keyPass1']),
+				"{{ path('setKey') }}",
+				$setEditKey
+			)
+			
+			$canEditKey();
+		}
+		else
+			popup("Las Claves Suministradas No Coinciden");
+	}
+	else
+		popup('Debe Proporcionar Su Clave Actual Y Una Nueva Clave Confirmada!');
+}
+
+function $setEditKey(response)
+{
+	popup(response.responseText);
+}
+
+function $helpCalendar(event)
+{
+	cell = this.parentNode;
+	elem = gTag(cell, 'input')[0];
+	showCalendar(elem.id);
 }
