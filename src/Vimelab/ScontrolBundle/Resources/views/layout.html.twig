@@ -126,6 +126,7 @@
     </div>
 	
 	<div id='dfSetKey' class='dfZone'>
+			<input id="dfSetKeyPath" type="hidden" value="{{ path('setKey') }}"/>
 			<table>
 				
 				<tr>
@@ -184,6 +185,10 @@
 			gId("{{ path('setKey') }}").onclick = $viewEditKey;
 			gId("btnSavKey").onclick = $savEditKey;			
 			gId("btnCanKey").onclick = $canEditKey;			
+			/* --- */
+			
+			/* POP */
+			gId("pop").onclick = $clearPop;			
 			/* --- */
 			
 			for(i = 1; i < 7; i++)

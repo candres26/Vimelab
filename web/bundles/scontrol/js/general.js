@@ -1,4 +1,8 @@
 var calendar = null;
+var alertCro = null;
+var alertBuf = new Array();
+var alertFlg = new Array();
+var alertCnt = 0;
 
 function go(dir)
 {
@@ -53,7 +57,7 @@ function ifSimularClick(idFrame, idObjete)
 	var canceled = !objecte.dispatchEvent(nouEvent);
 }
 
-function popup(datm)
+function popupAuto(datm)
 {
 	if(datm != undefined)
 		msg = datm;
@@ -63,6 +67,60 @@ function popup(datm)
 	gId('popin').innerHTML = msg;
 	aparecer('pop', 0, 70);
 	window.setTimeout ("desaparecer('pop', 70)", 5000);
+}
+
+function popup(datm)
+{
+	if(datm != undefined)
+		msg = datm;
+	else
+		msg = "...!";
+	
+	if(alertCro == null)
+		alertCro = window.setInterval("showBox()",100);
+		
+	alertBuf.unshift(msg);
+	alertFlg.unshift(40); 
+}
+
+function showBox()
+{
+	if(alertCnt != alertBuf.length)
+	{
+		alertCnt = alertBuf.length;
+			
+		if(alertCnt == 0)
+		{
+			gId('popin').innerHTML = '';
+			$clearPop();
+		}
+		else
+		{
+			gId('popin').innerHTML = alertBuf.join("<hr><br>");
+			gId('pop').style.display = 'block';	
+		}
+	}
+	
+	for(i = 0; i < alertFlg.length; i++)
+	{
+		alertFlg[i] -= 1;
+		
+		if(alertFlg[i] == 0)
+		{
+			alertBuf.pop();
+			alertFlg.pop();	
+		}	
+	}	
+}
+
+function $clearPop(event)
+{
+	window.clearInterval(alertCro);
+	alertCro = null;
+	alertBuf = new Array();
+	alertFlg = new Array();
+	alertCnt = 0;
+	gId('pop').style.display = 'none';
 }
 
 function showCalendar(ids, format)
@@ -148,7 +206,7 @@ function $savEditKey(event)
 			ajaxAction
 			(
 				new Hash(['keyPass0', 'keyPass1']),
-				"{{ path('setKey') }}",
+				gId("dfSetKeyPath").value,
 				$setEditKey
 			)
 			

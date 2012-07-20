@@ -40,7 +40,8 @@ Mejorando estandares JavaScript y TWIG, grandes cambios en el modelo de funcione
 * Proceso para cambiar clave.
 * MsgBox con mensaje de error en el login.
 * Layout y Base modificados.
-* Integrci{on con calendario virtual.
+* Integrción con calendario virtual.
+* Popup con bufer dinamico agregado, se elimino el efecto aprecer-desaparecer por ser muy lento.
  
  NOTA DE PENDIENTES.
  - Calendario de GbPers. pendiente por incluir en los demas módulos.
