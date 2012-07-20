@@ -10,9 +10,9 @@
 	<input type="submit" style="display: none" id="sender" value="send">
 	<table style="position: relative; margin-left: 17%; margin-top: 3%;">
 		<tr><td align="left">{{ form_label(form.estado) }}</td><td align="left"> {{ form_errors(form.estado) }} {{ form_widget(form.estado) }} </td><td align="left">{{ form_label(form.ctcont) }}</td><td align="left"> {{ form_errors(form.ctcont) }} {{ form_widget(form.ctcont) }} </td></tr>
-		<tr><td align="left">{{ form_label(form.encargado) }}</td><td align="left"> {{ form_errors(form.encargado) }} {{ form_widget(form.encargado) }}</td><td align="left">{{ form_label(form.fplaneada) }}</td><td align="left"> {{ form_errors(form.fplaneada) }} {{ form_widget(form.fplaneada) }} </td></tr>
+		<tr><td align="left">{{ form_label(form.encargado) }}</td><td align="left"> {{ form_errors(form.encargado) }} {{ form_widget(form.encargado) }}</td><td align="left">{{ form_label(form.fplaneada) }}</td><td align="left"> {{ form_errors(form.fplaneada) }} {{ form_widget(form.fplaneada) }} <img id="hlpPlaneada" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}"></td></tr>
 		<tr><td ></td><td></td><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>
-		<tr><td align="left">{{ form_label(form.fejecutada) }}</td><td align="left"> {{ form_errors(form.fejecutada) }} {{ form_widget(form.fejecutada) }} </td><td align="left"> {{ form_label(form.personal) }} </td><td align="left"> {{ form_errors(form.personal) }} {{ form_widget(form.personal) }} </td></tr>
+		<tr><td align="left">{{ form_label(form.fejecutada) }}</td><td align="left"> {{ form_errors(form.fejecutada) }} {{ form_widget(form.fejecutada) }} <img id="hlpEjecutada" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}"></td><td align="left"> {{ form_label(form.personal) }} </td><td align="left"> {{ form_errors(form.personal) }} {{ form_widget(form.personal) }} </td></tr>
 		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td><td></td><td></td></tr>
 		<tr><td align="left">{{ form_label(form.datos) }}</td><td align="left"> {{ form_errors(form.datos) }} {{ form_widget(form.datos) }}</td><td align="left">{{ form_label(form.fparciales) }}</td><td align="left"> {{ form_errors(form.fparciales) }} {{ form_widget(form.fparciales) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.equipo) }}</td><td align="left"> {{ form_errors(form.equipo) }} {{ form_widget(form.equipo) }}</td><td align="left">{{ form_label(form.lugar) }}</td><td align="left"> {{ form_errors(form.lugar) }} {{ form_widget(form.lugar) }}</td></tr>
@@ -83,4 +83,18 @@
 		</tr>
 	</table>
 </div>
+{% endblock %}
+
+{% block uscript %}
+	
+	<script type="text/javascript">
+		
+		function $init(event)
+		{
+			gId('hlpPlaneada').onclick = $helpCalendar;			
+			gId('hlpEjecutada').onclick = $helpCalendar;			
+		}
+		
+	</script>
+	
 {% endblock %}
