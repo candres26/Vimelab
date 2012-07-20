@@ -19,7 +19,10 @@
 		<tr><td colspan='2'>{{ form_errors(edit_form.segape) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.segape) }}</td><td align="left">{{ form_widget(edit_form.segape) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.nacimiento) }}</td></tr>
-		<tr><td align="left">{{ form_label(edit_form.nacimiento) }}</td><td align="left">{{ form_widget(edit_form.nacimiento) }}</td></tr>
+		<tr>
+			<td align="left">{{ form_label(edit_form.nacimiento) }}</td>
+			<td align="left">{{ form_widget(edit_form.nacimiento) }}<img id="hlpNacimiento" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}"></td>
+		</tr>
 		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>		
 		<tr><td colspan='2'>{{ form_errors(edit_form.telefono) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.telefono) }}</td><td align="left">{{ form_widget(edit_form.telefono) }}</td></tr>
@@ -31,7 +34,10 @@
     </table>
     <table style="position: absolute; margin-left: 45%;">
 		<tr><td colspan='2'>{{ form_errors(edit_form.ingreso) }}</td></tr>
-		<tr><td align="left">{{ form_label(edit_form.ingreso) }}</td><td align="left">{{ form_widget(edit_form.ingreso) }}</td></tr>
+		<tr>
+			<td align="left">{{ form_label(edit_form.ingreso) }}</td>
+			<td align="left">{{ form_widget(edit_form.ingreso) }}<img id="hlpIngreso" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}"></td>
+		</tr>
 		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>		
 		<tr><td colspan='2'>{{ form_errors(edit_form.pdatos) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.pdatos) }}</td><td align="left">{{ form_widget(edit_form.pdatos) }}</td></tr>
@@ -67,5 +73,19 @@
 		</tr>
 	</table>
 </div>
+{% endblock %}
+
+{% block uscript %}
+	
+	<script type="text/javascript">
+		
+		function $init(event)
+		{
+			gId('hlpNacimiento').onclick = $helpCalendar;
+			gId('hlpIngreso').onclick = $helpCalendar;			
+		}
+		
+	</script>
+	
 {% endblock %}
 

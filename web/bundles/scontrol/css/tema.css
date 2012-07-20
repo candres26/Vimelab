@@ -345,6 +345,7 @@ h2
 .tPop
 {
 	z-index: 0;
+	cursor: pointer;
 	background: #000;
 	color: #FFF;
 	display: none;
@@ -355,7 +356,7 @@ h2
 	top: 14.5%;
 	right: 0.5%;
 	width: 10%;
-	height: 10%;
+	height: auto;
 	padding: 10px;
 	border: 2px solid black;
 	border-radius: 10px;
@@ -378,4 +379,111 @@ h2
 	vertical-align: middle;
 	font-weight: bold;
 	font-style: italic;
+}
+
+/* --- CAMBIO CLAVE --- */
+
+.dfZone
+{
+	display: none;
+	position: absolute;
+	right: 1%;
+	bottom: 7%;
+	width: auto;
+	height: auto;
+	z-index: 0;
+	background: #000;
+	color: #FFF;
+	padding: 10px;
+	border: 2px solid black;
+	border-radius: 10px;
+	-moz-border-radius:10px;
+	-webkit-border-radius: 10px;
+	box-shadow: -4px 4px 5px #5B725C;
+	-webkit-box-shadow: -4px 4px 5px #5B725C;
+    -moz-box-shadow: -4px 4px 5px #5B725C;	
+}
+
+.dfZone button
+{
+	background-color: #000; 
+	color:#fff;
+	border-radius: 10px;
+	cursor: pointer;
+}
+		
+.dfZone button:hover
+{
+	background-color:#FFFFFF; 
+	color:#000000;
+}
+
+
+/* --- CALENDARIO ICE --- */
+.Calendar
+{
+	color: #FFFFFF;
+	font-size: 0.8em;
+	font-weight: bold;
+	text-align: center;
+}
+
+.Calendar td
+{
+	border: 1px solid #BFBFBF;
+	-moz-border-radius: 10px;
+ 	-webkit-border-radius: 10px;
+ 	border-radius: 10px;
+}
+
+.Calendar td:hover
+{
+	color: #1A1A1A;
+	background: #E5E5E5;
+	cursor: pointer;
+}
+
+.CalendarWeek td
+{ 
+	color: #000000;
+	background: #FFFFFF;
+	border: 1px solid #000000;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px; 
+}
+
+.CalendarWeek td:hover
+{ 
+	color: #000000;
+	background: #FFFFFF;
+	border: 1px solid #000000;
+	cursor: default;
+}
+
+.CalendarMark td:hover
+{
+	color: #FFFFFF;
+	background: #000000;
+	cursor:default;
+}
+
+.CalendarButton
+{
+	color: #000000;
+	background: #FFFFFF;
+}
+
+.XAGCalendar
+{
+	position: absolute;
+	overflow: auto; 
+	background: #000000; 
+	border: 2px solid #BFBFBF;
+	opacity: 0.8;
+	-moz-border-radius: 15px;
+ 	-webkit-border-radius: 15px;
+ 	border-radius: 15px;
+ 	padding: 5px;
 }

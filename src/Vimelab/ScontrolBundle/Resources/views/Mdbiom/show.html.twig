@@ -26,11 +26,15 @@
         </tr>
         <tr>
             <th align="left">Talla / cm</th>
-            <td>{{ entity.talla }}</td>
+            <td id='imcTalla'>{{ entity.talla }}</td>
         </tr>
         <tr>
             <th align="left">Peso / kg</th>
-            <td>{{ entity.peso }}</td>
+            <td id='imcPeso'>{{ entity.peso }}</td>
+        </tr>
+        <tr>
+            <th align="left">I.M.C.</th>
+            <td id='imcVal'>&nbsp;</td>
         </tr>
         <tr>
             <th align="left">Pulso / p/s</th>
@@ -68,4 +72,43 @@
 		</tr>
 	</table>
 </div>
+{% endblock %}
+
+{% block uscript %}
+	<script type="text/javascript">
+		
+		function $init(event)
+		{
+			peso = gId('imcPeso').innerHTML;
+			talla = gId('imcTalla').innerHTML;
+			
+			if(talla != '' && peso != '')
+			{
+				talla = parseInt(talla)/100;
+				peso = parseInt(peso);
+				
+				imc = peso / (talla*talla);
+				
+				tipo = '';
+				if(imc <= 18)
+					tipo = 'Peso menor que el normal';
+				else if(imc >= 18.1 && imc <= 24.9)
+					tipo = 'Peso normal';
+				else if(imc >= 25 && imc <= 29.9)
+					tipo = 'Sobrepeso';
+				else
+				{ 
+					if(imc >= 30 && imc <= 34.9)
+						tipo = 'Obesidad Tipo I';
+					else if(imc >= 35 && imc <= 39.9)
+						tipo = 'Obesidad Tipo II';
+					else if(imc >= 40)
+						tipo = 'Obesidad Tipo III';
+				}
+				
+				gId('imcVal').innerHTML = imc.toFixed(2)+' '+tipo;
+			}
+		}
+		
+	</script>
 {% endblock %}
