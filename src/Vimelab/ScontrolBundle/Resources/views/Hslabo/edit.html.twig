@@ -16,7 +16,7 @@
 		<tr><td colspan='2'>{{ form_errors(edit_form.empresa) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.empresa) }}</td><td align="left">{{ form_widget(edit_form.empresa) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.fingreso) }}</td></tr>
-		<tr><td align="left">{{ form_label(edit_form.fingreso) }}</td><td align="left">{{ form_widget(edit_form.fingreso) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.fingreso) }}</td><td align="left">{{ form_widget(edit_form.fingreso) }} <img id="hlpFingreso" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}"></td></tr>
 		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.actividad) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.actividad) }}</td><td align="left">{{ form_widget(edit_form.actividad) }}</td></tr>
@@ -47,4 +47,17 @@
 		</tr>
 	</table>
 </div>
+{% endblock %}
+
+{% block uscript %}
+	
+	<script type="text/javascript">
+		
+		function $init(event)
+		{
+			gId('hlpFingreso').onclick = $helpCalendar;
+		}
+		
+	</script>
+	
 {% endblock %}

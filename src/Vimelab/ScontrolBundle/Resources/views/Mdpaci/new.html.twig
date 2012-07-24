@@ -22,7 +22,7 @@
 		<tr><td colspan='2'>{{ form_errors(form.segape) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.segape) }}</td><td align="left">{{ form_widget(form.segape) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.nacimiento) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.nacimiento) }}</td><td align="left">{{ form_widget(form.nacimiento) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.nacimiento) }}</td><td align="left">{{ form_widget(form.nacimiento) }} <img id="hlpNacimiento" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}"></td></tr>
 		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.sexo) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.sexo) }}</td><td align="left">{{ form_widget(form.sexo) }}</td></tr>
@@ -36,7 +36,7 @@
 		<tr><td align="left">{{ form_label(form.correo) }}</td><td align="left">{{ form_widget(form.correo) }}</td></tr>
 		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">E-mail: (Ej: admin@vimelab.com)</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.ingreso) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.ingreso) }}</td><td align="left">{{ form_widget(form.ingreso) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.ingreso) }}</td><td align="left">{{ form_widget(form.ingreso) }} <img id="hlpIngreso" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}"></td></tr>
 		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.gbciud) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.gbciud) }}</td><td align="left">{{ form_widget(form.gbciud) }}</td></tr>
@@ -60,4 +60,18 @@
 		</tr>
 	</table>
 </div>
+{% endblock %}
+
+{% block uscript %}
+	
+	<script type="text/javascript">
+		
+		function $init(event)
+		{
+			gId('hlpNacimiento').onclick = $helpCalendar;
+			gId('hlpIngreso').onclick = $helpCalendar;
+		}
+		
+	</script>
+	
 {% endblock %}
