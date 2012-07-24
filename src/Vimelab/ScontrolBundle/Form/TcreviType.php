@@ -10,7 +10,7 @@ class TcreviType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('fecha', 'date', array('widget' => 'single_text', 'label' => 'Fecha'))
+            ->add('fecha', 'date', array('widget' => 'single_text', 'format' => 'y-MM-dd'))
             ->add('inicio')
             ->add('fin')
             ->add('entrevistados')
