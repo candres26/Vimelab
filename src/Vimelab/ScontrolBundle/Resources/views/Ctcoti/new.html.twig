@@ -10,7 +10,7 @@
 	<input type="submit" style="display: none" id="sender" value="send">
     <table align="center">
 		<tr><td colspan='2'>{{ form_errors(form.fecha) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.fecha) }}</td><td align="left">{{ form_widget(form.fecha) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.fecha) }}</td><td align="left">{{ form_widget(form.fecha) }} <img id="hlpFecha" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}"></td></tr>
 		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>		
 		<tr><td colspan='2'>{{ form_errors(form.gbempr) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.gbempr) }}</td><td align="left">{{ form_widget(form.gbempr) }}</td></tr>
@@ -49,3 +49,17 @@
 	</table>
 </div>
 {% endblock %}
+
+{% block uscript %}
+	
+	<script type="text/javascript">
+		
+		function $init(event)
+		{
+			gId('hlpFecha').onclick = $helpCalendar;
+		}
+		
+	</script>
+	
+{% endblock %}
+

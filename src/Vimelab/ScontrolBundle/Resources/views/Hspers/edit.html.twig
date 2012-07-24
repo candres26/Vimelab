@@ -12,7 +12,7 @@
 		<tr><td colspan='2'>{{ form_errors(edit_form.mdpaci) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.mdpaci) }}</td><td align="left">{{ form_widget(edit_form.mdpaci) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.fecha) }}</td></tr>
-		<tr><td align="left">{{ form_label(edit_form.fecha) }}</td><td align="left">{{ form_widget(edit_form.fecha) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.fecha) }}</td><td align="left">{{ form_widget(edit_form.fecha) }} <img id="hlpFecha" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}"></td></tr>
 		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>	
 		<tr><td colspan='2'>{{ form_errors(edit_form.evento) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.evento) }}</td><td align="left">{{ form_widget(edit_form.evento) }}</td></tr>
@@ -117,7 +117,7 @@
 		<tr><td colspan='2'>{{ form_errors(edit_form.tetano) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.tetano) }}</td><td align="left">{{ form_widget(edit_form.tetano) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.tetanofecha) }}</td></tr>
-		<tr><td align="left">{{ form_label(edit_form.tetanofecha) }}</td><td align="left">{{ form_widget(edit_form.tetanofecha) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.tetanofecha) }}</td><td align="left">{{ form_widget(edit_form.tetanofecha) }} <img id="hlpTfecha" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}"></td></tr>
 		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.tetanodosis) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.tetanodosis) }}</td><td align="left">{{ form_widget(edit_form.tetanodosis) }}</td></tr>
@@ -144,4 +144,18 @@
 		</tr>
 	</table>
 </div>
+{% endblock %}
+
+{% block uscript %}
+	
+	<script type="text/javascript">
+		
+		function $init(event)
+		{
+			gId('hlpFecha').onclick = $helpCalendar;
+			gId('hlpTfecha').onclick = $helpCalendar;
+		}
+		
+	</script>
+	
 {% endblock %}

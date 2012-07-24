@@ -15,10 +15,10 @@
 		<tr><td colspan='2'>{{ form_errors(edit_form.gbempr) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.gbempr) }}</td><td align="left">{{ form_widget(edit_form.gbempr) }}</td></tr>		
 		<tr><td colspan='2'>{{ form_errors(edit_form.fecha) }}</td></tr>
-		<tr><td align="left">{{ form_label(edit_form.fecha) }}</td><td align="left">{{ form_widget(edit_form.fecha) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.fecha) }}</td><td align="left">{{ form_widget(edit_form.fecha) }} <img id="hlpFecha" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}"></td></tr>
 		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.vencimiento) }}</td></tr>
-		<tr><td align="left">{{ form_label(edit_form.vencimiento) }}</td><td align="left">{{ form_widget(edit_form.vencimiento) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.vencimiento) }}</td><td align="left">{{ form_widget(edit_form.vencimiento) }} <img id="hlpVencimiento" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}"></td></tr>
 		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>		
 		<tr><td colspan='2'>{{ form_errors(edit_form.subtotal) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.subtotal) }}</td><td align="left">{{ form_widget(edit_form.subtotal) }}</td></tr>
@@ -58,4 +58,18 @@
 		</tr>
 	</table>
 </div>
+{% endblock %}
+
+{% block uscript %}
+	
+	<script type="text/javascript">
+		
+		function $init(event)
+		{
+			gId('hlpFecha').onclick = $helpCalendar;
+			gId('hlpVencimiento').onclick = $helpCalendar;
+		}
+		
+	</script>
+	
 {% endblock %}

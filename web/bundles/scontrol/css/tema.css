@@ -21,9 +21,8 @@ h2
 	padding-left: 1px;
 	padding-right: 1px;
 }
-.home:hover{
-	color: #6D6D6D;
-}
+
+
 .exitBtn
 {
 	cursor: pointer;
@@ -35,10 +34,6 @@ h2
 	padding-right: 1px;
 }
 
-.exitBtn:hover
-{
-	color: #6D6D6D;
-}
 
 #vime-cabecera{
 	background: url("../imagenes/fondo.png") no-repeat;

@@ -16,10 +16,10 @@
 		<tr><td colspan='2'>{{ form_errors(edit_form.empresa) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.empresa) }}</td><td align="left">{{ form_widget(edit_form.empresa) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.inicio) }}</td></tr>
-		<tr><td align="left">{{ form_label(edit_form.inicio) }}</td><td align="left">{{ form_widget(edit_form.inicio) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.inicio) }}</td><td align="left">{{ form_widget(edit_form.inicio) }} <img id="hlpInicio" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}"></td></tr>
 		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.fin) }}</td></tr>
-		<tr><td align="left">{{ form_label(edit_form.fin) }}</td><td align="left">{{ form_widget(edit_form.fin) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.fin) }}</td><td align="left">{{ form_widget(edit_form.fin) }} <img id="hlpFin" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}"></td></tr>
 		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.instructor) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.instructor) }}</td><td align="left">{{ form_widget(edit_form.instructor) }}</td></tr>
@@ -46,5 +46,19 @@
 		</tr>
 	</table>
 </div>
+{% endblock %}
+
+{% block uscript %}
+	
+	<script type="text/javascript">
+		
+		function $init(event)
+		{
+			gId('hlpInicio').onclick = $helpCalendar;
+			gId('hlpFin').onclick = $helpCalendar;
+		}
+		
+	</script>
+	
 {% endblock %}
 
