@@ -18,11 +18,11 @@
         </tr>
         <tr>
             <th align="left">Inicio</th>
-            <td>{{ entity.inicio }}</td>
+            <td>{{ entity.inicio|date('H:i:s') }}</td>
         </tr>
         <tr>
             <th align="left">Fin</th>
-            <td>{{ entity.fin }}</td>
+            <td>{{ entity.fin|date('H:i:s') }}</td>
         </tr>
         <tr>
             <th align="left">Entrevistados</th>

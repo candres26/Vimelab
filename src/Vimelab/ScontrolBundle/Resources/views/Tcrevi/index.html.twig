@@ -26,8 +26,8 @@
         <tr>
             <td>{{ entity.id }}</td>
             <td>{% if entity.fecha %}{{ entity.fecha|date('Y-m-d') }}{% endif%}</td>
-            <td>{% if entity.inicio %}{{ entity.inicio|date('Y-m-d') }}{% endif%}</td>
-            <td>{% if entity.fin %}{{ entity.fin|date('Y-m-d') }}{% endif%}</td>
+            <td>{% if entity.inicio %}{{ entity.inicio|date('H:i:s') }}{% endif%}</td>
+            <td>{% if entity.fin %}{{ entity.fin|date('H:i:s') }}{% endif%}</td>
             <td>{{ entity.entrevistados }}</td>
             <td>{{ entity.resumen }}</td>
             <td align="center">
