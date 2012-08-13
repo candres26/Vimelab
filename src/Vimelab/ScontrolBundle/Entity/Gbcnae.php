@@ -22,6 +22,13 @@ class Gbcnae
     private $id;
 
     /**
+     * @var string $codigo
+     *
+     * @ORM\Column(name="codigo", type="string", length=15, nullable=false)
+     */
+    private $codigo;
+
+    /**
      * @var string $actEcon
      *
      * @ORM\Column(name="act_econ", type="string", length=50, nullable=false)
@@ -45,6 +52,26 @@ class Gbcnae
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set codigo
+     *
+     * @param string $codigo
+     */
+    public function setCodigo($codigo)
+    {
+        $this->codigo = $codigo;
+    }
+
+    /**
+     * Get codigo
+     *
+     * @return string
+     */
+    public function getCodigo()
+    {
+        return $this->codigo;
     }
 
     /**

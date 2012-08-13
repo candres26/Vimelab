@@ -12,7 +12,7 @@ class GbsucuType extends AbstractType
         $builder
             ->add('nombre')
             ->add('telefono', 'text', array('label' => 'Teléfono'))
-            ->add('tele2', 'text', array('label' => 'Teléfono 2'))
+            ->add('tele2', 'text', array('label' => 'Teléfono 2', 'required' => false))
             ->add('fax')
             ->add('contacto')
             ->add('direccion', 'text', array('label' => 'Dirección'))

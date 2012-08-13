@@ -11,7 +11,7 @@ class GbemprType extends AbstractType
     {
         $builder
             ->add('identificacion', 'text', array('label' => 'Identificación'))
-            ->add('tipo')
+            ->add('tipo', 'choice', array('choices' => array('D' => 'DIRECTA', 'I' => 'INDIRECTA'),'required' => false))
             ->add('nombre', 'text', array('label' => 'Nombre Empresa'))
             ->add('rplegal', 'text', array('label' => 'Representante Legal'))
             ->add('identrplegal', 'text', array('label' => 'Identificación Representante'))

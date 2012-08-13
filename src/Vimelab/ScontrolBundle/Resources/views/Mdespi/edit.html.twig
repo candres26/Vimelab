@@ -23,6 +23,27 @@
     {{ form_rest(edit_form) }}
 </form>
 
+<script text="Javascript">
+	function isMode()
+	{
+		if(gId('vimelab_scontrolbundle_mdespitype_realizado_S').checked)
+		{
+			gId('vimelab_scontrolbundle_mdespitype_cv').disabled = false;
+			gId('vimelab_scontrolbundle_mdespitype_vems').disabled = false;
+			gId('vimelab_scontrolbundle_mdespitype_tiff').disabled = false;
+		}	
+		else
+		{
+			gId('vimelab_scontrolbundle_mdespitype_cv').value = '';
+			gId('vimelab_scontrolbundle_mdespitype_cv').disabled = true;
+			gId('vimelab_scontrolbundle_mdespitype_vems').value = '';
+			gId('vimelab_scontrolbundle_mdespitype_vems').disabled = true;
+			gId('vimelab_scontrolbundle_mdespitype_tiff').value = '';
+			gId('vimelab_scontrolbundle_mdespitype_tiff').disabled = true;
+		}
+	}
+</script>
+
 <form id="vime-form-del" action="{{ path('mdespi_delete', { 'id': entity.id }) }}" method="post">
 	{{ form_widget(delete_form) }}
 </form>			

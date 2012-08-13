@@ -52,6 +52,14 @@
             <td>{{ entity.ingreso|date('Y-m-d') }}</td>
         </tr>
         <tr>
+            <th align="left">Cargo</th>
+            <td>{{ entity.Gbcarg.nombre }}</td>
+        </tr>
+        <tr>
+            <th align="left">Número de Colegiado</th>
+            <td>{{ entity.numcolegiado }}</td>
+        </tr>
+        <tr>
             <th align="left">Protección de datos</th>
             <td>{% if entity.pdatos == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>

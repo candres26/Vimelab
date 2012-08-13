@@ -24,7 +24,7 @@ class Gbdepa
     /**
      * @var string $codigo
      *
-     * @ORM\Column(name="codigo", type="string", length=2, nullable=false)
+     * @ORM\Column(name="codigo", type="string", length=6, nullable=false)
      */
     private $codigo;
 

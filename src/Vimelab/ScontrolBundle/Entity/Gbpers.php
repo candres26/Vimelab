@@ -145,6 +145,12 @@ class Gbpers
      */
     private $gbcarg;
 
+    /**
+     * @var string $numcolegiado
+     *
+     * @ORM\Column(name="numcolegiado", type="string", length=20, nullable=true)
+     */
+    private $numcolegiado;
 
 
     /**
@@ -396,6 +402,27 @@ class Gbpers
     {
         return $this->estado;
     }
+    
+    /**
+     * Set numcolegiado
+     *
+     * @param string $numcolegiado
+     */
+    public function setNumcolegiado($numcolegiado)
+    {
+        $this->numcolegiado = $numcolegiado;
+    }
+
+    /**
+     * Get numcolegiado
+     *
+     * @return string
+     */
+    public function getNumcolegiado()
+    {
+        return $this->numcolegiado;
+    }
+
 
     /**
      * Set gbsucu
@@ -477,6 +504,7 @@ class Gbpers
         return $this->gbcarg;
     }
 
+    
     public function __toString()
     {
         return $this->identificacion;

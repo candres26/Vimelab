@@ -18,7 +18,7 @@ class MdpaciType extends AbstractType
             ->add('nacimiento', 'date', array('widget' => 'single_text', 'format' => 'y-MM-dd'))
             ->add('sexo', 'choice', array('choices' => array('F' => 'Femenino', 'M' => 'Masculino'), 'expanded' => 'true'))
             ->add('direccion', 'text', array('label' => 'Dirección'))
-            ->add('telefono', 'text', array('label' => 'Teléfono'))
+            ->add('telefono', 'text', array('label' => 'Teléfono', 'required' => false))
             ->add('correo')
             ->add('ingreso', 'date', array('widget' => 'single_text', 'format' => 'y-MM-dd'))
             ->add('gbciud', 'entity', array('class' => 'ScontrolBundle:Gbciud', 'label' => 'Ciudad'))

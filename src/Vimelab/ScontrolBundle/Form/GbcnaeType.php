@@ -11,7 +11,8 @@ class GbcnaeType extends AbstractType
     {
         $builder
             ->add('actEcon', 'text', array('label' => 'Actividad económica'))
-            ->add('alternativo', 'text', array('label' => 'Actividad económica (en catalán)'))
+            ->add('codigo', 'text', array('label' => 'Código CNAE'))
+            ->add('alternativo', 'text', array('label' => 'Actividad económica (en catalán)', 'required' => false))
         ;
     }
 

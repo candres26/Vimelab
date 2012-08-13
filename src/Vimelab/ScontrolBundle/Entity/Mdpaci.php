@@ -80,7 +80,7 @@ class Mdpaci
     /**
      * @var string $telefono
      *
-     * @ORM\Column(name="telefono", type="string", length=25, nullable=false)
+     * @ORM\Column(name="telefono", type="string", length=25, nullable=true)
      */
     private $telefono;
 

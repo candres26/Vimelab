@@ -22,9 +22,16 @@ class Mdhist
     private $id;
 
     /**
+     * @var string genero
+     *
+     * @ORM\Column(name="genero", type="string", length=1, nullable=false)
+     */
+    private $genero;
+
+    /**
      * @var string menstru
      *
-     * @ORM\Column(name="menstru", type="string", nullable=false)
+     * @ORM\Column(name="menstru", type="string", nullable=true)
      */
     private $menstru;
 
@@ -75,6 +82,26 @@ class Mdhist
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set genero
+     *
+     * @param string $genero
+     */
+    public function setGenero($genero)
+    {
+        $this->genero = $genero;
+    }
+
+    /**
+     * Get genero
+     *
+     * @return string
+     */
+    public function getGenero()
+    {
+        return $this->genero;
     }
 
     /**

@@ -29,8 +29,8 @@
             <td>{{ entity.gbcnae.actEcon }}</td>
         </tr>
         <tr>
-            <th align="left">Tipo</th>
-            <td>{{ entity.tipo }}</td>
+            <th align="left">Tipo de Contratación</th>
+            <td>{% if entity.tipo == 'D' %} DIRECTA {% else %} INDIRECTA {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Representante Legal</th>

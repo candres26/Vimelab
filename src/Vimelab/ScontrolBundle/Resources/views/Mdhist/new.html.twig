@@ -8,6 +8,8 @@
 <form id="vime-form" action="{{ path('mdhist_create') }}" method="post" {{ form_enctype(form) }}>
 	<input type="submit" style="display: none" id="sender" value="send">
    <table align="center">
+		<tr><td colspan='2'>{{ form_errors(form.genero) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.genero) }}</td><td align="left">{{ form_widget(form.genero) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.menstru) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.menstru) }}</td><td align="left">{{ form_widget(form.menstru) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.tipo) }}</td></tr>
@@ -21,6 +23,22 @@
     </table>
     {{ form_rest(form) }}
 </form>
+
+<script text="Javascript">
+	function isMode()
+	{
+		if(gId('vimelab_scontrolbundle_mdhisttype_genero_M').checked)
+		{
+			gId('vimelab_scontrolbundle_mdhisttype_menstru_S').disabled = true;
+			gId('vimelab_scontrolbundle_mdhisttype_menstru_N').disabled = true;
+		}	
+		else
+		{
+			gId('vimelab_scontrolbundle_mdhisttype_menstru_S').disabled = false;
+			gId('vimelab_scontrolbundle_mdhisttype_menstru_N').disabled = false;
+		}
+	}
+</script>
 
 {% endblock %}
 

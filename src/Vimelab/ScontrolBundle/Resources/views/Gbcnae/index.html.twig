@@ -12,7 +12,7 @@
 <table class="vime-table" align="center" border="1">
     <thead>
         <tr>
-            <th>Id</th>
+            <th>Código</th>
             <th>Actividad Económica</th>
             <th>Actividad Económica (en catalán)</th>
             <th>Acciones</th>
@@ -21,7 +21,7 @@
     <tbody>
     {% for entity in entities %}
         <tr>
-            <td>{{ entity.id }}</td>
+            <td>{{ entity.codigo }}</td>
             <td>{{ entity.actEcon }}</td>
             <td>{{ entity.alternativo }}</td>
             <td align="center">

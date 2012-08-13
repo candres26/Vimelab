@@ -9,6 +9,8 @@
 <form id="vime-form" action="{{ path('gbcnae_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
 	<input type="submit" style="display: none" id="sender" value="send">
 	<table align="center">
+		<tr><td colspan='2'>{{ form_errors(edit_form.codigo) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.codigo) }}</td><td align="left">{{ form_widget(edit_form.codigo) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.actEcon) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.actEcon) }}</td><td align="left">{{ form_widget(edit_form.actEcon) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.alternativo) }}</td></tr>

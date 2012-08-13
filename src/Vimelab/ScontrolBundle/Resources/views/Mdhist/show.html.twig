@@ -32,6 +32,10 @@
 			<td>{{ entity.TcRuta.id }}</td>
         </tr>
         <tr>
+            <th align="left">Género</th>
+            <td>{% if entity.genero == 'M' %} Masculino {% else %} Femenino {% endif %}</td>
+        </tr>
+        <tr>
             <th align="left">Menstruación</th>
             <td>{% if entity.menstru == 'S' %} SI {% else %} NO {% endif %}</td>
         </tr>
