@@ -5,6 +5,10 @@ getUser:
 setKey:
     pattern:  /setkey
     defaults: { _controller: ScontrolBundle:Default:setKey }
+pdfDemo:
+    pattern:  /pdf
+    defaults: { _controller: ScontrolBundle:Default:pdfDemo }
+  
     
 # Home
 
@@ -607,8 +611,8 @@ mdaudi:
     pattern:  /mdaudi
     defaults: { _controller: ScontrolBundle:Mdaudi:index }
 mdaudi_show:
-    pattern:  /mdaudi/{id}/show
-    defaults: { _controller: ScontrolBundle:Mdaudi:show }
+    pattern:  /mdaudi/{id}/show/{lv}
+    defaults: { _controller: ScontrolBundle:Mdaudi:show, lv : 1 }
 mdaudi_new:
     pattern:  /mdaudi/new
     defaults: { _controller: ScontrolBundle:Mdaudi:new }

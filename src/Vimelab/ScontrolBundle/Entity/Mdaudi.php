@@ -472,4 +472,12 @@ class Mdaudi
     {
         return $this->id;
     }
+	
+	public function getInArray()
+	{
+		$arI = array($this->i500, $this->i1000, $this->i2000, $this->i3000, $this->i4000, $this->i6000, $this->i8000);
+		$arD = array($this->d500, $this->d1000, $this->d2000, $this->d3000, $this->d4000, $this->d6000, $this->d8000);
+		
+		return array($arI, $arD);
+	}
 }

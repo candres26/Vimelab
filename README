@@ -43,6 +43,9 @@ Mejorando estandares JavaScript y TWIG, grandes cambios en el modelo de funcione
 * Integrción con calendario virtual.
 * Popup con bufer dinamico agregado, se elimino el efecto aprecer-desaparecer por ser muy lento.
 * Calendarios Agregados, correcion de formato Hora H:i:s
+* Generador de gráficas de audiometría termonado.
+* Integración con TCPDF.
+* IFRAME para mostrar graficas en SHOW de Audiometría.
  
  NOTA DE PENDIENTES.
  - Calendario de GbPers. pendiente por incluir en los demas módulos.

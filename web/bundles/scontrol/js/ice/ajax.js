@@ -31,9 +31,9 @@ function creaQuery(data)
 	for(var i = 0; i < data.length; i++)
 	{
 		if(mode[i].charAt(0) == '*')
-			array.push(mode[i].substring(1)+'='+data[i]);
+			array.push(mode[i].substring(1)+'='+encodeURIComponent(data[i]));
 		else
-			array.push(mode[i]+'='+gId(data[i]).value);
+			array.push(mode[i]+'='+encodeURIComponent(gId(data[i]).value));
 	}
 	array.push('nocache='+Math.random())
 	var chain = array.join('&');

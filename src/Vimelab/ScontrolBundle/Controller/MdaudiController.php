@@ -51,24 +51,105 @@ class MdaudiController extends Controller
      * @Route("/{id}/show", name="mdaudi_show")
      * @Template()
      */
-    public function showAction($id)
+    public function showAction($id, $lv)
     {
 		if(Tool::isGrant($this))
 		{
 			$em = $this->getDoctrine()->getEntityManager();
-
 			$entity = $em->getRepository('ScontrolBundle:Mdaudi')->find($id);
-
-			if (!$entity) {
-				throw $this->createNotFoundException('Unable to find Mdaudi entity.');
+			
+			if($lv == 1)
+			{	
+				$em = $this->getDoctrine()->getEntityManager();
+	
+				$entity = $em->getRepository('ScontrolBundle:Mdaudi')->find($id);
+	
+				if (!$entity) 
+				{
+					throw $this->createNotFoundException('Unable to find Mdaudi entity.');
+				}
+	
+				$deleteForm = $this->createDeleteForm($id);
+	
+				return array(
+					'entity'      => $entity,
+					'delete_form' => $deleteForm->createView(),        );
 			}
+			else
+			{
+				$pdf = new \Tcpdf_Tcpdf('L', PDF_UNIT, 'MEMO', true, 'UTF-8', false);
 
-			$deleteForm = $this->createDeleteForm($id);
-
-			return array(
-				'entity'      => $entity,
-				'delete_form' => $deleteForm->createView(),        );
-		}else
+				$pdf->SetCreator(PDF_CREATOR);
+				$pdf->SetAuthor('VIMELAB');
+				$pdf->SetTitle('Audiometria');
+				$pdf->SetSubject('Audiometria');
+		
+				$pdf->setPrintHeader(false);
+				$pdf->setPrintFooter(false);
+		
+				$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+				$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+				$pdf->SetAutoPageBreak(FALSE, 0);
+				$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+		
+				$pdf->AddPage();
+		
+				$style1 = array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0));
+				$style2 = array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 255, 0));
+				$style3 = array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(255, 0, 0));
+				$style4 = array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 255));
+				
+				
+				$pdf->SetFont('dejavusans', '', 8);
+				
+				for($i = -5; $i <= 100; $i+=5)
+				{
+					$pdf->writeHTMLCell(10, 20, 18, 18.5+$i,'<div style="color: #000; text-align: rigth;"><b>'.$i.'</b></div>');
+					$pdf->Line(27.5, 20+$i, 32.5, 20+$i, $style2);
+				}
+				
+				$hrz = array(500, 1000, 2000, 3000, 4000, 6000, 8000);
+				for($i = 0; $i < count($hrz); $i++)
+				{
+					$pdf->writeHTMLCell(20, 20, 35+($i*15), 128,'<div style="color: #000; text-align: center;"><b>'.$hrz[$i].'</b></div>');
+					$pdf->Line(45+($i*15), 127.5, 45+($i*15), 122.5, $style2); 
+				}
+				
+				$pdf->writeHTMLCell(20, 20, 25, 5,'<div style="color: #000;"><b>dBA</b></div>');
+				$pdf->writeHTMLCell(20, 20, 150, 122.5,'<div style="color: #000;"><b>Hz</b></div>');
+				$pdf->Line(30, 10, 30, 125, $style1);
+				$pdf->Line(30, 125, 150, 125, $style1);
+				
+				$pdf->writeHTMLCell(30, 20, 157, 28,'<div style="color: #000;"><b>O. Izquierdo</b></div>');
+				$pdf->writeHTMLCell(30, 20, 157, 33,'<div style="color: #000;"><b>O. Derecho</b></div>');
+				$pdf->Line(150, 30, 155, 30, $style3);
+				$pdf->Line(150, 35, 155, 35, $style4);
+				
+				$arr = $entity->getInArray();
+				
+				for($i = 1; $i < count($arr[0]); $i++)
+				{
+					$x1 = 45+(($i-1) * 15);
+					$x2 = 45+(($i) * 15);
+					
+					$y1 = 20+intval($arr[0][$i-1]);
+					$y2 = 20+intval($arr[0][$i]);;
+					
+					$y3 = 20+intval($arr[1][$i-1]);
+					$y4 = 20+intval($arr[1][$i]);;
+					
+					$pdf->Line($x1, $y1, $x2, $y2, $style3);
+					$pdf->Line($x1, $y3, $x2, $y4, $style4);
+				}
+				
+				$pdf->SetFont('dejavusans', '', 12);
+				$html = "<b>Gráfica De Audiometría</b>";
+				$pdf->writeHTMLCell(216, 0, 0, 3, $html, '', 0, 0, true, 'C', true);
+				
+				$pdf->Output('example_012.pdf', 'I');
+			}
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
