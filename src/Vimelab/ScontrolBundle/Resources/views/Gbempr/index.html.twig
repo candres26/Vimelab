@@ -25,7 +25,7 @@
         <tr>
             <td>{{ entity.id }}</td>
             <td>{{ entity.identificacion }}</td>
-            <td>{{ entity.tipo }}</td>
+            <td>{% if entity.tipo == 'D' %} DIRECTA {% elseif entity.tipo == 'I' %} INDIRECTA {% else %} SYSTEM {% endif %}</td>
             <td>{{ entity.nombre }}</td>
             <td>{{ entity.web }}</td>
             <td align="center">

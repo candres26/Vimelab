@@ -30,7 +30,7 @@
         </tr>
         <tr>
             <th align="left">Tipo de Contratación</th>
-            <td>{% if entity.tipo == 'D' %} DIRECTA {% else %} INDIRECTA {% endif %}</td>
+            <td>{% if entity.tipo == 'D' %} DIRECTA {% elseif entity.tipo == 'I' %} INDIRECTA {% else %} SYSTEM {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Representante Legal</th>

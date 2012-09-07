@@ -26,7 +26,7 @@ class GbpersType extends AbstractType
             ->add('gbciud', 'entity', array('class' => 'ScontrolBundle:Gbciud', 'label' => 'Ciudad'))
             ->add('gbiden', 'entity', array('class' => 'ScontrolBundle:Gbiden', 'label' => 'Identificación'))
             ->add('gbcarg', 'entity', array('class' => 'ScontrolBundle:Gbcarg', 'label' => 'Cargo'))
-            ->add('numcolegiado', 'text', array('label' => 'Número de Colegiado'))
+            ->add('numcolegiado', 'text', array('label' => 'Número de Colegiado', 'required' => false))
         ;
     }
 

@@ -8,7 +8,7 @@
 
 <form id="vime-form" action="{{ path('gbpers_create', { 'lv': 2 }) }}" method="post" {{ form_enctype(form) }}>
 	<input type="submit" style="display: none" id="sender" value="send">
-	<table style="position: absolute; margin-left: 4%;">
+<table style="position: absolute; margin-left: 4%;">
 		<tr><td colspan='2'>{{ form_errors(form.identificacion) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.identificacion) }}</td><td align="left">{{ form_widget(form.identificacion) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.prinom) }}</td></tr>
@@ -52,6 +52,8 @@
 		<tr><td align="left">{{ form_label(form.gbiden) }}</td><td align="left">{{ form_widget(form.gbiden) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.gbcarg) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.gbcarg) }}</td><td align="left">{{ form_widget(form.gbcarg) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.numcolegiado) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.numcolegiado) }}</td><td align="left">{{ form_widget(form.numcolegiado) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.gbsucu) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.gbsucu) }}</td><td align="left">{{ form_widget(form.gbsucu) }}</td></tr>
     </table>
