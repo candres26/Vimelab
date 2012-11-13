@@ -9,8 +9,20 @@
 
 {% block area %}
 
+<div id="asMain">
 	
+	<table id='asPers'>
+		<tr><th>Responsable:</th><td>{{ GbPers.getFullName() }}</td></tr>
+		<tr><th>Identificación:</th><td>{{ GbPers.identificacion }}</td></tr>
+		<tr><th>Cargo:</th><td>{{ GbPers.gbcarg.nombre }}</td></tr>
+	</table>
 	
+	<table id='asPaci' title="Click Para Cargar">
+		<tr><th>Paciente:</th><td></td></tr>
+		<tr><th>Identificación:</th><td></td></tr>
+	</table>
+		
+</div>	
 {% endblock %}
 
 

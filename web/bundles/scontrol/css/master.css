@@ -1,0 +1,55 @@
+#asMain
+{
+	position: absolute;
+	top: 1%;
+	width: 98%; 
+	height: 90%;
+}
+
+#asPers
+{
+	position: absolute;
+	left: 0%;
+	background: #FFFFFF;
+	padding: 5px;
+	box-shadow: 5px 5px 10px #203982;
+	border: 2px solid #203982;
+	border-radius: 10px;
+}
+
+#asPers th
+{
+	text-align: right;
+	padding: 4px;
+}
+
+#asPers td
+{
+	text-align: left;
+	padding: 4px;
+}
+
+#asPaci
+{
+	position: absolute;
+	right: 0%;
+	cursor: pointer;
+	min-width: 200px;
+	background: #FFFFFF;
+	padding: 5px;
+	box-shadow: 5px 5px 10px #203982;
+	border: 2px solid #203982;
+	border-radius: 10px;
+}
+
+#asPaci th
+{
+	text-align: right;
+	padding: 4px;
+}
+
+#asPaci td
+{
+	text-align: left;
+	padding: 4px;
+}

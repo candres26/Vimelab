@@ -74,6 +74,7 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 	+ Nuevo esquema de vistas [30%].
 	- Integrar GbVars para diccionarios.
 	- Integrar GbVars para seguridad.
+	+ Carga automatica del personal encargado.
 	- Integrar paciente - historia.
 	- Integrar historia - m-medicos.
 	- Integrar historia - diagnosticos.
@@ -81,10 +82,16 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 	- Integrar historia - m-contables.
 	- Generar macro reporte.
  
-# --- NOTA DE PENDIENTES --- #
+# --- CAMBIOS PENDIENTES --- #
  
 - Revisar vistas de Hoja de ruta, faltan etiquetas por modificar.
+- Verificar vista de hoja de ruta, el formulario no se ve bien.
 - Llenar campo diccionario de GbVars para completar las traducciones.
 - Colocar mensaje de como usar la busqueda A: N:.
 
+# --- NOTAS --- #
 
+! Revisar campos de contratos (Revisión) es char(1), deberia ser un de selección.
+! Aclarar significado de campos en contrato.
+! Aclarar significado de campos en hoja de ruta.
+! En editar usuario, no debe mostrar la clave, debe ser tipo pasword. 
