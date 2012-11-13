@@ -1318,3 +1318,17 @@ as_secu_delAcl:
 as_secu_getAcl:
     pattern: /assecu/getacl
     defaults: {_controller: ScontrolBundle:AsSecu:getAcl }
+#
+#            Empresas
+#
+as_empr:
+    pattern: /asempr
+    defaults: { _controller: ScontrolBundle:AsEmpr:index }
+#
+##############################################           
+#           MASTER                           #
+##############################################
+#
+as_master:
+    pattern: /asmaster
+    defaults: { _controller: ScontrolBundle:AsMaster:index }

@@ -3,6 +3,8 @@
 {% block header %}
 	
 	<link href="{{ asset('bundles/scontrol/css/tema.css') }}" rel="stylesheet" type="text/css" />
+	
+	{% block includes %}{% endblock %}
 
 {% endblock %}
 
@@ -103,6 +105,8 @@
         <div id="vimeMenu6" class='Menu'>
 			<b>Asistentes</b>
 			<table>
+				<!-- <tr><td id="{{ path('as_empr') }}">Empresas</td></tr> -->
+				<tr><td id="{{ path('as_master') }}" title="Revisión Médica">Maestro</td></tr>
 				<tr><td id="{{ path('as_protocolo') }}">Protocolos</td></tr>
 				<tr><td id="{{ path('as_secu') }}">Seguridad</td></tr>
 				<tr><td id="{{ path('as_ubica') }}">Ubicaciones</td></tr>
@@ -166,6 +170,8 @@
 
 {% endblock %}
 
+{% block style %}{% endblock %}
+
 {% block script %}
 	
 	{% block uscript %}{% endblock %}
@@ -191,6 +197,7 @@
 			gId("pop").onclick = $clearPop;			
 			/* --- */
 			
+			/* Fold del menu */
 			for(i = 1; i < 7; i++)
 			{
 				elem = gId("vimeMenu"+i);
@@ -201,9 +208,20 @@
 				for(j = 0; j < rows.length; j++)
 					rows[j].cells[0].onclick = launch;
 			}
+			/* --- */
 			
+			/* Mensajes Flash sincronos */
+			
+			MsgVar = "{{ app.session.flash('MsgVar') }}";
+			if(MsgVar != "")
+				popup(MsgVar);
+			
+			/* --- */
+			
+			/* Funcion de arranque */
 			if( typeof $init != "undefined")
 				$init();
+			/* --- */
 		}
 		
 	</script>
