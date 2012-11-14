@@ -8,7 +8,8 @@
 
 <form id="vime-form" action="{{ path('gbpers_create', { 'lv': 2 }) }}" method="post" {{ form_enctype(form) }}>
 	<input type="submit" style="display: none" id="sender" value="send">
-<table style="position: absolute; margin-left: 4%;">
+	
+	<table class="vime-colum1">
 		<tr><td colspan='2'>{{ form_errors(form.identificacion) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.identificacion) }}</td><td align="left">{{ form_widget(form.identificacion) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.prinom) }}</td></tr>
@@ -33,7 +34,8 @@
 		<tr><td align="left">{{ form_label(form.correo) }}</td><td align="left">{{ form_widget(form.correo) }}</td></tr>
 		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">E-mail: (Ej: admin@vimelab.com)</td></tr>
     </table>
-    <table style="position: absolute; margin-left: 45%;">		
+    
+    <table class="vime-colum2">		
 		<tr><td colspan='2'>{{ form_errors(form.ingreso) }}</td></tr>
 		<tr>
 			<td align="left">{{ form_label(form.ingreso) }}</td>

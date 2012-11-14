@@ -10,6 +10,7 @@
 {
 	overflow: auto;
 	position: absolute;
+	display: none;
 	top: 0.5%;
 	left: 0.5%;
 	width: 99.5%;
@@ -117,4 +118,59 @@
 .csParTi td:hover
 {
 	opacity: 0.8;	
+}
+
+.csParBb
+{
+	position: absolute;
+	display: none;
+	bottom: 0.5%;
+	left: 1%;
+	width: 98%;
+}
+
+.csParBb button
+{
+	background-color:#203982; 
+	color:#fff;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.csParBb button:hover
+{
+	background-color:#FFFFFF; 
+	color:#000000;
+}
+
+.csParSc
+{
+	position: absolute;
+	top: 0.5%;
+	left: 1%;
+	width: 98%;
+	height: 5%;
+}
+
+.csParSc table
+{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.csParSc img
+{
+	cursor: pointer;
+}
+
+.csParZn
+{
+	position: absolute;
+	overflow: auto;
+	border: 1px solid #203982;
+	background: #FFFFFF;
+	top: 10%;
+	left: 1%;
+	width: 98%;
+	height: 89%;
 }

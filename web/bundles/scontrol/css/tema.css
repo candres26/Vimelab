@@ -169,6 +169,18 @@ h2
     color: #45568a;
 }
 
+.vime-colum1
+{
+	position: absolute;
+	right: 50.5%;
+}
+
+.vime-colum2
+{
+	position: absolute;
+	left: 50.5%;
+}
+
 .button
 {
 	background-color:#203982; 

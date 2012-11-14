@@ -58,7 +58,8 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 	? $sesion = $this->getRequest()->getSession();
 	? $sesion->setFlash('MsgVar', 'Mensaje a enviar');
 	! El mensaje se renderiza automaticamente con la función popup().
-* Manejar excepciones al borrar registros referenciados.	
+* Manejar excepciones al borrar registros referenciados.
+* Mejorar manejo de claves de usuario.	
 
 # --- CAMBIOS EN PROGRESO --- #
 
@@ -71,11 +72,12 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 + Asistente de empresas, oculto en espera.
 + PRIORITARIO: Asistente maestro de revisión médica:
 	* Crear estandar de alamcenamiento.
-	+ Nuevo esquema de vistas [30%].
+	+ Nuevo esquema de vistas [40%].
+	+ Crear modelo de capturas parciales con IFRAME [80%].
 	- Integrar GbVars para diccionarios.
 	- Integrar GbVars para seguridad.
 	+ Carga automatica del personal encargado.
-	- Integrar paciente - historia.
+	+ Integrar paciente - historia [50%].
 	- Integrar historia - m-medicos.
 	- Integrar historia - diagnosticos.
 	- Integrar historia - m-tecnicos.
@@ -94,4 +96,5 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 ! Revisar campos de contratos (Revisión) es char(1), deberia ser un de selección.
 ! Aclarar significado de campos en contrato.
 ! Aclarar significado de campos en hoja de ruta.
-! En editar usuario, no debe mostrar la clave, debe ser tipo pasword. 
+! En editar usuario, no debe mostrar la clave, debe ser tipo pasword.
+! En los formularios que tienen 2 columnas Ej: Nuevo Paciente usar <table class="vime-colum1"> y <table class="vime-colum2"> para mejorar la respuesta a cambios de tamaño. 

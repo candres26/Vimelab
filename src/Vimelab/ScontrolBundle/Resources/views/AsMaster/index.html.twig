@@ -32,7 +32,24 @@
 		
 	<div class="csParIn">
 		
-		<iframe id='ifPaci' class="csIfra" src="{{ path('mdpaci_new', { 'lv': 2 }) }}"><!-- FRAME --></iframe>
+		<!--- Controles para buscar y seleccionar paciente -->
+		<div id="jsPaciSc" class="csParSc">
+			<table>
+				<tr>
+					<th><input id="jsPaciScCam" type="text" size="70"/></th>
+					<td><img id="jsPaciScBsr" src="{{ asset('bundles/scontrol/imagenes/applet.png') }}" title="Buscar"></td>
+					<td><img id="jsPaciScBnw" src="{{ asset('bundles/scontrol/imagenes/iconos/agregar.png') }}" title="Crear Paciente"></td>
+				</tr>
+			</table>
+		</div>
+		<div id="jsPaciZn" class="csParZn"><!-- AJAX --></div>
+		
+		<!--- Controles para nuevo paciente -->
+		<iframe id="ifPaci" class="csIfra" src="{{ path('mdpaci_new', { 'lv': 2 }) }}"><!-- FRAME --></iframe>
+		<div id="ifPaciBar" class="csParBb">
+			<button id="jsPaciCre">CREAR</button>
+			<button id="jsPaciCan">CANCELAR</button>
+		</div>
 		
 	</div>
 	
@@ -52,6 +69,10 @@
 		{
 			gId('jsPaci').onclick = showPartial;
 			gId('jsPaciCx').onclick = hidePartial;
+			gId('jsPaciCre').onclick = newPaci;
+			gId('jsPaciCan').onclick = canPaci;
+			gId('jsPaciScBsr').onclick = getPaci;
+			gId('jsPaciScBnw').onclick = viewPaci;
 		}
 	
 	</script>

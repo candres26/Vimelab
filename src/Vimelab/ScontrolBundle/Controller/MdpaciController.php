@@ -100,7 +100,7 @@ class MdpaciController extends Controller
      * @Method("post")
      * @Template("ScontrolBundle:Mdpaci:new.html.twig")
      */
-    public function createAction()
+    public function createAction($lv)
     {
 		if(Tool::isGrant($this))
 		{
@@ -109,21 +109,42 @@ class MdpaciController extends Controller
 			$form    = $this->createForm(new MdpaciType(), $entity);
 			$form->bindRequest($request);
 
-			if ($form->isValid()) {
-				$em = $this->getDoctrine()->getEntityManager();
-				$em->persist($entity);
-				$em->flush();
+			if ($form->isValid()) 
+			{
+				try
+				{	
+					$em = $this->getDoctrine()->getEntityManager();
+					$em->persist($entity);
+					$em->flush();
 
-				Tool::logger($this, $entity->getId());
-				return $this->redirect($this->generateUrl('mdpaci_show', array('id' => $entity->getId())));
-				
+					Tool::logger($this, $entity->getId());
+					
+					if($lv == 1)
+						return $this->redirect($this->generateUrl('mdpaci_show', array('id' => $entity->getId())));
+					else
+					{
+						$entity = new Mdpaci();
+						$form   = $this->createForm(new MdpaciType(), $entity);	
+						return $this->render("ScontrolBundle:Mdpaci:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'Paciente Creado Con Exito!'));
+					}				
+				}
+				catch(\Exception $e)
+				{
+					if($lv == 1)
+						return array('entity' => $entity, 'form'   => $form->createView());
+					else	
+						return $this->render("ScontrolBundle:Mdpaci:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'Imposible Crear Paciente, Error Referencial!'));
+				}
 			}
-
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
-		}else
+	
+			if($lv == 1)
+				return array('entity' => $entity, 'form'   => $form->createView());
+			else
+				return $this->render("ScontrolBundle:Mdpaci:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
+			
+			
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 

@@ -832,8 +832,8 @@ mdpaci_new:
     pattern:  /mdpaci/new/{lv}
     defaults: { _controller: ScontrolBundle:Mdpaci:new, lv:1 }
 mdpaci_create:
-    pattern:  /mdpaci/create
-    defaults: { _controller: ScontrolBundle:Mdpaci:create }
+    pattern:  /mdpaci/create/{lv}
+    defaults: { _controller: ScontrolBundle:Mdpaci:create, lv:1 }
 mdpaci_edit:
     pattern:  /mdpaci/{id}/edit
     defaults: { _controller: ScontrolBundle:Mdpaci:edit }

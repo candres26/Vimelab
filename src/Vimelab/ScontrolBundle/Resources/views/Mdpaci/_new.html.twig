@@ -6,9 +6,9 @@
 
 <input type='hidden' id='RMSG'/ value='{{ RMSG }}'>
 
-<form id="vime-form" action="{{ path('mdpaci_create') }}" method="post" {{ form_enctype(form) }}>
+<form id="vime-form" action="{{ path('mdpaci_create', { 'lv': 2 }) }}" method="post" {{ form_enctype(form) }}>
 	<input type="submit" style="display: none" id="sender" value="send">
-   <table style="position: absolute; margin-left: 15%;">
+   <table class='vime-colum1'>
 		<tr><td colspan='2'>{{ form_errors(form.identificacion) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.identificacion) }}</td><td align="left">{{ form_widget(form.identificacion) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.tipoide) }}</td></tr>
@@ -27,7 +27,7 @@
 		<tr><td colspan='2'>{{ form_errors(form.sexo) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.sexo) }}</td><td align="left">{{ form_widget(form.sexo) }}</td></tr>
 	</table>
-    <table style="position: absolute; margin-left: 55%;">
+    <table class='vime-colum2'>
 		<tr><td colspan='2'>{{ form_errors(form.direccion) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.direccion) }}</td><td align="left">{{ form_widget(form.direccion) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.telefono) }}</td></tr>
