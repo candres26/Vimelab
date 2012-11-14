@@ -78,17 +78,17 @@ class MdpaciController extends Controller
      * @Route("/new", name="mdpaci_new")
      * @Template()
      */
-    public function newAction()
+    public function newAction($lv)
     {
 		if(Tool::isGrant($this))
 		{
 			$entity = new Mdpaci();
 			$form   = $this->createForm(new MdpaciType(), $entity);
-
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
+			
+			if($lv == 1)
+				return array('entity' => $entity, 'form'   => $form->createView());
+			else
+				return $this->render("ScontrolBundle:Mdpaci:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
 		}else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }

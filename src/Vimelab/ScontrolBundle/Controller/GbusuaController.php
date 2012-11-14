@@ -146,6 +146,7 @@ class GbusuaController extends Controller
 			$em = $this->getDoctrine()->getEntityManager();
 
 			$entity = $em->getRepository('ScontrolBundle:Gbusua')->find($id);
+			$entity->setClave("");
 
 			if (!$entity) {
 				throw $this->createNotFoundException('Unable to find Gbusua entity.');

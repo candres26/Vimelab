@@ -9,20 +9,35 @@
 
 {% block area %}
 
-<div id="asMain">
+<div class="csMain">
 	
-	<table id='asPers'>
+	<table id="jsPers" class="csPers">
 		<tr><th>Responsable:</th><td>{{ GbPers.getFullName() }}</td></tr>
 		<tr><th>Identificación:</th><td>{{ GbPers.identificacion }}</td></tr>
 		<tr><th>Cargo:</th><td>{{ GbPers.gbcarg.nombre }}</td></tr>
 	</table>
 	
-	<table id='asPaci' title="Click Para Cargar">
-		<tr><th>Paciente:</th><td></td></tr>
-		<tr><th>Identificación:</th><td></td></tr>
+	<table id="jsPaci" class="csPaci" title="Click Para Cargar">
+		<tr><th>Paciente:</th><td><!-- AJAX --></td></tr>
+		<tr><th>Identificación:</th><td><!-- AJAX --></td></tr>
 	</table>
 		
-</div>	
+</div>
+
+<div id="jsPaciPar" class="csPar">
+	
+	<table class="csParTi">
+		<tr><th>PACIENTES</th><td id="jsPaciCx" title="Cerrar"><!-- Cerrar --></td></tr>
+	</table>
+		
+	<div class="csParIn">
+		
+		<iframe id='ifPaci' class="csIfra" src="{{ path('mdpaci_new', { 'lv': 2 }) }}"><!-- FRAME --></iframe>
+		
+	</div>
+	
+</div>
+	
 {% endblock %}
 
 
@@ -35,7 +50,8 @@
 		
 		function $init()
 		{
-			
+			gId('jsPaci').onclick = showPartial;
+			gId('jsPaciCx').onclick = hidePartial;
 		}
 	
 	</script>

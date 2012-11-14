@@ -1,4 +1,4 @@
-#asMain
+.csMain
 {
 	position: absolute;
 	top: 1%;
@@ -6,50 +6,115 @@
 	height: 90%;
 }
 
-#asPers
+.csIfra
+{
+	overflow: auto;
+	position: absolute;
+	top: 0.5%;
+	left: 0.5%;
+	width: 99.5%;
+	height: 92%;
+	border: 0px solid black;
+	background: #f2f2f2;
+}
+
+.csPers
 {
 	position: absolute;
 	left: 0%;
 	background: #FFFFFF;
 	padding: 5px;
-	box-shadow: 5px 5px 10px #203982;
+	min-width: 200px;
+	box-shadow: 2px 2px 5px #203982;
 	border: 2px solid #203982;
 	border-radius: 10px;
 }
 
-#asPers th
+.cdPers th
 {
 	text-align: right;
 	padding: 4px;
 }
 
-#asPers td
+.cdPers td
 {
 	text-align: left;
 	padding: 4px;
 }
 
-#asPaci
+.csPaci
 {
 	position: absolute;
-	right: 0%;
+	right: -1%;
 	cursor: pointer;
 	min-width: 200px;
 	background: #FFFFFF;
 	padding: 5px;
-	box-shadow: 5px 5px 10px #203982;
+	box-shadow: 2px 2px 5px #203982;
 	border: 2px solid #203982;
 	border-radius: 10px;
 }
 
-#asPaci th
+.cdPaci th
 {
 	text-align: right;
 	padding: 4px;
 }
 
-#asPaci td
+.csPaci td
 {
 	text-align: left;
 	padding: 4px;
+}
+
+.csPar
+{
+	background: #FFFFFF;
+	position: absolute;
+	width: 94%;
+	height: 94%;
+	left: 3%;
+	top: 3%;
+	z-index: 10;
+	opacity: 1;
+	box-shadow: 5px 5px 10px #203982;
+	border: 2px solid #203982;
+	border-radius: 10px;
+	display: none;
+}
+
+.csParIn
+{
+	position: absolute;
+	overflow: auto;
+	background: #f2f2f2;
+	border: 1px solid #203982;
+	top: 8%;
+	left: 2%;
+	width: 96%;
+	height: 90%;
+}
+
+.csParTi
+{
+	position: absolute;
+	top: 0%;
+	left: 2%;
+	width: 98%;
+	height: 7%;
+	border-collapse: collapse;
+}
+
+.csParTi td
+{
+	border-left: 1px solid #CCCCCC;
+	border-bottom: 1px inset #CCCCCC;
+	cursor: pointer;
+	width: 4%;
+	background: url("../imagenes/iconos/close.png") no-repeat center;
+}
+
+.csParTi td:hover
+{
+	opacity: 0.8;	
 }

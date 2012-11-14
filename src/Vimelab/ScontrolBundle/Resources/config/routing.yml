@@ -829,8 +829,8 @@ mdpaci_show:
     pattern:  /mdpaci/{id}/show
     defaults: { _controller: ScontrolBundle:Mdpaci:show }
 mdpaci_new:
-    pattern:  /mdpaci/new
-    defaults: { _controller: ScontrolBundle:Mdpaci:new }
+    pattern:  /mdpaci/new/{lv}
+    defaults: { _controller: ScontrolBundle:Mdpaci:new, lv:1 }
 mdpaci_create:
     pattern:  /mdpaci/create
     defaults: { _controller: ScontrolBundle:Mdpaci:create }
