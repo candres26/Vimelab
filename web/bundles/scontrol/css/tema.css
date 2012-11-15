@@ -371,18 +371,18 @@ h2
 
 .tPop
 {
-	z-index: 0;
+	z-index: 12;
 	cursor: pointer;
 	background: #000;
 	color: #FFF;
 	display: none;
 	position: absolute;
 	overflow: auto;
-	font-size: 0.8em;
+	font-size: 1em;
 	font-family: serif;
-	top: 14.5%;
-	right: 0.5%;
-	width: 10%;
+	top: 1%;
+	right: 40%;
+	width: 20%;
 	height: auto;
 	padding: 10px;
 	border: 2px solid black;

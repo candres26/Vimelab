@@ -1332,3 +1332,6 @@ as_empr:
 as_master:
     pattern: /asmaster
     defaults: { _controller: ScontrolBundle:AsMaster:index }
+as_master_getPaci:
+    pattern: /asmaster/getpaci
+    defaults: { _controller: ScontrolBundle:AsMaster:getPaciente }

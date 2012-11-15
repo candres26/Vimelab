@@ -3,7 +3,7 @@
 	position: absolute;
 	top: 1%;
 	width: 98%; 
-	height: 90%;
+	height: 98%;
 }
 
 .csIfra
@@ -22,50 +22,66 @@
 .csPers
 {
 	position: absolute;
-	left: 0%;
+	overflow: hidden;
+	top: 0.5%;
+	left: 1%;
+	width: 30%;
+	height: 12%;
 	background: #FFFFFF;
-	padding: 5px;
-	min-width: 200px;
 	box-shadow: 2px 2px 5px #203982;
 	border: 2px solid #203982;
 	border-radius: 10px;
-}
-
-.cdPers th
-{
-	text-align: right;
-	padding: 4px;
-}
-
-.cdPers td
-{
-	text-align: left;
-	padding: 4px;
+	text-align: center; 
 }
 
 .csPaci
 {
-	position: absolute;
-	right: -1%;
 	cursor: pointer;
-	min-width: 200px;
+	position: absolute;
+	overflow: hidden;
+	top: 0.5%;
+	right: 1%;
+	width: 30%;
+	height: 12%;
 	background: #FFFFFF;
-	padding: 5px;
 	box-shadow: 2px 2px 5px #203982;
 	border: 2px solid #203982;
 	border-radius: 10px;
+	text-align: center; 
 }
 
-.cdPaci th
+.csHist
 {
-	text-align: right;
-	padding: 4px;
+	cursor: pointer;
+	position: absolute;
+	overflow: hidden;
+	top: 0.5%;
+	left: 35%;
+	width: 30%;
+	height: 12%;
+	background: #FFFFFF;
+	box-shadow: 2px 2px 5px #203982;
+	border: 2px solid #203982;
+	border-radius: 10px;
+	text-align: center; 
 }
 
-.csPaci td
+.csPers table, .csPaci table, .csHist table
 {
-	text-align: left;
-	padding: 4px;
+	width: 80%;
+	height: 100%;
+	border-collapse: collapse;
+	margin: auto;
+}
+
+.csPers td, .csPaci td, .csHist td
+{
+	text-align: left; 
+}
+
+.csPers th, .csPaci th, .csHist th
+{
+	text-align: right; 
 }
 
 .csPar
@@ -84,6 +100,39 @@
 	display: none;
 }
 
+.csParMini
+{
+	background: #FFFFFF;
+	position: absolute;
+	width: 50%;
+	height: 50%;
+	left: 25%;
+	top: 25%;
+	z-index: 10;
+	opacity: 1;
+	box-shadow: 5px 5px 10px #203982;
+	border: 2px solid #203982;
+	border-radius: 10px;
+	display: none;
+}
+
+.csParForm
+{
+	width: 90%;
+	margin: auto;
+}
+
+.csParForm th
+{
+	text-align: right;
+	width: 50%;
+}
+
+.csParForm td
+{
+	text-align: left;
+}
+
 .csParIn
 {
 	position: absolute;
@@ -94,6 +143,7 @@
 	left: 2%;
 	width: 96%;
 	height: 90%;
+	text-align: center;
 }
 
 .csParTi
@@ -129,18 +179,27 @@
 	width: 98%;
 }
 
-.csParBb button
+.csParBb2
 {
-	background-color:#203982; 
-	color:#fff;
+	position: absolute;
+	bottom: 0.5%;
+	left: 1%;
+	width: 98%;
+	text-align: right;
+}
+
+.csParBb button, .csParBb2 button
+{
+	background-color: #203982; 
+	color: #fff;
 	border-radius: 10px;
 	cursor: pointer;
 }
 
-.csParBb button:hover
+.csParBb button:hover, .csParBb2 button:hover
 {
-	background-color:#FFFFFF; 
-	color:#000000;
+	background-color: #FFFFFF; 
+	color: #000000;
 }
 
 .csParSc
@@ -173,4 +232,33 @@
 	left: 1%;
 	width: 98%;
 	height: 89%;
+	text-align: center;
+}
+
+.csParZn table
+{
+	width: 98%;
+	margin: auto;
+	border-collapse: collapse;
+	cursor: pointer;
+}
+
+.csParZn td
+{
+	border: 1px solid #203982;	
+}
+
+.csParZn tr
+{
+	background: #F2F2F2;
+}
+
+.csParZn tr:hover
+{
+	background: #A8BBFA;	
+}
+
+.csParZn th
+{
+	display: none;
 }

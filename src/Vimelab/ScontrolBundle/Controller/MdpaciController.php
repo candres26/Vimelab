@@ -123,9 +123,9 @@ class MdpaciController extends Controller
 						return $this->redirect($this->generateUrl('mdpaci_show', array('id' => $entity->getId())));
 					else
 					{
-						$entity = new Mdpaci();
-						$form   = $this->createForm(new MdpaciType(), $entity);	
-						return $this->render("ScontrolBundle:Mdpaci:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'Paciente Creado Con Exito!'));
+						$newEnt = new Mdpaci();
+						$form   = $this->createForm(new MdpaciType(), $newEnt);	
+						return $this->render("ScontrolBundle:Mdpaci:_new.html.twig", array('entity' => $newEnt, 'form'   => $form->createView(), 'RMSG' => '0-Paciente Creado Con Exito!-'.$entity->getIdentificacion()));
 					}				
 				}
 				catch(\Exception $e)
@@ -133,7 +133,7 @@ class MdpaciController extends Controller
 					if($lv == 1)
 						return array('entity' => $entity, 'form'   => $form->createView());
 					else	
-						return $this->render("ScontrolBundle:Mdpaci:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'Imposible Crear Paciente, Error Referencial!'));
+						return $this->render("ScontrolBundle:Mdpaci:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => '1-Imposible Crear Paciente, Error Referencial!'));
 				}
 			}
 	

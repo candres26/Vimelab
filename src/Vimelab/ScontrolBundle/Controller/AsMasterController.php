@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Vimelab\ScontrolBundle\Tool\Tool;
 
 use Vimelab\ScontrolBundle\Entity\Gbpers;
+use Vimelab\ScontrolBundle\Entity\Mdpaci;
 
 class AsMasterController extends Controller
 {
@@ -26,4 +27,27 @@ class AsMasterController extends Controller
 			return $this->render('ScontrolBundle::alertas.html.twig');
 	}
 	
+	public function getPacienteAction()
+	{
+		if(Tool::isGrant($this))
+        {
+        	$request = $this->getRequest();
+        	if($request->isXmlHttpRequest())
+			{
+				$em = $this->getDoctrine()->getEntityManager();
+        		$repo = $em->getRepository('ScontrolBundle:Mdpaci');
+        		$entities = $repo->getFor($request->request->get("param"));	
+				
+				$res = array();
+				foreach($entities as $caso)
+					$res[] = $caso->getId()."=>".$caso->getIdentificacion()."=>".$caso->getFullName()."=>".$caso->getGbSucu()->getNombre()."=>".$caso->getSexo();
+				
+				return new Response(join("|-|", $res));
+			}
+			else
+				return $this->redirect($this->generateUrl('as_master'));
+		}
+		else
+			return $this->render("ScontrolBundle::alertas.html.twig");
+	}
 }

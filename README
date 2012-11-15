@@ -72,12 +72,19 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 + Asistente de empresas, oculto en espera.
 + PRIORITARIO: Asistente maestro de revisión médica:
 	* Crear estandar de alamcenamiento.
-	+ Nuevo esquema de vistas [40%].
-	+ Crear modelo de capturas parciales con IFRAME [80%].
+	+ Fijar validaciones de GUI [20%].
+	+ Nuevo esquema de vistas [50%].
+	* Crear modelo de capturas parciales con IFRAME.
 	- Integrar GbVars para diccionarios.
 	- Integrar GbVars para seguridad.
-	+ Carga automatica del personal encargado.
-	+ Integrar paciente - historia [50%].
+	* Carga automatica del personal encargado.
+	* Integrar paciente - historia.
+		! Creacion de paciente por IFRAME.
+		! Al crear un paciente se busca automaticamente y queda listo para ser selccionado.
+		! Busqueda por documento o primer apellido, distingue automaticamente (Numero = Documento - Letras = Apellido), se activa con el icono o con ENTER.
+		! El paciente se selecciona con doble click.
+	+ Crear Revsión Medica [10%].
+		! El campo menstruación aparece y desaparece segun el sexo.
 	- Integrar historia - m-medicos.
 	- Integrar historia - diagnosticos.
 	- Integrar historia - m-tecnicos.
@@ -97,4 +104,5 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 ! Aclarar significado de campos en contrato.
 ! Aclarar significado de campos en hoja de ruta.
 ! En editar usuario, no debe mostrar la clave, debe ser tipo pasword.
-! En los formularios que tienen 2 columnas Ej: Nuevo Paciente usar <table class="vime-colum1"> y <table class="vime-colum2"> para mejorar la respuesta a cambios de tamaño. 
+! En los formularios que tienen 2 columnas Ej: Nuevo Paciente usar <table class="vime-colum1"> y <table class="vime-colum2"> para mejorar la respuesta a cambios de tamaño.
+! Se ha cambiado el tamaño de letra, ancho y poscición (Centrado arriba) del popup, resulta mas comodo en los asistentes. 

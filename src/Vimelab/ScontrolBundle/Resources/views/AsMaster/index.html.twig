@@ -11,19 +11,33 @@
 
 <div class="csMain">
 	
-	<table id="jsPers" class="csPers">
-		<tr><th>Responsable:</th><td>{{ GbPers.getFullName() }}</td></tr>
-		<tr><th>Identificación:</th><td>{{ GbPers.identificacion }}</td></tr>
-		<tr><th>Cargo:</th><td>{{ GbPers.gbcarg.nombre }}</td></tr>
-	</table>
+	<div id="jsPers" class="csPers">
+		<input type="hidden" id="jsPersId" value="{{ GbPers.id }}" />
+		<table>
+			<tr><th>Responsable:</th><td>{{ GbPers.getFullName() }}</td></tr>
+			<tr><th>Identificación:</th><td>{{ GbPers.identificacion }}</td></tr>
+			<tr><th>Cargo:</th><td>{{ GbPers.gbcarg.nombre }}</td></tr>
+		</table>
+	</div>
 	
-	<table id="jsPaci" class="csPaci" title="Click Para Cargar">
-		<tr><th>Paciente:</th><td><!-- AJAX --></td></tr>
-		<tr><th>Identificación:</th><td><!-- AJAX --></td></tr>
-	</table>
-		
+	<div id="jsPaci" class="csPaci" title="Click Para Cargar">
+		<table>
+			<tr><th>Paciente:</th><td id="jsPaciName"><!-- AJAX --></td></tr>
+			<tr><th>Identificación:</th><td id="jsPaciDoc"><!-- AJAX --></td></tr>
+			<tr><th>Sucursal:</th><td id="jsPaciSuc"><!-- AJAX --></td></tr>
+		</table>
+	</div>
+	
+	<div class="csHist" id="jsHist" title="Click Para Crear">
+		<table>
+			<tr><th>Revisión:</th><td id="jsHistId"><!-- AJAX --></td></tr>
+			<tr><th>Tipo:</th><td id="jsHistTipo"><!-- AJAX --></td></tr>
+			<tr><th>H. Ruta:</th><td id="jsHistRuta"><!-- AJAX --></td></tr>
+		</table>
+	</div>	
 </div>
 
+<!--- Vista Parcial De Paciente -->
 <div id="jsPaciPar" class="csPar">
 	
 	<table class="csParTi">
@@ -54,6 +68,56 @@
 	</div>
 	
 </div>
+
+<!--- Vista Parcial De Revisión -->
+<div id="jsHistPar" class="csParMini">
+	<table class="csParTi">
+		<tr><th>REVISION MEDICA</th></tr>
+	</table>
+	
+	<div class="csParIn">
+		
+		<table class="csParForm">
+			<tr id="jsHistMesPac">
+				<th>Menstruación:</th>
+				<td>
+					<select id="jsHistMes">
+						<option value="@">Seleccione...</option>
+						<option value="S">SI</option>
+						<option value="N">NO</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>Tipo:</th>
+				<td>
+					<select id="jsHistTip">
+						<option value="@">Seleccione...</option>
+						<option value="0">Ingreso</option>
+						<option value="1">Periódico</option>
+						<option value="2">Cambio De Puesto</option>
+						<option value="3">Reincorporación</option>
+						<option value="4">Egreso</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>Hoja De Ruta:</th>
+				<td>
+					<select id="jsHistRut">
+						<option value="@">Seleccione...</option>
+					</select>
+				</td>
+			</tr>
+		</table>
+		
+		<div class="csParBb2">
+			<button id="jsHistCre">CREAR</button>
+			<button id="jsHistCx">CANCELAR</button>
+		</div>
+	</div>
+	
+</div>
 	
 {% endblock %}
 
@@ -63,16 +127,24 @@
 	
 	<script type="text/javascript">
 		
-		var $optIni = "<option value='@'>Seleccione...</option>";
+		/* -- RUTAS AJAX -- */
+		$_getPaci = "{{ path('as_master_getPaci') }}";
 		
 		function $init()
 		{
-			gId('jsPaci').onclick = showPartial;
+			/* -- EVENTOS DE PACIENTE -- */
+			gId('jsPaci').onclick = vistaPaci;
 			gId('jsPaciCx').onclick = hidePartial;
 			gId('jsPaciCre').onclick = newPaci;
 			gId('jsPaciCan').onclick = canPaci;
+			gId('jsPaciScCam').onkeypress = getPaci;
 			gId('jsPaciScBsr').onclick = getPaci;
 			gId('jsPaciScBnw').onclick = viewPaci;
+			gId('ifPaci').onload = loadState;
+			
+			/* -- EVENTOS DE REVISION -- */
+			gId('jsHist').onclick = vistaHist;
+			gId('jsHistCx').onclick = hidePartial;
 		}
 	
 	</script>
