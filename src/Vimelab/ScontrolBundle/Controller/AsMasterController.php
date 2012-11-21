@@ -111,4 +111,34 @@ class AsMasterController extends Controller
 		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
 	}
+
+	public function newComentarioAction()
+	{
+		if(Tool::isGrant($this))
+        {
+        	$request = $this->getRequest();
+        	if($request->isXmlHttpRequest())
+			{
+				try
+				{
+					$em = $this->getDoctrine()->getEntityManager();
+				
+					$entity = $em->getRepository('ScontrolBundle:Mdhist')->find($request->request->get("jsHistId"));
+					$entity->setComentario($request->request->get("jsComeDta"));
+					
+					$em->persist($entity);
+					$em->flush();
+					return new Response("0:Ok Comentario guardado con exito!");
+				}
+				catch(\Exception $e)
+				{
+					return new Response("1:Error, imposible guardar Comentario!");
+				}
+			}
+			else
+				return $this->redirect($this->generateUrl('as_master'));
+		}
+		else
+			return $this->render("ScontrolBundle::alertas.html.twig");
+	}
 }

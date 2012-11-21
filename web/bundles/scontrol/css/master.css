@@ -84,6 +84,82 @@
 	text-align: right; 
 }
 
+.csReco
+{
+	display: none;
+	position: absolute;
+	overflow: hidden;
+	top: 15%;
+	left: 1%;
+	width: 30%;
+	height: 20%;
+	background: #FFFFFF;
+	box-shadow: 2px 2px 5px #203982;
+	border: 2px solid #203982;
+	border-radius: 10px;
+	text-align: center; 
+}
+
+.csDiag
+{
+	display: none;
+	position: absolute;
+	overflow: hidden;
+	top: 15%;
+	left: 35%;
+	width: 30%;
+	height: 20%;
+	background: #FFFFFF;
+	box-shadow: 2px 2px 5px #203982;
+	border: 2px solid #203982;
+	border-radius: 10px;
+	text-align: center; 
+}
+
+.csCome
+{
+	display: none;
+	position: absolute;
+	overflow: hidden;
+	top: 15%;
+	right: 1%;
+	width: 30%;
+	height: 20%;
+	background: #FFFFFF;
+	box-shadow: 2px 2px 5px #203982;
+	border: 2px solid #203982;
+	border-radius: 10px;
+	text-align: center; 
+}
+
+.csCome textarea
+{
+	position: absolute;
+	top: 16%;
+	left: 5%;
+	width: 75%;
+	height: 75%;
+}
+
+.csCome img
+{
+	position: absolute;
+	top: 30%;
+	right: 5%;
+	cursor: pointer;
+}
+
+.csReco b, .csDiag b, .csCome b
+{
+	position: absolute;
+	border-bottom: 1px solid #203982;
+	display: block;
+	top: 1%;
+	height: 12%;
+	left: 5%;
+	width: 90%;
+}
+
 .csPar
 {
 	background: #FFFFFF;

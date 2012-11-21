@@ -76,7 +76,7 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 + PRIORITARIO: Asistente maestro de revisión médica:
 	* Crear estandar de alamcenamiento.
 	+ Fijar validaciones de GUI [30%].
-	+ Nuevo esquema de vistas [50%].
+	+ Nuevo esquema de vistas [70%].
 	* Crear modelo de capturas parciales con IFRAME.
 	- Integrar GbVars para diccionarios.
 	- Integrar GbVars para seguridad.
@@ -90,7 +90,13 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 		! El campo menstruación aparece y desaparece segun el sexo.
 		! Hojas de ruta ordenadas por empresa.
 	- Integrar historia - m-medicos.
-	- Integrar historia - diagnosticos.
+	- Integrar historia - diagnosticos [20%].
+		- Agregar diagnostico.
+		- Eliminar diagnostico.
+		- Agregar recomendación.
+		- Eliminar recomendacón.
+		* Editar comentarios.
+		
 	- Integrar historia - m-tecnicos.
 	- Integrar historia - m-contables.
 	- Generar macro reporte.

@@ -227,10 +227,44 @@ function setHist(response)
 		gId("jsHistTipo").innerHTML = txTipo;
 		gId("jsHistRuta").innerHTML = par[4];
 		
+		show("jsReco");
+		show("jsDiag");
+		show("jsCome");
+		
 		$msModo = 1;
 		
 		SimularClick("jsHistCx");
 	}
 	else
 		popup(response.responseText);
+}
+
+function newCome(event)
+{
+	if($msModo == 1)
+	{
+		ajaxAction
+		(
+			new Hash(["jsComeDta", "*jsHistId => "+$histId]),
+			$_newCome,
+			setCome
+		);
+	}
+	else
+		popup("No se ha creado una Revisión!");
+}
+
+function setCome(response)
+{
+	par = response.responseText.split(":");
+	
+	if(par[0] == "0")
+		gId("jsComeDta").style.background = "";
+	
+	popup(par[1]);
+}
+
+function tipCome(event) 
+{
+	  gId("jsComeDta").style.background = "#FDC2C1";
 }

@@ -34,7 +34,22 @@
 			<tr><th>Tipo:</th><td id="jsHistTipo"><!-- AJAX --></td></tr>
 			<tr><th>H. Ruta:</th><td id="jsHistRuta"><!-- AJAX --></td></tr>
 		</table>
-	</div>	
+	</div>
+	
+	<div class="csReco" id="jsReco">
+		<b>RECOMENDACIONES</b>
+	</div>
+	
+	<div class="csDiag" id="jsDiag">
+		<b>DIAGNOSTICOS</b>
+	</div>
+	
+	<div class="csCome" id="jsCome">
+		<b>COMENTRIOS</b><br>
+		<textarea id="jsComeDta">&nbsp;</textarea>
+		<img id="jsComeBtn" src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar">
+	</div>
+		
 </div>
 
 <!--- Vista Parcial De Paciente -->
@@ -131,6 +146,7 @@
 		$_getPaci = "{{ path('as_master_getPaci') }}";
 		$_getRuta = "{{ path('as_master_getRuta') }}";
 		$_newHist = "{{ path('as_master_newHist') }}";
+		$_newCome = "{{ path('as_master_newCome') }}";
 		
 		function $init()
 		{
@@ -148,6 +164,10 @@
 			gId('jsHist').onclick = vistaHist;
 			gId('jsHistCre').onclick = newHist;
 			gId('jsHistCx').onclick = hidePartial;
+			
+			/* --- EVENTOS DE COMENTARIO -- */
+			gId('jsComeDta').onkeydown = tipCome;
+			gId('jsComeBtn').onclick = newCome;
 		}
 	
 	</script>
