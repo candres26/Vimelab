@@ -12,6 +12,10 @@
             <td>{{ entity.id }}</td>
         </tr>
         <tr>
+            <th align="left">Fecha</th>
+            <td>{{ entity.fecha.format('Y-m-d')}}</td>
+        </tr>        
+        <tr>
             <th align="left">Identificación paciente</th>
             <td>{{ entity.mdpaci }}</td>
         </tr>
@@ -30,10 +34,6 @@
         <tr>
 			<th align="left">Hoja de Ruta</th>
 			<td>{{ entity.TcRuta.id }}</td>
-        </tr>
-        <tr>
-            <th align="left">Género</th>
-            <td>{% if entity.genero == 'M' %} Masculino {% else %} Femenino {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Menstruación</th>

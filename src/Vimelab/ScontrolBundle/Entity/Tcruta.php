@@ -29,9 +29,9 @@ class Tcruta
     private $fplaneada;
 
     /**
-     * @var datetime $fejecutada
+     * @var date $fejecutada
      *
-     * @ORM\Column(name="fejecutada", type="datetime", nullable=false)
+     * @ORM\Column(name="fejecutada", type="date", nullable=false)
      */
     private $fejecutada;
 
@@ -241,7 +241,7 @@ class Tcruta
     /**
      * Set fejecutada
      *
-     * @param datetime $fejecutada
+     * @param date$fejecutada
      */
     public function setFejecutada($fejecutada)
     {
@@ -251,7 +251,7 @@ class Tcruta
     /**
      * Get fejecutada
      *
-     * @return datetime
+     * @return date
      */
     public function getFejecutada()
     {
@@ -740,6 +740,6 @@ class Tcruta
 
     public function __toString()
     {
-        return $this->id;
+        return $this->getCtcont()->getGbempr()->getNombre()." - RT".$this->id;
     }
 }

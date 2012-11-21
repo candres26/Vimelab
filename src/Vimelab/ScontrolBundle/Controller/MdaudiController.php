@@ -59,11 +59,7 @@ class MdaudiController extends Controller
 			$entity = $em->getRepository('ScontrolBundle:Mdaudi')->find($id);
 			
 			if($lv == 1)
-			{	
-				$em = $this->getDoctrine()->getEntityManager();
-	
-				$entity = $em->getRepository('ScontrolBundle:Mdaudi')->find($id);
-	
+			{
 				if (!$entity) 
 				{
 					throw $this->createNotFoundException('Unable to find Mdaudi entity.');

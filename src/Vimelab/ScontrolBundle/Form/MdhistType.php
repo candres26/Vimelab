@@ -10,8 +10,8 @@ class MdhistType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('genero', 'choice', array('choices' => array('M' => 'Masculino', 'F' => 'Femenino'), 'expanded' => 'true', 'attr' => array('onClick' => 'isMode()'),'required' => false, 'label' => 'Género'))
-            ->add('menstru', 'choice', array('choices' => array('S' => 'SI', 'N' => 'NO'), 'expanded' => 'true', 'label' => 'Menstruación'))
+            ->add('fecha', 'date', array('widget' => 'single_text', 'format' => 'y-MM-dd','label' => 'Fecha'))
+            ->add('menstru', 'choice', array('choices' => array('S' => 'SI', 'N' => 'NO'), 'expanded' => 'true', 'label' => 'Menstruación', 'required' => false))
             ->add('tipo', 'choice', array('choices' => array(0 => 'Ingreso', 1 => 'Periódico', 2 => 'Cambio de puesto', 3 => 'Reincorporación', 4 => 'Egreso')))
             ->add('mdpaci', 'entity', array('class' => 'ScontrolBundle:Mdpaci', 'label' => 'Paciente'))
             ->add('gbpers', 'entity', array('class' => 'ScontrolBundle:Gbpers', 'label' => 'Personal'))

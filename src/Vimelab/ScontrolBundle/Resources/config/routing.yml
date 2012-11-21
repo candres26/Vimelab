@@ -1335,3 +1335,9 @@ as_master:
 as_master_getPaci:
     pattern: /asmaster/getpaci
     defaults: { _controller: ScontrolBundle:AsMaster:getPaciente }
+as_master_getRuta:
+    pattern: /asmaster/getruta
+    defaults: { _controller: ScontrolBundle:AsMaster:getRuta }
+as_master_newHist:
+    pattern: /asmaster/newhist
+    defaults: { _controller: ScontrolBundle:AsMaster:newHistoria }

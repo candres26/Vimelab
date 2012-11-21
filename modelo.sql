@@ -1015,7 +1015,7 @@ CREATE TABLE `MdHist` (
   `TcRuta_id` bigint(99) unsigned NOT NULL,
   `MdPaci_id` bigint(99) unsigned NOT NULL,
   `GbPers_id` bigint(99) unsigned NOT NULL,
-  `genero` varchar(1) COLLATE utf8_unicode_ci NOT NULL,
+  `fecha` date NOT NULL,
   `menstru` char(1) COLLATE utf8_unicode_ci DEFAULT NULL,
   `tipo` int(1) unsigned NOT NULL,
   PRIMARY KEY (`id`),

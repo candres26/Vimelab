@@ -60,6 +60,8 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 	! El mensaje se renderiza automaticamente con la función popup().
 * Manejar excepciones al borrar registros referenciados.
 * Mejorar manejo de claves de usuario.	
+* Campo Género cambiado por Fecha en MdHist. 
+* Cambio en los parceadores Objeto->String de las entidades.
 
 # --- CAMBIOS EN PROGRESO --- #
 
@@ -72,7 +74,7 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 + Asistente de empresas, oculto en espera.
 + PRIORITARIO: Asistente maestro de revisión médica:
 	* Crear estandar de alamcenamiento.
-	+ Fijar validaciones de GUI [20%].
+	+ Fijar validaciones de GUI [30%].
 	+ Nuevo esquema de vistas [50%].
 	* Crear modelo de capturas parciales con IFRAME.
 	- Integrar GbVars para diccionarios.
@@ -83,8 +85,9 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 		! Al crear un paciente se busca automaticamente y queda listo para ser selccionado.
 		! Busqueda por documento o primer apellido, distingue automaticamente (Numero = Documento - Letras = Apellido), se activa con el icono o con ENTER.
 		! El paciente se selecciona con doble click.
-	+ Crear Revsión Medica [10%].
+	* Crear Revsión Medica.
 		! El campo menstruación aparece y desaparece segun el sexo.
+		! Hojas de ruta ordenadas por empresa.
 	- Integrar historia - m-medicos.
 	- Integrar historia - diagnosticos.
 	- Integrar historia - m-tecnicos.
@@ -105,4 +108,5 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 ! Aclarar significado de campos en hoja de ruta.
 ! En editar usuario, no debe mostrar la clave, debe ser tipo pasword.
 ! En los formularios que tienen 2 columnas Ej: Nuevo Paciente usar <table class="vime-colum1"> y <table class="vime-colum2"> para mejorar la respuesta a cambios de tamaño.
-! Se ha cambiado el tamaño de letra, ancho y poscición (Centrado arriba) del popup, resulta mas comodo en los asistentes. 
+! Se ha cambiado el tamaño de letra, ancho y poscición (Centrado arriba) del popup, resulta mas comodo en los asistentes.
+! Aclarar relacion de revisiones médicas con aspectos técnicos. 

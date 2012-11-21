@@ -4,6 +4,7 @@ namespace Vimelab\ScontrolBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
+use Doctrine\ORM\EntityRepository;
 
 class MdpaciType extends AbstractType
 {
@@ -23,9 +24,20 @@ class MdpaciType extends AbstractType
             ->add('ingreso', 'date', array('widget' => 'single_text', 'format' => 'y-MM-dd'))
             ->add('gbciud', 'entity', array('class' => 'ScontrolBundle:Gbciud', 'label' => 'Ciudad'))
             ->add('gbptra', 'entity', array('class' => 'ScontrolBundle:Gbptra', 'label' => 'Puesto Trabajo'))
-            ->add('gbsucu', 'entity', array('class' => 'ScontrolBundle:Gbsucu', 'label' => 'Sucursal'))
-            ->add('tipoide', 'entity', array('class' => 'ScontrolBundle:Gbiden', 'label' => 'Tipo identificación'))
-        ;
+			->add('tipoide', 'entity', array('class' => 'ScontrolBundle:Gbiden', 'label' => 'Tipo identificación'));
+			
+		$builder->add('gbsucu', 'entity', array('class' => 'ScontrolBundle:Gbsucu', 'label' => 'Sucursal', 
+				'query_builder' => function(EntityRepository $er)
+				{
+					return $er->createQueryBuilder('s')
+						->add('select', 's')
+						->add('from', 'ScontrolBundle:Gbsucu s')
+						->join('s.gbempr', 'e')
+						->add('orderBy', 'e.nombre ASC');
+				}
+				
+			));
+		    
     }
 
     public function getName()

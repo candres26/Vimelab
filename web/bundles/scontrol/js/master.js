@@ -1,10 +1,14 @@
 var $optIni = "<option value='@'>Seleccione...</option>";
 
 var $msModo = 0;
+var $emprId = "";
 var $paciId = "";
 var $paciDoc = "" ;
 var $paciName = "";
 var $paciSex = "";
+var $histId = "";
+var $histTi = "";
+var $rutaId = "";
 
 function loadState(event)
 {
@@ -83,10 +87,10 @@ function setPaci(response)
 		for(i = 0; i < fil.length; i ++)
 		{
 			cam = fil[i].split("=>");
-			cont += "<tr title='Boble Click Para Seleccionar!'><th>"+cam[0]+"</th><td>"+cam[1]+"</td><td>"+cam[2].toUpperCase()+"</td><td>"+cam[3].toUpperCase()+"</td><th>"+cam[4].toUpperCase()+"</th></tr>";
+			cont += "<tr title='Boble Click Para Seleccionar!'><th>"+cam[0]+"</th><td>"+cam[1]+"</td><td>"+cam[2].toUpperCase()+"</td><td>"+cam[3].toUpperCase()+"</td><th>"+cam[4].toUpperCase()+"</th><th>"+cam[5].toUpperCase()+"</th></tr>";
 		}
 		
-		cont += "</table>"	
+		cont += "</table>";	
 	}
 	else
 		cont = "<b>NO SE HALLARON COINCIDENCIAS</B>";
@@ -100,7 +104,8 @@ function fixPaci(event)
 	$paciId = row.cells[0].innerHTML;
 	$paciDoc = row.cells[1].innerHTML;
 	$paciName = row.cells[2].innerHTML;
-	$paciSex = row.cells[4].innerHTML
+	$paciSex = row.cells[4].innerHTML;
+	$emprId = row.cells[5].innerHTML;
 	
 	gId("jsPaciName").innerHTML = $paciName;
 	gId("jsPaciDoc").innerHTML = $paciDoc;
@@ -132,13 +137,100 @@ function vistaHist(event)
 {
 	if($paciId != "")
 	{
-		if($paciSex == "F")
-			gId("jsHistMesPac").style.display = "";
-		else
-			gId("jsHistMesPac").style.display = "none";
+		if($msModo == 0)
+		{
+			if($paciSex == "F")
+				gId("jsHistMesPac").style.display = "";
+			else
+				gId("jsHistMesPac").style.display = "none";
 			
-		showPartial(this.id);
+			getRuta();
+		}
+		else
+			popup("Ya ha creado una Recisión!");
 	}
 	else
 		popup("Debe selecionar un paciente!");	
+}
+
+function getRuta(event)
+{
+	if($emprId != "")
+	{
+		
+		ajaxAction
+		(
+			new Hash(["*param => "+$emprId]),
+			$_getRuta,
+			setRuta
+		);
+		
+	}
+	else
+		popup("Se desconoce la empresa!");
+}
+
+function setRuta(response)
+{
+	fil = response.responseText.split("|-|");
+		
+	cont = $optIni;
+	
+	for(i = 0; i < fil.length; i ++)
+	{
+		cam = fil[i].split("=>");
+		cont += "<option value='"+cam[0]+"'>"+cam[1]+"</option>";
+	}
+	
+	gId("jsHistRut").innerHTML = cont;
+	
+	showPartial("jsHist");
+}
+
+function newHist(event)
+{
+	if(gId("jsHistTip").value != "@" && gId("jsHistRut").value != "@")
+	{
+		ajaxAction
+		(
+			new Hash(["jsPersId", "*jsPaciId => "+$paciId, "jsHistMes", "jsHistTip", "jsHistRut"]),
+			$_newHist,
+			setHist
+		);
+	}
+	else
+		popup("Debe indicar un TIPO de Revisión y una HOJA DE RUTA!");
+}
+
+function setHist(response)
+{
+	if(response.responseText.substring(0, 1) == "0")
+	{
+		par = response.responseText.split(":");
+		$histId = par[2];
+		$histTi = par[5];
+		$rutaId = par[3];
+		
+		txTipo = "";
+		if ($histTi == "0")
+			txTipo = "Ingreso";
+		else if($histTi == "1")
+			txTipo = "Periódico";
+		else if($histTi == "2")
+			txTipo = "Cambio De Puesto";
+		else if($histTi == "3")
+			txTipo = "Reincorporación";
+		else
+			txTipo = "Egreso";
+		
+		gId("jsHistId").innerHTML = $histId;
+		gId("jsHistTipo").innerHTML = txTipo;
+		gId("jsHistRuta").innerHTML = par[4];
+		
+		$msModo = 1;
+		
+		SimularClick("jsHistCx");
+	}
+	else
+		popup(response.responseText);
 }

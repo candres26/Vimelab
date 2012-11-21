@@ -22,11 +22,11 @@ class Mdhist
     private $id;
 
     /**
-     * @var string genero
+     * @var date fecha
      *
-     * @ORM\Column(name="genero", type="string", length=1, nullable=false)
+     * @ORM\Column(name="fecha", type="date", length=1, nullable=false)
      */
-    private $genero;
+    private $fecha;
 
     /**
      * @var string menstru
@@ -85,23 +85,23 @@ class Mdhist
     }
 
     /**
-     * Set genero
+     * Set fecha
      *
-     * @param string $genero
+     * @param date $fecha
      */
-    public function setGenero($genero)
+    public function setFecha($fecha)
     {
-        $this->genero = $genero;
+        $this->fecha = $fecha;
     }
 
     /**
-     * Get genero
+     * Get fecha
      *
-     * @return string
+     * @return fecha
      */
-    public function getGenero()
+    public function getFecha()
     {
-        return $this->genero;
+        return $this->fecha;
     }
 
     /**

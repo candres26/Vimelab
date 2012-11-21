@@ -12,6 +12,7 @@
     <thead>
         <tr>
             <th>Id</th>
+            <th>Fecha</th>
             <th>Identificación paciente</th>
             <th>Paciente</th>
             <th>Hoja de Ruta</th>
@@ -23,9 +24,10 @@
     {% for entity in entities %}
         <tr>
             <td>{{ entity.id }}</td>
+            <td>{{ entity.fecha.format('Y-m-d') }}</td>
             <td>{{ entity.mdpaci }}</td>
             <td>{{ entity.MdPaci.prinom }} {{ entity.MdPaci.segnom }} {{ entity.MdPaci.priape }} {{ entity.MdPaci.segape }}</td>
-            <td>{{ entity.TcRuta.id }}</td>
+            <td>{{ entity.TcRuta.__toString() }}</td>
             <td>{{ entity.tipo }}</td>
             <td align="center">
 				<a href="{{ path('mdhist_show', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/show_index.png') }}" title="Mostrar"></a>

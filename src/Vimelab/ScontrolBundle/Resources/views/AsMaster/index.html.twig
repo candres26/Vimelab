@@ -129,6 +129,8 @@
 		
 		/* -- RUTAS AJAX -- */
 		$_getPaci = "{{ path('as_master_getPaci') }}";
+		$_getRuta = "{{ path('as_master_getRuta') }}";
+		$_newHist = "{{ path('as_master_newHist') }}";
 		
 		function $init()
 		{
@@ -144,6 +146,7 @@
 			
 			/* -- EVENTOS DE REVISION -- */
 			gId('jsHist').onclick = vistaHist;
+			gId('jsHistCre').onclick = newHist;
 			gId('jsHistCx').onclick = hidePartial;
 		}
 	
