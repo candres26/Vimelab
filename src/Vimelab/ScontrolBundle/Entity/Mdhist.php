@@ -41,6 +41,14 @@ class Mdhist
      * @ORM\Column(name="tipo", type="integer", nullable=false)
      */
     private $tipo;
+	
+	/**
+     * @var text $comentario
+     *
+     * @ORM\Column(name="comentario", type="text", nullable=true)
+     */
+    private $comentario;
+	
 
     /**
      * @var Mdpaci
@@ -143,6 +151,27 @@ class Mdhist
     {
         return $this->tipo;
     }
+	
+	 /**
+     * Set comentario
+     *
+     * @param text $comentario
+     */
+    public function setComentario($comentario)
+    {
+        $this->comentario = $comentario;
+    }
+
+    /**
+     * Get comentario
+     *
+     * @return text
+     */
+    public function getComentario()
+    {
+        return $this->comentario;
+    }
+	
 
     /**
      * Set mdpaci

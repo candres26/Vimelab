@@ -62,6 +62,7 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 * Mejorar manejo de claves de usuario.	
 * Campo Género cambiado por Fecha en MdHist. 
 * Cambio en los parceadores Objeto->String de las entidades.
+* Agregar campo comentario en MdHist.
 
 # --- CAMBIOS EN PROGRESO --- #
 
@@ -100,6 +101,8 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 - Verificar vista de hoja de ruta, el formulario no se ve bien.
 - Llenar campo diccionario de GbVars para completar las traducciones.
 - Colocar mensaje de como usar la busqueda A: N:.
+
+- Recomendaciones es un diagnostico de codigo > 1900.
 
 # --- NOTAS --- #
 

@@ -1029,6 +1029,7 @@ CREATE TABLE `MdHist` (
   `fecha` date NOT NULL,
   `menstru` char(1) COLLATE utf8_unicode_ci DEFAULT NULL,
   `tipo` int(1) unsigned NOT NULL,
+  `comentario` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `MdPaci_id` (`MdPaci_id`),
   KEY `GbPers_id` (`GbPers_id`),
