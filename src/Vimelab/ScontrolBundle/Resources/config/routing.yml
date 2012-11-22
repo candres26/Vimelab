@@ -1344,3 +1344,15 @@ as_master_newHist:
 as_master_newCome:
     pattern: /asmaster/newcome
     defaults: { _controller: ScontrolBundle:AsMaster:newComentario }
+as_master_getPato:
+    pattern: /asmaster/getpato
+    defaults: { _controller: ScontrolBundle:AsMaster:getPatologia }
+as_master_newDiag:
+    pattern: /asmaster/newdiag
+    defaults: { _controller: ScontrolBundle:AsMaster:newDiagnostico }
+as_master_getDiag:
+    pattern: /asmaster/getdiag
+    defaults: { _controller: ScontrolBundle:AsMaster:getDiagnostico }
+as_master_delDiag:
+    pattern: /asmaster/deldiag
+    defaults: { _controller: ScontrolBundle:AsMaster:delDiagnostico }

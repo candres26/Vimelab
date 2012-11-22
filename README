@@ -75,7 +75,7 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 + Asistente de empresas, oculto en espera.
 + PRIORITARIO: Asistente maestro de revisión médica:
 	* Crear estandar de alamcenamiento.
-	+ Fijar validaciones de GUI [30%].
+	+ Fijar validaciones de GUI [40%].
 	+ Nuevo esquema de vistas [70%].
 	* Crear modelo de capturas parciales con IFRAME.
 	- Integrar GbVars para diccionarios.
@@ -90,13 +90,14 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 		! El campo menstruación aparece y desaparece segun el sexo.
 		! Hojas de ruta ordenadas por empresa.
 	- Integrar historia - m-medicos.
-	- Integrar historia - diagnosticos [20%].
-		- Agregar diagnostico.
-		- Eliminar diagnostico.
-		- Agregar recomendación.
-		- Eliminar recomendacón.
+	* Integrar historia - diagnosticos.
+		* Agregar diagnostico.
+		* Eliminar diagnostico.
+		* Agregar recomendación.
+		* Eliminar recomendacón.
 		* Editar comentarios.
-		
+		! En las tablas de busqueda y selección se da un click sobre el item escogido para seleccionar o cancelar, este se torna de fondo verdoso.
+		! Tras cualquier acción se desactiva la selección de items para evitar posibles inconsitencias.
 	- Integrar historia - m-tecnicos.
 	- Integrar historia - m-contables.
 	- Generar macro reporte.

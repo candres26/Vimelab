@@ -38,10 +38,26 @@
 	
 	<div class="csReco" id="jsReco">
 		<b>RECOMENDACIONES</b>
+		
+		<div class="csMiniZone">
+			<table id="jsRecoTab"><!-- AJAX --></table>
+		</div>
+		<div class="csMiniCtr">
+			<img id="jsRecoAdd" src="{{ asset('bundles/scontrol/imagenes/iconos/add.png') }}" title="Agregar">
+			<img id="jsRecoDel" src="{{ asset('bundles/scontrol/imagenes/iconos/rem.png') }}" title="Eliminar">
+		</div>
 	</div>
 	
 	<div class="csDiag" id="jsDiag">
 		<b>DIAGNOSTICOS</b>
+		
+		<div class="csMiniZone">
+			<table id="jsDiagTab"><!-- AJAX --></table>
+		</div>
+		<div class="csMiniCtr">
+			<img id="jsDiagAdd" src="{{ asset('bundles/scontrol/imagenes/iconos/add.png') }}" title="Agregar">
+			<img id="jsDiagDel" src="{{ asset('bundles/scontrol/imagenes/iconos/rem.png') }}" title="Eliminar">
+		</div>
 	</div>
 	
 	<div class="csCome" id="jsCome">
@@ -133,6 +149,58 @@
 	</div>
 	
 </div>
+
+<!--- Vista Parcial De Recomendaciones -->
+<div id="jsRecoPar" class="csParMini">
+	<table class="csParTi">
+		<tr><th>RECOMENDACIONES</th></tr>
+	</table>
+	
+	<div class="csParIn">
+		
+		<div id="jsRecoSc" class="csParSc">
+			<table>
+				<tr>
+					<th><input id="jsRecoCam" type="text" size="50"/></th>
+					<td><img id="jsRecoBsr" src="{{ asset('bundles/scontrol/imagenes/applet.png') }}" title="Buscar"></td>
+				</tr>
+			</table>
+		</div>
+		<div class="csParZn2"><table id="jsRecoZn"><!-- AJAX --></table></div>
+		
+		<div class="csParBb2">
+			<button id="jsRecoCre">AGREGAR</button>
+			<button id="jsRecoCx">CERRAR</button>
+		</div>
+	</div>
+	
+</div>
+
+<!--- Vista Parcial De Diagnosticos -->
+<div id="jsDiagPar" class="csParMini">
+	<table class="csParTi">
+		<tr><th>DIAGNOSTICOS</th></tr>
+	</table>
+	
+	<div class="csParIn">
+		
+		<div id="jsDiagSc" class="csParSc">
+			<table>
+				<tr>
+					<th><input id="jsDiagCam" type="text" size="50"/></th>
+					<td><img id="jsDiagBsr" src="{{ asset('bundles/scontrol/imagenes/applet.png') }}" title="Buscar"></td>
+				</tr>
+			</table>
+		</div>
+		<div class="csParZn2"><table id="jsDiagZn"><!-- AJAX --></table></div>
+		
+		<div class="csParBb2">
+			<button id="jsDiagCre">AGREGAR</button>
+			<button id="jsDiagCx">CERRAR</button>
+		</div>
+	</div>
+	
+</div>
 	
 {% endblock %}
 
@@ -145,8 +213,12 @@
 		/* -- RUTAS AJAX -- */
 		$_getPaci = "{{ path('as_master_getPaci') }}";
 		$_getRuta = "{{ path('as_master_getRuta') }}";
+		$_getPato = "{{ path('as_master_getPato') }}";
+		$_getDiag = "{{ path('as_master_getDiag') }}";
 		$_newHist = "{{ path('as_master_newHist') }}";
 		$_newCome = "{{ path('as_master_newCome') }}";
+		$_newDiag = "{{ path('as_master_newDiag') }}";
+		$_delDiag = "{{ path('as_master_delDiag') }}";
 		
 		function $init()
 		{
@@ -168,6 +240,26 @@
 			/* --- EVENTOS DE COMENTARIO -- */
 			gId('jsComeDta').onkeydown = tipCome;
 			gId('jsComeBtn').onclick = newCome;
+			
+			/* --- EVENTOS DE RECOMENDACIONES --- */
+			gId('jsRecoTab').onclick = selReco;
+			gId('jsRecoZn').onclick = selRecoSr;
+			gId('jsRecoAdd').onclick = vistaReco;
+			gId('jsRecoDel').onclick = delReco;
+			gId('jsRecoBsr').onclick = getReco;
+			gId('jsRecoCam').onkeypress = getReco;
+			gId('jsRecoCre').onclick = newReco;
+			gId('jsRecoCx').onclick = refreshReco;
+			
+			/* --- EVENTOS DE DIAGNOSTICOS --- */
+			gId('jsDiagTab').onclick = selDiag;
+			gId('jsDiagZn').onclick = selDiagSr;
+			gId('jsDiagAdd').onclick = vistaDiag;
+			gId('jsDiagDel').onclick = delDiag;
+			gId('jsDiagBsr').onclick = getDiag;
+			gId('jsDiagCam').onkeypress = getDiag;
+			gId('jsDiagCre').onclick = newDiag;
+			gId('jsDiagCx').onclick = refreshDiag;
 		}
 	
 	</script>

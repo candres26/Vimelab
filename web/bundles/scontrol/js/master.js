@@ -9,6 +9,10 @@ var $paciSex = "";
 var $histId = "";
 var $histTi = "";
 var $rutaId = "";
+var $recoIdx = -1;
+var $recoSrIdx = -1;
+var $diagIdx = -1;
+var $diagSrIdx = -1;
 
 function loadState(event)
 {
@@ -267,4 +271,341 @@ function setCome(response)
 function tipCome(event) 
 {
 	  gId("jsComeDta").style.background = "#FDC2C1";
+}
+
+function vistaReco(event)
+{
+	if($msModo == 1)
+		showPartial("jsReco");
+	else
+		popup("No se ha creado una Revisión!");
+}
+
+function getReco(event)
+{
+	if(event.type == "click" || (event.type == "keypress" && event.keyCode == 13))
+	{
+		ajaxAction
+		(
+			new Hash(["param => jsRecoCam", "*min => 1900", "*max => 1000000"]),
+			$_getPato,
+			setPato
+		);
+	}
+}
+
+function setPato(response)
+{
+	$recoSrIdx = -1;
+	
+	if(response.responseText != "")
+	{
+		
+		fil = response.responseText.split("|-|");
+		
+		cont = ""
+		
+		for(i = 0; i < fil.length; i ++)
+		{
+			cam = fil[i].split("=>");
+			cont += "<tr><th>"+cam[0]+"</th><td>"+cam[1]+"</td><td>"+cam[2].toUpperCase()+"</td></tr>";
+		}	
+	}
+	else
+		cont = "<b>NO SE HALLARON COINCIDENCIAS</B>";
+	
+	gId("jsRecoZn").innerHTML = cont;
+}
+
+function newReco(event)
+{
+	if($recoSrIdx != -1)
+	{
+		ajaxAction
+		(
+			new Hash(["*jsHistId => "+$histId, "*jsPatoId => "+$recoSrIdx]),
+			$_newDiag,
+			setReco
+		);
+	}
+	else
+		popup("Debe selecionar una Recomendación!");
+}
+
+function setReco(response)
+{
+	if(response.responseText == "0")
+		popup("Recomendación creada con exito!");
+	else
+		popup("Imposible crear Recomendación!");
+	
+	$recoSrIdx = -1;
+	tab = gId("jsRecoZn");
+	for(i = 0; i < tab.rows.length; i++)
+		tab.rows[i].style.background = "";
+}
+
+function refreshReco(event)
+{	
+	$recoIdx = -1;
+	ajaxAction
+	(
+		new Hash(["*param => "+$histId, "*min => 1900", "*max => 1000000"]),
+		$_getDiag,
+		showReco
+	);
+}
+
+function showReco(response)
+{
+	cont = ""
+	
+	if(response.responseText != "")
+	{
+		fil = response.responseText.split("|-|");
+		
+		for(i = 0; i < fil.length; i ++)
+		{
+			cam = fil[i].split("=>");
+			cont += "<tr><th>"+cam[0]+"</th><td>"+cam[1]+"</td></tr>";
+		}	
+	}
+	
+	gId("jsRecoTab").innerHTML = cont;
+	hide("vime-vitral");
+	hide("jsRecoPar");
+}
+
+function delReco(event)
+{
+	if($recoIdx != -1)
+	{
+		ajaxAction
+		(
+			new Hash(["*param => "+$recoIdx]),
+			$_delDiag,
+			isDelReco
+		);
+	}
+	else
+		popup("Debe selcionar una Recomendación!");
+}
+
+function isDelReco(response)
+{
+	if(response.responseText = "0")
+		popup("Recomendación eliminada con exito!");
+	else
+		popup("Imposble eliminar Recomendación!");
+		
+	$recoIdx = -1;
+	refreshReco();
+}
+
+function selReco(event)
+{
+	for(i = 0; i < this.rows.length; i++)
+		this.rows[i].style.background = "";
+	
+	row = event.target.parentNode;
+	tmp = row.cells[0].innerHTML;
+	
+	if(tmp != $recoIdx)
+	{
+		$recoIdx = tmp;
+		row.style.background = "#C6DCC6";
+	}
+	else
+	{
+		$recoIdx = -1;
+		row.style.background = "";
+	}
+}
+
+function selRecoSr(event)
+{
+	for(i = 0; i < this.rows.length; i++)
+		this.rows[i].style.background = "";
+	
+	row = event.target.parentNode;
+	tmp = row.cells[0].innerHTML;
+	
+	if(tmp != $recoSrIdx)
+	{
+		$recoSrIdx = tmp;
+		row.style.background = "#C6DCC6";
+	}
+	else
+	{
+		$recoSrIdx = -1;
+		row.style.background = "";
+	}
+}
+
+function vistaDiag(event)
+{
+	if($msModo == 1)
+		showPartial("jsDiag");
+	else
+		popup("No se ha creado una Revisión!");
+}
+
+function getDiag(event)
+{
+	if(event.type == "click" || (event.type == "keypress" && event.keyCode == 13))
+	{
+		ajaxAction
+		(
+			new Hash(["param => jsDiagCam", "*min => 0", "*max => 1900"]),
+			$_getPato,
+			setPato2
+		);
+	}
+}
+
+function setPato2(response)
+{
+	$diagSrIdx	= -1;
+	if(response.responseText != "")
+	{
+		
+		fil = response.responseText.split("|-|");
+		
+		cont = ""
+		
+		for(i = 0; i < fil.length; i ++)
+		{
+			cam = fil[i].split("=>");
+			cont += "<tr><th>"+cam[0]+"</th><td>"+cam[1]+"</td><td>"+cam[2].toUpperCase()+"</td></tr>";
+		}	
+	}
+	else
+		cont = "<b>NO SE HALLARON COINCIDENCIAS</B>";
+	
+	gId("jsDiagZn").innerHTML = cont;
+}
+
+function newDiag(event)
+{
+	if($diagSrIdx != -1)
+	{
+		ajaxAction
+		(
+			new Hash(["*jsHistId => "+$histId, "*jsPatoId => "+$diagSrIdx]),
+			$_newDiag,
+			setDiag
+		);
+	}
+	else
+		popup("Debe selecionar un Diagnostico!");
+}
+
+function setDiag(response)
+{
+	if(response.responseText == "0")
+		popup("Diagnostico creado con exito!");
+	else
+		popup("Imposible crear Diagnostico!");
+	
+	$diagSrIdx = -1;
+	tab = gId("jsDiagZn");
+	for(i = 0; i < tab.rows.length; i++)
+		tab.rows[i].style.background = "";
+}
+
+function refreshDiag(event)
+{	
+	$diagIdx = -1;
+	ajaxAction
+	(
+		new Hash(["*param => "+$histId, "*min => 0", "*max => 1900"]),
+		$_getDiag,
+		showDiag
+	);
+}
+
+function showDiag(response)
+{
+	cont = ""
+	
+	if(response.responseText != "")
+	{
+		fil = response.responseText.split("|-|");
+		
+		for(i = 0; i < fil.length; i ++)
+		{
+			cam = fil[i].split("=>");
+			cont += "<tr><th>"+cam[0]+"</th><td>"+cam[1]+"</td></tr>";
+		}	
+	}
+	
+	gId("jsDiagTab").innerHTML = cont;
+	hide("vime-vitral");
+	hide("jsDiagPar");
+}
+
+function delDiag(event)
+{
+	if($diagIdx != -1)
+	{
+		ajaxAction
+		(
+			new Hash(["*param => "+$diagIdx]),
+			$_delDiag,
+			isDelDiag
+		);
+	}
+	else
+		popup("Debe selcionar un Diagnostico!");
+}
+
+function isDelDiag(response)
+{
+	if(response.responseText = "0")
+		popup("Diagnostico eliminado con exito!");
+	else
+		popup("Imposble eliminar Diagnostico!");
+		
+	$recoIdx = -1;
+	refreshDiag();
+}
+
+function selDiag(event)
+{
+	for(i = 0; i < this.rows.length; i++)
+		this.rows[i].style.background = "";
+	
+	row = event.target.parentNode;
+	tmp = row.cells[0].innerHTML;
+	
+	if(tmp != $diagIdx)
+	{
+		$diagIdx = tmp;
+		row.style.background = "#C6DCC6";
+	}
+	else
+	{
+		$diagIdx = -1;
+		row.style.background = "";
+	}
+}
+
+function selDiagSr(event)
+{
+	for(i = 0; i < this.rows.length; i++)
+		this.rows[i].style.background = "";
+	
+	row = event.target.parentNode;
+	tmp = row.cells[0].innerHTML;
+	
+	if(tmp != $diagSrIdx)
+	{
+		$diagSrIdx = tmp;
+		row.style.background = "#C6DCC6";
+	}
+	else
+	{
+		$diagSrIdx = -1;
+		row.style.background = "";
+	}
 }
