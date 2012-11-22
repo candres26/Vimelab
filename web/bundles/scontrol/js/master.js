@@ -9,6 +9,7 @@ var $paciSex = "";
 var $histId = "";
 var $histTi = "";
 var $rutaId = "";
+var $audiId = "";
 var $recoIdx = -1;
 var $recoSrIdx = -1;
 var $diagIdx = -1;
@@ -28,6 +29,20 @@ function loadState(event)
 			gId("jsPaciScCam").value = par[2];
 			getPaci(event);
 			canPaci(); 
+		}
+		else if(this.id == "ifAudi")
+		{
+			$audiId = par[0];
+			hide("jsAudiCre");
+			gId('jsAudiLed').style.background = "#0000FF";
+		}
+	}
+	else
+	{
+		if(this.id == "ifAudi")
+		{
+			gIf("ifAudi", "vimelab_scontrolbundle_mdauditype_mdhist").value = $histId;
+			showPartial("jsAudi");
 		}
 	}
 }
@@ -151,7 +166,7 @@ function vistaHist(event)
 			getRuta();
 		}
 		else
-			popup("Ya ha creado una Recisión!");
+			popup("Ya ha creado una Revisión!");
 	}
 	else
 		popup("Debe selecionar un paciente!");	
@@ -234,6 +249,10 @@ function setHist(response)
 		show("jsReco");
 		show("jsDiag");
 		show("jsCome");
+		show("jsAudi");
+		show("jsVisu");
+		show("jsBiom");
+		show("jsEspi");
 		
 		$msModo = 1;
 		
@@ -608,4 +627,19 @@ function selDiagSr(event)
 		$diagSrIdx = -1;
 		row.style.background = "";
 	}
+}
+
+/* ##################################### */
+
+function vistaAudi(event)
+{
+	if($audiId == "")
+		gId("ifAudi").contentWindow.location.reload();
+	else
+		showPartial(this.id);
+}
+
+function newAudi(event)
+{
+	ifSimularClick("ifAudi", "sender");
 }

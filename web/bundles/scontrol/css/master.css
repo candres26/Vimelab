@@ -19,44 +19,40 @@
 	background: #f2f2f2;
 }
 
+.csIfra2
+{
+	overflow: auto;
+	position: absolute;
+	top: 0.5%;
+	left: 0.5%;
+	width: 99.5%;
+	height: 85%;
+	border: 0px solid black;
+	background: #f2f2f2;
+}
+
 .csPers
 {
-	position: absolute;
-	overflow: hidden;
-	top: 0.5%;
 	left: 1%;
-	width: 30%;
-	height: 12%;
-	background: #FFFFFF;
-	box-shadow: 2px 2px 5px #203982;
-	border: 2px solid #203982;
-	border-radius: 10px;
-	text-align: center; 
 }
 
 .csPaci
 {
-	cursor: pointer;
-	position: absolute;
-	overflow: hidden;
-	top: 0.5%;
 	right: 1%;
-	width: 30%;
-	height: 12%;
-	background: #FFFFFF;
-	box-shadow: 2px 2px 5px #203982;
-	border: 2px solid #203982;
-	border-radius: 10px;
-	text-align: center; 
+	cursor: pointer;
 }
 
 .csHist
 {
+	left: 35%;
 	cursor: pointer;
+}
+
+.csPers, .csPaci, .csHist
+{
 	position: absolute;
 	overflow: hidden;
 	top: 0.5%;
-	left: 35%;
 	width: 30%;
 	height: 12%;
 	background: #FFFFFF;
@@ -86,43 +82,25 @@
 
 .csReco
 {
-	display: none;
-	position: absolute;
-	overflow: hidden;
-	top: 15%;
 	left: 1%;
-	width: 30%;
-	height: 20%;
-	background: #FFFFFF;
-	box-shadow: 2px 2px 5px #203982;
-	border: 2px solid #203982;
-	border-radius: 10px;
-	text-align: center; 
 }
 
 .csDiag
 {
-	display: none;
-	position: absolute;
-	overflow: hidden;
-	top: 15%;
 	left: 35%;
-	width: 30%;
-	height: 20%;
-	background: #FFFFFF;
-	box-shadow: 2px 2px 5px #203982;
-	border: 2px solid #203982;
-	border-radius: 10px;
-	text-align: center; 
 }
 
 .csCome
+{
+	right: 1%;
+}
+
+.csReco, .csDiag, .csCome
 {
 	display: none;
 	position: absolute;
 	overflow: hidden;
 	top: 15%;
-	right: 1%;
 	width: 30%;
 	height: 20%;
 	background: #FFFFFF;
@@ -148,6 +126,11 @@
 	right: 5%;
 	width: 8%;
 	cursor: pointer;
+}
+
+.csCome img:hover
+{
+	opacity: 0.8;
 }
 
 .csReco b, .csDiag b, .csCome b
@@ -214,8 +197,14 @@
 
 .csMiniCtr img
 {
+	z-index: -1;
 	display: block;
 	cursor: pointer;
+}
+
+.csMiniCtr img:hover
+{
+	opacity: 0.8;
 }
 
 .csPar
@@ -409,4 +398,89 @@
 .csParZn th, .csParZn2 th
 {
 	display: none;
+}
+
+
+/* -- ######################################################################################################## -- */
+
+.csAudi
+{
+	left: 1%;
+}
+
+.csVisu
+{
+	left: 27%;
+}
+
+.csBiom
+{
+	right: 27%;
+}
+
+.csEspi
+{
+	right: 1%;
+}
+
+.csAudi, .csVisu, .csBiom, .csEspi
+{
+	display: none;
+	position: absolute;
+	overflow: hidden;
+	top: 38%;
+	width: 20%;
+	height: 10%;
+	background: #FFFFFF;
+	box-shadow: 2px 2px 5px #203982;
+	border: 5px outset #203982;
+	border-radius: 10px;
+	text-align: center;
+	cursor: pointer; 
+}
+
+.csAudi div, .csVisu div, .csBiom div, .csEspi div
+{
+	position: absolute;
+	top: 10%;
+	left: 46%;
+	width: 8%;
+	height: 32%;
+	border: 1px solid #AAAAAA;
+	border-radius: 50px;
+	background: red;
+}
+
+.csAudi b, .csVisu b, .csBiom b, .csEspi b
+{
+	position: absolute;
+	font-size: 1.2em;
+	top: 50%;
+	left: 0%;
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+.csPaci:hover, .csHist:hover, .csAudi:hover, .csVisu:hover, .csBiom:hover, .csEspi:hover
+{
+	box-shadow: 5px 5px 10px #0000ff;
+}
+
+.csPaci:active, .csHist:active, .csAudi:active, .csVisu:active, .csBiom:active, .csEspi:active
+{
+	background: #000000;
+	color: #FFFFFF;
+	font-style: italic;
+}
+
+.csPaci:active, .csHist:active
+{
+	border: 2px solid #FFFFFF;
+}
+
+.csAudi:active, .csVisu:active, .csBiom:active, .csEspi:active
+{
+	border: 5px inset #FFFFFF;
+	box-shadow: 2px 2px 5px #203982;
 }

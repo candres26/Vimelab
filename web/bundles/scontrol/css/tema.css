@@ -514,3 +514,17 @@ h2
  	border-radius: 15px;
  	padding: 5px;
 }
+
+
+/* Para master */
+.masterIf
+{
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 98%;
+	height: 98%;
+	overflow: visible;
+	border: 0px solid black;
+	background: #f2f2f2;
+}

@@ -61,11 +61,32 @@
 	</div>
 	
 	<div class="csCome" id="jsCome">
-		<b>COMENTRIOS</b><br>
+		<b>COMENTARIOS</b><br>
 		<textarea id="jsComeDta">&nbsp;</textarea>
 		<img id="jsComeBtn" src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar">
 	</div>
-		
+	
+	<div id="jsAudi" class="csAudi" title="Click Para Crear">
+		<b>AUDIOMETRÍA</b>
+		<div id="jsAudiLed"><!-- COLOR BALL --></div>
+	</div>
+	
+	<div id="jsVisu" class="csVisu" title="Click Para Crear">
+		<b>AGUDEZA VISUAL</b>
+		<div id="jsVisuLed"><!-- COLOR BALL --></div>
+	</div>
+	
+	<div id="jsBiom" class="csBiom" title="Click Para Crear">
+		<b>BIOMETRÍA</b>
+		<div id="jsBiomLed"><!-- COLOR BALL --></div>
+	</div>
+	
+	<div id="jsEspi" class="csEspi" title="Click Para Crear">
+		<b>ESPIROMETRÍA</b>
+		<div id="jsEspiLed"><!-- COLOR BALL --></div>
+	</div>
+	
+	
 </div>
 
 <!--- Vista Parcial De Paciente -->
@@ -201,6 +222,24 @@
 	</div>
 	
 </div>
+
+<!--- Vista Parcial De Audiometria -->
+<div id="jsAudiPar" class="csParMini">
+	<table class="csParTi">
+		<tr><th>AUDIOMETRÍA</th></tr>
+	</table>
+	
+	<div class="csParIn">
+		
+		<iframe id="ifAudi" class="csIfra2" src="{{ path('mdaudi_new', { 'lv': 2 }) }}"><!-- FRAME --></iframe>
+		
+		<div class="csParBb2">
+			<button id="jsAudiCre">CREAR</button>
+			<button id="jsAudiCx">CERRAR</button>
+		</div>
+	</div>
+	
+</div>
 	
 {% endblock %}
 
@@ -260,6 +299,12 @@
 			gId('jsDiagCam').onkeypress = getDiag;
 			gId('jsDiagCre').onclick = newDiag;
 			gId('jsDiagCx').onclick = refreshDiag;
+			
+			/* --- EVENTOS DE AUDIOMETRIA --- */
+			gId('ifAudi').onload = loadState;
+			gId('jsAudi').onclick = vistaAudi;
+			gId('jsAudiCre').onclick = newAudi;
+			gId('jsAudiCx').onclick = hidePartial;
 		}
 	
 	</script>
