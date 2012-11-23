@@ -258,6 +258,24 @@
 	</div>
 	
 </div>
+
+<!--- Vista Parcial De Biometría -->
+<div id="jsBiomPar" class="csParTal">
+	<table class="csParTi">
+		<tr><th>BIOMETRÍA</th></tr>
+	</table>
+	
+	<div class="csParIn">
+		
+		<iframe id="ifBiom" class="csIfra2" src="{{ path('mdbiom_new', { 'lv': 2 }) }}"><!-- FRAME --></iframe>
+		
+		<div class="csParBb2">
+			<button id="jsBiomCre">CREAR</button>
+			<button id="jsBiomCx">CERRAR</button>
+		</div>
+	</div>
+	
+</div>
 	
 {% endblock %}
 
@@ -329,6 +347,12 @@
 			gId('jsVisu').onclick = vistaVisu;
 			gId('jsVisuCre').onclick = newVisu;
 			gId('jsVisuCx').onclick = hidePartial;
+			
+			/* --- EVENTOS DE BIOMETRIA --- */
+			gId('ifBiom').onload = loadState;
+			gId('jsBiom').onclick = vistaBiom;
+			gId('jsBiomCre').onclick = newBiom;
+			gId('jsBiomCx').onclick = hidePartial;
 		}
 	
 	</script>

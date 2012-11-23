@@ -644,14 +644,14 @@ mdbiom:
     pattern:  /mdbiom
     defaults: { _controller: ScontrolBundle:Mdbiom:index }
 mdbiom_show:
-    pattern:  /mdbiom/{id}/show
-    defaults: { _controller: ScontrolBundle:Mdbiom:show }
+    pattern:  /mdbiom/{id}/show/{lv}
+    defaults: { _controller: ScontrolBundle:Mdbiom:show, lv : 1 }
 mdbiom_new:
-    pattern:  /mdbiom/new
-    defaults: { _controller: ScontrolBundle:Mdbiom:new }
+    pattern:  /mdbiom/new/{lv}
+    defaults: { _controller: ScontrolBundle:Mdbiom:new, lv : 1 }
 mdbiom_create:
-    pattern:  /mdbiom/create
-    defaults: { _controller: ScontrolBundle:Mdbiom:create }
+    pattern:  /mdbiom/create/{lv}
+    defaults: { _controller: ScontrolBundle:Mdbiom:create, lv : 1 }
 mdbiom_edit:
     pattern:  /mdbiom/{id}/edit
     defaults: { _controller: ScontrolBundle:Mdbiom:edit }

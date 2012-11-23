@@ -92,8 +92,9 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 		! El campo menstruación aparece y desaparece segun el sexo.
 		! Hojas de ruta ordenadas por empresa.
 	+ Integrar historia - m-medicos.
-		* Intregracion con Audiomtría.
-		* Integrar con Agudeza Visual.
+		* Integracion con Audiomtría.
+		* Integración con Agudeza Visual.
+		* Integración con Biometría.
 		! Los botones indican los modulos parciales, con un click se abre la vista parcial.
 		! El led rojo indica que no se ha completado, al terminar el formulario se vuelve azul.
 		! Para los modulos que solo permiten un registro (EJ: Audiometria), se oculta automaticamente el boton de crear.

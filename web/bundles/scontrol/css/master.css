@@ -255,6 +255,22 @@
 	display: none;
 }
 
+.csParTal
+{
+	background: #FFFFFF;
+	position: absolute;
+	width: 50%;
+	height: 80%;
+	left: 25%;
+	top: 10%;
+	z-index: 10;
+	opacity: 1;
+	box-shadow: 5px 5px 10px #203982;
+	border: 2px solid #203982;
+	border-radius: 10px;
+	display: none;
+}
+
 .csParForm
 {
 	width: 90%;
