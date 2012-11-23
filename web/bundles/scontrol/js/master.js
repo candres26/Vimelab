@@ -12,6 +12,7 @@ var $rutaId = "";
 var $audiId = "";
 var $visuId = "";
 var $biomId = "";
+var $espiId = "";
 var $recoIdx = -1;
 var $recoSrIdx = -1;
 var $diagIdx = -1;
@@ -50,6 +51,12 @@ function loadState(event)
 			hide("jsBiomCre");
 			gId('jsBiomLed').style.background = "#0000FF";
 		}
+		else if(this.id == "ifEspi")
+		{
+			$espiId = par[0];
+			hide("jsEspiCre");
+			gId('jsEspiLed').style.background = "#0000FF";
+		}
 	}
 	else
 	{
@@ -67,6 +74,11 @@ function loadState(event)
 		{
 			gIf("ifBiom", "vimelab_scontrolbundle_mdbiomtype_mdhist").value = $histId;
 			showPartial("jsBiom");
+		}
+		else if(this.id == "ifEspi")
+		{
+			gIf("ifEspi", "vimelab_scontrolbundle_mdespitype_mdhist").value = $histId;
+			showPartial("jsEspi");
 		}
 	}
 }
@@ -692,4 +704,17 @@ function vistaBiom(event)
 function newBiom(event)
 {
 	ifSimularClick("ifBiom", "sender");
+}
+
+function vistaEspi(event)
+{
+	if($espiId == "")
+		gId("ifEspi").contentWindow.location.reload();
+	else
+		showPartial(this.id);
+}
+
+function newEspi(event)
+{
+	ifSimularClick("ifEspi", "sender");
 }

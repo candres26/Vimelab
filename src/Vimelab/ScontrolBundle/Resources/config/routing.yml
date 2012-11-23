@@ -698,14 +698,14 @@ mdespi:
     pattern:  /mdespi
     defaults: { _controller: ScontrolBundle:Mdespi:index }
 mdespi_show:
-    pattern:  /mdespi/{id}/show
-    defaults: { _controller: ScontrolBundle:Mdespi:show }
+    pattern:  /mdespi/{id}/show/{lv}
+    defaults: { _controller: ScontrolBundle:Mdespi:show, lv : 1 }
 mdespi_new:
-    pattern:  /mdespi/new
-    defaults: { _controller: ScontrolBundle:Mdespi:new }
+    pattern:  /mdespi/new/{lv}
+    defaults: { _controller: ScontrolBundle:Mdespi:new, lv : 1 }
 mdespi_create:
-    pattern:  /mdespi/create
-    defaults: { _controller: ScontrolBundle:Mdespi:create }
+    pattern:  /mdespi/create/{lv}
+    defaults: { _controller: ScontrolBundle:Mdespi:create, lv : 1 }
 mdespi_edit:
     pattern:  /mdespi/{id}/edit
     defaults: { _controller: ScontrolBundle:Mdespi:edit }

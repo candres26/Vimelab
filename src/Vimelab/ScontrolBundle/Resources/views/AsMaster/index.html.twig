@@ -276,6 +276,24 @@
 	</div>
 	
 </div>
+
+<!--- Vista Parcial De Biometría -->
+<div id="jsEspiPar" class="csParMini">
+	<table class="csParTi">
+		<tr><th>ESPIROMETRÍA</th></tr>
+	</table>
+	
+	<div class="csParIn">
+		
+		<iframe id="ifEspi" class="csIfra2" src="{{ path('mdespi_new', { 'lv': 2 }) }}"><!-- FRAME --></iframe>
+		
+		<div class="csParBb2">
+			<button id="jsEspiCre">CREAR</button>
+			<button id="jsEspiCx">CERRAR</button>
+		</div>
+	</div>
+	
+</div>
 	
 {% endblock %}
 
@@ -353,6 +371,12 @@
 			gId('jsBiom').onclick = vistaBiom;
 			gId('jsBiomCre').onclick = newBiom;
 			gId('jsBiomCx').onclick = hidePartial;
+			
+			/* --- EVENTOS DE ESPIROMETRIA --- */
+			gId('ifEspi').onload = loadState;
+			gId('jsEspi').onclick = vistaEspi;
+			gId('jsEspiCre').onclick = newEspi;
+			gId('jsEspiCx').onclick = hidePartial;
 		}
 	
 	</script>
