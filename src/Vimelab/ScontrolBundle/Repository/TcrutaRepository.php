@@ -38,4 +38,11 @@ class TcrutaRepository extends EntityRepository
         $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Tcruta m JOIN m.ctcont l WHERE l.id LIKE '%$parametro%' or m.estado LIKE '%$parametro%' ORDER BY m.id ASC");
         return $querry->getResult();
     }
+	
+	public function getForEmpresa($par)
+	{
+		$em = $this->getEntityManager();
+        $querry = $em->createQuery("SELECT r FROM ScontrolBundle:Tcruta r JOIN r.ctcont c JOIN c.gbempr e WHERE e.id = '$par' ORDER BY r.id ASC");
+        return $querry->getResult();
+	}
 }

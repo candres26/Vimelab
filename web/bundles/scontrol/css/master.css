@@ -1,0 +1,486 @@
+.csMain
+{
+	position: absolute;
+	top: 1%;
+	width: 98%; 
+	height: 98%;
+}
+
+.csIfra
+{
+	overflow: auto;
+	position: absolute;
+	display: none;
+	top: 0.5%;
+	left: 0.5%;
+	width: 99.5%;
+	height: 92%;
+	border: 0px solid black;
+	background: #f2f2f2;
+}
+
+.csIfra2
+{
+	overflow: auto;
+	position: absolute;
+	top: 0.5%;
+	left: 0.5%;
+	width: 99.5%;
+	height: 85%;
+	border: 0px solid black;
+	background: #f2f2f2;
+}
+
+.csPers
+{
+	left: 1%;
+}
+
+.csPaci
+{
+	right: 1%;
+	cursor: pointer;
+}
+
+.csHist
+{
+	left: 35%;
+	cursor: pointer;
+}
+
+.csPers, .csPaci, .csHist
+{
+	position: absolute;
+	overflow: hidden;
+	top: 0.5%;
+	width: 30%;
+	height: 12%;
+	background: #FFFFFF;
+	box-shadow: 2px 2px 5px #203982;
+	border: 2px solid #203982;
+	border-radius: 10px;
+	text-align: center; 
+}
+
+.csPers table, .csPaci table, .csHist table
+{
+	width: 80%;
+	height: 100%;
+	border-collapse: collapse;
+	margin: auto;
+}
+
+.csPers td, .csPaci td, .csHist td
+{
+	text-align: left; 
+}
+
+.csPers th, .csPaci th, .csHist th
+{
+	text-align: right; 
+}
+
+.csReco
+{
+	left: 1%;
+}
+
+.csDiag
+{
+	left: 35%;
+}
+
+.csCome
+{
+	right: 1%;
+}
+
+.csReco, .csDiag, .csCome
+{
+	display: none;
+	position: absolute;
+	overflow: hidden;
+	top: 15%;
+	width: 30%;
+	height: 20%;
+	background: #FFFFFF;
+	box-shadow: 2px 2px 5px #203982;
+	border: 2px solid #203982;
+	border-radius: 10px;
+	text-align: center; 
+}
+
+.csCome textarea
+{
+	position: absolute;
+	top: 16%;
+	left: 5%;
+	width: 80%;
+	height: 77%;
+}
+
+.csCome img
+{
+	position: absolute;
+	top: 16%;
+	right: 5%;
+	width: 8%;
+	cursor: pointer;
+}
+
+.csCome img:hover
+{
+	opacity: 0.8;
+}
+
+.csReco b, .csDiag b, .csCome b
+{
+	position: absolute;
+	border-bottom: 1px solid #203982;
+	display: block;
+	top: 1%;
+	height: 12%;
+	left: 5%;
+	width: 90%;
+}
+
+.csMiniZone
+{
+	position: absolute;
+	overflow: auto;
+	top: 16%;
+	left: 5%;
+	width: 80%;
+	height: 80%;
+	background: #FFFFFF;
+	border: 1px solid #203982;
+	border-collapse: collapse;
+}
+
+.csMiniZone table
+{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.csMiniZone th
+{
+	display: none;
+}
+
+.csMiniZone td
+{
+	border-bottom: 1px solid #203982;
+}
+
+.csMiniZone tr
+{
+	cursor: pointer;
+	background: #F2F2F2;
+}
+
+.csMiniZone tr:hover
+{
+	background: #A8BBFA;
+}
+
+.csMiniCtr
+{
+	position: absolute;
+	overflow: hidden;
+	top: 16%;
+	right: 5%;
+	height: 82%;
+	width: 10%;
+	text-align: center;
+}
+
+.csMiniCtr img
+{
+	z-index: -1;
+	display: block;
+	cursor: pointer;
+}
+
+.csMiniCtr img:hover
+{
+	opacity: 0.8;
+}
+
+.csPar
+{
+	background: #FFFFFF;
+	position: absolute;
+	width: 94%;
+	height: 94%;
+	left: 3%;
+	top: 3%;
+	z-index: 10;
+	opacity: 1;
+	box-shadow: 5px 5px 10px #203982;
+	border: 2px solid #203982;
+	border-radius: 10px;
+	display: none;
+}
+
+.csParMini
+{
+	background: #FFFFFF;
+	position: absolute;
+	width: 50%;
+	height: 50%;
+	left: 25%;
+	top: 25%;
+	z-index: 10;
+	opacity: 1;
+	box-shadow: 5px 5px 10px #203982;
+	border: 2px solid #203982;
+	border-radius: 10px;
+	display: none;
+}
+
+.csParForm
+{
+	width: 90%;
+	margin: auto;
+}
+
+.csParForm th
+{
+	text-align: right;
+	width: 50%;
+}
+
+.csParForm td
+{
+	text-align: left;
+}
+
+.csParIn
+{
+	position: absolute;
+	overflow: auto;
+	background: #f2f2f2;
+	border: 1px solid #203982;
+	top: 8%;
+	left: 2%;
+	width: 96%;
+	height: 90%;
+	text-align: center;
+}
+
+.csParTi
+{
+	position: absolute;
+	top: 0%;
+	left: 2%;
+	width: 98%;
+	height: 7%;
+	border-collapse: collapse;
+}
+
+.csParTi td
+{
+	border-left: 1px solid #CCCCCC;
+	border-bottom: 1px inset #CCCCCC;
+	cursor: pointer;
+	width: 4%;
+	background: url("../imagenes/iconos/close.png") no-repeat center;
+}
+
+.csParTi td:hover
+{
+	opacity: 0.8;	
+}
+
+.csParBb
+{
+	position: absolute;
+	display: none;
+	bottom: 0.5%;
+	left: 1%;
+	width: 98%;
+}
+
+.csParBb2
+{
+	position: absolute;
+	bottom: 0.5%;
+	left: 1%;
+	width: 98%;
+	text-align: right;
+}
+
+.csParBb button, .csParBb2 button
+{
+	background-color: #203982; 
+	color: #fff;
+	border-radius: 10px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.csParBb button:hover, .csParBb2 button:hover
+{
+	background-color: #FFFFFF; 
+	color: #000000;
+}
+
+.csParSc
+{
+	position: absolute;
+	top: 0.5%;
+	left: 1%;
+	width: 98%;
+	height: 5%;
+}
+
+.csParSc table
+{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.csParSc img
+{
+	cursor: pointer;
+}
+
+.csParZn
+{
+	position: absolute;
+	overflow: auto;
+	border: 1px solid #203982;
+	background: #FFFFFF;
+	top: 10%;
+	left: 1%;
+	width: 98%;
+	height: 89%;
+	text-align: center;
+}
+
+.csParZn2
+{
+	position: absolute;
+	overflow: auto;
+	border: 1px solid #203982;
+	background: #FFFFFF;
+	top: 15%;
+	left: 1%;
+	width: 98%;
+	height: 70%;
+	text-align: center;
+}
+
+.csParZn table, .csParZn2 table
+{
+	width: 98%;
+	margin: auto;
+	border-collapse: collapse;
+	cursor: pointer;
+}
+
+.csParZn td, .csParZn2 td
+{
+	border: 1px solid #203982;	
+}
+
+.csParZn tr, .csParZn2 tr
+{
+	background: #F2F2F2;
+}
+
+.csParZn tr:hover, .csParZn2 tr:hover
+{
+	background: #A8BBFA;	
+}
+
+.csParZn th, .csParZn2 th
+{
+	display: none;
+}
+
+
+/* -- ######################################################################################################## -- */
+
+.csAudi
+{
+	left: 1%;
+}
+
+.csVisu
+{
+	left: 27%;
+}
+
+.csBiom
+{
+	right: 27%;
+}
+
+.csEspi
+{
+	right: 1%;
+}
+
+.csAudi, .csVisu, .csBiom, .csEspi
+{
+	display: none;
+	position: absolute;
+	overflow: hidden;
+	top: 38%;
+	width: 20%;
+	height: 10%;
+	background: #FFFFFF;
+	box-shadow: 2px 2px 5px #203982;
+	border: 5px outset #203982;
+	border-radius: 10px;
+	text-align: center;
+	cursor: pointer; 
+}
+
+.csAudi div, .csVisu div, .csBiom div, .csEspi div
+{
+	position: absolute;
+	top: 10%;
+	left: 46%;
+	width: 8%;
+	height: 32%;
+	border: 1px solid #AAAAAA;
+	border-radius: 50px;
+	background: red;
+}
+
+.csAudi b, .csVisu b, .csBiom b, .csEspi b
+{
+	position: absolute;
+	font-size: 1.2em;
+	top: 50%;
+	left: 0%;
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+.csPaci:hover, .csHist:hover, .csAudi:hover, .csVisu:hover, .csBiom:hover, .csEspi:hover
+{
+	box-shadow: 5px 5px 10px #0000ff;
+}
+
+.csPaci:active, .csHist:active, .csAudi:active, .csVisu:active, .csBiom:active, .csEspi:active
+{
+	background: #000000;
+	color: #FFFFFF;
+	font-style: italic;
+}
+
+.csPaci:active, .csHist:active
+{
+	border: 2px solid #FFFFFF;
+}
+
+.csAudi:active, .csVisu:active, .csBiom:active, .csEspi:active
+{
+	border: 5px inset #FFFFFF;
+	box-shadow: 2px 2px 5px #203982;
+}

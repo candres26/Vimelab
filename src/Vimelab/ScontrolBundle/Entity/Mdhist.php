@@ -22,11 +22,11 @@ class Mdhist
     private $id;
 
     /**
-     * @var string genero
+     * @var date fecha
      *
-     * @ORM\Column(name="genero", type="string", length=1, nullable=false)
+     * @ORM\Column(name="fecha", type="date", length=1, nullable=false)
      */
-    private $genero;
+    private $fecha;
 
     /**
      * @var string menstru
@@ -41,6 +41,14 @@ class Mdhist
      * @ORM\Column(name="tipo", type="integer", nullable=false)
      */
     private $tipo;
+	
+	/**
+     * @var text $comentario
+     *
+     * @ORM\Column(name="comentario", type="text", nullable=true)
+     */
+    private $comentario;
+	
 
     /**
      * @var Mdpaci
@@ -85,23 +93,23 @@ class Mdhist
     }
 
     /**
-     * Set genero
+     * Set fecha
      *
-     * @param string $genero
+     * @param date $fecha
      */
-    public function setGenero($genero)
+    public function setFecha($fecha)
     {
-        $this->genero = $genero;
+        $this->fecha = $fecha;
     }
 
     /**
-     * Get genero
+     * Get fecha
      *
-     * @return string
+     * @return fecha
      */
-    public function getGenero()
+    public function getFecha()
     {
-        return $this->genero;
+        return $this->fecha;
     }
 
     /**
@@ -143,6 +151,27 @@ class Mdhist
     {
         return $this->tipo;
     }
+	
+	 /**
+     * Set comentario
+     *
+     * @param text $comentario
+     */
+    public function setComentario($comentario)
+    {
+        $this->comentario = $comentario;
+    }
+
+    /**
+     * Get comentario
+     *
+     * @return text
+     */
+    public function getComentario()
+    {
+        return $this->comentario;
+    }
+	
 
     /**
      * Set mdpaci

@@ -25,31 +25,103 @@ En caso de no tener el archivo app/config/parameters.ini, debe crearse con el si
 
 No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 
-Mejorando estandares JavaScript y TWIG, grandes cambios en el modelo de funciones, en base.html.twig (movida a src) y layout.html.twig.
+# --- ESQUEMA DE CAMBIOS --- #
 
-* Asitente De Ubicaciones Terminado, control de paises, províncias y ciudades.
-* Tabla GbVars Agregada, para alojar datos de procesos y asistentes.
-* Esquema de vistas para asistentes mejoradas.
-* Integracion de asistentes con formularios maestros lograda usando IFRAMES.
-* Asistente de seguridad casi listo, creacion de personal y usuarios.
-* Modelo de varibles para ACL Diseñado.
-* Archivos SQL de control; modelo.sql contiene la estructura de la DB, base.sql contiene la estructura y los datos mínimos para comenzar (usuario root), db.sql contiene datos de prueba volatiles, val.sql contiene los datos minimos de las tablas de arranque (aun en construcción).
-* Sitema de dicionarios creado en base a GbVars.
-* Asistente de seguridad terminado.
-* Mejoras de integridad en los asistentes.
+* => TERMINADO
++ => EN PROGRESO
+- => PENDIENTE
+? => EJEMPLO DE USO
+! => NOTA A CONSIDERAR
+
+# --- CAMBIOS COMPLETOS --- #
+	
+* Mejorando estandares JavaScript y TWIG, 
+* cambios en el modelo de funciones, en base.html.twig (movida a src) y layout.html.twig.
+* Asitente de ubicaciones, control de paises, províncias y ciudades.
+* Agregar tabla GbVars, para alojar datos de procesos y asistentes.
+* Mejorar esquema de vistas para asistentes.
+* Integracion de asistentes con formularios maestros usando IFRAMES.
+* Asistente de seguridad.
+* Diseñar modelo de varibles para ACL.
+* Crear sitema de dicionarios en base a GbVars.
+* Mejorar integridad en los asistentes.
 * Proceso para cambiar clave.
 * MsgBox con mensaje de error en el login.
-* Layout y Base modificados.
-* Integrción con calendario virtual.
-* Popup con bufer dinamico agregado, se elimino el efecto aprecer-desaparecer por ser muy lento.
-* Calendarios Agregados, correcion de formato Hora H:i:s
-* Generador de gráficas de audiometría termonado.
+* Modificar Layout y Base.
+* Integración con calendario virtual.
+* Agregar popup con bufer dinamico, se elimino el efecto aprecer-desaparecer por ser muy lento.
+* Corregir formato de hora H:i:s
+* Generar gráficas de audiometría.
 * Integración con TCPDF.
 * IFRAME para mostrar graficas en SHOW de Audiometría.
- 
- NOTA DE PENDIENTES.
- - Calendario de GbPers. pendiente por incluir en los demas módulos.
- - Revisar vistas de Hoja de ruta, faltan etiquetas por modificar.
- - Llenar campo diccionario de GbVars para completar las traducciones.
- - Colocar mensaje de como usar la busqueda A: N:.
+* Crear medio para enviar mensajes flash sin ajax:
+	? $sesion = $this->getRequest()->getSession();
+	? $sesion->setFlash('MsgVar', 'Mensaje a enviar');
+	! El mensaje se renderiza automaticamente con la función popup().
+* Manejar excepciones al borrar registros referenciados.
+* Mejorar manejo de claves de usuario.	
+* Campo Género cambiado por Fecha en MdHist. 
+* Cambio en los parceadores Objeto->String de las entidades.
+* Agregar campo comentario en MdHist.
+* Recomendaciones es un diagnostico de codigo > 1900.
 
+# --- CAMBIOS EN PROGRESO --- #
+
++ Calendario por incluir en todos los módulos.
++ Archivos SQL de control:
+	* modelo.sql contiene la estructura de la DB.
+	* base.sql contiene la estructura y los datos mínimos para comenzar (usuario root).
+	* db.sql contiene datos de prueba volatiles.
+	+ val.sql contiene los datos minimos de las tablas de arranque (aun en construcción).
++ Asistente de empresas, oculto en espera.
++ PRIORITARIO: Asistente maestro de revisión médica:
+	* Crear estandar de alamcenamiento.
+	+ Fijar validaciones de GUI [50%].
+	+ Nuevo esquema de vistas [80%].
+	* Crear modelo de capturas parciales con IFRAME.
+	- Integrar GbVars para diccionarios.
+	- Integrar GbVars para seguridad.
+	* Carga automatica del personal encargado.
+	* Integrar paciente - historia.
+		! Creacion de paciente por IFRAME.
+		! Al crear un paciente se busca automaticamente y queda listo para ser selccionado.
+		! Busqueda por documento o primer apellido, distingue automaticamente (Numero = Documento - Letras = Apellido), se activa con el icono o con ENTER.
+		! El paciente se selecciona con doble click.
+	* Crear Revsión Medica.
+		! El campo menstruación aparece y desaparece segun el sexo.
+		! Hojas de ruta ordenadas por empresa.
+	+ Integrar historia - m-medicos.
+		* Intregracion con Audiomtría.
+		! Los botones indican los modulos parciales, con un click se abre la vista parcial.
+		! El led rojo indica que no se ha completado, al terminar el formulario se vuelve azul.
+		! Para los modulos que solo permiten un registro (EJ: Audiometria), se oculta automaticamente el boton de crear.
+		! Se mantiene el uso de validaciones HTML5.
+	* Integrar historia - diagnosticos.
+		* Agregar diagnostico.
+		* Eliminar diagnostico.
+		* Agregar recomendación.
+		* Eliminar recomendacón.
+		* Editar comentarios.
+		! En las tablas de busqueda y selección se da un click sobre el item escogido para seleccionar o cancelar, este se torna de fondo verdoso.
+		! Tras cualquier acción se desactiva la selección de items para evitar posibles inconsitencias.
+		! La unica diferecnia entre Diagnostico y recomendación es el codigo, todas se crean desde el modulo patologias.
+	- Integrar historia - m-tecnicos.
+	- Integrar historia - m-contables.
+	- Generar macro reporte.
+ 
+# --- CAMBIOS PENDIENTES --- #
+ 
+- Revisar vistas de Hoja de ruta, faltan etiquetas por modificar.
+- Verificar vista de hoja de ruta, el formulario no se ve bien.
+- Llenar campo diccionario de GbVars para completar las traducciones.
+- Colocar mensaje de como usar la busqueda A: N:.
+
+# --- NOTAS --- #
+
+! Revisar campos de contratos (Revisión) es char(1), deberia ser un de selección.
+! Aclarar significado de campos en contrato.
+! Aclarar significado de campos en hoja de ruta.
+! En editar usuario, no debe mostrar la clave, debe ser tipo pasword.
+! En los formularios que tienen 2 columnas Ej: Nuevo Paciente usar <table class="vime-colum1"> y <table class="vime-colum2"> para mejorar la respuesta a cambios de tamaño.
+! Se ha cambiado el tamaño de letra, ancho y poscición (Centrado arriba) del popup, resulta mas comodo en los asistentes.
+! Aclarar relacion de revisiones médicas con aspectos técnicos. 

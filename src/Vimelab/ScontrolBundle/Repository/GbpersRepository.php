@@ -45,4 +45,21 @@ class GbpersRepository extends EntityRepository
         $querry = $em->createQuery("SELECT p FROM ScontrolBundle:Gbpers p JOIN p.gbcarg c WHERE c.id = $id and p.estado = 'A' ORDER BY p.priape ASC");
         return $querry->getResult();
 	}
+	
+	public function getForUser($user)
+	{
+		try
+		{
+			$em = $this->getEntityManager();
+        	$querry = $em->createQuery("SELECT u FROM ScontrolBundle:Gbusua u where u.nombre = '$user'")->setMaxResults(1);
+        	$us = $querry->getSingleResult();
+			
+			$querry = $em->createQuery("SELECT p FROM ScontrolBundle:Gbpers p WHERE p.id = ".$us->getGbPers()->getId()." ORDER BY p.priape ASC")->setMaxResults(1);
+			return $querry->getSingleResult();
+		}
+		catch(\Exception $e)
+		{
+			return null;
+		}
+	}
 }

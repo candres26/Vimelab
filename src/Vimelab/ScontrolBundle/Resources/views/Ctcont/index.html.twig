@@ -22,7 +22,7 @@
     <tbody>
     {% for entity in entities %}
         <tr>
-			<td>{{ entity.id }}</td>
+			<td>{{ entity.__toString()}}</td>
             <td>{% if entity.fecha %}{{ entity.fecha| date('Y-m-d')}}{% endif%}</td>
             <td>{{ entity.nombrecontratista }}</td>
             <td>{{ entity.nombrecontratante }}</td>

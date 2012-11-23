@@ -1,0 +1,10 @@
+{% extends "ScontrolBundle::_layout.html.twig" %}
+
+{% block title %}Descripción Audiometría{% endblock %}
+
+{% block area %}
+<input type='hidden' id='RMSG'/ value='{{ RMSG }}'>
+
+<iframe src="{{ path('mdaudi_show', { 'id': entity.id, 'lv': 2 }) }}" class="masterIf"><!-- Internal --></iframe><br>
+
+{% endblock %}

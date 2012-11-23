@@ -34,8 +34,23 @@ h2
 	padding-right: 1px;
 }
 
+#vime-vitral
 
-#vime-cabecera{
+{
+	position: absolute;
+	background: #EEEEFF;
+	width: 100%;
+	height: 100%;
+	top: 0%;
+	left: 0%;
+	z-index: 9;
+	opacity: 0.8;
+	display: none;
+}
+
+
+#vime-cabecera
+{
 	background: url("../imagenes/fondo.png") no-repeat;
 	position: absolute;
 	top: 0%;
@@ -152,6 +167,18 @@ h2
     height: 100%;
     text-align: center;
     color: #45568a;
+}
+
+.vime-colum1
+{
+	position: absolute;
+	right: 50.5%;
+}
+
+.vime-colum2
+{
+	position: absolute;
+	left: 50.5%;
 }
 
 .button
@@ -344,18 +371,18 @@ h2
 
 .tPop
 {
-	z-index: 0;
+	z-index: 12;
 	cursor: pointer;
 	background: #000;
 	color: #FFF;
 	display: none;
 	position: absolute;
 	overflow: auto;
-	font-size: 0.8em;
+	font-size: 1em;
 	font-family: serif;
-	top: 14.5%;
-	right: 0.5%;
-	width: 10%;
+	top: 1%;
+	right: 40%;
+	width: 20%;
 	height: auto;
 	padding: 10px;
 	border: 2px solid black;
@@ -486,4 +513,18 @@ h2
  	-webkit-border-radius: 15px;
  	border-radius: 15px;
  	padding: 5px;
+}
+
+
+/* Para master */
+.masterIf
+{
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 98%;
+	height: 98%;
+	overflow: visible;
+	border: 0px solid black;
+	background: #f2f2f2;
 }

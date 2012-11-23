@@ -1,0 +1,99 @@
+{% extends "ScontrolBundle::_layout.html.twig" %}
+
+{% block title %}Audiometría{% endblock %}
+
+{% block area %}
+
+<input type='hidden' id='RMSG'/ value='{{ RMSG }}'>
+
+<form id="vime-form" action="{{ path('mdaudi_create', { 'lv': 2 }) }}" method="post" {{ form_enctype(form) }}>
+	<input type="submit" style="display: none" id="sender" value="send">
+	
+	<table style="margin-left: 1%; margin-top: 1%;">
+		<tr style="display: none;"><td colspan='2'>{{ form_errors(form.mdhist) }}</td></tr>
+		<tr style="display: none;"><td align="left">{{ form_label(form.mdhist) }}</td><td align="left">{{ form_widget(form.mdhist) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.realizado) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.realizado) }}</td><td align="left" class="input">{{ form_widget(form.realizado) }}</td></tr>
+	</table>
+	
+	<br>
+	
+	<table align="center">
+		<tr>
+			<th></th><th>500 Hz</th><th>1.000 Hz</th><th>2.000 Hz</th><th>3.000 Hz</th><th>4.000 Hz</th><th>6.000 Hz</th><th>8.000 Hz</th>
+		</tr>
+		<tr>
+			<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+		</tr>
+		<tr>
+			<td>D</td><td align="left">{{ form_widget(form.d500) }}</td><td align="left">{{ form_widget(form.d1000) }}</td><td align="left">{{ form_widget(form.d2000) }}</td><td align="left">{{ form_widget(form.d3000) }}</td><td align="left">{{ form_widget(form.d4000) }}</td><td align="left">{{ form_widget(form.d6000) }}</td><td align="left">{{ form_widget(form.d8000) }}</td>
+		</tr>
+		<tr>
+			<td></td><td>{{ form_errors(form.d500) }}</td><td>{{ form_errors(form.d1000) }}</td><td>{{ form_errors(form.d2000) }}</td><td>{{ form_errors(form.d3000) }}</td><td>{{ form_errors(form.d4000) }}</td><td>{{ form_errors(form.d6000) }}</td><td>{{ form_errors(form.d8000) }}</td>
+		</tr>
+		<tr>
+			<td>I</td><td align="left">{{ form_widget(form.i500) }}</td><td align="left">{{ form_widget(form.i1000) }}</td><td align="left">{{ form_widget(form.i2000) }}</td><td align="left">{{ form_widget(form.i3000) }}</td><td align="left">{{ form_widget(form.i4000) }}</td><td align="left">{{ form_widget(form.i6000) }}</td><td align="left">{{ form_widget(form.i8000) }}</td>
+		</tr>
+		<tr>
+			<td></td><td>{{ form_errors(form.i500) }}</td><td>{{ form_errors(form.i1000) }}</td><td>{{ form_errors(form.i2000) }}</td><td>{{ form_errors(form.i3000) }}</td><td>{{ form_errors(form.i4000) }}</td><td>{{ form_errors(form.i6000) }}</td><td>{{ form_errors(form.i8000) }}</td>
+		</tr>
+
+    </table>
+    {{ form_rest(form) }}
+</form>
+
+<script type="text/javascript">
+	function isMode()
+	{
+		if(gId('vimelab_scontrolbundle_mdauditype_realizado_S').checked)
+		{
+			gId('vimelab_scontrolbundle_mdauditype_d500').disabled = false;
+			gId('vimelab_scontrolbundle_mdauditype_i500').disabled = false;
+			gId('vimelab_scontrolbundle_mdauditype_d1000').disabled = false;
+			gId('vimelab_scontrolbundle_mdauditype_i1000').disabled = false;
+			gId('vimelab_scontrolbundle_mdauditype_d2000').disabled = false;
+			gId('vimelab_scontrolbundle_mdauditype_i2000').disabled = false;
+			gId('vimelab_scontrolbundle_mdauditype_d3000').disabled = false;
+			gId('vimelab_scontrolbundle_mdauditype_i3000').disabled = false;
+			gId('vimelab_scontrolbundle_mdauditype_d4000').disabled = false;
+			gId('vimelab_scontrolbundle_mdauditype_i4000').disabled = false;
+			gId('vimelab_scontrolbundle_mdauditype_d6000').disabled = false;
+			gId('vimelab_scontrolbundle_mdauditype_i6000').disabled = false;
+			gId('vimelab_scontrolbundle_mdauditype_d8000').disabled = false;
+			gId('vimelab_scontrolbundle_mdauditype_i8000').disabled = false;
+		}	
+		else
+		{
+			gId('vimelab_scontrolbundle_mdauditype_d500').value = '';
+			gId('vimelab_scontrolbundle_mdauditype_d500').disabled = true;
+			gId('vimelab_scontrolbundle_mdauditype_i500').value = '';
+			gId('vimelab_scontrolbundle_mdauditype_i500').disabled = true;
+			gId('vimelab_scontrolbundle_mdauditype_d1000').value = '';
+			gId('vimelab_scontrolbundle_mdauditype_d1000').disabled = true;
+			gId('vimelab_scontrolbundle_mdauditype_i1000').value = '';
+			gId('vimelab_scontrolbundle_mdauditype_i1000').disabled = true;
+			gId('vimelab_scontrolbundle_mdauditype_d2000').value = '';
+			gId('vimelab_scontrolbundle_mdauditype_d2000').disabled = true;
+			gId('vimelab_scontrolbundle_mdauditype_i2000').value = '';
+			gId('vimelab_scontrolbundle_mdauditype_i2000').disabled = true;
+			gId('vimelab_scontrolbundle_mdauditype_d3000').value = '';
+			gId('vimelab_scontrolbundle_mdauditype_d3000').disabled = true;
+			gId('vimelab_scontrolbundle_mdauditype_i3000').value = '';
+			gId('vimelab_scontrolbundle_mdauditype_i3000').disabled = true;
+			gId('vimelab_scontrolbundle_mdauditype_d4000').value = '';
+			gId('vimelab_scontrolbundle_mdauditype_d4000').disabled = true;
+			gId('vimelab_scontrolbundle_mdauditype_i4000').value = '';
+			gId('vimelab_scontrolbundle_mdauditype_i4000').disabled = true;
+			gId('vimelab_scontrolbundle_mdauditype_d6000').value = '';
+			gId('vimelab_scontrolbundle_mdauditype_d6000').disabled = true;
+			gId('vimelab_scontrolbundle_mdauditype_i6000').value = '';
+			gId('vimelab_scontrolbundle_mdauditype_i6000').disabled = true;
+			gId('vimelab_scontrolbundle_mdauditype_d8000').value = '';
+			gId('vimelab_scontrolbundle_mdauditype_d8000').disabled = true;
+			gId('vimelab_scontrolbundle_mdauditype_i8000').value = '';
+			gId('vimelab_scontrolbundle_mdauditype_i8000').disabled = true;
+		}
+	}
+</script>
+
+{% endblock %}

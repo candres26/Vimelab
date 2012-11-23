@@ -620,11 +620,11 @@ mdaudi_show:
     pattern:  /mdaudi/{id}/show/{lv}
     defaults: { _controller: ScontrolBundle:Mdaudi:show, lv : 1 }
 mdaudi_new:
-    pattern:  /mdaudi/new
-    defaults: { _controller: ScontrolBundle:Mdaudi:new }
+    pattern:  /mdaudi/new/{lv}
+    defaults: { _controller: ScontrolBundle:Mdaudi:new, lv : 1 }
 mdaudi_create:
-    pattern:  /mdaudi/create
-    defaults: { _controller: ScontrolBundle:Mdaudi:create }
+    pattern:  /mdaudi/create/{lv}
+    defaults: { _controller: ScontrolBundle:Mdaudi:create, lv : 1 }
 mdaudi_edit:
     pattern:  /mdaudi/{id}/edit
     defaults: { _controller: ScontrolBundle:Mdaudi:edit }
@@ -835,11 +835,11 @@ mdpaci_show:
     pattern:  /mdpaci/{id}/show
     defaults: { _controller: ScontrolBundle:Mdpaci:show }
 mdpaci_new:
-    pattern:  /mdpaci/new
-    defaults: { _controller: ScontrolBundle:Mdpaci:new }
+    pattern:  /mdpaci/new/{lv}
+    defaults: { _controller: ScontrolBundle:Mdpaci:new, lv:1 }
 mdpaci_create:
-    pattern:  /mdpaci/create
-    defaults: { _controller: ScontrolBundle:Mdpaci:create }
+    pattern:  /mdpaci/create/{lv}
+    defaults: { _controller: ScontrolBundle:Mdpaci:create, lv:1 }
 mdpaci_edit:
     pattern:  /mdpaci/{id}/edit
     defaults: { _controller: ScontrolBundle:Mdpaci:edit }
@@ -1324,3 +1324,41 @@ as_secu_delAcl:
 as_secu_getAcl:
     pattern: /assecu/getacl
     defaults: {_controller: ScontrolBundle:AsSecu:getAcl }
+#
+#            Empresas
+#
+as_empr:
+    pattern: /asempr
+    defaults: { _controller: ScontrolBundle:AsEmpr:index }
+#
+##############################################           
+#           MASTER                           #
+##############################################
+#
+as_master:
+    pattern: /asmaster
+    defaults: { _controller: ScontrolBundle:AsMaster:index }
+as_master_getPaci:
+    pattern: /asmaster/getpaci
+    defaults: { _controller: ScontrolBundle:AsMaster:getPaciente }
+as_master_getRuta:
+    pattern: /asmaster/getruta
+    defaults: { _controller: ScontrolBundle:AsMaster:getRuta }
+as_master_newHist:
+    pattern: /asmaster/newhist
+    defaults: { _controller: ScontrolBundle:AsMaster:newHistoria }
+as_master_newCome:
+    pattern: /asmaster/newcome
+    defaults: { _controller: ScontrolBundle:AsMaster:newComentario }
+as_master_getPato:
+    pattern: /asmaster/getpato
+    defaults: { _controller: ScontrolBundle:AsMaster:getPatologia }
+as_master_newDiag:
+    pattern: /asmaster/newdiag
+    defaults: { _controller: ScontrolBundle:AsMaster:newDiagnostico }
+as_master_getDiag:
+    pattern: /asmaster/getdiag
+    defaults: { _controller: ScontrolBundle:AsMaster:getDiagnostico }
+as_master_delDiag:
+    pattern: /asmaster/deldiag
+    defaults: { _controller: ScontrolBundle:AsMaster:delDiagnostico }

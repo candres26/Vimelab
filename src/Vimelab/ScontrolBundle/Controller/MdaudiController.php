@@ -59,11 +59,7 @@ class MdaudiController extends Controller
 			$entity = $em->getRepository('ScontrolBundle:Mdaudi')->find($id);
 			
 			if($lv == 1)
-			{	
-				$em = $this->getDoctrine()->getEntityManager();
-	
-				$entity = $em->getRepository('ScontrolBundle:Mdaudi')->find($id);
-	
+			{
 				if (!$entity) 
 				{
 					throw $this->createNotFoundException('Unable to find Mdaudi entity.');
@@ -74,6 +70,10 @@ class MdaudiController extends Controller
 				return array(
 					'entity'      => $entity,
 					'delete_form' => $deleteForm->createView(),        );
+			}
+			else if($lv == 3)
+			{
+				return $this->render("ScontrolBundle:Mdaudi:_show.html.twig", array('entity' => $entity, 'RMSG' => $entity->getId()."-Audiometría creada con exito!"));
 			}
 			else
 			{
@@ -159,18 +159,19 @@ class MdaudiController extends Controller
      * @Route("/new", name="mdaudi_new")
      * @Template()
      */
-    public function newAction()
+    public function newAction($lv)
     {
 		if(Tool::isGrant($this))
 		{
 			$entity = new Mdaudi();
 			$form   = $this->createForm(new MdaudiType(), $entity);
-
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
-		}else
+			
+			if($lv == 1)
+				return array('entity' => $entity, 'form'   => $form->createView());
+			else
+				return $this->render("ScontrolBundle:Mdaudi:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
@@ -181,7 +182,7 @@ class MdaudiController extends Controller
      * @Method("post")
      * @Template("ScontrolBundle:Mdaudi:new.html.twig")
      */
-    public function createAction()
+    public function createAction($lv)
     {
 		if(Tool::isGrant($this))
 		{
@@ -190,21 +191,37 @@ class MdaudiController extends Controller
 			$form    = $this->createForm(new MdaudiType(), $entity);
 			$form->bindRequest($request);
 
-			if ($form->isValid()) {
-				$em = $this->getDoctrine()->getEntityManager();
-				$em->persist($entity);
-				$em->flush();
-
-				Tool::logger($this, $entity->getId());
-				return $this->redirect($this->generateUrl('mdaudi_show', array('id' => $entity->getId())));
+			if ($form->isValid()) 
+			{
+				try
+				{
+					$em = $this->getDoctrine()->getEntityManager();
+					$em->persist($entity);
+					$em->flush();
+	
+					Tool::logger($this, $entity->getId());
+					
+					if($lv == 1)
+						return $this->redirect($this->generateUrl('mdaudi_show', array('id' => $entity->getId())));
+					else
+						return $this->redirect($this->generateUrl('mdaudi_show', array('id' => $entity->getId(), 'lv' => '3')));
+				}
+				catch(\Exception $e)
+				{
+					if($lv == 1)
+						return array('entity' => $entity, 'form'   => $form->createView());
+					else	
+						return $this->render("ScontrolBundle:Mdaudi:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => '1-Imposible Crear Audiometria, Error Referencial!'));
+				}
 				
 			}
 
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
-		}else
+			if($lv == 1)
+				return array('entity' => $entity, 'form'   => $form->createView());
+			else
+				return $this->render("ScontrolBundle:Mdaudi:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
@@ -291,26 +308,36 @@ class MdaudiController extends Controller
     {
 		if(Tool::isGrant($this))
 		{
-			$form = $this->createDeleteForm($id);
-			$request = $this->getRequest();
-
-			$form->bindRequest($request);
-
-			if ($form->isValid()) {
-				$em = $this->getDoctrine()->getEntityManager();
-				$entity = $em->getRepository('ScontrolBundle:Mdaudi')->find($id);
-
-				if (!$entity) {
-					throw $this->createNotFoundException('Unable to find Mdaudi entity.');
+			try
+			{
+				$form = $this->createDeleteForm($id);
+				$request = $this->getRequest();
+	
+				$form->bindRequest($request);
+	
+				if ($form->isValid()) {
+					$em = $this->getDoctrine()->getEntityManager();
+					$entity = $em->getRepository('ScontrolBundle:Mdaudi')->find($id);
+	
+					if (!$entity) {
+						throw $this->createNotFoundException('Unable to find Mdaudi entity.');
+					}
+	
+					$em->remove($entity);
+					$em->flush();
+					
+					Tool::logger($this, $entity->getId());
 				}
-
-				$em->remove($entity);
-				$em->flush();
-				
-				Tool::logger($this, $entity->getId());
+	
+				return $this->redirect($this->generateUrl('mdaudi'));
 			}
-
-			return $this->redirect($this->generateUrl('mdaudi'));
+			catch(\Exception $ex)
+			{
+				$sesion = $this->getRequest()->getSession();
+				$sesion->setFlash('MsgVar', 'Imposible Borrar esta entidad, integridad referencial!');
+				
+				return $this->redirect($this->generateUrl('mdaudi_edit', array('id' => $id)));
+			}
 		}else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }

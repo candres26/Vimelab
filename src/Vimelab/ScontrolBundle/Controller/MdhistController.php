@@ -210,26 +210,36 @@ class MdhistController extends Controller
     {
 		if(Tool::isGrant($this))
 		{
-			$form = $this->createDeleteForm($id);
-			$request = $this->getRequest();
-
-			$form->bindRequest($request);
-
-			if ($form->isValid()) {
-				$em = $this->getDoctrine()->getEntityManager();
-				$entity = $em->getRepository('ScontrolBundle:Mdhist')->find($id);
-
-				if (!$entity) {
-					throw $this->createNotFoundException('Unable to find Mdhist entity.');
+			try
+			{
+				$form = $this->createDeleteForm($id);
+				$request = $this->getRequest();
+	
+				$form->bindRequest($request);
+	
+				if ($form->isValid()) {
+					$em = $this->getDoctrine()->getEntityManager();
+					$entity = $em->getRepository('ScontrolBundle:Mdhist')->find($id);
+	
+					if (!$entity) {
+						throw $this->createNotFoundException('Unable to find Mdhist entity.');
+					}
+	
+					$em->remove($entity);
+					$em->flush();
+					
+					Tool::logger($this, $entity->getId());
 				}
-
-				$em->remove($entity);
-				$em->flush();
-				
-				Tool::logger($this, $entity->getId());
+	
+				return $this->redirect($this->generateUrl('mdhist'));
 			}
-
-			return $this->redirect($this->generateUrl('mdhist'));
+			catch(\Exception $ex)
+			{
+				$sesion = $this->getRequest()->getSession();
+				$sesion->setFlash('MsgVar', 'Imposible Borrar esta entidad, integridad referencial!');
+				
+				return $this->redirect($this->generateUrl('mdhist_edit', array('id' => $id)));
+			}
 		}else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }

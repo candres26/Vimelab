@@ -78,17 +78,17 @@ class MdpaciController extends Controller
      * @Route("/new", name="mdpaci_new")
      * @Template()
      */
-    public function newAction()
+    public function newAction($lv)
     {
 		if(Tool::isGrant($this))
 		{
 			$entity = new Mdpaci();
 			$form   = $this->createForm(new MdpaciType(), $entity);
-
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
+			
+			if($lv == 1)
+				return array('entity' => $entity, 'form'   => $form->createView());
+			else
+				return $this->render("ScontrolBundle:Mdpaci:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
 		}else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
@@ -100,7 +100,7 @@ class MdpaciController extends Controller
      * @Method("post")
      * @Template("ScontrolBundle:Mdpaci:new.html.twig")
      */
-    public function createAction()
+    public function createAction($lv)
     {
 		if(Tool::isGrant($this))
 		{
@@ -109,21 +109,42 @@ class MdpaciController extends Controller
 			$form    = $this->createForm(new MdpaciType(), $entity);
 			$form->bindRequest($request);
 
-			if ($form->isValid()) {
-				$em = $this->getDoctrine()->getEntityManager();
-				$em->persist($entity);
-				$em->flush();
+			if ($form->isValid()) 
+			{
+				try
+				{	
+					$em = $this->getDoctrine()->getEntityManager();
+					$em->persist($entity);
+					$em->flush();
 
-				Tool::logger($this, $entity->getId());
-				return $this->redirect($this->generateUrl('mdpaci_show', array('id' => $entity->getId())));
-				
+					Tool::logger($this, $entity->getId());
+					
+					if($lv == 1)
+						return $this->redirect($this->generateUrl('mdpaci_show', array('id' => $entity->getId())));
+					else
+					{
+						$newEnt = new Mdpaci();
+						$form   = $this->createForm(new MdpaciType(), $newEnt);	
+						return $this->render("ScontrolBundle:Mdpaci:_new.html.twig", array('entity' => $newEnt, 'form'   => $form->createView(), 'RMSG' => '0-Paciente Creado Con Exito!-'.$entity->getIdentificacion()));
+					}				
+				}
+				catch(\Exception $e)
+				{
+					if($lv == 1)
+						return array('entity' => $entity, 'form'   => $form->createView());
+					else	
+						return $this->render("ScontrolBundle:Mdpaci:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => '1-Imposible Crear Paciente, Error Referencial!'));
+				}
 			}
-
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
-		}else
+	
+			if($lv == 1)
+				return array('entity' => $entity, 'form'   => $form->createView());
+			else
+				return $this->render("ScontrolBundle:Mdpaci:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
+			
+			
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
@@ -210,26 +231,36 @@ class MdpaciController extends Controller
     {
 		if(Tool::isGrant($this))
 		{
-			$form = $this->createDeleteForm($id);
-			$request = $this->getRequest();
-
-			$form->bindRequest($request);
-
-			if ($form->isValid()) {
-				$em = $this->getDoctrine()->getEntityManager();
-				$entity = $em->getRepository('ScontrolBundle:Mdpaci')->find($id);
-
-				if (!$entity) {
-					throw $this->createNotFoundException('Unable to find Mdpaci entity.');
+			try
+			{
+				$form = $this->createDeleteForm($id);
+				$request = $this->getRequest();
+	
+				$form->bindRequest($request);
+	
+				if ($form->isValid()) {
+					$em = $this->getDoctrine()->getEntityManager();
+					$entity = $em->getRepository('ScontrolBundle:Mdpaci')->find($id);
+	
+					if (!$entity) {
+						throw $this->createNotFoundException('Unable to find Mdpaci entity.');
+					}
+	
+					$em->remove($entity);
+					$em->flush();
+					
+					Tool::logger($this, $entity->getId());
 				}
-
-				$em->remove($entity);
-				$em->flush();
-				
-				Tool::logger($this, $entity->getId());
+	
+				return $this->redirect($this->generateUrl('mdpaci'));
 			}
-
-			return $this->redirect($this->generateUrl('mdpaci'));
+			catch(\Exception $ex)
+			{
+				$sesion = $this->getRequest()->getSession();
+				$sesion->setFlash('MsgVar', 'Imposible Borrar esta entidad, integridad referencial!');
+				
+				return $this->redirect($this->generateUrl('mdpaci_edit', array('id' => $id)));
+			}
 		}else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }

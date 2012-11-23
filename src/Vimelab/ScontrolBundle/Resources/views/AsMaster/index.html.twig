@@ -1,0 +1,312 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %} Revisión Médica {% endblock %}
+
+{% block includes %}
+	<link href="{{ asset('bundles/scontrol/css/master.css') }}" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{{ asset('bundles/scontrol/js/master.js') }}">/*--- Include ---*/</script>
+{% endblock %}
+
+{% block area %}
+
+<div class="csMain">
+	
+	<div id="jsPers" class="csPers">
+		<input type="hidden" id="jsPersId" value="{{ GbPers.id }}" />
+		<table>
+			<tr><th>Responsable:</th><td>{{ GbPers.getFullName() }}</td></tr>
+			<tr><th>Identificación:</th><td>{{ GbPers.identificacion }}</td></tr>
+			<tr><th>Cargo:</th><td>{{ GbPers.gbcarg.nombre }}</td></tr>
+		</table>
+	</div>
+	
+	<div id="jsPaci" class="csPaci" title="Click Para Cargar">
+		<table>
+			<tr><th>Paciente:</th><td id="jsPaciName"><!-- AJAX --></td></tr>
+			<tr><th>Identificación:</th><td id="jsPaciDoc"><!-- AJAX --></td></tr>
+			<tr><th>Sucursal:</th><td id="jsPaciSuc"><!-- AJAX --></td></tr>
+		</table>
+	</div>
+	
+	<div class="csHist" id="jsHist" title="Click Para Crear">
+		<table>
+			<tr><th>Revisión:</th><td id="jsHistId"><!-- AJAX --></td></tr>
+			<tr><th>Tipo:</th><td id="jsHistTipo"><!-- AJAX --></td></tr>
+			<tr><th>H. Ruta:</th><td id="jsHistRuta"><!-- AJAX --></td></tr>
+		</table>
+	</div>
+	
+	<div class="csReco" id="jsReco">
+		<b>RECOMENDACIONES</b>
+		
+		<div class="csMiniZone">
+			<table id="jsRecoTab"><!-- AJAX --></table>
+		</div>
+		<div class="csMiniCtr">
+			<img id="jsRecoAdd" src="{{ asset('bundles/scontrol/imagenes/iconos/add.png') }}" title="Agregar">
+			<img id="jsRecoDel" src="{{ asset('bundles/scontrol/imagenes/iconos/rem.png') }}" title="Eliminar">
+		</div>
+	</div>
+	
+	<div class="csDiag" id="jsDiag">
+		<b>DIAGNOSTICOS</b>
+		
+		<div class="csMiniZone">
+			<table id="jsDiagTab"><!-- AJAX --></table>
+		</div>
+		<div class="csMiniCtr">
+			<img id="jsDiagAdd" src="{{ asset('bundles/scontrol/imagenes/iconos/add.png') }}" title="Agregar">
+			<img id="jsDiagDel" src="{{ asset('bundles/scontrol/imagenes/iconos/rem.png') }}" title="Eliminar">
+		</div>
+	</div>
+	
+	<div class="csCome" id="jsCome">
+		<b>COMENTARIOS</b><br>
+		<textarea id="jsComeDta">&nbsp;</textarea>
+		<img id="jsComeBtn" src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar">
+	</div>
+	
+	<div id="jsAudi" class="csAudi" title="Click Para Crear">
+		<b>AUDIOMETRÍA</b>
+		<div id="jsAudiLed"><!-- COLOR BALL --></div>
+	</div>
+	
+	<div id="jsVisu" class="csVisu" title="Click Para Crear">
+		<b>AGUDEZA VISUAL</b>
+		<div id="jsVisuLed"><!-- COLOR BALL --></div>
+	</div>
+	
+	<div id="jsBiom" class="csBiom" title="Click Para Crear">
+		<b>BIOMETRÍA</b>
+		<div id="jsBiomLed"><!-- COLOR BALL --></div>
+	</div>
+	
+	<div id="jsEspi" class="csEspi" title="Click Para Crear">
+		<b>ESPIROMETRÍA</b>
+		<div id="jsEspiLed"><!-- COLOR BALL --></div>
+	</div>
+	
+	
+</div>
+
+<!--- Vista Parcial De Paciente -->
+<div id="jsPaciPar" class="csPar">
+	
+	<table class="csParTi">
+		<tr><th>PACIENTES</th><td id="jsPaciCx" title="Cerrar"><!-- Cerrar --></td></tr>
+	</table>
+		
+	<div class="csParIn">
+		
+		<!--- Controles para buscar y seleccionar paciente -->
+		<div id="jsPaciSc" class="csParSc">
+			<table>
+				<tr>
+					<th><input id="jsPaciScCam" type="text" size="70"/></th>
+					<td><img id="jsPaciScBsr" src="{{ asset('bundles/scontrol/imagenes/applet.png') }}" title="Buscar"></td>
+					<td><img id="jsPaciScBnw" src="{{ asset('bundles/scontrol/imagenes/iconos/agregar.png') }}" title="Crear Paciente"></td>
+				</tr>
+			</table>
+		</div>
+		<div id="jsPaciZn" class="csParZn"><!-- AJAX --></div>
+		
+		<!--- Controles para nuevo paciente -->
+		<iframe id="ifPaci" class="csIfra" src="{{ path('mdpaci_new', { 'lv': 2 }) }}"><!-- FRAME --></iframe>
+		<div id="ifPaciBar" class="csParBb">
+			<button id="jsPaciCre">CREAR</button>
+			<button id="jsPaciCan">CANCELAR</button>
+		</div>
+		
+	</div>
+	
+</div>
+
+<!--- Vista Parcial De Revisión -->
+<div id="jsHistPar" class="csParMini">
+	<table class="csParTi">
+		<tr><th>REVISION MEDICA</th></tr>
+	</table>
+	
+	<div class="csParIn">
+		
+		<table class="csParForm">
+			<tr id="jsHistMesPac">
+				<th>Menstruación:</th>
+				<td>
+					<select id="jsHistMes">
+						<option value="@">Seleccione...</option>
+						<option value="S">SI</option>
+						<option value="N">NO</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>Tipo:</th>
+				<td>
+					<select id="jsHistTip">
+						<option value="@">Seleccione...</option>
+						<option value="0">Ingreso</option>
+						<option value="1">Periódico</option>
+						<option value="2">Cambio De Puesto</option>
+						<option value="3">Reincorporación</option>
+						<option value="4">Egreso</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>Hoja De Ruta:</th>
+				<td>
+					<select id="jsHistRut">
+						<option value="@">Seleccione...</option>
+					</select>
+				</td>
+			</tr>
+		</table>
+		
+		<div class="csParBb2">
+			<button id="jsHistCre">CREAR</button>
+			<button id="jsHistCx">CANCELAR</button>
+		</div>
+	</div>
+	
+</div>
+
+<!--- Vista Parcial De Recomendaciones -->
+<div id="jsRecoPar" class="csParMini">
+	<table class="csParTi">
+		<tr><th>RECOMENDACIONES</th></tr>
+	</table>
+	
+	<div class="csParIn">
+		
+		<div id="jsRecoSc" class="csParSc">
+			<table>
+				<tr>
+					<th><input id="jsRecoCam" type="text" size="50"/></th>
+					<td><img id="jsRecoBsr" src="{{ asset('bundles/scontrol/imagenes/applet.png') }}" title="Buscar"></td>
+				</tr>
+			</table>
+		</div>
+		<div class="csParZn2"><table id="jsRecoZn"><!-- AJAX --></table></div>
+		
+		<div class="csParBb2">
+			<button id="jsRecoCre">AGREGAR</button>
+			<button id="jsRecoCx">CERRAR</button>
+		</div>
+	</div>
+	
+</div>
+
+<!--- Vista Parcial De Diagnosticos -->
+<div id="jsDiagPar" class="csParMini">
+	<table class="csParTi">
+		<tr><th>DIAGNOSTICOS</th></tr>
+	</table>
+	
+	<div class="csParIn">
+		
+		<div id="jsDiagSc" class="csParSc">
+			<table>
+				<tr>
+					<th><input id="jsDiagCam" type="text" size="50"/></th>
+					<td><img id="jsDiagBsr" src="{{ asset('bundles/scontrol/imagenes/applet.png') }}" title="Buscar"></td>
+				</tr>
+			</table>
+		</div>
+		<div class="csParZn2"><table id="jsDiagZn"><!-- AJAX --></table></div>
+		
+		<div class="csParBb2">
+			<button id="jsDiagCre">AGREGAR</button>
+			<button id="jsDiagCx">CERRAR</button>
+		</div>
+	</div>
+	
+</div>
+
+<!--- Vista Parcial De Audiometria -->
+<div id="jsAudiPar" class="csParMini">
+	<table class="csParTi">
+		<tr><th>AUDIOMETRÍA</th></tr>
+	</table>
+	
+	<div class="csParIn">
+		
+		<iframe id="ifAudi" class="csIfra2" src="{{ path('mdaudi_new', { 'lv': 2 }) }}"><!-- FRAME --></iframe>
+		
+		<div class="csParBb2">
+			<button id="jsAudiCre">CREAR</button>
+			<button id="jsAudiCx">CERRAR</button>
+		</div>
+	</div>
+	
+</div>
+	
+{% endblock %}
+
+
+
+{% block uscript %}
+	
+	<script type="text/javascript">
+		
+		/* -- RUTAS AJAX -- */
+		$_getPaci = "{{ path('as_master_getPaci') }}";
+		$_getRuta = "{{ path('as_master_getRuta') }}";
+		$_getPato = "{{ path('as_master_getPato') }}";
+		$_getDiag = "{{ path('as_master_getDiag') }}";
+		$_newHist = "{{ path('as_master_newHist') }}";
+		$_newCome = "{{ path('as_master_newCome') }}";
+		$_newDiag = "{{ path('as_master_newDiag') }}";
+		$_delDiag = "{{ path('as_master_delDiag') }}";
+		
+		function $init()
+		{
+			/* -- EVENTOS DE PACIENTE -- */
+			gId('jsPaci').onclick = vistaPaci;
+			gId('jsPaciCx').onclick = hidePartial;
+			gId('jsPaciCre').onclick = newPaci;
+			gId('jsPaciCan').onclick = canPaci;
+			gId('jsPaciScCam').onkeypress = getPaci;
+			gId('jsPaciScBsr').onclick = getPaci;
+			gId('jsPaciScBnw').onclick = viewPaci;
+			gId('ifPaci').onload = loadState;
+			
+			/* -- EVENTOS DE REVISION -- */
+			gId('jsHist').onclick = vistaHist;
+			gId('jsHistCre').onclick = newHist;
+			gId('jsHistCx').onclick = hidePartial;
+			
+			/* --- EVENTOS DE COMENTARIO -- */
+			gId('jsComeDta').onkeydown = tipCome;
+			gId('jsComeBtn').onclick = newCome;
+			
+			/* --- EVENTOS DE RECOMENDACIONES --- */
+			gId('jsRecoTab').onclick = selReco;
+			gId('jsRecoZn').onclick = selRecoSr;
+			gId('jsRecoAdd').onclick = vistaReco;
+			gId('jsRecoDel').onclick = delReco;
+			gId('jsRecoBsr').onclick = getReco;
+			gId('jsRecoCam').onkeypress = getReco;
+			gId('jsRecoCre').onclick = newReco;
+			gId('jsRecoCx').onclick = refreshReco;
+			
+			/* --- EVENTOS DE DIAGNOSTICOS --- */
+			gId('jsDiagTab').onclick = selDiag;
+			gId('jsDiagZn').onclick = selDiagSr;
+			gId('jsDiagAdd').onclick = vistaDiag;
+			gId('jsDiagDel').onclick = delDiag;
+			gId('jsDiagBsr').onclick = getDiag;
+			gId('jsDiagCam').onkeypress = getDiag;
+			gId('jsDiagCre').onclick = newDiag;
+			gId('jsDiagCx').onclick = refreshDiag;
+			
+			/* --- EVENTOS DE AUDIOMETRIA --- */
+			gId('ifAudi').onload = loadState;
+			gId('jsAudi').onclick = vistaAudi;
+			gId('jsAudiCre').onclick = newAudi;
+			gId('jsAudiCx').onclick = hidePartial;
+		}
+	
+	</script>
+	
+{% endblock %}

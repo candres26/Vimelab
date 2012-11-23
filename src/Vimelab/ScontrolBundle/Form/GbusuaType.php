@@ -11,7 +11,7 @@ class GbusuaType extends AbstractType
     {
         $builder
             ->add('nombre', 'text', array('label' => 'Usuario'))
-            ->add('clave')
+            ->add('clave', 'password', array('label' => 'Clave'))
             ->add('gbpers', 'entity', array('class' => 'ScontrolBundle:Gbpers', 'label' => 'Personal'))
         ;
     }

@@ -211,26 +211,36 @@ class MdextrController extends Controller
     {
 		if(Tool::isGrant($this))
 		{
-			$form = $this->createDeleteForm($id);
-			$request = $this->getRequest();
-
-			$form->bindRequest($request);
-
-			if ($form->isValid()) {
-				$em = $this->getDoctrine()->getEntityManager();
-				$entity = $em->getRepository('ScontrolBundle:Mdextr')->find($id);
-
-				if (!$entity) {
-					throw $this->createNotFoundException('Unable to find Mdextr entity.');
+			try
+			{
+				$form = $this->createDeleteForm($id);
+				$request = $this->getRequest();
+	
+				$form->bindRequest($request);
+	
+				if ($form->isValid()) {
+					$em = $this->getDoctrine()->getEntityManager();
+					$entity = $em->getRepository('ScontrolBundle:Mdextr')->find($id);
+	
+					if (!$entity) {
+						throw $this->createNotFoundException('Unable to find Mdextr entity.');
+					}
+	
+					$em->remove($entity);
+					$em->flush();
+					
+					Tool::logger($this, $entity->getId());
 				}
-
-				$em->remove($entity);
-				$em->flush();
-				
-				Tool::logger($this, $entity->getId());
+	
+				return $this->redirect($this->generateUrl('mdextr'));
 			}
-
-			return $this->redirect($this->generateUrl('mdextr'));
+			catch(\Exception $ex)
+			{
+				$sesion = $this->getRequest()->getSession();
+				$sesion->setFlash('MsgVar', 'Imposible Borrar esta entidad, integridad referencial!');
+				
+				return $this->redirect($this->generateUrl('mdextr_edit', array('id' => $id)));
+			}
 		}else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
