@@ -64,6 +64,7 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 * Cambio en los parceadores Objeto->String de las entidades.
 * Agregar campo comentario en MdHist.
 * Recomendaciones es un diagnostico de codigo > 1900.
+* Validar caso de "NO REALIZADO" en reporte de audiometría.
 
 # --- CAMBIOS EN PROGRESO --- #
 
@@ -92,6 +93,7 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 		! Hojas de ruta ordenadas por empresa.
 	+ Integrar historia - m-medicos.
 		* Intregracion con Audiomtría.
+		* Integrar con Agudeza Visual.
 		! Los botones indican los modulos parciales, con un click se abre la vista parcial.
 		! El led rojo indica que no se ha completado, al terminar el formulario se vuelve azul.
 		! Para los modulos que solo permiten un registro (EJ: Audiometria), se oculta automaticamente el boton de crear.

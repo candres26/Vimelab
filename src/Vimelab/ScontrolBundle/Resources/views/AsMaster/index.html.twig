@@ -224,7 +224,7 @@
 </div>
 
 <!--- Vista Parcial De Audiometria -->
-<div id="jsAudiPar" class="csParMini">
+<div id="jsAudiPar" class="csParMed">
 	<table class="csParTi">
 		<tr><th>AUDIOMETRÍA</th></tr>
 	</table>
@@ -236,6 +236,24 @@
 		<div class="csParBb2">
 			<button id="jsAudiCre">CREAR</button>
 			<button id="jsAudiCx">CERRAR</button>
+		</div>
+	</div>
+	
+</div>
+
+<!--- Vista Parcial De Agudeza Visual -->
+<div id="jsVisuPar" class="csParMed">
+	<table class="csParTi">
+		<tr><th>AGUDEZA VISUAL</th></tr>
+	</table>
+	
+	<div class="csParIn">
+		
+		<iframe id="ifVisu" class="csIfra2" src="{{ path('mdvisu_new', { 'lv': 2 }) }}"><!-- FRAME --></iframe>
+		
+		<div class="csParBb2">
+			<button id="jsVisuCre">CREAR</button>
+			<button id="jsVisuCx">CERRAR</button>
 		</div>
 	</div>
 	
@@ -305,6 +323,12 @@
 			gId('jsAudi').onclick = vistaAudi;
 			gId('jsAudiCre').onclick = newAudi;
 			gId('jsAudiCx').onclick = hidePartial;
+			
+			/* --- EVENTOS DE A. VISUAL --- */
+			gId('ifVisu').onload = loadState;
+			gId('jsVisu').onclick = vistaVisu;
+			gId('jsVisuCre').onclick = newVisu;
+			gId('jsVisuCx').onclick = hidePartial;
 		}
 	
 	</script>

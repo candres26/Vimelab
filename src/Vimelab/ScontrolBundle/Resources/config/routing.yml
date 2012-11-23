@@ -1020,14 +1020,14 @@ mdvisu:
     pattern:  /mdvisu
     defaults: { _controller: ScontrolBundle:Mdvisu:index }
 mdvisu_show:
-    pattern:  /mdvisu/{id}/show
-    defaults: { _controller: ScontrolBundle:Mdvisu:show }
+    pattern:  /mdvisu/{id}/show/{lv}
+    defaults: { _controller: ScontrolBundle:Mdvisu:show, lv : 1 }
 mdvisu_new:
-    pattern:  /mdvisu/new
-    defaults: { _controller: ScontrolBundle:Mdvisu:new }
+    pattern:  /mdvisu/new/{lv}
+    defaults: { _controller: ScontrolBundle:Mdvisu:new, lv: 1 }
 mdvisu_create:
-    pattern:  /mdvisu/create
-    defaults: { _controller: ScontrolBundle:Mdvisu:create }
+    pattern:  /mdvisu/create/{lv}
+    defaults: { _controller: ScontrolBundle:Mdvisu:create, lv : 1 }
 mdvisu_edit:
     pattern:  /mdvisu/{id}/edit
     defaults: { _controller: ScontrolBundle:Mdvisu:edit }
