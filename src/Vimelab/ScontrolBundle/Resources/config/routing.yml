@@ -16,13 +16,19 @@ home:
     pattern:  /home
     defaults: { _controller: ScontrolBundle:Home:index }
 
+# Report
+
+report:
+    pattern:  /report
+    defaults: { _controller: ScontrolBundle:Report:index }
+
 # CtCont Routes
 ctcont:
     pattern:  /ctcont
     defaults: { _controller: ScontrolBundle:Ctcont:index }
 ctcont_show:
-    pattern:  /ctcont/{id}/show
-    defaults: { _controller: ScontrolBundle:Ctcont:show }
+    pattern:  /ctcont/{id}/show/{lv}
+    defaults: { _controller: ScontrolBundle:Ctcont:show, lv: 1 }
 ctcont_new:
     pattern:  /ctcont/new
     defaults: { _controller: ScontrolBundle:Ctcont:new }

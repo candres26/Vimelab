@@ -146,7 +146,7 @@ class MdaudiController extends Controller
 				$html = "<b>Gráfica De Audiometría</b>";
 				$pdf->writeHTMLCell(216, 0, 0, 3, $html, '', 0, 0, true, 'C', true);
 				
-				$pdf->Output('example_012.pdf', 'I');
+				$pdf->Output('infoaudi.pdf', 'I');
 			}
 		}
 		else

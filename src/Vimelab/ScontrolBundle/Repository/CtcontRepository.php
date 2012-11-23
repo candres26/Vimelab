@@ -38,4 +38,19 @@ class CtcontRepository extends EntityRepository
         $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Ctcont m WHERE m.id LIKE '%$parametro%' or m.nombrecontratista LIKE '%$parametro%' or m.nombrecontratante LIKE '%$parametro%'  or m.fecha LIKE '%$parametro%' ORDER BY m.id ASC");
         return $querry->getResult();
     }
+    
+    public function getSucursal($empresa,$nombre){
+		
+		try{
+			
+			$em = $this->getEntityManager();
+			$querry = $em->createQuery("SELECT s FROM ScontrolBundle:Gbsucu s JOIN s.gbempr e WHERE e.id = '$empresa' and s.nombre LIKE '%$nombre%' ORDER BY s.nombre ASC");
+			$sucu = $querry->getSingleResult();
+			return $sucu;
+		}
+		catch(\Exception $e)
+		{
+			return null;
+		}
+	}
 }
