@@ -1,0 +1,154 @@
+{% extends "ScontrolBundle::_layout.html.twig" %}
+
+{% block title %}Descripción Extremidades{% endblock %}
+
+{% block area %}
+
+<input type='hidden' id='RMSG'/ value='{{ RMSG }}'>
+
+<table class="vime-table-des" align="center">
+    <tbody>
+        <tr>
+            <th align="left">Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th align="left">Historia No.</th>
+            <td>{{ entity.mdhist }}</td>
+        </tr>
+        <tr>
+            <th align="left">Identificación paciente</th>
+            <td>{{ entity.mdhist.mdpaci }}</td>
+        </tr>
+        <tr>
+            <th align="left">Paciente</th>
+            <td>{{ entity.mdhist.mdpaci.prinom }} {{ entity.mdhist.mdpaci.segnom }} {{ entity.mdhist.mdpaci.priape }} {{ entity.mdhist.mdpaci.segape }}</td>
+        </tr>
+        <tr>
+            <th align="left">Movilidad / Dolor Hombro Der.</th>
+            <td>{% if entity.hdmov == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Movilidad / Dolor Hombro Izq.</th>
+            <td>{% if entity.himov == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Palpación Hombro Der.</th>
+            <td>{% if entity.hdpal == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Palpación Hombro Izq.</th>
+            <td>{% if entity.hipal == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Tendón Bicipital Hombro Der.</th>
+            <td>{% if entity.hdten == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Tendón Bicipital Hombro Izq.</th>
+            <td>{% if entity.hiten == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Surco Acromio - Humeral Hombro Der.</th>
+            <td>{% if entity.hdsur == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Surco Acromio - Humeral Hombro Der.</th>
+            <td>{% if entity.hisur == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Movilidad / Dolor Codo Der.</th>
+            <td>{% if entity.cdmov == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Movilidad / Dolor Codo Izq.</th>
+            <td>{% if entity.cimov == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Palpación Codo Der.</th>
+            <td>{% if entity.cdpal == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Palpación Codo Izq.</th>
+            <td>{% if entity.cipal == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Movilidad / Dolor Muñeca y Mano Der.</th>
+            <td>{% if entity.hdmov == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Movilidad / Dolor Muñeca y Mano Izq.</th>
+            <td>{% if entity.himov == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Palpación Muñeca y Mano Der.</th>
+            <td>{% if entity.mdpal == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Palpación Muñeca y Mano Izq.</th>
+            <td>{% if entity.mipal == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Atrofia Tenar Muñeca y Mano Der.</th>
+            <td>{% if entity.mdten == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Atrofia Tenar Muñeca y Mano Izq.</th>
+            <td>{% if entity.miten == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Atrofia Hipotenar Muñeca y Mano Der.</th>
+            <td>{% if entity.mdhip == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Atrofia Hipotenar Muñeca y Mano Izq.</th>
+            <td>{% if entity.mihip == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Retracción de Dupultren Muñeca y Mano Der.</th>
+            <td>{% if entity.mdret == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Retracción de Dupultren Muñeca y Mano Izq.</th>
+            <td>{% if entity.miret == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Sme. del túnel carpiano Muñeca y Mano Der.</th>
+            <td>{% if entity.mdsme == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Sme. del túnel carpiano Muñeca y Mano Izq.</th>
+            <td>{% if entity.misme == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Movilidad / Dolor Extremidad Inferior Der.</th>
+            <td>{% if entity.pdmov == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Movilidad / Dolor Extremidad Inferior Izq.</th>
+            <td>{% if entity.pimov == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Deformidades / Atrofias Extremidad Inferior Der.</th>
+            <td>{% if entity.pddef == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Deformidades / Atrofias Extremidad Inferior Izq.</th>
+            <td>{% if entity.pidef == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Insuficiencia Venosa Extremidad Inferior Der.</th>
+            <td>{% if entity.pdins == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Insuficiencia Venosa Extremidad Inferior Izq.</th>
+            <td>{% if entity.piins == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Comentarios</th>
+            <td>{{ entity.comentarios }}</td>
+        </tr>
+    </tbody>
+</table>
+    
+{% endblock %}

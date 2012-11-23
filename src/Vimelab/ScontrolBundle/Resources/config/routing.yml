@@ -752,14 +752,14 @@ mdextr:
     pattern:  /mdextr
     defaults: { _controller: ScontrolBundle:Mdextr:index }
 mdextr_show:
-    pattern:  /mdextr/{id}/show
-    defaults: { _controller: ScontrolBundle:Mdextr:show }
+    pattern:  /mdextr/{id}/show/{lv}
+    defaults: { _controller: ScontrolBundle:Mdextr:show, lv : 1 }
 mdextr_new:
-    pattern:  /mdextr/new
-    defaults: { _controller: ScontrolBundle:Mdextr:new }
+    pattern:  /mdextr/new/{lv}
+    defaults: { _controller: ScontrolBundle:Mdextr:new, lv : 1 }
 mdextr_create:
-    pattern:  /mdextr/create
-    defaults: { _controller: ScontrolBundle:Mdextr:create }
+    pattern:  /mdextr/create/{lv}
+    defaults: { _controller: ScontrolBundle:Mdextr:create, lv : 1 }
 mdextr_edit:
     pattern:  /mdextr/{id}/edit
     defaults: { _controller: ScontrolBundle:Mdextr:edit }
@@ -993,14 +993,14 @@ mdsist:
     pattern:  /mdsist
     defaults: { _controller: ScontrolBundle:Mdsist:index }
 mdsist_show:
-    pattern:  /mdsist/{id}/show
-    defaults: { _controller: ScontrolBundle:Mdsist:show }
+    pattern:  /mdsist/{id}/show/{lv}
+    defaults: { _controller: ScontrolBundle:Mdsist:show, lv : 1 }
 mdsist_new:
-    pattern:  /mdsist/new
-    defaults: { _controller: ScontrolBundle:Mdsist:new }
+    pattern:  /mdsist/new/{lv}
+    defaults: { _controller: ScontrolBundle:Mdsist:new, lv : 1 }
 mdsist_create:
-    pattern:  /mdsist/create
-    defaults: { _controller: ScontrolBundle:Mdsist:create }
+    pattern:  /mdsist/create/{lv}
+    defaults: { _controller: ScontrolBundle:Mdsist:create, lv : 1 }
 mdsist_edit:
     pattern:  /mdsist/{id}/edit
     defaults: { _controller: ScontrolBundle:Mdsist:edit }

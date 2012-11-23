@@ -65,6 +65,7 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 * Agregar campo comentario en MdHist.
 * Recomendaciones es un diagnostico de codigo > 1900.
 * Validar caso de "NO REALIZADO" en reporte de audiometría.
+* Creacion de temas CSS para vistas parciales.
 
 # --- CAMBIOS EN PROGRESO --- #
 
@@ -77,7 +78,7 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 + Asistente de empresas, oculto en espera.
 + PRIORITARIO: Asistente maestro de revisión médica:
 	* Crear estandar de alamcenamiento.
-	+ Fijar validaciones de GUI [60%].
+	+ Fijar validaciones de GUI [7%].
 	+ Nuevo esquema de vistas [90%].
 	* Crear modelo de capturas parciales con IFRAME.
 	- Integrar GbVars para diccionarios.
@@ -96,6 +97,8 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 		* Integración con Agudeza Visual.
 		* Integración con Biometría.
 		* Integración con Espirometría.
+		* Integración con Extremidades.
+		* Integración con Revisión por Sistemas.
 		! Los botones indican los modulos parciales, con un click se abre la vista parcial.
 		! El led rojo indica que no se ha completado, al terminar el formulario se vuelve azul.
 		! Para los modulos que solo permiten un registro (EJ: Audiometria), se oculta automaticamente el boton de crear.

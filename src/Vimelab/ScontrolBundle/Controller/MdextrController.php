@@ -51,24 +51,30 @@ class MdextrController extends Controller
      * @Route("/{id}/show", name="mdextr_show")
      * @Template()
      */
-    public function showAction($id)
+    public function showAction($id, $lv)
     {
 		if(Tool::isGrant($this))
 		{
 			$em = $this->getDoctrine()->getEntityManager();
 
 			$entity = $em->getRepository('ScontrolBundle:Mdextr')->find($id);
-
-			if (!$entity) {
-				throw $this->createNotFoundException('Unable to find Mdextr entity.');
+			
+			if($lv == 1)
+			{
+				if (!$entity) 
+				{
+					throw $this->createNotFoundException('Unable to find Mdextr entity.');
+				}
+	
+				$deleteForm = $this->createDeleteForm($id);
+	
+				return array('entity' => $entity, 'delete_form' => $deleteForm->createView());
 			}
-
-			$deleteForm = $this->createDeleteForm($id);
-
-			return array(
-				'entity'      => $entity,
-				'delete_form' => $deleteForm->createView(),        );
-		}else
+			else
+				return $this->render("ScontrolBundle:Mdextr:_show.html.twig", array('entity' => $entity, 'RMSG' => $entity->getId()."-R. Extremidades creada con exito!"));
+			
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
@@ -78,18 +84,19 @@ class MdextrController extends Controller
      * @Route("/new", name="mdextr_new")
      * @Template()
      */
-    public function newAction()
+    public function newAction($lv)
     {
 		if(Tool::isGrant($this))
 		{
 			$entity = new Mdextr();
 			$form   = $this->createForm(new MdextrType(), $entity);
 
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
-		}else
+			if($lv == 1)
+				return array('entity' => $entity, 'form'   => $form->createView());
+			else
+				return $this->render("ScontrolBundle:Mdextr:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
@@ -100,7 +107,7 @@ class MdextrController extends Controller
      * @Method("post")
      * @Template("ScontrolBundle:Mdextr:new.html.twig")
      */
-    public function createAction()
+    public function createAction($lv)
     {
 		if(Tool::isGrant($this))
 		{
@@ -109,22 +116,38 @@ class MdextrController extends Controller
 			$form    = $this->createForm(new MdextrType(), $entity);
 			$form->bindRequest($request);
 
-			if ($form->isValid()) {
-				$em = $this->getDoctrine()->getEntityManager();
-				$em->persist($entity);
-				$em->flush();
-
-				Tool::logger($this, $entity->getId());
-				return $this->redirect($this->generateUrl('mdextr_show', array('id' => $entity->getId())));
-				
+			if ($form->isValid()) 
+			{
+				try
+				{
+					$em = $this->getDoctrine()->getEntityManager();
+					$em->persist($entity);
+					$em->flush();
+	
+					Tool::logger($this, $entity->getId());
+					
+					if($lv == 1)
+						return $this->redirect($this->generateUrl('mdextr_show', array('id' => $entity->getId())));
+					else
+						return $this->redirect($this->generateUrl('mdextr_show', array('id' => $entity->getId(), 'lv' => '2')));
+					
+				}
+				catch(\Exception $e)
+				{
+					if($lv == 1)
+						return array('entity' => $entity, 'form'   => $form->createView());
+					else	
+						return $this->render("ScontrolBundle:Mdextr:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => '1-Imposible Crear R. Extremidades, Error Referencial!'));
+				}
 			}
 
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
+			if($lv == 1)
+				return array('entity' => $entity, 'form'   => $form->createView());
+			else
+				return $this->render("ScontrolBundle:Mdextr:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
 			
-		}else
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
