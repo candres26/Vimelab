@@ -5,7 +5,9 @@
 {% block area %}
 <h2 align="left">Descripción de Contrato</h2>
 
-<table class="vime-table-des" align="center">
+<iframe src="{{ path('ctcont_show', { 'id': entity.id, 'lv': 2 }) }}" width="80%" height="110%"><!-- Internal --></iframe><br>
+
+<!--<table class="vime-table-des" align="center">
 	<tbody>	
 		<tr>
 			<th align="left">No. Contrato</th>
@@ -104,7 +106,7 @@
 			<td>{{ entity.saldo }}</td>
 		</tr>
     </tbody>
-</table>
+</table> -->
 	
 	<form id="vime-form" action="{{ path('ctcont_delete', { 'id': entity.id }) }}" method="post">
 		{{ form_widget(delete_form) }}

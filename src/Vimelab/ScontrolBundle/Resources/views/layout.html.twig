@@ -108,6 +108,13 @@
 				<tr><td id="{{ path('as_ubica') }}">Ubicaciones</td></tr>
 			</table>
 		</div>
+		
+        <div id="vimeMenu7" class='Menu'>
+			<b>Reportes</b>
+			<table>
+				<tr><td id="{{ path('report') }}">Reportes</td></tr>
+			</table>
+		</div>
     </div>
 
 	<div id="vime-vista">
@@ -191,7 +198,7 @@
 			gId("pop").onclick = $clearPop;			
 			/* --- */
 			
-			for(i = 1; i < 7; i++)
+			for(i = 1; i < 8; i++)
 			{
 				elem = gId("vimeMenu"+i);
 				elem.onclick = foldMenu;
