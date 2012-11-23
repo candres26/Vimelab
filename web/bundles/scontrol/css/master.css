@@ -425,7 +425,6 @@
 
 .csAudi, .csVisu, .csBiom, .csEspi
 {
-	display: none;
 	position: absolute;
 	overflow: hidden;
 	top: 38%;
