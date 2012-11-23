@@ -53,4 +53,16 @@ class CtcontRepository extends EntityRepository
 			return null;
 		}
 	}
+	
+	public function getCorp($corporacion){
+		try{
+			$em = $this->getEntityManager();
+			$querry = $em->createQuery("SELECT c FROM ScontrolBundle:Gbcorp c WHERE c.id = '$empresa' ORDER BY c.nombre ASC");
+			$corp = $querry->getSingleResult();
+			return $corp;
+		}
+		catch(\Exception $e){
+			return null;
+		}
+	}
 }

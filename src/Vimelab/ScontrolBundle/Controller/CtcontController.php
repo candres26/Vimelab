@@ -80,6 +80,7 @@ class CtcontController extends Controller
 					if($sucu==null){
 						$sucu = new Gbsucu();
 					}
+				
 				// create new PDF document
 				$pdf = new \Tcpdf_Tcpdf(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 				
@@ -91,7 +92,7 @@ class CtcontController extends Controller
 				//$pdf->SetKeywords('TCPDF, PDF, example, test, guide');
 				
 				// set default header data
-				$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 006', PDF_HEADER_STRING);
+				$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, '', '');
 				
 				// set header and footer fonts
 				$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
@@ -124,7 +125,7 @@ class CtcontController extends Controller
 				
 				$html = '<h2 align="right">Contrato No. '.$id.' </h2>
 				<h4 align="right">CONTRATO DE PRESTACIÓN DE SERVICIOS DE PREVENCIÓN</h4>
-				<b>En [ciudad], a [Fecha] </b>
+				<p>En [ciudad], a [Fecha] </p>
 				<h3 align="center">REUNIDOS</h3>
 				<p>
 				De una parte, '.$entity->getNombrecontratante().', mayor de edad, con N.I.F '.$entity->getIdentcontratante().' en representación de
@@ -133,8 +134,8 @@ class CtcontController extends Controller
 				<br>
 				<br>	
 				Y de otra, '.$entity->getNombrecontratista().', con NIF '.$entity->getIdentcontratista().' quien actúa en calidad de
-				'.$entity->getCargocontratista().' de la entidad, [VIMELAB, S.L. nombre de la empresa], en adelante VIMELAB, con 
-				domicilio social en [direccioncontratista], con [CIF B62809306].
+				'.$entity->getCargocontratista().' de la entidad, '.$corp = $em -> getRepository('ScontrolBundle:Gbcorp')->find('1').', en adelante VIMELAB, con 
+				domicilio social en '.$corp = $em -> getRepository('ScontrolBundle:Gbcorp')->find('1')->getDireccion().', con '.$corp = $em -> getRepository('ScontrolBundle:Gbcorp')->find('1')->getIdentificacion().'.
 				<br>
 				<br>
 				Ambas partes, en el concepto en que intervienen, se reconocen la necesaria capacidad legal para contratar
