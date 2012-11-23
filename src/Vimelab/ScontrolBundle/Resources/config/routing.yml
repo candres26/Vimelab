@@ -644,14 +644,14 @@ mdbiom:
     pattern:  /mdbiom
     defaults: { _controller: ScontrolBundle:Mdbiom:index }
 mdbiom_show:
-    pattern:  /mdbiom/{id}/show
-    defaults: { _controller: ScontrolBundle:Mdbiom:show }
+    pattern:  /mdbiom/{id}/show/{lv}
+    defaults: { _controller: ScontrolBundle:Mdbiom:show, lv : 1 }
 mdbiom_new:
-    pattern:  /mdbiom/new
-    defaults: { _controller: ScontrolBundle:Mdbiom:new }
+    pattern:  /mdbiom/new/{lv}
+    defaults: { _controller: ScontrolBundle:Mdbiom:new, lv : 1 }
 mdbiom_create:
-    pattern:  /mdbiom/create
-    defaults: { _controller: ScontrolBundle:Mdbiom:create }
+    pattern:  /mdbiom/create/{lv}
+    defaults: { _controller: ScontrolBundle:Mdbiom:create, lv : 1 }
 mdbiom_edit:
     pattern:  /mdbiom/{id}/edit
     defaults: { _controller: ScontrolBundle:Mdbiom:edit }
@@ -698,14 +698,14 @@ mdespi:
     pattern:  /mdespi
     defaults: { _controller: ScontrolBundle:Mdespi:index }
 mdespi_show:
-    pattern:  /mdespi/{id}/show
-    defaults: { _controller: ScontrolBundle:Mdespi:show }
+    pattern:  /mdespi/{id}/show/{lv}
+    defaults: { _controller: ScontrolBundle:Mdespi:show, lv : 1 }
 mdespi_new:
-    pattern:  /mdespi/new
-    defaults: { _controller: ScontrolBundle:Mdespi:new }
+    pattern:  /mdespi/new/{lv}
+    defaults: { _controller: ScontrolBundle:Mdespi:new, lv : 1 }
 mdespi_create:
-    pattern:  /mdespi/create
-    defaults: { _controller: ScontrolBundle:Mdespi:create }
+    pattern:  /mdespi/create/{lv}
+    defaults: { _controller: ScontrolBundle:Mdespi:create, lv : 1 }
 mdespi_edit:
     pattern:  /mdespi/{id}/edit
     defaults: { _controller: ScontrolBundle:Mdespi:edit }
@@ -1020,14 +1020,14 @@ mdvisu:
     pattern:  /mdvisu
     defaults: { _controller: ScontrolBundle:Mdvisu:index }
 mdvisu_show:
-    pattern:  /mdvisu/{id}/show
-    defaults: { _controller: ScontrolBundle:Mdvisu:show }
+    pattern:  /mdvisu/{id}/show/{lv}
+    defaults: { _controller: ScontrolBundle:Mdvisu:show, lv : 1 }
 mdvisu_new:
-    pattern:  /mdvisu/new
-    defaults: { _controller: ScontrolBundle:Mdvisu:new }
+    pattern:  /mdvisu/new/{lv}
+    defaults: { _controller: ScontrolBundle:Mdvisu:new, lv: 1 }
 mdvisu_create:
-    pattern:  /mdvisu/create
-    defaults: { _controller: ScontrolBundle:Mdvisu:create }
+    pattern:  /mdvisu/create/{lv}
+    defaults: { _controller: ScontrolBundle:Mdvisu:create, lv : 1 }
 mdvisu_edit:
     pattern:  /mdvisu/{id}/edit
     defaults: { _controller: ScontrolBundle:Mdvisu:edit }

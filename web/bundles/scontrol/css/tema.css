@@ -163,8 +163,8 @@ h2
     top: 1%;
     left: 1%;
     overflow: auto;
-    width: 100%;
-    height: 100%;
+    width: 98%;
+    height: 98%;
     text-align: center;
     color: #45568a;
 }
@@ -179,6 +179,28 @@ h2
 {
 	position: absolute;
 	left: 50.5%;
+}
+
+.vime-columA, .vime-columB, .vime-columC
+{
+	position: absolute;
+	top: 5%;
+	width: 30%;
+}
+
+.vime-columA
+{
+	left: 1%;
+}
+
+.vime-columB
+{
+	left: 35%;
+}
+
+.vime-columC
+{
+	right: 1%;
 }
 
 .button

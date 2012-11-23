@@ -51,24 +51,29 @@ class MdbiomController extends Controller
      * @Route("/{id}/show", name="mdbiom_show")
      * @Template()
      */
-    public function showAction($id)
+    public function showAction($id, $lv)
     {
 		if(Tool::isGrant($this))
 		{
 			$em = $this->getDoctrine()->getEntityManager();
 
 			$entity = $em->getRepository('ScontrolBundle:Mdbiom')->find($id);
-
-			if (!$entity) {
-				throw $this->createNotFoundException('Unable to find Mdbiom entity.');
+			
+			if($lv == 1)
+			{
+				if (!$entity) 
+				{
+					throw $this->createNotFoundException('Unable to find Mdbiom entity.');
+				}
+	
+				$deleteForm = $this->createDeleteForm($id);
+	
+				return array('entity' => $entity, 'delete_form' => $deleteForm->createView());
 			}
-
-			$deleteForm = $this->createDeleteForm($id);
-
-			return array(
-				'entity'      => $entity,
-				'delete_form' => $deleteForm->createView(),        );
-		}else
+			else
+				return $this->render("ScontrolBundle:Mdbiom:_show.html.twig", array('entity' => $entity, 'RMSG' => $entity->getId()."-Biometría creada con exito!"));
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
@@ -78,18 +83,19 @@ class MdbiomController extends Controller
      * @Route("/new", name="mdbiom_new")
      * @Template()
      */
-    public function newAction()
+    public function newAction($lv)
     {
 		if(Tool::isGrant($this))
 		{
 			$entity = new Mdbiom();
 			$form   = $this->createForm(new MdbiomType(), $entity);
 
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
-		}else
+			if($lv == 1)
+				return array('entity' => $entity, 'form'   => $form->createView());
+			else
+				return $this->render("ScontrolBundle:Mdbiom:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
@@ -100,7 +106,7 @@ class MdbiomController extends Controller
      * @Method("post")
      * @Template("ScontrolBundle:Mdbiom:new.html.twig")
      */
-    public function createAction()
+    public function createAction($lv)
     {
 		if(Tool::isGrant($this))
 		{
@@ -109,21 +115,36 @@ class MdbiomController extends Controller
 			$form    = $this->createForm(new MdbiomType(), $entity);
 			$form->bindRequest($request);
 
-			if ($form->isValid()) {
-				$em = $this->getDoctrine()->getEntityManager();
-				$em->persist($entity);
-				$em->flush();
-
-				Tool::logger($this, $entity->getId());
-				return $this->redirect($this->generateUrl('mdbiom_show', array('id' => $entity->getId())));
-				
+			if ($form->isValid()) 
+			{
+				try
+				{
+					$em = $this->getDoctrine()->getEntityManager();
+					$em->persist($entity);
+					$em->flush();
+	
+					Tool::logger($this, $entity->getId());
+					
+					if($lv == 1)
+						return $this->redirect($this->generateUrl('mdbiom_show', array('id' => $entity->getId())));
+					else
+						return $this->redirect($this->generateUrl('mdbiom_show', array('id' => $entity->getId(), 'lv' => '2')));
+				}
+				catch(\Exception $e)
+				{
+					if($lv == 1)
+						return array('entity' => $entity, 'form'   => $form->createView());
+					else	
+						return $this->render("ScontrolBundle:Mdbiom:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => '1-Imposible Crear Biometría, Error Referencial!'));
+				}
 			}
 
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
-		}else
+			if($lv == 1)
+				return array('entity' => $entity, 'form'   => $form->createView());
+			else
+				return $this->render("ScontrolBundle:Mdbiom:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 

@@ -1,0 +1,97 @@
+{% extends "ScontrolBundle::_layout.html.twig" %}
+
+{% block title %}Descripción Biometría{% endblock %}
+
+{% block area %}
+
+<input type='hidden' id='RMSG'/ value='{{ RMSG }}'>
+
+<table class="vime-table-des" align="center">
+    <tbody>
+        <tr>
+            <th align="left">Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th align="left">Historia No.</th>
+            <td>{{ entity.mdhist }}</td>
+        </tr>
+        <tr>
+            <th align="left">Identificación paciente</th>
+            <td>{{ entity.mdhist.mdpaci }}</td>
+        </tr>
+        <tr>
+            <th align="left">Paciente</th>
+            <td>{{ entity.mdhist.mdpaci.prinom }} {{ entity.mdhist.mdpaci.segnom }} {{ entity.mdhist.mdpaci.priape }} {{ entity.mdhist.mdpaci.segape }}</td>
+        </tr>
+        <tr>
+            <th align="left">Talla / cm</th>
+            <td id='imcTalla'>{{ entity.talla }}</td>
+        </tr>
+        <tr>
+            <th align="left">Peso / kg</th>
+            <td id='imcPeso'>{{ entity.peso }}</td>
+        </tr>
+        <tr>
+            <th align="left">I.M.C.</th>
+            <td id='imcVal'>&nbsp;</td>
+        </tr>
+        <tr>
+            <th align="left">Pulso / p/s</th>
+            <td>{{ entity.pulso }}</td>
+        </tr>
+        <tr>
+            <th align="left">Frecuencia Cardíaca / p/s</th>
+            <td>{{ entity.fres }}</td>
+        </tr>
+        <tr>
+            <th align="left">Presión arterial sistólica / mmHg</th>
+            <td>{{ entity.pasisto }}</td>
+        </tr>
+        <tr>
+            <th align="left">Presión arterial diastólica / mmHg</th>
+            <td>{{ entity.padiasto }}</td>
+        </tr>
+    </tbody>
+</table>
+  
+{% endblock %}
+
+{% block uscript %}
+	<script type="text/javascript">
+		
+		function $init(event)
+		{
+			peso = gId('imcPeso').innerHTML;
+			talla = gId('imcTalla').innerHTML;
+			
+			if(talla != '' && peso != '')
+			{
+				talla = parseInt(talla)/100;
+				peso = parseInt(peso);
+				
+				imc = peso / (talla*talla);
+				
+				tipo = '';
+				if(imc <= 18)
+					tipo = 'Peso menor que el normal';
+				else if(imc >= 18.1 && imc <= 24.9)
+					tipo = 'Peso normal';
+				else if(imc >= 25 && imc <= 29.9)
+					tipo = 'Sobrepeso';
+				else
+				{ 
+					if(imc >= 30 && imc <= 34.9)
+						tipo = 'Obesidad Tipo I';
+					else if(imc >= 35 && imc <= 39.9)
+						tipo = 'Obesidad Tipo II';
+					else if(imc >= 40)
+						tipo = 'Obesidad Tipo III';
+				}
+				
+				gId('imcVal').innerHTML = imc.toFixed(2)+' '+tipo;
+			}
+		}
+		
+	</script>
+{% endblock %}

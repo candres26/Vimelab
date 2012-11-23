@@ -224,7 +224,7 @@
 </div>
 
 <!--- Vista Parcial De Audiometria -->
-<div id="jsAudiPar" class="csParMini">
+<div id="jsAudiPar" class="csParMed">
 	<table class="csParTi">
 		<tr><th>AUDIOMETRÍA</th></tr>
 	</table>
@@ -236,6 +236,60 @@
 		<div class="csParBb2">
 			<button id="jsAudiCre">CREAR</button>
 			<button id="jsAudiCx">CERRAR</button>
+		</div>
+	</div>
+	
+</div>
+
+<!--- Vista Parcial De Agudeza Visual -->
+<div id="jsVisuPar" class="csParMed">
+	<table class="csParTi">
+		<tr><th>AGUDEZA VISUAL</th></tr>
+	</table>
+	
+	<div class="csParIn">
+		
+		<iframe id="ifVisu" class="csIfra2" src="{{ path('mdvisu_new', { 'lv': 2 }) }}"><!-- FRAME --></iframe>
+		
+		<div class="csParBb2">
+			<button id="jsVisuCre">CREAR</button>
+			<button id="jsVisuCx">CERRAR</button>
+		</div>
+	</div>
+	
+</div>
+
+<!--- Vista Parcial De Biometría -->
+<div id="jsBiomPar" class="csParTal">
+	<table class="csParTi">
+		<tr><th>BIOMETRÍA</th></tr>
+	</table>
+	
+	<div class="csParIn">
+		
+		<iframe id="ifBiom" class="csIfra2" src="{{ path('mdbiom_new', { 'lv': 2 }) }}"><!-- FRAME --></iframe>
+		
+		<div class="csParBb2">
+			<button id="jsBiomCre">CREAR</button>
+			<button id="jsBiomCx">CERRAR</button>
+		</div>
+	</div>
+	
+</div>
+
+<!--- Vista Parcial De Biometría -->
+<div id="jsEspiPar" class="csParMini">
+	<table class="csParTi">
+		<tr><th>ESPIROMETRÍA</th></tr>
+	</table>
+	
+	<div class="csParIn">
+		
+		<iframe id="ifEspi" class="csIfra2" src="{{ path('mdespi_new', { 'lv': 2 }) }}"><!-- FRAME --></iframe>
+		
+		<div class="csParBb2">
+			<button id="jsEspiCre">CREAR</button>
+			<button id="jsEspiCx">CERRAR</button>
 		</div>
 	</div>
 	
@@ -305,6 +359,24 @@
 			gId('jsAudi').onclick = vistaAudi;
 			gId('jsAudiCre').onclick = newAudi;
 			gId('jsAudiCx').onclick = hidePartial;
+			
+			/* --- EVENTOS DE A. VISUAL --- */
+			gId('ifVisu').onload = loadState;
+			gId('jsVisu').onclick = vistaVisu;
+			gId('jsVisuCre').onclick = newVisu;
+			gId('jsVisuCx').onclick = hidePartial;
+			
+			/* --- EVENTOS DE BIOMETRIA --- */
+			gId('ifBiom').onload = loadState;
+			gId('jsBiom').onclick = vistaBiom;
+			gId('jsBiomCre').onclick = newBiom;
+			gId('jsBiomCx').onclick = hidePartial;
+			
+			/* --- EVENTOS DE ESPIROMETRIA --- */
+			gId('ifEspi').onload = loadState;
+			gId('jsEspi').onclick = vistaEspi;
+			gId('jsEspiCre').onclick = newEspi;
+			gId('jsEspiCx').onclick = hidePartial;
 		}
 	
 	</script>

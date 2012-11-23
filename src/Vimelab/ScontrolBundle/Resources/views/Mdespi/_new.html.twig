@@ -1,0 +1,50 @@
+{% extends "ScontrolBundle::_layout.html.twig" %}
+
+{% block title %}Espirometría{% endblock %}
+
+{% block area %}
+
+<input type='hidden' id='RMSG'/ value='{{ RMSG }}'>
+
+<form id="vime-form" action="{{ path('mdespi_create', { 'lv': 2 }) }}" method="post" {{ form_enctype(form) }}>
+	<input type="submit" style="display: none" id="sender" value="send">
+   <table align="center">
+   		<tr style="display: none;"><td colspan='2'>{{ form_errors(form.mdhist) }}</td></tr>
+		<tr style="display: none;"><td align="left">{{ form_label(form.mdhist) }}</td><td align="left">{{ form_widget(form.mdhist) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.realizado) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.realizado) }}</td><td align="left">{{ form_widget(form.realizado) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.cv) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.cv) }}</td><td align="left">{{ form_widget(form.cv) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.vems) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.vems) }}</td><td align="left">{{ form_widget(form.vems) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(form.tiff) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.tiff) }}</td><td align="left">{{ form_widget(form.tiff) }}</td></tr>
+    </table>
+    {{ form_rest(form) }}
+</form>
+
+{% endblock %}
+
+{% block uscript %}
+	<script type="text/javascript">
+	function isMode()
+	{
+		if(gId('vimelab_scontrolbundle_mdespitype_realizado_S').checked)
+		{
+			gId('vimelab_scontrolbundle_mdespitype_cv').disabled = false;
+			gId('vimelab_scontrolbundle_mdespitype_vems').disabled = false;
+			gId('vimelab_scontrolbundle_mdespitype_tiff').disabled = false;
+		}	
+		else
+		{
+			gId('vimelab_scontrolbundle_mdespitype_cv').value = '';
+			gId('vimelab_scontrolbundle_mdespitype_cv').disabled = true;
+			gId('vimelab_scontrolbundle_mdespitype_vems').value = '';
+			gId('vimelab_scontrolbundle_mdespitype_vems').disabled = true;
+			gId('vimelab_scontrolbundle_mdespitype_tiff').value = '';
+			gId('vimelab_scontrolbundle_mdespitype_tiff').disabled = true;
+		}
+	}
+</script>
+
+{% endblock %}

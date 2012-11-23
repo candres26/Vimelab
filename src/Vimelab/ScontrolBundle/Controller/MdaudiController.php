@@ -125,22 +125,31 @@ class MdaudiController extends Controller
 				$pdf->Line(150, 30, 155, 30, $style3);
 				$pdf->Line(150, 35, 155, 35, $style4);
 				
-				$arr = $entity->getInArray();
-				
-				for($i = 1; $i < count($arr[0]); $i++)
+				if($entity->getRealizado() == 'S')
 				{
-					$x1 = 45+(($i-1) * 15);
-					$x2 = 45+(($i) * 15);
+					$arr = $entity->getInArray();
 					
-					$y1 = 20+intval($arr[0][$i-1]);
-					$y2 = 20+intval($arr[0][$i]);;
-					
-					$y3 = 20+intval($arr[1][$i-1]);
-					$y4 = 20+intval($arr[1][$i]);;
-					
-					$pdf->Line($x1, $y1, $x2, $y2, $style3);
-					$pdf->Line($x1, $y3, $x2, $y4, $style4);
+					for($i = 1; $i < count($arr[0]); $i++)
+					{
+						$x1 = 45+(($i-1) * 15);
+						$x2 = 45+(($i) * 15);
+						
+						$y1 = 20+intval($arr[0][$i-1]);
+						$y2 = 20+intval($arr[0][$i]);;
+						
+						$y3 = 20+intval($arr[1][$i-1]);
+						$y4 = 20+intval($arr[1][$i]);;
+						
+						$pdf->Line($x1, $y1, $x2, $y2, $style3);
+						$pdf->Line($x1, $y3, $x2, $y4, $style4);
+					}
 				}
+				else
+				{
+					$pdf->SetFont('dejavusans', '', 20);
+					$html = '<b color="red">NO REALIZADO</b>';
+					$pdf->writeHTMLCell(216, 0, 0, 50, $html, '', 0, 0, true, 'C', true);
+				}	
 				
 				$pdf->SetFont('dejavusans', '', 12);
 				$html = "<b>Gráfica De Audiometría</b>";

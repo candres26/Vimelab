@@ -1,0 +1,46 @@
+{% extends "ScontrolBundle::_layout.html.twig" %}
+
+{% block title %}Descripción Espirometría{% endblock %}
+
+{% block area %}
+
+<input type='hidden' id='RMSG'/ value='{{ RMSG }}'>
+
+<table class="vime-table-des" align="center">
+    <tbody>
+        <tr>
+            <th align="left">Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th align="left">Historia No.</th>
+            <td>{{ entity.mdhist }}</td>
+        </tr>
+        <tr>
+            <th align="left">Identificación paciente</th>
+            <td>{{ entity.mdhist.mdpaci }}</td>
+        </tr>
+        <tr>
+            <th align="left">Paciente</th>
+            <td>{{ entity.mdhist.mdpaci.prinom }} {{ entity.mdhist.mdpaci.segnom }} {{ entity.mdhist.mdpaci.priape }} {{ entity.mdhist.mdpaci.segape }}</td>
+        </tr>
+        <tr>
+            <th align="left">Realizado</th>
+            <td>{% if entity.realizado == 'S' %} SI {% else %} NO {% endif %}</td>
+        </tr>
+        <tr>
+            <th align="left">Cv</th>
+            <td>{{ entity.cv }}</td>
+        </tr>
+        <tr>
+            <th align="left">Vems</th>
+            <td>{{ entity.vems }}</td>
+        </tr>
+        <tr>
+            <th align="left">Tiff</th>
+            <td>{{ entity.tiff }}</td>
+        </tr>
+    </tbody>
+</table>
+    
+{% endblock %}

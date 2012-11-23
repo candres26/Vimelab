@@ -10,6 +10,9 @@ var $histId = "";
 var $histTi = "";
 var $rutaId = "";
 var $audiId = "";
+var $visuId = "";
+var $biomId = "";
+var $espiId = "";
 var $recoIdx = -1;
 var $recoSrIdx = -1;
 var $diagIdx = -1;
@@ -36,6 +39,24 @@ function loadState(event)
 			hide("jsAudiCre");
 			gId('jsAudiLed').style.background = "#0000FF";
 		}
+		else if(this.id == "ifVisu")
+		{
+			$visuId = par[0];
+			hide("jsVisuCre");
+			gId('jsVisuLed').style.background = "#0000FF";
+		}
+		else if(this.id == "ifBiom")
+		{
+			$biomId = par[0];
+			hide("jsBiomCre");
+			gId('jsBiomLed').style.background = "#0000FF";
+		}
+		else if(this.id == "ifEspi")
+		{
+			$espiId = par[0];
+			hide("jsEspiCre");
+			gId('jsEspiLed').style.background = "#0000FF";
+		}
 	}
 	else
 	{
@@ -43,6 +64,21 @@ function loadState(event)
 		{
 			gIf("ifAudi", "vimelab_scontrolbundle_mdauditype_mdhist").value = $histId;
 			showPartial("jsAudi");
+		}
+		else if(this.id == "ifVisu")
+		{
+			gIf("ifVisu", "vimelab_scontrolbundle_mdvisutype_mdhist").value = $histId;
+			showPartial("jsVisu");
+		}
+		else if(this.id == "ifBiom")
+		{
+			gIf("ifBiom", "vimelab_scontrolbundle_mdbiomtype_mdhist").value = $histId;
+			showPartial("jsBiom");
+		}
+		else if(this.id == "ifEspi")
+		{
+			gIf("ifEspi", "vimelab_scontrolbundle_mdespitype_mdhist").value = $histId;
+			showPartial("jsEspi");
 		}
 	}
 }
@@ -642,4 +678,43 @@ function vistaAudi(event)
 function newAudi(event)
 {
 	ifSimularClick("ifAudi", "sender");
+}
+
+function vistaVisu(event)
+{
+	if($visuId == "")
+		gId("ifVisu").contentWindow.location.reload();
+	else
+		showPartial(this.id);
+}
+
+function newVisu(event)
+{
+	ifSimularClick("ifVisu", "sender");
+}
+
+function vistaBiom(event)
+{
+	if($biomId == "")
+		gId("ifBiom").contentWindow.location.reload();
+	else
+		showPartial(this.id);
+}
+
+function newBiom(event)
+{
+	ifSimularClick("ifBiom", "sender");
+}
+
+function vistaEspi(event)
+{
+	if($espiId == "")
+		gId("ifEspi").contentWindow.location.reload();
+	else
+		showPartial(this.id);
+}
+
+function newEspi(event)
+{
+	ifSimularClick("ifEspi", "sender");
 }

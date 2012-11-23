@@ -64,6 +64,7 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 * Cambio en los parceadores Objeto->String de las entidades.
 * Agregar campo comentario en MdHist.
 * Recomendaciones es un diagnostico de codigo > 1900.
+* Validar caso de "NO REALIZADO" en reporte de audiometría.
 
 # --- CAMBIOS EN PROGRESO --- #
 
@@ -76,8 +77,8 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 + Asistente de empresas, oculto en espera.
 + PRIORITARIO: Asistente maestro de revisión médica:
 	* Crear estandar de alamcenamiento.
-	+ Fijar validaciones de GUI [50%].
-	+ Nuevo esquema de vistas [80%].
+	+ Fijar validaciones de GUI [60%].
+	+ Nuevo esquema de vistas [90%].
 	* Crear modelo de capturas parciales con IFRAME.
 	- Integrar GbVars para diccionarios.
 	- Integrar GbVars para seguridad.
@@ -91,7 +92,10 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 		! El campo menstruación aparece y desaparece segun el sexo.
 		! Hojas de ruta ordenadas por empresa.
 	+ Integrar historia - m-medicos.
-		* Intregracion con Audiomtría.
+		* Integracion con Audiomtría.
+		* Integración con Agudeza Visual.
+		* Integración con Biometría.
+		* Integración con Espirometría.
 		! Los botones indican los modulos parciales, con un click se abre la vista parcial.
 		! El led rojo indica que no se ha completado, al terminar el formulario se vuelve azul.
 		! Para los modulos que solo permiten un registro (EJ: Audiometria), se oculta automaticamente el boton de crear.
