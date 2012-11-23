@@ -760,7 +760,7 @@ function newExtr(event)
 
 function vistaSist(event)
 {
-	if($extrId == "")
+	if($sistId == "")
 		gId("ifSist").contentWindow.location.reload();
 	else
 		showPartial(this.id);
