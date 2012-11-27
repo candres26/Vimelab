@@ -271,6 +271,22 @@
 	display: none;
 }
 
+.csParXtal
+{
+	background: #FFFFFF;
+	position: absolute;
+	width: 50%;
+	height: 90%;
+	left: 25%;
+	top: 5%;
+	z-index: 10;
+	opacity: 1;
+	box-shadow: 5px 5px 10px #203982;
+	border: 2px solid #203982;
+	border-radius: 10px;
+	display: none;
+}
+
 .csParForm
 {
 	width: 90%;
@@ -442,26 +458,36 @@
 
 .csVisu
 {
-	left: 27%;
+	left: 17.3%;
 }
 
 .csBiom
 {
-	right: 27%;
+	left: 34.1%;
 }
 
 .csEspi
 {
+	right: 34.1%;
+}
+
+.csExtr
+{
+	right: 17.3%;
+}
+
+.csSist
+{
 	right: 1%;
 }
 
-.csAudi, .csVisu, .csBiom, .csEspi
+.csAudi, .csVisu, .csBiom, .csEspi, .csExtr, .csSist
 {
 	display: none;
 	position: absolute;
 	overflow: hidden;
 	top: 38%;
-	width: 20%;
+	width: 14%;
 	height: 10%;
 	background: #FFFFFF;
 	box-shadow: 2px 2px 5px #203982;
@@ -471,19 +497,19 @@
 	cursor: pointer; 
 }
 
-.csAudi div, .csVisu div, .csBiom div, .csEspi div
+.csAudi div, .csVisu div, .csBiom div, .csEspi div, .csExtr div, .csSist div
 {
 	position: absolute;
 	top: 10%;
 	left: 46%;
-	width: 8%;
+	width: 11%;
 	height: 32%;
 	border: 1px solid #AAAAAA;
 	border-radius: 50px;
 	background: red;
 }
 
-.csAudi b, .csVisu b, .csBiom b, .csEspi b
+.csAudi b, .csVisu b, .csBiom b, .csEspi b, .csExtr b, .csSist b
 {
 	position: absolute;
 	font-size: 1.2em;
@@ -494,12 +520,12 @@
 	display: block;
 }
 
-.csPaci:hover, .csHist:hover, .csAudi:hover, .csVisu:hover, .csBiom:hover, .csEspi:hover
+.csPaci:hover, .csHist:hover, .csAudi:hover, .csVisu:hover, .csBiom:hover, .csEspi:hover, .csExtr:hover, .csSist:hover
 {
 	box-shadow: 5px 5px 10px #0000ff;
 }
 
-.csPaci:active, .csHist:active, .csAudi:active, .csVisu:active, .csBiom:active, .csEspi:active
+.csPaci:active, .csHist:active, .csAudi:active, .csVisu:active, .csBiom:active, .csEspi:active, .csExtr:active, .csSist:active
 {
 	background: #000000;
 	color: #FFFFFF;
@@ -511,7 +537,7 @@
 	border: 2px solid #FFFFFF;
 }
 
-.csAudi:active, .csVisu:active, .csBiom:active, .csEspi:active
+.csAudi:active, .csVisu:active, .csBiom:active, .csEspi:active, .csExtr:active, .csSist:active
 {
 	border: 5px inset #FFFFFF;
 	box-shadow: 2px 2px 5px #203982;

@@ -86,6 +86,16 @@
 		<div id="jsEspiLed"><!-- COLOR BALL --></div>
 	</div>
 	
+	<div id="jsExtr" class="csExtr" title="Click Para Crear">
+		<b>EXTREMIDADES</b>
+		<div id="jsExtrLed"><!-- COLOR BALL --></div>
+	</div>
+	
+	<div id="jsSist" class="csSist" title="Click Para Crear">
+		<b>R. SISTEMAS</b>
+		<div id="jsSistLed"><!-- COLOR BALL --></div>
+	</div>
+	
 	
 </div>
 
@@ -294,7 +304,43 @@
 	</div>
 	
 </div>
+
+<!--- Vista Parcial De Extremidades -->
+<div id="jsExtrPar" class="csPar">
+	<table class="csParTi">
+		<tr><th>EXTREMIDADES</th></tr>
+	</table>
 	
+	<div class="csParIn">
+		
+		<iframe id="ifExtr" class="csIfra2" src="{{ path('mdextr_new', { 'lv': 2 }) }}"><!-- FRAME --></iframe>
+		
+		<div class="csParBb2">
+			<button id="jsExtrCre">CREAR</button>
+			<button id="jsExtrCx">CERRAR</button>
+		</div>
+	</div>
+	
+</div>
+
+<!--- Vista Parcial De R. Sistemas -->
+<div id="jsSistPar" class="csParXtal">
+	<table class="csParTi">
+		<tr><th>REVISIÓN POR SISTEMAS</th></tr>
+	</table>
+	
+	<div class="csParIn">
+		
+		<iframe id="ifSist" class="csIfra2" src="{{ path('mdsist_new', { 'lv': 2 }) }}"><!-- FRAME --></iframe>
+		
+		<div class="csParBb2">
+			<button id="jsSistCre">CREAR</button>
+			<button id="jsSistCx">CERRAR</button>
+		</div>
+	</div>
+	
+</div>
+
 {% endblock %}
 
 
@@ -377,6 +423,18 @@
 			gId('jsEspi').onclick = vistaEspi;
 			gId('jsEspiCre').onclick = newEspi;
 			gId('jsEspiCx').onclick = hidePartial;
+			
+			/* --- EVENTOS DE EXTREMIDADES --- */
+			gId('ifExtr').onload = loadState;
+			gId('jsExtr').onclick = vistaExtr;
+			gId('jsExtrCre').onclick = newExtr;
+			gId('jsExtrCx').onclick = hidePartial;
+			
+			/* --- EVENTOS DE R. SISTEMAS --- */
+			gId('ifSist').onload = loadState;
+			gId('jsSist').onclick = vistaSist;
+			gId('jsSistCre').onclick = newSist;
+			gId('jsSistCx').onclick = hidePartial;
 		}
 	
 	</script>

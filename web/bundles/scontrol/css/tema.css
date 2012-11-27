@@ -203,6 +203,34 @@ h2
 	right: 1%;
 }
 
+.vime-box1
+{
+	position: absolute;
+	top: 5%;
+	left: 5%;
+}
+
+.vime-box2
+{
+	position: absolute;
+	top: 5%;
+	right: 5%;
+}
+
+.vime-box3
+{
+	position: absolute;
+	bottom: 5%;
+	left: 5%;
+}
+
+.vime-box4
+{
+	position: absolute;
+	bottom: 5%;
+	right: 5%;
+}
+
 .button
 {
 	background-color:#203982; 

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.24, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.28, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: dbsalud
 -- ------------------------------------------------------
--- Server version	5.5.24-9
+-- Server version	5.5.28-1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -221,7 +221,7 @@ CREATE TABLE `GbAcls` (
   PRIMARY KEY (`id`),
   KEY `GbUsua_id` (`GbUsua_id`),
   CONSTRAINT `GbAcls_ibfk_1` FOREIGN KEY (`GbUsua_id`) REFERENCES `GbUsua` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -230,7 +230,7 @@ CREATE TABLE `GbAcls` (
 
 LOCK TABLES `GbAcls` WRITE;
 /*!40000 ALTER TABLE `GbAcls` DISABLE KEYS */;
-INSERT INTO `GbAcls` VALUES (2,2,'asempr','index'),(3,3,'asempr','index'),(4,3,'asprot','index'),(5,3,'asprot','getpuesto'),(6,3,'asprot','newpuesto'),(7,3,'asprot','newprotocolo'),(8,3,'asprot','getques'),(9,3,'asprot','delques'),(10,3,'asprot','addques'),(11,3,'asprot','getproceso'),(12,3,'asprot','addproto'),(13,3,'asprot','delproto'),(14,2,'gbcarg','index'),(15,2,'gbcarg','show'),(16,2,'gbcarg','new'),(17,2,'gbcarg','create'),(18,2,'gbcarg','edit'),(19,2,'gbcarg','update'),(20,2,'gbcarg','delete');
+INSERT INTO `GbAcls` VALUES (2,2,'asempr','index'),(3,3,'asempr','index'),(4,3,'asprot','index'),(5,3,'asprot','getpuesto'),(6,3,'asprot','newpuesto'),(7,3,'asprot','newprotocolo'),(8,3,'asprot','getques'),(9,3,'asprot','delques'),(10,3,'asprot','addques'),(11,3,'asprot','getproceso'),(12,3,'asprot','addproto'),(13,3,'asprot','delproto'),(14,2,'gbcarg','index'),(15,2,'gbcarg','show'),(16,2,'gbcarg','new'),(17,2,'gbcarg','create'),(18,2,'gbcarg','edit'),(19,2,'gbcarg','update'),(20,2,'gbcarg','delete'),(21,4,'asprot','index'),(22,4,'asprot','getpuesto'),(23,4,'asprot','newpuesto'),(24,4,'asprot','newprotocolo'),(25,4,'asprot','getques'),(26,4,'asprot','delques'),(27,4,'asprot','addques'),(28,4,'asprot','getproceso'),(29,4,'asprot','addproto'),(30,4,'asprot','delproto');
 /*!40000 ALTER TABLE `GbAcls` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -343,7 +343,7 @@ CREATE TABLE `GbCorp` (
   CONSTRAINT `GbCorp_ibfk_1` FOREIGN KEY (`EmpresaGbIden_id`) REFERENCES `GbIden` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `GbCorp_ibfk_2` FOREIGN KEY (`RepresentanteGbIden_id`) REFERENCES `GbIden` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `GbCorp_ibfk_3` FOREIGN KEY (`GbCiud_id`) REFERENCES `GbCiud` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -352,6 +352,7 @@ CREATE TABLE `GbCorp` (
 
 LOCK TABLES `GbCorp` WRITE;
 /*!40000 ALTER TABLE `GbCorp` DISABLE KEYS */;
+INSERT INTO `GbCorp` VALUES (1,'80800936789',3,'Vimelab SL','Quien Sabe','99999999',2,'Cll Falsa # 123',3,'09999990','09090909','mail@vimelab.com','vimelab.com','XD');
 /*!40000 ALTER TABLE `GbCorp` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -461,7 +462,7 @@ CREATE TABLE `GbLogr` (
   PRIMARY KEY (`id`),
   KEY `GbUsua_id` (`GbUsua_id`),
   CONSTRAINT `GbLogr_ibfk_1` FOREIGN KEY (`GbUsua_id`) REFERENCES `GbUsua` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -470,7 +471,7 @@ CREATE TABLE `GbLogr` (
 
 LOCK TABLES `GbLogr` WRITE;
 /*!40000 ALTER TABLE `GbLogr` DISABLE KEYS */;
-INSERT INTO `GbLogr` VALUES (1,'2012-10-02 09:57:10',1,'Mdpaci','create ID: 1'),(2,'2012-11-09 16:48:56',1,'Gbusua','update ID: 3'),(3,'2012-11-13 13:46:06',1,'Gbpers','create ID: 2'),(4,'2012-11-13 13:46:17',1,'Gbcarg','create ID: 2'),(5,'2012-11-13 13:46:33',1,'Gbpers','update ID: 2'),(6,'2012-11-13 13:47:11',1,'Gbiden','create ID: 2'),(7,'2012-11-13 13:47:26',1,'Gbpers','update ID: 2'),(8,'2012-11-13 13:48:31',1,'Gbpers','update ID: 2'),(9,'2012-11-13 13:49:45',1,'Gbiden','create ID: 3'),(10,'2012-11-13 13:50:13',1,'Gbcnae','create ID: 2'),(11,'2012-11-13 13:51:05',1,'Gbempr','create ID: 2'),(12,'2012-11-13 13:52:23',1,'Gbsucu','create ID: 2'),(13,'2012-11-13 13:56:21',1,'Ctcont','create ID: 1'),(14,'2012-11-13 13:59:34',1,'Gbusua','update ID: 1'),(15,'2012-11-13 14:03:21',1,'Tcruta','create ID: 1'),(16,'2012-11-13 18:38:24',1,'Mdhist','create ID: 1'),(17,'2012-11-13 18:39:09',1,'Mdaudi','create ID: 1'),(18,'2012-11-14 07:46:28',1,'Gbusua','update ID: 4'),(19,'2012-11-14 14:24:30',1,'Mdpaci','create ID: 2'),(20,'2012-11-14 15:50:31',1,'Mdpaci','create ID: 3'),(21,'2012-11-14 15:52:30',1,'Mdpaci','create ID: 7'),(22,'2012-11-14 16:32:50',1,'Mdpaci','create ID: 8'),(23,'2012-11-14 16:34:46',1,'Mdpaci','create ID: 9'),(24,'2012-11-15 14:16:23',1,'Mdpaci','create ID: 10'),(25,'2012-11-15 14:38:13',1,'Mdpaci','create ID: 11'),(26,'2012-11-15 14:42:54',1,'Mdpaci','create ID: 12'),(27,'2012-11-15 14:45:34',1,'Mdpaci','create ID: 13'),(28,'2012-11-15 14:50:00',1,'Mdpaci','create ID: 14'),(29,'2012-11-15 14:52:31',1,'Mdpaci','create ID: 15'),(30,'2012-11-15 14:53:48',1,'Mdpaci','create ID: 16'),(31,'2012-11-15 14:55:24',1,'Mdpaci','create ID: 17'),(32,'2012-11-15 15:14:29',1,'Mdpaci','create ID: 18'),(33,'2012-11-15 15:17:31',1,'Mdhist','create ID: 2'),(34,'2012-11-15 16:35:02',1,'Mdhist','create ID: 3'),(35,'2012-11-20 15:24:30',1,'Mdhist','update ID: 1'),(36,'2012-11-20 15:29:13',1,'Mdhist','create ID: 4'),(37,'2012-11-20 15:29:25',1,'Mdhist','delete ID: '),(38,'2012-11-20 15:31:39',1,'Mdhist','update ID: 2'),(39,'2012-11-20 15:32:00',1,'Mdhist','update ID: 3'),(40,'2012-11-20 15:39:31',1,'Gbciud','update ID: 2'),(41,'2012-11-20 15:39:46',1,'Gbciud','update ID: 3'),(42,'2012-11-20 15:40:12',1,'Gbsucu','update ID: 2'),(43,'2012-11-20 15:49:42',1,'Gbempr','create ID: 3'),(44,'2012-11-20 15:49:59',1,'Gbempr','update ID: 3'),(45,'2012-11-20 15:50:54',1,'Gbsucu','create ID: 3'),(46,'2012-11-20 15:53:03',1,'Ctcont','create ID: 2'),(47,'2012-11-20 15:56:37',1,'Tcruta','create ID: 2'),(48,'2012-11-20 17:27:19',1,'Mdpaci','create ID: 19'),(49,'2012-11-21 15:25:41',1,'Mdhist','create ID: 20'),(50,'2012-11-21 15:25:53',1,'Mdhist','update ID: 20'),(51,'2012-11-21 15:32:43',1,'Mdhist','update ID: 20'),(52,'2012-11-21 17:17:59',1,'Mdpato','create ID: 1'),(53,'2012-11-21 17:18:10',1,'Mdpato','create ID: 2'),(54,'2012-11-21 17:18:22',1,'Mdpato','create ID: 3'),(55,'2012-11-21 17:18:34',1,'Mdpato','create ID: 4'),(56,'2012-11-21 17:18:50',1,'Mdpato','create ID: 5'),(57,'2012-11-21 17:19:05',1,'Mdpato','create ID: 6'),(58,'2012-11-21 17:32:08',1,'Mdpato','create ID: 7');
+INSERT INTO `GbLogr` VALUES (1,'2012-10-02 09:57:10',1,'Mdpaci','create ID: 1'),(2,'2012-11-09 16:48:56',1,'Gbusua','update ID: 3'),(3,'2012-11-13 13:46:06',1,'Gbpers','create ID: 2'),(4,'2012-11-13 13:46:17',1,'Gbcarg','create ID: 2'),(5,'2012-11-13 13:46:33',1,'Gbpers','update ID: 2'),(6,'2012-11-13 13:47:11',1,'Gbiden','create ID: 2'),(7,'2012-11-13 13:47:26',1,'Gbpers','update ID: 2'),(8,'2012-11-13 13:48:31',1,'Gbpers','update ID: 2'),(9,'2012-11-13 13:49:45',1,'Gbiden','create ID: 3'),(10,'2012-11-13 13:50:13',1,'Gbcnae','create ID: 2'),(11,'2012-11-13 13:51:05',1,'Gbempr','create ID: 2'),(12,'2012-11-13 13:52:23',1,'Gbsucu','create ID: 2'),(13,'2012-11-13 13:56:21',1,'Ctcont','create ID: 1'),(14,'2012-11-13 13:59:34',1,'Gbusua','update ID: 1'),(15,'2012-11-13 14:03:21',1,'Tcruta','create ID: 1'),(16,'2012-11-13 18:38:24',1,'Mdhist','create ID: 1'),(17,'2012-11-13 18:39:09',1,'Mdaudi','create ID: 1'),(18,'2012-11-14 07:46:28',1,'Gbusua','update ID: 4'),(19,'2012-11-14 14:24:30',1,'Mdpaci','create ID: 2'),(20,'2012-11-14 15:50:31',1,'Mdpaci','create ID: 3'),(21,'2012-11-14 15:52:30',1,'Mdpaci','create ID: 7'),(22,'2012-11-14 16:32:50',1,'Mdpaci','create ID: 8'),(23,'2012-11-14 16:34:46',1,'Mdpaci','create ID: 9'),(24,'2012-11-15 14:16:23',1,'Mdpaci','create ID: 10'),(25,'2012-11-15 14:38:13',1,'Mdpaci','create ID: 11'),(26,'2012-11-15 14:42:54',1,'Mdpaci','create ID: 12'),(27,'2012-11-15 14:45:34',1,'Mdpaci','create ID: 13'),(28,'2012-11-15 14:50:00',1,'Mdpaci','create ID: 14'),(29,'2012-11-15 14:52:31',1,'Mdpaci','create ID: 15'),(30,'2012-11-15 14:53:48',1,'Mdpaci','create ID: 16'),(31,'2012-11-15 14:55:24',1,'Mdpaci','create ID: 17'),(32,'2012-11-15 15:14:29',1,'Mdpaci','create ID: 18'),(33,'2012-11-15 15:17:31',1,'Mdhist','create ID: 2'),(34,'2012-11-15 16:35:02',1,'Mdhist','create ID: 3'),(35,'2012-11-20 15:24:30',1,'Mdhist','update ID: 1'),(36,'2012-11-20 15:29:13',1,'Mdhist','create ID: 4'),(37,'2012-11-20 15:29:25',1,'Mdhist','delete ID: '),(38,'2012-11-20 15:31:39',1,'Mdhist','update ID: 2'),(39,'2012-11-20 15:32:00',1,'Mdhist','update ID: 3'),(40,'2012-11-20 15:39:31',1,'Gbciud','update ID: 2'),(41,'2012-11-20 15:39:46',1,'Gbciud','update ID: 3'),(42,'2012-11-20 15:40:12',1,'Gbsucu','update ID: 2'),(43,'2012-11-20 15:49:42',1,'Gbempr','create ID: 3'),(44,'2012-11-20 15:49:59',1,'Gbempr','update ID: 3'),(45,'2012-11-20 15:50:54',1,'Gbsucu','create ID: 3'),(46,'2012-11-20 15:53:03',1,'Ctcont','create ID: 2'),(47,'2012-11-20 15:56:37',1,'Tcruta','create ID: 2'),(48,'2012-11-20 17:27:19',1,'Mdpaci','create ID: 19'),(49,'2012-11-21 15:25:41',1,'Mdhist','create ID: 20'),(50,'2012-11-21 15:25:53',1,'Mdhist','update ID: 20'),(51,'2012-11-21 15:32:43',1,'Mdhist','update ID: 20'),(52,'2012-11-21 17:17:59',1,'Mdpato','create ID: 1'),(53,'2012-11-21 17:18:10',1,'Mdpato','create ID: 2'),(54,'2012-11-21 17:18:22',1,'Mdpato','create ID: 3'),(55,'2012-11-21 17:18:34',1,'Mdpato','create ID: 4'),(56,'2012-11-21 17:18:50',1,'Mdpato','create ID: 5'),(57,'2012-11-21 17:19:05',1,'Mdpato','create ID: 6'),(58,'2012-11-21 17:32:08',1,'Mdpato','create ID: 7'),(59,'2012-11-22 17:55:06',1,'Mdaudi','create ID: 2'),(60,'2012-11-22 18:01:18',1,'Mdaudi','create ID: 3'),(61,'2012-11-22 18:02:03',1,'Mdaudi','create ID: 4'),(62,'2012-11-22 18:02:53',1,'Mdaudi','create ID: 5'),(63,'2012-11-22 18:06:15',1,'Mdaudi','create ID: 6'),(64,'2012-11-22 18:07:28',1,'Mdaudi','create ID: 7'),(65,'2012-11-22 18:08:35',1,'Mdaudi','create ID: 8'),(66,'2012-11-22 18:11:14',1,'Mdaudi','create ID: 9'),(67,'2012-11-22 18:16:36',1,'Mdaudi','create ID: 10'),(68,'2012-11-22 18:18:02',1,'Mdaudi','create ID: 11'),(69,'2012-11-22 18:22:20',1,'Mdaudi','create ID: 12'),(70,'2012-11-22 18:23:15',1,'Mdaudi','create ID: 13'),(71,'2012-11-22 18:24:29',1,'Mdaudi','create ID: 14'),(72,'2012-11-22 18:27:01',1,'Mdaudi','create ID: 15'),(73,'2012-11-22 18:27:55',1,'Mdaudi','create ID: 16'),(74,'2012-11-22 18:28:49',1,'Mdaudi','create ID: 17'),(75,'2012-11-22 18:31:06',1,'Mdaudi','create ID: 18'),(76,'2012-11-22 18:44:18',1,'Mdaudi','create ID: 19'),(77,'2012-11-22 18:46:30',1,'Mdaudi','create ID: 20'),(78,'2012-11-22 18:47:25',1,'Mdaudi','create ID: 21'),(79,'2012-11-22 18:49:29',1,'Mdaudi','create ID: 22'),(80,'2012-11-22 19:31:55',1,'Mdaudi','create ID: 23'),(81,'2012-11-23 09:45:08',1,'Mdaudi','create ID: 24'),(82,'2012-11-23 10:34:13',1,'Mdvisu','create ID: 1'),(83,'2012-11-23 10:35:06',1,'Mdvisu','create ID: 2'),(84,'2012-11-23 10:35:49',1,'Mdvisu','create ID: 3'),(85,'2012-11-23 10:38:12',1,'Mdvisu','create ID: 4'),(86,'2012-11-23 10:39:13',1,'Mdvisu','create ID: 5'),(87,'2012-11-23 10:41:08',1,'Mdaudi','create ID: 25'),(88,'2012-11-23 10:41:35',1,'Mdvisu','create ID: 6'),(89,'2012-11-23 10:43:15',1,'Mdvisu','create ID: 7'),(90,'2012-11-23 10:44:18',1,'Mdaudi','create ID: 26'),(91,'2012-11-23 10:44:57',1,'Mdvisu','create ID: 8'),(92,'2012-11-23 11:04:29',1,'Mdaudi','create ID: 27'),(93,'2012-11-23 11:05:42',1,'Mdaudi','create ID: 28'),(94,'2012-11-23 11:32:13',1,'Mdbiom','create ID: 1'),(95,'2012-11-23 11:33:15',1,'Mdbiom','create ID: 2'),(96,'2012-11-23 11:34:50',1,'Mdbiom','create ID: 3'),(97,'2012-11-23 11:35:59',1,'Mdbiom','create ID: 4'),(98,'2012-11-23 11:58:48',1,'Mdespi','create ID: 1'),(99,'2012-11-23 12:00:32',1,'Mdespi','create ID: 2'),(100,'2012-11-23 12:02:28',1,'Mdespi','create ID: 3'),(101,'2012-11-23 15:17:49',1,'Mdextr','create ID: 1'),(102,'2012-11-23 15:22:04',1,'Mdextr','create ID: 2'),(103,'2012-11-23 15:38:45',1,'Mdsist','create ID: 1'),(104,'2012-11-23 15:40:03',1,'Mdsist','create ID: 2'),(105,'2012-11-23 15:42:50',1,'Mdaudi','create ID: 29'),(106,'2012-11-23 15:43:43',1,'Mdvisu','create ID: 9'),(107,'2012-11-23 15:44:28',1,'Mdbiom','create ID: 5'),(108,'2012-11-23 15:45:04',1,'Mdespi','create ID: 4'),(109,'2012-11-23 15:46:34',1,'Mdextr','create ID: 3'),(110,'2012-11-23 15:47:14',1,'Mdsist','create ID: 3'),(111,'2012-11-23 16:40:17',1,'Gbcorp','create ID: 1'),(112,'2012-11-23 16:42:07',1,'Mdaudi','create ID: 30'),(113,'2012-11-23 16:42:22',1,'Mdvisu','create ID: 10'),(114,'2012-11-23 16:42:49',1,'Mdbiom','create ID: 6'),(115,'2012-11-23 16:43:06',1,'Mdespi','create ID: 5'),(116,'2012-11-23 16:43:36',1,'Mdextr','create ID: 4'),(117,'2012-11-23 16:43:58',1,'Mdsist','create ID: 4'),(118,'2012-11-23 16:45:23',1,'Mdsist','create ID: 5'),(119,'2012-11-23 16:46:14',1,'Mdaudi','create ID: 31'),(120,'2012-11-23 16:46:57',1,'Mdvisu','create ID: 11'),(121,'2012-11-23 16:47:19',1,'Mdbiom','create ID: 7'),(122,'2012-11-23 16:47:30',1,'Mdespi','create ID: 6'),(123,'2012-11-23 16:48:12',1,'Mdextr','create ID: 5'),(124,'2012-11-23 16:49:34',1,'Mdextr','create ID: 6'),(125,'2012-11-23 16:49:59',1,'Mdsist','create ID: 6');
 /*!40000 ALTER TABLE `GbLogr` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -836,7 +837,7 @@ CREATE TABLE `MdAudi` (
   PRIMARY KEY (`id`),
   KEY `MdHist_id` (`MdHist_id`),
   CONSTRAINT `MdAudi_ibfk_1` FOREIGN KEY (`MdHist_id`) REFERENCES `MdHist` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -845,7 +846,7 @@ CREATE TABLE `MdAudi` (
 
 LOCK TABLES `MdAudi` WRITE;
 /*!40000 ALTER TABLE `MdAudi` DISABLE KEYS */;
-INSERT INTO `MdAudi` VALUES (1,1,'S','30','5','10','35','35','10','20','20','5','5','15','35','25','0');
+INSERT INTO `MdAudi` VALUES (1,1,'S','30','5','10','35','35','10','20','20','5','5','15','35','25','0'),(2,37,'S','10','20','10','20','10','20','10','20','10','20','10','20','10','20'),(3,37,'S','25','30','20','30','20','30','20','30','20','30','20','30','20','30'),(4,37,'S','35','20','30','20','30','20','30','20','30','20','30','20','30','20'),(5,37,'S','30','20','20','20','30','30','20','30','30','20','20','20','30','30'),(6,37,'S','5','30','5','30','5','30','10','0','10','10','20','10','30','20'),(7,37,'S','50','30','5','20','10','20','10','20','20','10','20','0','20','10'),(8,37,'S','15','20','10','20','10','20','10','20','10','20','10','20','10','20'),(9,37,'S','0','10','0','10','10','10','10','10','10','10','10','10','10','10'),(10,37,'S','10','20','10','20','10','30','20','30','20','20','20','20','10','20'),(11,37,'S','15','30','10','30','10','30','10','30','10','30','10','30','10','30'),(12,37,'S','15','10','10','10','10','10','10','10','10','10','10','10','10','10'),(13,37,'S','30','20','40','30','20','40','30','5','5','40','70','10','10','20'),(14,37,'S','20','10','10','20','20','40','10','10','30','10','40','20','10','5'),(15,37,'S','10','10','10','30','10','30','20','30','20','10','20','40','20','10'),(16,37,'S','10','10','10','10','10','15','10','10','10','10','10','10','10','10'),(17,37,'S','10','20','10','20','10','20','10','20','10','20','10','20','10','20'),(18,37,'S','10','10','10','20','10','10','10','20','10','10','20','20','20','10'),(19,56,'S','15','10','10','10','10','10','10','10','10','10','10','10','10','10'),(20,57,'S','65','10','65','10','70','10','85','10','85','10','10','10','10','10'),(21,58,'S','85','10','10','10','10','10','','10','15','10','10','10','','10'),(22,59,'S','20','10','10','40','30','20','40','30','5','10','10','20','5','10'),(23,60,'S','15','20','10','20','10','20','10','20','10','20','10','20','10','20'),(24,61,'S','20','30','10','40','20','10','100','20','10','20','15','30','20','40'),(25,62,'S','5','20','5','20','5','20','5','20','10','40','10','40','10','40'),(26,64,'N','','','','','','','','','','','','','',''),(27,65,'N','','','','','','','','','','','','','',''),(28,66,'S','5','20','5','25','5','20','5','20','10','20','10','20','10','20'),(29,71,'S','5','10','10','15','15','30','20','20','40','45','25','10','30','10'),(30,72,'S','10','15','-5','-5','-5','0','-5','-5','-5','-5','-5','-5','-5','-5'),(31,74,'N','','','','','','','','','','','','','','');
 /*!40000 ALTER TABLE `MdAudi` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -868,7 +869,7 @@ CREATE TABLE `MdBiom` (
   PRIMARY KEY (`id`),
   KEY `MdHist_id` (`MdHist_id`),
   CONSTRAINT `MdBiom_ibfk_1` FOREIGN KEY (`MdHist_id`) REFERENCES `MdHist` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -877,6 +878,7 @@ CREATE TABLE `MdBiom` (
 
 LOCK TABLES `MdBiom` WRITE;
 /*!40000 ALTER TABLE `MdBiom` DISABLE KEYS */;
+INSERT INTO `MdBiom` VALUES (1,37,182.00,82.00,25.00,25.00,120.00,80.00),(2,37,182.00,82.00,25.00,25.00,120.00,80.00),(3,67,178.00,67.00,25.00,25.00,120.00,80.00),(4,68,168.00,60.00,25.00,40.00,120.00,84.00),(5,71,182.00,82.00,25.00,35.00,120.00,80.00),(6,72,182.00,82.00,25.00,25.00,120.00,80.00),(7,74,1.00,1.00,2.00,2.00,2.00,2.00);
 /*!40000 ALTER TABLE `MdBiom` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -896,7 +898,7 @@ CREATE TABLE `MdDiag` (
   KEY `MdPato_id` (`MdPato_id`),
   CONSTRAINT `MdDiag_ibfk_1` FOREIGN KEY (`MdHist_id`) REFERENCES `MdHist` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `MdDiag_ibfk_2` FOREIGN KEY (`MdPato_id`) REFERENCES `MdPato` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -905,7 +907,7 @@ CREATE TABLE `MdDiag` (
 
 LOCK TABLES `MdDiag` WRITE;
 /*!40000 ALTER TABLE `MdDiag` DISABLE KEYS */;
-INSERT INTO `MdDiag` VALUES (1,27,1),(2,28,3),(3,28,7),(4,30,1),(5,30,2),(6,30,3),(7,31,1),(8,31,2),(9,31,3),(10,31,7),(11,32,1),(12,32,2),(20,35,1),(21,35,2),(22,35,3),(30,39,1),(34,42,2),(35,42,3),(36,42,4),(37,42,5),(38,42,6),(41,44,4),(42,44,6),(43,45,1),(44,45,2),(46,45,7),(47,45,4),(49,45,6),(50,46,2),(53,46,3),(54,46,1),(55,46,4),(57,46,6);
+INSERT INTO `MdDiag` VALUES (1,27,1),(2,28,3),(3,28,7),(4,30,1),(5,30,2),(6,30,3),(7,31,1),(8,31,2),(9,31,3),(10,31,7),(11,32,1),(12,32,2),(20,35,1),(21,35,2),(22,35,3),(30,39,1),(34,42,2),(35,42,3),(36,42,4),(37,42,5),(38,42,6),(41,44,4),(42,44,6),(43,45,1),(44,45,2),(46,45,7),(47,45,4),(49,45,6),(54,61,1),(58,61,4),(59,71,1),(60,71,4),(61,72,2),(62,72,4),(63,74,2),(64,74,4);
 /*!40000 ALTER TABLE `MdDiag` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -926,7 +928,7 @@ CREATE TABLE `MdEspi` (
   PRIMARY KEY (`id`),
   KEY `MdHist_id` (`MdHist_id`),
   CONSTRAINT `MdEspi_ibfk_1` FOREIGN KEY (`MdHist_id`) REFERENCES `MdHist` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -935,6 +937,7 @@ CREATE TABLE `MdEspi` (
 
 LOCK TABLES `MdEspi` WRITE;
 /*!40000 ALTER TABLE `MdEspi` DISABLE KEYS */;
+INSERT INTO `MdEspi` VALUES (1,37,'S',9.99,9.99,9.99),(2,37,'N',NULL,NULL,NULL),(3,69,'S',9.99,9.99,9.99),(4,71,'S',9.99,9.99,9.99),(5,72,'S',9.99,9.99,9.99),(6,74,'N',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `MdEspi` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1008,7 +1011,7 @@ CREATE TABLE `MdExtr` (
   PRIMARY KEY (`id`),
   KEY `MdHist_id` (`MdHist_id`),
   CONSTRAINT `MdExtr_ibfk_1` FOREIGN KEY (`MdHist_id`) REFERENCES `MdHist` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1017,6 +1020,7 @@ CREATE TABLE `MdExtr` (
 
 LOCK TABLES `MdExtr` WRITE;
 /*!40000 ALTER TABLE `MdExtr` DISABLE KEYS */;
+INSERT INTO `MdExtr` VALUES (1,37,'S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','lolo'),(2,70,'S','N','S','N','S','S','S','S','S','S','N','S','S','S','N','S','S','S','S','S','N','S','S','S','S','S','S','S','S','S','Cosas'),(3,71,'S','S','S','N','N','N','N','N','N','N','N','N','N','N','S','S','S','S','N','N','S','S','N','N','S','S','S','S','S','S','Comentario de extremidades!'),(4,72,'S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','Jojo'),(5,74,'S','S','S','S','S','S','S','S','S','S','S','S','S','S','N','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','ki'),(6,75,'S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','N','S','N','S','S','S','sss');
 /*!40000 ALTER TABLE `MdExtr` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1043,7 +1047,7 @@ CREATE TABLE `MdHist` (
   CONSTRAINT `MdHist_ibfk_1` FOREIGN KEY (`MdPaci_id`) REFERENCES `MdPaci` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `MdHist_ibfk_2` FOREIGN KEY (`GbPers_id`) REFERENCES `GbPers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `MdHist_ibfk_3` FOREIGN KEY (`TcRuta_id`) REFERENCES `TcRuta` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1052,7 +1056,7 @@ CREATE TABLE `MdHist` (
 
 LOCK TABLES `MdHist` WRITE;
 /*!40000 ALTER TABLE `MdHist` DISABLE KEYS */;
-INSERT INTO `MdHist` VALUES (1,1,1,2,'2012-11-09','N',0,NULL),(2,1,1,1,'2012-11-20',NULL,0,NULL),(3,1,1,1,'2012-01-06','S',0,NULL),(5,1,15,2,'2012-11-20','@',0,NULL),(6,1,2,2,'2012-11-20','S',0,NULL),(7,2,14,2,'2012-11-20','S',1,NULL),(8,2,14,2,'2012-11-20','S',1,NULL),(9,2,14,2,'2012-11-20','S',1,NULL),(10,2,14,2,'2012-11-20','S',1,NULL),(11,2,14,2,'2012-11-20','S',1,NULL),(12,2,14,2,'2012-11-20','S',1,NULL),(13,2,14,2,'2012-11-20','S',1,NULL),(14,2,8,2,'2012-11-20','@',1,NULL),(15,1,16,2,'2012-11-20','@',3,NULL),(16,2,17,2,'2012-11-20','N',0,NULL),(17,1,9,2,'2012-11-20','S',0,NULL),(18,2,19,2,'2012-11-20','@',2,NULL),(19,1,15,2,'2012-11-20','@',0,NULL),(20,1,1,1,'2012-11-08',NULL,0,NULL),(21,1,9,2,'2012-11-21','S',1,NULL),(22,1,15,2,'2012-11-21','@',0,NULL),(23,1,15,2,'2012-11-21','@',0,' lololo'),(24,1,15,2,'2012-11-21','@',0,NULL),(25,1,15,2,'2012-11-21','@',0,'Me aburre.'),(26,1,2,2,'2012-11-21','N',1,'Kokokoko'),(27,1,15,2,'2012-11-21','@',0,NULL),(28,1,15,2,'2012-11-21','@',1,NULL),(29,1,15,2,'2012-11-21','@',0,NULL),(30,1,15,2,'2012-11-21','@',0,NULL),(31,1,15,2,'2012-11-21','@',0,NULL),(32,1,2,2,'2012-11-21','N',0,NULL),(33,1,15,2,'2012-11-21','@',0,NULL),(34,1,15,2,'2012-11-21','@',0,NULL),(35,1,8,2,'2012-11-21','@',0,NULL),(36,1,15,2,'2012-11-21','@',0,NULL),(37,1,14,2,'2012-11-21','S',0,NULL),(38,1,14,2,'2012-11-21','N',1,NULL),(39,1,2,2,'2012-11-21','S',0,NULL),(40,1,17,2,'2012-11-21','S',0,NULL),(41,1,17,2,'2012-11-21','N',1,NULL),(42,1,2,2,'2012-11-21','S',1,NULL),(43,1,13,2,'2012-11-21','N',0,NULL),(44,1,15,2,'2012-11-21','@',0,NULL),(45,1,8,2,'2012-11-21','@',0,NULL),(46,1,17,2,'2012-11-21','S',1,' Test de comentario!');
+INSERT INTO `MdHist` VALUES (1,1,1,2,'2012-11-09','N',0,NULL),(2,1,1,1,'2012-11-20',NULL,0,NULL),(3,1,1,1,'2012-01-06','S',0,NULL),(5,1,15,2,'2012-11-20','@',0,NULL),(6,1,2,2,'2012-11-20','S',0,NULL),(7,2,14,2,'2012-11-20','S',1,NULL),(8,2,14,2,'2012-11-20','S',1,NULL),(9,2,14,2,'2012-11-20','S',1,NULL),(10,2,14,2,'2012-11-20','S',1,NULL),(11,2,14,2,'2012-11-20','S',1,NULL),(12,2,14,2,'2012-11-20','S',1,NULL),(13,2,14,2,'2012-11-20','S',1,NULL),(14,2,8,2,'2012-11-20','@',1,NULL),(15,1,16,2,'2012-11-20','@',3,NULL),(16,2,17,2,'2012-11-20','N',0,NULL),(17,1,9,2,'2012-11-20','S',0,NULL),(18,2,19,2,'2012-11-20','@',2,NULL),(19,1,15,2,'2012-11-20','@',0,NULL),(20,1,1,1,'2012-11-08',NULL,0,NULL),(21,1,9,2,'2012-11-21','S',1,NULL),(22,1,15,2,'2012-11-21','@',0,NULL),(23,1,15,2,'2012-11-21','@',0,' lololo'),(24,1,15,2,'2012-11-21','@',0,NULL),(25,1,15,2,'2012-11-21','@',0,'Me aburre.'),(26,1,2,2,'2012-11-21','N',1,'Kokokoko'),(27,1,15,2,'2012-11-21','@',0,NULL),(28,1,15,2,'2012-11-21','@',1,NULL),(29,1,15,2,'2012-11-21','@',0,NULL),(30,1,15,2,'2012-11-21','@',0,NULL),(31,1,15,2,'2012-11-21','@',0,NULL),(32,1,2,2,'2012-11-21','N',0,NULL),(33,1,15,2,'2012-11-21','@',0,NULL),(34,1,15,2,'2012-11-21','@',0,NULL),(35,1,8,2,'2012-11-21','@',0,NULL),(36,1,15,2,'2012-11-21','@',0,NULL),(37,1,14,2,'2012-11-21','S',0,NULL),(38,1,14,2,'2012-11-21','N',1,NULL),(39,1,2,2,'2012-11-21','S',0,NULL),(40,1,17,2,'2012-11-21','S',0,NULL),(41,1,17,2,'2012-11-21','N',1,NULL),(42,1,2,2,'2012-11-21','S',1,NULL),(43,1,13,2,'2012-11-21','N',0,NULL),(44,1,15,2,'2012-11-21','@',0,NULL),(45,1,8,2,'2012-11-21','@',0,NULL),(46,1,17,2,'2012-11-21','S',1,' Test de comentario!'),(47,1,15,2,'2012-11-22','@',0,NULL),(48,1,13,2,'2012-11-22','S',0,NULL),(49,1,17,2,'2012-11-22','S',1,NULL),(50,1,17,2,'2012-11-22','S',0,NULL),(51,1,2,2,'2012-11-22','S',0,NULL),(52,1,17,2,'2012-11-22','S',0,NULL),(53,1,2,2,'2012-11-22','S',2,NULL),(54,1,14,2,'2012-11-22','S',0,NULL),(55,1,17,2,'2012-11-22','N',1,NULL),(56,1,17,2,'2012-11-22','N',0,NULL),(57,1,17,2,'2012-11-22','S',0,NULL),(58,1,17,2,'2012-11-22','S',0,NULL),(59,1,17,2,'2012-11-22','N',1,NULL),(60,1,11,2,'2012-11-22','S',1,NULL),(61,1,2,2,'2012-11-23','S',0,'Cosas de prueba!.'),(62,1,10,2,'2012-11-23','@',1,NULL),(63,1,15,2,'2012-11-23','@',4,NULL),(64,1,14,2,'2012-11-23','S',0,NULL),(65,1,15,2,'2012-11-23','@',0,NULL),(66,1,17,2,'2012-11-23','S',1,NULL),(67,1,17,2,'2012-11-23','N',1,NULL),(68,1,7,2,'2012-11-23','N',0,NULL),(69,1,17,2,'2012-11-23','S',0,NULL),(70,1,17,2,'2012-11-23','S',0,NULL),(71,1,17,2,'2012-11-23','N',1,'Test de comentario!.'),(72,1,17,2,'2012-11-23','N',1,'Hello comentario!.'),(73,1,15,2,'2012-11-23','@',0,NULL),(74,1,17,2,'2012-11-23','S',0,' xxx'),(75,1,15,2,'2012-11-23','@',0,NULL);
 /*!40000 ALTER TABLE `MdHist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1300,7 +1304,7 @@ CREATE TABLE `MdSist` (
   PRIMARY KEY (`id`),
   KEY `MdHist_id` (`MdHist_id`),
   CONSTRAINT `MdSist_ibfk_1` FOREIGN KEY (`MdHist_id`) REFERENCES `MdHist` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1309,6 +1313,7 @@ CREATE TABLE `MdSist` (
 
 LOCK TABLES `MdSist` WRITE;
 /*!40000 ALTER TABLE `MdSist` DISABLE KEYS */;
+INSERT INTO `MdSist` VALUES (1,37,'S','S','S','S','S','S','S','S','S','S','S','S'),(2,37,'S','S','S','S','S','S','S','S','S','S','S','S'),(3,1,'S','N','S','N','S','N','S','N','S','N','S','N'),(4,1,'S','N','N','N','N','S','S','S','S','S','S','S'),(5,73,'S','S','S','S','S','S','S','S','S','S','S','S'),(6,75,'S','S','S','S','S','S','S','S','S','S','S','S');
 /*!40000 ALTER TABLE `MdSist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1341,7 +1346,7 @@ CREATE TABLE `MdVisu` (
   PRIMARY KEY (`id`),
   KEY `MdHist_id` (`MdHist_id`),
   CONSTRAINT `MdVisu_ibfk_1` FOREIGN KEY (`MdHist_id`) REFERENCES `MdHist` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1350,6 +1355,7 @@ CREATE TABLE `MdVisu` (
 
 LOCK TABLES `MdVisu` WRITE;
 /*!40000 ALTER TABLE `MdVisu` DISABLE KEYS */;
+INSERT INTO `MdVisu` VALUES (1,37,'S','S',1,1,0,1,0,0,0,0,'5','5','1','5','5','1'),(2,37,'S','S',1,1,0,0,1,0,0,0,'5','5','5','1','1','1'),(3,37,'S','S',1,0,0,0,1,0,0,0,'5','5','5','1','1','1'),(4,37,'S','S',1,0,0,0,1,0,0,0,'5','3','4','3','5','4'),(5,37,'S','S',1,0,0,0,1,0,0,0,'5','3','4','3','5','4'),(6,62,'S','S',1,0,0,0,1,0,0,0,'1','5','3','1','5','3'),(7,63,'S','S',1,0,0,0,0,0,0,0,'5','5','5','5','5','5'),(8,64,'S','S',1,0,0,0,1,0,0,0,'5','4','4','4','5','4'),(9,71,'S','S',1,0,0,1,1,0,0,0,'5','1','3','1','5','3'),(10,72,'S','S',0,0,0,0,1,0,0,0,'3','2','2','2','2','2'),(11,74,'S','S',1,0,0,0,0,0,0,0,'1','1','1','1','1','1');
 /*!40000 ALTER TABLE `MdVisu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1628,4 +1634,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-11-21 19:18:34
+-- Dump completed on 2012-11-23 16:51:44

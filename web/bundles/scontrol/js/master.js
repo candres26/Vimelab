@@ -13,6 +13,8 @@ var $audiId = "";
 var $visuId = "";
 var $biomId = "";
 var $espiId = "";
+var $extrId = "";
+var $sistId = "";
 var $recoIdx = -1;
 var $recoSrIdx = -1;
 var $diagIdx = -1;
@@ -57,6 +59,18 @@ function loadState(event)
 			hide("jsEspiCre");
 			gId('jsEspiLed').style.background = "#0000FF";
 		}
+		else if(this.id == "ifExtr")
+		{
+			$extrId = par[0];
+			hide("jsExtrCre");
+			gId('jsExtrLed').style.background = "#0000FF";
+		}
+		else if(this.id == "ifSist")
+		{
+			$sistId = par[0];
+			hide("jsSistCre");
+			gId('jsSistLed').style.background = "#0000FF";
+		}
 	}
 	else
 	{
@@ -79,6 +93,16 @@ function loadState(event)
 		{
 			gIf("ifEspi", "vimelab_scontrolbundle_mdespitype_mdhist").value = $histId;
 			showPartial("jsEspi");
+		}
+		else if(this.id == "ifExtr")
+		{
+			gIf("ifExtr", "vimelab_scontrolbundle_mdextrtype_mdhist").value = $histId;
+			showPartial("jsExtr");
+		}
+		else if(this.id == "ifSist")
+		{
+			gIf("ifSist", "vimelab_scontrolbundle_mdsisttype_mdhist").value = $histId;
+			showPartial("jsSist");
 		}
 	}
 }
@@ -289,6 +313,8 @@ function setHist(response)
 		show("jsVisu");
 		show("jsBiom");
 		show("jsEspi");
+		show("jsExtr");
+		show("jsSist");
 		
 		$msModo = 1;
 		
@@ -717,4 +743,30 @@ function vistaEspi(event)
 function newEspi(event)
 {
 	ifSimularClick("ifEspi", "sender");
+}
+
+function vistaExtr(event)
+{
+	if($extrId == "")
+		gId("ifExtr").contentWindow.location.reload();
+	else
+		showPartial(this.id);
+}
+
+function newExtr(event)
+{
+	ifSimularClick("ifExtr", "sender");
+}
+
+function vistaSist(event)
+{
+	if($sistId == "")
+		gId("ifSist").contentWindow.location.reload();
+	else
+		showPartial(this.id);
+}
+
+function newSist(event)
+{
+	ifSimularClick("ifSist", "sender");
 }
