@@ -80,6 +80,8 @@ class CtcontController extends Controller
                 if($sucu == null)
                     $sucu = new Gbsucu();
 				
+				$corp = $em->getRepository('ScontrolBundle:Gbcorp')->find('1');
+				
 				// create new PDF document
 				$pdf = new \Tcpdf_Tcpdf(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 				
@@ -128,13 +130,13 @@ class CtcontController extends Controller
 				<h3 align="center">REUNIDOS</h3>
 				<p>
 				De una parte, '.$entity->getNombrecontratante().', mayor de edad, con N.I.F '.$entity->getIdentcontratante().' en representación de
-				'.$entity->getGbempr()->getNombre().' en adelante Empresa, con domicilio social en '.$entity->getDireccioncontratante().', 
+				<b>'.$entity->getGbempr()->getNombre().'</b> en adelante Empresa, con domicilio social en '.$entity->getDireccioncontratante().', 
 				provista de CIF Nº '.$entity->getGbempr()->getIdentificacion().'. Tel.: '.$sucu->getTelefono().', E-mail: '.$sucu->getCorreo().'.
 				<br>
 				<br>	
 				Y de otra, '.$entity->getNombrecontratista().', con NIF '.$entity->getIdentcontratista().' quien actúa en calidad de
-				'.$entity->getCargocontratista().' de la entidad, '.$corp = $em -> getRepository('ScontrolBundle:Gbcorp')->find('1').', en adelante VIMELAB, con 
-				domicilio social en '.$corp = $em -> getRepository('ScontrolBundle:Gbcorp')->find('1')->getDireccion().', con '.$corp = $em -> getRepository('ScontrolBundle:Gbcorp')->find('1')->getIdentificacion().'.
+				'.$entity->getCargocontratista().' de la entidad, '.$corp->getNombre().', en adelante VIMELAB, con 
+				domicilio social en '.$corp->getDireccion().', con '.$corp->getIdentificacion().'.
 				<br>
 				<br>
 				Ambas partes, en el concepto en que intervienen, se reconocen la necesaria capacidad legal para contratar
@@ -147,9 +149,9 @@ class CtcontController extends Controller
 				como Servicio de Prevención Ajeno, acreditación SP-062-B.
 				<br>
 				<br>
-				<b>II.</b> Que [nombrecontratante], se halla interesada en
-				contratar para sus centros de trabajo, que se especificarán en este contrato, los servicios de Seguridad,
-				Higiene, Ergonomia i Psicosociologia Aplicada, i Vigilancia de la Salud que presta VIMELAB, y
+				<b>II.</b> Que <b>'.$entity->getGbempr()->getNombre().'</b>, se halla interesada en
+				contratar para sus centros de trabajo, que se especificarán en este contrato, los servicios de <b>[Seguridad,
+				Higiene, Ergonomia i Psicosociologia Aplicada, i Vigilancia de la Salud]</b> que presta VIMELAB, y
 				estando asimismo esta igualmente interesada, ambas partes acuerdan suscribir el presente contrato sujeto
 				a las siguientes:
 				<br>
@@ -179,7 +181,7 @@ class CtcontController extends Controller
 				<br>
 				<b>TERCERA.</b> En cualquier caso, y a fin de cumplir con el contenido contractual de este documento, la
 				Empresa vendrá obligada frente al Servicio de Prevención a:
-				<ol>
+				<ol align="justify">
 					<li>
 						Facilitar a VIMELAB, con carácter previo al inicio de las actividades contratadas, toda la
 						información relativa a la organización, características y complejidad del trabajo, procesos de
@@ -282,8 +284,221 @@ class CtcontController extends Controller
 				año, siendo revisable en todos sus términos; pudiendo ser indefinidamente prorrogado por periodos de
 				igual duración, si ninguna de las dos partes lo denuncia de forma fehaciente y con sesenta días hábiles de
 				antelación a la finalización del citado plazo o alguna de sus prórrogas.
-				</p>';
-				$pdf -> writeHTMLCell(190, 0, 10, 22, $html, 1, 0, 0, true, 'J', true);
+				</p>
+				<b>DÉCIMA. ANEXOS</b>
+				<br>
+				<br>
+				<h4>ANEXO I. SEGURIDAD - HIGIENE - ERGONOMÍA. RELACIÓN DE ACTIVIDADES A PRESTAR POR VIMELAB COMO SERVICIO DE PREVENCIÓN</h4>
+
+				<b>1. ACTIVIDADES SHE</b>
+				<br>
+				<br>
+				'.$corp->getNombre().', asume la realización, como servicio de prevención ajeno, de la actividad de Seguridad en el
+				Trabajo, Higiene Industrial y Ergonomía y Psicosociología Aplicada y que consistirán en la realización de las
+				siguientes actuaciones:
+				<br>
+				<ul align="justify">
+					<li>Evaluación Inicial de Riesgos por puesto de trabajo. Revisión anual (en caso de prorrogarse el contrato)</li>
+					<li>Establecimiento de la Planificación Preventiva.</li>
+					<li>Análisis e investigación de las causas y factores determinantes de los accidentes de trabajo y
+					enfermedades profesionales.</li>
+					<li>Formación/información a los trabajadores.</li>
+					<li>Asesoramiento para la organización de la actividad preventiva.</li>
+					<li>Planes de emergencia.</li>
+				<p><b>Relación de actividades no contempladas en este contrato:</b></p>
+					<li>Elaboración de:</li>
+						<ul align="justify">
+							<li>Los estudios y planes de seguridad y salud contemplados en las obras de construcción, según R.D. 1627/97.</li>
+							<li>Ejecución de la coordinación de la Seguridad en obras de construcción.</li>
+							<li>Puesta en conformidad de las máquinas, según R.D. 1215/97.</li>
+							<li>En relación con las medidas higiénicas y ergonómicas que, como resultado de la evaluación de
+							riesgos, fueran necesarias efectuar, no se contemplan las horas técnicas de obtención de muestras
+							ni los costes de laboratorio.</li>
+						</ul>
+				</ul>	
+				<br>
+				<p>	
+				Las actividades enumeradas anteriormente, así como cualquier otra no prevista que se presente en el
+				transcurso de la ejecución del Plan Preventivo, podrán realizarse previo acuerdo entre las partes.
+				</p>
+				<h4>ANEXO II VIGILANCIA DE LA SALUD</h4>
+
+				<p>Consistirá en la realización de las actuaciones siguientes:</p>
+				<ol type = "a"  align="justify">
+					<li>Asesorar a la empresa en cuanto a la idoneidad, contenido y periodicidad de las evaluaciones
+					de salud en formato de reconocimientos médicos en función de los riesgos inherentes al puesto
+					de trabajo, de las causas conocidas de absentismo de la normativa vigente, y de los protocolos
+					específicos elaborados por el Ministerio de Sanidad y Consumo y las comunidades autónomas. Este
+					asesoramiento únicamente podrá ser realizado por VIMELAB una vez recibida la Evaluación de
+					riesgos general y por puesto de trabajo, y la información solicitada.</li>
+					
+					<li>VIMELAB realizará tantos reconocimientos médicos específicos de vigilancia de la salud como número de
+					trabajadores vienen especificados en el presente contrato.</li>
+					
+					<li>
+					Los reconocimientos médicos pueden incluir las pruebas siguientes:
+						<ul align="justify">
+							<li>Elaboración de la Historia Clínica Laboral.</li>
+							<li>Exploración clínica básica.</li>
+							<li>Electrocardiograma a criterio del médico.</li>
+							<li>Espirometría a criterio del médico.</li>
+							<li>Audiometría.</li>
+							<li>Control de la agudeza visual.</li>
+						</ul>
+					</li>
+					
+					<li>
+					La analítica básica en sangre y orina incluirá:
+						<ul>
+							<li>Hemograma</li>
+							<li>Fórmula leucocitaria</li>
+							<li>V.S.G.</li>
+							<li>Bioquímica: Glicemia, ácido úrico, urea, colesterol. VASO, GPT, GGT.</li>
+							<li>Orina : PH, albúmina, glucosa, acetona, sedimento.</li>
+						</ul>
+					<p align="justify">Pruebas de control biológico, que incluirán un perfil hematológico y bioquímico básicos, a saber: hemograma
+					completo, velocidad de eritrosedimentación, fórmula leucocitaria, glucemia, colesterol total, creatinina,
+					uricèmia, GPT, GGT. VASO, y análisis básico de orina.</p>
+					</li>
+					
+					<li>El presente contrato no incluye el coste de las pruebas de control biológico no comprendidas el perfil
+					básico mencionado, ni lo otros pruebas exploradoras o diagnósticas excepto las mencionadas en el apartado 
+					del presente anexo, que en todo caso serán presupuestadas y facturadas a banda.</li>
+					
+					<li>De los reconocimientos médicos el empresario y las personas o órganos con responsabilidad en materia
+					de prevención serán informados de las conclusiones que se deriven de los mismos en relación con la aptitud
+					del trabajador para el ejercicio del puesto de trabajo o con la necesidad introducir o mejorar las medidas de
+					protección y prevención
+					</li>
+					
+					<li>Los resultados serán facilidades a cada trabajador, y no podrán ser conocidos por el empresario sin el
+					consentimiento previo de aquel.</li>
+					
+					<li>VIMELAB tendrá que tener conocimiento de las situaciones de ausencia por incapacidad temporal para
+					lo cual, la empresa comunicará a los servicios médicos de VIMELAB las bajas por I.T. con una periodicidad
+					mensual u otra que en función de las condiciones de la empresa se determine, al único efecto de poder
+					identificar cualquier relación entre la causa de enfermedad o de ausencia de riesgos para la salud que
+					puedan presentarse a los puestos de trabajo.</li>
+					
+					<li>VIMELAB efectuará un análisis de la información obtenida, con criterios epidemiológicos, efectuando, si
+					es necesario, propuesta de introducción o mejora de las medidas de protección o prevención.</li>
+					
+					<li>VIMELAB estudiará y valorará especialmente los riesgos que puedan afectar las trabajadoras en situación
+					de embarazo y parte reciente, a los menores de edad y a los trabajadores especialmente sensibles a
+					determinados riesgos, y propondrá las medidas preventivas adecuadas.</li>
+					
+					<li>Se realizará el asesoramiento pertinente para la implantación del protocolo para la prestación de los
+					primeros auxilios a la empresa elaborado al efecto por VIMELAB.</li>
+					
+					<li>VIMELAB estará en disposición de proporcionar la adecuada formación en primeros auxilios al personal
+					de la empresa que se considere conveniente de acuerdo con el protocolo mencionado en el párrafo anterior,
+					mediante la formación impartida a las instalaciones de VIMELAB, o en la propia empresa, de acuerdo con el
+					programa que VIMELAB elabora semestralmente.</li>
+
+				</ol>
+
+				<p>
+				<h4>ANEXO III CENTROS CONTRATADOS Y CONDICIONES ECONÓMICAS.</h4>
+
+				<h5 align="center">RELACIÓN DE CENTROS DE LA EMPRESA EN LOS QUE VIMELAB DESARROLLARÁ LA ACTIVIDAD PREVENTIVA COMO SERVICIO DE PREVENCIÓN</h5>
+				<table border="1" align="center">
+					<tr>
+						<td>DENOMINACIÓN</td><td>DIRECCIÓN</td><td>C.P. LOCALIDAD</td><td> No. TRABAJADORES</td>
+					</tr>
+					<tr>
+						<td>'.$entity->getGbempr()->getNombre().'</td><td>'.$entity->getDireccioncontratante().'</td><td></td><td></td>
+					</tr>
+				</table>
+				</p>
+				<p><b>Condiciones económicas particulares del presente contrato.</b></p>
+				<p>Como contraprestación por los servicios prestados al amparo del presente contrato la Empresa abonará a
+				VIMELAB, S.L., por los conceptos que se relacionan los siguientes importes:
+				</p>
+				<p>
+				<table border="1" align="center">
+					<tr>
+						<td>ACTIVIDAD</td><td>IMPORTE</td><td>IVA</td><td>VENCIMIENTO</td>
+					</tr>
+					<tr>
+						<td>'.$entity->getGbempr()->getNombre().'</td><td>'.$entity->getDireccioncontratante().'</td><td></td><td></td>
+					</tr>
+				</table>
+				</p>
+				<p>El presente contrato devengará los siguientes honorarios:</p>
+
+				<p>El coste de este servicio de Prevención de Riesgos Laborales asciende TRESCIENTOS SESENTA euros
+				(360.00€), NO incluido IVA del 18%, que se abonará en el momento de la firma del presente contrato.</p>
+
+				<p>El Examen Médico Específico asciende a 37.00 € (TREINTA Y SIETE euros) de riesgo BAJO. (Se cobrará una vez
+				realizado).</p>
+
+				<p>El importe indicado no contiene en su caso, los costes de las pruebas complementarias que según la
+				evaluación inicial y lo reflejado anteriormente en las actividades SHE, hubieran de realizarse.
+				Los importes reflejados se revisarán anualmente en el mismo porcentaje que experimente el Índice de
+				Precios al Consumo (I.P.C.), que facilita el Instituto Nacional de Estadística.</p>
+
+				<p>La falta de pago o cualquier otro incumplimiento de los acuerdos firmados en el presente contrato, será
+				causa de rescisión del mismo.</p>
+
+				<p><b>UNDÉCIMA.</b> Para resolver cualquier diferencia que pudiera surgir de la aplicación del presente concierto,
+				las partes, con renuncia del fuero que les pudiera corresponder, se someten a los Juzgados de la ciudad de
+				Barcelona.</p>
+				
+				<h4>RESPONSABILIDAD LIMITADA VIMELAB S.L</h4>
+				<p>Nuestra responsabilidad se extiende al periodo de vigencia especificado y en los términos y alcance del
+				trabajo acordados entre la Empresa y VIMELAB S.L.</p>
+
+				<p>VIMELAB S.L rechaza cualquier tipo de responsabilidad derivada de sucesos anteriores
+				perfeccionamiento del presente contrato o posteriores a la finalización de la vigencia del mismo.</p>
+
+				<p>VIMELAB S.L rechaza cualquier tipo de responsabilidad producida entre la firma del presente documento, la
+				constatación de los abonos correspondientes y la realización de los trabajos contratados, dentro del plazo
+				establecido, o cuando la realización de éstos se retrase por impago o cualquier otra causa previa generada
+				por el empresario contratante.</p>
+
+				<p>VIMELAB S.L declina cualquier tipo de responsabilidad en el caso de que la empresa hubiera aportado datos
+				erróneos o falsos para la realización de los correspondientes informes.</p>
+				
+				<p align="center">ESTE CONTRATO NO TENDRÁ VALIDEZ SIN EL COMPROBANTE DE PAGO</p>
+				
+				<p>Y para que así conste y surta los efectos donde corresponda, siendo su validez, desde el 27 de Abril de
+				2012 hasta el 27 de Abril de 2013.</p>
+
+				<p>Se firma el presente CONCIERTO EN MATERIA DE PREVENCIÓN DE RIESGOS LABORALES, por
+				duplicado en la ciudad y fecha en principio indicados.</p>
+				<p>
+				<table align="center" wight=50%>
+					<tr>
+						<td>Por la Empresa</td><td></td><td>Por VIMELAB S.L.</td>
+					</tr>
+					<tr>
+						<td></td><td></td><td></td>
+					</tr>
+					<tr>
+						<td></td><td></td><td></td>
+					</tr>
+					<tr>
+						<td></td><td></td><td></td>
+					</tr>
+					<tr>
+						<td></td><td></td><td></td>
+					</tr>
+					<tr>
+						<td><b>'.$entity->getNombrecontratante().'</b></td><td></td><td><b>'.$entity->getNombrecontratista().'</b></td>
+					</tr>
+				</table>
+				</p>
+
+				<p style="font-size: 30px">En conformidad con la Ley Orgánica 15/1999 de diciembre, de protección de datos de carácter personal, le informamos
+				que sus datos personales se incorporarán en un fichero automatizado denominado GESTION DE CLIENTES del cual
+				el titular es VIMELAB, S.L. e inscrito en la Agencia de Protección de Datos, con la finalidad de gestionar Clientes y
+				Proveedores. Le informamos que sus datos no se cederán a ninguna otra entidad y consiente expresamente que se
+				traten por la finalidad indicada. Finalmente, le hacemos saber que puede ejercitar en cualquiera momento los derechos
+				de acceso, rectificación, cancelación y oposición en los términos establecidos en la legislación vigente sobre protección
+				de datos, dirigiéndose para escrito a la dirección: Calle Pi i Margall 25 escalera B entlo. 1ª; 08024 Barcelona.</p>				
+				';
+				
+				$pdf -> writeHTMLCell(170, 0, 20, 22, $html, 1, 0, 0, true, 'J', true);
 			
 				$pdf->Output('contrato No.pdf', 'I');
 			}
