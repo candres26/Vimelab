@@ -92,7 +92,7 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 	* Crear Revsión Medica.
 		! El campo menstruación aparece y desaparece segun el sexo.
 		! Hojas de ruta ordenadas por empresa.
-	+ Integrar historia - m-medicos.
+	* Integrar historia - m-medicos.
 		* Integracion con Audiomtría.
 		* Integración con Agudeza Visual.
 		* Integración con Biometría.
