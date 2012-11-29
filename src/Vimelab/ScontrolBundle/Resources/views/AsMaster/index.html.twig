@@ -126,6 +126,53 @@
 	<div id="jsExam" class="csExam">
 		<b>EXÁMENES</b>
 		
+		<div class="csExamChoi">
+			<table>
+				<tr>
+					<th>Exámen:</th>
+					<td>
+						<select id="jsExamEx">
+							<option value='@'>Seleccione...</option>
+							{% for e in exams %}
+								<option value="{{ e.id }}">{{ e.nombre }}</option>
+							{% endfor %}
+						</select>		
+					</td>
+				</tr>
+				
+				<tr>
+					<th>Servicio:</th>
+					<td>
+						<select id="jsExamSr">
+							<option value='@'>Seleccione...</option>
+							{% for s in servs %}
+								<option value="{{ s.id }}">{{ s.nombre }}</option>
+							{% endfor %}
+						</select>				
+					</td>
+				</tr>
+			
+			
+			</table>	
+		</div>
+		
+		
+		<div class="csExamZone">
+			<table id="jsExamTab"><!-- AJAX --></table>
+		</div>
+		
+		<div class="csExamCtr">
+			<img id="jsExamSav" src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar">
+			<img id="jsExamDel" src="{{ asset('bundles/scontrol/imagenes/iconos/rem.png') }}" title="Eliminar">
+		</div>
+		
+		<div id="jsExamSel" class="csExamSel">
+			<b>REALIZADO:</b>
+			<input type="radio" id="jsExamSel_S" name="nProtSel" value="S" />SI
+			<input type="radio" id="jsExamSel_N" name="nProtSel" value="N"/>NO
+		</div>
+		
+		<textarea id="jsExamDet">&nbsp;</textarea>
 	</div>
 	
 </div>
@@ -393,12 +440,16 @@
 		$_getQues = "{{ path('as_master_getQues') }}";
 		$_savQues = "{{ path('as_master_savQues') }}";
 		$_delQues = "{{ path('as_master_delQues') }}";
+		$_getExam = "{{ path('as_master_getExam') }}";
+		$_savExam = "{{ path('as_master_savExam') }}";
+		$_delExam = "{{ path('as_master_delExam') }}";
 		
 		function $init()
 		{
-			//alert(gId("jsProtSel_S").checked);
-			//gId("jsProtSel_S").checked = "checket";
-			//alert(gId("jsProtSel_S").checked);
+			/* -- Eliminar espacion */
+			gId('jsComeDta').value = "";
+			gId('jsProtDet').value = "";
+			gId('jsExamDet').value = "";
 			
 			/* -- EVENTOS DE PACIENTE -- */
 			gId('jsPaci').onclick = vistaPaci;
@@ -480,6 +531,11 @@
 			gId('jsProtTab').onclick = selPreg;
 			gId('jsProtSav').onclick = savPreg;
 			gId('jsProtDel').onclick = delPreg;
+			
+			/* --- EVENTOS DE EXAMENES --- */
+			gId('jsExamTab').onclick = selExam;
+			gId('jsExamSav').onclick = savExam;
+			gId('jsExamDel').onclick = delExam;
 		}
 	
 	</script>

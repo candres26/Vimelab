@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Vimelab\ScontrolBundle\Tool\Tool;
 
 use Vimelab\ScontrolBundle\Entity\Gbpers;
+use Vimelab\ScontrolBundle\Entity\Ctserv;
 use Vimelab\ScontrolBundle\Entity\TcRuta;
 use Vimelab\ScontrolBundle\Entity\Mdpaci;
 use Vimelab\ScontrolBundle\Entity\Mdhist;
@@ -16,6 +17,8 @@ use Vimelab\ScontrolBundle\Entity\Mdprot;
 use Vimelab\ScontrolBundle\Entity\Mdproc;
 use Vimelab\ScontrolBundle\Entity\Mdques;
 use Vimelab\ScontrolBundle\Entity\Mdresp;
+use Vimelab\ScontrolBundle\Entity\Mdexam;
+use Vimelab\ScontrolBundle\Entity\Mdlabo;
 
 class AsMasterController extends Controller
 {
@@ -28,8 +31,10 @@ class AsMasterController extends Controller
 			
 			$em = $this->getDoctrine()->getEntityManager();
 			$entity = $em->getRepository('ScontrolBundle:Gbpers')->getForUser($ussys);
+			$servs = $em->getRepository('ScontrolBundle:Ctserv')->findBy(array('tipo' => '1'), array('nombre' => 'ASC'));
+			$exams = $em->getRepository('ScontrolBundle:Mdexam')->findBy(array(), array('nombre' => 'ASC'));
 				
-			return $this->render('ScontrolBundle:AsMaster:index.html.twig', array('GbPers' => $entity));
+			return $this->render('ScontrolBundle:AsMaster:index.html.twig', array('GbPers' => $entity, 'exams' => $exams, 'servs' => $servs));
 		}
 		else
 			return $this->render('ScontrolBundle::alertas.html.twig');
@@ -407,6 +412,101 @@ class AsMasterController extends Controller
 					$em = $this->getDoctrine()->getEntityManager();
 	        		$repo = $em->getRepository('ScontrolBundle:Mdresp');
 	        		$entity = $repo->find($request->request->get("resp"));	
+					
+					$em->remove($entity);
+					$em->flush();
+					
+					return new Response("0");
+				}
+				catch(\Exception $e)
+				{
+					return new Response("1");
+				}
+			}
+			else
+				return $this->redirect($this->generateUrl('as_master'));
+		}
+		else
+			return $this->render("ScontrolBundle::alertas.html.twig");
+	}
+	
+	public function getExamenAction()
+	{
+		if(Tool::isGrant($this))
+        {
+        	$request = $this->getRequest();
+        	if($request->isXmlHttpRequest())
+			{
+				$em = $this->getDoctrine()->getEntityManager();
+        		$repo = $em->getRepository('ScontrolBundle:Mdlabo');
+        		$entities = $repo->findByMdhist($request->request->get("hist"));	
+								
+				$res = array();
+				foreach($entities as $caso)
+					$res[] = $caso->getId()."=>".$caso->getMdexam()->getNombre()."=>".$caso->getEstado()."=>".$caso->getResultado().
+							"=>".$caso->getMdexam()->getId()."=>".$caso->getCtserv()->getId();
+				
+				return new Response(join("|-|", $res));
+			}
+			else
+				return $this->redirect($this->generateUrl('as_master'));
+		}
+		else
+			return $this->render("ScontrolBundle::alertas.html.twig");
+	}
+	
+	public function savExamenAction()
+	{
+		if(Tool::isGrant($this))
+        {
+        	$request = $this->getRequest();
+        	if($request->isXmlHttpRequest())
+			{
+				try
+				{
+					$em = $this->getDoctrine()->getEntityManager();
+					
+					$histo = $em->getRepository('ScontrolBundle:Mdhist')->find($request->request->get("hist"));
+					$exam = $em->getRepository('ScontrolBundle:Mdexam')->find($request->request->get("jsExamEx"));
+					$serv = $em->getRepository('ScontrolBundle:Ctserv')->find($request->request->get("jsExamSr"));
+					
+					$entity = new Mdlabo();
+					$entity->setMdhist($histo);
+					$entity->setMdexam($exam);
+					$entity->setCtserv($serv);
+					$entity->setEstado($request->request->get("esta"));
+					$entity->setResultado($request->request->get("jsExamDet"));
+					
+					
+					$em->persist($entity);
+					$em->flush();
+					
+					return new Response("0");
+				}
+				catch(\Exception $e)
+				{
+					return new Response("1");
+				}
+			}
+			else
+				return $this->redirect($this->generateUrl('as_master'));
+		}
+		else
+			return $this->render("ScontrolBundle::alertas.html.twig");
+	}
+
+	public function delExamenAction()
+	{
+		if(Tool::isGrant($this))
+        {
+        	$request = $this->getRequest();
+        	if($request->isXmlHttpRequest())
+			{
+				try
+				{
+					$em = $this->getDoctrine()->getEntityManager();
+	        		$repo = $em->getRepository('ScontrolBundle:Mdlabo');
+	        		$entity = $repo->find($request->request->get("exam"));	
 					
 					$em->remove($entity);
 					$em->flush();

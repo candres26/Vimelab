@@ -13,7 +13,7 @@ class CtservType extends AbstractType
             ->add('codigo', 'text', array('label' => 'Código'))
             ->add('nombre')
             ->add('iva')
-            ->add('tipo')
+            ->add('tipo', 'choice' , array('choices' => array('1' => 'Exámenes', '2' => 'Procedimientos', '3' => 'Otros servicios')))
         ;
     }
 

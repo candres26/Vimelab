@@ -1374,3 +1374,12 @@ as_master_savQues:
 as_master_delQues:
     pattern: /asmaster/delques
     defaults: { _controller: ScontrolBundle:AsMaster:delRespuesta }
+as_master_getExam:
+    pattern: /asmaster/getexam
+    defaults: { _controller: ScontrolBundle:AsMaster:getExamen }
+as_master_savExam:
+    pattern: /asmaster/savexam
+    defaults: { _controller: ScontrolBundle:AsMaster:savExamen }
+as_master_delExam:
+    pattern: /asmaster/delexam
+    defaults: { _controller: ScontrolBundle:AsMaster:delExamen }

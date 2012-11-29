@@ -563,7 +563,7 @@
 
 .csProt, .csExam
 {
-	display: none;
+	display: none;	
 	position: absolute;
 	overflow: auto;
 	bottom: 0.5%;
@@ -593,13 +593,67 @@
 	width: 48%;
 }
 
-.csProt textarea
+.csProt textarea, .csExam textarea
 {
 	position: absolute;
 	right: 1%;
 	bottom: 1%;
 	width: 48%;
 	height: 55%;
+}
+
+
+.csProtCtr, .csExamCtr
+{
+	position: absolute;
+	right: 1%;
+	top: 8%;
+	width: 48%;	
+}
+
+.csProtCtr img, .csExamCtr img
+{
+	cursor: pointer;
+}
+
+.csProtCtr img:hover, .csExamCtr img:hover
+{
+	opacity: 0.8;
+	box-shadow: 2px 2px 5px #203982;
+	border-radius: 5px;
+}
+
+.csExamChoi
+{
+	position: absolute;
+	left: 1%;
+	top: 8%;
+	width: 48%;
+}
+
+.csExamChoi table
+{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.csExamChoi select
+{
+	width: 100%;
+}
+
+.csProtSel, .csExamSel
+{
+	position: absolute;
+	right: 1%;
+	top: 30%;
+	width: 48%;
+}
+
+.csProtSel b, .csExamSel b
+{
+	position: relative;
+	border: none;
 }
 
 .csProtZone
@@ -615,63 +669,42 @@
 	border-collapse: collapse;
 }
 
-.csProtCtr
+.csExamZone
 {
 	position: absolute;
-	right: 1%;
-	top: 8%;
-	width: 48%;	
-}
-
-.csProtCtr img
-{
-	cursor: pointer;
-}
-
-.csProtCtr img:hover
-{
-	opacity: 0.8;
-	box-shadow: 2px 2px 5px #203982;
-	border-radius: 5px;
-}
-
-.csProtSel
-{
-	position: absolute;
-	right: 1%;
-	top: 30%;
+	overflow: auto;
+	bottom: 1%;
+	left: 1%;
 	width: 48%;
+	height: 68%;
+	background: #FFFFFF;
+	border: 1px solid #203982;
+	border-collapse: collapse;
 }
 
-.csProtSel b
-{
-	position: relative;
-	border: none;
-}
-
-.csProtZone table
+.csProtZone table, .csExamZone table
 {
 	width: 100%;
 	border-collapse: collapse;
 }
 
-.csProtZone th
+.csProtZone th, .csExamZone th
 {
 	display: none;
 }
 
-.csProtZone td
+.csProtZone td, .csExamZone td
 {
 	border-bottom: 1px solid #203982;
 }
 
-.csProtZone tr
+.csProtZone tr, .csExamZone tr
 {
 	cursor: pointer;
 	background: #F2F2F2;
 }
 
-.csProtZone tr:hover
+.csProtZone tr:hover, .csExamZone tr:hover
 {
 	background: #A8BBFA;
 }

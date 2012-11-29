@@ -66,6 +66,7 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 * Recomendaciones es un diagnostico de codigo > 1900.
 * Validar caso de "NO REALIZADO" en reporte de audiometría.
 * Creacion de temas CSS para vistas parciales.
+* Crear categorias para servicios (Examenes, Procedimientos, Otros).
 
 # --- CAMBIOS EN PROGRESO --- #
 
@@ -78,8 +79,8 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 + Asistente de empresas, oculto en espera.
 + PRIORITARIO: Asistente maestro de revisión médica:
 	* Crear estandar de alamcenamiento.
-	+ Fijar validaciones de GUI [80%].
-	+ Nuevo esquema de vistas [95%].
+	* Fijar validaciones de GUI.
+	* Nuevo esquema de vistas.
 	* Crear modelo de capturas parciales con IFRAME.
 	- Integrar GbVars para diccionarios.
 	- Integrar GbVars para seguridad.
@@ -114,10 +115,16 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 		! La unica diferecnia entre Diagnostico y recomendación es el codigo, todas se crean desde el modulo patologias.
 	* Integrar historia - protocolos.
 		* Agregar respuesta.
+		* Editar respuesta.
 		* Eliminar respuesta.
 		! Las preguntas se despliegan segun el protocolo selecionado.
 		! Los protocolos disponibles dependen del puesto de trabajo del paciente.		
-	- Integrar historia - examenes.
+	* Integrar historia - examenes.
+		* Agregar orden de laboratorio.
+		* Eliminar orden de laboratorio.
+		! Los examenes y servicios son estaticos, no se actualizan durante el proceso, por lo que deben estar precargados.
+		! Se despliegan solo los servicios de tipo 1 (Examenes).
+		! Al sobre escribir una orden de laboratorio se crea un nuevo item, no se actualiza el anterior.
 	- Generar macro reporte.
  
 # --- CAMBIOS PENDIENTES --- #

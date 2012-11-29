@@ -23,6 +23,7 @@ var $recoSrIdx = -1;
 var $diagIdx = -1;
 var $diagSrIdx = -1;
 var $pregIdx = -1;
+var $laboIdx = -1;
 
 function loadState(event)
 {
@@ -945,4 +946,134 @@ function remQues(response)
 		popup("Imposible eliminar respuesta!");
 		
 	getQues();
+}
+
+/* ##################################################################################### */
+
+function selExam(event)
+{
+	for(i = 0; i < this.rows.length; i++)
+		this.rows[i].style.background = "";
+	
+	row = event.target.parentNode;
+	tmp = row.cells[0].innerHTML;
+	
+	if(tmp != $laboIdx)
+	{
+		$laboIdx = tmp;
+		row.style.background = "#C6DCC6";
+		
+		gId("jsExamEx").value = row.cells[4].innerHTML; 
+		gId("jsExamSr").value = row.cells[5].innerHTML; 
+		
+		if(row.cells[2].innerHTML == "S")
+			gId("jsExamSel_S").checked = "checked";
+		else
+			gId("jsExamSel_N").checked = "checked";
+		
+		gId("jsExamDet").value = row.cells[3].innerHTML;
+	}
+	else
+	{
+		$laboIdx = -1;
+		row.style.background = "";
+		
+		clearExam();
+	}
+}
+
+function savExam(event)
+{
+	if(gId("jsExamEx").value != "@" && gId("jsExamSr").value != "@" && (gId("jsExamSel_S").checked || gId("jsExamSel_N").checked) && gId("jsExamDet").value != "")
+	{	
+		res = "";
+		if(gId("jsExamSel_S").checked)
+			res = "S";
+		else
+			res = "N";
+				
+		ajaxAction
+		(	
+			new Hash(["*hist => "+$histId, "jsExamEx", "jsExamSr", "*esta => "+res, "jsExamDet"]),
+			$_savExam,
+			setExam
+		);
+	}
+	else
+		popup("Debe selecionar un examen, servicio, estado y resultado del examen!");
+}
+
+function setExam(response)
+{
+	if(response.responseText == "0")
+		popup("Examen guardado con exito!");
+	else
+		popup("Imposible guardar examen!");
+		
+	getExam();
+}
+
+function delExam(event)
+{
+	if($laboIdx > -1)
+	{			
+		ajaxAction
+		(	
+			new Hash(["*exam => "+$laboIdx]),
+			$_delExam,
+			remExam
+		);
+	}
+	else
+		popup("Debe selecionar un examen guardado!");
+}
+
+function remExam(response)
+{
+	if(response.responseText == "0")
+		popup("Examen eliminado con exito!");
+	else
+		popup("Imposible eliminar examen!");
+		
+	getExam();
+}
+
+function getExam(event)
+{
+	$laboIdx = -1;
+	clearExam();
+	
+	ajaxAction
+	(	
+		new Hash(["*hist => "+$histId]),
+		$_getExam,
+		showExam
+	);
+}
+
+function showExam(response)
+{
+	cont = ""
+	
+	if(response.responseText != "")
+	{
+		fil = response.responseText.split("|-|");
+		
+		for(i = 0; i < fil.length; i ++)
+		{
+			cam = fil[i].split("=>");
+			cont += "<tr><th>"+cam[0]+"</th><td>"+cam[1]+"</td><th>"+cam[2]+"</th><th>"+cam[3]+"</th><th>"+cam[4]+"</th><th>"+cam[5]+"</th></tr>";
+		}	
+	}
+	
+	gId("jsExamTab").innerHTML = cont;
+}
+
+function clearExam(event)
+{
+	gId("jsExamEx").value = "@"; 
+	gId("jsExamSr").value = "@";	
+	gId("jsExamSel_S").checked = "";
+	gId("jsExamSel_N").checked = "";
+	gId("jsExamDet").value = "";
 }
