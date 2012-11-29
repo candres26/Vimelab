@@ -78,8 +78,8 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 + Asistente de empresas, oculto en espera.
 + PRIORITARIO: Asistente maestro de revisión médica:
 	* Crear estandar de alamcenamiento.
-	+ Fijar validaciones de GUI [70%].
-	+ Nuevo esquema de vistas [90%].
+	+ Fijar validaciones de GUI [80%].
+	+ Nuevo esquema de vistas [95%].
 	* Crear modelo de capturas parciales con IFRAME.
 	- Integrar GbVars para diccionarios.
 	- Integrar GbVars para seguridad.
@@ -112,8 +112,12 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 		! En las tablas de busqueda y selección se da un click sobre el item escogido para seleccionar o cancelar, este se torna de fondo verdoso.
 		! Tras cualquier acción se desactiva la selección de items para evitar posibles inconsitencias.
 		! La unica diferecnia entre Diagnostico y recomendación es el codigo, todas se crean desde el modulo patologias.
-	- Integrar historia - m-tecnicos.
-	- Integrar historia - m-contables.
+	* Integrar historia - protocolos.
+		* Agregar respuesta.
+		* Eliminar respuesta.
+		! Las preguntas se despliegan segun el protocolo selecionado.
+		! Los protocolos disponibles dependen del puesto de trabajo del paciente.		
+	- Integrar historia - examenes.
 	- Generar macro reporte.
  
 # --- CAMBIOS PENDIENTES --- #
