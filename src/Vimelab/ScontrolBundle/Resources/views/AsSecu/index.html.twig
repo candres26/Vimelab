@@ -379,7 +379,8 @@
 			else
 			{
 				gId('selPers').innerHTML = $optIni;	
-				gId('selUsua').innerHTML = $optIni;	
+				gId('selUsua').innerHTML = $optIni;
+				gId('asTab').innerHTML = "";	
 			}	
 		}
 		
@@ -387,6 +388,11 @@
 		{	
 			if(gId('selPers').value != '@')
 				getUsua()
+			else
+			{
+				gId('selUsua').innerHTML = $optIni;
+				gId('asTab').innerHTML = "";
+			}
 		}
 		
 		function selectAct(event)
@@ -646,6 +652,8 @@
 					setAcl
 				);
 			}
+			else
+				gId('asTab').innerHTML = "";
 		}
 		
 		function setAcl(response)

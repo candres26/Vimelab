@@ -322,7 +322,7 @@ class AsSecuController extends Controller
 				foreach($acls as $caso)
 				{
 					if(isset($tar[$caso->getModulo()]))
-						$tar[$caso->getModulo()] = $tar[$caso->getModulo()].','.$tol->traduce($caso->getAccion());
+						$tar[$caso->getModulo()] = $tar[$caso->getModulo()].', '.$tol->traduce($caso->getAccion());
 					else
 						$tar[$caso->getModulo()] = $tol->traduce($caso->getAccion());
 				}

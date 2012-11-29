@@ -82,8 +82,8 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 	* Fijar validaciones de GUI.
 	* Nuevo esquema de vistas.
 	* Crear modelo de capturas parciales con IFRAME.
-	- Integrar GbVars para diccionarios.
-	- Integrar GbVars para seguridad.
+	* Integrar GbVars para diccionarios.
+	* Integrar GbVars para seguridad.
 	* Carga automatica del personal encargado.
 	* Integrar paciente - historia.
 		! Creacion de paciente por IFRAME.

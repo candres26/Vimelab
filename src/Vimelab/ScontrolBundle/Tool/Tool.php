@@ -28,7 +28,7 @@ class Tool
             $user = $em->getRepository('ScontrolBundle:Gbusua')->findOneBy(array('nombre' => $ussys));
 
             $flag = false;
-
+			
             foreach($casos as $caso)
             {
                 if($caso->getGbUsua()->getId() == $user->getId())
