@@ -77,9 +77,8 @@ class CtcontController extends Controller
 			else
 			{
 				$sucu = $em->getRepository('ScontrolBundle:Ctcont')->getSucursal($entity->getGbempr()->getId(),"principal");
-					if($sucu==null){
-						$sucu = new Gbsucu();
-					}
+                if($sucu == null)
+                    $sucu = new Gbsucu();
 				
 				// create new PDF document
 				$pdf = new \Tcpdf_Tcpdf(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);

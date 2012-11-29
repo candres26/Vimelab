@@ -8,6 +8,9 @@ var $paciName = "";
 var $paciSex = "";
 var $histId = "";
 var $histTi = "";
+var $ptraId = "";
+var $ptraTi = "";
+var $respId = "";
 var $rutaId = "";
 var $audiId = "";
 var $visuId = "";
@@ -19,6 +22,7 @@ var $recoIdx = -1;
 var $recoSrIdx = -1;
 var $diagIdx = -1;
 var $diagSrIdx = -1;
+var $pregIdx = -1;
 
 function loadState(event)
 {
@@ -166,7 +170,9 @@ function setPaci(response)
 		for(i = 0; i < fil.length; i ++)
 		{
 			cam = fil[i].split("=>");
-			cont += "<tr title='Boble Click Para Seleccionar!'><th>"+cam[0]+"</th><td>"+cam[1]+"</td><td>"+cam[2].toUpperCase()+"</td><td>"+cam[3].toUpperCase()+"</td><th>"+cam[4].toUpperCase()+"</th><th>"+cam[5].toUpperCase()+"</th></tr>";
+			cont += "<tr title='Boble Click Para Seleccionar!'><th>"+cam[0]+"</th><td>"+cam[1]+"</td><td>"+cam[2].toUpperCase()+"</td><td>"
+					+cam[3].toUpperCase()+"</td><th>"+cam[4].toUpperCase()+"</th><th>"
+					+cam[5]+"</th><th>"+cam[6]+"</th><th>"+cam[7].toUpperCase()+"</th></tr>";
 		}
 		
 		cont += "</table>";	
@@ -185,6 +191,8 @@ function fixPaci(event)
 	$paciName = row.cells[2].innerHTML;
 	$paciSex = row.cells[4].innerHTML;
 	$emprId = row.cells[5].innerHTML;
+	$ptraId = row.cells[6].innerHTML;
+	$ptraTi = row.cells[7].innerHTML;
 	
 	gId("jsPaciName").innerHTML = $paciName;
 	gId("jsPaciDoc").innerHTML = $paciDoc;
@@ -305,6 +313,7 @@ function setHist(response)
 		gId("jsHistId").innerHTML = $histId;
 		gId("jsHistTipo").innerHTML = txTipo;
 		gId("jsHistRuta").innerHTML = par[4];
+		gId("jsProtTra").innerHTML = $ptraTi;
 		
 		show("jsReco");
 		show("jsDiag");
@@ -315,8 +324,12 @@ function setHist(response)
 		show("jsEspi");
 		show("jsExtr");
 		show("jsSist");
+		show("jsProt");
+		show("jsExam");
 		
 		$msModo = 1;
+		
+		getProto();
 		
 		SimularClick("jsHistCx");
 	}
@@ -769,4 +782,167 @@ function vistaSist(event)
 function newSist(event)
 {
 	ifSimularClick("ifSist", "sender");
+}
+
+/* ##################################################################################### */
+
+function getProto(event)
+{
+	ajaxAction
+	(
+		new Hash(["*ptra => "+$ptraId]),
+		$_getProt,
+		showProto
+	);
+}
+
+function showProto(response)
+{
+	opt = $optIni;
+	par = response.responseText.split("|-|");
+	
+	for(i = 0; i < par.length; i++)
+	{
+		cmp = par[i].split("=>");
+		opt += "<option value='"+cmp[0]+"'>"+cmp[1]+"</option>";
+	}
+		
+	gId("jsProtOp").innerHTML = opt;
+}
+
+function getQues(event)
+{
+	$pregIdx = -1;
+	clearPreg();
+	
+	if(gId("jsProtOp").value != "@")
+	{
+		ajaxAction
+		(
+			new Hash(["jsProtOp", "*hist => "+$histId]),
+			$_getQues,
+			showQues
+		);
+	}
+	else
+		gId("jsProtTab").innerHTML = "";	
+}
+
+function showQues(response)
+{
+	cont = ""
+	
+	if(response.responseText != "")
+	{
+		fil = response.responseText.split("|-|");
+		
+		for(i = 0; i < fil.length; i ++)
+		{
+			cam = fil[i].split("=>");
+			cont += "<tr><th>"+cam[0]+"</th><td>"+cam[1]+"</td><th>"+cam[2]+"</th><th>"+cam[3]+"</th><th>"+cam[4]+"</th></tr>";
+		}	
+	}
+	
+	gId("jsProtTab").innerHTML = cont;
+}
+
+
+function selPreg(event)
+{
+	for(i = 0; i < this.rows.length; i++)
+		this.rows[i].style.background = "";
+	
+	row = event.target.parentNode;
+	tmp = row.cells[0].innerHTML;
+	
+	if(tmp != $pregIdx)
+	{
+		$pregIdx = tmp;
+		row.style.background = "#C6DCC6";
+		
+		if(row.cells[2].innerHTML != "{}")
+		{
+			$respId = row.cells[2].innerHTML; 
+			
+			if(row.cells[3].innerHTML == "S")
+				gId("jsProtSel_S").checked = "checked";
+			else
+				gId("jsProtSel_N").checked = "checked";
+			
+			gId("jsProtDet").value = row.cells[4].innerHTML;
+		}
+		else
+			clearPreg();
+	}
+	else
+	{
+		$pregIdx = -1;
+		row.style.background = "";
+		
+		clearPreg();
+	}
+}
+
+function clearPreg(event)
+{
+	$respId = "";
+	gId("jsProtSel_S").checked = "";
+	gId("jsProtSel_N").checked = "";
+	gId("jsProtDet").value = "";
+}
+
+function savPreg(event)
+{
+	if($pregIdx > -1 && (gId("jsProtSel_S").checked || gId("jsProtSel_N").checked))
+	{
+		res = "";
+		if(gId("jsProtSel_S").checked)
+				res = "S";
+			else
+				res = "N";
+				
+		ajaxAction
+		(	
+			new Hash(["*hist => "+$histId, "*preg => "+$pregIdx, "*resp => "+$respId, "*resu => "+res, "*deta => "+gId("jsProtDet").value]),
+			$_savQues,
+			fixQues
+		);
+	}
+	else
+		popup("Debe selecionar una pregunta y su resultado S/N");
+}
+
+function fixQues(response)
+{
+	if(response.responseText == "0")
+		popup("Respuesta guardada con exito!");
+	else
+		popup("Imposible guardar respuesta!");
+		
+	getQues();
+}
+
+function delPreg(event)
+{
+	if($respId != "")
+	{		
+		ajaxAction
+		(	
+			new Hash(["*resp => "+$respId]),
+			$_delQues,
+			remQues
+		);
+	}
+	else
+		popup("Debe selecionar una pregunta ya contestada!");
+}
+
+function remQues(response)
+{
+	if(response.responseText == "0")
+		popup("Respuesta eliminada con exito!");
+	else
+		popup("Imposible eliminar respuesta!");
+		
+	getQues();
 }

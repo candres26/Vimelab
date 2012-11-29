@@ -78,7 +78,7 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 + Asistente de empresas, oculto en espera.
 + PRIORITARIO: Asistente maestro de revisión médica:
 	* Crear estandar de alamcenamiento.
-	+ Fijar validaciones de GUI [7%].
+	+ Fijar validaciones de GUI [70%].
 	+ Nuevo esquema de vistas [90%].
 	* Crear modelo de capturas parciales con IFRAME.
 	- Integrar GbVars para diccionarios.

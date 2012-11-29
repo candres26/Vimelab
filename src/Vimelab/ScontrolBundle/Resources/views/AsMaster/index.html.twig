@@ -96,6 +96,37 @@
 		<div id="jsSistLed"><!-- COLOR BALL --></div>
 	</div>
 	
+	<div id="jsProt" class="csProt">
+		<b>PROTOCOLOS - <span id="jsProtTra"><!-- AJAX --></span></b>
+		
+		<select id="jsProtOp">
+			<option value='@'>Seleccione...</option>
+			<!-- AJAX -->
+		</select>
+		
+		<div class="csProtZone">
+			<table id="jsProtTab"><!-- AJAX --></table>
+		</div>
+		
+		<div class="csProtCtr">
+			<img id="jsProtSav" src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar">
+			<img id="jsProtDel" src="{{ asset('bundles/scontrol/imagenes/iconos/rem.png') }}" title="Eliminar">
+		</div>
+		
+		<div id="jsProtSel" class="csProtSel">
+			<b>RESULTADO:</b>
+			<input type="radio" id="jsProtSel_S" name="nProtSel" value="S" />SI
+			<input type="radio" id="jsProtSel_N" name="nProtSel" value="N"/>NO
+		</div>
+		
+		<textarea id="jsProtDet">&nbsp;</textarea>
+		
+	</div>
+	
+	<div id="jsExam" class="csExam">
+		<b>EXÁMENES</b>
+		
+	</div>
 	
 </div>
 
@@ -358,9 +389,17 @@
 		$_newCome = "{{ path('as_master_newCome') }}";
 		$_newDiag = "{{ path('as_master_newDiag') }}";
 		$_delDiag = "{{ path('as_master_delDiag') }}";
+		$_getProt = "{{ path('as_master_getProt') }}";
+		$_getQues = "{{ path('as_master_getQues') }}";
+		$_savQues = "{{ path('as_master_savQues') }}";
+		$_delQues = "{{ path('as_master_delQues') }}";
 		
 		function $init()
 		{
+			//alert(gId("jsProtSel_S").checked);
+			//gId("jsProtSel_S").checked = "checket";
+			//alert(gId("jsProtSel_S").checked);
+			
 			/* -- EVENTOS DE PACIENTE -- */
 			gId('jsPaci').onclick = vistaPaci;
 			gId('jsPaciCx').onclick = hidePartial;
@@ -435,6 +474,12 @@
 			gId('jsSist').onclick = vistaSist;
 			gId('jsSistCre').onclick = newSist;
 			gId('jsSistCx').onclick = hidePartial;
+			
+			/* --- EVENTOS DE PROTOCOLOS --- */
+			gId('jsProtOp').onchange = getQues;
+			gId('jsProtTab').onclick = selPreg;
+			gId('jsProtSav').onclick = savPreg;
+			gId('jsProtDel').onclick = delPreg;
 		}
 	
 	</script>

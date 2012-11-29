@@ -1362,3 +1362,15 @@ as_master_getDiag:
 as_master_delDiag:
     pattern: /asmaster/deldiag
     defaults: { _controller: ScontrolBundle:AsMaster:delDiagnostico }
+as_master_getProt:
+    pattern: /asmaster/getproto
+    defaults: { _controller: ScontrolBundle:AsMaster:getProtocolo }
+as_master_getQues:
+    pattern: /asmaster/getques
+    defaults: { _controller: ScontrolBundle:AsMaster:getPregunta }
+as_master_savQues:
+    pattern: /asmaster/savques
+    defaults: { _controller: ScontrolBundle:AsMaster:savRespuesta }
+as_master_delQues:
+    pattern: /asmaster/delques
+    defaults: { _controller: ScontrolBundle:AsMaster:delRespuesta }

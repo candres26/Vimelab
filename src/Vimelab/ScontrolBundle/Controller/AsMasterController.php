@@ -12,6 +12,10 @@ use Vimelab\ScontrolBundle\Entity\Mdpaci;
 use Vimelab\ScontrolBundle\Entity\Mdhist;
 use Vimelab\ScontrolBundle\Entity\Mdpato;
 use Vimelab\ScontrolBundle\Entity\Mddiag;
+use Vimelab\ScontrolBundle\Entity\Mdprot;
+use Vimelab\ScontrolBundle\Entity\Mdproc;
+use Vimelab\ScontrolBundle\Entity\Mdques;
+use Vimelab\ScontrolBundle\Entity\Mdresp;
 
 class AsMasterController extends Controller
 {
@@ -44,7 +48,9 @@ class AsMasterController extends Controller
 				
 				$res = array();
 				foreach($entities as $caso)
-					$res[] = $caso->getId()."=>".$caso->getIdentificacion()."=>".$caso->getFullName()."=>".$caso->getGbSucu()->__toString()."=>".$caso->getSexo()."=>".$caso->getGbSucu()->getGbempr()->getId();
+					$res[] = $caso->getId()."=>".$caso->getIdentificacion()."=>".$caso->getFullName()."=>".$caso->getGbSucu()->__toString()
+					."=>".$caso->getSexo()."=>".$caso->getGbSucu()->getGbempr()->getId()."=>".$caso->getGbptra()->getId()
+					."=>".$caso->getGbptra()->getNombre();
 				
 				return new Response(join("|-|", $res));
 			}
@@ -251,6 +257,156 @@ class AsMasterController extends Controller
 					$em = $this->getDoctrine()->getEntityManager();
 	        		$repo = $em->getRepository('ScontrolBundle:Mddiag');
 	        		$entity = $repo->find($request->request->get("param"));	
+					
+					$em->remove($entity);
+					$em->flush();
+					
+					return new Response("0");
+				}
+				catch(\Exception $e)
+				{
+					return new Response("1");
+				}
+			}
+			else
+				return $this->redirect($this->generateUrl('as_master'));
+		}
+		else
+			return $this->render("ScontrolBundle::alertas.html.twig");
+	}
+	
+	public function getProtocoloAction()
+	{
+		if(Tool::isGrant($this))
+        {
+        	$request = $this->getRequest();
+        	if($request->isXmlHttpRequest())
+			{
+				$em = $this->getDoctrine()->getEntityManager();
+        		$repo = $em->getRepository('ScontrolBundle:Mdproc');
+        		$entities = $repo->findByGbptra($request->request->get("ptra"));	
+								
+				$res = array();
+				foreach($entities as $caso)
+				{
+					$prot = $caso->getMdprot();
+					$res[] = $prot->getId()."=>".$prot->__toString();
+				}
+				
+				return new Response(join("|-|", $res));
+			}
+			else
+				return $this->redirect($this->generateUrl('as_master'));
+		}
+		else
+			return $this->render("ScontrolBundle::alertas.html.twig");
+	}
+	
+	public function getPreguntaAction()
+	{
+		if(Tool::isGrant($this))
+        {
+        	$request = $this->getRequest();
+        	if($request->isXmlHttpRequest())
+			{
+				$em = $this->getDoctrine()->getEntityManager();
+        		$repo = $em->getRepository('ScontrolBundle:Mdques');				
+        		$entities = $repo->findByMdprot($request->request->get("jsProtOp"));	
+				
+				$resp = $em->getRepository('ScontrolBundle:Mdresp');
+				$resus = $resp->findByMdhist($request->request->get("hist"));
+								
+				$res = array();
+				foreach($entities as $caso)
+				{
+					$pic = array();
+					
+					$pic[] = $caso->getId();
+					$pic[] = $caso->__toString();
+					
+					foreach ($resus as $resu) 
+					{
+						if($resu->getMdques()->getId() == $caso->getId())
+						{
+							$pic[] = $resu->getId();
+							$pic[] = $resu->getResultado();
+							$pic[] = $resu->getDetalle();
+						}
+					}	
+					
+					if(count($pic) == 2)
+					{
+						$pic[] = "{}";
+						$pic[] = "{}";
+						$pic[] = "{}";
+					}	
+					
+					$res[] = join("=>", $pic);
+				}
+				
+				return new Response(join("|-|", $res));
+			}
+			else
+				return $this->redirect($this->generateUrl('as_master'));
+		}
+		else
+			return $this->render("ScontrolBundle::alertas.html.twig");
+	}
+
+	public function savRespuestaAction()
+	{
+		if(Tool::isGrant($this))
+        {
+        	$request = $this->getRequest();
+        	if($request->isXmlHttpRequest())
+			{
+				try
+				{
+					$em = $this->getDoctrine()->getEntityManager();
+					
+					$histo = $em->getRepository('ScontrolBundle:Mdhist')->find($request->request->get("hist"));
+					$preg = $em->getRepository('ScontrolBundle:Mdques')->find($request->request->get("preg"));
+					
+					if($request->request->get("resp") != "")
+						$entity = $em->getRepository('ScontrolBundle:Mdresp')->find($request->request->get("resp"));
+					else
+						$entity = new Mdresp();
+					
+					$entity->setMdhist($histo);
+					$entity->setMdques($preg);
+					$entity->setResultado($request->request->get("resu"));
+					$entity->setDetalle($request->request->get("deta"));
+					
+					
+					$em->persist($entity);
+					$em->flush();
+					
+					return new Response("0");
+				}
+				catch(\Exception $e)
+				{
+					return new Response("1");
+				}
+			}
+			else
+				return $this->redirect($this->generateUrl('as_master'));
+		}
+		else
+			return $this->render("ScontrolBundle::alertas.html.twig");
+	}
+
+	public function delRespuestaAction()
+	{
+		if(Tool::isGrant($this))
+        {
+        	$request = $this->getRequest();
+        	if($request->isXmlHttpRequest())
+			{
+				try
+				{
+					$em = $this->getDoctrine()->getEntityManager();
+	        		$repo = $em->getRepository('ScontrolBundle:Mdresp');
+	        		$entity = $repo->find($request->request->get("resp"));	
 					
 					$em->remove($entity);
 					$em->flush();
