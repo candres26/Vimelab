@@ -70,8 +70,10 @@ class MdextrController extends Controller
 	
 				return array('entity' => $entity, 'delete_form' => $deleteForm->createView());
 			}
-			else
+			else if($lv == 2)
 				return $this->render("ScontrolBundle:Mdextr:_show.html.twig", array('entity' => $entity, 'RMSG' => $entity->getId()."-R. Extremidades creada con exito!"));
+			else if($lv == 4)
+				return $this->render("ScontrolBundle:Mdextr:_show.html.twig", array('entity' => $entity, 'RMSG' => 'NONE'));
 			
 		}
 		else

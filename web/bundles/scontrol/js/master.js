@@ -24,12 +24,13 @@ var $diagIdx = -1;
 var $diagSrIdx = -1;
 var $pregIdx = -1;
 var $laboIdx = -1;
+var $isCarga = false;
 
 function loadState(event)
 {
 	msg = gIf(this.id, "RMSG").value;
 	
-	if(msg != "LOAD")
+	if(msg != "LOAD" && msg != "NONE")
 	{
 		par = msg.split("-");
 		popup(par[1]);
@@ -77,7 +78,7 @@ function loadState(event)
 			gId('jsSistLed').style.background = "#0000FF";
 		}
 	}
-	else
+	else if(msg != "NONE")
 	{
 		if(this.id == "ifAudi")
 		{
@@ -171,7 +172,7 @@ function setPaci(response)
 		for(i = 0; i < fil.length; i ++)
 		{
 			cam = fil[i].split("=>");
-			cont += "<tr title='Boble Click Para Seleccionar!'><th>"+cam[0]+"</th><td>"+cam[1]+"</td><td>"+cam[2].toUpperCase()+"</td><td>"
+			cont += "<tr title='Doble Click Para Seleccionar!'><th>"+cam[0]+"</th><td>"+cam[1]+"</td><td>"+cam[2].toUpperCase()+"</td><td>"
 					+cam[3].toUpperCase()+"</td><th>"+cam[4].toUpperCase()+"</th><th>"
 					+cam[5]+"</th><th>"+cam[6]+"</th><th>"+cam[7].toUpperCase()+"</th></tr>";
 		}
@@ -1076,4 +1077,115 @@ function clearExam(event)
 	gId("jsExamSel_S").checked = "";
 	gId("jsExamSel_N").checked = "";
 	gId("jsExamDet").value = "";
+}
+
+/* ##################################################################################### */
+
+function masterLoad(event)
+{
+	var res = ofJail($LOADER);
+	var pac = res[0];
+	var his = res[1];
+	var sim = res[2]; 
+	
+	$paciId = pac[0];
+	$paciDoc = pac[1];
+	$paciName = pac[2];
+	$paciSex = pac[4];
+	$emprId = pac[5];
+	$ptraId = pac[6];
+	$ptraTi = pac[7];
+	
+	gId("jsPaciName").innerHTML = $paciName;
+	gId("jsPaciDoc").innerHTML = $paciDoc;
+	gId("jsPaciSuc").innerHTML = pac[3];
+	
+	$histId = his[0];
+	$histTi = his[3];
+	$rutaId = his[1];
+	
+	txTipo = "";
+	if ($histTi == "0")
+		txTipo = "Ingreso";
+	else if($histTi == "1")
+		txTipo = "Periódico";
+	else if($histTi == "2")
+		txTipo = "Cambio De Puesto";
+	else if($histTi == "3")
+		txTipo = "Reincorporación";
+	else
+		txTipo = "Egreso";
+	
+	gId("jsHistId").innerHTML = $histId;
+	gId("jsHistTipo").innerHTML = txTipo;
+	gId("jsHistRuta").innerHTML = his[2];
+	gId("jsProtTra").innerHTML = $ptraTi;
+	gId("jsComeDta").value = his[4];
+	
+	if(sim[0] != -1)
+	{
+		$audiId = sim[0];
+		gId("ifAudi").contentWindow.location = $_audi+"/"+$audiId+"/show/4";
+		hide("jsAudiCre");
+		gId('jsAudiLed').style.background = "#0000FF";
+	}
+	
+	if(sim[1] != -1)
+	{
+		$visuId = sim[1];
+		gId("ifVisu").contentWindow.location = $_visu+"/"+$visuId+"/show/4";
+		hide("jsVisuCre");
+		gId('jsVisuLed').style.background = "#0000FF";
+	}
+	
+	if(sim[2] != -1)
+	{
+		$biomId = sim[2];
+		gId("ifBiom").contentWindow.location = $_biom+"/"+$biomId+"/show/4";
+		hide("jsBiomCre");
+		gId('jsBiomLed').style.background = "#0000FF";
+	}
+	
+	if(sim[3] != -1)
+	{
+		$espiId = sim[3];
+		gId("ifEspi").contentWindow.location = $_espi+"/"+$espiId+"/show/4";
+		hide("jsEspiCre");
+		gId('jsEspiLed').style.background = "#0000FF";
+	}
+	
+	if(sim[4] != -1)
+	{
+		$extrId = sim[4];
+		gId("ifExtr").contentWindow.location = $_extr+"/"+$extrId+"/show/4";
+		hide("jsExtrCre");
+		gId('jsExtrLed').style.background = "#0000FF";
+	}
+	
+	if(sim[5] != -1)
+	{
+		$sistId = sim[4];
+		gId("ifSist").contentWindow.location = $_sist+"/"+$sistId+"/show/4";
+		hide("jsSistCre");
+		gId('jsSistLed').style.background = "#0000FF";
+	}
+	
+	show("jsReco");
+	show("jsDiag");
+	show("jsCome");
+	show("jsAudi");
+	show("jsVisu");
+	show("jsBiom");
+	show("jsEspi");
+	show("jsExtr");
+	show("jsSist");
+	show("jsProt");
+	show("jsExam");
+	
+	$msModo = 1;
+	
+	getProto();		
+	refreshReco();
+	refreshDiag();
+	getExam();
 }

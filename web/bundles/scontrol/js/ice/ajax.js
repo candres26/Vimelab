@@ -1,6 +1,3 @@
-var peticion_http = null;
-var start = null;
-
 function setUrl(url)
 {
 	if(url[0] == '/')
@@ -11,7 +8,6 @@ function setUrl(url)
 
 function inicializa_xhr() 
 {
-	start = new Date().getTime();
 	if(window.XMLHttpRequest) 
 	{
 		return new XMLHttpRequest();
@@ -40,15 +36,10 @@ function creaQuery(data)
 	return chain;
 }
 
-function getCrono(elem)
-{
-	gId(elem).innerHTML = (new Date().getTime()-start)/1000;
-}
-
-function ajaxRequest(data, url, area, crono, action, params)
+function ajaxRequest(data, url, area, action, params)
 {
 	url = setUrl(url);
-	peticion_http = inicializa_xhr();
+	var peticion_http = inicializa_xhr();
 		
 	if(peticion_http) 
 	{
@@ -59,9 +50,6 @@ function ajaxRequest(data, url, area, crono, action, params)
 				if(peticion_http.status == 200)
 				{	
 					gId(area).innerHTML = peticion_http.responseText;
-					
-					if(typeof crono != "undefined" && crono != null)
-						getCrono(crono);
 					
 					if(typeof action != "undefined")
 						action(peticion_http.responseText, params);
@@ -79,10 +67,10 @@ function ajaxRequest(data, url, area, crono, action, params)
 	}
 }
 
-function ajaxLoader(data, url, fields, token, crono, action, params)
+function ajaxLoader(data, url, fields, token, action, params)
 {
 	url = setUrl(url);
-	peticion_http = inicializa_xhr();
+	var peticion_http = inicializa_xhr();
 		
 	if(peticion_http) 
 	{
@@ -98,9 +86,6 @@ function ajaxLoader(data, url, fields, token, crono, action, params)
 					var resul = peticion_http.responseText.split(token);
 					for(var i = 0; i < resul.length; i++)
 						gId(fields[i]).value = resul[i];
-					
-					if(typeof crono != "undefined" && crono != null)
-						getCrono(crono);
 					
 					if(typeof action != "undefined")
 						action(peticion_http.responseText, params);
@@ -121,7 +106,7 @@ function ajaxLoader(data, url, fields, token, crono, action, params)
 function ajaxAction(data, url, action, params)
 {	
 	url = setUrl(url);
-	peticion_http = inicializa_xhr();
+	var peticion_http = inicializa_xhr();
 		
 	if(peticion_http) 
 	{
@@ -150,7 +135,7 @@ function ajaxAction(data, url, action, params)
 function ajaxField(url, data, token)
 {
 	url = setUrl(url);
-	peticion_http = inicializa_xhr();
+	var peticion_http = inicializa_xhr();
 		
 	if(peticion_http) 
 	{

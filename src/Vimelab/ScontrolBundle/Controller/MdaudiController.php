@@ -75,6 +75,10 @@ class MdaudiController extends Controller
 			{
 				return $this->render("ScontrolBundle:Mdaudi:_show.html.twig", array('entity' => $entity, 'RMSG' => $entity->getId()."-Audiometría creada con exito!"));
 			}
+			else if($lv == 4)
+			{
+				return $this->render("ScontrolBundle:Mdaudi:_show.html.twig", array('entity' => $entity, 'RMSG' => 'NONE'));
+			}
 			else
 			{
 				$pdf = new \Tcpdf_Tcpdf('L', PDF_UNIT, 'MEMO', true, 'UTF-8', false);

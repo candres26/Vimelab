@@ -68,6 +68,83 @@ class Tool
 		$em->flush();
 	}
 	
+	public static function toJail($arr, $gl='{', $gr='}', $ms=TRUE)
+	{
+		$res = '';
+		
+		foreach ($arr as $cs) 
+		{
+			if(is_array($cs))
+				$res .= $gl.Tool::toJail($cs, $gl, $gr, FALSE).$gr;
+			else 
+				$res .= $gl.$cs.$gr;
+		}
+		
+		if($ms)
+			$res = $gl.$res.$gr;
+		
+		return $res;
+	}
+	
+	public static function ofJail($arr, $gl='{', $gr='}')
+	{
+		$res = array();
+	
+		$j = strlen($arr);
+		$i = 0;
+		while($i < $j)
+		{
+			if($arr[$i] == $gl)
+			{
+				$ix = Tool::getPiece($arr, $gl, $gr, $i);
+				$tmp = substr($arr, $i+1, $ix-($i+1)); 
+                $res[] = Tool::ofJail($tmp, $gl, $gr);
+				$i = $ix;
+			}
+			if($arr[$i] == $gr)
+			{
+				$i += 1;
+			}
+			else
+			{
+				$res[] = $arr;
+				$i = $j;
+			}			 
+		}
+		
+		if(count($res) == 1)
+			$res = $res[0];
+		
+		return $res;
+	}
+
+	public static function getPiece($arr, $gl, $gr, $or)
+	{	
+		$ct = 0;
+		$ix = -1;
+		
+		$j = strlen($arr);
+		for($i = $or; $i < $j; $i++)
+		{
+			if($arr[$i] == $gl)
+			{
+				$ct += 1;
+			}
+			else if($arr[$i] == $gr)
+			{
+				$ct -= 1;
+			}
+			
+			if($ct == 0)
+			{
+				$ix = $i;
+				break;
+			}			 
+		}
+		
+		return $ix;	
+	}
+	
 	public function initDic($controller, $dict='msdic')
 	{
 		$request = $controller->getRequest();

@@ -427,6 +427,15 @@
 	
 	<script type="text/javascript">
 		
+		/* -- VARIABLES DE CARGA -- */
+		$LOADER = "{{ LOAD }}";
+		$_audi = "{{ path('mdaudi') }}";
+		$_visu = "{{ path('mdvisu') }}";
+		$_biom = "{{ path('mdbiom') }}";
+		$_espi = "{{ path('mdespi') }}";
+		$_extr = "{{ path('mdextr') }}";
+		$_sist = "{{ path('mdsist') }}";
+		
 		/* -- RUTAS AJAX -- */
 		$_getPaci = "{{ path('as_master_getPaci') }}";
 		$_getRuta = "{{ path('as_master_getRuta') }}";
@@ -446,10 +455,14 @@
 		
 		function $init()
 		{
-			/* -- Eliminar espacion */
+			/* -- Eliminar espacios */
 			gId('jsComeDta').value = "";
 			gId('jsProtDet').value = "";
 			gId('jsExamDet').value = "";
+			
+			/* PROCESO DE CARGA */
+			if($LOADER != "NONE")
+				masterLoad();
 			
 			/* -- EVENTOS DE PACIENTE -- */
 			gId('jsPaci').onclick = vistaPaci;

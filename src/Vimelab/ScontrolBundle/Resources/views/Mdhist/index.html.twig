@@ -32,28 +32,31 @@
             <td align="center">
 				<a href="{{ path('mdhist_show', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/show_index.png') }}" title="Mostrar"></a>
 				<a href="{{ path('mdhist_edit', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar_index.png') }}" title="Editar"></a>
+				<a href="{{ path('as_master_load', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/asis_index.png') }}" title="Asistente"></a>
             </td>
         </tr>
     {% endfor %}
     </tbody>
 </table>
+{% endblock %}
 
-<script text="javascript">
-	
-	var basePath = "{{ path('mdhist') }}";
-	
-	function buscar(elem)
-	{
-		if(document.getElementById("filterTXT").value != '')
+{% block uscript %}
+	<script type="text/javascript">
+		
+		var basePath = "{{ path('mdhist') }}";
+		
+		function buscar(elem)
 		{
-			val = document.getElementById("filterTXT").value;
-			location = basePath+"/"+val+"/filter";
+			if(document.getElementById("filterTXT").value != '')
+			{
+				val = document.getElementById("filterTXT").value;
+				location = basePath+"/"+val+"/filter";
+			}
+			else
+				alert("Necesita definir un parámetro de búsqueda!");
 		}
-		else
-			alert("Necesita definir un parámetro de búsqueda!");
-	}
-	
-</script>
+		
+	</script>
 {% endblock %}
 
 {% block action %}

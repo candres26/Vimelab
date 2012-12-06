@@ -70,8 +70,10 @@ class MdespiController extends Controller
 	
 				return array('entity' => $entity, 'delete_form' => $deleteForm->createView());
 			}
-			else
+			else if($lv == 2)
 				return $this->render("ScontrolBundle:Mdespi:_show.html.twig", array('entity' => $entity, 'RMSG' => $entity->getId()."-Espirometría creada con exito!"));
+			else if($lv == 4)
+				return $this->render("ScontrolBundle:Mdespi:_show.html.twig", array('entity' => $entity, 'RMSG' => 'NONE'));
 		}
 		else
 			return $this->render("ScontrolBundle::alertas.html.twig");

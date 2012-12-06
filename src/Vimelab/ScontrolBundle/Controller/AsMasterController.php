@@ -34,7 +34,53 @@ class AsMasterController extends Controller
 			$servs = $em->getRepository('ScontrolBundle:Ctserv')->findBy(array('tipo' => '1'), array('nombre' => 'ASC'));
 			$exams = $em->getRepository('ScontrolBundle:Mdexam')->findBy(array(), array('nombre' => 'ASC'));
 				
-			return $this->render('ScontrolBundle:AsMaster:index.html.twig', array('GbPers' => $entity, 'exams' => $exams, 'servs' => $servs));
+			return $this->render('ScontrolBundle:AsMaster:index.html.twig', array('GbPers' => $entity, 'exams' => $exams, 'servs' => $servs, 'LOAD' => 'NONE'));
+		}
+		else
+			return $this->render('ScontrolBundle::alertas.html.twig');
+	}
+	
+	public function loadAction($id)
+	{
+		if(Tool::isGrant($this))
+		{
+			$secu = $this->get('security.context');
+			$ussys = $secu->getToken()->getUser();
+			
+			$em = $this->getDoctrine()->getEntityManager();
+			$entity = $em->getRepository('ScontrolBundle:Gbpers')->getForUser($ussys);
+			$servs = $em->getRepository('ScontrolBundle:Ctserv')->findBy(array('tipo' => '1'), array('nombre' => 'ASC'));
+			$exams = $em->getRepository('ScontrolBundle:Mdexam')->findBy(array(), array('nombre' => 'ASC'));
+			
+			$loader = array();
+			
+			$hist = $em->getRepository('ScontrolBundle:Mdhist')->find($id);
+			$paci = $hist->getMdpaci();
+			$audi = $em->getRepository('ScontrolBundle:Mdaudi')->findOneByMdhist($hist->getId());
+			$audi = $audi != null ? $audi->getId() : -1;
+			$visu = $em->getRepository('ScontrolBundle:Mdvisu')->findOneByMdhist($hist->getId());
+			$visu = $visu != null ? $visu->getId() : -1;
+			$biom = $em->getRepository('ScontrolBundle:Mdbiom')->findOneByMdhist($hist->getId());
+			$biom = $biom != null ? $biom->getId() : -1;
+			$espi = $em->getRepository('ScontrolBundle:Mdespi')->findOneByMdhist($hist->getId());
+			$espi = $espi != null ? $espi->getId() : -1;
+			$extr = $em->getRepository('ScontrolBundle:Mdextr')->findOneByMdhist($hist->getId());
+			$extr = $extr != null ? $extr->getId() : -1;
+			$sist = $em->getRepository('ScontrolBundle:Mdsist')->findOneByMdhist($hist->getId());
+			$sist = $sist != null ? $sist->getId() : -1;
+			
+			$loader[] = array(
+								$paci->getId(), $paci->getIdentificacion(), $paci->getFullName(), $paci->getGbSucu()->__toString(),
+								$paci->getSexo(), $paci->getGbSucu()->getGbempr()->getId(), $paci->getGbptra()->getId(),
+								$paci->getGbptra()->getNombre()
+							);
+							
+			$loader[] = array($hist->getId(), $hist->getTcruta()->getId(), $hist->getTcruta()->__toString(), $hist->getTipo(), $hist->getComentario());
+			$loader[] = array($audi, $visu, $biom, $espi, $extr, $sist);
+			
+			$loader = Tool::toJail($loader);
+				
+			return $this->render('ScontrolBundle:AsMaster:index.html.twig', array('GbPers' => $entity, 'exams' => $exams, 'servs' => $servs, 'LOAD' => $loader));
 		}
 		else
 			return $this->render('ScontrolBundle::alertas.html.twig');
