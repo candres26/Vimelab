@@ -8,8 +8,16 @@
 
 <form id="vime-form" action="{{ path('mdvisu_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
 	<input type="submit" style="display: none" id="sender" value="send">
+	
+	<table style="margin-left: 1%; margin-top: 1%;">
+		<tr style="display: none;"><td colspan='2'>{{ form_errors(edit_form.mdhist) }}</td></tr>
+		<tr style="display: none;"><td align="left">{{ form_label(edit_form.mdhist) }}</td><td align="left">{{ form_widget(edit_form.mdhist) }}</td></tr>
+		
+		<tr><td>Historia #{{ entity.mdhist.id }}</td><td>{{ entity.mdhist.fecha.format('Y-m-d') }}</td></tr>
+		<tr><td>{{ entity.mdhist.mdpaci.identificacion }}</td><td>{{ entity.mdhist.mdpaci.getFullName() }}</td></tr>
+	</table>
+	
 	<table style="position: absolute; margin-left: 10%; margin-top: 3.7%;">
-		<tr><td align="left">{{ form_label(edit_form.mdhist) }}</td><td align="left"> {{ form_errors(edit_form.mdhist) }} {{ form_widget(edit_form.mdhist) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.lentes) }}</td><td align="left"> {{ form_errors(edit_form.lentes) }} {{ form_widget(edit_form.lentes) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.lentesprueba) }}</td><td align="left"> {{ form_errors(edit_form.lentesprueba) }} {{ form_widget(edit_form.lentesprueba) }}</td></tr>
 	</table>

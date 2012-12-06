@@ -130,6 +130,9 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 		! Se debe buscar la revisión en Mdhist y pulsar el icono "Maletin", para lanzar el asistente en modo carga.
 		! Se debe asigna como minimo el permiso Historia-Ingresar (mdhist/index) y el acceso completo al asistente. 
 	- Generar macro reporte.
++ Datos de paciente en vistas maestras de módulos medicos.
+	* Visualizar Nombre y Documento en editar, anular edición de Mdhist.id.
+	- Crear medio de busqueda de Mdhist en la vista de "nuevo".
  
 # --- CAMBIOS PENDIENTES --- #
  
