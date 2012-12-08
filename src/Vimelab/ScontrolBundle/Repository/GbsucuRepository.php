@@ -26,7 +26,7 @@ class GbsucuRepository extends EntityRepository
         $pagina = $pagina < 1 ? 1 : $pagina;
 
         $em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Gbsucu o");
+        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Gbsucu o ORDER BY o.nombre ASC");
         $querry->setFirstResult(($pagina-1)*$limite);
         $querry->setMaxResults($limite);
         return $querry->getResult();

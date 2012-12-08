@@ -26,7 +26,7 @@ class CtfactRepository extends EntityRepository
         $pagina = $pagina < 1 ? 1 : $pagina;
 
         $em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Ctfact o");
+        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Ctfact o ORDER BY o.fecha DESC");
         $querry->setFirstResult(($pagina-1)*$limite);
         $querry->setMaxResults($limite);
         return $querry->getResult();

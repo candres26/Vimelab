@@ -23,15 +23,19 @@ class CttariController extends Controller
      * @Route("/", name="cttari")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction($pag)
     {
 		if(Tool::isGrant($this))
 		{	
 			$em = $this->getDoctrine()->getEntityManager();
+			
+			$pages = $em->getRepository('ScontrolBundle:Cttari')->getCountPages(20);
+			$pag = $pag < 1 ? 1 : $pag;
+			$pag = $pag > $pages ? $pages: $pag;
+			
+			$entities = $em->getRepository('ScontrolBundle:Cttari')->getPage(20, $pag);
 
-			$entities = $em->getRepository('ScontrolBundle:Cttari')->findAll();
-
-			return array('entities' => $entities);
+			return array('entities' => $entities, 'pages' => $pages, 'pag' => $pag);
 		}else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
@@ -42,7 +46,7 @@ class CttariController extends Controller
         $repo = $em->getRepository('ScontrolBundle:Cttari');
         $entities = $repo->getFilter($param);
 
-        return $this->render("ScontrolBundle:Cttari:index.html.twig", array('entities' => $entities));
+        return $this->render("ScontrolBundle:Cttari:index.html.twig", array('entities' => $entities, 'pages' => 1, 'pag' => 1));
     }
 
     /**

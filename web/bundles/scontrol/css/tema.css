@@ -169,6 +169,27 @@ h2
     color: #45568a;
 }
 
+.vime-page
+{
+	position: absolute;
+	top: 1%;
+	right: 1%;
+}
+
+.vime-page input
+{
+	width: 40px;
+	text-align: center;
+	border: 1px solid #0D1A41;
+	border-radius: 5px;
+}
+
+.vime-page img:hover
+{
+	box-shadow: 2px 2px 5px #203982;
+	border-radius: 15.5px;
+}
+
 .vime-colum1
 {
 	position: absolute;

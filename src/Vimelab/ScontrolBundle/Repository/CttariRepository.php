@@ -26,7 +26,7 @@ class CttariRepository extends EntityRepository
         $pagina = $pagina < 1 ? 1 : $pagina;
 
         $em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Cttari o");
+        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Cttari o JOIN o.ctcont c ORDER BY c.fecha ASC");
         $querry->setFirstResult(($pagina-1)*$limite);
         $querry->setMaxResults($limite);
         return $querry->getResult();

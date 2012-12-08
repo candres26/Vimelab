@@ -23,18 +23,19 @@ class GbaclsController extends Controller
      * @Route("/", name="gbacls")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction($pag)
     {
 		if(Tool::isGrant($this))
 		{	
 			$em = $this->getDoctrine()->getEntityManager();
-
-			$entities = $em->getRepository('ScontrolBundle:Gbacls')->findAll();
 			
-			$query = $em->createQuery('SELECT a, u FROM ScontrolBundle:Gbacls a JOIN a.gbusua u WHERE 1 = 1 ORDER BY u.nombre ASC');
-            $entities = $query->getResult();
+			$pages = $em->getRepository('ScontrolBundle:Gbacls')->getCountPages(20);
+			$pag = $pag < 1 ? 1 : $pag;
+			$pag = $pag > $pages ? $pages: $pag;
+			
+			$entities = $em->getRepository('ScontrolBundle:Gbacls')->getPage(20, $pag);
 
-			return array('entities' => $entities);
+			return array('entities' => $entities, 'pages' => $pages, 'pag' => $pag);
 		}else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
@@ -45,7 +46,7 @@ class GbaclsController extends Controller
         $repo = $em->getRepository('ScontrolBundle:Gbacls');
         $entities = $repo->getFilter($param);
 
-        return $this->render("ScontrolBundle:Gbacls:index.html.twig", array('entities' => $entities));
+        return $this->render("ScontrolBundle:Gbacls:index.html.twig", array('entities' => $entities, 'pages' => 1, 'pag' => 1));
     }
 
     /**
