@@ -26,7 +26,7 @@ class TcchecRepository extends EntityRepository
         $pagina = $pagina < 1 ? 1 : $pagina;
 
         $em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Tcchec o");
+        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Tcchec o JOIN o.tcrevi r ORDER BY r.fecha DESC");
         $querry->setFirstResult(($pagina-1)*$limite);
         $querry->setMaxResults($limite);
         return $querry->getResult();
@@ -35,7 +35,7 @@ class TcchecRepository extends EntityRepository
     public function getFilter($parametro)
     {
         $em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Tcchec m JOIN m.tcrevi l WHERE l.id LIKE '%$parametro%' ORDER BY m.id ASC");
+        $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Tcchec m JOIN m.tcrevi l WHERE l.id LIKE '%$parametro%' OR l.fecha LIKE '%$parametro%' ORDER BY m.id ASC");
         return $querry->getResult();
     }
 }

@@ -26,7 +26,7 @@ class TcrutaRepository extends EntityRepository
         $pagina = $pagina < 1 ? 1 : $pagina;
 
         $em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Tcruta o");
+        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Tcruta o ORDER BY o.fplaneada DESC");
         $querry->setFirstResult(($pagina-1)*$limite);
         $querry->setMaxResults($limite);
         return $querry->getResult();
@@ -35,7 +35,7 @@ class TcrutaRepository extends EntityRepository
     public function getFilter($parametro)
     {
         $em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Tcruta m JOIN m.ctcont l WHERE l.id LIKE '%$parametro%' or m.estado LIKE '%$parametro%' ORDER BY m.id ASC");
+        $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Tcruta m JOIN m.ctcont l JOIN l.gbempr e WHERE l.id LIKE '%$parametro%' OR m.estado LIKE '%$parametro%' OR e.nombre LIKE '%$parametro%' OR m.fplaneada LIKE '%$parametro%' ORDER BY m.id ASC");
         return $querry->getResult();
     }
 	

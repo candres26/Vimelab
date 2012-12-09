@@ -23,16 +23,21 @@ class TcreviController extends Controller
      * @Route("/", name="tcrevi")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction($pag)
     {
 		if(Tool::isGrant($this))
 		{
 			$em = $this->getDoctrine()->getEntityManager();
+			
+			$pages = $em->getRepository('ScontrolBundle:Tcrevi')->getCountPages(20);
+			$pag = $pag < 1 ? 1 : $pag;
+			$pag = $pag > $pages ? $pages: $pag;
+			
+			$entities = $em->getRepository('ScontrolBundle:Tcrevi')->getPage(20, $pag);
 
-			$entities = $em->getRepository('ScontrolBundle:Tcrevi')->findAll();
-
-			return array('entities' => $entities);
-		}else
+			return array('entities' => $entities, 'pages' => $pages, 'pag' => $pag);
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
     
@@ -42,7 +47,7 @@ class TcreviController extends Controller
         $repo = $em->getRepository('ScontrolBundle:Tcrevi');
         $entities = $repo->getFilter($param);
 
-        return $this->render("ScontrolBundle:Tcrevi:index.html.twig", array('entities' => $entities));
+        return $this->render("ScontrolBundle:Tcrevi:index.html.twig", array('entities' => $entities, 'pages' => 1, 'pag' => 1));
     }
 
     /**

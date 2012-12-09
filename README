@@ -69,6 +69,8 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 * Crear categorias para servicios (Examenes, Procedimientos, Otros).
 * Cambio estructural en ice/ajax.js para permitir peticiones paralelas!.
 * Agregar paginadores de 20 registros ordenados por pagina.
+	! Los botones mueven la pagina asi: << - Primera, >> - Ultima, < - Anterior, > - Siguiente.
+	! Se puede usar la caja de texto para indicar una pagina concreta y pulsar enter para ir hasta ella. 
 	* Ctcont ordenado por fecha.
 	* Ctcoti ordenado por fecha.
 	* Ctfact ordenado por fecha.
@@ -107,6 +109,13 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 	* Mdresp ordenado por priape del paciente asociado.
 	* Mdsist ordenado por priape del paciente asociado.
 	* Mdvisu ordenado por priape del paciente asociado.
+	* Tcaspe ordenado por nombre.
+	* Tccapa ordenado por nombre.
+	* Tcchec ordenado por fecha de la revisión técnica asociada.
+	* Tccurs ordenado por priape del paciente asociado.
+	* Tcdeta ordenado por fecha de la revisión técnica asociada.	
+	* Tcrevi ordenado por fecha.	
+	* Tcruta ordenado por fecha planeada.	
 	
 # --- CAMBIOS EN PROGRESO --- #
 

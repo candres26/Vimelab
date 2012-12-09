@@ -1129,7 +1129,10 @@ mdvisu_filter:
 # TcAspe Routes
 tcaspe:
     pattern:  /tcaspe
-    defaults: { _controller: ScontrolBundle:Tcaspe:index }
+    defaults: { _controller: ScontrolBundle:Tcaspe:index, pag: 1 }
+tcaspe_pag:
+    pattern:  /tcaspe/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Tcaspe:index, pag: 1 }
 tcaspe_show:
     pattern:  /tcaspe/{id}/show
     defaults: { _controller: ScontrolBundle:Tcaspe:show }
@@ -1148,7 +1151,6 @@ tcaspe_update:
 tcaspe_delete:
     pattern:  /tcaspe/{id}/delete
     defaults: { _controller: ScontrolBundle:Tcaspe:delete }
-    
 tcaspe_filter:
     pattern:  /tcaspe/{param}/filter
     defaults: { _controller: ScontrolBundle:Tcaspe:filter }
@@ -1156,7 +1158,10 @@ tcaspe_filter:
 # TcCapa Routes
 tccapa:
     pattern:  /tccapa
-    defaults: { _controller: ScontrolBundle:Tccapa:index }
+    defaults: { _controller: ScontrolBundle:Tccapa:index, pag: 1 }
+tccapa_pag:
+    pattern:  /tccapa/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Tccapa:index, pag: 1 }
 tccapa_show:
     pattern:  /tccapa/{id}/show
     defaults: { _controller: ScontrolBundle:Tccapa:show }
@@ -1175,7 +1180,6 @@ tccapa_update:
 tccapa_delete:
     pattern:  /tccapa/{id}/delete
     defaults: { _controller: ScontrolBundle:Tccapa:delete }
-    
 tccapa_filter:
     pattern:  /tccapa/{param}/filter
     defaults: { _controller: ScontrolBundle:Tccapa:filter }
@@ -1183,7 +1187,10 @@ tccapa_filter:
 # TcChec Routes
 tcchec:
     pattern:  /tcchec
-    defaults: { _controller: ScontrolBundle:Tcchec:index }
+    defaults: { _controller: ScontrolBundle:Tcchec:index, pag: 1 }
+tcchec_pag:
+    pattern:  /tcchec/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Tcchec:index, pag: 1 }
 tcchec_show:
     pattern:  /tcchec/{id}/show
     defaults: { _controller: ScontrolBundle:Tcchec:show }
@@ -1202,7 +1209,6 @@ tcchec_update:
 tcchec_delete:
     pattern:  /tcchec/{id}/delete
     defaults: { _controller: ScontrolBundle:Tcchec:delete }
-    
 tcchec_filter:
     pattern:  /tcchec/{param}/filter
     defaults: { _controller: ScontrolBundle:Tcchec:filter }
@@ -1210,7 +1216,10 @@ tcchec_filter:
 # TcCurs Routes
 tccurs:
     pattern:  /tccurs
-    defaults: { _controller: ScontrolBundle:Tccurs:index }
+    defaults: { _controller: ScontrolBundle:Tccurs:index, pag: 1 }
+tccurs_pag:
+    pattern:  /tccurs/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Tccurs:index, pag: 1 }
 tccurs_show:
     pattern:  /tccurs/{id}/show
     defaults: { _controller: ScontrolBundle:Tccurs:show }
@@ -1228,8 +1237,7 @@ tccurs_update:
     defaults: { _controller: ScontrolBundle:Tccurs:update }
 tccurs_delete:
     pattern:  /tccurs/{id}/delete
-    defaults: { _controller: ScontrolBundle:Tccurs:delete }
-    
+    defaults: { _controller: ScontrolBundle:Tccurs:delete }  
 tccurs_filter:
     pattern:  /tccurs/{param}/filter
     defaults: { _controller: ScontrolBundle:Tccurs:filter }
@@ -1237,7 +1245,10 @@ tccurs_filter:
 # TcDeta Routes
 tcdeta:
     pattern:  /tcdeta
-    defaults: { _controller: ScontrolBundle:Tcdeta:index }
+    defaults: { _controller: ScontrolBundle:Tcdeta:index, pag: 1 }
+tcdeta_pag:
+    pattern:  /tcdeta/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Tcdeta:index, pag: 1 }
 tcdeta_show:
     pattern:  /tcdeta/{id}/show
     defaults: { _controller: ScontrolBundle:Tcdeta:show }
@@ -1256,7 +1267,6 @@ tcdeta_update:
 tcdeta_delete:
     pattern:  /tcdeta/{id}/delete
     defaults: { _controller: ScontrolBundle:Tcdeta:delete }
-    
 tcdeta_filter:
     pattern:  /tcdeta/{param}/filter
     defaults: { _controller: ScontrolBundle:Tcdeta:filter }
@@ -1264,7 +1274,10 @@ tcdeta_filter:
 # TcRevi Routes
 tcrevi:
     pattern:  /tcrevi
-    defaults: { _controller: ScontrolBundle:Tcrevi:index }
+    defaults: { _controller: ScontrolBundle:Tcrevi:index, pag: 1 }
+tcrevi_pag:
+    pattern:  /tcrevi/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Tcrevi:index, pag: 1 }
 tcrevi_show:
     pattern:  /tcrevi/{id}/show
     defaults: { _controller: ScontrolBundle:Tcrevi:show }
@@ -1282,8 +1295,7 @@ tcrevi_update:
     defaults: { _controller: ScontrolBundle:Tcrevi:update }
 tcrevi_delete:
     pattern:  /tcrevi/{id}/delete
-    defaults: { _controller: ScontrolBundle:Tcrevi:delete }
-    
+    defaults: { _controller: ScontrolBundle:Tcrevi:delete }   
 tcrevi_filter:
     pattern:  /tcrevi/{param}/filter
     defaults: { _controller: ScontrolBundle:Tcrevi:filter }
@@ -1291,7 +1303,10 @@ tcrevi_filter:
 # TcRuta Routes
 tcruta:
     pattern:  /tcruta
-    defaults: { _controller: ScontrolBundle:Tcruta:index }
+    defaults: { _controller: ScontrolBundle:Tcruta:index, pag: 1 }
+tcruta_pag:
+    pattern:  /tcruta/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Tcruta:index, pag: 1 }
 tcruta_show:
     pattern:  /tcruta/{id}/show
     defaults: { _controller: ScontrolBundle:Tcruta:show }
@@ -1309,11 +1324,12 @@ tcruta_update:
     defaults: { _controller: ScontrolBundle:Tcruta:update }
 tcruta_delete:
     pattern:  /tcruta/{id}/delete
-    defaults: { _controller: ScontrolBundle:Tcruta:delete }
-  
+    defaults: { _controller: ScontrolBundle:Tcruta:delete }  
 tcruta_filter:
     pattern:  /tcruta/{param}/filter
     defaults: { _controller: ScontrolBundle:Tcruta:filter }
+
+#    
 #   --- RUTAS PARA ASISTENTES ---
 #
 #            Ubicaciones

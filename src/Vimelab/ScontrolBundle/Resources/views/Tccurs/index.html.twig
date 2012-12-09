@@ -6,6 +6,18 @@
 
 <h2 align="left">Listado de Cursos</h2>
 
+<div class="vime-page">
+	<table>
+		<tr>
+			<td><a href="{{ path('tccurs_pag', { 'pag': 1 }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/arrow_ini.png') }}" title="Página Inicial"></a></td>
+			<td><a href="{{ path('tccurs_pag', { 'pag': pag-1 }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/arrow_ant.png') }}" title="Página Anterior"></a></td>
+			<td><input id="idxPag" type="text" value="{{ pag }}"/ onkeypress="paginar(event)" title="Enter para paginar"> / {{ pages }}</td>
+			<td><a href="{{ path('tccurs_pag', { 'pag': pag+1 }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/arrow_sig.png') }}" title="Página Siguiente"></a></td>
+			<td><a href="{{ path('tccurs_pag', { 'pag': pages }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/arrow_fin.png') }}" title="Página Final"></a></td>
+		</tr>
+	</table>
+</div>
+
 <input placeholder="Digite su búsqueda" type="text" id="filterTXT"  size="50" style="font-family: Arial; font-size: 10pt; background-color: #FFF; border-radius: 5px; color: #324E8A;"><img style="cursor: pointer; position: absolute; margin-left: 1%; " onClick="buscar()" src="{{ asset('bundles/scontrol/imagenes/applet.png') }}" title="Buscar">
 <br>
 <br>
@@ -13,7 +25,8 @@
     <thead>
         <tr>
             <th>Id</th>
-            <th>Empresa</th>
+            <th>Identificación</th>
+            <th>Paciente</th>
             <th>Capacitación</th>
             <th>Instructor</th>
             <th>Acciones</th>
@@ -23,7 +36,8 @@
     {% for entity in entities %}
         <tr>
             <td>{{ entity.id }}</td>
-            <td>{{ entity.empresa }}</td>
+            <td>{{ entity.mdpaci.identificacion }}</td>
+            <td>{{ entity.mdpaci.getFullName() }}</td>
             <td>{{ entity.tccapa.nombre }}</td>
             <td>{{ entity.instructor }}</td>
             <td align="center">
@@ -34,23 +48,35 @@
     {% endfor %}
     </tbody>
 </table>
+{% endblock %}
 
-<script text="javascript">
-	
-	var basePath = "{{ path('tccurs') }}";
-	
-	function buscar(elem)
-	{
-		if(document.getElementById("filterTXT").value != '')
+{% block uscript %}
+	<script type="text/javascript">
+		
+		var basePath = "{{ path('tccurs') }}";
+			
+		function buscar(elem)
 		{
-			val = document.getElementById("filterTXT").value;
-			location = basePath+"/"+val+"/filter";
+			if(document.getElementById("filterTXT").value != '')
+			{
+				val = document.getElementById("filterTXT").value;
+				location = basePath+"/"+val+"/filter";
+			}
+			else
+				alert("Necesita definir un parámetro de búsqueda!");
 		}
-		else
-			alert("Necesita definir un parámetro de búsqueda!");
-	}
-	
-</script>
+		
+		function paginar(event)
+		{
+			if(event.keyCode == 13)
+			{
+				var pag = parseInt(document.getElementById("idxPag").value);
+				if(!isNaN(pag))
+					location = basePath+"/"+pag+"/pag";
+			}
+		}
+		
+	</script>
 {% endblock %}
 
 {% block action %}

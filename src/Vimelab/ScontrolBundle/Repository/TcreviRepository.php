@@ -26,7 +26,7 @@ class TcreviRepository extends EntityRepository
         $pagina = $pagina < 1 ? 1 : $pagina;
 
         $em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Tcrevi o");
+        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Tcrevi o ORDER BY o.fecha DESC");
         $querry->setFirstResult(($pagina-1)*$limite);
         $querry->setMaxResults($limite);
         return $querry->getResult();
@@ -35,7 +35,7 @@ class TcreviRepository extends EntityRepository
     public function getFilter($parametro)
     {
         $em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Tcrevi m WHERE m.id LIKE '%$parametro%' ORDER BY m.id ASC");
+        $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Tcrevi m JOIN m.gbsucu s JOIN s.gbempr e WHERE m.id LIKE '%$parametro%' OR m.fecha LIKE '%$parametro%' OR e.nombre LIKE '%$parametro%' ORDER BY m.id ASC");
         return $querry->getResult();
     }
 }
