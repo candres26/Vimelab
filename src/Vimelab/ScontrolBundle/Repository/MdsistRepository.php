@@ -26,7 +26,7 @@ class MdsistRepository extends EntityRepository
         $pagina = $pagina < 1 ? 1 : $pagina;
 
         $em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Mdsist o");
+        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Mdsist o JOIN o.mdhist h JOIN h.mdpaci p ORDER BY p.priape ASC");
         $querry->setFirstResult(($pagina-1)*$limite);
         $querry->setMaxResults($limite);
         return $querry->getResult();

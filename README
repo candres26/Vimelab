@@ -91,9 +91,23 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 	* Hsfami ordenado por priape del paciente asociado.
 	* Hslabo ordenado por priape del paciente asociado.
 	* Hspers ordenado por priape del paciente asociado.
+	* Mdaudi ordenado por priape del paciente asociado.
+	* Mdbiom ordenado por priape del paciente asociado.
+	* Mddiag ordenado por priape del paciente asociado.
+	* Mdespi ordenado por priape del paciente asociado.
+	* Mdexam ordenado por nombre.
+	* Mdextr ordenado por priape del paciente asociado.
 	* Mdhist ordenado por fecha.
+	* Mdlabo ordenado por priape del paciente asociado.
+	* Mdpaci ordenado por priape.
+	* Mdpato ordenado por nombre.
+	* Mdproc ordenado por puesto de trabajo asociado.
+	* Mdprot ordenado por nombre.
+	* Mdques ordenado por protocolo asociado.
+	* Mdresp ordenado por priape del paciente asociado.
+	* Mdsist ordenado por priape del paciente asociado.
+	* Mdvisu ordenado por priape del paciente asociado.
 	
-
 # --- CAMBIOS EN PROGRESO --- #
 
 + Calendario por incluir en todos los módulos.

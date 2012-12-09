@@ -23,16 +23,21 @@ class MdrespController extends Controller
      * @Route("/", name="mdresp")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction($pag)
     {
 		if(Tool::isGrant($this))
 		{
 			$em = $this->getDoctrine()->getEntityManager();
+			
+			$pages = $em->getRepository('ScontrolBundle:Mdresp')->getCountPages(20);
+			$pag = $pag < 1 ? 1 : $pag;
+			$pag = $pag > $pages ? $pages: $pag;
+			
+			$entities = $em->getRepository('ScontrolBundle:Mdresp')->getPage(20, $pag);
 
-			$entities = $em->getRepository('ScontrolBundle:Mdresp')->findAll();
-
-			return array('entities' => $entities);
-		}else
+			return array('entities' => $entities, 'pages' => $pages, 'pag' => $pag);
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
     
@@ -42,7 +47,7 @@ class MdrespController extends Controller
         $repo = $em->getRepository('ScontrolBundle:Mdresp');
         $entities = $repo->getFilter($param);
 
-        return $this->render("ScontrolBundle:Mdresp:index.html.twig", array('entities' => $entities));
+        return $this->render("ScontrolBundle:Mdresp:index.html.twig", array('entities' => $entities, 'pages' => 1, 'pag' => 1));
     }
 
     /**

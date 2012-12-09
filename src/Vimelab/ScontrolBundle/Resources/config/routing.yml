@@ -665,7 +665,10 @@ hspers_filter:
 # MdAudi Routes
 mdaudi:
     pattern:  /mdaudi
-    defaults: { _controller: ScontrolBundle:Mdaudi:index }
+    defaults: { _controller: ScontrolBundle:Mdaudi:index, pag: 1 }
+mdaudi_pag:
+    pattern:  /mdaudi/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdaudi:index, pag: 1 }
 mdaudi_show:
     pattern:  /mdaudi/{id}/show/{lv}
     defaults: { _controller: ScontrolBundle:Mdaudi:show, lv : 1 }
@@ -684,7 +687,6 @@ mdaudi_update:
 mdaudi_delete:
     pattern:  /mdaudi/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdaudi:delete }
-    
 mdaudi_filter:
     pattern:  /mdaudi/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdaudi:filter }
@@ -692,7 +694,10 @@ mdaudi_filter:
 # MdBiom Routes
 mdbiom:
     pattern:  /mdbiom
-    defaults: { _controller: ScontrolBundle:Mdbiom:index }
+    defaults: { _controller: ScontrolBundle:Mdbiom:index, pag: 1 }
+mdbiom_pag:
+    pattern:  /mdbiom/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdbiom:index, pag: 1 }
 mdbiom_show:
     pattern:  /mdbiom/{id}/show/{lv}
     defaults: { _controller: ScontrolBundle:Mdbiom:show, lv : 1 }
@@ -711,7 +716,6 @@ mdbiom_update:
 mdbiom_delete:
     pattern:  /mdbiom/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdbiom:delete }
-
 mdbiom_filter:
     pattern:  /mdbiom/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdbiom:filter }
@@ -719,7 +723,10 @@ mdbiom_filter:
 # MdDiag Routes
 mddiag:
     pattern:  /mddiag
-    defaults: { _controller: ScontrolBundle:Mddiag:index }
+    defaults: { _controller: ScontrolBundle:Mddiag:index, pag: 1 }
+mddiag_pag:
+    pattern:  /mddiag/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mddiag:index, pag: 1 }
 mddiag_show:
     pattern:  /mddiag/{id}/show
     defaults: { _controller: ScontrolBundle:Mddiag:show }
@@ -738,7 +745,6 @@ mddiag_update:
 mddiag_delete:
     pattern:  /mddiag/{id}/delete
     defaults: { _controller: ScontrolBundle:Mddiag:delete }
-    
 mddiag_filter:
     pattern:  /mddiag/{param}/filter
     defaults: { _controller: ScontrolBundle:Mddiag:filter }
@@ -746,7 +752,10 @@ mddiag_filter:
 # MdEspi Routes
 mdespi:
     pattern:  /mdespi
-    defaults: { _controller: ScontrolBundle:Mdespi:index }
+    defaults: { _controller: ScontrolBundle:Mdespi:index, pag: 1 }
+mdespi_pag:
+    pattern:  /mdespi/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdespi:index, pag: 1 }
 mdespi_show:
     pattern:  /mdespi/{id}/show/{lv}
     defaults: { _controller: ScontrolBundle:Mdespi:show, lv : 1 }
@@ -765,7 +774,6 @@ mdespi_update:
 mdespi_delete:
     pattern:  /mdespi/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdespi:delete }
-
 mdespi_filter:
     pattern:  /mdespi/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdespi:filter }
@@ -773,7 +781,10 @@ mdespi_filter:
 # MdExam Routes
 mdexam:
     pattern:  /mdexam
-    defaults: { _controller: ScontrolBundle:Mdexam:index }
+    defaults: { _controller: ScontrolBundle:Mdexam:index, pag: 1 }
+mdexam_pag:
+    pattern:  /mdexam/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdexam:index, pag: 1 }
 mdexam_show:
     pattern:  /mdexam/{id}/show
     defaults: { _controller: ScontrolBundle:Mdexam:show }
@@ -792,7 +803,6 @@ mdexam_update:
 mdexam_delete:
     pattern:  /mdexam/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdexam:delete }
-
 mdexam_filter:
     pattern:  /mdexam/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdexam:filter }
@@ -800,7 +810,10 @@ mdexam_filter:
 # MdExtr Routes
 mdextr:
     pattern:  /mdextr
-    defaults: { _controller: ScontrolBundle:Mdextr:index }
+    defaults: { _controller: ScontrolBundle:Mdextr:index, pag: 1 }
+mdextr_pag:
+    pattern:  /mdextr/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdextr:index, pag: 1 }
 mdextr_show:
     pattern:  /mdextr/{id}/show/{lv}
     defaults: { _controller: ScontrolBundle:Mdextr:show, lv : 1 }
@@ -819,7 +832,6 @@ mdextr_update:
 mdextr_delete:
     pattern:  /mdextr/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdextr:delete }
-    
 mdextr_filter:
     pattern:  /mdextr/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdextr:filter }
@@ -849,7 +861,6 @@ mdhist_update:
 mdhist_delete:
     pattern:  /mdhist/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdhist:delete }
-    
 mdhist_filter:
     pattern:  /mdhist/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdhist:filter }
@@ -857,7 +868,10 @@ mdhist_filter:
 # MdLabo Routes
 mdlabo:
     pattern:  /mdlabo
-    defaults: { _controller: ScontrolBundle:Mdlabo:index }
+    defaults: { _controller: ScontrolBundle:Mdlabo:index, pag: 1 }
+mdlabo_pag:
+    pattern:  /mdlabo/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdlabo:index, pag: 1 }
 mdlabo_show:
     pattern:  /mdlabo/{id}/show
     defaults: { _controller: ScontrolBundle:Mdlabo:show }
@@ -876,14 +890,17 @@ mdlabo_update:
 mdlabo_delete:
     pattern:  /mdlabo/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdlabo:delete }
-
 mdlabo_filter:
     pattern:  /mdlabo/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdlabo:filter }
+
 # MdPaci Routes
 mdpaci:
     pattern:  /mdpaci
-    defaults: { _controller: ScontrolBundle:Mdpaci:index }
+    defaults: { _controller: ScontrolBundle:Mdpaci:index, pag: 1 }
+mdpaci_pag:
+    pattern:  /mdpaci/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdpaci:index, pag: 1 }
 mdpaci_show:
     pattern:  /mdpaci/{id}/show
     defaults: { _controller: ScontrolBundle:Mdpaci:show }
@@ -901,8 +918,7 @@ mdpaci_update:
     defaults: { _controller: ScontrolBundle:Mdpaci:update }
 mdpaci_delete:
     pattern:  /mdpaci/{id}/delete
-    defaults: { _controller: ScontrolBundle:Mdpaci:delete }
-    
+    defaults: { _controller: ScontrolBundle:Mdpaci:delete }   
 mdpaci_filter:
     pattern:  /mdpaci/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdpaci:filter }
@@ -910,7 +926,10 @@ mdpaci_filter:
 # MdPato Routes
 mdpato:
     pattern:  /mdpato
-    defaults: { _controller: ScontrolBundle:Mdpato:index }
+    defaults: { _controller: ScontrolBundle:Mdpato:index, pag: 1 }
+mdpato_pag:
+    pattern:  /mdpato/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdpato:index, pag: 1 }
 mdpato_show:
     pattern:  /mdpato/{id}/show
     defaults: { _controller: ScontrolBundle:Mdpato:show }
@@ -929,14 +948,17 @@ mdpato_update:
 mdpato_delete:
     pattern:  /mdpato/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdpato:delete }
-
 mdpato_filter:
     pattern:  /mdpato/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdpato:filter }
+    
 # MdProc Routes
 mdproc:
     pattern:  /mdproc
-    defaults: { _controller: ScontrolBundle:Mdproc:index }
+    defaults: { _controller: ScontrolBundle:Mdproc:index, pag: 1 }
+mdproc_pag:
+    pattern:  /mdproc/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdproc:index, pag: 1 }
 mdproc_show:
     pattern:  /mdproc/{id}/show
     defaults: { _controller: ScontrolBundle:Mdproc:show }
@@ -955,7 +977,6 @@ mdproc_update:
 mdproc_delete:
     pattern:  /mdproc/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdproc:delete }
-    
 mdproc_filter:
     pattern:  /mdproc/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdproc:filter }
@@ -963,7 +984,10 @@ mdproc_filter:
 # MdProt Routes
 mdprot:
     pattern:  /mdprot
-    defaults: { _controller: ScontrolBundle:Mdprot:index }
+    defaults: { _controller: ScontrolBundle:Mdprot:index, pag: 1 }
+mdprot_pag:
+    pattern:  /mdprot/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdprot:index, pag: 1 }
 mdprot_show:
     pattern:  /mdprot/{id}/show
     defaults: { _controller: ScontrolBundle:Mdprot:show }
@@ -982,7 +1006,6 @@ mdprot_update:
 mdprot_delete:
     pattern:  /mdprot/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdprot:delete }
-
 mdprot_filter:
     pattern:  /mdprot/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdprot:filter }
@@ -990,7 +1013,10 @@ mdprot_filter:
 # MdQues Routes
 mdques:
     pattern:  /mdques
-    defaults: { _controller: ScontrolBundle:Mdques:index }
+    defaults: { _controller: ScontrolBundle:Mdques:index, pag: 1 }
+mdques_pag:
+    pattern:  /mdques/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdques:index, pag: 1 }
 mdques_show:
     pattern:  /mdques/{id}/show
     defaults: { _controller: ScontrolBundle:Mdques:show }
@@ -1009,7 +1035,6 @@ mdques_update:
 mdques_delete:
     pattern:  /mdques/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdques:delete }
-
 mdques_filter:
     pattern:  /mdques/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdques:filter }
@@ -1017,7 +1042,10 @@ mdques_filter:
 # MdResp Routes
 mdresp:
     pattern:  /mdresp
-    defaults: { _controller: ScontrolBundle:Mdresp:index }
+    defaults: { _controller: ScontrolBundle:Mdresp:index, pag: 1 }
+mdresp_pag:
+    pattern:  /mdresp/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdresp:index, pag: 1 }
 mdresp_show:
     pattern:  /mdresp/{id}/show
     defaults: { _controller: ScontrolBundle:Mdresp:show }
@@ -1036,7 +1064,6 @@ mdresp_update:
 mdresp_delete:
     pattern:  /mdresp/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdresp:delete }
-    
 mdresp_filter:
     pattern:  /mdresp/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdresp:filter }
@@ -1044,7 +1071,10 @@ mdresp_filter:
 # MdSist Routes
 mdsist:
     pattern:  /mdsist
-    defaults: { _controller: ScontrolBundle:Mdsist:index }
+    defaults: { _controller: ScontrolBundle:Mdsist:index, pag: 1 }
+mdsist_pag:
+    pattern:  /mdsist/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdsist:index, pag: 1 }
 mdsist_show:
     pattern:  /mdsist/{id}/show/{lv}
     defaults: { _controller: ScontrolBundle:Mdsist:show, lv : 1 }
@@ -1063,7 +1093,6 @@ mdsist_update:
 mdsist_delete:
     pattern:  /mdsist/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdsist:delete }
-    
 mdsist_filter:
     pattern:  /mdsist/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdsist:filter }
@@ -1071,7 +1100,10 @@ mdsist_filter:
 # MdVisu Routes
 mdvisu:
     pattern:  /mdvisu
-    defaults: { _controller: ScontrolBundle:Mdvisu:index }
+    defaults: { _controller: ScontrolBundle:Mdvisu:index, pag: 1 }
+mdvisu_pag:
+    pattern:  /mdvisu/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdvisu:index, pag: 1 }
 mdvisu_show:
     pattern:  /mdvisu/{id}/show/{lv}
     defaults: { _controller: ScontrolBundle:Mdvisu:show, lv : 1 }
@@ -1090,7 +1122,6 @@ mdvisu_update:
 mdvisu_delete:
     pattern:  /mdvisu/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdvisu:delete }
-
 mdvisu_filter:
     pattern:  /mdvisu/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdvisu:filter }

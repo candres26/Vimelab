@@ -26,7 +26,7 @@ class MdquesRepository extends EntityRepository
         $pagina = $pagina < 1 ? 1 : $pagina;
 
         $em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Mdques o");
+        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Mdques o JOIN o.mdprot p ORDER BY p.nombre ASC");
         $querry->setFirstResult(($pagina-1)*$limite);
         $querry->setMaxResults($limite);
         return $querry->getResult();
