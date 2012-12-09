@@ -88,6 +88,9 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 	* Gbptra ordenado por nombre.
 	* Gbsucu ordenado por nombre.
 	* Gbusua ordenado por nombre.
+	* Hsfami ordenado por priape del paciente asociado.
+	* Hslabo ordenado por priape del paciente asociado.
+	* Hspers ordenado por priape del paciente asociado.
 	* Mdhist ordenado por fecha.
 	
 

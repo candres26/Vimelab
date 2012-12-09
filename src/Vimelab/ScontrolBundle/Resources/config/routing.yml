@@ -578,7 +578,10 @@ gbusua_filter:
 # HsFami Routes
 hsfami:
     pattern:  /hsfami
-    defaults: { _controller: ScontrolBundle:Hsfami:index }
+    defaults: { _controller: ScontrolBundle:Hsfami:index, pag:1 }
+hsfami_pag:
+    pattern:  /hsfami/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Hsfami:index, pag:1 }
 hsfami_show:
     pattern:  /hsfami/{id}/show
     defaults: { _controller: ScontrolBundle:Hsfami:show }
@@ -597,7 +600,6 @@ hsfami_update:
 hsfami_delete:
     pattern:  /hsfami/{id}/delete
     defaults: { _controller: ScontrolBundle:Hsfami:delete }
-    
 hsfami_filter:
     pattern:  /hsfami/{param}/filter
     defaults: { _controller: ScontrolBundle:Hsfami:filter }
@@ -605,7 +607,10 @@ hsfami_filter:
 # HsLabo Routes
 hslabo:
     pattern:  /hslabo
-    defaults: { _controller: ScontrolBundle:Hslabo:index }
+    defaults: { _controller: ScontrolBundle:Hslabo:index, pag: 1 }
+hslabo_pag:
+    pattern:  /hslabo/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Hslabo:index, pag: 1 }
 hslabo_show:
     pattern:  /hslabo/{id}/show
     defaults: { _controller: ScontrolBundle:Hslabo:show }
@@ -623,8 +628,7 @@ hslabo_update:
     defaults: { _controller: ScontrolBundle:Hslabo:update }
 hslabo_delete:
     pattern:  /hslabo/{id}/delete
-    defaults: { _controller: ScontrolBundle:Hslabo:delete }
-    
+    defaults: { _controller: ScontrolBundle:Hslabo:delete }   
 hslabo_filter:
     pattern:  /hslabo/{param}/filter
     defaults: { _controller: ScontrolBundle:Hslabo:filter }
@@ -632,7 +636,10 @@ hslabo_filter:
 # HsPers Routes
 hspers:
     pattern:  /hspers
-    defaults: { _controller: ScontrolBundle:Hspers:index }
+    defaults: { _controller: ScontrolBundle:Hspers:index, pag: 1 }
+hspers_pag:
+    pattern:  /hspers/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Hspers:index, pag: 1 }
 hspers_show:
     pattern:  /hspers/{id}/show
     defaults: { _controller: ScontrolBundle:Hspers:show }
@@ -650,8 +657,7 @@ hspers_update:
     defaults: { _controller: ScontrolBundle:Hspers:update }
 hspers_delete:
     pattern:  /hspers/{id}/delete
-    defaults: { _controller: ScontrolBundle:Hspers:delete }
-    
+    defaults: { _controller: ScontrolBundle:Hspers:delete }    
 hspers_filter:
     pattern:  /hspers/{param}/filter
     defaults: { _controller: ScontrolBundle:Hspers:filter }
