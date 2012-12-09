@@ -86,10 +86,11 @@ class Tool
 		return $res;
 	}
 	
-	public static function ofJail($arr, $gl='{', $gr='}')
+	public static function ofJail($arr, $gl='{', $gr='}', $ms = TRUE)
 	{
 		$res = array();
-	
+		$isData = FALSE;
+		
 		$j = strlen($arr);
 		$i = 0;
 		while($i < $j)
@@ -98,7 +99,7 @@ class Tool
 			{
 				$ix = Tool::getPiece($arr, $gl, $gr, $i);
 				$tmp = substr($arr, $i+1, $ix-($i+1)); 
-                $res[] = Tool::ofJail($tmp, $gl, $gr);
+                $res[] = Tool::ofJail($tmp, $gl, $gr, FALSE);
 				$i = $ix;
 			}
 			if($arr[$i] == $gr)
@@ -108,11 +109,12 @@ class Tool
 			else
 			{
 				$res[] = $arr;
+				$isData = TRUE;
 				$i = $j;
 			}			 
 		}
 		
-		if(count($res) == 1)
+		if($ms || $isData)
 			$res = $res[0];
 		
 		return $res;

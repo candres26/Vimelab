@@ -1431,6 +1431,15 @@ as_empr:
     pattern: /asempr
     defaults: { _controller: ScontrolBundle:AsEmpr:index }
 #
+#           Antecedentes
+#
+as_ante:
+    pattern: /asante
+    defaults: { _controller: ScontrolBundle:AsAnte:index }
+as_ante_getPaci:
+    pattern: /asante/getpaci
+    defaults: { _controller: ScontrolBundle:AsAnte:getPaciente }  
+#
 ##############################################           
 #           MASTER                           #
 ##############################################

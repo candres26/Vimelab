@@ -1,0 +1,206 @@
+/* ### --+-- PRINCIPAL --+-- ### */
+.csMain
+{
+	position: absolute;
+	top: 1%;
+	width: 98%; 
+	height: 98%;
+}
+
+.dvHide
+{
+	display: none;
+}
+
+/* ### --+-- INTERNAL FRAMES --+-- ### */
+.csIfra
+{
+	overflow: auto;
+	position: absolute;
+	top: 0.5%;
+	left: 0.5%;
+	width: 99.5%;
+	height: 92%;
+	border: 0px solid black;
+	background: #f2f2f2;
+}
+
+/* ### --+-- ETIQUETA DE PACIENTE --+-- ### */
+.csPaci
+{	
+	position: absolute;
+	overflow: hidden;
+	cursor: pointer;
+	top: 0.5%;
+	left: 25%;
+	width: 50%;
+	height: 15%;
+	background: #FFFFFF;
+	box-shadow: 2px 2px 5px #203982;
+	border: 2px solid #203982;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.csPaci:hover
+{
+	box-shadow: 5px 5px 10px #0000ff;
+}
+
+.csPaci:active
+{
+	background: #000000;
+	color: #FFFFFF;
+	font-style: italic;
+}
+
+.csPaci table
+{
+	width: 95%;
+	height: 100%;
+	border-collapse: collapse;
+	margin: auto;
+}
+
+.csPaci th, .csPaci td 
+{
+	text-align: left;  
+}
+
+/* ### --+-- PARCAILES --+-- ### */
+
+.csPar
+{
+	background: #FFFFFF;
+	position: absolute;
+	width: 94%;
+	height: 94%;
+	left: 3%;
+	top: 3%;
+	z-index: 10;
+	opacity: 1;
+	box-shadow: 5px 5px 10px #203982;
+	border: 2px solid #203982;
+	border-radius: 10px;
+	display: none;
+}
+
+.csParTi
+{
+	position: absolute;
+	top: 0%;
+	left: 2%;
+	width: 98%;
+	height: 7%;
+	border-collapse: collapse;
+}
+
+.csParTi td
+{
+	border-left: 1px solid #CCCCCC;
+	border-bottom: 1px inset #CCCCCC;
+	cursor: pointer;
+	width: 4%;
+	background: url("../imagenes/iconos/close.png") no-repeat center;
+}
+
+.csParTi td:hover
+{
+	opacity: 0.8;	
+}
+
+.csParIn
+{
+	position: absolute;
+	overflow: auto;
+	background: #f2f2f2;
+	border: 1px solid #203982;
+	top: 8%;
+	left: 2%;
+	width: 96%;
+	height: 90%;
+	text-align: center;
+}
+
+.csParSc
+{
+	position: absolute;
+	top: 0.5%;
+	left: 1%;
+	width: 98%;
+	height: 5%;
+}
+
+.csParSc table
+{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.csParSc img
+{
+	cursor: pointer;
+}
+
+.csParZn
+{
+	position: absolute;
+	overflow: auto;
+	border: 1px solid #203982;
+	background: #FFFFFF;
+	top: 10%;
+	left: 1%;
+	width: 98%;
+	height: 89%;
+	text-align: center;
+}
+
+.csParZn table
+{
+	width: 98%;
+	margin: auto;
+	border-collapse: collapse;
+	cursor: pointer;
+}
+
+.csParZn td
+{
+	border: 1px solid #203982;	
+}
+
+.csParZn tr
+{
+	background: #F2F2F2;
+}
+
+.csParZn tr:hover
+{
+	background: #A8BBFA;	
+}
+
+.csParZn th
+{
+	display: none;
+}
+
+.csParBb
+{
+	position: absolute;
+	bottom: 0.5%;
+	left: 1%;
+	width: 98%;
+}
+.csParBb button
+{
+	background-color: #203982; 
+	color: #fff;
+	border-radius: 10px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.csParBb button:hover
+{
+	background-color: #FFFFFF; 
+	color: #000000;
+}
