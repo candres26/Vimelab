@@ -92,6 +92,6 @@ class Gbptra
 
     public function __toString()
     {
-        return $this->nombre;
+        return $this->gbempr->__toString()."-".$this->nombre;
     }
 }

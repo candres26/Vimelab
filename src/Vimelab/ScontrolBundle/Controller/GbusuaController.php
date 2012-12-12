@@ -23,16 +23,21 @@ class GbusuaController extends Controller
      * @Route("/", name="gbusua")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction($pag)
     {
 		if(Tool::isGrant($this))
 		{
 			$em = $this->getDoctrine()->getEntityManager();
+			
+			$pages = $em->getRepository('ScontrolBundle:Gbusua')->getCountPages(2);
+			$pag = $pag < 1 ? 1 : $pag;
+			$pag = $pag > $pages ? $pages: $pag;
+			
+			$entities = $em->getRepository('ScontrolBundle:Gbusua')->getPage(2, $pag);
 
-			$entities = $em->getRepository('ScontrolBundle:Gbusua')->findAll();
-
-			return array('entities' => $entities);
-		}else
+			return array('entities' => $entities, 'pages' => $pages, 'pag' => $pag);
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
     
@@ -42,7 +47,7 @@ class GbusuaController extends Controller
         $repo = $em->getRepository('ScontrolBundle:Gbusua');
         $entities = $repo->getFilter($param);
 
-        return $this->render("ScontrolBundle:Gbusua:index.html.twig", array('entities' => $entities));
+        return $this->render("ScontrolBundle:Gbusua:index.html.twig", array('entities' => $entities, 'pages' => 1, 'pag' => 1));
     }
 
     /**

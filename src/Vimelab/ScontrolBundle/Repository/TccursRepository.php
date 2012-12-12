@@ -26,7 +26,7 @@ class TccursRepository extends EntityRepository
         $pagina = $pagina < 1 ? 1 : $pagina;
 
         $em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Tccurs o");
+        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Tccurs o JOIN o.mdpaci p ORDER BY p.priape ASC");
         $querry->setFirstResult(($pagina-1)*$limite);
         $querry->setMaxResults($limite);
         return $querry->getResult();
@@ -35,7 +35,7 @@ class TccursRepository extends EntityRepository
     public function getFilter($parametro)
     {
         $em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Tccurs m JOIN m.tccapa l WHERE m.empresa LIKE '%$parametro%' OR l.nombre LIKE '%$parametro%' OR m.instructor LIKE '%$parametro%' ORDER BY m.id ASC");
+        $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Tccurs m JOIN m.tccapa l JOIN m.mdpaci p WHERE m.empresa LIKE '%$parametro%' OR l.nombre LIKE '%$parametro%' OR p.identificacion LIKE '%$parametro%' ORDER BY m.id ASC");
         return $querry->getResult();
     }
 }

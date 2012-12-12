@@ -97,7 +97,7 @@
 
 .csReco, .csDiag, .csCome
 {
-	display: none;
+	display: none;	
 	position: absolute;
 	overflow: hidden;
 	top: 15%;
@@ -131,6 +131,8 @@
 .csCome img:hover
 {
 	opacity: 0.8;
+	border-radius: 5px;
+	box-shadow: 2px 2px 5px #203982;
 }
 
 .csReco b, .csDiag b, .csCome b
@@ -205,6 +207,8 @@
 .csMiniCtr img:hover
 {
 	opacity: 0.8;
+	border-radius: 5px;
+	box-shadow: 2px 2px 5px #203982;
 }
 
 .csPar
@@ -458,22 +462,22 @@
 
 .csVisu
 {
-	left: 17.3%;
+	left: 17%;
 }
 
 .csBiom
 {
-	left: 34.1%;
+	left: 35%;
 }
 
 .csEspi
 {
-	right: 34.1%;
+	right: 35%;
 }
 
 .csExtr
 {
-	right: 17.3%;
+	right: 17%;
 }
 
 .csSist
@@ -491,7 +495,7 @@
 	height: 10%;
 	background: #FFFFFF;
 	box-shadow: 2px 2px 5px #203982;
-	border: 5px outset #203982;
+	border: 2px outset #203982;
 	border-radius: 10px;
 	text-align: center;
 	cursor: pointer; 
@@ -539,6 +543,168 @@
 
 .csAudi:active, .csVisu:active, .csBiom:active, .csEspi:active, .csExtr:active, .csSist:active
 {
-	border: 5px inset #FFFFFF;
+	border: 2px inset #FFFFFF;
 	box-shadow: 2px 2px 5px #203982;
+}
+
+/* ####################################################################################################################### */
+
+.csProt
+{
+		
+	left: 1%;
+}
+
+.csExam
+{
+		
+	right: 1%;
+}
+
+.csProt, .csExam
+{
+	display: none;	
+	position: absolute;
+	overflow: auto;
+	bottom: 0.5%;
+	width: 48%;
+	height: 47%;
+	background: #FFFFFF;
+	box-shadow: 2px 2px 5px #203982;
+	border: 2px solid #203982;
+	border-radius: 10px;
+	text-align: center; 
+}
+
+.csProt b, .csExam b 
+{
+	position: absolute;
+	top: 1%;
+	left: 1%;
+	width: 98%;
+	border-bottom: 1px solid #203982; 
+}
+
+.csProt select
+{
+	position: absolute;
+	left: 1%;
+	top: 8%;
+	width: 48%;
+}
+
+.csProt textarea, .csExam textarea
+{
+	position: absolute;
+	right: 1%;
+	bottom: 1%;
+	width: 48%;
+	height: 55%;
+}
+
+
+.csProtCtr, .csExamCtr
+{
+	position: absolute;
+	right: 1%;
+	top: 8%;
+	width: 48%;	
+}
+
+.csProtCtr img, .csExamCtr img
+{
+	cursor: pointer;
+}
+
+.csProtCtr img:hover, .csExamCtr img:hover
+{
+	opacity: 0.8;
+	box-shadow: 2px 2px 5px #203982;
+	border-radius: 5px;
+}
+
+.csExamChoi
+{
+	position: absolute;
+	left: 1%;
+	top: 8%;
+	width: 48%;
+}
+
+.csExamChoi table
+{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.csExamChoi select
+{
+	width: 100%;
+}
+
+.csProtSel, .csExamSel
+{
+	position: absolute;
+	right: 1%;
+	top: 30%;
+	width: 48%;
+}
+
+.csProtSel b, .csExamSel b
+{
+	position: relative;
+	border: none;
+}
+
+.csProtZone
+{
+	position: absolute;
+	overflow: auto;
+	bottom: 1%;
+	left: 1%;
+	width: 48%;
+	height: 80%;
+	background: #FFFFFF;
+	border: 1px solid #203982;
+	border-collapse: collapse;
+}
+
+.csExamZone
+{
+	position: absolute;
+	overflow: auto;
+	bottom: 1%;
+	left: 1%;
+	width: 48%;
+	height: 68%;
+	background: #FFFFFF;
+	border: 1px solid #203982;
+	border-collapse: collapse;
+}
+
+.csProtZone table, .csExamZone table
+{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.csProtZone th, .csExamZone th
+{
+	display: none;
+}
+
+.csProtZone td, .csExamZone td
+{
+	border-bottom: 1px solid #203982;
+}
+
+.csProtZone tr, .csExamZone tr
+{
+	cursor: pointer;
+	background: #F2F2F2;
+}
+
+.csProtZone tr:hover, .csExamZone tr:hover
+{
+	background: #A8BBFA;
 }

@@ -10,7 +10,7 @@ class MdpaciType extends AbstractType
 {
     public function buildForm(FormBuilder $builder, array $options)
     {
-        $builder
+    	$builder
             ->add('identificacion', 'text', array('label' => 'Identificación'))
             ->add('prinom', 'text', array('label' => 'Primer nombre'))
             ->add('segnom', 'text', array('required' => false, 'label' => 'Segundo nombre'))
@@ -23,7 +23,6 @@ class MdpaciType extends AbstractType
             ->add('correo')
             ->add('ingreso', 'date', array('widget' => 'single_text', 'format' => 'y-MM-dd'))
             ->add('gbciud', 'entity', array('class' => 'ScontrolBundle:Gbciud', 'label' => 'Ciudad'))
-            ->add('gbptra', 'entity', array('class' => 'ScontrolBundle:Gbptra', 'label' => 'Puesto Trabajo'))
 			->add('tipoide', 'entity', array('class' => 'ScontrolBundle:Gbiden', 'label' => 'Tipo identificación'));
 			
 		$builder->add('gbsucu', 'entity', array('class' => 'ScontrolBundle:Gbsucu', 'label' => 'Sucursal', 
@@ -37,6 +36,19 @@ class MdpaciType extends AbstractType
 				}
 				
 			));
+		
+		$builder->add('gbptra', 'entity', array('class' => 'ScontrolBundle:Gbptra', 'label' => 'Puesto De Trabajo',
+				'query_builder' => function(EntityRepository $er)
+				{
+					return $er->createQueryBuilder('p')
+						->add('select', 'p')
+						->add('from', 'ScontrolBundle:Gbptra p')
+						->join('p.gbempr', 'e')
+						->add('orderBy', 'e.nombre ASC');
+				}
+				
+			));	
+		
 		    
     }
 

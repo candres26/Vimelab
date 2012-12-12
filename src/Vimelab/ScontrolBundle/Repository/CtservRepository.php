@@ -26,7 +26,7 @@ class CtservRepository extends EntityRepository
         $pagina = $pagina < 1 ? 1 : $pagina;
 
         $em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Ctserv o");
+        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Ctserv o ORDER BY o.codigo ASC");
         $querry->setFirstResult(($pagina-1)*$limite);
         $querry->setMaxResults($limite);
         return $querry->getResult();

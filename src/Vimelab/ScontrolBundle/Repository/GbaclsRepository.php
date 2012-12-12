@@ -26,7 +26,7 @@ class GbaclsRepository extends EntityRepository
         $pagina = $pagina < 1 ? 1 : $pagina;
 
         $em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Gbacls o");
+        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Gbacls o JOIN o.gbusua u ORDER BY u.nombre ASC");
         $querry->setFirstResult(($pagina-1)*$limite);
         $querry->setMaxResults($limite);
         return $querry->getResult();

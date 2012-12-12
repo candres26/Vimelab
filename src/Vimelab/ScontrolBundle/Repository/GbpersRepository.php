@@ -26,7 +26,7 @@ class GbpersRepository extends EntityRepository
         $pagina = $pagina < 1 ? 1 : $pagina;
 
         $em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Gbpers o");
+        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Gbpers o ORDER BY o.priape ASC");
         $querry->setFirstResult(($pagina-1)*$limite);
         $querry->setMaxResults($limite);
         return $querry->getResult();

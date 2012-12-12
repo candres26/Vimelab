@@ -26,7 +26,7 @@ class MdprocRepository extends EntityRepository
         $pagina = $pagina < 1 ? 1 : $pagina;
 
         $em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Mdproc o");
+        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Mdproc o JOIN o.gbptra p ORDER BY p.nombre ASC");
         $querry->setFirstResult(($pagina-1)*$limite);
         $querry->setMaxResults($limite);
         return $querry->getResult();

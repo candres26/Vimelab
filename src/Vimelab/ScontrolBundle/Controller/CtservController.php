@@ -23,15 +23,19 @@ class CtservController extends Controller
      * @Route("/", name="ctserv")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction($pag)
     {
 		if(Tool::isGrant($this))
 		{
 			$em = $this->getDoctrine()->getEntityManager();
+			
+			$pages = $em->getRepository('ScontrolBundle:Ctserv')->getCountPages(20);
+			$pag = $pag < 1 ? 1 : $pag;
+			$pag = $pag > $pages ? $pages: $pag;
+			
+			$entities = $em->getRepository('ScontrolBundle:Ctserv')->getPage(20, $pag);
 
-			$entities = $em->getRepository('ScontrolBundle:Ctserv')->findAll();
-
-			return array('entities' => $entities);
+			return array('entities' => $entities, 'pages' => $pages, 'pag' => $pag);
 		}else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
@@ -42,7 +46,7 @@ class CtservController extends Controller
         $repo = $em->getRepository('ScontrolBundle:Ctserv');
         $entities = $repo->getFilter($param);
 
-        return $this->render("ScontrolBundle:Ctserv:index.html.twig", array('entities' => $entities));
+        return $this->render("ScontrolBundle:Ctserv:index.html.twig", array('entities' => $entities, 'pages' => 1, 'pag' => 1));
     }
 
     /**

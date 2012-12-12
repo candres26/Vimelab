@@ -8,6 +8,9 @@ var $paciName = "";
 var $paciSex = "";
 var $histId = "";
 var $histTi = "";
+var $ptraId = "";
+var $ptraTi = "";
+var $respId = "";
 var $rutaId = "";
 var $audiId = "";
 var $visuId = "";
@@ -19,12 +22,15 @@ var $recoIdx = -1;
 var $recoSrIdx = -1;
 var $diagIdx = -1;
 var $diagSrIdx = -1;
+var $pregIdx = -1;
+var $laboIdx = -1;
+var $isCarga = false;
 
 function loadState(event)
 {
 	msg = gIf(this.id, "RMSG").value;
 	
-	if(msg != "LOAD")
+	if(msg != "LOAD" && msg != "NONE")
 	{
 		par = msg.split("-");
 		popup(par[1]);
@@ -72,7 +78,7 @@ function loadState(event)
 			gId('jsSistLed').style.background = "#0000FF";
 		}
 	}
-	else
+	else if(msg != "NONE")
 	{
 		if(this.id == "ifAudi")
 		{
@@ -166,7 +172,9 @@ function setPaci(response)
 		for(i = 0; i < fil.length; i ++)
 		{
 			cam = fil[i].split("=>");
-			cont += "<tr title='Boble Click Para Seleccionar!'><th>"+cam[0]+"</th><td>"+cam[1]+"</td><td>"+cam[2].toUpperCase()+"</td><td>"+cam[3].toUpperCase()+"</td><th>"+cam[4].toUpperCase()+"</th><th>"+cam[5].toUpperCase()+"</th></tr>";
+			cont += "<tr title='Doble Click Para Seleccionar!'><th>"+cam[0]+"</th><td>"+cam[1]+"</td><td>"+cam[2].toUpperCase()+"</td><td>"
+					+cam[3].toUpperCase()+"</td><th>"+cam[4].toUpperCase()+"</th><th>"
+					+cam[5]+"</th><th>"+cam[6]+"</th><th>"+cam[7].toUpperCase()+"</th></tr>";
 		}
 		
 		cont += "</table>";	
@@ -185,6 +193,8 @@ function fixPaci(event)
 	$paciName = row.cells[2].innerHTML;
 	$paciSex = row.cells[4].innerHTML;
 	$emprId = row.cells[5].innerHTML;
+	$ptraId = row.cells[6].innerHTML;
+	$ptraTi = row.cells[7].innerHTML;
 	
 	gId("jsPaciName").innerHTML = $paciName;
 	gId("jsPaciDoc").innerHTML = $paciDoc;
@@ -305,6 +315,7 @@ function setHist(response)
 		gId("jsHistId").innerHTML = $histId;
 		gId("jsHistTipo").innerHTML = txTipo;
 		gId("jsHistRuta").innerHTML = par[4];
+		gId("jsProtTra").innerHTML = $ptraTi;
 		
 		show("jsReco");
 		show("jsDiag");
@@ -315,8 +326,12 @@ function setHist(response)
 		show("jsEspi");
 		show("jsExtr");
 		show("jsSist");
+		show("jsProt");
+		show("jsExam");
 		
 		$msModo = 1;
+		
+		getProto();
 		
 		SimularClick("jsHistCx");
 	}
@@ -769,4 +784,408 @@ function vistaSist(event)
 function newSist(event)
 {
 	ifSimularClick("ifSist", "sender");
+}
+
+/* ##################################################################################### */
+
+function getProto(event)
+{
+	ajaxAction
+	(
+		new Hash(["*ptra => "+$ptraId]),
+		$_getProt,
+		showProto
+	);
+}
+
+function showProto(response)
+{
+	opt = $optIni;
+	par = response.responseText.split("|-|");
+	
+	for(i = 0; i < par.length; i++)
+	{
+		cmp = par[i].split("=>");
+		opt += "<option value='"+cmp[0]+"'>"+cmp[1]+"</option>";
+	}
+		
+	gId("jsProtOp").innerHTML = opt;
+}
+
+function getQues(event)
+{
+	$pregIdx = -1;
+	clearPreg();
+	
+	if(gId("jsProtOp").value != "@")
+	{
+		ajaxAction
+		(
+			new Hash(["jsProtOp", "*hist => "+$histId]),
+			$_getQues,
+			showQues
+		);
+	}
+	else
+		gId("jsProtTab").innerHTML = "";	
+}
+
+function showQues(response)
+{
+	cont = ""
+	
+	if(response.responseText != "")
+	{
+		fil = response.responseText.split("|-|");
+		
+		for(i = 0; i < fil.length; i ++)
+		{
+			cam = fil[i].split("=>");
+			cont += "<tr><th>"+cam[0]+"</th><td>"+cam[1]+"</td><th>"+cam[2]+"</th><th>"+cam[3]+"</th><th>"+cam[4]+"</th></tr>";
+		}	
+	}
+	
+	gId("jsProtTab").innerHTML = cont;
+}
+
+
+function selPreg(event)
+{
+	for(i = 0; i < this.rows.length; i++)
+		this.rows[i].style.background = "";
+	
+	row = event.target.parentNode;
+	tmp = row.cells[0].innerHTML;
+	
+	if(tmp != $pregIdx)
+	{
+		$pregIdx = tmp;
+		row.style.background = "#C6DCC6";
+		
+		if(row.cells[2].innerHTML != "{}")
+		{
+			$respId = row.cells[2].innerHTML; 
+			
+			if(row.cells[3].innerHTML == "S")
+				gId("jsProtSel_S").checked = "checked";
+			else
+				gId("jsProtSel_N").checked = "checked";
+			
+			gId("jsProtDet").value = row.cells[4].innerHTML;
+		}
+		else
+			clearPreg();
+	}
+	else
+	{
+		$pregIdx = -1;
+		row.style.background = "";
+		
+		clearPreg();
+	}
+}
+
+function clearPreg(event)
+{
+	$respId = "";
+	gId("jsProtSel_S").checked = "";
+	gId("jsProtSel_N").checked = "";
+	gId("jsProtDet").value = "";
+}
+
+function savPreg(event)
+{
+	if($pregIdx > -1 && (gId("jsProtSel_S").checked || gId("jsProtSel_N").checked))
+	{
+		res = "";
+		if(gId("jsProtSel_S").checked)
+				res = "S";
+			else
+				res = "N";
+				
+		ajaxAction
+		(	
+			new Hash(["*hist => "+$histId, "*preg => "+$pregIdx, "*resp => "+$respId, "*resu => "+res, "*deta => "+gId("jsProtDet").value]),
+			$_savQues,
+			fixQues
+		);
+	}
+	else
+		popup("Debe selecionar una pregunta y su resultado S/N");
+}
+
+function fixQues(response)
+{
+	if(response.responseText == "0")
+		popup("Respuesta guardada con exito!");
+	else
+		popup("Imposible guardar respuesta!");
+		
+	getQues();
+}
+
+function delPreg(event)
+{
+	if($respId != "")
+	{		
+		ajaxAction
+		(	
+			new Hash(["*resp => "+$respId]),
+			$_delQues,
+			remQues
+		);
+	}
+	else
+		popup("Debe selecionar una pregunta ya contestada!");
+}
+
+function remQues(response)
+{
+	if(response.responseText == "0")
+		popup("Respuesta eliminada con exito!");
+	else
+		popup("Imposible eliminar respuesta!");
+		
+	getQues();
+}
+
+/* ##################################################################################### */
+
+function selExam(event)
+{
+	for(i = 0; i < this.rows.length; i++)
+		this.rows[i].style.background = "";
+	
+	row = event.target.parentNode;
+	tmp = row.cells[0].innerHTML;
+	
+	if(tmp != $laboIdx)
+	{
+		$laboIdx = tmp;
+		row.style.background = "#C6DCC6";
+		
+		gId("jsExamEx").value = row.cells[4].innerHTML; 
+		gId("jsExamSr").value = row.cells[5].innerHTML; 
+		
+		if(row.cells[2].innerHTML == "S")
+			gId("jsExamSel_S").checked = "checked";
+		else
+			gId("jsExamSel_N").checked = "checked";
+		
+		gId("jsExamDet").value = row.cells[3].innerHTML;
+	}
+	else
+	{
+		$laboIdx = -1;
+		row.style.background = "";
+		
+		clearExam();
+	}
+}
+
+function savExam(event)
+{
+	if(gId("jsExamEx").value != "@" && gId("jsExamSr").value != "@" && (gId("jsExamSel_S").checked || gId("jsExamSel_N").checked) && gId("jsExamDet").value != "")
+	{	
+		res = "";
+		if(gId("jsExamSel_S").checked)
+			res = "S";
+		else
+			res = "N";
+				
+		ajaxAction
+		(	
+			new Hash(["*hist => "+$histId, "jsExamEx", "jsExamSr", "*esta => "+res, "jsExamDet"]),
+			$_savExam,
+			setExam
+		);
+	}
+	else
+		popup("Debe selecionar un examen, servicio, estado y resultado del examen!");
+}
+
+function setExam(response)
+{
+	if(response.responseText == "0")
+		popup("Examen guardado con exito!");
+	else
+		popup("Imposible guardar examen!");
+		
+	getExam();
+}
+
+function delExam(event)
+{
+	if($laboIdx > -1)
+	{			
+		ajaxAction
+		(	
+			new Hash(["*exam => "+$laboIdx]),
+			$_delExam,
+			remExam
+		);
+	}
+	else
+		popup("Debe selecionar un examen guardado!");
+}
+
+function remExam(response)
+{
+	if(response.responseText == "0")
+		popup("Examen eliminado con exito!");
+	else
+		popup("Imposible eliminar examen!");
+		
+	getExam();
+}
+
+function getExam(event)
+{
+	$laboIdx = -1;
+	clearExam();
+	
+	ajaxAction
+	(	
+		new Hash(["*hist => "+$histId]),
+		$_getExam,
+		showExam
+	);
+}
+
+function showExam(response)
+{
+	cont = ""
+	
+	if(response.responseText != "")
+	{
+		fil = response.responseText.split("|-|");
+		
+		for(i = 0; i < fil.length; i ++)
+		{
+			cam = fil[i].split("=>");
+			cont += "<tr><th>"+cam[0]+"</th><td>"+cam[1]+"</td><th>"+cam[2]+"</th><th>"+cam[3]+"</th><th>"+cam[4]+"</th><th>"+cam[5]+"</th></tr>";
+		}	
+	}
+	
+	gId("jsExamTab").innerHTML = cont;
+}
+
+function clearExam(event)
+{
+	gId("jsExamEx").value = "@"; 
+	gId("jsExamSr").value = "@";	
+	gId("jsExamSel_S").checked = "";
+	gId("jsExamSel_N").checked = "";
+	gId("jsExamDet").value = "";
+}
+
+/* ##################################################################################### */
+
+function masterLoad(event)
+{
+	var res = ofJail($LOADER);
+	var pac = res[0];
+	var his = res[1];
+	var sim = res[2]; 
+	
+	$paciId = pac[0];
+	$paciDoc = pac[1];
+	$paciName = pac[2];
+	$paciSex = pac[4];
+	$emprId = pac[5];
+	$ptraId = pac[6];
+	$ptraTi = pac[7];
+	
+	gId("jsPaciName").innerHTML = $paciName;
+	gId("jsPaciDoc").innerHTML = $paciDoc;
+	gId("jsPaciSuc").innerHTML = pac[3];
+	
+	$histId = his[0];
+	$histTi = his[3];
+	$rutaId = his[1];
+	
+	txTipo = "";
+	if ($histTi == "0")
+		txTipo = "Ingreso";
+	else if($histTi == "1")
+		txTipo = "Periódico";
+	else if($histTi == "2")
+		txTipo = "Cambio De Puesto";
+	else if($histTi == "3")
+		txTipo = "Reincorporación";
+	else
+		txTipo = "Egreso";
+	
+	gId("jsHistId").innerHTML = $histId;
+	gId("jsHistTipo").innerHTML = txTipo;
+	gId("jsHistRuta").innerHTML = his[2];
+	gId("jsProtTra").innerHTML = $ptraTi;
+	gId("jsComeDta").value = his[4];
+	
+	if(sim[0] != -1)
+	{
+		$audiId = sim[0];
+		gId("ifAudi").contentWindow.location = $_audi+"/"+$audiId+"/show/4";
+		hide("jsAudiCre");
+		gId('jsAudiLed').style.background = "#0000FF";
+	}
+	
+	if(sim[1] != -1)
+	{
+		$visuId = sim[1];
+		gId("ifVisu").contentWindow.location = $_visu+"/"+$visuId+"/show/4";
+		hide("jsVisuCre");
+		gId('jsVisuLed').style.background = "#0000FF";
+	}
+	
+	if(sim[2] != -1)
+	{
+		$biomId = sim[2];
+		gId("ifBiom").contentWindow.location = $_biom+"/"+$biomId+"/show/4";
+		hide("jsBiomCre");
+		gId('jsBiomLed').style.background = "#0000FF";
+	}
+	
+	if(sim[3] != -1)
+	{
+		$espiId = sim[3];
+		gId("ifEspi").contentWindow.location = $_espi+"/"+$espiId+"/show/4";
+		hide("jsEspiCre");
+		gId('jsEspiLed').style.background = "#0000FF";
+	}
+	
+	if(sim[4] != -1)
+	{
+		$extrId = sim[4];
+		gId("ifExtr").contentWindow.location = $_extr+"/"+$extrId+"/show/4";
+		hide("jsExtrCre");
+		gId('jsExtrLed').style.background = "#0000FF";
+	}
+	
+	if(sim[5] != -1)
+	{
+		$sistId = sim[4];
+		gId("ifSist").contentWindow.location = $_sist+"/"+$sistId+"/show/4";
+		hide("jsSistCre");
+		gId('jsSistLed').style.background = "#0000FF";
+	}
+	
+	show("jsReco");
+	show("jsDiag");
+	show("jsCome");
+	show("jsAudi");
+	show("jsVisu");
+	show("jsBiom");
+	show("jsEspi");
+	show("jsExtr");
+	show("jsSist");
+	show("jsProt");
+	show("jsExam");
+	
+	$msModo = 1;
+	
+	getProto();		
+	refreshReco();
+	refreshDiag();
+	getExam();
 }

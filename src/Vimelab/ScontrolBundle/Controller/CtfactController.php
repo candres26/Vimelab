@@ -23,15 +23,19 @@ class CtfactController extends Controller
      * @Route("/", name="ctfact")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction($pag)
     {
 		if(Tool::isGrant($this))
 		{	
 			$em = $this->getDoctrine()->getEntityManager();
+			
+			$pages = $em->getRepository('ScontrolBundle:Ctfact')->getCountPages(20);
+			$pag = $pag < 1 ? 1 : $pag;
+			$pag = $pag > $pages ? $pages: $pag;
+			
+			$entities = $em->getRepository('ScontrolBundle:Ctfact')->getPage(20, $pag);
 
-			$entities = $em->getRepository('ScontrolBundle:Ctfact')->findAll();
-
-			return array('entities' => $entities);
+			return array('entities' => $entities, 'pages' => $pages, 'pag' => $pag);
 		}else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
@@ -42,7 +46,7 @@ class CtfactController extends Controller
         $repo = $em->getRepository('ScontrolBundle:Ctfact');
         $entities = $repo->getFilter($param);
 
-        return $this->render("ScontrolBundle:Ctfact:index.html.twig", array('entities' => $entities));
+        return $this->render("ScontrolBundle:Ctfact:index.html.twig", array('entities' => $entities, 'pages' => 1, 'pag' => 1));
     }
 
     /**

@@ -23,16 +23,21 @@ class HsfamiController extends Controller
      * @Route("/", name="hsfami")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction($pag)
     {
 		if(Tool::isGrant($this))
 		{
 			$em = $this->getDoctrine()->getEntityManager();
+			
+			$pages = $em->getRepository('ScontrolBundle:Hsfami')->getCountPages(20);
+			$pag = $pag < 1 ? 1 : $pag;
+			$pag = $pag > $pages ? $pages: $pag;
+			
+			$entities = $em->getRepository('ScontrolBundle:Hsfami')->getPage(20, $pag);
 
-			$entities = $em->getRepository('ScontrolBundle:Hsfami')->findAll();
-
-			return array('entities' => $entities);
-		}else
+			return array('entities' => $entities, 'pages' => $pages, 'pag' => $pag);
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
     
@@ -42,7 +47,7 @@ class HsfamiController extends Controller
         $repo = $em->getRepository('ScontrolBundle:Hsfami');
         $entities = $repo->getFilter($param);
 
-        return $this->render("ScontrolBundle:Hsfami:index.html.twig", array('entities' => $entities));
+        return $this->render("ScontrolBundle:Hsfami:index.html.twig", array('entities' => $entities, 'pages' => 1, 'pag' => 1));
     }
 
     /**

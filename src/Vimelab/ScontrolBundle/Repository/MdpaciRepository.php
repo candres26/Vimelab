@@ -26,7 +26,7 @@ class MdpaciRepository extends EntityRepository
         $pagina = $pagina < 1 ? 1 : $pagina;
 
         $em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Mdpaci o");
+        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Mdpaci o ORDER BY o.priape ASC");
         $querry->setFirstResult(($pagina-1)*$limite);
         $querry->setMaxResults($limite);
         return $querry->getResult();

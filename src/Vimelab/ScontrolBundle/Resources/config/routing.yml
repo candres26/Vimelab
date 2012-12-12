@@ -25,7 +25,10 @@ report:
 # CtCont Routes
 ctcont:
     pattern:  /ctcont
-    defaults: { _controller: ScontrolBundle:Ctcont:index }
+    defaults: { _controller: ScontrolBundle:Ctcont:index, pag: 1 }
+ctcont_pag:
+    pattern:  /ctcont/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Ctcont:index, pag: 1 }
 ctcont_show:
     pattern:  /ctcont/{id}/show/{lv}
     defaults: { _controller: ScontrolBundle:Ctcont:show, lv: 1 }
@@ -43,8 +46,7 @@ ctcont_update:
     defaults: { _controller: ScontrolBundle:Ctcont:update }
 ctcont_delete:
     pattern:  /ctcont/{id}/delete
-    defaults: { _controller: ScontrolBundle:Ctcont:delete }
-    
+    defaults: { _controller: ScontrolBundle:Ctcont:delete }   
 ctcont_filter:
     pattern:  /ctcont/{param}/filter
     defaults: { _controller: ScontrolBundle:Ctcont:filter }
@@ -52,7 +54,10 @@ ctcont_filter:
 # CtCoti Routes
 ctcoti:
     pattern:  /ctcoti
-    defaults: { _controller: ScontrolBundle:Ctcoti:index }
+    defaults: { _controller: ScontrolBundle:Ctcoti:index, pag: 1 }
+ctcoti_pag:
+    pattern:  /ctcoti/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Ctcoti:index, pag: 1 }
 ctcoti_show:
     pattern:  /ctcoti/{id}/show
     defaults: { _controller: ScontrolBundle:Ctcoti:show }
@@ -71,7 +76,6 @@ ctcoti_update:
 ctcoti_delete:
     pattern:  /ctcoti/{id}/delete
     defaults: { _controller: ScontrolBundle:Ctcoti:delete }
-
 ctcoti_filter:
     pattern:  /ctcoti/{param}/filter
     defaults: { _controller: ScontrolBundle:Ctcoti:filter }
@@ -79,7 +83,10 @@ ctcoti_filter:
 # CtFact Routes
 ctfact:
     pattern:  /ctfact
-    defaults: { _controller: ScontrolBundle:Ctfact:index }
+    defaults: { _controller: ScontrolBundle:Ctfact:index, pag: 1 }
+ctfact_pag:
+    pattern:  /ctfact/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Ctfact:index, pag: 1 }
 ctfact_show:
     pattern:  /ctfact/{id}/show
     defaults: { _controller: ScontrolBundle:Ctfact:show }
@@ -98,7 +105,6 @@ ctfact_update:
 ctfact_delete:
     pattern:  /ctfact/{id}/delete
     defaults: { _controller: ScontrolBundle:Ctfact:delete }
-   
 ctfact_filter:
     pattern:  /ctfact/{param}/filter
     defaults: { _controller: ScontrolBundle:Ctfact:filter }
@@ -106,7 +112,10 @@ ctfact_filter:
 # CtServ Routes
 ctserv:
     pattern:  /ctserv
-    defaults: { _controller: ScontrolBundle:Ctserv:index }
+    defaults: { _controller: ScontrolBundle:Ctserv:index, pag: 1 }
+ctserv_pag:
+    pattern:  /ctserv/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Ctserv:index, pag: 1 }
 ctserv_show:
     pattern:  /ctserv/{id}/show
     defaults: { _controller: ScontrolBundle:Ctserv:show }
@@ -125,7 +134,6 @@ ctserv_update:
 ctserv_delete:
     pattern:  /ctserv/{id}/delete
     defaults: { _controller: ScontrolBundle:Ctserv:delete }
-    
 ctserv_filter:
     pattern:  /ctserv/{param}/filter
     defaults: { _controller: ScontrolBundle:Ctserv:filter }
@@ -133,7 +141,10 @@ ctserv_filter:
 # CtTari Routes
 cttari:
     pattern:  /cttari
-    defaults: { _controller: ScontrolBundle:Cttari:index }
+    defaults: { _controller: ScontrolBundle:Cttari:index, pag: 1 }
+cttari_pag:
+    pattern:  /cttari/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Cttari:index, pag: 1 }
 cttari_show:
     pattern:  /cttari/{id}/show
     defaults: { _controller: ScontrolBundle:Cttari:show }
@@ -152,7 +163,6 @@ cttari_update:
 cttari_delete:
     pattern:  /cttari/{id}/delete
     defaults: { _controller: ScontrolBundle:Cttari:delete }
-    
 cttari_filter:
     pattern:  /cttari/{param}/filter
     defaults: { _controller: ScontrolBundle:Cttari:filter }
@@ -160,7 +170,10 @@ cttari_filter:
 # GbAcls Routes
 gbacls:
     pattern:  /gbacls
-    defaults: { _controller: ScontrolBundle:Gbacls:index }
+    defaults: { _controller: ScontrolBundle:Gbacls:index, pag: 1 }
+gbacls_pag:
+    pattern:  /gbacls/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Gbacls:index, pag: 1 }
 gbacls_show:
     pattern:  /gbacls/{id}/show
     defaults: { _controller: ScontrolBundle:Gbacls:show }
@@ -179,14 +192,17 @@ gbacls_update:
 gbacls_delete:
     pattern:  /gbacls/{id}/delete
     defaults: { _controller: ScontrolBundle:Gbacls:delete }
-
 gbacls_filter:
     pattern:  /gbacls/{param}/filter
     defaults: { _controller: ScontrolBundle:Gbacls:filter }
+    
 # GbCarg Routes
 gbcarg:
     pattern:  /gbcarg
-    defaults: { _controller: ScontrolBundle:Gbcarg:index }
+    defaults: { _controller: ScontrolBundle:Gbcarg:index, pag: 1 }
+gbcarg_pag:
+    pattern:  /gbcarg/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Gbcarg:index, pag: 1 }
 gbcarg_show:
     pattern:  /gbcarg/{id}/show
     defaults: { _controller: ScontrolBundle:Gbcarg:show }
@@ -205,14 +221,17 @@ gbcarg_update:
 gbcarg_delete:
     pattern:  /gbcarg/{id}/delete
     defaults: { _controller: ScontrolBundle:Gbcarg:delete }
-
 gbcarg_filter:
     pattern:  /gbcarg/{param}/filter
     defaults: { _controller: ScontrolBundle:Gbcarg:filter }
+    
 # GbCiud Routes
 gbciud:
     pattern:  /gbciud
-    defaults: { _controller: ScontrolBundle:Gbciud:index }
+    defaults: { _controller: ScontrolBundle:Gbciud:index, pag: 1 }
+gbciud_pag:
+    pattern:  /gbciud/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Gbciud:index, pag: 1 }
 gbciud_show:
     pattern:  /gbciud/{id}/show
     defaults: { _controller: ScontrolBundle:Gbciud:show }
@@ -239,7 +258,10 @@ gbciud_filter:
 # GbCnae Routes
 gbcnae:
     pattern:  /gbcnae
-    defaults: { _controller: ScontrolBundle:Gbcnae:index }
+    defaults: { _controller: ScontrolBundle:Gbcnae:index, pag: 1 }
+gbcnae_pag:
+    pattern:  /gbcnae/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Gbcnae:index, pag: 1 }
 gbcnae_show:
     pattern:  /gbcnae/{id}/show
     defaults: { _controller: ScontrolBundle:Gbcnae:show }
@@ -257,8 +279,7 @@ gbcnae_update:
     defaults: { _controller: ScontrolBundle:Gbcnae:update }
 gbcnae_delete:
     pattern:  /gbcnae/{id}/delete
-    defaults: { _controller: ScontrolBundle:Gbcnae:delete }
-    
+    defaults: { _controller: ScontrolBundle:Gbcnae:delete } 
 gbcnae_filter:
     pattern:  /gbcnae/{param}/filter
     defaults: { _controller: ScontrolBundle:Gbcnae:filter }
@@ -266,7 +287,10 @@ gbcnae_filter:
 # GbDepa Routes
 gbdepa:
     pattern:  /gbdepa
-    defaults: { _controller: ScontrolBundle:Gbdepa:index }
+    defaults: { _controller: ScontrolBundle:Gbdepa:index, pag: 1 }
+gbdepa_pag:
+    pattern:  /gbdepa/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Gbdepa:index, pag: 1 }
 gbdepa_show:
     pattern:  /gbdepa/{id}/show
     defaults: { _controller: ScontrolBundle:Gbdepa:show }
@@ -293,7 +317,10 @@ gbdepa_filter:
 # Gbempr Routes
 gbempr:
     pattern:  /gbempr
-    defaults: { _controller: ScontrolBundle:Gbempr:index }
+    defaults: { _controller: ScontrolBundle:Gbempr:index, pag: 1 }
+gbempr_pag:
+    pattern:  /gbempr/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Gbempr:index, pag: 1 }
 gbempr_show:
     pattern:  /gbempr/{id}/show
     defaults: { _controller: ScontrolBundle:Gbempr:show }
@@ -311,8 +338,7 @@ gbempr_update:
     defaults: { _controller: ScontrolBundle:Gbempr:update }
 gbempr_delete:
     pattern:  /gbempr/{id}/delete
-    defaults: { _controller: ScontrolBundle:Gbempr:delete }
-    
+    defaults: { _controller: ScontrolBundle:Gbempr:delete } 
 gbempr_filter:
     pattern:  /gbempr/{param}/filter
     defaults: { _controller: ScontrolBundle:Gbempr:filter }
@@ -320,7 +346,10 @@ gbempr_filter:
 # GbIden Routes
 gbiden:
     pattern:  /gbiden
-    defaults: { _controller: ScontrolBundle:Gbiden:index }
+    defaults: { _controller: ScontrolBundle:Gbiden:index, pag: 1 }
+gbiden_pag:
+    pattern:  /gbiden/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Gbiden:index, pag: 1 }
 gbiden_show:
     pattern:  /gbiden/{id}/show
     defaults: { _controller: ScontrolBundle:Gbiden:show }
@@ -339,7 +368,6 @@ gbiden_update:
 gbiden_delete:
     pattern:  /gbiden/{id}/delete
     defaults: { _controller: ScontrolBundle:Gbiden:delete }
-    
 gbiden_filter:
     pattern:  /gbiden/{param}/filter
     defaults: { _controller: ScontrolBundle:Gbiden:filter }
@@ -347,7 +375,10 @@ gbiden_filter:
 # GbLogr Routes
 gblogr:
     pattern:  /gblogr
-    defaults: { _controller: ScontrolBundle:Gblogr:index }
+    defaults: { _controller: ScontrolBundle:Gblogr:index, pag: 1 }
+gblogr_pag:
+    pattern:  /gblogr/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Gblogr:index, pag: 1 }
 gblogr_show:
     pattern:  /gblogr/{id}/show
     defaults: { _controller: ScontrolBundle:Gblogr:show }
@@ -366,7 +397,6 @@ gblogr_update:
 gblogr_delete:
     pattern:  /gblogr/{id}/delete
     defaults: { _controller: ScontrolBundle:Gblogr:delete }
-    
 gblogr_filter:
     pattern:  /gblogr/{param}/filter
     defaults: { _controller: ScontrolBundle:Gblogr:filter }
@@ -374,7 +404,10 @@ gblogr_filter:
 # GbCorp Routes
 gbcorp:
     pattern:  /gbcorp
-    defaults: { _controller: ScontrolBundle:Gbcorp:index }
+    defaults: { _controller: ScontrolBundle:Gbcorp:index, pag: 1 }
+gbcorp_pag:
+    pattern:  /gbcorp/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Gbcorp:index, pag: 1 }
 gbcorp_show:
     pattern:  /gbcorp/{id}/show
     defaults: { _controller: ScontrolBundle:Gbcorp:show }
@@ -393,7 +426,6 @@ gbcorp_update:
 gbcorp_delete:
     pattern:  /gbcorp/{id}/delete
     defaults: { _controller: ScontrolBundle:Gbcorp:delete }
-    
 gbcorp_filter:
     pattern:  /gbcorp/{param}/filter
     defaults: { _controller: ScontrolBundle:Gbcorp:filter }
@@ -401,7 +433,10 @@ gbcorp_filter:
 # GbPais Routes
 gbpais:
     pattern:  /gbpais
-    defaults: { _controller: ScontrolBundle:Gbpais:index }
+    defaults: { _controller: ScontrolBundle:Gbpais:index, pag: 1 }
+gbpais_pag:
+    pattern:  /gbpais/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Gbpais:index, pag: 1 }
 gbpais_show:
     pattern:  /gbpais/{id}/show
     defaults: { _controller: ScontrolBundle:Gbpais:show }
@@ -420,7 +455,6 @@ gbpais_update:
 gbpais_delete:
     pattern:  /gbpais/{id}/delete
     defaults: { _controller: ScontrolBundle:Gbpais:delete }
-
 gbpais_filter:
     pattern:  /gbpais/{param}/filter
     defaults: { _controller: ScontrolBundle:Gbpais:filter }
@@ -428,7 +462,10 @@ gbpais_filter:
 # GbPers Routes
 gbpers:
     pattern:  /gbpers
-    defaults: { _controller: ScontrolBundle:Gbpers:index }
+    defaults: { _controller: ScontrolBundle:Gbpers:index, pag: 1 }
+gbpers_pag:
+    pattern:  /gbpers/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Gbpers:index, pag: 1 }
 gbpers_show:
     pattern:  /gbpers/{id}/show
     defaults: { _controller: ScontrolBundle:Gbpers:show }
@@ -447,14 +484,17 @@ gbpers_update:
 gbpers_delete:
     pattern:  /gbpers/{id}/delete
     defaults: { _controller: ScontrolBundle:Gbpers:delete }
-
 gbpers_filter:
     pattern:  /gbpers/{param}/filter
     defaults: { _controller: ScontrolBundle:Gbpers:filter }
+    
 # GbPtra Routes
 gbptra:
     pattern:  /gbptra
-    defaults: { _controller: ScontrolBundle:Gbptra:index }
+    defaults: { _controller: ScontrolBundle:Gbptra:index, pag: 1 }
+gbptra_pag:
+    pattern:  /gbptra/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Gbptra:index, pag: 1 }
 gbptra_show:
     pattern:  /gbptra/{id}/show
     defaults: { _controller: ScontrolBundle:Gbptra:show }
@@ -473,14 +513,17 @@ gbptra_update:
 gbptra_delete:
     pattern:  /gbptra/{id}/delete
     defaults: { _controller: ScontrolBundle:Gbptra:delete }
-
 gbptra_filter:
     pattern:  /gbptra/{param}/filter
     defaults: { _controller: ScontrolBundle:Gbptra:filter }
+    
 # GbSucu Routes
 gbsucu:
     pattern:  /gbsucu
-    defaults: { _controller: ScontrolBundle:Gbsucu:index }
+    defaults: { _controller: ScontrolBundle:Gbsucu:index, pag: 1 }
+gbsucu_pag:
+    pattern:  /gbsucu/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Gbsucu:index, pag: 1 }
 gbsucu_show:
     pattern:  /gbsucu/{id}/show
     defaults: { _controller: ScontrolBundle:Gbsucu:show }
@@ -499,7 +542,6 @@ gbsucu_update:
 gbsucu_delete:
     pattern:  /gbsucu/{id}/delete
     defaults: { _controller: ScontrolBundle:Gbsucu:delete }
-    
 gbsucu_filter:
     pattern:  /gbsucu/{param}/filter
     defaults: { _controller: ScontrolBundle:Gbsucu:filter }
@@ -507,7 +549,10 @@ gbsucu_filter:
 # GbUsua Routes
 gbusua:
     pattern:  /gbusua
-    defaults: { _controller: ScontrolBundle:Gbusua:index }
+    defaults: { _controller: ScontrolBundle:Gbusua:index, pag: 1 }
+gbusua_pag:
+    pattern:  /gbusua/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Gbusua:index, pag: 1 }
 gbusua_show:
     pattern:  /gbusua/{id}/show
     defaults: { _controller: ScontrolBundle:Gbusua:show }
@@ -526,7 +571,6 @@ gbusua_update:
 gbusua_delete:
     pattern:  /gbusua/{id}/delete
     defaults: { _controller: ScontrolBundle:Gbusua:delete }
-    
 gbusua_filter:
     pattern:  /gbusua/{param}/filter
     defaults: { _controller: ScontrolBundle:Gbusua:filter }
@@ -534,7 +578,10 @@ gbusua_filter:
 # HsFami Routes
 hsfami:
     pattern:  /hsfami
-    defaults: { _controller: ScontrolBundle:Hsfami:index }
+    defaults: { _controller: ScontrolBundle:Hsfami:index, pag:1 }
+hsfami_pag:
+    pattern:  /hsfami/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Hsfami:index, pag:1 }
 hsfami_show:
     pattern:  /hsfami/{id}/show
     defaults: { _controller: ScontrolBundle:Hsfami:show }
@@ -553,7 +600,6 @@ hsfami_update:
 hsfami_delete:
     pattern:  /hsfami/{id}/delete
     defaults: { _controller: ScontrolBundle:Hsfami:delete }
-    
 hsfami_filter:
     pattern:  /hsfami/{param}/filter
     defaults: { _controller: ScontrolBundle:Hsfami:filter }
@@ -561,7 +607,10 @@ hsfami_filter:
 # HsLabo Routes
 hslabo:
     pattern:  /hslabo
-    defaults: { _controller: ScontrolBundle:Hslabo:index }
+    defaults: { _controller: ScontrolBundle:Hslabo:index, pag: 1 }
+hslabo_pag:
+    pattern:  /hslabo/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Hslabo:index, pag: 1 }
 hslabo_show:
     pattern:  /hslabo/{id}/show
     defaults: { _controller: ScontrolBundle:Hslabo:show }
@@ -579,8 +628,7 @@ hslabo_update:
     defaults: { _controller: ScontrolBundle:Hslabo:update }
 hslabo_delete:
     pattern:  /hslabo/{id}/delete
-    defaults: { _controller: ScontrolBundle:Hslabo:delete }
-    
+    defaults: { _controller: ScontrolBundle:Hslabo:delete }   
 hslabo_filter:
     pattern:  /hslabo/{param}/filter
     defaults: { _controller: ScontrolBundle:Hslabo:filter }
@@ -588,7 +636,10 @@ hslabo_filter:
 # HsPers Routes
 hspers:
     pattern:  /hspers
-    defaults: { _controller: ScontrolBundle:Hspers:index }
+    defaults: { _controller: ScontrolBundle:Hspers:index, pag: 1 }
+hspers_pag:
+    pattern:  /hspers/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Hspers:index, pag: 1 }
 hspers_show:
     pattern:  /hspers/{id}/show
     defaults: { _controller: ScontrolBundle:Hspers:show }
@@ -606,8 +657,7 @@ hspers_update:
     defaults: { _controller: ScontrolBundle:Hspers:update }
 hspers_delete:
     pattern:  /hspers/{id}/delete
-    defaults: { _controller: ScontrolBundle:Hspers:delete }
-    
+    defaults: { _controller: ScontrolBundle:Hspers:delete }    
 hspers_filter:
     pattern:  /hspers/{param}/filter
     defaults: { _controller: ScontrolBundle:Hspers:filter }
@@ -615,7 +665,10 @@ hspers_filter:
 # MdAudi Routes
 mdaudi:
     pattern:  /mdaudi
-    defaults: { _controller: ScontrolBundle:Mdaudi:index }
+    defaults: { _controller: ScontrolBundle:Mdaudi:index, pag: 1 }
+mdaudi_pag:
+    pattern:  /mdaudi/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdaudi:index, pag: 1 }
 mdaudi_show:
     pattern:  /mdaudi/{id}/show/{lv}
     defaults: { _controller: ScontrolBundle:Mdaudi:show, lv : 1 }
@@ -634,7 +687,6 @@ mdaudi_update:
 mdaudi_delete:
     pattern:  /mdaudi/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdaudi:delete }
-    
 mdaudi_filter:
     pattern:  /mdaudi/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdaudi:filter }
@@ -642,7 +694,10 @@ mdaudi_filter:
 # MdBiom Routes
 mdbiom:
     pattern:  /mdbiom
-    defaults: { _controller: ScontrolBundle:Mdbiom:index }
+    defaults: { _controller: ScontrolBundle:Mdbiom:index, pag: 1 }
+mdbiom_pag:
+    pattern:  /mdbiom/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdbiom:index, pag: 1 }
 mdbiom_show:
     pattern:  /mdbiom/{id}/show/{lv}
     defaults: { _controller: ScontrolBundle:Mdbiom:show, lv : 1 }
@@ -661,7 +716,6 @@ mdbiom_update:
 mdbiom_delete:
     pattern:  /mdbiom/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdbiom:delete }
-
 mdbiom_filter:
     pattern:  /mdbiom/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdbiom:filter }
@@ -669,7 +723,10 @@ mdbiom_filter:
 # MdDiag Routes
 mddiag:
     pattern:  /mddiag
-    defaults: { _controller: ScontrolBundle:Mddiag:index }
+    defaults: { _controller: ScontrolBundle:Mddiag:index, pag: 1 }
+mddiag_pag:
+    pattern:  /mddiag/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mddiag:index, pag: 1 }
 mddiag_show:
     pattern:  /mddiag/{id}/show
     defaults: { _controller: ScontrolBundle:Mddiag:show }
@@ -688,7 +745,6 @@ mddiag_update:
 mddiag_delete:
     pattern:  /mddiag/{id}/delete
     defaults: { _controller: ScontrolBundle:Mddiag:delete }
-    
 mddiag_filter:
     pattern:  /mddiag/{param}/filter
     defaults: { _controller: ScontrolBundle:Mddiag:filter }
@@ -696,7 +752,10 @@ mddiag_filter:
 # MdEspi Routes
 mdespi:
     pattern:  /mdespi
-    defaults: { _controller: ScontrolBundle:Mdespi:index }
+    defaults: { _controller: ScontrolBundle:Mdespi:index, pag: 1 }
+mdespi_pag:
+    pattern:  /mdespi/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdespi:index, pag: 1 }
 mdespi_show:
     pattern:  /mdespi/{id}/show/{lv}
     defaults: { _controller: ScontrolBundle:Mdespi:show, lv : 1 }
@@ -715,7 +774,6 @@ mdespi_update:
 mdespi_delete:
     pattern:  /mdespi/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdespi:delete }
-
 mdespi_filter:
     pattern:  /mdespi/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdespi:filter }
@@ -723,7 +781,10 @@ mdespi_filter:
 # MdExam Routes
 mdexam:
     pattern:  /mdexam
-    defaults: { _controller: ScontrolBundle:Mdexam:index }
+    defaults: { _controller: ScontrolBundle:Mdexam:index, pag: 1 }
+mdexam_pag:
+    pattern:  /mdexam/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdexam:index, pag: 1 }
 mdexam_show:
     pattern:  /mdexam/{id}/show
     defaults: { _controller: ScontrolBundle:Mdexam:show }
@@ -742,7 +803,6 @@ mdexam_update:
 mdexam_delete:
     pattern:  /mdexam/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdexam:delete }
-
 mdexam_filter:
     pattern:  /mdexam/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdexam:filter }
@@ -750,7 +810,10 @@ mdexam_filter:
 # MdExtr Routes
 mdextr:
     pattern:  /mdextr
-    defaults: { _controller: ScontrolBundle:Mdextr:index }
+    defaults: { _controller: ScontrolBundle:Mdextr:index, pag: 1 }
+mdextr_pag:
+    pattern:  /mdextr/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdextr:index, pag: 1 }
 mdextr_show:
     pattern:  /mdextr/{id}/show/{lv}
     defaults: { _controller: ScontrolBundle:Mdextr:show, lv : 1 }
@@ -769,7 +832,6 @@ mdextr_update:
 mdextr_delete:
     pattern:  /mdextr/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdextr:delete }
-    
 mdextr_filter:
     pattern:  /mdextr/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdextr:filter }
@@ -777,7 +839,10 @@ mdextr_filter:
 # MdHist Routes
 mdhist:
     pattern:  /mdhist
-    defaults: { _controller: ScontrolBundle:Mdhist:index }
+    defaults: { _controller: ScontrolBundle:Mdhist:index, pag: 1}
+mdhist_pag:
+    pattern:  /mdhist/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdhist:index, pag:1 }
 mdhist_show:
     pattern:  /mdhist/{id}/show
     defaults: { _controller: ScontrolBundle:Mdhist:show }
@@ -796,7 +861,6 @@ mdhist_update:
 mdhist_delete:
     pattern:  /mdhist/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdhist:delete }
-    
 mdhist_filter:
     pattern:  /mdhist/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdhist:filter }
@@ -804,7 +868,10 @@ mdhist_filter:
 # MdLabo Routes
 mdlabo:
     pattern:  /mdlabo
-    defaults: { _controller: ScontrolBundle:Mdlabo:index }
+    defaults: { _controller: ScontrolBundle:Mdlabo:index, pag: 1 }
+mdlabo_pag:
+    pattern:  /mdlabo/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdlabo:index, pag: 1 }
 mdlabo_show:
     pattern:  /mdlabo/{id}/show
     defaults: { _controller: ScontrolBundle:Mdlabo:show }
@@ -823,14 +890,17 @@ mdlabo_update:
 mdlabo_delete:
     pattern:  /mdlabo/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdlabo:delete }
-
 mdlabo_filter:
     pattern:  /mdlabo/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdlabo:filter }
+
 # MdPaci Routes
 mdpaci:
     pattern:  /mdpaci
-    defaults: { _controller: ScontrolBundle:Mdpaci:index }
+    defaults: { _controller: ScontrolBundle:Mdpaci:index, pag: 1 }
+mdpaci_pag:
+    pattern:  /mdpaci/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdpaci:index, pag: 1 }
 mdpaci_show:
     pattern:  /mdpaci/{id}/show
     defaults: { _controller: ScontrolBundle:Mdpaci:show }
@@ -848,8 +918,7 @@ mdpaci_update:
     defaults: { _controller: ScontrolBundle:Mdpaci:update }
 mdpaci_delete:
     pattern:  /mdpaci/{id}/delete
-    defaults: { _controller: ScontrolBundle:Mdpaci:delete }
-    
+    defaults: { _controller: ScontrolBundle:Mdpaci:delete }   
 mdpaci_filter:
     pattern:  /mdpaci/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdpaci:filter }
@@ -857,7 +926,10 @@ mdpaci_filter:
 # MdPato Routes
 mdpato:
     pattern:  /mdpato
-    defaults: { _controller: ScontrolBundle:Mdpato:index }
+    defaults: { _controller: ScontrolBundle:Mdpato:index, pag: 1 }
+mdpato_pag:
+    pattern:  /mdpato/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdpato:index, pag: 1 }
 mdpato_show:
     pattern:  /mdpato/{id}/show
     defaults: { _controller: ScontrolBundle:Mdpato:show }
@@ -876,14 +948,17 @@ mdpato_update:
 mdpato_delete:
     pattern:  /mdpato/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdpato:delete }
-
 mdpato_filter:
     pattern:  /mdpato/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdpato:filter }
+    
 # MdProc Routes
 mdproc:
     pattern:  /mdproc
-    defaults: { _controller: ScontrolBundle:Mdproc:index }
+    defaults: { _controller: ScontrolBundle:Mdproc:index, pag: 1 }
+mdproc_pag:
+    pattern:  /mdproc/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdproc:index, pag: 1 }
 mdproc_show:
     pattern:  /mdproc/{id}/show
     defaults: { _controller: ScontrolBundle:Mdproc:show }
@@ -902,7 +977,6 @@ mdproc_update:
 mdproc_delete:
     pattern:  /mdproc/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdproc:delete }
-    
 mdproc_filter:
     pattern:  /mdproc/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdproc:filter }
@@ -910,7 +984,10 @@ mdproc_filter:
 # MdProt Routes
 mdprot:
     pattern:  /mdprot
-    defaults: { _controller: ScontrolBundle:Mdprot:index }
+    defaults: { _controller: ScontrolBundle:Mdprot:index, pag: 1 }
+mdprot_pag:
+    pattern:  /mdprot/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdprot:index, pag: 1 }
 mdprot_show:
     pattern:  /mdprot/{id}/show
     defaults: { _controller: ScontrolBundle:Mdprot:show }
@@ -929,7 +1006,6 @@ mdprot_update:
 mdprot_delete:
     pattern:  /mdprot/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdprot:delete }
-
 mdprot_filter:
     pattern:  /mdprot/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdprot:filter }
@@ -937,7 +1013,10 @@ mdprot_filter:
 # MdQues Routes
 mdques:
     pattern:  /mdques
-    defaults: { _controller: ScontrolBundle:Mdques:index }
+    defaults: { _controller: ScontrolBundle:Mdques:index, pag: 1 }
+mdques_pag:
+    pattern:  /mdques/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdques:index, pag: 1 }
 mdques_show:
     pattern:  /mdques/{id}/show
     defaults: { _controller: ScontrolBundle:Mdques:show }
@@ -956,7 +1035,6 @@ mdques_update:
 mdques_delete:
     pattern:  /mdques/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdques:delete }
-
 mdques_filter:
     pattern:  /mdques/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdques:filter }
@@ -964,7 +1042,10 @@ mdques_filter:
 # MdResp Routes
 mdresp:
     pattern:  /mdresp
-    defaults: { _controller: ScontrolBundle:Mdresp:index }
+    defaults: { _controller: ScontrolBundle:Mdresp:index, pag: 1 }
+mdresp_pag:
+    pattern:  /mdresp/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdresp:index, pag: 1 }
 mdresp_show:
     pattern:  /mdresp/{id}/show
     defaults: { _controller: ScontrolBundle:Mdresp:show }
@@ -983,7 +1064,6 @@ mdresp_update:
 mdresp_delete:
     pattern:  /mdresp/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdresp:delete }
-    
 mdresp_filter:
     pattern:  /mdresp/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdresp:filter }
@@ -991,7 +1071,10 @@ mdresp_filter:
 # MdSist Routes
 mdsist:
     pattern:  /mdsist
-    defaults: { _controller: ScontrolBundle:Mdsist:index }
+    defaults: { _controller: ScontrolBundle:Mdsist:index, pag: 1 }
+mdsist_pag:
+    pattern:  /mdsist/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdsist:index, pag: 1 }
 mdsist_show:
     pattern:  /mdsist/{id}/show/{lv}
     defaults: { _controller: ScontrolBundle:Mdsist:show, lv : 1 }
@@ -1010,7 +1093,6 @@ mdsist_update:
 mdsist_delete:
     pattern:  /mdsist/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdsist:delete }
-    
 mdsist_filter:
     pattern:  /mdsist/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdsist:filter }
@@ -1018,7 +1100,10 @@ mdsist_filter:
 # MdVisu Routes
 mdvisu:
     pattern:  /mdvisu
-    defaults: { _controller: ScontrolBundle:Mdvisu:index }
+    defaults: { _controller: ScontrolBundle:Mdvisu:index, pag: 1 }
+mdvisu_pag:
+    pattern:  /mdvisu/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdvisu:index, pag: 1 }
 mdvisu_show:
     pattern:  /mdvisu/{id}/show/{lv}
     defaults: { _controller: ScontrolBundle:Mdvisu:show, lv : 1 }
@@ -1037,7 +1122,6 @@ mdvisu_update:
 mdvisu_delete:
     pattern:  /mdvisu/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdvisu:delete }
-
 mdvisu_filter:
     pattern:  /mdvisu/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdvisu:filter }
@@ -1045,7 +1129,10 @@ mdvisu_filter:
 # TcAspe Routes
 tcaspe:
     pattern:  /tcaspe
-    defaults: { _controller: ScontrolBundle:Tcaspe:index }
+    defaults: { _controller: ScontrolBundle:Tcaspe:index, pag: 1 }
+tcaspe_pag:
+    pattern:  /tcaspe/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Tcaspe:index, pag: 1 }
 tcaspe_show:
     pattern:  /tcaspe/{id}/show
     defaults: { _controller: ScontrolBundle:Tcaspe:show }
@@ -1064,7 +1151,6 @@ tcaspe_update:
 tcaspe_delete:
     pattern:  /tcaspe/{id}/delete
     defaults: { _controller: ScontrolBundle:Tcaspe:delete }
-    
 tcaspe_filter:
     pattern:  /tcaspe/{param}/filter
     defaults: { _controller: ScontrolBundle:Tcaspe:filter }
@@ -1072,7 +1158,10 @@ tcaspe_filter:
 # TcCapa Routes
 tccapa:
     pattern:  /tccapa
-    defaults: { _controller: ScontrolBundle:Tccapa:index }
+    defaults: { _controller: ScontrolBundle:Tccapa:index, pag: 1 }
+tccapa_pag:
+    pattern:  /tccapa/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Tccapa:index, pag: 1 }
 tccapa_show:
     pattern:  /tccapa/{id}/show
     defaults: { _controller: ScontrolBundle:Tccapa:show }
@@ -1091,7 +1180,6 @@ tccapa_update:
 tccapa_delete:
     pattern:  /tccapa/{id}/delete
     defaults: { _controller: ScontrolBundle:Tccapa:delete }
-    
 tccapa_filter:
     pattern:  /tccapa/{param}/filter
     defaults: { _controller: ScontrolBundle:Tccapa:filter }
@@ -1099,7 +1187,10 @@ tccapa_filter:
 # TcChec Routes
 tcchec:
     pattern:  /tcchec
-    defaults: { _controller: ScontrolBundle:Tcchec:index }
+    defaults: { _controller: ScontrolBundle:Tcchec:index, pag: 1 }
+tcchec_pag:
+    pattern:  /tcchec/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Tcchec:index, pag: 1 }
 tcchec_show:
     pattern:  /tcchec/{id}/show
     defaults: { _controller: ScontrolBundle:Tcchec:show }
@@ -1118,7 +1209,6 @@ tcchec_update:
 tcchec_delete:
     pattern:  /tcchec/{id}/delete
     defaults: { _controller: ScontrolBundle:Tcchec:delete }
-    
 tcchec_filter:
     pattern:  /tcchec/{param}/filter
     defaults: { _controller: ScontrolBundle:Tcchec:filter }
@@ -1126,7 +1216,10 @@ tcchec_filter:
 # TcCurs Routes
 tccurs:
     pattern:  /tccurs
-    defaults: { _controller: ScontrolBundle:Tccurs:index }
+    defaults: { _controller: ScontrolBundle:Tccurs:index, pag: 1 }
+tccurs_pag:
+    pattern:  /tccurs/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Tccurs:index, pag: 1 }
 tccurs_show:
     pattern:  /tccurs/{id}/show
     defaults: { _controller: ScontrolBundle:Tccurs:show }
@@ -1144,8 +1237,7 @@ tccurs_update:
     defaults: { _controller: ScontrolBundle:Tccurs:update }
 tccurs_delete:
     pattern:  /tccurs/{id}/delete
-    defaults: { _controller: ScontrolBundle:Tccurs:delete }
-    
+    defaults: { _controller: ScontrolBundle:Tccurs:delete }  
 tccurs_filter:
     pattern:  /tccurs/{param}/filter
     defaults: { _controller: ScontrolBundle:Tccurs:filter }
@@ -1153,7 +1245,10 @@ tccurs_filter:
 # TcDeta Routes
 tcdeta:
     pattern:  /tcdeta
-    defaults: { _controller: ScontrolBundle:Tcdeta:index }
+    defaults: { _controller: ScontrolBundle:Tcdeta:index, pag: 1 }
+tcdeta_pag:
+    pattern:  /tcdeta/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Tcdeta:index, pag: 1 }
 tcdeta_show:
     pattern:  /tcdeta/{id}/show
     defaults: { _controller: ScontrolBundle:Tcdeta:show }
@@ -1172,7 +1267,6 @@ tcdeta_update:
 tcdeta_delete:
     pattern:  /tcdeta/{id}/delete
     defaults: { _controller: ScontrolBundle:Tcdeta:delete }
-    
 tcdeta_filter:
     pattern:  /tcdeta/{param}/filter
     defaults: { _controller: ScontrolBundle:Tcdeta:filter }
@@ -1180,7 +1274,10 @@ tcdeta_filter:
 # TcRevi Routes
 tcrevi:
     pattern:  /tcrevi
-    defaults: { _controller: ScontrolBundle:Tcrevi:index }
+    defaults: { _controller: ScontrolBundle:Tcrevi:index, pag: 1 }
+tcrevi_pag:
+    pattern:  /tcrevi/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Tcrevi:index, pag: 1 }
 tcrevi_show:
     pattern:  /tcrevi/{id}/show
     defaults: { _controller: ScontrolBundle:Tcrevi:show }
@@ -1198,8 +1295,7 @@ tcrevi_update:
     defaults: { _controller: ScontrolBundle:Tcrevi:update }
 tcrevi_delete:
     pattern:  /tcrevi/{id}/delete
-    defaults: { _controller: ScontrolBundle:Tcrevi:delete }
-    
+    defaults: { _controller: ScontrolBundle:Tcrevi:delete }   
 tcrevi_filter:
     pattern:  /tcrevi/{param}/filter
     defaults: { _controller: ScontrolBundle:Tcrevi:filter }
@@ -1207,7 +1303,10 @@ tcrevi_filter:
 # TcRuta Routes
 tcruta:
     pattern:  /tcruta
-    defaults: { _controller: ScontrolBundle:Tcruta:index }
+    defaults: { _controller: ScontrolBundle:Tcruta:index, pag: 1 }
+tcruta_pag:
+    pattern:  /tcruta/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Tcruta:index, pag: 1 }
 tcruta_show:
     pattern:  /tcruta/{id}/show
     defaults: { _controller: ScontrolBundle:Tcruta:show }
@@ -1225,11 +1324,12 @@ tcruta_update:
     defaults: { _controller: ScontrolBundle:Tcruta:update }
 tcruta_delete:
     pattern:  /tcruta/{id}/delete
-    defaults: { _controller: ScontrolBundle:Tcruta:delete }
-  
+    defaults: { _controller: ScontrolBundle:Tcruta:delete }  
 tcruta_filter:
     pattern:  /tcruta/{param}/filter
     defaults: { _controller: ScontrolBundle:Tcruta:filter }
+
+#    
 #   --- RUTAS PARA ASISTENTES ---
 #
 #            Ubicaciones
@@ -1338,6 +1438,9 @@ as_empr:
 as_master:
     pattern: /asmaster
     defaults: { _controller: ScontrolBundle:AsMaster:index }
+as_master_load:
+    pattern: /asmaster/{id}/load
+    defaults: { _controller: ScontrolBundle:AsMaster:load }
 as_master_getPaci:
     pattern: /asmaster/getpaci
     defaults: { _controller: ScontrolBundle:AsMaster:getPaciente }
@@ -1362,3 +1465,24 @@ as_master_getDiag:
 as_master_delDiag:
     pattern: /asmaster/deldiag
     defaults: { _controller: ScontrolBundle:AsMaster:delDiagnostico }
+as_master_getProt:
+    pattern: /asmaster/getprot
+    defaults: { _controller: ScontrolBundle:AsMaster:getProtocolo }
+as_master_getQues:
+    pattern: /asmaster/getques
+    defaults: { _controller: ScontrolBundle:AsMaster:getPregunta }
+as_master_savQues:
+    pattern: /asmaster/savques
+    defaults: { _controller: ScontrolBundle:AsMaster:savRespuesta }
+as_master_delQues:
+    pattern: /asmaster/delques
+    defaults: { _controller: ScontrolBundle:AsMaster:delRespuesta }
+as_master_getExam:
+    pattern: /asmaster/getexam
+    defaults: { _controller: ScontrolBundle:AsMaster:getExamen }
+as_master_savExam:
+    pattern: /asmaster/savexam
+    defaults: { _controller: ScontrolBundle:AsMaster:savExamen }
+as_master_delExam:
+    pattern: /asmaster/delexam
+    defaults: { _controller: ScontrolBundle:AsMaster:delExamen }

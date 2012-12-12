@@ -92,6 +92,6 @@ class Mdques
 
     public function __toString()
     {
-        return $this->id;
+        return $this->pregunta;
     }
 }

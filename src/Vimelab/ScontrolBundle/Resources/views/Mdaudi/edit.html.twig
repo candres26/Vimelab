@@ -7,33 +7,37 @@
 <h2 align="left">Editar Audiometría</h2>
 
 <form id="vime-form" action="{{ path('mdaudi_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+	
 	<input type="submit" style="display: none" id="sender" value="send">
+	
 	<table style="margin-left: 1%; margin-top: 1%;">
-		<tr><td colspan='2'>{{ form_errors(edit_form.mdhist) }}</td></tr>
-		<tr><td align="left">{{ form_label(edit_form.mdhist) }}</td><td align="left">{{ form_widget(edit_form.mdhist) }}</td></tr>
+		<tr style="display: none;"><td colspan='2'>{{ form_errors(edit_form.mdhist) }}</td></tr>
+		<tr style="display: none;"><td align="left">{{ form_label(edit_form.mdhist) }}</td><td align="left">{{ form_widget(edit_form.mdhist) }}</td></tr>
+		
+		<tr><td>Historia #{{ entity.mdhist.id }}</td><td>{{ entity.mdhist.fecha.format('Y-m-d') }}</td></tr>
+		<tr><td>{{ entity.mdhist.mdpaci.identificacion }}</td><td>{{ entity.mdhist.mdpaci.getFullName() }}</td></tr>
+		
 		<tr><td colspan='2'>{{ form_errors(edit_form.realizado) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.realizado) }}</td><td align="left" class="input">{{ form_widget(edit_form.realizado) }}</td></tr>
 	</table>
-	&nbsp;
-
+	
+	<br>
+	
 	<table align="center">
 		<tr>
-			<th></th><th>500 Hz</th><th>1.000 Hz</th><th>2.000 Hz</th><th>3.000 Hz</th><th>4.000 Hz</th><th>6.000 Hz</th><th>8.000 Hz</th>
-		</tr>
-		<tr>
-			<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+			<th>&nbsp;</th><th>500 Hz</th><th>1.000 Hz</th><th>2.000 Hz</th><th>3.000 Hz</th><th>4.000 Hz</th><th>6.000 Hz</th><th>8.000 Hz</th>
 		</tr>
 		<tr>
 			<td>D</td><td align="left">{{ form_widget(edit_form.d500) }}</td><td align="left">{{ form_widget(edit_form.d1000) }}</td><td align="left">{{ form_widget(edit_form.d2000) }}</td><td align="left">{{ form_widget(edit_form.d3000) }}</td><td align="left">{{ form_widget(edit_form.d4000) }}</td><td align="left">{{ form_widget(edit_form.d6000) }}</td><td align="left">{{ form_widget(edit_form.d8000) }}</td>
 		</tr>
 		<tr>
-			<td></td><td>{{ form_errors(edit_form.d500) }}</td><td>{{ form_errors(edit_form.d1000) }}</td><td>{{ form_errors(edit_form.d2000) }}</td><td>{{ form_errors(edit_form.d3000) }}</td><td>{{ form_errors(edit_form.d4000) }}</td><td>{{ form_errors(edit_form.d6000) }}</td><td>{{ form_errors(edit_form.d8000) }}</td>
+			<td>&nbsp;</td><td>{{ form_errors(edit_form.d500) }}</td><td>{{ form_errors(edit_form.d1000) }}</td><td>{{ form_errors(edit_form.d2000) }}</td><td>{{ form_errors(edit_form.d3000) }}</td><td>{{ form_errors(edit_form.d4000) }}</td><td>{{ form_errors(edit_form.d6000) }}</td><td>{{ form_errors(edit_form.d8000) }}</td>
 		</tr>
 		<tr>
 			<td>I</td><td align="left">{{ form_widget(edit_form.i500) }}</td><td align="left">{{ form_widget(edit_form.i1000) }}</td><td align="left">{{ form_widget(edit_form.i2000) }}</td><td align="left">{{ form_widget(edit_form.i3000) }}</td><td align="left">{{ form_widget(edit_form.i4000) }}</td><td align="left">{{ form_widget(edit_form.i6000) }}</td><td align="left">{{ form_widget(edit_form.i8000) }}</td>
 		</tr>
 		<tr>
-			<td></td><td>{{ form_errors(edit_form.i500) }}</td><td>{{ form_errors(edit_form.i1000) }}</td><td>{{ form_errors(edit_form.i2000) }}</td><td>{{ form_errors(edit_form.i3000) }}</td><td>{{ form_errors(edit_form.i4000) }}</td><td>{{ form_errors(edit_form.i6000) }}</td><td>{{ form_errors(edit_form.i8000) }}</td>
+			<td>&nbsp;</td><td>{{ form_errors(edit_form.i500) }}</td><td>{{ form_errors(edit_form.i1000) }}</td><td>{{ form_errors(edit_form.i2000) }}</td><td>{{ form_errors(edit_form.i3000) }}</td><td>{{ form_errors(edit_form.i4000) }}</td><td>{{ form_errors(edit_form.i6000) }}</td><td>{{ form_errors(edit_form.i8000) }}</td>
 		</tr>
 
     </table>

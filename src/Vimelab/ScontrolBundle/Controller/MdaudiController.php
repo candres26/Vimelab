@@ -23,16 +23,21 @@ class MdaudiController extends Controller
      * @Route("/", name="mdaudi")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction($pag)
     {
 		if(Tool::isGrant($this))
 		{
 			$em = $this->getDoctrine()->getEntityManager();
+			
+			$pages = $em->getRepository('ScontrolBundle:Mdaudi')->getCountPages(20);
+			$pag = $pag < 1 ? 1 : $pag;
+			$pag = $pag > $pages ? $pages: $pag;
+			
+			$entities = $em->getRepository('ScontrolBundle:Mdaudi')->getPage(20, $pag);
 
-			$entities = $em->getRepository('ScontrolBundle:Mdaudi')->findAll();
-
-			return array('entities' => $entities);
-		}else
+			return array('entities' => $entities, 'pages' => $pages, 'pag' => $pag);
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
     
@@ -42,7 +47,7 @@ class MdaudiController extends Controller
         $repo = $em->getRepository('ScontrolBundle:Mdaudi');
         $entities = $repo->getFilter($param);
 
-        return $this->render("ScontrolBundle:Mdaudi:index.html.twig", array('entities' => $entities));
+        return $this->render("ScontrolBundle:Mdaudi:index.html.twig", array('entities' => $entities, 'pages' => 1, 'pag' => 1));
     }
 
     /**
@@ -74,6 +79,10 @@ class MdaudiController extends Controller
 			else if($lv == 3)
 			{
 				return $this->render("ScontrolBundle:Mdaudi:_show.html.twig", array('entity' => $entity, 'RMSG' => $entity->getId()."-Audiometría creada con exito!"));
+			}
+			else if($lv == 4)
+			{
+				return $this->render("ScontrolBundle:Mdaudi:_show.html.twig", array('entity' => $entity, 'RMSG' => 'NONE'));
 			}
 			else
 			{

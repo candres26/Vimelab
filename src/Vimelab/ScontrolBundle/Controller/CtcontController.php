@@ -24,15 +24,19 @@ class CtcontController extends Controller
      * @Route("/", name="ctcont")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction($pag)
     {
         if(Tool::isGrant($this))
         {
 			$em = $this->getDoctrine()->getEntityManager();
+			
+			$pages = $em->getRepository('ScontrolBundle:Ctcont')->getCountPages(20);
+			$pag = $pag < 1 ? 1 : $pag;
+			$pag = $pag > $pages ? $pages: $pag;
+			
+			$entities = $em->getRepository('ScontrolBundle:Ctcont')->getPage(20, $pag);
 
-			$entities = $em->getRepository('ScontrolBundle:Ctcont')->findAll();
-		
-			return array('entities' => $entities);
+			return array('entities' => $entities, 'pages' => $pages, 'pag' => $pag);
 		}
 		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
@@ -44,7 +48,7 @@ class CtcontController extends Controller
         $repo = $em->getRepository('ScontrolBundle:Ctcont');
         $entities = $repo->getFilter($param);
 
-        return $this->render("ScontrolBundle:Ctcont:index.html.twig", array('entities' => $entities));
+        return $this->render("ScontrolBundle:Ctcont:index.html.twig", array('entities' => $entities, 'pages' => 1, 'pag' => 1));
     }
 
     /**
@@ -79,9 +83,14 @@ class CtcontController extends Controller
 				$meses = array('Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
 				
 				$sucu = $em->getRepository('ScontrolBundle:Ctcont')->getSucursal($entity->getGbempr()->getId(),"principal");
+<<<<<<< HEAD
 					if($sucu == null){
 						$sucu = new Gbsucu();
 					}
+=======
+                if($sucu == null)
+                    $sucu = new Gbsucu();
+>>>>>>> ce864b3b7863c0075134c6d0f3323ba1bda73168
 				
 				$ciud = $sucu->getGbciud();
 					

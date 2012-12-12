@@ -1,3 +1,117 @@
+var start = null;
+
+function toJail(arr, gl, gr, ms)
+{
+	if(gl == undefined)
+		gl = '{';
+	
+	if(gr == undefined)
+		gr = '}';
+	
+	if(ms == undefined)
+		ms = true;	
+	
+	var res = '';
+	
+	var j = arr.length;
+	for(var i = 0; i < j; i++)
+	{
+		if(arr[i] instanceof Array)
+			res += gl+toJail(arr[i], gl, gr, false)+gr;
+		else 
+			res += gl+arr[i]+gr;
+	}
+	
+	if(ms)
+		res = gl+res+gr;
+	
+	return res;
+}
+
+function ofJail(arr, gl, gr)
+{
+	if(gl == undefined)
+		gl = '{';
+	
+	if(gr == undefined)
+		gr = '}';
+		
+	var res = new Array();
+	
+	var j = arr.length;
+	var i = 0;
+	while(i < j)
+	{
+		if(arr[i] == gl)
+		{
+			var ix = getPiece(arr, gl, gr, i);
+			var tmp = arr.substring(i+1, ix); 
+			res.push(ofJail(tmp, gl, gr));
+			i = ix;
+		}
+		if(arr[i] == gr)
+		{
+			i += 1;
+		}
+		else
+		{
+			res.push(arr);
+			i = j;
+		}			 
+	}
+	
+	if(res.length == 1)
+		res = res[0];
+	
+	return res;
+}
+
+function getPiece(arr, gl, gr, or)
+{
+	if(gl == undefined)
+		gl = '{';
+	
+	if(gr == undefined)
+		gr = '}';
+	
+	if(or == undefined)
+		or = 0;
+		
+	var ct = 0;
+	var ix = -1;
+	
+	var j = arr.length;
+	for(var i = or; i < j; i++)
+	{
+		if(arr[i] == gl)
+		{
+			ct += 1;
+		}
+		else if(arr[i] == gr)
+		{
+			ct -= 1;
+		}
+		
+		if(ct == 0)
+		{
+			ix = i;
+			break;
+		}			 
+	}
+	
+	return ix;	
+}
+
+function setCrono()
+{
+	start = new Date().getTime();
+}
+
+function getCrono(elem)
+{
+	gId(elem).innerHTML = (new Date().getTime()-start)/1000;
+}
+
 function getHoy()
 {
     date = new Date();

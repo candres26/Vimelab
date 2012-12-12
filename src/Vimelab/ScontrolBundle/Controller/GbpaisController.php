@@ -23,16 +23,21 @@ class GbpaisController extends Controller
      * @Route("/", name="gbpais")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction($pag)
     {
 		if(Tool::isGrant($this))
 		{
 			$em = $this->getDoctrine()->getEntityManager();
+			
+			$pages = $em->getRepository('ScontrolBundle:Gbpais')->getCountPages(2);
+			$pag = $pag < 1 ? 1 : $pag;
+			$pag = $pag > $pages ? $pages: $pag;
+			
+			$entities = $em->getRepository('ScontrolBundle:Gbpais')->getPage(2, $pag);
 
-			$entities = $em->getRepository('ScontrolBundle:Gbpais')->findAll();
-
-			return array('entities' => $entities);
-		}else
+			return array('entities' => $entities, 'pages' => $pages, 'pag' => $pag);
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
     
@@ -42,7 +47,7 @@ class GbpaisController extends Controller
         $repo = $em->getRepository('ScontrolBundle:Gbpais');
         $entities = $repo->getFilter($param);
 
-        return $this->render("ScontrolBundle:Gbpais:index.html.twig", array('entities' => $entities));
+        return $this->render("ScontrolBundle:Gbpais:index.html.twig", array('entities' => $entities, 'pages' => 1, 'pag' => 1));
     }
 
     /**

@@ -518,6 +518,6 @@ class Gbpers
 		$tmp = $this->prinom != '' ? $tmp.' '.$this->prinom : $tmp;
 		$tmp = $this->segnom != '' ? $tmp.' '.$this->segnom : $tmp;
 		
-		return $tmp;
+		return trim($tmp);
 	}
 }

@@ -66,7 +66,57 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 * Recomendaciones es un diagnostico de codigo > 1900.
 * Validar caso de "NO REALIZADO" en reporte de audiometría.
 * Creacion de temas CSS para vistas parciales.
-
+* Crear categorias para servicios (Examenes, Procedimientos, Otros).
+* Cambio estructural en ice/ajax.js para permitir peticiones paralelas!.
+* Agregar paginadores de 20 registros ordenados por pagina.
+	! Los botones mueven la pagina asi: << - Primera, >> - Ultima, < - Anterior, > - Siguiente.
+	! Se puede usar la caja de texto para indicar una pagina concreta y pulsar enter para ir hasta ella. 
+	* Ctcont ordenado por fecha.
+	* Ctcoti ordenado por fecha.
+	* Ctfact ordenado por fecha.
+	* Ctserv ordenado por codigo.
+	* Cttari ordenado por la fecha del contrato asociado.
+	* Gbacls ordenado por nombre de usuario asociado.
+	* Gbcarg ordenado por nombre.
+	* Gbciud ordenado por nombre.
+	* Gbcnae ordenado por actividad economica.
+	* Gbcorp ordenado por nombre.
+	* Gbdepa ordenado por nombre.
+	* Gbempr ordenado por nombre.
+	* Gbiden ordenado por detalle.
+	* Gblogr ordenado por fecha.
+	* Gbpais ordenado por nombre.
+	* Gbpers ordenado por priape.
+	* Gbptra ordenado por nombre.
+	* Gbsucu ordenado por nombre.
+	* Gbusua ordenado por nombre.
+	* Hsfami ordenado por priape del paciente asociado.
+	* Hslabo ordenado por priape del paciente asociado.
+	* Hspers ordenado por priape del paciente asociado.
+	* Mdaudi ordenado por priape del paciente asociado.
+	* Mdbiom ordenado por priape del paciente asociado.
+	* Mddiag ordenado por priape del paciente asociado.
+	* Mdespi ordenado por priape del paciente asociado.
+	* Mdexam ordenado por nombre.
+	* Mdextr ordenado por priape del paciente asociado.
+	* Mdhist ordenado por fecha.
+	* Mdlabo ordenado por priape del paciente asociado.
+	* Mdpaci ordenado por priape.
+	* Mdpato ordenado por nombre.
+	* Mdproc ordenado por puesto de trabajo asociado.
+	* Mdprot ordenado por nombre.
+	* Mdques ordenado por protocolo asociado.
+	* Mdresp ordenado por priape del paciente asociado.
+	* Mdsist ordenado por priape del paciente asociado.
+	* Mdvisu ordenado por priape del paciente asociado.
+	* Tcaspe ordenado por nombre.
+	* Tccapa ordenado por nombre.
+	* Tcchec ordenado por fecha de la revisión técnica asociada.
+	* Tccurs ordenado por priape del paciente asociado.
+	* Tcdeta ordenado por fecha de la revisión técnica asociada.	
+	* Tcrevi ordenado por fecha.	
+	* Tcruta ordenado por fecha planeada.	
+	
 # --- CAMBIOS EN PROGRESO --- #
 
 + Calendario por incluir en todos los módulos.
@@ -78,11 +128,11 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 + Asistente de empresas, oculto en espera.
 + PRIORITARIO: Asistente maestro de revisión médica:
 	* Crear estandar de alamcenamiento.
-	+ Fijar validaciones de GUI [7%].
-	+ Nuevo esquema de vistas [90%].
+	* Fijar validaciones de GUI.
+	* Nuevo esquema de vistas.
 	* Crear modelo de capturas parciales con IFRAME.
-	- Integrar GbVars para diccionarios.
-	- Integrar GbVars para seguridad.
+	* Integrar GbVars para diccionarios.
+	* Integrar GbVars para seguridad.
 	* Carga automatica del personal encargado.
 	* Integrar paciente - historia.
 		! Creacion de paciente por IFRAME.
@@ -92,7 +142,7 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 	* Crear Revsión Medica.
 		! El campo menstruación aparece y desaparece segun el sexo.
 		! Hojas de ruta ordenadas por empresa.
-	+ Integrar historia - m-medicos.
+	* Integrar historia - m-medicos.
 		* Integracion con Audiomtría.
 		* Integración con Agudeza Visual.
 		* Integración con Biometría.
@@ -112,9 +162,25 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 		! En las tablas de busqueda y selección se da un click sobre el item escogido para seleccionar o cancelar, este se torna de fondo verdoso.
 		! Tras cualquier acción se desactiva la selección de items para evitar posibles inconsitencias.
 		! La unica diferecnia entre Diagnostico y recomendación es el codigo, todas se crean desde el modulo patologias.
-	- Integrar historia - m-tecnicos.
-	- Integrar historia - m-contables.
+	* Integrar historia - protocolos.
+		* Agregar respuesta.
+		* Editar respuesta.
+		* Eliminar respuesta.
+		! Las preguntas se despliegan segun el protocolo selecionado.
+		! Los protocolos disponibles dependen del puesto de trabajo del paciente.		
+	* Integrar historia - examenes.
+		* Agregar orden de laboratorio.
+		* Eliminar orden de laboratorio.
+		! Los examenes y servicios son estaticos, no se actualizan durante el proceso, por lo que deben estar precargados.
+		! Se despliegan solo los servicios de tipo 1 (Examenes).
+		! Al sobre escribir una orden de laboratorio se crea un nuevo item, no se actualiza el anterior.
+	* Cargar revisiones médicas.
+		! Se debe buscar la revisión en Mdhist y pulsar el icono "Maletin", para lanzar el asistente en modo carga.
+		! Se debe asigna como minimo el permiso Historia-Ingresar (mdhist/index) y el acceso completo al asistente. 
 	- Generar macro reporte.
++ Datos de paciente en vistas maestras de módulos medicos.
+	* Visualizar Nombre y Documento en editar, anular edición de Mdhist.id.
+	- Crear medio de busqueda de Mdhist en la vista de "nuevo".
  
 # --- CAMBIOS PENDIENTES --- #
  
