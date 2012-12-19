@@ -80,9 +80,20 @@ class CtcontController extends Controller
 			}
 			else
 			{
+				$meses = array('Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
+				
 				$sucu = $em->getRepository('ScontrolBundle:Ctcont')->getSucursal($entity->getGbempr()->getId(),"principal");
+<<<<<<< HEAD
+					if($sucu == null){
+						$sucu = new Gbsucu();
+					}
+=======
                 if($sucu == null)
                     $sucu = new Gbsucu();
+>>>>>>> ce864b3b7863c0075134c6d0f3323ba1bda73168
+				
+				$ciud = $sucu->getGbciud();
+					
 				
 				$corp = $em->getRepository('ScontrolBundle:Gbcorp')->find('1');
 				
@@ -92,7 +103,7 @@ class CtcontController extends Controller
 				// set document information
 				$pdf->SetCreator(PDF_CREATOR);
 				$pdf->SetAuthor('Vimelab');
-				$pdf->SetTitle('Contrato');
+				$pdf->SetTitle('Contrato de Prestación de Servicios de Prevención');
 				$pdf->SetSubject('Contrato');
 				//$pdf->SetKeywords('TCPDF, PDF, example, test, guide');
 				
@@ -107,42 +118,37 @@ class CtcontController extends Controller
 				$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 				
 				//set margins
-				$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-				$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-				$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+				$pdf->SetMargins(20, 35, 20);
+				$pdf->SetHeaderMargin(2);
+				$pdf->SetFooterMargin(15);
 				
 				//set auto page breaks
-				$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+				$pdf->SetAutoPageBreak(TRUE, 21);
 				
 				//set image scale factor
 				$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 				
 				// ---------------------------------------------------------
-				
-				// set font
-				$pdf->SetFont('dejavusans', '', 10);
-				
+				$fecha = $entity->getFecha();
+			
 				// add a page
 				$pdf->AddPage();
-				
-				//$pdf->setJPEGQuality(75);
-				//$pdf->Image('../../scontrol/imagenes/logo.jpg', 15, 140, 75, 113, 'JPG', 'http://www.tcpdf.org', '', true, 150, '', false, false, 1, false, false, false);
-				
-				$html = '<h2 align="right">Contrato No. '.$id.' </h2>
-				<h4 align="right">CONTRATO DE PRESTACIÓN DE SERVICIOS DE PREVENCIÓN</h4>
-				<p>En [ciudad], a [Fecha] </p>
+				$html='<h3 align="right">Contrato No. '.$id.' </h3>';
+				$pdf->SetFont('helvetica','',10);
+				$pdf -> writeHTMLCell(170, 0, 20, 17, $html, 0, 0, 0, true, 'J', true);
+				$html = '<h4 align="right">CONTRATO DE PRESTACIÓN DE SERVICIOS DE PREVENCIÓN</h4>
+				<p>En '.$entity->getFirmagbciud().', a '.$fecha->format('d').' de '.$meses[intval($fecha->format('m'))-1].' de ' .$fecha->format('Y').' </p>
 				<h3 align="center">REUNIDOS</h3>
 				<p>
 				De una parte, '.$entity->getNombrecontratante().', mayor de edad, con N.I.F '.$entity->getIdentcontratante().' en representación de
-				<b>'.$entity->getGbempr()->getNombre().'</b> en adelante Empresa, con domicilio social en '.$entity->getDireccioncontratante().', 
-				provista de CIF Nº '.$entity->getGbempr()->getIdentificacion().'. Tel.: '.$sucu->getTelefono().', E-mail: '.$sucu->getCorreo().'.
-				<br>
-				<br>	
+				<b>'.$entity->getGbempr()->getNombre().'</b> en adelante Empresa, con domicilio social en '.$sucu->getDireccion().', '.$ciud->getNombre().', 
+				provista de CIF Nº '.$entity->getGbempr()->getIdentificacion().'. Tel.: '.$sucu->getTelefono().', E-mail: '.$sucu->getCorreo().'.</p>
+				<p>
 				Y de otra, '.$entity->getNombrecontratista().', con NIF '.$entity->getIdentcontratista().' quien actúa en calidad de
 				'.$entity->getCargocontratista().' de la entidad, '.$corp->getNombre().', en adelante VIMELAB, con 
-				domicilio social en '.$corp->getDireccion().', con '.$corp->getIdentificacion().'.
-				<br>
-				<br>
+				domicilio social en '.$corp->getDireccion().', AQUI VA LA CIUDAD CONCATENADA A LA DIRECCION, con '.$corp->getIdentificacion().'.
+				</p>
+				<p>
 				Ambas partes, en el concepto en que intervienen, se reconocen la necesaria capacidad legal para contratar
 				y obligarse, y de común acuerdo, suscriben el presente concierto en materia de servicio de prevención de
 				riesgos laborales, y al efecto:
@@ -151,40 +157,39 @@ class CtcontController extends Controller
 				<p>
 				<b>I.</b> Que VIMELAB es una Entidad acreditada por el Departament de Treball de la Generalitat de Catalunya
 				como Servicio de Prevención Ajeno, acreditación SP-062-B.
-				<br>
-				<br>
+				</p>
+				<p>
 				<b>II.</b> Que <b>'.$entity->getGbempr()->getNombre().'</b>, se halla interesada en
 				contratar para sus centros de trabajo, que se especificarán en este contrato, los servicios de <b>[Seguridad,
 				Higiene, Ergonomia i Psicosociologia Aplicada, i Vigilancia de la Salud]</b> que presta VIMELAB, y
 				estando asimismo esta igualmente interesada, ambas partes acuerdan suscribir el presente contrato sujeto
 				a las siguientes:
-				<br>
-				<br>
-				<b>CLÁUSULAS:</b>
-				<br>
-				<br>
+				</p>
+				<h4>CLÁUSULAS:</h4>
+				<p>
 				<b>PRIMERA.</b> Que la Empresa concierta con VIMELAB la prestación del Servicio de Prevención Ajeno para
 				sus centros de trabajo y trabajadores, que se detallarán en el correspondiente Anexo, y para los que se
 				desarrollarán la actividad preventiva descrita en los anexos siguientes:
-				<br>
-				<br>
+				</p>
+				<p>
 				ANEXO I. SEGURIDAD - HIGIENE Y ERGONOMÍA.
 				ANEXO II. VIGILANCIA DE LA SALUD.
 				ANEXO III. CENTROS CONTRATADOS Y CONDICIONES ECONÓMICAS.
+				</p>
 				<ul>
 					<li>VIMELAB realizará su actividad de acuerdo con el número de trabajadores especificados en el presente
 					contrato. (en caso de fluctuaciones del número de trabajadores, se efectuará el ajuste correspondiente a
 					los costes indicados).</li>
 				</ul>	
-				<br>
-				<br>				
+				<p>				
 				<b>SEGUNDA.</b> La prestación de servicios y las recomendaciones que se deriven de la valoración de los riesgos
 				existentes, se acomodará a los principios de la acción preventiva descritos en el art. 15 de la Ley 31/1995,
 				de 9 de noviembre.
-				<br>
-				<br>
+				</p>
+				<p>
 				<b>TERCERA.</b> En cualquier caso, y a fin de cumplir con el contenido contractual de este documento, la
 				Empresa vendrá obligada frente al Servicio de Prevención a:
+				</p>
 				<ol align="justify">
 					<li>
 						Facilitar a VIMELAB, con carácter previo al inicio de las actividades contratadas, toda la
@@ -242,65 +247,64 @@ class CtcontController extends Controller
 						responsabilidad de la Empresa.
 					</li>
 				</ol>
+				<p>
 				<b>CUARTA.</b> La Empresa notificará a VIMELAB en un plazo no superior a 5 días hábiles, cualquier modificación
 				que sufra la información facilitada en la cláusula TERCERA de este documento, mediante documento
 				fehaciente.
-				<br>
-				<br>
+				</p>
+				<p>
 				El incumplimiento por parte de la Empresa de la obligación establecida sobre modificación en las
 				condiciones de trabajo en la Empresa, especialmente en el caso de falta de información o información
 				incompleta o incorrecta, eximirá a VIMELAB de cualquier responsabilidad que de ello pudiera derivarse.
-				<br>
-				<br>
+				</p>
+				<p>
 				<b>QUINTA.</b> VIMELAB como Servicio de Prevención, se obliga frente a la Empresa contratante del servicio
 				a tener a su disposición cuantos cuadros técnicos y humanos sean necesarios para el desarrollo de la
 				actividad preventiva concertada conforme a la información recibida según la cláusula TERCERA de este
 				documento.
-				<br>
-				<br>
+				</p>
+				<p>
 				Los servicios objeto del presente contrato podrán ser prestados por VIMELAB directamente a través de
 				su propio personal e instalaciones, o bien mediante la subcontratación con terceros, sean éstos personas
 				físicas o jurídicas.
-				<br>
-				<br>
+				</p>
+				<p>
 				<b>SÉXTA.</b> La Empresa reconoce que cualquier datos obtenido por el Servicio de Prevención de VIMELAB
 				están sujetos al principio de confidencialidad previsto en el art. 22 de la Ley de Prevención de Riesgos
 				Laborales, no siendo requerible ni exigible por la Empresa contratante, ningún dato por ser todos de carácter
 				confidencial.
-				<br>
-				<br>
+				</p>
+				<p>
 				<b>SEPTIMA.</b> La falta de pago de cualquier plazo o el incumplimiento de cualquiera de los pactos del presente
 				documento podrá ser causa de rescisión del presente contrato.
-				<br>
-				<br>
+				</p>
+				<p>
 				VIMELAB en caso de rescindir el contrato, motivará la causa y la remitirá por correo certificado, quedando, a
 				partir de la remisión, relegada de cualquier obligación o responsabilidad de prestar servicio.
-				<br>
-				<br>
+				</p>
+				<p>
 				<b>OCTAVA.</b> La Empresa conociendo las obligaciones que legalmente le impone la Ley de Prevención de
 				Riesgos Laborales, asume directamente y bajo su total responsabilidad la ejecución y puesta en práctica de
 				las recomendaciones de VIMELAB como Servicio de Prevención Ajeno, dado que ésta carece de facultades
 				de dirección de las actividades preventivas a aplicar en el interior de la Empresa.
-				<br>
-				<br>
+				</p>
+				<p>
 				<b>NOVENA.</b> El presente contrato entrará en vigor tras la firma de este contrato y en el momento en que
 				la Empresa proceda al pago del importe pactado en este contrato. El contrato tendrá una vigencia de un
 				año, siendo revisable en todos sus términos; pudiendo ser indefinidamente prorrogado por periodos de
 				igual duración, si ninguna de las dos partes lo denuncia de forma fehaciente y con sesenta días hábiles de
 				antelación a la finalización del citado plazo o alguna de sus prórrogas.
 				</p>
-				<b>DÉCIMA. ANEXOS</b>
-				<br>
-				<br>
+				<h4>DÉCIMA. ANEXOS</h4>
+				
 				<h4>ANEXO I. SEGURIDAD - HIGIENE - ERGONOMÍA. RELACIÓN DE ACTIVIDADES A PRESTAR POR VIMELAB COMO SERVICIO DE PREVENCIÓN</h4>
 
-				<b>1. ACTIVIDADES SHE</b>
-				<br>
-				<br>
+				<h4>1. ACTIVIDADES SHE</h4>
+				<p>
 				'.$corp->getNombre().', asume la realización, como servicio de prevención ajeno, de la actividad de Seguridad en el
 				Trabajo, Higiene Industrial y Ergonomía y Psicosociología Aplicada y que consistirán en la realización de las
 				siguientes actuaciones:
-				<br>
+				</p>
 				<ul align="justify">
 					<li>Evaluación Inicial de Riesgos por puesto de trabajo. Revisión anual (en caso de prorrogarse el contrato)</li>
 					<li>Establecimiento de la Planificación Preventiva.</li>
@@ -309,7 +313,7 @@ class CtcontController extends Controller
 					<li>Formación/información a los trabajadores.</li>
 					<li>Asesoramiento para la organización de la actividad preventiva.</li>
 					<li>Planes de emergencia.</li>
-				<p><b>Relación de actividades no contempladas en este contrato:</b></p>
+					<p><b>Relación de actividades no contempladas en este contrato:</b></p>
 					<li>Elaboración de:</li>
 						<ul align="justify">
 							<li>Los estudios y planes de seguridad y salud contemplados en las obras de construcción, según R.D. 1627/97.</li>
@@ -320,11 +324,12 @@ class CtcontController extends Controller
 							ni los costes de laboratorio.</li>
 						</ul>
 				</ul>	
-				<br>
+				
 				<p>	
 				Las actividades enumeradas anteriormente, así como cualquier otra no prevista que se presente en el
 				transcurso de la ejecución del Plan Preventivo, podrán realizarse previo acuerdo entre las partes.
 				</p>
+				
 				<h4>ANEXO II VIGILANCIA DE LA SALUD</h4>
 
 				<p>Consistirá en la realización de las actuaciones siguientes:</p>
@@ -401,10 +406,10 @@ class CtcontController extends Controller
 
 				</ol>
 
-				<p>
 				<h4>ANEXO III CENTROS CONTRATADOS Y CONDICIONES ECONÓMICAS.</h4>
 
 				<h5 align="center">RELACIÓN DE CENTROS DE LA EMPRESA EN LOS QUE VIMELAB DESARROLLARÁ LA ACTIVIDAD PREVENTIVA COMO SERVICIO DE PREVENCIÓN</h5>
+				<p>
 				<table border="1" align="center">
 					<tr>
 						<td>DENOMINACIÓN</td><td>DIRECCIÓN</td><td>C.P. LOCALIDAD</td><td> No. TRABAJADORES</td>
@@ -414,10 +419,13 @@ class CtcontController extends Controller
 					</tr>
 				</table>
 				</p>
-				<p><b>Condiciones económicas particulares del presente contrato.</b></p>
+				
+				<h4>Condiciones económicas particulares del presente contrato.</h4>
+				
 				<p>Como contraprestación por los servicios prestados al amparo del presente contrato la Empresa abonará a
 				VIMELAB, S.L., por los conceptos que se relacionan los siguientes importes:
 				</p>
+				
 				<p>
 				<table border="1" align="center">
 					<tr>
@@ -428,20 +436,19 @@ class CtcontController extends Controller
 					</tr>
 				</table>
 				</p>
-				<p>El presente contrato devengará los siguientes honorarios:</p>
+				
+				<p align="justify">El presente contrato devengará los siguientes honorarios:</p>
 
-				<p>El coste de este servicio de Prevención de Riesgos Laborales asciende TRESCIENTOS SESENTA euros
+				<p align="justify">El coste de este servicio de Prevención de Riesgos Laborales asciende TRESCIENTOS SESENTA euros
 				(360.00€), NO incluido IVA del 18%, que se abonará en el momento de la firma del presente contrato.</p>
 
-				<p>El Examen Médico Específico asciende a 37.00 € (TREINTA Y SIETE euros) de riesgo BAJO. (Se cobrará una vez
+				<p align="justify">El Examen Médico Específico asciende a 37.00 € (TREINTA Y SIETE euros) de riesgo BAJO. (Se cobrará una vez
 				realizado).</p>
 
-				<p>El importe indicado no contiene en su caso, los costes de las pruebas complementarias que según la
-				evaluación inicial y lo reflejado anteriormente en las actividades SHE, hubieran de realizarse.
-				Los importes reflejados se revisarán anualmente en el mismo porcentaje que experimente el Índice de
+				<p align="justify">El importe indicado no contiene en su caso, los costes de las pruebas complementarias que según la evaluación inicial y lo reflejado anteriormente en las actividades SHE, hubieran de realizarse. Los importes reflejados se revisarán anualmente en el mismo porcentaje que experimente el Índice de
 				Precios al Consumo (I.P.C.), que facilita el Instituto Nacional de Estadística.</p>
 
-				<p>La falta de pago o cualquier otro incumplimiento de los acuerdos firmados en el presente contrato, será
+				<p align="justify">La falta de pago o cualquier otro incumplimiento de los acuerdos firmados en el presente contrato, será
 				causa de rescisión del mismo.</p>
 
 				<p><b>UNDÉCIMA.</b> Para resolver cualquier diferencia que pudiera surgir de la aplicación del presente concierto,
@@ -449,6 +456,7 @@ class CtcontController extends Controller
 				Barcelona.</p>
 				
 				<h4>RESPONSABILIDAD LIMITADA VIMELAB S.L</h4>
+				
 				<p>Nuestra responsabilidad se extiende al periodo de vigencia especificado y en los términos y alcance del
 				trabajo acordados entre la Empresa y VIMELAB S.L.</p>
 
@@ -470,6 +478,7 @@ class CtcontController extends Controller
 
 				<p>Se firma el presente CONCIERTO EN MATERIA DE PREVENCIÓN DE RIESGOS LABORALES, por
 				duplicado en la ciudad y fecha en principio indicados.</p>
+				
 				<p>
 				<table align="center" wight=50%>
 					<tr>
@@ -493,7 +502,7 @@ class CtcontController extends Controller
 				</table>
 				</p>
 
-				<p style="font-size: 30px">En conformidad con la Ley Orgánica 15/1999 de diciembre, de protección de datos de carácter personal, le informamos
+				<p style="font-size: 0.7em">En conformidad con la Ley Orgánica 15/1999 de diciembre, de protección de datos de carácter personal, le informamos
 				que sus datos personales se incorporarán en un fichero automatizado denominado GESTION DE CLIENTES del cual
 				el titular es VIMELAB, S.L. e inscrito en la Agencia de Protección de Datos, con la finalidad de gestionar Clientes y
 				Proveedores. Le informamos que sus datos no se cederán a ninguna otra entidad y consiente expresamente que se
@@ -502,7 +511,9 @@ class CtcontController extends Controller
 				de datos, dirigiéndose para escrito a la dirección: Calle Pi i Margall 25 escalera B entlo. 1ª; 08024 Barcelona.</p>				
 				';
 				
-				$pdf -> writeHTMLCell(170, 0, 20, 22, $html, 1, 0, 0, true, 'J', true);
+				// set font
+				$pdf->SetFont('dejavusans', '', 10);
+				$pdf -> writeHTMLCell(170, 0, 20, 45, $html, 0, 0, 0, true, 'J', true);
 			
 				$pdf->Output('contrato No.pdf', 'I');
 			}
