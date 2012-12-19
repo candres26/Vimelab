@@ -184,11 +184,9 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 	* Buscar y crear paciente.
 	* Restringir patologias en HsFami.
 	+ Cargar Antecedentes anterios.
-	- Crear nuevo antecedente.
 	- Visualizar antecedente.
+	- Crear nuevo antecedente.
 	* Nuevo esquema de manejo para Iframe.
-	
-
  
 # --- CAMBIOS PENDIENTES --- #
  
