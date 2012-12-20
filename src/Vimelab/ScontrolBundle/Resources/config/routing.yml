@@ -8,16 +8,13 @@ setKey:
 pdfDemo:
     pattern:  /pdf
     defaults: { _controller: ScontrolBundle:Default:pdfDemo }
-  
-    
-# Home
 
+# Home
 home:
     pattern:  /home
     defaults: { _controller: ScontrolBundle:Home:index }
 
 # Report
-
 report:
     pattern:  /report
     defaults: { _controller: ScontrolBundle:Report:index }
@@ -46,7 +43,7 @@ ctcont_update:
     defaults: { _controller: ScontrolBundle:Ctcont:update }
 ctcont_delete:
     pattern:  /ctcont/{id}/delete
-    defaults: { _controller: ScontrolBundle:Ctcont:delete }   
+    defaults: { _controller: ScontrolBundle:Ctcont:delete }
 ctcont_filter:
     pattern:  /ctcont/{param}/filter
     defaults: { _controller: ScontrolBundle:Ctcont:filter }
@@ -195,7 +192,7 @@ gbacls_delete:
 gbacls_filter:
     pattern:  /gbacls/{param}/filter
     defaults: { _controller: ScontrolBundle:Gbacls:filter }
-    
+
 # GbCarg Routes
 gbcarg:
     pattern:  /gbcarg
@@ -224,7 +221,7 @@ gbcarg_delete:
 gbcarg_filter:
     pattern:  /gbcarg/{param}/filter
     defaults: { _controller: ScontrolBundle:Gbcarg:filter }
-    
+
 # GbCiud Routes
 gbciud:
     pattern:  /gbciud
@@ -309,7 +306,6 @@ gbdepa_update:
 gbdepa_delete:
     pattern:  /gbdepa/{id}/delete
     defaults: { _controller: ScontrolBundle:Gbdepa:delete }
-    
 gbdepa_filter:
     pattern:  /gbdepa/{param}/filter
     defaults: { _controller: ScontrolBundle:Gbdepa:filter }
@@ -487,7 +483,7 @@ gbpers_delete:
 gbpers_filter:
     pattern:  /gbpers/{param}/filter
     defaults: { _controller: ScontrolBundle:Gbpers:filter }
-    
+
 # GbPtra Routes
 gbptra:
     pattern:  /gbptra
@@ -516,7 +512,7 @@ gbptra_delete:
 gbptra_filter:
     pattern:  /gbptra/{param}/filter
     defaults: { _controller: ScontrolBundle:Gbptra:filter }
-    
+
 # GbSucu Routes
 gbsucu:
     pattern:  /gbsucu
@@ -586,11 +582,11 @@ hsfami_show:
     pattern:  /hsfami/{id}/show
     defaults: { _controller: ScontrolBundle:Hsfami:show }
 hsfami_new:
-    pattern:  /hsfami/new
-    defaults: { _controller: ScontrolBundle:Hsfami:new }
+    pattern:  /hsfami/new/{lv}
+    defaults: { _controller: ScontrolBundle:Hsfami:new, lv: 1 }
 hsfami_create:
-    pattern:  /hsfami/create
-    defaults: { _controller: ScontrolBundle:Hsfami:create }
+    pattern:  /hsfami/create/{lv}
+    defaults: { _controller: ScontrolBundle:Hsfami:create, lv: 1 }
 hsfami_edit:
     pattern:  /hsfami/{id}/edit
     defaults: { _controller: ScontrolBundle:Hsfami:edit }
@@ -612,14 +608,14 @@ hslabo_pag:
     pattern:  /hslabo/{pag}/pag
     defaults: { _controller: ScontrolBundle:Hslabo:index, pag: 1 }
 hslabo_show:
-    pattern:  /hslabo/{id}/show
-    defaults: { _controller: ScontrolBundle:Hslabo:show }
+    pattern:  /hslabo/{id}/show/{lv}
+    defaults: { _controller: ScontrolBundle:Hslabo:show, lv: 1 }
 hslabo_new:
-    pattern:  /hslabo/new
-    defaults: { _controller: ScontrolBundle:Hslabo:new }
+    pattern:  /hslabo/new/{lv}
+    defaults: { _controller: ScontrolBundle:Hslabo:new, lv: 1 }
 hslabo_create:
-    pattern:  /hslabo/create
-    defaults: { _controller: ScontrolBundle:Hslabo:create }
+    pattern:  /hslabo/create/{lv}
+    defaults: { _controller: ScontrolBundle:Hslabo:create, lv: 1 }
 hslabo_edit:
     pattern:  /hslabo/{id}/edit
     defaults: { _controller: ScontrolBundle:Hslabo:edit }
@@ -628,7 +624,7 @@ hslabo_update:
     defaults: { _controller: ScontrolBundle:Hslabo:update }
 hslabo_delete:
     pattern:  /hslabo/{id}/delete
-    defaults: { _controller: ScontrolBundle:Hslabo:delete }   
+    defaults: { _controller: ScontrolBundle:Hslabo:delete }
 hslabo_filter:
     pattern:  /hslabo/{param}/filter
     defaults: { _controller: ScontrolBundle:Hslabo:filter }
@@ -642,22 +638,22 @@ hspers_pag:
     defaults: { _controller: ScontrolBundle:Hspers:index, pag: 1 }
 hspers_show:
     pattern:  /hspers/{id}/show
-    defaults: { _controller: ScontrolBundle:Hspers:show }
+    defaults: { _controller: ScontrolBundle:Hspers:show}
 hspers_new:
-    pattern:  /hspers/new
-    defaults: { _controller: ScontrolBundle:Hspers:new }
+    pattern:  /hspers/new/{lv}
+    defaults: { _controller: ScontrolBundle:Hspers:new, lv: 1 }
 hspers_create:
-    pattern:  /hspers/create
-    defaults: { _controller: ScontrolBundle:Hspers:create }
+    pattern:  /hspers/create/{lv}
+    defaults: { _controller: ScontrolBundle:Hspers:create, lv: 1 }
 hspers_edit:
-    pattern:  /hspers/{id}/edit
-    defaults: { _controller: ScontrolBundle:Hspers:edit }
+    pattern:  /hspers/{id}/edit/{lv}
+    defaults: { _controller: ScontrolBundle:Hspers:edit, lv: 1 }
 hspers_update:
-    pattern:  /hspers/{id}/update
-    defaults: { _controller: ScontrolBundle:Hspers:update }
+    pattern:  /hspers/{id}/update/{lv}
+    defaults: { _controller: ScontrolBundle:Hspers:update, lv: 1 }
 hspers_delete:
     pattern:  /hspers/{id}/delete
-    defaults: { _controller: ScontrolBundle:Hspers:delete }    
+    defaults: { _controller: ScontrolBundle:Hspers:delete }
 hspers_filter:
     pattern:  /hspers/{param}/filter
     defaults: { _controller: ScontrolBundle:Hspers:filter }
@@ -918,7 +914,7 @@ mdpaci_update:
     defaults: { _controller: ScontrolBundle:Mdpaci:update }
 mdpaci_delete:
     pattern:  /mdpaci/{id}/delete
-    defaults: { _controller: ScontrolBundle:Mdpaci:delete }   
+    defaults: { _controller: ScontrolBundle:Mdpaci:delete }
 mdpaci_filter:
     pattern:  /mdpaci/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdpaci:filter }
@@ -951,7 +947,7 @@ mdpato_delete:
 mdpato_filter:
     pattern:  /mdpato/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdpato:filter }
-    
+
 # MdProc Routes
 mdproc:
     pattern:  /mdproc
@@ -1237,7 +1233,7 @@ tccurs_update:
     defaults: { _controller: ScontrolBundle:Tccurs:update }
 tccurs_delete:
     pattern:  /tccurs/{id}/delete
-    defaults: { _controller: ScontrolBundle:Tccurs:delete }  
+    defaults: { _controller: ScontrolBundle:Tccurs:delete }
 tccurs_filter:
     pattern:  /tccurs/{param}/filter
     defaults: { _controller: ScontrolBundle:Tccurs:filter }
@@ -1295,7 +1291,7 @@ tcrevi_update:
     defaults: { _controller: ScontrolBundle:Tcrevi:update }
 tcrevi_delete:
     pattern:  /tcrevi/{id}/delete
-    defaults: { _controller: ScontrolBundle:Tcrevi:delete }   
+    defaults: { _controller: ScontrolBundle:Tcrevi:delete }
 tcrevi_filter:
     pattern:  /tcrevi/{param}/filter
     defaults: { _controller: ScontrolBundle:Tcrevi:filter }
@@ -1324,7 +1320,7 @@ tcruta_update:
     defaults: { _controller: ScontrolBundle:Tcruta:update }
 tcruta_delete:
     pattern:  /tcruta/{id}/delete
-    defaults: { _controller: ScontrolBundle:Tcruta:delete }  
+    defaults: { _controller: ScontrolBundle:Tcruta:delete }
 tcruta_filter:
     pattern:  /tcruta/{param}/filter
     defaults: { _controller: ScontrolBundle:Tcruta:filter }
@@ -1425,12 +1421,6 @@ as_secu_getAcl:
     pattern: /assecu/getacl
     defaults: {_controller: ScontrolBundle:AsSecu:getAcl }
 #
-#            Empresas
-#
-as_empr:
-    pattern: /asempr
-    defaults: { _controller: ScontrolBundle:AsEmpr:index }
-#
 #           Antecedentes
 #
 as_ante:
@@ -1438,7 +1428,22 @@ as_ante:
     defaults: { _controller: ScontrolBundle:AsAnte:index }
 as_ante_getPaci:
     pattern: /asante/getpaci
-    defaults: { _controller: ScontrolBundle:AsAnte:getPaciente }  
+    defaults: { _controller: ScontrolBundle:AsAnte:getPaciente }
+as_ante_getFami:
+    pattern: /asante/getfami
+    defaults: { _controller: ScontrolBundle:AsAnte:getFamiliar }
+as_ante_delFami:
+    pattern: /asante/delfami
+    defaults: { _controller: ScontrolBundle:AsAnte:delFamiliar }
+as_ante_getLabo:
+    pattern: /asante/getlabo
+    defaults: { _controller: ScontrolBundle:AsAnte:getLaboral }
+as_ante_delLabo:
+    pattern: /asante/dellabo
+    defaults: { _controller: ScontrolBundle:AsAnte:delLaboral }
+as_ante_getPers:
+    pattern: /asante/getPers
+    defaults: { _controller: ScontrolBundle:AsAnte:getPersonal }
 #
 ##############################################           
 #           MASTER                           #

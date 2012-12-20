@@ -231,7 +231,6 @@ class MdaudiController extends Controller
 					else	
 						return $this->render("ScontrolBundle:Mdaudi:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => '1-Imposible Crear Audiometria, Error Referencial!'));
 				}
-				
 			}
 
 			if($lv == 1)

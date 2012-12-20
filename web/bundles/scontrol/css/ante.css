@@ -25,6 +25,18 @@
 	background: #f2f2f2;
 }
 
+.csIfra2
+{
+	overflow: auto;
+	position: absolute;
+	bottom: 12%;
+	left: 1%;
+	width: 98%;
+	height: 80%;
+	border: 1px solid #203882;
+	background: #f2f2f2;
+}
+
 /* ### --+-- ETIQUETA DE PACIENTE --+-- ### */
 .csPaci
 {	
@@ -65,6 +77,63 @@
 .csPaci th, .csPaci td 
 {
 	text-align: left;  
+}
+
+/* ### --+-- ETIQUETA DE A. FAMILIAR --+-- ### */
+
+.csFami
+{	
+	display: none;
+	position: absolute;
+	overflow: hidden;
+	cursor: pointer;
+	top: 18%;
+	left: 0.5%;
+	width: 48%;
+	height: 30%;
+	background: #FFFFFF;
+	box-shadow: 2px 2px 5px #203982;
+	border: 2px solid #203982;
+	border-radius: 10px;
+	text-align: center;
+}
+
+/* ### --+-- ETIQUETA DE A. LABORAL --+-- ### */
+
+.csLabo
+{	
+	display: none;
+	position: absolute;
+	overflow: hidden;
+	cursor: pointer;
+	top: 18%;
+	left: 51%;
+	width: 48%;
+	height: 30%;
+	background: #FFFFFF;
+	box-shadow: 2px 2px 5px #203982;
+	border: 2px solid #203982;
+	border-radius: 10px;
+	text-align: center;
+}
+
+/* ### --+-- ETIQUETA DE A. PERSONAL --+-- ### */
+
+.csPers
+{	
+	display: none;
+	position: absolute;
+	overflow: hidden;
+	cursor: pointer;
+	bottom: 0.5%;
+	left: 0.5%;
+	width: 98.5%;
+	height: 48%;
+	background: #FFFFFF;
+	box-shadow: 2px 2px 5px #203982;
+	border: 2px solid #203982;
+	border-radius: 10px;
+	text-align: center;
 }
 
 /* ### --+-- PARCAILES --+-- ### */
@@ -203,4 +272,95 @@
 {
 	background-color: #FFFFFF; 
 	color: #000000;
+}
+
+/* ### --+-- MINI CONTROLES --+-- ### */
+
+.csMiniCtTit, .csMiniCtTit2
+{
+	display: block;
+	position: absolute;
+	top: 1%;
+	left: 1%;
+	width: 98%;
+}
+
+.csMiniCtTit
+{
+	border-bottom: 1px solid #203982;
+}
+
+.csMiniCtTit2:hover
+{
+	background: #A8BBFA;
+}
+
+.csMiniCtBtn, .csMiniCtBtn2
+{
+	position: absolute;
+	right: 1%;
+	top: 12%;
+}
+
+.csMiniCtBtn2 img
+{
+	display: block;
+}
+
+.csMiniCtArea
+{
+	position: absolute;
+	right: 1%;
+	bottom: 1%;
+	width: 35%;
+	height: 60%;
+}
+
+.csMiniCtZone, .csMiniCtZone2
+{
+	position: absolute;
+	overflow: auto;
+	bottom: 1%;
+	left: 1%;
+	height: 85%;
+	background: #FFFFFF;
+	border: 1px solid #203982;
+	border-collapse: collapse;
+}
+
+.csMiniCtZone
+{
+	width: 60%;
+}
+
+.csMiniCtZone2
+{
+	width: 90%;
+}
+
+.csMiniCtZone table, .csMiniCtZone2 table
+{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.csMiniCtZone th, .csMiniCtZone2 th
+{
+	display: none;
+}
+
+.csMiniCtZone td, .csMiniCtZone2 td
+{
+	border-bottom: 1px solid #203982;
+}
+
+.csMiniCtZone tr, .csMiniCtZone2 tr
+{
+	cursor: pointer;
+	background: #F2F2F2;
+}
+
+.csMiniCtZone tr:hover, .csMiniCtZone2 tr:hover
+{
+	background: #A8BBFA;
 }

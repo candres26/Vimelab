@@ -28,6 +28,49 @@
 		</table>
 	</div>
 
+	<div id="jsFami" class="csFami">
+
+		<b class="csMiniCtTit">Antecedentes Familiares</b>
+		
+		<div class="csMiniCtZone">
+			<table id="jsFamiTab"><!-- AJAX --></table>
+		</div>
+		
+		<div class="csMiniCtBtn">
+			<img id="jsFamiAdd" src="{{ asset('bundles/scontrol/imagenes/iconos/add.png') }}" title="Nuevo">
+			<img id="jsFamiDel" src="{{ asset('bundles/scontrol/imagenes/iconos/rem.png') }}" title="Eliminar">
+		</div>
+			
+		<textarea id="jsFamiDet" class="csMiniCtArea"></textarea>
+
+	</div>
+
+	<div id="jsLabo" class="csLabo">
+		<b class="csMiniCtTit">Antecedentes Laborales</b>
+		
+		<div class="csMiniCtZone2">
+			<table id="jsLaboTab"><!-- AJAX --></table>
+		</div>
+		
+		<div class="csMiniCtBtn2">
+			<img id="jsLaboSho" src="{{ asset('bundles/scontrol/imagenes/iconos/show.png') }}" title="Ver">
+			<img id="jsLaboAdd" src="{{ asset('bundles/scontrol/imagenes/iconos/add.png') }}"  title="Nuevo">
+			<img id="jsLaboDel" src="{{ asset('bundles/scontrol/imagenes/iconos/rem.png') }}"  title="Eliminar">
+		</div>
+	</div>
+
+	<div id="jsPers" class="csPers">
+
+		<b id="jsPersExp" class="csMiniCtTit2" title="Click para (expander-contraer)!">Antecedentes Personales</b>
+
+		<iframe id="ifPers" class="csIfra2" src=""><!-- FRAME --></iframe>
+
+		<div class="csParBb">
+			<button id="jsPersOk">ACTUALIZAR</button>
+			<button id="jsPersCn">CANCELAR</button>
+		</div>
+	</div>
+
 </div>
 
 <!--- Vista Parcial General -->
@@ -56,7 +99,7 @@
 		<!--- Controles Del Iframe -->
 		
 		<div id='dvIfra' class="dvHide">
-			<iframe id="ifGen" class="csIfra"><!-- FRAME --></iframe>
+			<iframe id="ifGen" class="csIfra" src=""><!-- FRAME --></iframe>
 			
 			<div id="ifGenBar" class="csParBb">
 				<button id="jsGenOk">CREAR</button>
@@ -79,6 +122,16 @@
 		/* -- RUTAS -- */
 		$_newPaci = "{{ path('mdpaci_new', { 'lv': 2 }) }}";
 		$_getPaci = "{{ path('as_ante_getPaci') }}";
+		$_getFami = "{{ path('as_ante_getFami') }}";
+		$_delFami = "{{ path('as_ante_delFami') }}";
+		$_newFami = "{{ path('hsfami_new', { 'lv': 2 }) }}";
+		$_getLabo = "{{ path('as_ante_getLabo') }}";
+		$_delLabo = "{{ path('as_ante_delLabo') }}";
+		$_newLabo = "{{ path('hslabo_new', { 'lv': 2 }) }}";
+		$_basLabo = "{{ path('hslabo') }}";
+		$_getPers = "{{ path('as_ante_getPers') }}";
+		$_basPers = "{{ path('hspers') }}";
+		$_newPers = "{{ path('hspers_new', { 'lv': 2 }) }}";
 		
 		function $init()
 		{
@@ -93,6 +146,23 @@
 			gId('jsPaciScCam').onkeypress = getPaci;
 			gId('jsPaciScBsr').onclick = getPaci;
 			gId('jsPaciScBnw').onclick = formPaci;
+
+			/* EVENTOS DE A. FAMILIAR */
+			gId("jsFamiTab").onclick = selFami;
+			gId("jsFamiDel").onclick = delFami;
+			gId("jsFamiAdd").onclick = partialFami;
+
+			/* EVENTOS DE A. LABORAL */
+			gId("jsLaboTab").onclick = selLabo;
+			gId("jsLaboDel").onclick = delLabo;
+			gId("jsLaboSho").onclick = viewLabo;
+			gId("jsLaboAdd").onclick = partialLabo;
+
+			/* EVENTOS DE A. PERSONAL */
+			gId('ifPers').onload = loadState2;
+			gId('jsPersOk').onclick = sendPers;
+			gId('jsPersCn').onclick = redoPers;
+			gId('jsPersExp').onclick = swTam;
 		}
 		
 	</script>

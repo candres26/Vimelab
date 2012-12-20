@@ -1,0 +1,57 @@
+{% extends "ScontrolBundle::_layout.html.twig" %}
+
+{% block title %}Descripción Ant. Laboral{% endblock %}
+
+{% block area %}
+    
+    <input type='hidden' id='RMSG'/ value='{{ RMSG }}'>
+
+    <h2 align="left">Descripción Antecedente Laboral</h2>
+
+    <table class="vime-table-des" align="center">
+        <tbody>
+            <tr>
+                <th align="left">Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th align="left">Identifiación</th>
+                <td>{{ entity.mdpaci.identificacion }}</td>
+            </tr>
+            <tr>
+                <th align="left">Nombre paciente</th>
+    			<td>{{ entity.mdpaci.prinom }} {{ entity.mdpaci.segnom }} {{ entity.mdpaci.priape }} {{ entity.mdpaci.segape }}</td>
+            </tr>
+            <tr>
+                <th align="left">Empresa</th>
+                <td>{{ entity.empresa }}</td>
+            </tr>
+            <tr>
+                <th align="left">Fecha ingreso</th>
+                <td>{{ entity.fingreso|date('Y-m-d') }}</td>
+            </tr>
+            <tr>
+                <th align="left">Actividad</th>
+                <td>{{ entity.actividad }}</td>
+            </tr>
+            <tr>
+                <th align="left">Puesto</th>
+                <td>{{ entity.puesto }}</td>
+            </tr>
+            <tr>
+                <th align="left">Riesgo</th>
+                <td>{{ entity.riesgo }}</td>
+            </tr>
+            <tr>
+                <th align="left">Duración</th>
+                <td>{{ entity.duracion }}</td>
+            </tr>
+            <tr>
+                <th align="left">Edad</th>
+                <td>{{ entity.edad }}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+{% endblock %}
+

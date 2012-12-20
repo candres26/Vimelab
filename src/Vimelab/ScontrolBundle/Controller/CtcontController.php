@@ -84,8 +84,8 @@ class CtcontController extends Controller
 				
 				$sucu = $em->getRepository('ScontrolBundle:Ctcont')->getSucursal($entity->getGbempr()->getId(),"principal");
 				
-                if($sucu == null)
-                    $sucu = new Gbsucu();
+				if($sucu == null)
+					$sucu = new Gbsucu();
 				
 				$ciud = $sucu->getGbciud();
 					

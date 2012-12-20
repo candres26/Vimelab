@@ -1,0 +1,34 @@
+{% extends 'ScontrolBundle::base.html.twig' %}
+
+{% block header %}
+	
+	<link href="{{ asset('bundles/scontrol/css/tema.css') }}" rel="stylesheet" type="text/css" />
+
+{% endblock %}
+
+{% block body %}
+
+	<div id="_vime-vista2">
+		<div id="_vime-area2">
+			{% block area %}{% endblock %}
+		</div>
+    </div>
+    
+{% endblock %}
+
+{% block script %}
+	
+	{% block uscript %}{% endblock %}
+	
+	<script type="text/javascript">
+		
+		/** Init Global **/
+		
+		window.onload = function()
+		{			
+			if( typeof $init != "undefined")
+				$init();
+		}
+		
+	</script>
+{% endblock %}

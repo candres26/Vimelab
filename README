@@ -118,6 +118,18 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 	* Tcruta ordenado por fecha planeada.	
 	* Datos de paciente en vistas maestras de módulos medicos.
 	* Visualizar Nombre y Documento en editar, anular edición de Mdhist.id.
+* Asistente de Antecedentes
+	* Buscar y crear paciente.
+	* Restringir patologias en HsFami.
+	* Cargar Antecedentes anteriores.
+	* Visualizar antecedente.
+	* Crear nuevo antecedente.
+	* Eliminar antecedente.
+	* Nuevo esquema de manejo para Iframe.
+	* Asignar permisos en GbVars.
+	* Asignar dicionarios en GbVars.
+	! El antecedente personal es un unico registro que se actualiza!.
+	! Se puede expander y contrar el area de A. Personal dando click sobre su titulo!.
 		
 # --- CAMBIOS EN PROGRESO --- #
 
@@ -179,15 +191,7 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 	* Cargar revisiones médicas.
 		! Se debe buscar la revisión en Mdhist y pulsar el icono "Maletin", para lanzar el asistente en modo carga.
 		! Se debe asigna como minimo el permiso Historia-Ingresar (mdhist/index) y el acceso completo al asistente. 
-	- Generar macro reporte.
-+ Asistente de Antecedentes
-	* Buscar y crear paciente.
-	* Restringir patologias en HsFami.
-	+ Cargar Antecedentes anterios.
-	- Visualizar antecedente.
-	- Crear nuevo antecedente.
-	* Nuevo esquema de manejo para Iframe.
- 
+	- Generar macro reporte. 
 # --- CAMBIOS PENDIENTES --- #
  
 - Revisar vistas de Hoja de ruta, faltan etiquetas por modificar.
@@ -200,7 +204,6 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 ! Revisar campos de contratos (Revisión) es char(1), deberia ser un de selección.
 ! Aclarar significado de campos en contrato.
 ! Aclarar significado de campos en hoja de ruta.
-! En editar usuario, no debe mostrar la clave, debe ser tipo pasword.
 ! En los formularios que tienen 2 columnas Ej: Nuevo Paciente usar <table class="vime-colum1"> y <table class="vime-colum2"> para mejorar la respuesta a cambios de tamaño.
 ! Se ha cambiado el tamaño de letra, ancho y poscición (Centrado arriba) del popup, resulta mas comodo en los asistentes.
 ! Aclarar relacion de revisiones médicas con aspectos técnicos. 

@@ -12,7 +12,9 @@ h2
 	font-family: helvetica, arial;
 	font-size: 22px;
 }
-.home {
+
+.home 
+{
 	cursor: pointer;
 	color: #000; 
 	font-size: 0.9em; 
@@ -165,6 +167,30 @@ h2
     overflow: auto;
     width: 98%;
     height: 98%;
+    text-align: center;
+    color: #45568a;
+}
+
+#_vime-vista2
+{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background: #f2f2f2;
+    text-align: center;
+    font-weight: bold;
+}
+
+#_vime-area2
+{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
     text-align: center;
     color: #45568a;
 }

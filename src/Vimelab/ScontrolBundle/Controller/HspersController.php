@@ -83,18 +83,19 @@ class HspersController extends Controller
      * @Route("/new", name="hspers_new")
      * @Template()
      */
-    public function newAction()
+    public function newAction($lv)
     {
 		if(Tool::isGrant($this))
 		{
 			$entity = new Hspers();
 			$form   = $this->createForm(new HspersType(), $entity);
 
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
-		}else
+			if($lv == 1)
+				return array('entity' => $entity, 'form'   => $form->createView());
+			else
+				return $this->render("ScontrolBundle:Hspers:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
@@ -105,7 +106,7 @@ class HspersController extends Controller
      * @Method("post")
      * @Template("ScontrolBundle:Hspers:new.html.twig")
      */
-    public function createAction()
+    public function createAction($lv)
     {
 		if(Tool::isGrant($this))
 		{
@@ -114,21 +115,36 @@ class HspersController extends Controller
 			$form    = $this->createForm(new HspersType(), $entity);
 			$form->bindRequest($request);
 
-			if ($form->isValid()) {
-				$em = $this->getDoctrine()->getEntityManager();
-				$em->persist($entity);
-				$em->flush();
+			if ($form->isValid()) 
+			{
+				try
+				{
+					$em = $this->getDoctrine()->getEntityManager();
+					$em->persist($entity);
+					$em->flush();
 
-				Tool::logger($this, $entity->getId());
-				return $this->redirect($this->generateUrl('hspers_show', array('id' => $entity->getId())));
-				
+					Tool::logger($this, $entity->getId());
+
+					if($lv == 1)
+						return $this->redirect($this->generateUrl('hspers_show', array('id' => $entity->getId())));
+					else
+						return $this->redirect($this->generateUrl('hspers_edit', array('id' => $entity->getId(), 'lv' => 3)));
+				}
+				catch(\Exception $e)
+				{
+					if($lv == 1)
+						return array('entity' => $entity, 'form'   => $form->createView());
+					else	
+						return $this->render("ScontrolBundle:Hspers:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => '1-Imposible Crear Antecedente Personal!'));
+				}
 			}
 
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
-		}else
+			if($lv == 1)
+				return array('entity' => $entity, 'form'   => $form->createView());
+			else
+				return $this->render("ScontrolBundle:Hspers:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
@@ -138,7 +154,7 @@ class HspersController extends Controller
      * @Route("/{id}/edit", name="hspers_edit")
      * @Template()
      */
-    public function editAction($id)
+    public function editAction($id, $lv)
     {
 		if(Tool::isGrant($this))
 		{
@@ -146,19 +162,22 @@ class HspersController extends Controller
 
 			$entity = $em->getRepository('ScontrolBundle:Hspers')->find($id);
 
-			if (!$entity) {
+			if (!$entity) 
+			{
 				throw $this->createNotFoundException('Unable to find Hspers entity.');
 			}
 
 			$editForm = $this->createForm(new HspersType(), $entity);
 			$deleteForm = $this->createDeleteForm($id);
 
-			return array(
-				'entity'      => $entity,
-				'edit_form'   => $editForm->createView(),
-				'delete_form' => $deleteForm->createView(),
-			);
-		}else
+			if($lv == 1)
+				return array('entity' => $entity, 'edit_form' => $editForm->createView(), 'delete_form' => $deleteForm->createView());
+			else if($lv == 2)
+				return $this->render("ScontrolBundle:Hspers:_edit.html.twig", array('entity' => $entity, 'form' => $editForm->createView(), 'RMSG' => 'LOAD'));
+			else
+				return $this->render("ScontrolBundle:Hspers:_edit.html.twig", array('entity' => $entity, 'form' => $editForm->createView(), 'RMSG' => 'Antecedente Personal Actualizado Con Exito!'));
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
@@ -169,7 +188,7 @@ class HspersController extends Controller
      * @Method("post")
      * @Template("ScontrolBundle:Hspers:edit.html.twig")
      */
-    public function updateAction($id)
+    public function updateAction($id, $lv)
     {
 		if(Tool::isGrant($this))
 		{
@@ -177,7 +196,8 @@ class HspersController extends Controller
 
 			$entity = $em->getRepository('ScontrolBundle:Hspers')->find($id);
 
-			if (!$entity) {
+			if (!$entity) 
+			{
 				throw $this->createNotFoundException('Unable to find Hspers entity.');
 			}
 
@@ -188,20 +208,36 @@ class HspersController extends Controller
 
 			$editForm->bindRequest($request);
 
-			if ($editForm->isValid()) {
-				$em->persist($entity);
-				$em->flush();
+			if ($editForm->isValid()) 
+			{
+				try
+				{
+					$em->persist($entity);
+					$em->flush();
 
-				Tool::logger($this, $entity->getId());
-				return $this->redirect($this->generateUrl('hspers_show', array('id' => $id)));
+					Tool::logger($this, $entity->getId());
+
+					if($lv == 1)
+						return $this->redirect($this->generateUrl('hspers_show', array('id' => $entity->getId())));
+					else
+						return $this->redirect($this->generateUrl('hspers_edit', array('id' => $entity->getId(), 'lv' => 3)));
+					
+				}
+				catch(\Exception $e)
+				{
+					if($lv == 1)
+						return array('entity' => $entity, 'edit_form' => $editForm->createView(), 'delete_form' => $deleteForm->createView());
+					else	
+						return $this->render("ScontrolBundle:Hspers:_edit.html.twig", array('entity' => $entity, 'form' => $editForm->createView(), 'RMSG' => '1-Imposible Crear Antecedente Personal!'));
+				}
 			}
 
-			return array(
-				'entity'      => $entity,
-				'edit_form'   => $editForm->createView(),
-				'delete_form' => $deleteForm->createView(),
-			);
-		}else
+			if($lv == 1)
+				return array('entity' => $entity, 'edit_form' => $editForm->createView(), 'delete_form' => $deleteForm->createView());
+			else
+				return $this->render("ScontrolBundle:Hspers:_edit.html.twig", array('entity' => $entity, 'form' => $editForm->createView(), 'RMSG' => 'LOAD'));
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 

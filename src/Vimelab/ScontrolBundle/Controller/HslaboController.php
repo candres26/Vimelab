@@ -56,7 +56,7 @@ class HslaboController extends Controller
      * @Route("/{id}/show", name="hslabo_show")
      * @Template()
      */
-    public function showAction($id)
+    public function showAction($id, $lv)
     {
 		if(Tool::isGrant($this))
 		{
@@ -70,10 +70,12 @@ class HslaboController extends Controller
 
 			$deleteForm = $this->createDeleteForm($id);
 
-			return array(
-				'entity'      => $entity,
-				'delete_form' => $deleteForm->createView(),        );
-		}else
+			if($lv == 1)
+				return array('entity' => $entity, 'delete_form' => $deleteForm->createView());
+			else
+				return $this->render("ScontrolBundle:Hslabo:_show.html.twig", array('entity' => $entity, 'RMSG' => 'LOAD'));
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
@@ -83,18 +85,19 @@ class HslaboController extends Controller
      * @Route("/new", name="hslabo_new")
      * @Template()
      */
-    public function newAction()
+    public function newAction($lv)
     {
 		if(Tool::isGrant($this))
 		{
 			$entity = new Hslabo();
 			$form   = $this->createForm(new HslaboType(), $entity);
 
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
-		}else
+			if($lv == 1)
+				return array('entity' => $entity, 'form'   => $form->createView());
+			else
+				return $this->render("ScontrolBundle:Hslabo:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
@@ -105,7 +108,7 @@ class HslaboController extends Controller
      * @Method("post")
      * @Template("ScontrolBundle:Hslabo:new.html.twig")
      */
-    public function createAction()
+    public function createAction($lv)
     {
 		if(Tool::isGrant($this))
 		{
@@ -114,21 +117,40 @@ class HslaboController extends Controller
 			$form    = $this->createForm(new HslaboType(), $entity);
 			$form->bindRequest($request);
 
-			if ($form->isValid()) {
-				$em = $this->getDoctrine()->getEntityManager();
-				$em->persist($entity);
-				$em->flush();
+			if ($form->isValid()) 
+			{
+				try
+				{
+					$em = $this->getDoctrine()->getEntityManager();
+					$em->persist($entity);
+					$em->flush();
 
-				Tool::logger($this, $entity->getId());
-				return $this->redirect($this->generateUrl('hslabo_show', array('id' => $entity->getId())));
-				
+					Tool::logger($this, $entity->getId());
+
+					if($lv == 1)
+						return $this->redirect($this->generateUrl('hslabo_show', array('id' => $entity->getId())));
+					else
+					{	
+						$entity  = new Hslabo();
+						$form    = $this->createForm(new HslaboType(), $entity);
+						return $this->render("ScontrolBundle:Hslabo:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => '0-Antecedente Laboral Creado Con Exito!'));
+					}
+				}
+				catch(\Exception $e)
+				{
+					if($lv == 1)
+						return array('entity' => $entity, 'form'   => $form->createView());
+					else	
+						return $this->render("ScontrolBundle:Hslabo:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => '1-Imposible Crear Antecedente Laboral!'));
+				}
 			}
 
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
-		}else
+			if($lv == 1)
+				return array('entity' => $entity, 'form'   => $form->createView());
+			else
+				return $this->render("ScontrolBundle:Hslabi:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
