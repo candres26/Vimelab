@@ -27,8 +27,8 @@
         <tr>
             <th>Id</th>
             <th>Código</th>
+            <th>Grupo</th>
             <th>Nombre</th>
-            <th>Alternativo</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -37,8 +37,8 @@
         <tr>
             <td>{{ entity.id }}</td>
             <td>{{ entity.codigo }}</td>
-            <td>{{ entity.nombre }}</td>
-            <td>{{ entity.alternativo }}</td>
+            <td>{{ entity.mdgrup.nombre}}</td>
+            <td>{{ entity.resume() }}</td>
             <td align="center">
 				<a href="{{ path('mdpato_show', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/show_index.png') }}" title="Mostrar"></a>
 				<a href="{{ path('mdpato_edit', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar_index.png') }}" title="Editar"></a>

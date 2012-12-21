@@ -68,6 +68,8 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 * Creacion de temas CSS para vistas parciales.
 * Crear categorias para servicios (Examenes, Procedimientos, Otros).
 * Cambio estructural en ice/ajax.js para permitir peticiones paralelas!.
+* Incluir ayuda de calendario.
+* Colocar mensaje de como usar la busqueda A: N:.
 * Agregar paginadores de 20 registros ordenados por pagina.
 	! Los botones mueven la pagina asi: << - Primera, >> - Ultima, < - Anterior, > - Siguiente.
 	! Se puede usar la caja de texto para indicar una pagina concreta y pulsar enter para ir hasta ella. 
@@ -99,10 +101,11 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 	* Mdespi ordenado por priape del paciente asociado.
 	* Mdexam ordenado por nombre.
 	* Mdextr ordenado por priape del paciente asociado.
+	* Mdgrup ordenado por nombre.
 	* Mdhist ordenado por fecha.
 	* Mdlabo ordenado por priape del paciente asociado.
 	* Mdpaci ordenado por priape.
-	* Mdpato ordenado por nombre.
+	* Mdpato ordenado por codigo.
 	* Mdproc ordenado por puesto de trabajo asociado.
 	* Mdprot ordenado por nombre.
 	* Mdques ordenado por protocolo asociado.
@@ -133,13 +136,11 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 		
 # --- CAMBIOS EN PROGRESO --- #
 
-+ Calendario por incluir en todos los módulos.
 + Archivos SQL de control:
 	* modelo.sql contiene la estructura de la DB.
 	* base.sql contiene la estructura y los datos mínimos para comenzar (usuario root).
 	* db.sql contiene datos de prueba volatiles.
 	+ val.sql contiene los datos minimos de las tablas de arranque (aun en construcción).
-+ Asistente de empresas, oculto en espera.
 + PRIORITARIO: Asistente maestro de revisión médica:
 	* Crear estandar de alamcenamiento.
 	* Fijar validaciones de GUI.
@@ -192,6 +193,9 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 		! Se debe buscar la revisión en Mdhist y pulsar el icono "Maletin", para lanzar el asistente en modo carga.
 		! Se debe asigna como minimo el permiso Historia-Ingresar (mdhist/index) y el acceso completo al asistente. 
 	- Generar macro reporte. 
++ Corregir log al eliminar.
++ Corregir fallo de seguridad en filterAction.
+
 # --- CAMBIOS PENDIENTES --- #
  
 - Revisar vistas de Hoja de ruta, faltan etiquetas por modificar.

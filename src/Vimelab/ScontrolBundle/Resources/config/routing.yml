@@ -919,6 +919,35 @@ mdpaci_filter:
     pattern:  /mdpaci/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdpaci:filter }
 
+# MdGrup Routes
+mdgrup:
+    pattern:  /mdgrup
+    defaults: { _controller: ScontrolBundle:Mdgrup:index, pag: 1 }
+mdgrup_pag:
+    pattern:  /mdgrup/{pag}/pag
+    defaults: { _controller: ScontrolBundle:Mdgrup:index, pag: 1 }
+mdgrup_show:
+    pattern:  /mdgrup/{id}/show
+    defaults: { _controller: ScontrolBundle:Mdgrup:show }
+mdgrup_new:
+    pattern:  /mdgrup/new
+    defaults: { _controller: ScontrolBundle:Mdgrup:new }
+mdgrup_create:
+    pattern:  /mdgrup/create
+    defaults: { _controller: ScontrolBundle:Mdgrup:create }
+mdgrup_edit:
+    pattern:  /mdgrup/{id}/edit
+    defaults: { _controller: ScontrolBundle:Mdgrup:edit }
+mdgrup_update:
+    pattern:  /mdgrup/{id}/update
+    defaults: { _controller: ScontrolBundle:Mdgrup:update }
+mdgrup_delete:
+    pattern:  /mdgrup/{id}/delete
+    defaults: { _controller: ScontrolBundle:Mdgrup:delete }
+mdgrup_filter:
+    pattern:  /mdgrup/{param}/filter
+    defaults: { _controller: ScontrolBundle:Mdgrup:filter }
+
 # MdPato Routes
 mdpato:
     pattern:  /mdpato

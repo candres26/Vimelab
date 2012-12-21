@@ -3,12 +3,12 @@
 namespace Vimelab\ScontrolBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 
-class MdpatoRepository extends EntityRepository
+class MdgrupRepository extends EntityRepository
 {
     public function getCount()
     {
         $em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT COUNT(o) FROM ScontrolBundle:Mdpato o");
+        $querry = $em->createQuery("SELECT COUNT(o) FROM ScontrolBundle:Mdgrup o");
         $resul = $querry->getSingleScalarResult();
         return $resul;
     }
@@ -26,7 +26,7 @@ class MdpatoRepository extends EntityRepository
         $pagina = $pagina < 1 ? 1 : $pagina;
 
         $em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Mdpato o ORDER BY o.codigo ASC");
+        $querry = $em->createQuery("SELECT o FROM ScontrolBundle:Mdgrup o ORDER BY o.nombre ASC");
         $querry->setFirstResult(($pagina-1)*$limite);
         $querry->setMaxResults($limite);
         return $querry->getResult();
@@ -35,7 +35,7 @@ class MdpatoRepository extends EntityRepository
     public function getFilter($parametro)
     {
         $em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Mdpato m WHERE m.nombre LIKE '%$parametro%' or m.codigo LIKE '%$parametro%'  or m.alternativo LIKE '%$parametro%'  ORDER BY m.id ASC");
+        $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Mdgrup m WHERE m.nombre LIKE '%$parametro%' ORDER BY m.nombre ASC");
         return $querry->getResult();
     }
 }

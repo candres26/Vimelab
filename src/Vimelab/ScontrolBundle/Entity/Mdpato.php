@@ -31,23 +31,33 @@ class Mdpato
     /**
      * @var string $nombre
      *
-     * @ORM\Column(name="nombre", type="string", length=50, nullable=false)
+     * @ORM\Column(name="nombre", type="string", length=250, nullable=false)
      */
     private $nombre;
 
     /**
      * @var string $alternativo
      *
-     * @ORM\Column(name="alternativo", type="string", length=50, nullable=true)
+     * @ORM\Column(name="alternativo", type="string", length=250, nullable=true)
      */
     private $alternativo;
+
+    /**
+     * @var Mdgrup
+     *
+     * @ORM\ManyToOne(targetEntity="Mdgrup")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="MdGrup_id", referencedColumnName="id")
+     * })
+     */
+    private $mdgrup;
 
 
 
     /**
      * Get id
      *
-     * @return bigint
+     * @return bigint 
      */
     public function getId()
     {
@@ -67,7 +77,7 @@ class Mdpato
     /**
      * Get codigo
      *
-     * @return string
+     * @return string 
      */
     public function getCodigo()
     {
@@ -87,7 +97,7 @@ class Mdpato
     /**
      * Get nombre
      *
-     * @return string
+     * @return string 
      */
     public function getNombre()
     {
@@ -107,11 +117,39 @@ class Mdpato
     /**
      * Get alternativo
      *
-     * @return string
+     * @return string 
      */
     public function getAlternativo()
     {
         return $this->alternativo;
+    }
+
+    /**
+     * Set mdgrup
+     *
+     * @param Vimelab\ScontrolBundle\Entity\Mdgrup $mdgrup
+     */
+    public function setMdgrup(\Vimelab\ScontrolBundle\Entity\Mdgrup $mdgrup)
+    {
+        $this->mdgrup = $mdgrup;
+    }
+
+    /**
+     * Get mdgrup
+     *
+     * @return Vimelab\ScontrolBundle\Entity\Mdgrup 
+     */
+    public function getMdgrup()
+    {
+        return $this->mdgrup;
+    }
+
+    function resume()
+    {
+        if(strlen($this->nombre) > 50)
+            return substr($this->nombre, 0, 47)."...";
+        else
+            return $this->nombre;
     }
 
     public function __toString()
