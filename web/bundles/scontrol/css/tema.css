@@ -644,3 +644,52 @@ h2
 	border: 0px solid black;
 	background: #f2f2f2;
 }
+
+
+/* Para Helper */
+
+.hlpCam
+{
+	display: block;
+	width: 500px;
+}
+
+.hlpDiv
+{
+	display: none;
+	position: absolute;
+	opacity: 0.9;
+	background: #FFFFFF;
+	overflow: auto;
+	width: 500px;
+	height: 70px;
+	border: 1px solid #203982;
+}
+
+.hlpDiv table
+{
+	width: 98%;
+	margin: auto;
+	border-collapse: collapse;
+	cursor: pointer;
+}
+
+.hlpDiv td
+{
+	border: 1px solid #203982;	
+}
+
+.hlpDiv tr
+{
+	background: #F2F2F2;
+}
+
+.hlpDiv tr:hover
+{
+	background: #A8BBFA;	
+}
+
+.hlpDiv th
+{
+	display: none;
+}

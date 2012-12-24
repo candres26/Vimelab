@@ -42,7 +42,10 @@ class MdpaciRepository extends EntityRepository
     public function getFor($par)
 	{
 		$em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Mdpaci m WHERE m.identificacion LIKE '%$par%' or m.priape LIKE '%$par%' ORDER BY m.priape ASC");
+        if(substr($par, 0, 1) != "*")
+            $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Mdpaci m WHERE m.identificacion LIKE '%$par%' or m.priape LIKE '%$par%' ORDER BY m.priape ASC");
+        else
+            $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Mdpaci m WHERE m.id = '".substr($par, 1)."' ORDER BY m.priape ASC");
         return $querry->getResult();
 	}
 }

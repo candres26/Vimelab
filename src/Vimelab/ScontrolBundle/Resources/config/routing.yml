@@ -2,6 +2,9 @@
 getUser:
     pattern:  /getuser
     defaults: { _controller: ScontrolBundle:Default:getUser }
+getDefPaci:
+    pattern:  /defgetpaci
+    defaults: { _controller: ScontrolBundle:Default:getPaciente }
 setKey:
     pattern:  /setkey
     defaults: { _controller: ScontrolBundle:Default:setKey }
