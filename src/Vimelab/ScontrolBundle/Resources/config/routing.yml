@@ -860,6 +860,9 @@ mdhist_update:
 mdhist_delete:
     pattern:  /mdhist/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdhist:delete }
+mdhist_report:
+    pattern:  /mdhist/{id}/report
+    defaults: { _controller: ScontrolBundle:Mdhist:report }
 mdhist_filter:
     pattern:  /mdhist/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdhist:filter }

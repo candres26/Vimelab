@@ -87,10 +87,7 @@ class CtcontController extends Controller
 			{
 				$meses = array('Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
 				
-				$sucu = $em->getRepository('ScontrolBundle:Ctcont')->getSucursal($entity->getGbempr()->getId(),"principal");
-				
-				if($sucu == null)
-					$sucu = new Gbsucu();
+				$sucu = $em->getRepository('ScontrolBundle:Ctcont')->getSucursal($entity->getGbempr()->getId(),"PRINCIPAL");
 				
 				$ciud = $sucu->getGbciud();
 					

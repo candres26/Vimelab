@@ -254,6 +254,43 @@ class MdhistController extends Controller
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
+    public function reportAction($id)
+    {
+    	if(Tool::isGrant($this))
+		{
+
+			$em = $this->getDoctrine()->getEntityManager();
+			$entity = $em->getRepository('ScontrolBundle:Mdhist')->find($id);
+
+			$pdf = new \Tcpdf_Tcpdf(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+			$pdf->SetCreator(PDF_CREATOR);
+			$pdf->SetAuthor('Vimelab');
+			$pdf->SetTitle('INFORME DE RECONOCIMIENTO MÉDICO');
+			$pdf->SetSubject('R. Médica');
+			$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, '', '');
+			$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+			$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+			$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+			$pdf->SetMargins(20, 35, 20);
+			$pdf->SetHeaderMargin(2);
+			$pdf->SetFooterMargin(15);
+			$pdf->SetAutoPageBreak(TRUE, 21);
+			$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+			
+			$pdf->setRevi(true);
+			$pdf->setEntity($entity);
+
+			$pdf->AddPage();			
+			$pdf->AddPage();			
+			
+			$pdf->SetFont('dejavusans', '', 10);
+		
+			$pdf->Output('contrato No.pdf', 'I');	
+		}
+		else
+			return $this->render("ScontrolBundle::alertas.html.twig");
+    }
+
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder(array('id' => $id))

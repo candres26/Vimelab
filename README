@@ -146,6 +146,7 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 	! Aspecto-Detalle permite agregar y actualizar dinamicamente.
 * Colocar mensaje de como usar la busqueda A: N:.
 * Tag de ayuda para buscar y seleccionar pacientes en TcCurs.
+* Ajustar reporte de contrato, busca la sucursal PRINCIPAL; si no busca la primera en encontrar!.
 
 # --- CAMBIOS EN PROGRESO --- #
 
