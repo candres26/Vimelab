@@ -133,7 +133,19 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 	* Asignar dicionarios en GbVars.
 	! El antecedente personal es un unico registro que se actualiza!.
 	! Se puede expander y contrar el area de A. Personal dando click sobre su titulo!.
-		
+* Corregir log al eliminar.
+* Corregir fallo de seguridad en filterAction.
+* Asistente De Revision Tecnica.
+	* Integrar TcRevi
+	* Integrar TcAspe
+	* Integrar TcDeta
+	* Integrar TdChec
+	* Asignar permisos en GbVars.
+	* Actualizar diccionario en GbVars
+	! TcAspe y TcDeta, se combinan para formar Aspecto-Detalle
+	! Aspecto-Detalle permite aggegar y actualizar dinamicamente.
+* Colocar mensaje de como usar la busqueda A: N:.
+
 # --- CAMBIOS EN PROGRESO --- #
 
 + Archivos SQL de control:
@@ -192,22 +204,18 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 	* Cargar revisiones médicas.
 		! Se debe buscar la revisión en Mdhist y pulsar el icono "Maletin", para lanzar el asistente en modo carga.
 		! Se debe asigna como minimo el permiso Historia-Ingresar (mdhist/index) y el acceso completo al asistente. 
-	- Generar macro reporte. 
-+ Corregir log al eliminar.
-+ Corregir fallo de seguridad en filterAction.
+	- Generar macro reporte.
+
+
 
 # --- CAMBIOS PENDIENTES --- #
  
 - Revisar vistas de Hoja de ruta, faltan etiquetas por modificar.
 - Verificar vista de hoja de ruta, el formulario no se ve bien.
 - Llenar campo diccionario de GbVars para completar las traducciones.
-- Colocar mensaje de como usar la busqueda A: N:.
 
 # --- NOTAS --- #
 
 ! Revisar campos de contratos (Revisión) es char(1), deberia ser un de selección.
-! Aclarar significado de campos en contrato.
-! Aclarar significado de campos en hoja de ruta.
 ! En los formularios que tienen 2 columnas Ej: Nuevo Paciente usar <table class="vime-colum1"> y <table class="vime-colum2"> para mejorar la respuesta a cambios de tamaño.
 ! Se ha cambiado el tamaño de letra, ancho y poscición (Centrado arriba) del popup, resulta mas comodo en los asistentes.
-! Aclarar relacion de revisiones médicas con aspectos técnicos. 

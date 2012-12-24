@@ -216,6 +216,25 @@ h2
 	border-radius: 15.5px;
 }
 
+.vime-columU
+{
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+}
+
+.vime-columU td
+{
+	width: 50%;
+}
+
+.vime-columU td:first-child
+{
+	text-align: right;
+}
+
 .vime-colum1
 {
 	position: absolute;

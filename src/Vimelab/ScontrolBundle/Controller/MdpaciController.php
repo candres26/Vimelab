@@ -151,8 +151,6 @@ class MdpaciController extends Controller
 				return array('entity' => $entity, 'form'   => $form->createView());
 			else
 				return $this->render("ScontrolBundle:Mdpaci:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
-			
-			
 		}
 		else
 			return $this->render("ScontrolBundle::alertas.html.twig");

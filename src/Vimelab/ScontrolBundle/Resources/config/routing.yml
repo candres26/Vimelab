@@ -1220,17 +1220,17 @@ tcchec_show:
     pattern:  /tcchec/{id}/show
     defaults: { _controller: ScontrolBundle:Tcchec:show }
 tcchec_new:
-    pattern:  /tcchec/new
-    defaults: { _controller: ScontrolBundle:Tcchec:new }
+    pattern:  /tcchec/new/{lv}
+    defaults: { _controller: ScontrolBundle:Tcchec:new, lv: 1 }
 tcchec_create:
-    pattern:  /tcchec/create
-    defaults: { _controller: ScontrolBundle:Tcchec:create }
+    pattern:  /tcchec/create/{lv}
+    defaults: { _controller: ScontrolBundle:Tcchec:create, lv: 1 }
 tcchec_edit:
-    pattern:  /tcchec/{id}/edit
-    defaults: { _controller: ScontrolBundle:Tcchec:edit }
+    pattern:  /tcchec/{id}/edit/{lv}
+    defaults: { _controller: ScontrolBundle:Tcchec:edit, lv: 1 }
 tcchec_update:
-    pattern:  /tcchec/{id}/update
-    defaults: { _controller: ScontrolBundle:Tcchec:update }
+    pattern:  /tcchec/{id}/update/{lv}
+    defaults: { _controller: ScontrolBundle:Tcchec:update, lv: 1 }
 tcchec_delete:
     pattern:  /tcchec/{id}/delete
     defaults: { _controller: ScontrolBundle:Tcchec:delete }
@@ -1307,11 +1307,11 @@ tcrevi_show:
     pattern:  /tcrevi/{id}/show
     defaults: { _controller: ScontrolBundle:Tcrevi:show }
 tcrevi_new:
-    pattern:  /tcrevi/new
-    defaults: { _controller: ScontrolBundle:Tcrevi:new }
+    pattern:  /tcrevi/new/{lv}
+    defaults: { _controller: ScontrolBundle:Tcrevi:new, lv: 1 }
 tcrevi_create:
-    pattern:  /tcrevi/create
-    defaults: { _controller: ScontrolBundle:Tcrevi:create }
+    pattern:  /tcrevi/create/{lv}
+    defaults: { _controller: ScontrolBundle:Tcrevi:create, lv: 1 }
 tcrevi_edit:
     pattern:  /tcrevi/{id}/edit
     defaults: { _controller: ScontrolBundle:Tcrevi:edit }
@@ -1473,6 +1473,31 @@ as_ante_delLabo:
 as_ante_getPers:
     pattern: /asante/getPers
     defaults: { _controller: ScontrolBundle:AsAnte:getPersonal }
+#
+#           Revision Tecnica
+#
+as_rtec:
+    pattern: /asrtec
+    defaults: { _controller: ScontrolBundle:AsRtec:index }
+as_rtec_getRevi:
+    pattern: /asrtec/getrevi
+    defaults: { _controller: ScontrolBundle:AsRtec:getRevision }
+as_rtec_updateRevi:
+    pattern: /asrtec/updrevi
+    defaults: { _controller: ScontrolBundle:AsRtec:updateRevision }
+as_rtec_getAspe:
+    pattern: /asrtec/getaspe
+    defaults: { _controller: ScontrolBundle:AsRtec:getAspecto}
+as_rtec_getDeta:
+    pattern: /asrtec/getdeta
+    defaults: { _controller: ScontrolBundle:AsRtec:getDetalle }
+as_rtec_savDeta:
+    pattern: /asrtec/savdeta
+    defaults: { _controller: ScontrolBundle:AsRtec:savDetalle }
+as_rtec_delDeta:
+    pattern: /asrtec/deldeta
+    defaults: { _controller: ScontrolBundle:AsRtec:delDetalle }
+
 #
 ##############################################           
 #           MASTER                           #

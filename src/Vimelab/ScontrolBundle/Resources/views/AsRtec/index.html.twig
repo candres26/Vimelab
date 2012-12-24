@@ -1,0 +1,222 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %} Revisión Técnica {% endblock %}
+
+{% block includes %}
+	<link href="{{ asset('bundles/scontrol/css/rtec.css') }}" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{{ asset('bundles/scontrol/js/rtec.js') }}">/*--- Include ---*/</script>
+{% endblock %}
+
+{% block area %}
+
+<div id="jsMain" class="csMain">
+	
+	<div id="jsRevi" class="csRevi">
+		<div id="jsReviCam" class="csReviCam">
+			<table id="jsReviCab" title="Click Para Cargar">
+				<tr><th>Sucursal:</th><td id="jsReviSucu"><!-- AJAX --></td></tr>
+				<tr><th>Personal:</th><td id="jsReviPers"><!-- AJAX --></td></tr>
+				<tr><th>Fecha:</th><td id="jsReviFech"><!-- AJAX --></td></tr>
+			</table>
+
+			<div class="csReviExt">
+				<table>
+					<tr><td>Hora Inicio</td><td>Hora Fin</td></tr>
+					<tr><td><input id="jsReviHini" type="text"></td><td><input id="jsReviHfin" type="text"></td></tr>
+					<tr><td>Entrevistados</td><td>Resumen</td></tr>
+					<tr>
+						<td><textarea id="jsReviEntr" cols="30" rows="5"></textarea></td>
+						<td><textarea id="jsReviResu" cols="30" rows="5"></textarea></td></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<div id="jsReviFold" class="csReviFold">
+			<table>
+				<tr>
+					<td><img id="jsReviFoldSv" src="{{ asset('bundles/scontrol/imagenes/iconos/guardar2.png') }}" title="Click Para Actualizar"></td>
+				</tr>
+				<tr>
+					<td><img id="jsReviFoldBt" src="{{ asset('bundles/scontrol/imagenes/iconos/vfold.png') }}" title="Click Para Redimensionar"></td>
+				</tr>
+			</table>
+			
+		</div>
+	</div>
+
+	<div id="jsChec" class="csChec">
+		<b class="csMiniCtTit2">Lista De Chequeo</b>
+
+		<iframe id="ifChec" class="csIfra2" src=""><!-- FRAME --></iframe>
+
+		<div class="csParBb">
+			<button id="jsChecOk">ACTUALIZAR</button>
+			<button id="jsChecCn">CANCELAR</button>
+		</div>
+	</div>
+
+	<div id="jsDeta" class="csDeta">
+		<b class="csMiniCtTit">Revisión De Aspectos</b>
+
+		<div class="csDetaCont">
+			<img id="jsDetaSav" src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar">
+			<img id="jsDetaDel" src="{{ asset('bundles/scontrol/imagenes/iconos/rem.png') }}" title="Eliminar">
+		</div>
+
+		<div class="csDetaForm">
+			<table>
+				<tr>
+					<th><b>Aspecto:</b></th>
+					<td colspan="3">
+						<select id="aspecto">
+							<option value='@'>Seleccione...</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th><b>Evitable?:</b></th>
+					<td>
+						<select id="evitable">
+							<option value='@'>Seleccione...</option>
+							<option value="S">Si</option>
+							<option value="N">No</option>
+							<option value="C">Condicional</option>
+						</select>
+					</td>
+					<th><b>Estimación:</b></th>
+					<td>
+						<select id="estimacion">
+							<option value='@'>Seleccione...</option>
+							<option value="H">Muy Peligoroso</option>
+							<option value="A">Peligroso</option>
+							<option value="M">Medianamente Peligroso</option>
+							<option value="B">Poco Peligroso</option>
+							<option value="L">Muy Poco Peligroso</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th><b>Probabilidad:</b></th>
+					<td>
+						<select id="probabilidad">
+							<option value='@'>Seleccione...</option>
+							<option value="H">Muy Alta</option>
+							<option value="A">Alta</option>
+							<option value="M">Media</option>
+							<option value="B">Baja</option>
+							<option value="L">Muy Baja</option>
+						</select>
+					</td>
+					<th><b>Consecuencia:</b></th>
+					<td>
+						<select id="consecuencia">
+							<option value='@'>Seleccione...</option>
+							<option value="H">Muy Alta</option>
+							<option value="A">Alta</option>
+							<option value="M">Media</option>
+							<option value="B">Baja</option>
+							<option value="L">Muy Baja</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th><b>Detalles:</b></th>
+					<td colspan="3"><textarea id="detalle" cols="53" rows="3"></textarea></td>
+				</tr>
+			</table>
+		</div>
+
+		<div class="csMiniCtZone">
+			<table id="jsDetaTab"><!-- AJAX --></table>
+		</div>
+		
+	</div>
+	
+	<!--- Vista Parcial General -->
+	<div id="jsRevPar" class="csPar">
+	
+		<table class="csParTi">
+			<tr><th id="jsRevTi"><!-- JS --></th><td id="jsReviCx" title="Cerrar"><!-- Cerrar --></td></tr>
+		</table>
+		
+		<div class="csParIn">
+			
+			<!--- Controles para buscar y seleccionar paciente -->
+			<div id='dvRevi' class='dvHide'>
+				<div id="jsReviSc" class="csParSc">
+					<table>
+						<tr>
+							<th><input id="jsReviScCam" type="text" size="70"/></th>
+							<td><img id="jsReviScBsr" src="{{ asset('bundles/scontrol/imagenes/applet.png') }}" title="Buscar"></td>
+							<td><img id="jsReviScBnw" src="{{ asset('bundles/scontrol/imagenes/iconos/agregar.png') }}" title="Crear Revisión"></td>
+						</tr>
+					</table>
+				</div>
+				<div id="jsReviZn" class="csParZn"><!-- AJAX --></div>
+			</div>
+			
+			<!--- Controles Del Iframe -->
+			
+			<div id='dvIfRevi' class="dvHide">
+				<iframe id="ifRevi" class="csIfra" src=""><!-- FRAME --></iframe>
+				
+				<div id="ifReviBar" class="csParBb">
+					<button id="jsReviOk">CREAR</button>
+					<button id="jsReviCn">CANCELAR</button>
+				</div>
+			</div>
+			
+		</div>
+	
+	</div>
+
+</div>
+
+{% endblock %}
+	
+{% block uscript %}
+
+	<script type="text/javascript">
+				
+		/* -- RUTAS -- */
+		$_newRevi = "{{ path('tcrevi_new', { 'lv': 2 }) }}";
+		$_newChec = "{{ path('tcchec_new', { 'lv': 2 }) }}";
+		$_basChec = "{{ path('tcchec') }}";
+		$_getRevi = "{{ path('as_rtec_getRevi') }}";
+		$_updateRevi = "{{ path('as_rtec_updateRevi') }}";
+		$_getAspe = "{{ path('as_rtec_getAspe') }}";
+		$_getDeta = "{{ path('as_rtec_getDeta') }}";
+		$_savDeta = "{{ path('as_rtec_savDeta') }}";
+		$_delDeta = "{{ path('as_rtec_delDeta') }}";
+		
+		function $init()
+		{
+			/* Eventos De Revision */
+			gId("jsRevi").onmouseover = foldRevi;
+			gId("jsRevi").onmouseout = foldRevi;
+			gId("jsReviCab").onclick = partialRevi;
+			gId("jsReviCx").onclick = hideRevi;
+			gId("jsReviScCam").onkeypress = getRevi;
+			gId("jsReviScBsr").onclick = getRevi;
+			gId("jsReviScBnw").onclick = newRevi;
+			gId("jsReviOk").onclick = createRevi;
+			gId("jsReviCn").onclick = cancelRevi;
+			gId("jsReviFoldBt").onclick = resizeRevi;
+			gId("jsReviFoldSv").onclick = updateRevi;
+			gId("ifRevi").onload = loadState;
+
+			/* Eventos De Chec */
+			gId("ifChec").onload = loadState;
+			gId("jsChecOk").onclick = sendChec;
+			gId("jsChecCn").onclick = canChec;
+
+			/* Eventos De Detalle */
+			gId("jsDetaTab").onclick = selDeta;
+			gId("jsDetaSav").onclick = savDeta;
+			gId("jsDetaDel").onclick = delDeta;
+		}
+		
+	</script>
+	
+{% endblock %}

@@ -88,18 +88,19 @@ class TcreviController extends Controller
      * @Route("/new", name="tcrevi_new")
      * @Template()
      */
-    public function newAction()
+    public function newAction($lv)
     {
 		if(Tool::isGrant($this))
 		{
 			$entity = new Tcrevi();
 			$form   = $this->createForm(new TcreviType(), $entity);
 
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
-		}else
+			if($lv == 1)
+				return array('entity' => $entity, 'form'   => $form->createView());
+			else
+				return $this->render("ScontrolBundle:Tcrevi:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
@@ -110,7 +111,7 @@ class TcreviController extends Controller
      * @Method("post")
      * @Template("ScontrolBundle:Tcrevi:new.html.twig")
      */
-    public function createAction()
+    public function createAction($lv)
     {
 		if(Tool::isGrant($this))
 		{
@@ -119,21 +120,41 @@ class TcreviController extends Controller
 			$form    = $this->createForm(new TcreviType(), $entity);
 			$form->bindRequest($request);
 
-			if ($form->isValid()) {
-				$em = $this->getDoctrine()->getEntityManager();
-				$em->persist($entity);
-				$em->flush();
+			if ($form->isValid()) 
+			{
+				try
+				{
+					$em = $this->getDoctrine()->getEntityManager();
+					$em->persist($entity);
+					$em->flush();
 
-				Tool::logger($this, $entity->getId());
-				return $this->redirect($this->generateUrl('tcrevi_show', array('id' => $entity->getId())));
-				
+					Tool::logger($this, $entity->getId());
+					
+					if($lv == 1)
+						return $this->redirect($this->generateUrl('tcrevi_show', array('id' => $entity->getId())));
+					else
+					{
+						$newEnt = new Tcrevi();
+						$form   = $this->createForm(new TcreviType(), $newEnt);	
+						return $this->render("ScontrolBundle:Tcrevi:_new.html.twig", array('entity' => $newEnt, 'form'   => $form->createView(), 'RMSG' => '0-Revisión Técnica Creada Con Exito!-'.$entity->getId()));
+					}
+					
+				}
+				catch(\Exception $e)
+				{
+					if($lv == 1)
+						return array('entity' => $entity, 'form'   => $form->createView());
+					else	
+						return $this->render("ScontrolBundle:Tcrevi:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => '1-Imposible Crear Revisión Técnica!'));
+				}
 			}
 
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
-		}else
+			if($lv == 1)
+				return array('entity' => $entity, 'form'   => $form->createView());
+			else
+				return $this->render("ScontrolBundle:Tcrevi:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 

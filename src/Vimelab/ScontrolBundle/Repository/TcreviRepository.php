@@ -38,4 +38,16 @@ class TcreviRepository extends EntityRepository
         $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Tcrevi m JOIN m.gbsucu s JOIN s.gbempr e WHERE m.id LIKE '%$parametro%' OR m.fecha LIKE '%$parametro%' OR e.nombre LIKE '%$parametro%' ORDER BY m.id ASC");
         return $querry->getResult();
     }
+
+    public function getFor($parametro)
+    {
+        $em = $this->getEntityManager();
+        
+        if(substr($parametro, 0, 1) == "*")
+            $querry = $em->createQuery("SELECT r FROM ScontrolBundle:Tcrevi r JOIN r.gbsucu s JOIN s.gbempr e WHERE r.id = '".substr($parametro, 1)."'");
+        else
+            $querry = $em->createQuery("SELECT r FROM ScontrolBundle:Tcrevi r JOIN r.gbsucu s JOIN s.gbempr e WHERE r.id LIKE '%$parametro%' OR r.fecha LIKE '%$parametro%' OR e.nombre LIKE '%$parametro%' ORDER BY e.nombre, r.fecha ASC");
+        
+        return $querry->getResult();
+    }
 }

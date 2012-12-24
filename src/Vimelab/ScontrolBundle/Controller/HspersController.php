@@ -140,14 +140,14 @@ class HspersController extends Controller
 					if($lv == 1)
 						return array('entity' => $entity, 'form'   => $form->createView());
 					else	
-						return $this->render("ScontrolBundle:Hspers:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => '1-Imposible Crear Antecedente Personal!'));
+						return $this->render("ScontrolBundle:Hspers:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => '1-Imposible Actualizar Antecedente Personal!'));
 				}
 			}
 
 			if($lv == 1)
 				return array('entity' => $entity, 'form'   => $form->createView());
 			else
-				return $this->render("ScontrolBundle:Hspers:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
+				return $this->render("ScontrolBundle:Hspers:_edit.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
 		}
 		else
 			return $this->render("ScontrolBundle::alertas.html.twig");

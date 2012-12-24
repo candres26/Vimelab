@@ -1,0 +1,470 @@
+/* ### --+-- PRINCIPAL --+-- ### */
+.csMain
+{
+	position: absolute;
+	top: 1%;
+	width: 98%; 
+	height: 98%;
+}
+
+.dvHide
+{
+	display: none;
+}
+
+/* ### --+-- INTERNAL FRAMES --+-- ### */
+.csIfra
+{
+	overflow: auto;
+	position: absolute;
+	top: 0.5%;
+	left: 0.5%;
+	width: 99.5%;
+	height: 92%;
+	border: 0px solid black;
+	background: #f2f2f2;
+}
+
+.csIfra2
+{
+	overflow: auto;
+	position: absolute;
+	bottom: 8%;
+	left: 1%;
+	width: 98%;
+	height: 86%;
+	border: 1px solid #203882;
+	background: #f2f2f2;
+}
+
+/* ### --+-- PARCAILES --+-- ### */
+
+.csPar
+{
+	background: #FFFFFF;
+	position: absolute;
+	width: 94%;
+	height: 94%;
+	left: 3%;
+	top: 3%;
+	z-index: 10;
+	opacity: 1;
+	box-shadow: 5px 5px 10px #203982;
+	border: 2px solid #203982;
+	border-radius: 10px;
+	display: none;
+}
+
+.csParTi
+{
+	position: absolute;
+	top: 0%;
+	left: 2%;
+	width: 98%;
+	height: 7%;
+	border-collapse: collapse;
+}
+
+.csParTi td
+{
+	border-left: 1px solid #CCCCCC;
+	border-bottom: 1px inset #CCCCCC;
+	cursor: pointer;
+	width: 4%;
+	background: url("../imagenes/iconos/close.png") no-repeat center;
+}
+
+.csParTi td:hover
+{
+	opacity: 0.8;	
+}
+
+.csParIn
+{
+	position: absolute;
+	overflow: auto;
+	background: #f2f2f2;
+	border: 1px solid #203982;
+	top: 8%;
+	left: 2%;
+	width: 96%;
+	height: 90%;
+	text-align: center;
+}
+
+.csParSc
+{
+	position: absolute;
+	top: 0.5%;
+	left: 1%;
+	width: 98%;
+	height: 5%;
+}
+
+.csParSc table
+{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.csParSc img
+{
+	cursor: pointer;
+}
+
+.csParZn
+{
+	position: absolute;
+	overflow: auto;
+	border: 1px solid #203982;
+	background: #FFFFFF;
+	top: 10%;
+	left: 1%;
+	width: 98%;
+	height: 89%;
+	text-align: center;
+}
+
+.csParZn table
+{
+	width: 98%;
+	margin: auto;
+	border-collapse: collapse;
+	cursor: pointer;
+}
+
+.csParZn td
+{
+	border: 1px solid #203982;	
+}
+
+.csParZn tr
+{
+	background: #F2F2F2;
+}
+
+.csParZn tr:hover
+{
+	background: #A8BBFA;	
+}
+
+.csParZn th
+{
+	display: none;
+}
+
+.csParBb
+{
+	position: absolute;
+	bottom: 0.5%;
+	left: 1%;
+	width: 98%;
+}
+.csParBb button
+{
+	background-color: #203982; 
+	color: #fff;
+	border-radius: 10px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.csParBb button:hover
+{
+	background-color: #FFFFFF; 
+	color: #000000;
+}
+
+/* ### --+-- MINI CONTROLES --+-- ### */
+
+.csMiniCtTit, .csMiniCtTit2
+{
+	display: block;
+	position: absolute;
+	top: 1%;
+	left: 1%;
+	width: 98%;
+}
+
+.csMiniCtTit
+{
+	border-bottom: 1px solid #203982;
+}
+
+.csMiniCtBtn, .csMiniCtBtn2
+{
+	position: absolute;
+	right: 1%;
+	top: 12%;
+}
+
+.csMiniCtBtn2 img
+{
+	display: block;
+}
+
+.csMiniCtArea
+{
+	position: absolute;
+	right: 1%;
+	bottom: 1%;
+	width: 35%;
+	height: 60%;
+}
+
+.csMiniCtZone, .csMiniCtZone2
+{
+	position: absolute;
+	overflow: auto;
+	bottom: 1%;
+	left: 1%;
+	height: 45%;
+	background: #FFFFFF;
+	border: 1px solid #203982;
+	border-collapse: collapse;
+}
+
+.csMiniCtZone
+{
+	width: 98%;
+}
+
+.csMiniCtZone2
+{
+	width: 90%;
+}
+
+.csMiniCtZone table, .csMiniCtZone2 table
+{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.csMiniCtZone th, .csMiniCtZone2 th
+{
+	display: none;
+}
+
+.csMiniCtZone td, .csMiniCtZone2 td
+{
+	border-bottom: 1px solid #203982;
+}
+
+.csMiniCtZone tr, .csMiniCtZone2 tr
+{
+	cursor: pointer;
+	background: #F2F2F2;
+}
+
+.csMiniCtZone tr:hover, .csMiniCtZone2 tr:hover
+{
+	background: #A8BBFA;
+}
+
+/* ### --+-- ETIQUETA DE PACIENTE --+-- ### */
+
+.csRevi
+{
+	position: absolute;
+	overflow: visible;
+	top: 0.5%;
+	left: 10%;
+	width: 80%;
+	height: 12%;
+	z-index: 2;
+}
+
+.csReviFold
+{
+	position: absolute;
+	top: 0%;
+	left: 100%;
+	width: 0%;
+	height: 100%;
+	line-height: 100%;
+	overflow: hidden;
+}
+
+.csReviFold table
+{
+	border-collapse: collapse;
+	position: absolute;
+	width: auto;
+	height: auto;
+	top: 50%;
+	margin-top: -21px;
+	box-shadow: 2px 2px 5px #203982;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+.csReviFold img
+{
+	padding-left: 7px;
+	padding-right: 2px;
+	cursor: pointer;
+}
+
+.csReviCam
+{	
+	position: absolute;
+	overflow: hidden;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+	background: black;
+	cursor: pointer;
+	background: #FFFFFF;
+	box-shadow: 2px 2px 5px #203982;
+	border: 2px solid #203982;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.csReviCam:hover
+{
+	box-shadow: 5px 5px 10px #0000ff;
+}
+
+.csReviCam:active
+{
+	background: #000000;
+	color: #FFFFFF;
+	font-style: italic;
+}
+
+.csReviCam table
+{
+	position: absolute;
+	left: 1%;
+	width: 98%;
+	height: auto;
+	border-collapse: collapse;
+	margin: auto;
+}
+
+.csReviCam th
+{
+	text-align: right;
+	width: 50%;
+	padding: 3px;
+}
+
+.csReviCam td 
+{
+	text-align: left;  
+}
+
+.csReviExt
+{
+	position: absolute;
+	height: auto;
+	width: 100%;
+	top: 70px;
+}
+
+.csReviExt table
+{
+	position: relative;
+}
+
+.csReviExt td
+{
+	text-align: center;
+}
+
+/* ### --+-- CHECK LIST --+-- ### */
+
+.csChec
+{
+	display: none;
+	position: absolute;
+	overflow: auto;
+	right: 0.5%;
+	bottom: 0.5%;
+	width: 48.5%;
+	height: 82%;
+	background: #FFFFFF;
+	box-shadow: 2px 2px 5px #203982;
+	border: 2px solid #203982;
+	border-radius: 10px;
+	text-align: center;
+}
+
+/* ### --+-- ASPECTO-DETALLE --+-- ### */
+
+.csDeta
+{
+	display: none;
+	position: absolute;
+	overflow: auto;
+	left: 0.5%;
+	bottom: 0.5%;
+	width: 48.5%;
+	height: 82%;
+	background: #FFFFFF;
+	box-shadow: 2px 2px 5px #203982;
+	border: 2px solid #203982;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.csDetaForm
+{
+	position: absolute;
+	top: 15%;
+	left: 1%;
+	width: 98%;
+	height: 38%;
+}
+
+.csDetaForm table
+{
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+}
+
+.csDetaForm th
+{
+	text-align: right;
+}
+
+.csDetaForm td
+{
+	text-align: left;
+}
+
+.csDetaForm select
+{
+	width: 100%;
+}
+
+.csDetaForm textarea
+{
+	width: 100%;
+}
+
+.csDetaCont
+{
+	position: absolute;
+	top: 5%;
+	left: 1%;
+	width: 98%;
+	text-align: right;
+}
+
+.csDetaCont img
+{
+	cursor: pointer;
+}
+
+.csDetaCont img:hover
+{
+	box-shadow: 2px 2px 5px #203982;
+	border-radius: 10px;
+}

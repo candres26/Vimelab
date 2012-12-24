@@ -507,7 +507,7 @@ class Gbpers
     
     public function __toString()
     {
-        return $this->identificacion;
+        return $this->identificacion."-".$this->priape." ".$this->prinom;
     }
 	
 	public function getFullName()
