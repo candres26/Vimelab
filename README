@@ -207,6 +207,7 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 		! Se ha reestructurado los datos de la tabla MdPato para ser congruentes.
 		! Si no se fija un diagnostico en una categoria, se usa el codigo **00 comonormalidad EJ (1600).
 		! Se considera el comentario de MdHist como la observación final de la revisión.
+		! Permiso agregado en GbVars
 
 # --- CAMBIOS EN PROGRESO --- #
 
