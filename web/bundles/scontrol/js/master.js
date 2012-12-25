@@ -383,7 +383,7 @@ function getReco(event)
 	{
 		ajaxAction
 		(
-			new Hash(["param => jsRecoCam", "*min => 1900", "*max => 1000000"]),
+			new Hash(["param => jsRecoCam", "*min => 19", "*max => 20"]),
 			$_getPato,
 			setPato
 		);
@@ -446,7 +446,7 @@ function refreshReco(event)
 	$recoIdx = -1;
 	ajaxAction
 	(
-		new Hash(["*param => "+$histId, "*min => 1900", "*max => 1000000"]),
+		new Hash(["*param => "+$histId, "*min => 19", "*max => 20"]),
 		$_getDiag,
 		showReco
 	);
@@ -552,7 +552,7 @@ function getDiag(event)
 	{
 		ajaxAction
 		(
-			new Hash(["param => jsDiagCam", "*min => 0", "*max => 1900"]),
+			new Hash(["param => jsDiagCam", "*min => 0", "*max => 19"]),
 			$_getPato,
 			setPato2
 		);
@@ -614,7 +614,7 @@ function refreshDiag(event)
 	$diagIdx = -1;
 	ajaxAction
 	(
-		new Hash(["*param => "+$histId, "*min => 0", "*max => 1900"]),
+		new Hash(["*param => "+$histId, "*min => 0", "*max => 19"]),
 		$_getDiag,
 		showDiag
 	);

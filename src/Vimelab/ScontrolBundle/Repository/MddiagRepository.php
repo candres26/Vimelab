@@ -32,6 +32,13 @@ class MddiagRepository extends EntityRepository
         return $querry->getResult();
     }
 
+    public function getByGrup($hist, $grup)
+    {
+    	$em = $this->getEntityManager();
+        $querry = $em->createQuery("SELECT d FROM ScontrolBundle:Mddiag d JOIN d.mdhist h JOIN d.mdpato p WHERE h.id = $hist AND p.mdgrup = $grup ORDER BY p.codigo ASC");
+        return $querry->getResult();
+    }
+
     public function getFilter($parametro)
     {
 		$ape = '';

@@ -25,7 +25,7 @@ class Tcpdf_Tcpdf extends TCPDF
 
         if($this->isRevi)
         {
-            $html = '<table>';
+            $html = '<table style="border-bottom: 1px solid black;">';
             $html .= '<tr><td><b>No: '.$this->entity->getId().'</b></td><td><b>Fecha: '.$this->entity->getFecha()->format('Y-m-d').'</b></td></tr>';
             $html .= '<tr><td><b>'.$this->entity->getMdpaci()->getIdentificacion().'</b></td>';
             $html .= '<td><b>'.$this->entity->getMdpaci()->getFullName().'</b></td></tr>';
@@ -35,7 +35,7 @@ class Tcpdf_Tcpdf extends TCPDF
             $html .= '</table>';
             
             $this->SetFont('helvetica','',10);
-            $this->writeHTMLCell(170, 0, 20, 17, $html, 0, 0, 0, true, 'R', true);
+            $this->writeHTMLCell(170, 0, 20, 17, $html, 0, 1, 0, true, 'R', true);
         }
     }
 

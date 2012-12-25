@@ -147,15 +147,12 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 * Colocar mensaje de como usar la busqueda A: N:.
 * Tag de ayuda para buscar y seleccionar pacientes en TcCurs.
 * Ajustar reporte de contrato, busca la sucursal PRINCIPAL; si no busca la primera en encontrar!.
-
-# --- CAMBIOS EN PROGRESO --- #
-
-+ Archivos SQL de control:
+* Archivos SQL de control:
 	* modelo.sql contiene la estructura de la DB.
 	* base.sql contiene la estructura y los datos mínimos para comenzar (usuario root).
 	* db.sql contiene datos de prueba volatiles.
-	+ val.sql contiene los datos minimos de las tablas de arranque (aun en construcción).
-+ PRIORITARIO: Asistente maestro de revisión médica:
+	* val.sql contiene los datos minimos de las tablas de arranque (aun en construcción).
+* Asistente maestro de revisión médica:
 	* Crear estandar de alamcenamiento.
 	* Fijar validaciones de GUI.
 	* Nuevo esquema de vistas.
@@ -206,8 +203,12 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 	* Cargar revisiones médicas.
 		! Se debe buscar la revisión en Mdhist y pulsar el icono "Maletin", para lanzar el asistente en modo carga.
 		! Se debe asigna como minimo el permiso Historia-Ingresar (mdhist/index) y el acceso completo al asistente. 
-	- Generar macro reporte.
+	* Generar macro reporte.
+		! Se ha reestructurado los datos de la tabla MdPato para ser congruentes.
+		! Si no se fija un diagnostico en una categoria, se usa el codigo **00 comonormalidad EJ (1600).
+		! Se considera el comentario de MdHist como la observación final de la revisión.
 
+# --- CAMBIOS EN PROGRESO --- #
 
 
 # --- CAMBIOS PENDIENTES --- #
