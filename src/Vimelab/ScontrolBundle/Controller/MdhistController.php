@@ -686,8 +686,8 @@ class MdhistController extends Controller
 			$pdf->writeHTMLCell(216, 0, 0, 258, $html, '', 0, 0, true, 'C', true);
 			$pdf->Line(50, 257, 160, 257, $style1);
 
-			$pdf->Output('r_medica_'.$id.'.pdf', 'I');	
-			//writeHTMLCell ($w, $h, $x, $y, $html='', $border=0, $ln=0, $fill=false, $reseth=true, $align='', $autopadding=true)
+			ob_end_clean();
+			$pdf->Output('r_medica_'.$id.'.pdf', 'I');
 		}
 		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
