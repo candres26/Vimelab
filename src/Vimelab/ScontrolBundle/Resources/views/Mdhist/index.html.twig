@@ -45,7 +45,10 @@
 				<a href="{{ path('mdhist_show', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/show_index.png') }}" title="Mostrar"></a>
 				<a href="{{ path('mdhist_edit', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar_index.png') }}" title="Editar"></a>
 				<a href="{{ path('as_master_load', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/asis_index.png') }}" title="Asistente"></a>
-				<img id="{{ path('mdhist_report', { 'id': entity.id }) }}" img src="{{ asset('bundles/scontrol/imagenes/iconos/report_index.png') }}" title="Reporte" onclick="repo(event)">
+				<a href="{{ path('mdhist_report', { 'id': entity.id }) }}" target="_blank" onClick="window.open(this.href, this.target, 'width=800,height=600'); return false;">
+					<img id="" img src="{{ asset('bundles/scontrol/imagenes/iconos/report_index.png') }}" title="Reporte">	
+				</a>
+				
             </td>
         </tr>
     {% endfor %}
@@ -77,14 +80,7 @@
 				if(!isNaN(pag))
 					location = basePath+"/"+pag+"/pag";
 			}
-		}
-
-		function repo(event)
-		{
-			window.open(event.target.id, 'REPORTE', 'toolbar=0,location=0,directories=0,status=0,menubar=0,width=800,height=600');
-			return false;
-		}
-		
+		}		
 	</script>
 {% endblock %}
 
