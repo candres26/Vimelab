@@ -208,6 +208,7 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 		! Si no se fija un diagnostico en una categoria, se usa el codigo **00 comonormalidad EJ (1600).
 		! Se considera el comentario de MdHist como la observación final de la revisión.
 		! Permiso agregado en GbVars
+		! Validar datos icompletos!
 
 # --- CAMBIOS EN PROGRESO --- #
 

@@ -263,8 +263,10 @@ class MdhistController extends Controller
 			$entity = $em->getRepository('ScontrolBundle:Mdhist')->find($id);
 			$paci = $entity->getMdpaci();
 			$pers = $entity->getGbpers();
+
 			$biom = $em->getRepository('ScontrolBundle:Mdbiom')->findOneByMdhist($entity->getId());
 			$obAudi = $em->getRepository('ScontrolBundle:Mdaudi')->findOneByMdhist($entity->getId());
+			
 			$dermas = $em->getRepository('ScontrolBundle:Mddiag')->getByGrup($entity->getId(), 1);
 			$ndermas = $em->getRepository('ScontrolBundle:Mdpato')->findOneByCodigo("100");
 			$pupila = $em->getRepository('ScontrolBundle:Mddiag')->getByGrup($entity->getId(), 2);
@@ -326,19 +328,25 @@ class MdhistController extends Controller
 			$pdf->writeHTMLCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'C', true);
 
 			$html = '<b>BIOMETRÍA:</b><br><br>';
-			$html .= '<table align="left">';
-			$html .= '<tr>';
-			$html .= '<td>SEXO: '.$paci->getStrSexo().'</td>';
-			$html .= '<td>EDAD: '.$paci->getEdad().' años.</td>';
-			$html .= '<td>TALLA: '.intval($biom->getTalla()).' cm.</td>';
-			$html .= '<td>PESO: '.intval($biom->getPeso()).' kg.</td>';
-			$html .= '<td>PULSO: '.intval($biom->getPulso()).' p/min.</td>';
-			$html .= '</tr>';
-			$html .= '<tr>';
-			$html .= '<td colspan="2">F. RESPIRATORIA: '.intval($biom->getFres()).' p/min.</td>';
-			$html .= '<td colspan="3">P. ARTERIAL: '.intval($biom->getPasisto()).'/'.intval($biom->getPadiasto()).' mmHg.</td>';
-			$html .= '</tr>';
-			$html .= '</table>';
+			
+			if ($biom)
+			{	
+				$html .= '<table align="left">';
+				$html .= '<tr>';
+				$html .= '<td>SEXO: '.$paci->getStrSexo().'</td>';
+				$html .= '<td>EDAD: '.$paci->getEdad().' años.</td>';
+				$html .= '<td>TALLA: '.intval($biom->getTalla()).' cm.</td>';
+				$html .= '<td>PESO: '.intval($biom->getPeso()).' kg.</td>';
+				$html .= '<td>PULSO: '.intval($biom->getPulso()).' p/min.</td>';
+				$html .= '</tr>';
+				$html .= '<tr>';
+				$html .= '<td colspan="2">F. RESPIRATORIA: '.intval($biom->getFres()).' p/min.</td>';
+				$html .= '<td colspan="3">P. ARTERIAL: '.intval($biom->getPasisto()).'/'.intval($biom->getPadiasto()).' mmHg.</td>';
+				$html .= '</tr>';
+				$html .= '</table>';
+			}
+			else
+				$html .= '<b style="color: red;">SIN DATOS</b>';
 			$pdf->writeHTMLCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
 
 			$pdf->Ln(5);
@@ -621,7 +629,7 @@ class MdhistController extends Controller
 			$pdf->Line(150, 65, 155, 65, $style3);
 			$pdf->Line(150, 70, 155, 70, $style4);
 			
-			if($obAudi->getRealizado() == 'S')
+			if($obAudi && $obAudi->getRealizado() == 'S')
 			{
 				$arr = $obAudi->getInArray();
 				$rder = "";
