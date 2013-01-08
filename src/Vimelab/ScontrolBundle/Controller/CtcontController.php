@@ -441,7 +441,7 @@ class CtcontController extends Controller
 				
 				<p align="justify">El presente contrato devengará los siguientes honorarios:</p>
 
-				<p align="justify">El coste de este servicio de Prevención de Riesgos Laborales asciende TRESCIENTOS SESENTA euros
+				<p align="justify">El coste de este servicio de Prevención de Riesgos Laborales asciende '.$entity->getVletras().' de euros
 				('.$entity->getTotal().' €), NO incluido IVA del '.$iva.'%, que se abonará en el momento de la firma del presente contrato.</p>
 
 				<p align="justify">El Examen Médico Específico asciende a 37.00 € (TREINTA Y SIETE euros) de riesgo BAJO. (Se cobrará una vez
