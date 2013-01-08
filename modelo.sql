@@ -39,6 +39,8 @@ CREATE TABLE `CtCont` (
   `cargocontratante` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `nombrecontratante` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `direccioncontratante` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `ntrabajadores` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
+  `vletras` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `FirmaGbCiud_id` int(5) unsigned NOT NULL,
   `LegalGbCiud_id` int(5) unsigned NOT NULL,
   `revision` char(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'A',

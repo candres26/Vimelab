@@ -39,6 +39,8 @@ CREATE TABLE `CtCont` (
   `cargocontratante` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `nombrecontratante` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `direccioncontratante` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `ntrabajadores` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
+  `vletras` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `FirmaGbCiud_id` int(5) unsigned NOT NULL,
   `LegalGbCiud_id` int(5) unsigned NOT NULL,
   `revision` char(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'A',
@@ -71,7 +73,7 @@ CREATE TABLE `CtCont` (
 
 LOCK TABLES `CtCont` WRITE;
 /*!40000 ALTER TABLE `CtCont` DISABLE KEYS */;
-INSERT INTO `CtCont` VALUES (1,2,1,'2010-03-01','2010-03-01','2015-03-31',2,'1070609877','Gerente','Monica Cortes','Cll 11 # 12-34',2,'1070818123','Gerente','Mateo Garcia','Cll 25 # 78-78',2,2,'O',0,5000000,10000000.00,9.99,0.00,15500000.00,15500000.00),(2,3,2,'2012-11-03','2012-11-30','2013-11-30',2,'909090','Gerente','Pablo Perez','Cll 11 # 12-34',3,'808080','Gerente','Marco Casas','Cll 25 # 78-78',3,3,'O',0,9000000,18000000.00,9.99,0.00,25000000.00,25000000.00);
+INSERT INTO `CtCont` VALUES (1,2,1,'2010-03-01','2010-03-01','2015-03-31',2,'1070609877','Gerente','Monica Cortes','Cll 11 # 12-34',2,'1070818123','Gerente','Mateo Garcia','Cll 25 # 78-78','xxx','xxx',2,2,'O',0,5000000,10000000.00,9.99,0.00,15500000.00,15500000.00),(2,3,2,'2012-11-03','2012-11-30','2013-11-30',2,'909090','Gerente','Pablo Perez','Cll 11 # 12-34',3,'808080','Gerente','Marco Casas','Cll 25 # 78-78','xxx','xxx',3,3,'O',0,9000000,18000000.00,9.99,0.00,25000000.00,25000000.00);
 /*!40000 ALTER TABLE `CtCont` ENABLE KEYS */;
 UNLOCK TABLES;
 
