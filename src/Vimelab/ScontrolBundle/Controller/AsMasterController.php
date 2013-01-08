@@ -218,8 +218,8 @@ class AsMasterController extends Controller
 				$res = array();
 				foreach($entities as $caso)
 				{
-					if($min <= intval($caso->getCodigo()) && $max > intval($caso->getCodigo()))
-						$res[] = $caso->getId()."=>".$caso->getCodigo()."=>".$caso->__toString();
+					if($min <= intval($caso->getMdgrup()->getId()) && $max > intval($caso->getMdgrup()->getId()))
+						$res[] = $caso->getId()."=>".$caso->getCodigo()."=>".$caso->getNombre();
 				}
 				
 				return new Response(join("|-|", $res));
@@ -283,8 +283,8 @@ class AsMasterController extends Controller
 				$res = array();
 				foreach($entities as $caso)
 				{
-					if($min <= intval($caso->getMdpato()->getCodigo()) && $max > intval($caso->getMdpato()->getCodigo()))
-						$res[] = $caso->getId()."=>".$caso->getMdpato()->__toString();
+					if($min <= intval($caso->getMdpato()->getMdgrup()->getId()) && $max > intval($caso->getMdpato()->getMdgrup()->getId()))
+						$res[] = $caso->getId()."=>".$caso->getMdpato()->getNombre();
 				}
 				
 				return new Response(join("|-|", $res));

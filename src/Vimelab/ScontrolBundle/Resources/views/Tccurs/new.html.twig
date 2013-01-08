@@ -10,7 +10,17 @@
 	<input type="submit" style="display: none" id="sender" value="send">
    <table align="center">
    		<tr><td colspan='2'>{{ form_errors(form.mdpaci) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.mdpaci) }}</td><td align="left">{{ form_widget(form.mdpaci) }}</td></tr>
+		<tr>
+			<td align="left">{{ form_label(form.mdpaci) }}</td>
+			<td align="left">
+				<div style="display: none;">{{ form_widget(form.mdpaci) }}</div>
+				<b id="hlpPaciView">Seleccione...</b>
+				<input class="hlpCam" id="hlpPaci" type="text" size="50" />
+				<div id="hlpPaciDiv" class="hlpDiv">
+					<table id="hlpZone"><!-- AJAX --></table>
+				</div>
+			</td>
+		</tr>
 		<tr><td colspan='2'>{{ form_errors(form.tccapa) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.tccapa) }}</td><td align="left">{{ form_widget(form.tccapa) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(form.empresa) }}</td></tr>
@@ -51,6 +61,60 @@
 		{
 			gId('hlpInicio').onclick = $helpCalendar;
 			gId('hlpFin').onclick = $helpCalendar;
+			gId('hlpPaci').onkeypress = getPaci;
+			gId('hlpZone').onclick = selPaci;
+		}
+
+		function getPaci(event)
+		{
+			if(event.type == "keypress" && event.keyCode == 13)
+			{
+				ajaxAction
+				(
+					new Hash(["param => hlpPaci"]),
+					"{{ path('getDefPaci') }}",
+					setPaci
+				);
+			}
+		}
+
+		function setPaci(response)
+		{
+			if(response.responseText != "{}")
+			{	
+				var cont = '';
+
+				var casos = ofJail(response.responseText);
+				var l = casos.length;
+				for(var i = 0; i < l; i ++)
+				{
+					var uni = casos[i];
+					cont += "<tr title='Doble click para seleccionar!'><th>"+uni[0]+"</th><td>"+uni[1]+"</td><td>"+uni[2].toUpperCase()+"</td></tr>";
+				}
+
+				gId("hlpZone").innerHTML = cont;
+				show("hlpPaciDiv");
+			}
+			else
+			{
+				hide("hlpPaciDiv");
+				gId("hlpZone").innerHTML = "";
+			}
+		}
+
+		function selPaci(event)
+		{
+			for(i = 0; i < this.rows.length; i++)
+				this.rows[i].style.background = "";
+	
+			row = event.target.parentNode;
+			tmp = row.cells[0].innerHTML;
+			
+			gId("vimelab_scontrolbundle_tccurstype_mdpaci").value = tmp;
+			gId("hlpPaciView").innerHTML = row.cells[1].innerHTML+" - "+row.cells[2].innerHTML;
+			gId("hlpPaci").value = "";
+
+			hide("hlpPaciDiv");
 		}
 		
 	</script>

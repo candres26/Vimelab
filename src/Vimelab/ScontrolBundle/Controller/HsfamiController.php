@@ -43,11 +43,16 @@ class HsfamiController extends Controller
     
 	public function filterAction($param = '')
     {
-        $em = $this->getDoctrine()->getEntityManager();
-        $repo = $em->getRepository('ScontrolBundle:Hsfami');
-        $entities = $repo->getFilter($param);
+        if(Tool::isGrant($this))
+        {
+            $em = $this->getDoctrine()->getEntityManager();
+            $repo = $em->getRepository('ScontrolBundle:Hsfami');
+            $entities = $repo->getFilter($param);
 
-        return $this->render("ScontrolBundle:Hsfami:index.html.twig", array('entities' => $entities, 'pages' => 1, 'pag' => 1));
+            return $this->render("ScontrolBundle:Hsfami:index.html.twig", array('entities' => $entities, 'pages' => 1, 'pag' => 1));
+        }
+        else
+            return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
     /**
@@ -83,18 +88,19 @@ class HsfamiController extends Controller
      * @Route("/new", name="hsfami_new")
      * @Template()
      */
-    public function newAction()
-    {
+    public function newAction($lv)
+	{
 		if(Tool::isGrant($this))
 		{
 			$entity = new Hsfami();
 			$form   = $this->createForm(new HsfamiType(), $entity);
 
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
-		}else
+			if($lv == 1)
+				return array('entity' => $entity, 'form'   => $form->createView());
+			else
+				return $this->render("ScontrolBundle:Hsfami:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
@@ -105,7 +111,7 @@ class HsfamiController extends Controller
      * @Method("post")
      * @Template("ScontrolBundle:Hsfami:new.html.twig")
      */
-    public function createAction()
+    public function createAction($lv)
     {
 		if(Tool::isGrant($this))
 		{
@@ -114,21 +120,40 @@ class HsfamiController extends Controller
 			$form    = $this->createForm(new HsfamiType(), $entity);
 			$form->bindRequest($request);
 
-			if ($form->isValid()) {
-				$em = $this->getDoctrine()->getEntityManager();
-				$em->persist($entity);
-				$em->flush();
+			if ($form->isValid()) 
+			{
+				try
+				{
+					$em = $this->getDoctrine()->getEntityManager();
+					$em->persist($entity);
+					$em->flush();
 
-				Tool::logger($this, $entity->getId());
-				return $this->redirect($this->generateUrl('hsfami_show', array('id' => $entity->getId())));
-				
+					Tool::logger($this, $entity->getId());
+
+					if($lv == 1)
+						return $this->redirect($this->generateUrl('hsfami_show', array('id' => $entity->getId())));
+					else
+					{	
+						$entity  = new Hsfami();
+						$form    = $this->createForm(new HsfamiType(), $entity);
+						return $this->render("ScontrolBundle:Hsfami:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => '0-Antecedente Familiar Creado Con Exito!'));
+					}
+				}
+				catch(\Exception $e)
+				{
+					if($lv == 1)
+						return array('entity' => $entity, 'form'   => $form->createView());
+					else	
+						return $this->render("ScontrolBundle:Hsfami:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => '1-Imposible Crear Antecedente Familiar!'));
+				}
 			}
 
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
-		}else
+			if($lv == 1)
+				return array('entity' => $entity, 'form'   => $form->createView());
+			else
+				return $this->render("ScontrolBundle:Hsfami:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
@@ -233,7 +258,7 @@ class HsfamiController extends Controller
 					$em->remove($entity);
 					$em->flush();
 					
-					Tool::logger($this, $entity->getId());
+					Tool::logger($this, $id);
 				}
 	
 				return $this->redirect($this->generateUrl('hsfami'));

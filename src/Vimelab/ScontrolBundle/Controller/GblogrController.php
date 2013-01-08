@@ -43,11 +43,16 @@ class GblogrController extends Controller
     
 	public function filterAction($param = '')
     {
-        $em = $this->getDoctrine()->getEntityManager();
-        $repo = $em->getRepository('ScontrolBundle:Gblogr');
-        $entities = $repo->getFilter($param);
+        if(Tool::isGrant($this))
+        {
+            $em = $this->getDoctrine()->getEntityManager();
+            $repo = $em->getRepository('ScontrolBundle:Gblogr');
+            $entities = $repo->getFilter($param);
 
-        return $this->render("ScontrolBundle:Gblogr:index.html.twig", array('entities' => $entities, 'pages' => 1, 'pag' => 1));
+            return $this->render("ScontrolBundle:Gblogr:index.html.twig", array('entities' => $entities, 'pages' => 1, 'pag' => 1));
+        }
+        else
+            return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
     /**
@@ -231,7 +236,7 @@ class GblogrController extends Controller
 				$em->remove($entity);
 				$em->flush();
 				
-				Tool::logger($this, $entity->getId());
+				Tool::logger($this, $id);
 			}
 
 			return $this->redirect($this->generateUrl('gblogr'));

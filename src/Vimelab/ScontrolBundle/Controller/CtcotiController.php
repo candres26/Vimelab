@@ -43,11 +43,16 @@ class CtcotiController extends Controller
     
 	public function filterAction($param = '')
     {
-        $em = $this->getDoctrine()->getEntityManager();
-        $repo = $em->getRepository('ScontrolBundle:Ctcoti');
-        $entities = $repo->getFilter($param);
+        if(Tool::isGrant($this))
+        {
+            $em = $this->getDoctrine()->getEntityManager();
+            $repo = $em->getRepository('ScontrolBundle:Ctcoti');
+            $entities = $repo->getFilter($param);
 
-        return $this->render("ScontrolBundle:Ctcoti:index.html.twig", array('entities' => $entities, 'pages' => 1, 'pag' => 1));
+            return $this->render("ScontrolBundle:Ctcoti:index.html.twig", array('entities' => $entities, 'pages' => 1, 'pag' => 1));
+        }
+        else
+            return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
     /**

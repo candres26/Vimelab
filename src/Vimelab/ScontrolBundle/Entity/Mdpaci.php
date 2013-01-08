@@ -465,4 +465,16 @@ class Mdpaci
 		
 		return trim($tmp);
 	}
+
+    public function getStrSexo()
+    {
+        $ssex = $this->sexo == "M" ? "Masculino" : "Femenino";
+        return $ssex;
+    }
+
+    public function getEdad()
+    {
+        $hoy = new \DateTime("now");
+        return $hoy->diff($this->nacimiento)->format("%y");
+    }
 }

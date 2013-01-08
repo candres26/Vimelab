@@ -12,7 +12,9 @@ h2
 	font-family: helvetica, arial;
 	font-size: 22px;
 }
-.home {
+
+.home 
+{
 	cursor: pointer;
 	color: #000; 
 	font-size: 0.9em; 
@@ -169,6 +171,30 @@ h2
     color: #45568a;
 }
 
+#_vime-vista2
+{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background: #f2f2f2;
+    text-align: center;
+    font-weight: bold;
+}
+
+#_vime-area2
+{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: #45568a;
+}
+
 .vime-page
 {
 	position: absolute;
@@ -188,6 +214,25 @@ h2
 {
 	box-shadow: 2px 2px 5px #203982;
 	border-radius: 15.5px;
+}
+
+.vime-columU
+{
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+}
+
+.vime-columU td
+{
+	width: 50%;
+}
+
+.vime-columU td:first-child
+{
+	text-align: right;
 }
 
 .vime-colum1
@@ -598,4 +643,53 @@ h2
 	overflow: visible;
 	border: 0px solid black;
 	background: #f2f2f2;
+}
+
+
+/* Para Helper */
+
+.hlpCam
+{
+	display: block;
+	width: 500px;
+}
+
+.hlpDiv
+{
+	display: none;
+	position: absolute;
+	opacity: 0.9;
+	background: #FFFFFF;
+	overflow: auto;
+	width: 500px;
+	height: 70px;
+	border: 1px solid #203982;
+}
+
+.hlpDiv table
+{
+	width: 98%;
+	margin: auto;
+	border-collapse: collapse;
+	cursor: pointer;
+}
+
+.hlpDiv td
+{
+	border: 1px solid #203982;	
+}
+
+.hlpDiv tr
+{
+	background: #F2F2F2;
+}
+
+.hlpDiv tr:hover
+{
+	background: #A8BBFA;	
+}
+
+.hlpDiv th
+{
+	display: none;
 }

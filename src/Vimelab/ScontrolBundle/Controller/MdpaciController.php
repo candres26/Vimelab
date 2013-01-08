@@ -43,11 +43,16 @@ class MdpaciController extends Controller
     
 	public function filterAction($param = '')
     {
-        $em = $this->getDoctrine()->getEntityManager();
-        $repo = $em->getRepository('ScontrolBundle:Mdpaci');
-        $entities = $repo->getFilter($param);
+        if(Tool::isGrant($this))
+        {
+            $em = $this->getDoctrine()->getEntityManager();
+            $repo = $em->getRepository('ScontrolBundle:Mdpaci');
+            $entities = $repo->getFilter($param);
 
-        return $this->render("ScontrolBundle:Mdpaci:index.html.twig", array('entities' => $entities, 'pages' => 1, 'pag' => 1));
+            return $this->render("ScontrolBundle:Mdpaci:index.html.twig", array('entities' => $entities, 'pages' => 1, 'pag' => 1));
+        }
+        else
+            return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
     /**
@@ -146,8 +151,6 @@ class MdpaciController extends Controller
 				return array('entity' => $entity, 'form'   => $form->createView());
 			else
 				return $this->render("ScontrolBundle:Mdpaci:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
-			
-			
 		}
 		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
@@ -254,7 +257,7 @@ class MdpaciController extends Controller
 					$em->remove($entity);
 					$em->flush();
 					
-					Tool::logger($this, $entity->getId());
+					Tool::logger($this, $id);
 				}
 	
 				return $this->redirect($this->generateUrl('mdpaci'));

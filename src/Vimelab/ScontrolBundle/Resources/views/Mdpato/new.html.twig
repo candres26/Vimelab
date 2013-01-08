@@ -9,10 +9,15 @@
 <form id="vime-form" action="{{ path('mdpato_create') }}" method="post" {{ form_enctype(form) }}>
 	<input type="submit" style="display: none" id="sender" value="send">
    <table align="center">
+		<tr><td colspan='2'>{{ form_errors(form.mdgrup) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.mdgrup) }}</td><td align="left">{{ form_widget(form.mdgrup) }}</td></tr>
+
 		<tr><td colspan='2'>{{ form_errors(form.codigo) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.codigo) }}</td><td align="left">{{ form_widget(form.codigo) }}</td></tr>
+		
 		<tr><td colspan='2'>{{ form_errors(form.nombre) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.nombre) }}</td><td align="left">{{ form_widget(form.nombre) }}</td></tr>
+		
 		<tr><td colspan='2'>{{ form_errors(form.alternativo) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.alternativo) }}</td><td align="left">{{ form_widget(form.alternativo) }}</td></tr>
     </table>

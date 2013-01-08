@@ -4,6 +4,7 @@ namespace Vimelab\ScontrolBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
+use Doctrine\ORM\EntityRepository;
 
 class MdpatoType extends AbstractType
 {
@@ -12,8 +13,18 @@ class MdpatoType extends AbstractType
         $builder
             ->add('codigo', 'text', array('label' => 'Código'))
             ->add('nombre')
-            ->add('alternativo')
-        ;
+            ->add('alternativo');
+            
+        $builder->add('mdgrup', 'entity', array('class' => 'ScontrolBundle:Mdgrup', 'label' => 'Grupo',
+        'query_builder' => function(EntityRepository $er)
+				{
+					return $er->createQueryBuilder('g')
+						->add('select', 'g')
+						->add('from', 'ScontrolBundle:Mdgrup g')
+						->add('orderBy', 'g.nombre ASC');
+				}
+				
+			));
     }
 
     public function getName()

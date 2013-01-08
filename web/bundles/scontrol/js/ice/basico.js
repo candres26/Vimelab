@@ -28,16 +28,20 @@ function toJail(arr, gl, gr, ms)
 	return res;
 }
 
-function ofJail(arr, gl, gr)
+function ofJail(arr, gl, gr, ms)
 {
 	if(gl == undefined)
 		gl = '{';
 	
 	if(gr == undefined)
 		gr = '}';
+	
+	if(ms == undefined)
+		ms = true;
 		
 	var res = new Array();
-	
+	var isData = false;
+		
 	var j = arr.length;
 	var i = 0;
 	while(i < j)
@@ -46,7 +50,7 @@ function ofJail(arr, gl, gr)
 		{
 			var ix = getPiece(arr, gl, gr, i);
 			var tmp = arr.substring(i+1, ix); 
-			res.push(ofJail(tmp, gl, gr));
+			res.push(ofJail(tmp, gl, gr, false));
 			i = ix;
 		}
 		if(arr[i] == gr)
@@ -56,11 +60,12 @@ function ofJail(arr, gl, gr)
 		else
 		{
 			res.push(arr);
+			isData = true;
 			i = j;
 		}			 
 	}
 	
-	if(res.length == 1)
+	if(ms || isData)
 		res = res[0];
 	
 	return res;

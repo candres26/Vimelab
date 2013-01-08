@@ -44,11 +44,16 @@ class CtcontController extends Controller
     
 	public function filterAction($param = '')
     {
-        $em = $this->getDoctrine()->getEntityManager();
-        $repo = $em->getRepository('ScontrolBundle:Ctcont');
-        $entities = $repo->getFilter($param);
+        if(Tool::isGrant($this))
+        {
+            $em = $this->getDoctrine()->getEntityManager();
+            $repo = $em->getRepository('ScontrolBundle:Ctcont');
+            $entities = $repo->getFilter($param);
 
-        return $this->render("ScontrolBundle:Ctcont:index.html.twig", array('entities' => $entities, 'pages' => 1, 'pag' => 1));
+            return $this->render("ScontrolBundle:Ctcont:index.html.twig", array('entities' => $entities, 'pages' => 1, 'pag' => 1));
+        }
+        else
+            return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
     /**
@@ -82,11 +87,16 @@ class CtcontController extends Controller
 			{
 				$meses = array('Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
 				
+<<<<<<< HEAD
 				$sucu = $em->getRepository('ScontrolBundle:Ctcont')->getSucursal($entity->getGbempr()->getId(),"principal");
 					if($sucu == null){
 						$sucu = new Gbsucu();
 					}
                 			
+=======
+				$sucu = $em->getRepository('ScontrolBundle:Ctcont')->getSucursal($entity->getGbempr()->getId(),"PRINCIPAL");
+				
+>>>>>>> 6ed3491431be94336c6bc4906e4f3f41367e998e
 				$ciud = $sucu->getGbciud();
 					
 				
@@ -681,7 +691,7 @@ class CtcontController extends Controller
 					$em->remove($entity);
 					$em->flush();
 					
-					Tool::logger($this, $entity->getId());
+					Tool::logger($this, $id);
 				}
 	
 				return $this->redirect($this->generateUrl('ctcont'));

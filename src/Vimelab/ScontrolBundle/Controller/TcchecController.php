@@ -10,6 +10,8 @@ use Vimelab\ScontrolBundle\Entity\Tcchec;
 use Vimelab\ScontrolBundle\Form\TcchecType;
 use Vimelab\ScontrolBundle\Tool\Tool;
 
+use Symfony\Component\HttpFoundation\Response;
+
 /**
  * Tcchec controller.
  *
@@ -43,11 +45,16 @@ class TcchecController extends Controller
     
 	public function filterAction($param = '')
     {
-        $em = $this->getDoctrine()->getEntityManager();
-        $repo = $em->getRepository('ScontrolBundle:Tcchec');
-        $entities = $repo->getFilter($param);
+        if(Tool::isGrant($this))
+        {
+            $em = $this->getDoctrine()->getEntityManager();
+            $repo = $em->getRepository('ScontrolBundle:Tcchec');
+            $entities = $repo->getFilter($param);
 
-        return $this->render("ScontrolBundle:Tcchec:index.html.twig", array('entities' => $entities, 'pages' => 1, 'pag' => 1));
+            return $this->render("ScontrolBundle:Tcchec:index.html.twig", array('entities' => $entities, 'pages' => 1, 'pag' => 1));
+        }
+        else
+            return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
     /**
@@ -83,18 +90,19 @@ class TcchecController extends Controller
      * @Route("/new", name="tcchec_new")
      * @Template()
      */
-    public function newAction()
+    public function newAction($lv)
     {
 		if(Tool::isGrant($this))
 		{
 			$entity = new Tcchec();
 			$form   = $this->createForm(new TcchecType(), $entity);
 
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
-		}else
+			if($lv == 1)
+				return array('entity' => $entity, 'form'   => $form->createView());
+			else
+				return $this->render("ScontrolBundle:Tcchec:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
@@ -105,7 +113,7 @@ class TcchecController extends Controller
      * @Method("post")
      * @Template("ScontrolBundle:Tcchec:new.html.twig")
      */
-    public function createAction()
+    public function createAction($lv)
     {
 		if(Tool::isGrant($this))
 		{
@@ -114,21 +122,37 @@ class TcchecController extends Controller
 			$form    = $this->createForm(new TcchecType(), $entity);
 			$form->bindRequest($request);
 
-			if ($form->isValid()) {
-				$em = $this->getDoctrine()->getEntityManager();
-				$em->persist($entity);
-				$em->flush();
+			if ($form->isValid()) 
+			{
+				try
+				{
+					$em = $this->getDoctrine()->getEntityManager();
+					$em->persist($entity);
+					$em->flush();
 
-				Tool::logger($this, $entity->getId());
-				return $this->redirect($this->generateUrl('tcchec_show', array('id' => $entity->getId())));
-				
+					Tool::logger($this, $entity->getId());
+
+					if($lv == 1)
+						return $this->redirect($this->generateUrl('tcchec_show', array('id' => $entity->getId())));
+					else
+						return $this->redirect($this->generateUrl('tcchec_edit', array('id' => $entity->getId(), 'lv' => 3)));
+
+				}
+				catch(\Exception $e)
+				{
+					if($lv == 1)
+						return array('entity' => $entity, 'form'   => $form->createView());
+					else	
+						return $this->render("ScontrolBundle:Tcchec:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => '1-Imposible Crear Lista De Chequeo!'));
+				}
 			}
 
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
-		}else
+			if($lv == 1)
+				return array('entity' => $entity, 'form'   => $form->createView());
+			else
+				return $this->render("ScontrolBundle:Tcchec:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
@@ -138,7 +162,7 @@ class TcchecController extends Controller
      * @Route("/{id}/edit", name="tcchec_edit")
      * @Template()
      */
-    public function editAction($id)
+    public function editAction($id, $lv)
     {
 		if(Tool::isGrant($this))
 		{
@@ -146,19 +170,22 @@ class TcchecController extends Controller
 
 			$entity = $em->getRepository('ScontrolBundle:Tcchec')->find($id);
 
-			if (!$entity) {
+			if (!$entity) 
+			{
 				throw $this->createNotFoundException('Unable to find Tcchec entity.');
 			}
 
 			$editForm = $this->createForm(new TcchecType(), $entity);
 			$deleteForm = $this->createDeleteForm($id);
 
-			return array(
-				'entity'      => $entity,
-				'edit_form'   => $editForm->createView(),
-				'delete_form' => $deleteForm->createView(),
-			);
-		}else
+			if($lv == 1)
+				return array('entity' => $entity, 'edit_form' => $editForm->createView(), 'delete_form' => $deleteForm->createView());
+			else if($lv == 2)
+				return $this->render("ScontrolBundle:Tcchec:_edit.html.twig", array('entity' => $entity, 'edit_form' => $editForm->createView(), 'RMSG' => 'LOAD'));
+			else
+				return $this->render("ScontrolBundle:Tcchec:_edit.html.twig", array('entity' => $entity, 'edit_form' => $editForm->createView(), 'RMSG' => '0-Lista De Chequeo Actualizada Con Exito!'));
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
 	}
 
@@ -169,7 +196,7 @@ class TcchecController extends Controller
      * @Method("post")
      * @Template("ScontrolBundle:Tcchec:edit.html.twig")
      */
-    public function updateAction($id)
+    public function updateAction($id, $lv)
     {
 		if(Tool::isGrant($this))
 		{
@@ -188,20 +215,35 @@ class TcchecController extends Controller
 
 			$editForm->bindRequest($request);
 
-			if ($editForm->isValid()) {
-				$em->persist($entity);
-				$em->flush();
+			if ($editForm->isValid()) 
+			{
+				try
+				{
+					$em->persist($entity);
+					$em->flush();
 
-				Tool::logger($this, $entity->getId());
-				return $this->redirect($this->generateUrl('tcchec_show', array('id' => $id)));
+					Tool::logger($this, $entity->getId());
+					
+					if($lv == 1)
+						return $this->redirect($this->generateUrl('tcchec_show', array('id' => $entity->getId())));
+					else
+						return $this->redirect($this->generateUrl('tcchec_edit', array('id' => $entity->getId(), 'lv' => 3)));
+				}
+				catch(\Exception $e)
+				{
+					if($lv == 1)
+						return array('entity' => $entity, 'form'   => $form->createView());
+					else	
+						return $this->render("ScontrolBundle:Tcchec:_new.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => '1-Imposible Actualizar Lista De Chequeo!'));
+				}
 			}
 
-			return array(
-				'entity'      => $entity,
-				'edit_form'   => $editForm->createView(),
-				'delete_form' => $deleteForm->createView(),
-			);
-		}else
+			if($lv == 1)
+				return array('entity' => $entity, 'form'   => $form->createView());
+			else
+				return $this->render("ScontrolBundle:Tcchec:_edit.html.twig", array('entity' => $entity, 'form'   => $form->createView(), 'RMSG' => 'LOAD'));
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
@@ -233,7 +275,7 @@ class TcchecController extends Controller
 					$em->remove($entity);
 					$em->flush();
 					
-					Tool::logger($this, $entity->getId());
+					Tool::logger($this, $id);
 				}
 	
 				return $this->redirect($this->generateUrl('tcchec'));

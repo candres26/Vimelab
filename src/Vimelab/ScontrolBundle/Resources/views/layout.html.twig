@@ -81,6 +81,7 @@
 				<tr><td id="{{ path('mdhist') }}">Hístoria</td></tr>
 				<tr><td id="{{ path('mdlabo') }}">Ordenes Laboratorio</td></tr>
 				<tr><td id="{{ path('mdpaci') }}">Pacientes</td></tr>
+				<tr><td id="{{ path('mdgrup') }}">Gr. Patologías</td></tr>
 				<tr><td id="{{ path('mdpato') }}">Patología</td></tr>
 				<tr><td id="{{ path('mdproc') }}">Procedimiento</td></tr>
 				<tr><td id="{{ path('mdprot') }}">Protocolo</td></tr>
@@ -107,9 +108,10 @@
         <div id="vimeMenu6" class='Menu'>
 			<b>Asistentes</b>
 			<table>
-				<!-- <tr><td id="{{ path('as_empr') }}">Empresas</td></tr> -->
 				<tr><td id="{{ path('as_master') }}" title="Revisión Médica">Maestro</td></tr>
+				<tr><td id="{{ path('as_ante') }}">Antecedentes</td></tr>
 				<tr><td id="{{ path('as_protocolo') }}">Protocolos</td></tr>
+				<tr><td id="{{ path('as_rtec') }}">R. Técnica</td></tr>
 				<tr><td id="{{ path('as_secu') }}">Seguridad</td></tr>
 				<tr><td id="{{ path('as_ubica') }}">Ubicaciones</td></tr>
 			</table>
@@ -205,11 +207,14 @@
 			/* POP */
 			gId("pop").onclick = $clearPop;			
 			/* --- */
+<<<<<<< HEAD
 			
 			for(i = 1; i < 8; i++)
 
 			/* Fold del menu */
 			for(i = 1; i < 7; i++)
+=======
+>>>>>>> 6ed3491431be94336c6bc4906e4f3f41367e998e
 
 			/* Fold del menu */
 			for(i = 1; i < 8; i++)

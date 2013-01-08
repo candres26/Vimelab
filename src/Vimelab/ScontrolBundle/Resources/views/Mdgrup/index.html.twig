@@ -1,0 +1,90 @@
+
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %}Listado De Grupos De Patologías{% endblock %}
+
+{% block area %}
+
+<h2 align="left">Listado De Grupos De Patologías</h2>
+
+<div class="vime-page">
+    <table>
+        <tr>
+            <td><a href="{{ path('mdgrup_pag', { 'pag': 1 }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/arrow_ini.png') }}" title="Página Inicial"></a></td>
+            <td><a href="{{ path('mdgrup_pag', { 'pag': pag-1 }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/arrow_ant.png') }}" title="Página Anterior"></a></td>
+            <td><input id="idxPag" type="text" value="{{ pag }}"/ onkeypress="paginar(event)" title="Enter para paginar"> / {{ pages }}</td>
+            <td><a href="{{ path('mdgrup_pag', { 'pag': pag+1 }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/arrow_sig.png') }}" title="Página Siguiente"></a></td>
+            <td><a href="{{ path('mdgrup_pag', { 'pag': pages }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/arrow_fin.png') }}" title="Página Final"></a></td>
+        </tr>
+    </table>
+</div>
+
+
+<input placeholder="Digite su búsqueda" type="text" id="filterTXT"  size="50" style="font-family: Arial; font-size: 10pt; background-color: #FFF; border-radius: 5px; color: #324E8A;"><img style="cursor: pointer; position: absolute; margin-left: 1%; " onClick="buscar()" src="{{ asset('bundles/scontrol/imagenes/applet.png') }}" title="Buscar">
+<br>
+<br>
+<table class="vime-table" align="center" border="1">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Alternativo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td>{{ entity.id }}</td>
+            <td>{{ entity.nombre }}</td>
+            <td>{{ entity.alternativo}}</td>
+            <td align="center">
+                <a href="{{ path('mdgrup_show', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/show_index.png') }}" title="Mostrar"></a>
+                <a href="{{ path('mdgrup_edit', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar_index.png') }}" title="Editar"></a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+{% block uscript %}
+    <script type="text/javascript">
+        
+        var basePath = "{{ path('mdgrup') }}";
+            
+        function buscar(elem)
+        {
+            if(document.getElementById("filterTXT").value != '')
+            {
+                val = document.getElementById("filterTXT").value;
+                location = basePath+"/"+val+"/filter";
+            }
+            else
+                alert("Necesita definir un parámetro de búsqueda!");
+        }
+        
+        function paginar(event)
+        {
+            if(event.keyCode == 13)
+            {
+                var pag = parseInt(document.getElementById("idxPag").value);
+                if(!isNaN(pag))
+                    location = basePath+"/"+pag+"/pag";
+            }
+        }
+        
+    </script>
+{% endblock %}
+
+{% block action %}
+<div class="vime-action">
+    <table>
+        <tr>
+            <td>&nbsp;&nbsp;&nbsp;</td>
+            <td onClick="go('{{ path('mdgrup') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
+            <td onClick="go('{{ path('mdgrup_new') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/agregar.png') }}" title="Agregar"></td>
+        </tr>
+    </table>
+</div>
+{% endblock %}

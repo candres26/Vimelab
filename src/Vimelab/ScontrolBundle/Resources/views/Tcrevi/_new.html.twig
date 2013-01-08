@@ -1,0 +1,43 @@
+{% extends "ScontrolBundle::_layout.html.twig" %}
+
+{% block title %}Revisión Técnica{% endblock %}
+
+{% block area %}
+
+	<input type='hidden' id='RMSG'/ value='{{ RMSG }}'>
+
+	<form id="vime-form" action="{{ path('tcrevi_create', {'lv': 2}) }}" method="post" {{ form_enctype(form) }}>
+		<input type="submit" style="display: none" id="sender" value="send">
+	   <table align="center">
+			<tr><td colspan='2'>{{ form_errors(form.fecha) }}</td></tr>
+			<tr><td align="left">{{ form_label(form.fecha) }}</td><td align="left">{{ form_widget(form.fecha) }} <img id="hlpFecha" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}"></td></tr>
+			<tr><td colspan='2'>{{ form_errors(form.inicio) }}</td></tr>
+			<tr><td align="left">{{ form_label(form.inicio) }}</td><td align="left">{{ form_widget(form.inicio) }}</td></tr>
+			<tr><td colspan='2'>{{ form_errors(form.fin) }}</td></tr>
+			<tr><td align="left">{{ form_label(form.fin) }}</td><td align="left">{{ form_widget(form.fin) }}</td></tr>
+			<tr><td colspan='2'>{{ form_errors(form.entrevistados) }}</td></tr>
+			<tr><td align="left">{{ form_label(form.entrevistados) }}</td><td align="left">{{ form_widget(form.entrevistados) }}</td></tr>
+			<tr><td colspan='2'>{{ form_errors(form.resumen) }}</td></tr>
+			<tr><td align="left">{{ form_label(form.resumen) }}</td><td align="left">{{ form_widget(form.resumen) }}</td></tr>
+			<tr><td colspan='2'>{{ form_errors(form.gbsucu) }}</td></tr>
+			<tr><td align="left">{{ form_label(form.gbsucu) }}</td><td align="left">{{ form_widget(form.gbsucu) }}</td></tr>
+			<tr><td colspan='2'>{{ form_errors(form.gbpers) }}</td></tr>
+			<tr><td align="left">{{ form_label(form.gbpers) }}</td><td align="left">{{ form_widget(form.gbpers) }}</td></tr>
+	    </table>
+	    {{ form_rest(form) }}
+	</form>
+
+{% endblock %}
+
+{% block uscript %}
+	
+	<script type="text/javascript">
+		
+		function $init(event)
+		{
+			gId('hlpFecha').onclick = $helpCalendar;
+		}
+		
+	</script>
+	
+{% endblock %}
