@@ -106,6 +106,13 @@ class Ctcont
     private $ntrabajadores;
 
     /**
+     * @var string $vletras
+     *
+     * @ORM\Column(name="vletras", type="string", length=100, nullable=false)
+     */
+    private $vletras;
+
+    /**
      * @var string $revision
      *
      * @ORM\Column(name="revision", type="string", length=1, nullable=false)
@@ -471,6 +478,26 @@ class Ctcont
     public function getNtrabajadores()
     {
         return $this->ntrabajadores;
+    }
+    
+    /**
+     * Set vletras
+     *
+     * @param string $vletras
+     */
+    public function setVletras($vletras)
+    {
+        $this->vletras = $vletras;
+    }
+
+    /**
+     * Get vletras
+     *
+     * @return string
+     */
+    public function getVletras()
+    {
+        return $this->vletras;
     }
 
     /**

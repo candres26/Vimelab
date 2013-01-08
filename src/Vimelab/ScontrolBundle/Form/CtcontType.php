@@ -22,6 +22,7 @@ class CtcontType extends AbstractType
             ->add('nombrecontratante', 'text', array('label' => 'Nombre contratante', 'attr' => array('class' => "test")))
             ->add('direccioncontratante', 'text',array('label' => 'Dirección contratante'))
             ->add('ntrabajadores', 'text',array('label'=> 'Número de Trabajadores'))
+            ->add('vletras', 'text',array('label'=> 'Valor en letras'))
             ->add('revision', 'text', array('label' => 'Revisión'))
             ->add('aviso')
             ->add('costovigencia', 'text', array('label' => 'Costo vigencia'))
