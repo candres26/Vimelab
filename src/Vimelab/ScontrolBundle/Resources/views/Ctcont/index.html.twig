@@ -29,6 +29,7 @@
             <th>Fecha</th>
             <th>Contratista</th>
             <th>Contratante</th>
+            <th>No. Trabajadores</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -39,6 +40,7 @@
             <td>{% if entity.fecha %}{{ entity.fecha| date('Y-m-d')}}{% endif%}</td>
             <td>{{ entity.nombrecontratista }}</td>
             <td>{{ entity.nombrecontratante }}</td>
+            <td>{{ entity.ntrabajadores }}</td>
             <td align="center">
 				<a href="{{ path('ctcont_show', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/show_index.png') }}" title="Mostrar"></a>
 				<a href="{{ path('ctcont_edit', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar_index.png') }}" title="Editar"></a>

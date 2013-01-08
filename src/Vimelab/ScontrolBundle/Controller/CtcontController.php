@@ -87,12 +87,22 @@ class CtcontController extends Controller
 			{
 				$meses = array('Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
 				
+<<<<<<< HEAD
+				$sucu = $em->getRepository('ScontrolBundle:Ctcont')->getSucursal($entity->getGbempr()->getId(),"principal");
+					if($sucu == null){
+						$sucu = new Gbsucu();
+					}
+                			
+=======
 				$sucu = $em->getRepository('ScontrolBundle:Ctcont')->getSucursal($entity->getGbempr()->getId(),"PRINCIPAL");
 				
+>>>>>>> 6ed3491431be94336c6bc4906e4f3f41367e998e
 				$ciud = $sucu->getGbciud();
 					
 				
 				$corp = $em->getRepository('ScontrolBundle:Gbcorp')->find('1');
+				
+				$ciudcorp = $corp->getGbciud();
 				
 				// create new PDF document
 				$pdf = new \Tcpdf_Tcpdf(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -127,6 +137,8 @@ class CtcontController extends Controller
 				
 				// ---------------------------------------------------------
 				$fecha = $entity->getFecha();
+				$fechafin = $entity->getFin();
+				$iva = (intval($entity->getIva()))/1;
 			
 				// add a page
 				$pdf->AddPage();
@@ -138,12 +150,12 @@ class CtcontController extends Controller
 				<h3 align="center">REUNIDOS</h3>
 				<p>
 				De una parte, '.$entity->getNombrecontratante().', mayor de edad, con N.I.F '.$entity->getIdentcontratante().' en representación de
-				<b>'.$entity->getGbempr()->getNombre().'</b> en adelante Empresa, con domicilio social en '.$sucu->getDireccion().', '.$ciud->getNombre().', 
+				<b>'.$entity->getGbempr()->getNombre().'</b> en adelante Empresa, con domicilio social en '.$sucu->getDireccion().', CP '.$ciud->getCodigo().' '.$ciud->getNombre().', 
 				provista de CIF Nº '.$entity->getGbempr()->getIdentificacion().'. Tel.: '.$sucu->getTelefono().', E-mail: '.$sucu->getCorreo().'.</p>
 				<p>
 				Y de otra, '.$entity->getNombrecontratista().', con NIF '.$entity->getIdentcontratista().' quien actúa en calidad de
 				'.$entity->getCargocontratista().' de la entidad, '.$corp->getNombre().', en adelante VIMELAB, con 
-				domicilio social en '.$corp->getDireccion().', AQUI VA LA CIUDAD CONCATENADA A LA DIRECCION, con '.$corp->getIdentificacion().'.
+				domicilio social en '.$corp->getDireccion().', '. $ciudcorp->getNombre(). ', con '.$corp->getIdentificacion().'.
 				</p>
 				<p>
 				Ambas partes, en el concepto en que intervienen, se reconocen la necesaria capacidad legal para contratar
@@ -412,15 +424,15 @@ class CtcontController extends Controller
 						<td>DENOMINACIÓN</td><td>DIRECCIÓN</td><td>C.P. LOCALIDAD</td><td> No. TRABAJADORES</td>
 					</tr>
 					<tr>
-						<td>'.$entity->getGbempr()->getNombre().'</td><td>'.$entity->getDireccioncontratante().'</td><td></td><td></td>
+						<td>'.$entity->getGbempr()->getNombre().'</td><td>'.$sucu->getDireccion().'</td><td>'.$ciud->getCodigo().' '.$ciud->getNombre().'</td><td>'.$entity->getNtrabajadores().'</td>
 					</tr>
 				</table>
 				</p>
 				
 				<h4>Condiciones económicas particulares del presente contrato.</h4>
 				
-				<p>Como contraprestación por los servicios prestados al amparo del presente contrato la Empresa abonará a
-				VIMELAB, S.L., por los conceptos que se relacionan los siguientes importes:
+				<p>Como contraprestación por los servicios prestados al amparo del presente contrato la Empresa abonará a 
+				'.$corp->getNombre().', por los conceptos que se relacionan los siguientes importes:
 				</p>
 				
 				<p>
@@ -429,7 +441,7 @@ class CtcontController extends Controller
 						<td>ACTIVIDAD</td><td>IMPORTE</td><td>IVA</td><td>VENCIMIENTO</td>
 					</tr>
 					<tr>
-						<td>'.$entity->getGbempr()->getNombre().'</td><td>'.$entity->getDireccioncontratante().'</td><td></td><td></td>
+						<td>'.$entity->getGbempr()->getNombre().'</td><td>'.$entity->getTotal().' €</td><td> IVA '.$iva.'% no incluido</td><td>'.$fechafin->format('d-m-Y').'</td>
 					</tr>
 				</table>
 				</p>
@@ -437,7 +449,7 @@ class CtcontController extends Controller
 				<p align="justify">El presente contrato devengará los siguientes honorarios:</p>
 
 				<p align="justify">El coste de este servicio de Prevención de Riesgos Laborales asciende TRESCIENTOS SESENTA euros
-				(360.00€), NO incluido IVA del 18%, que se abonará en el momento de la firma del presente contrato.</p>
+				('.$entity->getTotal().' €), NO incluido IVA del '.$iva.'%, que se abonará en el momento de la firma del presente contrato.</p>
 
 				<p align="justify">El Examen Médico Específico asciende a 37.00 € (TREINTA Y SIETE euros) de riesgo BAJO. (Se cobrará una vez
 				realizado).</p>
@@ -450,22 +462,22 @@ class CtcontController extends Controller
 
 				<p><b>UNDÉCIMA.</b> Para resolver cualquier diferencia que pudiera surgir de la aplicación del presente concierto,
 				las partes, con renuncia del fuero que les pudiera corresponder, se someten a los Juzgados de la ciudad de
-				Barcelona.</p>
+				'.$entity->getFirmagbciud().'.</p>
 				
 				<h4>RESPONSABILIDAD LIMITADA VIMELAB S.L</h4>
 				
 				<p>Nuestra responsabilidad se extiende al periodo de vigencia especificado y en los términos y alcance del
-				trabajo acordados entre la Empresa y VIMELAB S.L.</p>
+				trabajo acordados entre la Empresa y '.$corp->getNombre().'</p>
 
-				<p>VIMELAB S.L rechaza cualquier tipo de responsabilidad derivada de sucesos anteriores
+				<p>'.$corp->getNombre().' rechaza cualquier tipo de responsabilidad derivada de sucesos anteriores
 				perfeccionamiento del presente contrato o posteriores a la finalización de la vigencia del mismo.</p>
 
-				<p>VIMELAB S.L rechaza cualquier tipo de responsabilidad producida entre la firma del presente documento, la
+				<p>'.$corp->getNombre().' rechaza cualquier tipo de responsabilidad producida entre la firma del presente documento, la
 				constatación de los abonos correspondientes y la realización de los trabajos contratados, dentro del plazo
 				establecido, o cuando la realización de éstos se retrase por impago o cualquier otra causa previa generada
 				por el empresario contratante.</p>
 
-				<p>VIMELAB S.L declina cualquier tipo de responsabilidad en el caso de que la empresa hubiera aportado datos
+				<p>'.$corp->getNombre().' declina cualquier tipo de responsabilidad en el caso de que la empresa hubiera aportado datos
 				erróneos o falsos para la realización de los correspondientes informes.</p>
 				
 				<p align="center">ESTE CONTRATO NO TENDRÁ VALIDEZ SIN EL COMPROBANTE DE PAGO</p>
@@ -479,7 +491,7 @@ class CtcontController extends Controller
 				<p>
 				<table align="center" wight=50%>
 					<tr>
-						<td>Por la Empresa</td><td></td><td>Por VIMELAB S.L.</td>
+						<td>Por la Empresa</td><td></td><td>Por '.$corp->getNombre().'</td>
 					</tr>
 					<tr>
 						<td></td><td></td><td></td>
@@ -501,7 +513,7 @@ class CtcontController extends Controller
 
 				<p style="font-size: 0.7em">En conformidad con la Ley Orgánica 15/1999 de diciembre, de protección de datos de carácter personal, le informamos
 				que sus datos personales se incorporarán en un fichero automatizado denominado GESTION DE CLIENTES del cual
-				el titular es VIMELAB, S.L. e inscrito en la Agencia de Protección de Datos, con la finalidad de gestionar Clientes y
+				el titular es '.$corp->getNombre().' e inscrito en la Agencia de Protección de Datos, con la finalidad de gestionar Clientes y
 				Proveedores. Le informamos que sus datos no se cederán a ninguna otra entidad y consiente expresamente que se
 				traten por la finalidad indicada. Finalmente, le hacemos saber que puede ejercitar en cualquiera momento los derechos
 				de acceso, rectificación, cancelación y oposición en los términos establecidos en la legislación vigente sobre protección

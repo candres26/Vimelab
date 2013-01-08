@@ -99,6 +99,13 @@ class Ctcont
     private $direccioncontratante;
 
     /**
+     * @var string $ntrabajadores
+     *
+     * @ORM\Column(name="ntrabajadores", type="string", length=5, nullable=false)
+     */
+    private $ntrabajadores;
+
+    /**
      * @var string $revision
      *
      * @ORM\Column(name="revision", type="string", length=1, nullable=false)
@@ -444,6 +451,26 @@ class Ctcont
     public function getDireccioncontratante()
     {
         return $this->direccioncontratante;
+    }
+
+    /**
+     * Set ntrabajadores
+     *
+     * @param string $ntrabajadores
+     */
+    public function setNtrabajadores($ntrabajadores)
+    {
+        $this->ntrabajadores = $ntrabajadores;
+    }
+
+    /**
+     * Get ntrabajadores
+     *
+     * @return string
+     */
+    public function getNtrabajadores()
+    {
+        return $this->ntrabajadores;
     }
 
     /**
