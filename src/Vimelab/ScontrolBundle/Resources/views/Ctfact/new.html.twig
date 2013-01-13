@@ -7,33 +7,62 @@
 
 <form  id="vime-form" action="{{ path('ctfact_create') }}" method="post" {{ form_enctype(form) }}>
 	<input type="submit" style="display: none" id="sender" value="send">
-	<table style="position: absolute; margin-left: 18%;">
-		<tr><td colspan='2'>{{ form_errors(form.ctcont) }}</td></tr>
+	
+	<table class="vime-colum1">
+		<tr><td colspan='4'>{{ form_errors(form.estado) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.estado) }}</td><td colspan='3' align="left">{{ form_widget(form.estado) }}</td></tr>
+
+		<tr><td colspan='4'>{{ form_errors(form.ctcont) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.ctcont) }}</td><td align="left">{{ form_widget(form.ctcont) }}</td></tr>
-		<tr><td colspan='2'>{{ form_errors(form.gbpers) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.gbpers) }}</td><td align="left">{{ form_widget(form.gbpers) }}</td></tr>
-		<tr><td colspan='2'>{{ form_errors(form.gbempr) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.gbempr) }}</td><td align="left">{{ form_widget(form.gbempr) }}</td></tr>
-		<tr><td colspan='2'>{{ form_errors(form.fecha) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.fecha) }}</td><td align="left">{{ form_widget(form.fecha) }} <img id="hlpFecha" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}"></td></tr>
-		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>
-		<tr><td colspan='2'>{{ form_errors(form.vencimiento) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.vencimiento) }}</td><td align="left">{{ form_widget(form.vencimiento) }} <img id="hlpVencimiento" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}"></td></tr>
-		<tr><td></td><td style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>
+		
+		<tr><td colspan='4'>{{ form_errors(form.gbpers) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.gbpers) }}</td><td colspan='3' align="left">{{ form_widget(form.gbpers) }}</td></tr>
+		
+		<tr><td colspan='4'>{{ form_errors(form.gbempr) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.gbempr) }}</td><td colspan='3' align="left">{{ form_widget(form.gbempr) }}</td></tr>
+		
+		<tr><td colspan='4'>{{ form_errors(form.fecha) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.fecha) }}</td><td colspan='3' align="left">{{ form_widget(form.fecha) }} <img id="hlpFecha" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}"></td></tr>
+		<tr><td></td><td colspan='3' style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>
+		
+		<tr><td colspan='4'>{{ form_errors(form.vencimiento) }}</td></tr>
+		<tr><td align="left">{{ form_label(form.vencimiento) }}</td><td colspan='3' align="left">{{ form_widget(form.vencimiento) }} <img id="hlpVencimiento" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}"></td></tr>
+		<tr><td></td><td colspan='3' style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>
+
+		<tr><td></td><td colspan='3'>{{ form_errors(form.perini) }}{{ form_errors(form.perfin) }}</td></tr>
+		<tr>
+			<td style="display: none;" align="left">{{ form_label(form.vencimiento) }}</td>
+			<td style="display: none;" align="left">{{ form_label(form.vencimiento) }}</td>
+			<td align="left">Periodo:</td>
+			<td align="left">
+				{{ form_widget(form.perini) }} 
+				<img id="hlpPerini" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}">
+			</td>
+			<td>A</td>
+			<td>  
+				{{ form_widget(form.perfin) }}
+				<img id="hlpPerfin" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}">
+			</td>
+		</tr>
+		<tr><td></td><td colspan='3' style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>
+	</table>
+
+	<table class="vime-colum2">
 		<tr><td colspan='2'>{{ form_errors(form.subtotal) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.subtotal) }}</td><td align="left">{{ form_widget(form.subtotal) }}</td></tr>
+
 		<tr><td colspan='2'>{{ form_errors(form.iva) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.iva) }}</td><td align="left">{{ form_widget(form.iva) }}</td></tr>
+		
 		<tr><td colspan='2'>{{ form_errors(form.descuento) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.descuento) }}</td><td align="left">{{ form_widget(form.descuento) }}</td></tr>
-	</table>    
-	<table style="position: absolute; margin-left: 50%;">
+
 		<tr><td colspan='2'>{{ form_errors(form.total) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.total) }}</td><td align="left">{{ form_widget(form.total) }}</td></tr>
-		<tr><td colspan='2'>{{ form_errors(form.estado) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.estado) }}</td><td align="left">{{ form_widget(form.estado) }}</td></tr>
+		
 		<tr><td colspan='2'>{{ form_errors(form.detalle) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.detalle) }}</td><td align="left">{{ form_widget(form.detalle) }}</td></tr>
+		
 		<tr><td colspan='2'>{{ form_errors(form.observaciones) }}</td></tr>
 		<tr><td align="left">{{ form_label(form.observaciones) }}</td><td align="left">{{ form_widget(form.observaciones) }}</td></tr>
 	</table>
@@ -62,6 +91,8 @@
 		{
 			gId('hlpFecha').onclick = $helpCalendar;
 			gId('hlpVencimiento').onclick = $helpCalendar;
+			gId('hlpPerini').onclick = $helpCalendar;
+			gId('hlpPerfin').onclick = $helpCalendar;
 		}
 		
 	</script>

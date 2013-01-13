@@ -48,4 +48,15 @@ class Tcpdf_Tcpdf extends TCPDF
     {
         $this->entity = $entity;
     }
+
+    public function autoCell($w, $h, $x, $y, $html = '', $border = 0 , $ln = 0, $fill = false, $reseth = true, $align = '', $autopadding = true)
+    {
+        if(($this->y+40) >= $this->h)
+        {
+            $this->AddPage();
+            $y = $this->GetY();
+        }
+        
+        $this->writeHTMLCell($w, $h, $x, $y, $html, $border, $ln, $fill, $reseth, $align, $autopadding);
+    }
 } 

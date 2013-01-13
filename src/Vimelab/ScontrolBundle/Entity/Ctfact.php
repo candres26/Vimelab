@@ -34,6 +34,20 @@ class Ctfact
      * @ORM\Column(name="vencimiento", type="date", nullable=true)
      */
     private $vencimiento;
+    
+    /**
+     * @var date $perini
+     *
+     * @ORM\Column(name="perini", type="date", nullable=true)
+     */
+    private $perini;
+
+    /**
+     * @var date $perfin
+     *
+     * @ORM\Column(name="perfin", type="date", nullable=true)
+     */
+    private $perfin;
 
     /**
      * @var decimal $subtotal
@@ -164,6 +178,46 @@ class Ctfact
     public function getVencimiento()
     {
         return $this->vencimiento;
+    }
+
+    /**
+     * Set perini
+     *
+     * @param date $perini
+     */
+    public function setPerini($perini)
+    {
+        $this->perini = $perini;
+    }
+
+    /**
+     * Get perini
+     *
+     * @return date
+     */
+    public function getPerini()
+    {
+        return $this->perini;
+    }
+    
+    /**
+     * Set perfin
+     *
+     * @param date $perfin
+     */
+    public function setPerfin($perfin)
+    {
+        $this->perfin = $perfin;
+    }
+
+    /**
+     * Get perfin
+     *
+     * @return date
+     */
+    public function getPerfin()
+    {
+        return $this->perfin;
     }
 
     /**

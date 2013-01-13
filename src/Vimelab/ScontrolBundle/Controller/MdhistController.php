@@ -266,6 +266,7 @@ class MdhistController extends Controller
 
 			$biom = $em->getRepository('ScontrolBundle:Mdbiom')->findOneByMdhist($entity->getId());
 			$obAudi = $em->getRepository('ScontrolBundle:Mdaudi')->findOneByMdhist($entity->getId());
+			$obVisu = $em->getRepository('ScontrolBundle:Mdvisu')->findOneByMdhist($entity->getId());
 			
 			$dermas = $em->getRepository('ScontrolBundle:Mddiag')->getByGrup($entity->getId(), 1);
 			$ndermas = $em->getRepository('ScontrolBundle:Mdpato')->findOneByCodigo("100");
@@ -303,7 +304,7 @@ class MdhistController extends Controller
 			$cbiom = $em->getRepository('ScontrolBundle:Mddiag')->getByGrup($entity->getId(), 18);
 			$reco = $em->getRepository('ScontrolBundle:Mddiag')->getByGrup($entity->getId(), 19);
 
-			$pdf = new \Tcpdf_Tcpdf(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+			$pdf = new \Tcpdf_Tcpdf('P', 'mm', 'A4', true, 'UTF-8', false);
 			$pdf->SetCreator(PDF_CREATOR);
 			$pdf->SetAuthor('Vimelab');
 			$pdf->SetTitle('INFORME DE RECONOCIMIENTO MÉDICO');
@@ -322,32 +323,51 @@ class MdhistController extends Controller
 			$pdf->setEntity($entity);
 
 			$pdf->AddPage();					
-			$pdf->SetFont('dejavusans', '', 10);
 
+			$html = '<table>';
+            $html .= '<tr><td><b>No: '.$entity->getId().'</b></td></tr>';
+            $html .= '<tr><td><b>Fecha: '.$entity->getFecha()->format('Y-m-d').'</b></td></tr>';
+            $html .= '<tr><td><b>'.$entity->getMdpaci()->getFullName().'</b></td></tr>';
+            $html .= '<tr><td><b>'.$entity->getMdpaci()->getIdentificacion().'</b></td></tr>';
+            $html .= '<tr><td><b>'.$entity->getMdpaci()->getGbptra()->getNombre().'</b></td></tr>';
+            $html .= '<tr><td><b>'.$entity->getMdpaci()->getGbSucu()->getNombre().'</b></td></tr>';
+            $html .= '<tr><td><b>'.$entity->getMdpaci()->getGbSucu()->getGbempr()->getNombre().'</b></td></tr>';
+            $html .= '</table>';
+
+			$pdf->SetFont('helvetica','',10);
+			$pdf->autoCell(68, 32, 20, 42, $html, 1, 1, 0, true, 'J', true);
+			$pdf->Ln(5);
+
+			$pdf->SetFont('dejavusans', '', 10);
 			$html = '<h2>INFORME DE RECONOCIMIENTO MÉDICO</h2><br>';
-			$pdf->writeHTMLCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'C', true);
+			$pdf->autoCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'C', true);
 
 			$html = '<b>BIOMETRÍA:</b><br><br>';
 			
 			if ($biom)
 			{	
+				$imPeso = floatval($biom->getPeso());
+				$imAltu = intval($biom->getTalla()) / 100;
+				$imc = $imPeso / ($imAltu * $imAltu);
+				$imc = round($imc, 2);
+
 				$html .= '<table align="left">';
 				$html .= '<tr>';
 				$html .= '<td>SEXO: '.$paci->getStrSexo().'</td>';
 				$html .= '<td>EDAD: '.$paci->getEdad().' años.</td>';
 				$html .= '<td>TALLA: '.intval($biom->getTalla()).' cm.</td>';
-				$html .= '<td>PESO: '.intval($biom->getPeso()).' kg.</td>';
-				$html .= '<td>PULSO: '.intval($biom->getPulso()).' p/min.</td>';
+				$html .= '<td>PESO: '.floatval($biom->getPeso()).' kg.</td>';
+				$html .= '<td>IMC: '.$imc.' kg/m&sup2;</td>';
 				$html .= '</tr>';
 				$html .= '<tr>';
-				$html .= '<td colspan="2">F. RESPIRATORIA: '.intval($biom->getFres()).' p/min.</td>';
-				$html .= '<td colspan="3">P. ARTERIAL: '.intval($biom->getPasisto()).'/'.intval($biom->getPadiasto()).' mmHg.</td>';
+				$html .= '<td colspan="3">PULSO: '.intval($biom->getPulso()).' p/min.</td>';
+				$html .= '<td colspan="2">P. ARTERIAL: '.intval($biom->getPasisto()).'/'.intval($biom->getPadiasto()).' mmHg.</td>';
 				$html .= '</tr>';
 				$html .= '</table>';
 			}
 			else
 				$html .= '<b style="color: red;">SIN DATOS</b>';
-			$pdf->writeHTMLCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
+			$pdf->autoCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
 
 			$pdf->Ln(5);
 			$html = '<b>DERMATOLOGÍA:</b>';
@@ -360,7 +380,7 @@ class MdhistController extends Controller
 			else
 				$html .= '<li>'.$ndermas->getNombre().'</li>';
 			$html .= '</ul>';
-			$pdf->writeHTMLCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
+			$pdf->autoCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
 
 			$pdf->Ln(5);
 			$html = '<b>PUPILAS:</b>';
@@ -373,7 +393,7 @@ class MdhistController extends Controller
 			else
 				$html .= '<li>'.$npupila->getNombre().'</li>';
 			$html .= '</ul>';
-			$pdf->writeHTMLCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
+			$pdf->autoCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
 			
 			$pdf->Ln(5);
 			$html = '<b>BOCA Y DENTICIÓN:</b>';
@@ -386,7 +406,7 @@ class MdhistController extends Controller
 			else
 				$html .= '<li>'.$nboca->getNombre().'</li>';
 			$html .= '</ul>';
-			$pdf->writeHTMLCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
+			$pdf->autoCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
 			
 			$pdf->Ln(5);
 			$html = '<b>GARGANTA:</b>';
@@ -399,7 +419,7 @@ class MdhistController extends Controller
 			else
 				$html .= '<li>'.$ngarga->getNombre().'</li>';
 			$html .= '</ul>';
-			$pdf->writeHTMLCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
+			$pdf->autoCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
 			
 			$pdf->Ln(5);
 			$html = '<b>OTOSCOPIA DERECHA:</b>';
@@ -412,7 +432,7 @@ class MdhistController extends Controller
 			else
 				$html .= '<li>'.$notod->getNombre().'</li>';
 			$html .= '</ul>';
-			$pdf->writeHTMLCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
+			$pdf->autoCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
 			
 			$pdf->Ln(5);
 			$html = '<b>OTOSCOPIA IZQUIERDA:</b>';
@@ -425,7 +445,7 @@ class MdhistController extends Controller
 			else
 				$html .= '<li>'.$notoi->getNombre().'</li>';
 			$html .= '</ul>';
-			$pdf->writeHTMLCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
+			$pdf->autoCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
 			
 			$pdf->Ln(5);
 			$html = '<b>APARATO CARDIOCIRCULATORIO:</b>';
@@ -438,7 +458,7 @@ class MdhistController extends Controller
 			else
 				$html .= '<li>'.$ncardi->getNombre().'</li>';
 			$html .= '</ul>';
-			$pdf->writeHTMLCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
+			$pdf->autoCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
 			
 			$pdf->Ln(5);
 			$html = '<b>APARATO RESPIRATORIO:</b>';
@@ -451,7 +471,7 @@ class MdhistController extends Controller
 			else
 				$html .= '<li>'.$nrespi->getNombre().'</li>';
 			$html .= '</ul>';
-			$pdf->writeHTMLCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
+			$pdf->autoCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
 			
 			$pdf->Ln(5);
 			$html = '<b>APARATO DIGESTIVO:</b>';
@@ -464,7 +484,7 @@ class MdhistController extends Controller
 			else
 				$html .= '<li>'.$ndiges->getNombre().'</li>';
 			$html .= '</ul>';
-			$pdf->writeHTMLCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
+			$pdf->autoCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
 			
 			$pdf->Ln(5);
 			$html = '<b>APARATO LOCOMOTOR:</b>';
@@ -477,7 +497,7 @@ class MdhistController extends Controller
 			else
 				$html .= '<li>'.$nloco->getNombre().'</li>';
 			$html .= '</ul>';
-			$pdf->writeHTMLCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
+			$pdf->autoCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
 			
 			$pdf->Ln(5);
 			$html = '<b>SISTEMA NERVIOSO:</b>';
@@ -490,7 +510,7 @@ class MdhistController extends Controller
 			else
 				$html .= '<li>'.$nnervi->getNombre().'</li>';
 			$html .= '</ul>';
-			$pdf->writeHTMLCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
+			$pdf->autoCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
 			
 			$pdf->Ln(5);
 			$html = '<b>ANALITICA:</b>';
@@ -503,7 +523,7 @@ class MdhistController extends Controller
 			else
 				$html .= '<li>'.$nanali->getNombre().'</li>';
 			$html .= '</ul>';
-			$pdf->writeHTMLCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
+			$pdf->autoCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
 			
 			$pdf->Ln(5);
 			$html = '<b>ELECTROCARDIOGRAMA:</b>';
@@ -516,11 +536,23 @@ class MdhistController extends Controller
 			else
 				$html .= '<li>'.$nelec->getNombre().'</li>';
 			$html .= '</ul>';
-			$pdf->writeHTMLCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
+			$pdf->autoCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
 			
 			$pdf->Ln(5);
 			$html = '<b>CONTROL DE VISIÓN:</b>';
-			$html .= '<ul>';
+			$pdf->autoCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
+			$pdf->Ln(5);
+			if($obVisu)
+			{
+				$html = '<table border="1">';
+				$html .= '<tr><td>VL</td><td>6</td><td>9</td><td>10</td></tr>';	
+				$html .= '<tr><td>VC</td><td>7</td><td>7</td><td>8</td></tr>';	
+				$html .= '<tr><td>&nbsp;</td><td>O.D</td><td>O.I</td><td>A.O</td></tr>';	
+				$html .= '</table>'; 
+				$pdf->autoCell(0, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'C', true);				
+			}
+			$pdf->Ln(5);
+			$html = '<ul>';
 			if(count($visio) > 0)
 			{
 				foreach ($visio as $caso) 
@@ -529,8 +561,8 @@ class MdhistController extends Controller
 			else
 				$html .= '<li>'.$nvisio->getNombre().'</li>';
 			$html .= '</ul>';
-			$pdf->writeHTMLCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
-			
+			$pdf->autoCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
+
 			$pdf->Ln(5);
 			$html = '<b>AUDIOMETRÍA:</b>';
 			$html .= '<ul>';
@@ -542,7 +574,7 @@ class MdhistController extends Controller
 			else
 				$html .= '<li>'.$naudio->getNombre().'</li>';
 			$html .= '</ul>';
-			$pdf->writeHTMLCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
+			$pdf->autoCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
 			
 			$pdf->Ln(5);
 			$html = '<b>ESPIROMETRÍA:</b>';
@@ -555,7 +587,7 @@ class MdhistController extends Controller
 			else
 				$html .= '<li>'.$nespi->getNombre().'</li>';
 			$html .= '</ul>';
-			$pdf->writeHTMLCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
+			$pdf->autoCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
 			
 			if(count($comen) > 0)
 			{
@@ -567,7 +599,7 @@ class MdhistController extends Controller
 					$html .= '<li>'.$caso->getMdpato()->getNombre().'</li>';
 
 				$html .= '</ul>';
-				$pdf->writeHTMLCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
+				$pdf->autoCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
 			}
 			
 			if(count($cbiom) > 0)
@@ -580,7 +612,7 @@ class MdhistController extends Controller
 					$html .= '<li>'.$caso->getMdpato()->getNombre().'</li>';
 
 				$html .= '</ul>';
-				$pdf->writeHTMLCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
+				$pdf->autoCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
 			}
 
 			if(count($reco) > 0)
@@ -593,10 +625,28 @@ class MdhistController extends Controller
 					$html .= '<li>'.$caso->getMdpato()->getNombre().'</li>';
 
 				$html .= '</ul>';
-				$pdf->writeHTMLCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
+				$pdf->autoCell(170, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
 			}
 
-			$pdf->AddPage();
+			$ORI = $pdf->GetY()+5;
+
+			if($pdf->GetY() > 55)
+			{	
+				$pdf->AddPage();
+				$ORI = 0;
+			}
+
+			$p1 = $ORI == 0 ? 53.5 : $ORI+18.5;
+			$p2 = $ORI == 0 ? 55 : $ORI+20;
+			$p3 = $ORI == 0 ? 45 : $ORI+10;
+			$p4 = $ORI == 0 ? 160 : $ORI+125;
+			$p5 = $ORI == 0 ? 162.5 : $ORI+127.5;
+			$p6 = $ORI == 0 ? 157.5 : $ORI+122.5;
+			$p7 = $ORI == 0 ? 163 : $ORI+128;
+			$p8 = $ORI == 0 ? 65 : $ORI+30;
+			$p9 = $ORI == 0 ? 70 : $ORI+35;
+			$p10 = $ORI == 0 ? 170 : $ORI+135;
+			$p11 = $ORI == 0 ? 185 : $ORI+150;
 
 			$style1 = array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0));
 			$style2 = array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 255, 0));
@@ -608,26 +658,26 @@ class MdhistController extends Controller
 			
 			for($i = -5; $i <= 100; $i+=5)
 			{
-				$pdf->writeHTMLCell(10, 20, 18, 53.5+$i,'<div style="color: #000; text-align: rigth;"><b>'.$i.'</b></div>');
-				$pdf->Line(27.5, 55+$i, 32.5, 55+$i, $style2);
+				$pdf->autoCell(10, 20, 18, $p1+$i,'<div style="color: #000; text-align: rigth;"><b>'.$i.'</b></div>');
+				$pdf->Line(27.5, $p2+$i, 32.5, $p2+$i, $style2);
 			}
 			
 			$hrz = array(500, 1000, 2000, 3000, 4000, 6000, 8000);
 			for($i = 0; $i < count($hrz); $i++)
 			{
-				$pdf->writeHTMLCell(20, 20, 35+($i*15), 163,'<div style="color: #000; text-align: center;"><b>'.$hrz[$i].'</b></div>');
-				$pdf->Line(45+($i*15), 162.5, 45+($i*15), 157.5, $style2); 
+				$pdf->autoCell(20, 20, 35+($i*15), $p7,'<div style="color: #000; text-align: center;"><b>'.$hrz[$i].'</b></div>');
+				$pdf->Line(45+($i*15), $p5, 45+($i*15), $p6, $style2); 
 			}
 			
-			$pdf->writeHTMLCell(20, 20, 25, 40,'<div style="color: #000;"><b>dBA</b></div>');
-			$pdf->writeHTMLCell(20, 20, 150, 157.5,'<div style="color: #000;"><b>Hz</b></div>');
-			$pdf->Line(30, 45, 30, 160, $style1);
-			$pdf->Line(30, 160, 150, 160, $style1);
+			$pdf->autoCell(20, 20, 25, $p3-5,'<div style="color: #000;"><b>dBA</b></div>');
+			$pdf->autoCell(20, 20, 150, $p6,'<div style="color: #000;"><b>Hz</b></div>');
+			$pdf->Line(30, $p3, 30, $p4, $style1);
+			$pdf->Line(30, $p4, 150, $p4, $style1);
 			
-			$pdf->writeHTMLCell(30, 20, 157, 63,'<div style="color: #000;"><b>O. Izquierdo</b></div>');
-			$pdf->writeHTMLCell(30, 20, 157, 68,'<div style="color: #000;"><b>O. Derecho</b></div>');
-			$pdf->Line(150, 65, 155, 65, $style4);
-			$pdf->Line(150, 70, 155, 70, $style3);
+			$pdf->autoCell(30, 20, 157, $p8-2,'<div style="color: #000;"><b>O. Izquierdo</b></div>');
+			$pdf->autoCell(30, 20, 157, $p9-2,'<div style="color: #000;"><b>O. Derecho</b></div>');
+			$pdf->Line(150, $p8, 155, $p8, $style4);
+			$pdf->Line(150, $p9, 155, $p9, $style3);
 			
 			if($obAudi && $obAudi->getRealizado() == 'S')
 			{
@@ -640,11 +690,11 @@ class MdhistController extends Controller
 					$x1 = 45+(($i-1) * 15);
 					$x2 = 45+(($i) * 15);
 					
-					$y1 = 55+intval($arr[0][$i-1]);
-					$y2 = 55+intval($arr[0][$i]);;
+					$y1 = $p2+intval($arr[0][$i-1]);
+					$y2 = $p2+intval($arr[0][$i]);;
 					
-					$y3 = 55+intval($arr[1][$i-1]);
-					$y4 = 55+intval($arr[1][$i]);;
+					$y3 = $p2+intval($arr[1][$i-1]);
+					$y4 = $p2+intval($arr[1][$i]);;
 					
 					$pdf->Line($x1, $y1, $x2, $y2, $style4);
 					$pdf->Line($x1, $y3, $x2, $y4, $style3);
@@ -660,30 +710,30 @@ class MdhistController extends Controller
 				}
 
 				$tar = '<table border="1"><tr><td><b>Oido Drc.:</b></td>'.$rder.'</tr><tr><td><b>Oido Izq.:</b></td>'.$rizq.'</tr></table>';
-				$pdf->writeHTMLCell(170, 0, 20, 170, $tar, '', 0, 0, true, 'C', true);
+				$pdf->autoCell(170, 0, 20, $p10, $tar, '', 0, 0, true, 'C', true);
 			}
 			else
 			{
 				$pdf->SetFont('dejavusans', '', 20);
 				$html = '<b color="red">NO REALIZADO</b>';
-				$pdf->writeHTMLCell(216, 0, 0, 50, $html, '', 0, 0, true, 'C', true);
+				$pdf->autoCell(216, 0, 0, $p2-5, $html, '', 0, 0, true, 'C', true);
 			}	
 			
 			$pdf->SetFont('dejavusans', '', 12);
 			$html = "<b>Gráfica De Audiometría</b>";
-			$pdf->writeHTMLCell(216, 0, 0, 40, $html, '', 0, 0, true, 'C', true);
+			$pdf->autoCell(216, 0, 0, $p3-5, $html, '', 0, 0, true, 'C', true);
 
 			$pdf->SetFont('dejavusans', '', 10);
 
 			$html = '<b>OBSERVACIONES FINALES:</b>';
 			$html .= '<p>'.$entity->getComentario().'</p>';
-			$pdf->writeHTMLCell(170, 0, 20, 185, $html, '', 0, 0, true, 'J', true);			
+			$pdf->autoCell(170, 0, 20, $p11, $html, '', 0, 0, true, 'J', true);			
 
 			$html = '<b>'.$pers->getFullname().'</b><br>';
 			$html .= '<b>Identificación: '.$pers->getIdentificacion().'</b><br>';
 			$html .= '<b>Colegiado: '.$pers->getNumcolegiado().'</b><br>';
 			$html .= '<i>Médico Reconocedor</i><br>';
-			$pdf->writeHTMLCell(216, 0, 0, 258, $html, '', 0, 0, true, 'C', true);
+			$pdf->autoCell(216, 0, 0, 258, $html, '', 0, 0, true, 'C', true);
 			$pdf->Line(50, 257, 160, 257, $style1);
 
 			ob_end_clean();

@@ -20,12 +20,12 @@ class MdvisuType extends AbstractType
             ->add('vcl', 'checkbox', array('required' => false, 'label' => 'V C/L'))
             ->add('vl', 'checkbox', array('required' => false, 'label' => 'VL'))
             ->add('vc', 'checkbox', array('required' => false, 'label' => 'VC'))
-            ->add('vlod','text', array('max_length' => 1))
-            ->add('vloi','text', array('max_length' => 1))
-            ->add('vlao','text', array('max_length' => 1))
-            ->add('vcod','text', array('max_length' => 1))
-            ->add('vcoi','text', array('max_length' => 1))
-            ->add('vcao','text', array('max_length' => 1))
+            ->add('vlod','text', array('max_length' => 2))
+            ->add('vloi','text', array('max_length' => 2))
+            ->add('vlao','text', array('max_length' => 2))
+            ->add('vcod','text', array('max_length' => 2))
+            ->add('vcoi','text', array('max_length' => 2))
+            ->add('vcao','text', array('required' => false, 'max_length' => 2))
             ->add('mdhist', 'entity', array('class' => 'ScontrolBundle:Mdhist', 'label' => 'Historia'))
         ;
     }

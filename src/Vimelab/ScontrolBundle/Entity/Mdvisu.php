@@ -129,7 +129,7 @@ class Mdvisu
     /**
      * @var string $vcao
      *
-     * @ORM\Column(name="vcao", type="string", length=1, nullable=false)
+     * @ORM\Column(name="vcao", type="string", length=1, nullable=true)
      */
     private $vcao;
 

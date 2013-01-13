@@ -26,6 +26,7 @@ CREATE TABLE `CtCont` (
   `id` bigint(99) unsigned NOT NULL AUTO_INCREMENT,
   `GbEmpr_id` int(10) unsigned NOT NULL,
   `GbPers_id` bigint(99) unsigned NOT NULL,
+  `tipo` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `fecha` date NOT NULL,
   `inicio` date NOT NULL,
   `fin` date NOT NULL,
@@ -46,6 +47,7 @@ CREATE TABLE `CtCont` (
   `revision` char(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'A',
   `aviso` int(3) unsigned NOT NULL,
   `costovigencia` int(1) unsigned NOT NULL,
+  `valrevi` decimal(10,2) NOT NULL,
   `subtotal` decimal(10,2) unsigned NOT NULL,
   `iva` decimal(3,2) unsigned NOT NULL,
   `descuento` decimal(10,2) unsigned NOT NULL,
@@ -73,7 +75,7 @@ CREATE TABLE `CtCont` (
 
 LOCK TABLES `CtCont` WRITE;
 /*!40000 ALTER TABLE `CtCont` DISABLE KEYS */;
-INSERT INTO `CtCont` VALUES (1,2,1,'2010-03-01','2010-03-01','2015-03-31',2,'1070609877','Gerente','Monica Cortes','Cll 11 # 12-34',2,'1070818123','Gerente','Mateo Garcia','Cll 25 # 78-78','xxx','xxx',2,2,'O',0,5000000,10000000.00,9.99,0.00,15500000.00,15500000.00),(2,3,2,'2012-11-03','2012-11-30','2013-11-30',2,'909090','Gerente','Pablo Perez','Cll 11 # 12-34',3,'808080','Gerente','Marco Casas','Cll 25 # 78-78','xxx','xxx',3,3,'O',0,9000000,18000000.00,9.99,0.00,25000000.00,25000000.00);
+INSERT INTO `CtCont` VALUES (1,2,1,'1','2010-03-01','2010-03-01','2015-03-31',2,'1070609877','Gerente','Monica Cortes','Cll 11 # 12-34',2,'1070818123','Gerente','Mateo Garcia','Cll 25 # 78-78','xxx','xxx',2,2,'O',0,5000000,0.00,10000000.00,9.99,0.00,15500000.00,15500000.00),(2,3,2,'1','2012-11-03','2012-11-30','2013-11-30',2,'909090','Gerente','Pablo Perez','Cll 11 # 12-34',3,'808080','Gerente','Marco Casas','Cll 25 # 78-78','xxx','xxx',3,3,'O',0,9000000,0.00,18000000.00,9.99,0.00,25000000.00,25000000.00);
 /*!40000 ALTER TABLE `CtCont` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,6 +128,8 @@ CREATE TABLE `CtFact` (
   `GbEmpr_id` int(10) unsigned NOT NULL,
   `CtCont_id` bigint(99) unsigned NOT NULL,
   `fecha` date NOT NULL,
+  `perini` date NOT NULL,
+  `perfin` date NOT NULL,
   `vencimiento` date DEFAULT NULL,
   `subtotal` decimal(10,2) unsigned NOT NULL,
   `iva` decimal(10,2) unsigned NOT NULL,
@@ -150,7 +154,7 @@ CREATE TABLE `CtFact` (
 
 LOCK TABLES `CtFact` WRITE;
 /*!40000 ALTER TABLE `CtFact` DISABLE KEYS */;
-INSERT INTO `CtFact` VALUES (1,2,3,2,'2012-12-01','2012-12-27',100.00,16.00,0.00,116.00,'A','Koko','koko'),(2,2,3,2,'2012-12-08','2012-12-31',1000.00,160.00,0.00,1160.00,'A','kjkj','kjk');
+INSERT INTO `CtFact` VALUES (1,2,3,2,'2012-12-01','2012-12-27','2012-12-27','2012-12-27',100.00,16.00,0.00,116.00,'A','Koko','koko'),(2,2,3,2,'2012-12-08','2012-12-31','2012-12-27','2012-12-27',1000.00,160.00,0.00,1160.00,'A','kjkj','kjk');
 /*!40000 ALTER TABLE `CtFact` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -872,7 +876,6 @@ CREATE TABLE `MdBiom` (
   `talla` decimal(5,2) unsigned NOT NULL,
   `peso` decimal(5,2) unsigned NOT NULL,
   `pulso` decimal(5,2) unsigned NOT NULL,
-  `fres` decimal(5,2) unsigned NOT NULL,
   `pasisto` decimal(5,2) unsigned NOT NULL,
   `padiasto` decimal(5,2) unsigned NOT NULL,
   PRIMARY KEY (`id`),
@@ -887,7 +890,7 @@ CREATE TABLE `MdBiom` (
 
 LOCK TABLES `MdBiom` WRITE;
 /*!40000 ALTER TABLE `MdBiom` DISABLE KEYS */;
-INSERT INTO `MdBiom` VALUES (1,37,178.00,64.00,25.00,25.00,120.00,80.00),(2,114,180.00,60.00,25.00,25.00,120.00,80.00),(3,83,168.00,59.00,25.00,25.00,120.00,80.00);
+INSERT INTO `MdBiom` VALUES (1,37,178.00,64.00,25.00,120.00,80.00),(2,114,180.00,60.00,25.00,120.00,80.00),(3,83,168.00,59.00,25.00,120.00,80.00);
 /*!40000 ALTER TABLE `MdBiom` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -931,9 +934,9 @@ CREATE TABLE `MdEspi` (
   `id` bigint(99) unsigned NOT NULL AUTO_INCREMENT,
   `MdHist_id` bigint(99) unsigned NOT NULL,
   `realizado` char(1) COLLATE utf8_unicode_ci NOT NULL,
-  `cv` decimal(3,2) DEFAULT NULL,
-  `vems` decimal(3,2) DEFAULT NULL,
-  `tiff` decimal(3,2) DEFAULT NULL,
+  `cv` decimal(5,2) DEFAULT NULL,
+  `vems` decimal(5,2) DEFAULT NULL,
+  `tiff` decimal(5,2) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `MdHist_id` (`MdHist_id`),
   CONSTRAINT `MdEspi_ibfk_1` FOREIGN KEY (`MdHist_id`) REFERENCES `MdHist` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -1377,12 +1380,12 @@ CREATE TABLE `MdVisu` (
   `vcl` tinyint(1) NOT NULL,
   `vl` tinyint(1) NOT NULL,
   `vc` tinyint(1) NOT NULL,
-  `vlod` char(1) COLLATE utf8_unicode_ci NOT NULL,
-  `vloi` char(1) COLLATE utf8_unicode_ci NOT NULL,
-  `vlao` char(1) COLLATE utf8_unicode_ci NOT NULL,
-  `vcod` char(1) COLLATE utf8_unicode_ci NOT NULL,
-  `vcoi` char(1) COLLATE utf8_unicode_ci NOT NULL,
-  `vcao` char(1) COLLATE utf8_unicode_ci NOT NULL,
+  `vlod` char(2) COLLATE utf8_unicode_ci NOT NULL,
+  `vloi` char(2) COLLATE utf8_unicode_ci NOT NULL,
+  `vlao` char(2) COLLATE utf8_unicode_ci NOT NULL,
+  `vcod` char(2) COLLATE utf8_unicode_ci NOT NULL,
+  `vcoi` char(2) COLLATE utf8_unicode_ci NOT NULL,
+  `vcao` char(2) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `MdHist_id` (`MdHist_id`),
   CONSTRAINT `MdVisu_ibfk_1` FOREIGN KEY (`MdHist_id`) REFERENCES `MdHist` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -1679,4 +1682,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-12-24 22:37:23
+-- Dump completed on 2013-01-13 15:32:13
