@@ -71,29 +71,35 @@ class MdhistRepository extends EntityRepository
         return $querry->getResult();
     }
     
-    public function getConsultaSexo($empresa,$finicio, $ffinal)
+    public function getConsultaSexo($empresa, $finicio, $ffinal)
     {
 		if ($empresa != '@')
 		{
 			$em = $this->getEntityManager();
-			$querry = $em->createQuery("SELECT COUNT(h) FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p JOIN p.gbsucu s JOIN s.gbempr e WHERE p.sexo = 'F' AND 
-			e.id = '$empresa' AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal'ORDER BY h.id ASC");
-			$querry2 = $em->createQuery("SELECT COUNT(h) FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p JOIN p.gbsucu s JOIN s.gbempr e WHERE p.sexo = 'F' AND 
-			e.id = '$empresa' AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal'ORDER BY h.id ASC");
-			$resul = $querry->getSingleScalarResult();
-			$resul2 = $querry2->getSingleScalarResult();
-			return array($resul,$resul2);
+			
+			$querry = $em->createQuery("SELECT p FROM ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e, ScontrolBundle:Mdhist h WHERE p.id = h.mdpaci 
+				AND p.sexo = 'F' AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa' ORDER BY h.id ASC");
+			$resul = count($querry->getResult());
+
+			$querry = $em->createQuery("SELECT p FROM ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e, ScontrolBundle:Mdhist h WHERE p.id = h.mdpaci 
+				AND p.sexo = 'M' AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa' ORDER BY h.id ASC");
+			$resul2 = count($querry->getResult());
+			
+			return array($resul, $resul2);
 		}
 		else
 		{
 			$em = $this->getEntityManager();
-			$querry = $em->createQuery("SELECT COUNT(h) FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p WHERE p.sexo = 'F' AND 
-			h.fecha >= '$finicio' AND h.fecha <= '$ffinal' ORDER BY h.id ASC");
-			$querry2 = $em->createQuery("SELECT COUNT(h) FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p WHERE p.sexo = 'M' AND 
-			h.fecha >= '$finicio' AND h.fecha <= '$ffinal' ORDER BY h.id ASC");
-			$resul = $querry->getSingleScalarResult();
-			$resul2 = $querry2->getSingleScalarResult();
-			return array($resul,$resul2);
+			
+			$querry = $em->createQuery("SELECT p FROM ScontrolBundle:Mdpaci p, ScontrolBundle:Mdhist h WHERE p.id = h.mdpaci AND p.sexo = 'F' 
+				AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' ORDER BY h.id ASC");
+			$resul = count($querry->getResult());
+
+			$querry = $em->createQuery("SELECT p FROM ScontrolBundle:Mdpaci p, ScontrolBundle:Mdhist h WHERE p.id = h.mdpaci AND p.sexo = 'M' 
+				AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' ORDER BY h.id ASC");
+			$resul2 = count($querry->getResult());
+			
+			return array($resul, $resul2);
         }
 	}
 
@@ -109,5 +115,4 @@ class MdhistRepository extends EntityRepository
         $querry = $em->createQuery("SELECT h FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p WHERE h.fecha < '".$lim->format('Y-m-d')."' AND h.fecha > '".$sub->format('Y-m-d')."' ORDER BY p.priape ASC");
         return $querry->getResult();
     }
-
 }

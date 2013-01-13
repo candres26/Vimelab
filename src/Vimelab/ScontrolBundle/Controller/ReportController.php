@@ -12,7 +12,7 @@ class ReportController extends Controller
 	{
 		$em = $this->getDoctrine()->getEntityManager();
 		$empresas = $em->getRepository('ScontrolBundle:Gbempr')->findBy(array(),array('nombre' => 'ASC'));
-		
+
 		return $this->render('ScontrolBundle:Report:index.html.twig',array('empresas'=>$empresas));
 	}
 	
@@ -64,12 +64,11 @@ class ReportController extends Controller
 			$pdf->Line(40, $pos, 46, $pos, $style1);
 		}
 		
-		
 		$pdf->Line(43, 25, 43, 180, $style1); // Eje Y
 		$pdf->Line(43, 180, 150, 180, $style1); // Eje X
 		
 		$pdf->Rect(55, 180-$postvaron, 35, $postvaron, 'DF', $border_style, $fill_color = array(100,0,0,0)); // Rectángulo varón
-		$pdf->Rect(95, 180-$posthembra, 35, $posthembra, 'DF', 'all', $fill_color = array(0,46,29,24)); // Rectángulo hembra
+		$pdf->Rect(95, 180-$posthembra, 35, $posthembra, 'DF', $border_style, $fill_color = array(0,46,29,24)); // Rectángulo hembra
 		
 			
 		$pdf->SetFont('dejavusans', '', 12);
