@@ -1,0 +1,66 @@
+{% extends "ScontrolBundle::layout.html.twig" %}
+
+{% block title %} Reportes Estadísticos {% endblock %}
+
+{% block area %}
+
+<h1 align="left">Reportes Estadísticos</h1>
+	<div style="width: 80%; position: absolute; margin-left: 10%;margin-top: 2%; border: solid #B3BACE">
+		<form>
+			<table align="center">
+				<tr>
+					<td>Empresa:</td>
+					<td>
+						<select id="empresa">
+							<option value="@">Seleccione...</option>
+							{% for empresa in empresas %}
+								<option value="{{ empresa.id }}">{{ empresa.nombre }}</option>
+							{% endfor %}
+						</select>
+					</td>
+					<td>&nbsp;</td>
+					<td>Fecha Inicial: </td><td><input type="text" name="finicio" id="finicio"><img id="selfinicio" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}"></td>
+					<td>Fecha Final:</td><td> <input type="text" name="ffinal" id="ffin"><img id="selffinal" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div id="btsexo" style="border: solid #B3BACE; border-radius: 1em; position: absolute; width: 25%; margin-left: 10%; margin-top: 20%">
+		<h3>Consulta por sexo</h3>
+	</div>
+
+	<div id="btedad" style="border: solid #B3BACE; border-radius: 1em; position: absolute; width: 25%; margin-left: 37%; margin-top: 20%">
+		<h3>Consulta por edad</h3>
+	</div>
+
+	<div id="btaltura" style="border: solid #B3BACE; border-radius: 1em; position: absolute; width: 25%; margin-left: 64%; margin-top: 20%">
+		<h3>Consulta por altura</h3>
+	</div>
+
+	<div id="btcorporal" style="border: solid #B3BACE; border-radius: 1em; position: absolute; width: 25%; margin-left: 10%; margin-top: 33%">
+		<h3>Consulta por masa corporal</h3>
+	</div>
+
+{% endblock %}
+
+{% block uscript %}
+	
+	<script type="text/javascript">
+		
+		$base = "{{ path('report') }}";
+		
+		function $init(event)
+		{
+			gId('selfinicio').onclick = $helpCalendar;
+			gId('selffinal').onclick = $helpCalendar;
+			gId('btsexo').onclick = generar;
+		}
+		
+		function generar(event)
+		{
+			window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/sexo', null, 'width=800,height=600');
+		}
+		
+	</script>
+	
+{% endblock %}

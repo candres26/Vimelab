@@ -70,4 +70,30 @@ class MdhistRepository extends EntityRepository
         $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Mdhist m JOIN m.mdpaci l WHERE $sar ORDER BY m.id ASC");
         return $querry->getResult();
     }
+    
+    public function getConsultaSexo($empresa,$finicio, $ffinal)
+    {
+		if ($empresa != '@')
+		{
+			$em = $this->getEntityManager();
+			$querry = $em->createQuery("SELECT COUNT(h) FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p JOIN p.gbsucu s JOIN s.gbempr e WHERE p.sexo = 'F' AND 
+			e.id = '$empresa' AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal'ORDER BY h.id ASC");
+			$querry2 = $em->createQuery("SELECT COUNT(h) FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p JOIN p.gbsucu s JOIN s.gbempr e WHERE p.sexo = 'F' AND 
+			e.id = '$empresa' AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal'ORDER BY h.id ASC");
+			$resul = $querry->getSingleScalarResult();
+			$resul2 = $querry2->getSingleScalarResult();
+			return array($resul,$resul2);
+		}
+		else
+		{
+			$em = $this->getEntityManager();
+			$querry = $em->createQuery("SELECT COUNT(h) FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p WHERE p.sexo = 'F' AND 
+			h.fecha >= '$finicio' AND h.fecha <= '$ffinal' ORDER BY h.id ASC");
+			$querry2 = $em->createQuery("SELECT COUNT(h) FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p WHERE p.sexo = 'M' AND 
+			h.fecha >= '$finicio' AND h.fecha <= '$ffinal' ORDER BY h.id ASC");
+			$resul = $querry->getSingleScalarResult();
+			$resul2 = $querry2->getSingleScalarResult();
+			return array($resul,$resul2);
+        }
+	}
 }

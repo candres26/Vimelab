@@ -131,6 +131,7 @@ class CtcontController extends Controller
 				// ---------------------------------------------------------
 				$fecha = $entity->getFecha();
 				$fechafin = $entity->getFin();
+				$fechainicio = $entity->getInicio();
 				$iva = (intval($entity->getIva()))/1;
 			
 				// add a page
@@ -148,7 +149,7 @@ class CtcontController extends Controller
 				<p>
 				Y de otra, '.$entity->getNombrecontratista().', con NIF '.$entity->getIdentcontratista().' quien actúa en calidad de
 				'.$entity->getCargocontratista().' de la entidad, '.$corp->getNombre().', en adelante VIMELAB, con 
-				domicilio social en '.$corp->getDireccion().', '. $ciudcorp->getNombre(). ', con '.$corp->getIdentificacion().'.
+				domicilio social en '.$corp->getDireccion().', '. $ciudcorp->getNombre(). ', con CIF '.$corp->getIdentificacion().'.
 				</p>
 				<p>
 				Ambas partes, en el concepto en que intervienen, se reconocen la necesaria capacidad legal para contratar
@@ -475,8 +476,7 @@ class CtcontController extends Controller
 				
 				<p align="center">ESTE CONTRATO NO TENDRÁ VALIDEZ SIN EL COMPROBANTE DE PAGO</p>
 				
-				<p>Y para que así conste y surta los efectos donde corresponda, siendo su validez, desde el 27 de Abril de
-				2012 hasta el 27 de Abril de 2013.</p>
+				<p>Y para que así conste y surta los efectos donde corresponda, siendo su validez, desde el '.$fechainicio->format('d').' de '.$meses[intval($fechainicio->format('m'))-1].' de ' .$fechainicio->format('Y').' hasta el '.$fechafin->format('d').' de '.$meses[intval($fechafin->format('m'))-1].' de ' .$fechafin->format('Y').'.</p>
 
 				<p>Se firma el presente CONCIERTO EN MATERIA DE PREVENCIÓN DE RIESGOS LABORALES, por
 				duplicado en la ciudad y fecha en principio indicados.</p>

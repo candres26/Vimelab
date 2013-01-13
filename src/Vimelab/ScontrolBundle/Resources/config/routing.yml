@@ -16,11 +16,23 @@ pdfDemo:
 home:
     pattern:  /home
     defaults: { _controller: ScontrolBundle:Home:index }
+######################################################
+####                  REPORTES                    ####
+######################################################
 
-# Report
+# ReSexo
 report:
     pattern:  /report
     defaults: { _controller: ScontrolBundle:Report:index }
+
+report_sexo:
+    pattern:  /report/{empresa}/{inicio}/{fin}/sexo
+    defaults: { _controller: ScontrolBundle:Report:sexo }
+    
+
+######################################################
+####                  FIN REPORTES                ####
+######################################################
 
 # CtCont Routes
 ctcont:

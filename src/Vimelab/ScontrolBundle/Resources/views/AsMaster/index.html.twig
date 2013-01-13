@@ -286,7 +286,7 @@
 </div>
 
 <!--- Vista Parcial De Diagnosticos -->
-<div id="jsDiagPar" class="csParMini">
+<div id="jsDiagPar" class="csParMiniSup">
 	<table class="csParTi">
 		<tr><th>DIAGNOSTICOS</th></tr>
 	</table>
@@ -314,7 +314,7 @@
 <!--- Vista Parcial De Audiometria -->
 <div id="jsAudiPar" class="csParMed">
 	<table class="csParTi">
-		<tr><th>AUDIOMETRÍA</th></tr>
+		<tr><th>AUDIOMETRÍA</th><th><img id="jsHlpDia" src="{{ asset('bundles/scontrol/imagenes/iconos/add.png') }}" title="Diagnóstico"></th></tr>
 	</table>
 	
 	<div class="csParIn">
@@ -508,6 +508,7 @@
 			gId('jsAudi').onclick = vistaAudi;
 			gId('jsAudiCre').onclick = newAudi;
 			gId('jsAudiCx').onclick = hidePartial;
+			gId('jsHlpDia').onclick = vistaDiag;
 			
 			/* --- EVENTOS DE A. VISUAL --- */
 			gId('ifVisu').onload = loadState;
