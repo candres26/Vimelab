@@ -12,6 +12,8 @@ class CtfactType extends AbstractType
         $builder
             ->add('fecha', 'date', array('widget' => 'single_text', 'format' => 'y-MM-dd'))
             ->add('vencimiento', 'date', array('widget' => 'single_text', 'format' => 'y-MM-dd'))
+            ->add('perini', 'date', array('widget' => 'single_text', 'format' => 'y-MM-dd'))
+            ->add('perfin', 'date', array('widget' => 'single_text', 'format' => 'y-MM-dd'))
             ->add('subtotal')
             ->add('iva')
             ->add('descuento')

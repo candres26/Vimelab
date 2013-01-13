@@ -9,7 +9,11 @@ class HomeController extends Controller
 {
 	public function indexAction()
 	{
-		return $this->render('ScontrolBundle:Home:home.html.twig');
+		$em = $this->getDoctrine()->getEntityManager();
+		$al = $em->getRepository('ScontrolBundle:Ctcont')->getAlertas();
+		$ah = $em->getRepository('ScontrolBundle:Mdhist')->getAlertas();
+
+		return $this->render('ScontrolBundle:Home:home.html.twig', array('alertas' => $al, 'historias' => $ah));
 	}
 }
 

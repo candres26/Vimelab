@@ -136,8 +136,8 @@ class MdaudiController extends Controller
 				
 				$pdf->writeHTMLCell(30, 20, 157, 28,'<div style="color: #000;"><b>O. Izquierdo</b></div>');
 				$pdf->writeHTMLCell(30, 20, 157, 33,'<div style="color: #000;"><b>O. Derecho</b></div>');
-				$pdf->Line(150, 30, 155, 30, $style3);
-				$pdf->Line(150, 35, 155, 35, $style4);
+				$pdf->Line(150, 30, 155, 30, $style4);
+				$pdf->Line(150, 35, 155, 35, $style3);
 				
 				if($entity->getRealizado() == 'S')
 				{
@@ -154,8 +154,8 @@ class MdaudiController extends Controller
 						$y3 = 20+intval($arr[1][$i-1]);
 						$y4 = 20+intval($arr[1][$i]);;
 						
-						$pdf->Line($x1, $y1, $x2, $y2, $style3);
-						$pdf->Line($x1, $y3, $x2, $y4, $style4);
+						$pdf->Line($x1, $y1, $x2, $y2, $style4);
+						$pdf->Line($x1, $y3, $x2, $y4, $style3);
 					}
 				}
 				else

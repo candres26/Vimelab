@@ -22,6 +22,13 @@ class Ctcont
     private $id;
 
     /**
+     * @var string $tipo
+     *
+     * @ORM\Column(name="tipo", type="string", length=1, nullable=false)
+     */
+    private $tipo;
+
+    /**
      * @var date $fecha
      *
      * @ORM\Column(name="fecha", type="date", nullable=false)
@@ -134,6 +141,13 @@ class Ctcont
     private $costovigencia;
 
     /**
+     * @var decimal $valrevi
+     *
+     * @ORM\Column(name="valrevi", type="decimal", nullable=false)
+     */
+    private $valrevi;
+
+    /**
      * @var decimal $subtotal
      *
      * @ORM\Column(name="subtotal", type="decimal", nullable=false)
@@ -238,6 +252,26 @@ class Ctcont
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set tipo
+     *
+     * @param string $tipo
+     */
+    public function setTipo($tipo)
+    {
+        $this->tipo = $tipo;
+    }
+
+    /**
+     * Get tipo
+     *
+     * @return string
+     */
+    public function getTipo()
+    {
+        return $this->tipo;
     }
 
     /**
@@ -558,6 +592,26 @@ class Ctcont
     public function getCostovigencia()
     {
         return $this->costovigencia;
+    }
+
+    /**
+     * Set valrevi
+     *
+     * @param decimal $valrevi
+     */
+    public function setValrevi($valrevi)
+    {
+        $this->valrevi = $valrevi;
+    }
+
+    /**
+     * Get valrevi
+     *
+     * @return decimal
+     */
+    public function getValrevi()
+    {
+        return $this->valrevi;
     }
 
     /**

@@ -13,7 +13,6 @@ class MdbiomType extends AbstractType
             ->add('talla')
             ->add('peso')
             ->add('pulso')
-            ->add('fres', 'text', array('label' => 'Frecuencia Respiratoria'))
             ->add('pasisto', 'text', array('label' => 'Presión arterial sistólica'))
             ->add('padiasto', 'text', array('label' => 'Presión arterial diastólica'))
             ->add('mdhist', 'entity', array('class' => 'ScontrolBundle:Mdhist', 'label' => 'Historia'))

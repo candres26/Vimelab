@@ -43,13 +43,6 @@ class Mdbiom
     private $pulso;
 
     /**
-     * @var decimal $fres
-     *
-     * @ORM\Column(name="fres", type="decimal", nullable=false)
-     */
-    private $fres;
-
-    /**
      * @var decimal $pasisto
      *
      * @ORM\Column(name="pasisto", type="decimal", nullable=false)
@@ -143,26 +136,6 @@ class Mdbiom
     public function getPulso()
     {
         return $this->pulso;
-    }
-
-    /**
-     * Set fres
-     *
-     * @param decimal $fres
-     */
-    public function setFres($fres)
-    {
-        $this->fres = $fres;
-    }
-
-    /**
-     * Get fres
-     *
-     * @return decimal
-     */
-    public function getFres()
-    {
-        return $this->fres;
     }
 
     /**

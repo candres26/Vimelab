@@ -3,5 +3,33 @@
 {% block title %} Home {% endblock %}
 
 {% block area %}
-<h1>Página Principal</h1>
+
+	<h1 class='vime-beam'>BIENVENIDO A SALUD CONTROL</h1>
+
+	<div class='vime-qalertL'>
+		<b>CONTRATOS EN PERIODO DE VENCIMIENTO</b>
+
+		<table>
+			{% for alerta in alertas %}
+				<tr title='Click para ver detalles.'>
+					<td><a href="{{ path('ctcont_show', { 'id': alerta.id }) }}">{{ alerta.__tostring() }}</a></td>
+					<td><a href="{{ path('ctcont_show', { 'id': alerta.id }) }}">{{ alerta.fin | date('Y-m-d') }}</a></td>
+				<tr>
+			{% endfor %}
+		</table>
+	</div>
+	
+	<div class='vime-qalertR'>
+		<b>REVISIONES EN PERIODO DE VENCIMIENTO</b>
+
+		<table>
+			{% for historia in historias %}
+				<tr title='Click para ver detalles.'>
+					<td><a href="{{ path('mdhist_show', { 'id': historia.id }) }}">{{ historia.mdpaci.getFullName() }}</a></td>
+					<td><a href="{{ path('mdhist_show', { 'id': historia.id }) }}">{{ historia.fecha | date('Y-m-d') }}</a></td>
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+
 {% endblock %}

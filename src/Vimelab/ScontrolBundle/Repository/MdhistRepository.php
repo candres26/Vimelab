@@ -70,6 +70,7 @@ class MdhistRepository extends EntityRepository
         $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Mdhist m JOIN m.mdpaci l WHERE $sar ORDER BY m.id ASC");
         return $querry->getResult();
     }
+<<<<<<< HEAD
     
     public function getConsultaSexo($empresa,$finicio, $ffinal)
     {
@@ -96,4 +97,19 @@ class MdhistRepository extends EntityRepository
 			return array($resul,$resul2);
         }
 	}
+=======
+
+    public function getAlertas()
+    {
+        $lim = new \DateTime();
+        $lim->add(new \DateInterval('P30D'));
+
+        $sub = new \DateTime();
+        $sub->sub(new \DateInterval('P30D'));
+        
+        $em = $this->getEntityManager();
+        $querry = $em->createQuery("SELECT h FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p WHERE h.fecha < '".$lim->format('Y-m-d')."' AND h.fecha > '".$sub->format('Y-m-d')."' ORDER BY p.priape ASC");
+        return $querry->getResult();
+    }
+>>>>>>> 5ed93f94f3629a90a8caaa26ef0ed25b50f48d92
 }
