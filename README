@@ -211,6 +211,13 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 		! Validar datos icompletos!
 		! Forzar abir ventana popou!.
 		! Popup refinado.
+	* Colores en espirometria Rojo <-> Azul.
+	* Tamaño MdEspi 5,2
+* Alerta de contrato y revisiones.
+	! Contrato por año - 30 dias.
+	! Revi por año - 30 dias.
+	! Las alertas desaparecen si se supera un plazo de 30 dias bencidos.
+	! Al dar click se redirije al show del registro.
 
 # --- CAMBIOS EN PROGRESO --- #
 
@@ -220,6 +227,22 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 - Revisar vistas de Hoja de ruta, faltan etiquetas por modificar.
 - Verificar vista de hoja de ruta, el formulario no se ve bien.
 - Llenar campo diccionario de GbVars para completar las traducciones.
+- Lanzar diagnostico en los iframes Medicas.
+- Agudeza visual 2 digitos.
+- Ocultar F. Resp
+- Poner datos de paciente en modo sobre.
+- Extremidades por aparato locomotor.
+- Examenes por Pruebas.
+- Servicio por tipo.
+- Tabla de a. visual en reporte.
+- AO en VC a. visal no necesario.
+- Poner IMC en reporte.
+- Periodo de facturacion.
+- Reportes:
+	- Factura.
+	- Cursos - Emp, Pac
+	- R. Tecnica.
+
 
 # --- NOTAS --- #
 

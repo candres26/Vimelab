@@ -693,3 +693,77 @@ h2
 {
 	display: none;
 }
+
+.vime-beam
+{
+	position: absolute;
+	top: 5%;
+	left: 15%;
+	width: 70%;
+	height: auto;
+	color: #8888FF;
+	text-shadow: 0.1em 0.1em 0.09em #000000;
+	border-bottom: 2px solid #45568a;
+}
+
+.vime-qalertL b, .vime-qalertR b
+{
+	color: red;
+	border-bottom: 1px solid #203982;
+	display: block;
+	position: absolute;
+	top: 0%;
+	left: 1%;
+	width: 98%;
+	height: auto;
+}
+
+.vime-qalertL table, .vime-qalertR table
+{
+	width: 98%;
+	position: absolute;
+	top: 10%;
+	left: 1%;
+	border-collapse: collapse;
+}
+
+.vime-qalertL td, .vime-qalertR td
+{
+	border-top: 1px solid #203982;
+	border-bottom: 1px solid #203982;
+}
+
+.vime-qalertL a, .vime-qalertR a
+{
+	text-decoration: none;
+	color: #45568a;
+	display: block;
+}
+
+.vime-qalertL tr:hover, .vime-qalertR tr:hover
+{
+	cursor: pointer;
+	background: #AAAAFF;
+}
+
+.vime-qalertL, .vime-qalertR
+{
+	position: absolute;
+	top: 20%;
+	background: #FFFFFF;
+	width: 43%;
+	height: 70%;
+	border: 1px solid #203982;
+	border-radius: 10px;
+	overflow: auto;
+}
+
+.vime-qalertL
+{
+	left: 5%;
+}
+
+.vime-qalertR
+{
+	right: 5%;
+}

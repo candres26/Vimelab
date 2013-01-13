@@ -626,8 +626,8 @@ class MdhistController extends Controller
 			
 			$pdf->writeHTMLCell(30, 20, 157, 63,'<div style="color: #000;"><b>O. Izquierdo</b></div>');
 			$pdf->writeHTMLCell(30, 20, 157, 68,'<div style="color: #000;"><b>O. Derecho</b></div>');
-			$pdf->Line(150, 65, 155, 65, $style3);
-			$pdf->Line(150, 70, 155, 70, $style4);
+			$pdf->Line(150, 65, 155, 65, $style4);
+			$pdf->Line(150, 70, 155, 70, $style3);
 			
 			if($obAudi && $obAudi->getRealizado() == 'S')
 			{
@@ -646,8 +646,8 @@ class MdhistController extends Controller
 					$y3 = 55+intval($arr[1][$i-1]);
 					$y4 = 55+intval($arr[1][$i]);;
 					
-					$pdf->Line($x1, $y1, $x2, $y2, $style3);
-					$pdf->Line($x1, $y3, $x2, $y4, $style4);
+					$pdf->Line($x1, $y1, $x2, $y2, $style4);
+					$pdf->Line($x1, $y3, $x2, $y4, $style3);
 				}
 
 				$rder = "";
@@ -659,7 +659,7 @@ class MdhistController extends Controller
 					$rder .= '<td>'.$arr[1][$i].'</td>';
 				}
 
-				$tar = '<table border="1"><tr><td><b>Oido Drc.:</b></td>'.$rizq.'</tr><tr><td><b>Oido Izq.:</b></td>'.$rder.'</tr></table>';
+				$tar = '<table border="1"><tr><td><b>Oido Drc.:</b></td>'.$rder.'</tr><tr><td><b>Oido Izq.:</b></td>'.$rizq.'</tr></table>';
 				$pdf->writeHTMLCell(170, 0, 20, 170, $tar, '', 0, 0, true, 'C', true);
 			}
 			else

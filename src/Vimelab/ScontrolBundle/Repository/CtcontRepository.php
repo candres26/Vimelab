@@ -64,8 +64,10 @@ class CtcontRepository extends EntityRepository
 		}
 	}
 	
-	public function getCorp($corporacion){
-		try{
+	public function getCorp($corporacion)
+    {
+		try
+        {
 			$em = $this->getEntityManager();
 			$querry = $em->createQuery("SELECT c FROM ScontrolBundle:Gbcorp c WHERE c.id = '$corporacion' ORDER BY c.nombre ASC");
 			$corp = $querry->getSingleResult();
@@ -75,4 +77,17 @@ class CtcontRepository extends EntityRepository
 			return null;
 		}
 	}
+
+    public function getAlertas()
+    {
+        $lim = new \DateTime();
+        $lim->add(new \DateInterval('P30D'));
+
+        $sub = new \DateTime();
+        $sub->sub(new \DateInterval('P30D'));
+        
+        $em = $this->getEntityManager();
+        $querry = $em->createQuery("SELECT c FROM ScontrolBundle:Ctcont c WHERE c.fin < '".$lim->format('Y-m-d')."' AND c.fin > '".$sub->format('Y-m-d')."' ORDER BY c.fin ASC");
+        return $querry->getResult();
+    }
 }

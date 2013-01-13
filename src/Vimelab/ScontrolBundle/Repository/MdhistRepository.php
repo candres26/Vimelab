@@ -70,4 +70,17 @@ class MdhistRepository extends EntityRepository
         $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Mdhist m JOIN m.mdpaci l WHERE $sar ORDER BY m.id ASC");
         return $querry->getResult();
     }
+
+    public function getAlertas()
+    {
+        $lim = new \DateTime();
+        $lim->add(new \DateInterval('P30D'));
+
+        $sub = new \DateTime();
+        $sub->sub(new \DateInterval('P30D'));
+        
+        $em = $this->getEntityManager();
+        $querry = $em->createQuery("SELECT h FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p WHERE h.fecha < '".$lim->format('Y-m-d')."' AND h.fecha > '".$sub->format('Y-m-d')."' ORDER BY p.priape ASC");
+        return $querry->getResult();
+    }
 }
