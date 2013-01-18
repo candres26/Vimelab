@@ -24,6 +24,40 @@ h2
 	padding-right: 1px;
 }
 
+.btreport
+{
+	background-color: #F4ED98; 
+	box-shadow: 1.5px 1px 1.5px 1px; 
+	cursor: pointer; 
+	border: solid #B3BACE; 
+	border-radius: 1em; 
+	position: absolute;
+	width: 25%;
+}
+
+#btsexo
+{
+	margin-left: 10%; 
+	margin-top: 20%
+}
+
+#btedad
+{
+	margin-left: 37%;
+	margin-top: 20%;
+}
+
+#btaltura
+{
+	margin-left: 64%;
+	margin-top: 20%;
+}
+
+#btcorporal
+{
+	margin-left: 10%;
+	margin-top: 33%;
+}
 
 .exitBtn
 {
