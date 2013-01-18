@@ -545,8 +545,8 @@ class MdhistController extends Controller
 			if($obVisu)
 			{
 				$html = '<table border="1">';
-				$html .= '<tr><td>VL</td><td>6</td><td>9</td><td>10</td></tr>';	
-				$html .= '<tr><td>VC</td><td>7</td><td>7</td><td>8</td></tr>';	
+				$html .= '<tr><td>VL</td><td>'.$obVisu->getVlod().'</td><td>'.$obVisu->getVloi().'</td><td>'.$obVisu->getVlao().'</td></tr>';	
+				$html .= '<tr><td>VC</td><td>'.$obVisu->getVcod().'</td><td>'.$obVisu->getVcoi().'</td><td>'.$obVisu->getVcao().'</td></tr>';	
 				$html .= '<tr><td>&nbsp;</td><td>O.D</td><td>O.I</td><td>A.O</td></tr>';	
 				$html .= '</table>'; 
 				$pdf->autoCell(0, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'C', true);				
