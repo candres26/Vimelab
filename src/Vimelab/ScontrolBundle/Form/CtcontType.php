@@ -10,7 +10,6 @@ class CtcontType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('tipo', 'choice', array('choices' => array('1' => 'SHE', '2' => 'Vigilancia', '3' => 'SHE & Vigilancia')))
             ->add('fecha', 'date', array('widget' => 'single_text', 'format' => 'y-MM-dd'))
             ->add('inicio', 'date', array('widget' => 'single_text', 'format' => 'y-MM-dd', 'label' => 'Fecha de inicio'))
             ->add('fin', 'date', array('widget' => 'single_text', 'format' => 'y-MM-dd', 'label' => 'Fecha de finalización'))
@@ -27,7 +26,8 @@ class CtcontType extends AbstractType
             ->add('revision', 'text', array('label' => 'Revisión'))
             ->add('aviso')
             ->add('costovigencia', 'text', array('label' => 'Costo vigencia'))
-            ->add('valrevi', 'text', array('label' => 'V. Revisión'))
+            ->add('valrevi', 'text', array('label' => 'Valor de la Revisión'))
+			->add('tipo', 'choice', array('choices' => array('1' => 'SHE', '2' => 'Vigilancia', '3' => 'SHE & Vigilancia')))
             ->add('subtotal')
             ->add('iva')
             ->add('descuento')

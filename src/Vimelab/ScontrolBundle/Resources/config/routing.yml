@@ -28,6 +28,10 @@ report:
 report_sexo:
     pattern:  /report/{empresa}/{inicio}/{fin}/sexo
     defaults: { _controller: ScontrolBundle:Report:sexo }
+
+report_edad:
+    pattern:  /report/edad
+    defaults: { _controller: ScontrolBundle:Report:edad }
     
 
 ######################################################

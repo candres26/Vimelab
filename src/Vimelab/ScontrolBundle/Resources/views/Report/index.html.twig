@@ -1,6 +1,12 @@
 {% extends "ScontrolBundle::layout.html.twig" %}
 
-{% block title %} Reportes Estadísticos {% endblock %}
+{% block header%}
+
+	<link href="{{ asset('bundles/scontrol/css/tema.css') }}" rel="stylesheet" type="text/css" />
+
+	{% block title %} Reportes Estadísticos {% endblock %}
+
+{% endblock %}
 
 {% block area %}
 
@@ -25,19 +31,19 @@
 			</table>
 		</form>
 	</div>
-	<div id="btsexo" style="border: solid #B3BACE; border-radius: 1em; position: absolute; width: 25%; margin-left: 10%; margin-top: 20%">
+	<div id="btsexo" class="btreport">
 		<h3>Consulta por sexo</h3>
 	</div>
 
-	<div id="btedad" style="border: solid #B3BACE; border-radius: 1em; position: absolute; width: 25%; margin-left: 37%; margin-top: 20%">
+	<div id="btedad" class="btreport">
 		<h3>Consulta por edad</h3>
 	</div>
 
-	<div id="btaltura" style="border: solid #B3BACE; border-radius: 1em; position: absolute; width: 25%; margin-left: 64%; margin-top: 20%">
+	<div id="btaltura" class="btreport">
 		<h3>Consulta por altura</h3>
 	</div>
 
-	<div id="btcorporal" style="border: solid #B3BACE; border-radius: 1em; position: absolute; width: 25%; margin-left: 10%; margin-top: 33%">
+	<div id="btcorporal" class="btreport">
 		<h3>Consulta por masa corporal</h3>
 	</div>
 
@@ -54,11 +60,18 @@
 			gId('selfinicio').onclick = $helpCalendar;
 			gId('selffinal').onclick = $helpCalendar;
 			gId('btsexo').onclick = generar;
+			gId('btedad').onclick = generaredad;
+			
 		}
 		
 		function generar(event)
 		{
 			window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/sexo', null, 'width=800,height=600');
+		}
+		
+		function generaredad(event)
+		{
+			window.open($base+'/'+'edad', null, 'width=800,height=600');
 		}
 		
 	</script>

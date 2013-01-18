@@ -37,23 +37,27 @@
 		<tr><td align="left">{{ form_label(edit_form.legalgbciud) }}</td><td align="left">{{ form_widget(edit_form.legalgbciud) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.contratantegbiden) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.contratantegbiden) }}</td><td align="left">{{ form_widget(edit_form.contratantegbiden) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.identcontratante) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.identcontratante) }}</td><td align="left">{{ form_widget(edit_form.identcontratante) }}</td></tr>
     </table>
     
     <table style="position: absolute; margin-left: 45%;">
-		<tr><td colspan='2'>{{ form_errors(edit_form.identcontratante) }}</td></tr>
-		<tr><td align="left">{{ form_label(edit_form.identcontratante) }}</td><td align="left">{{ form_widget(edit_form.identcontratante) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.cargocontratante) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.cargocontratante) }}</td><td align="left">{{ form_widget(edit_form.cargocontratante) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.nombrecontratante) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.nombrecontratante) }}</td><td align="left">{{ form_widget(edit_form.nombrecontratante) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.direccioncontratante) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.direccioncontratante) }}</td><td align="left">{{ form_widget(edit_form.direccioncontratante) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.tipo) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.tipo) }}</td><td align="left">{{ form_widget(edit_form.tipo) }}</td></tr>
+		<tr><td colspan='2'>{{ form_errors(edit_form.valrevi) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.valrevi) }}</td><td align="left">{{ form_widget(edit_form.valrevi) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.ntrabajadores) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.ntrabajadores) }}</td><td align="left">{{ form_widget(edit_form.ntrabajadores) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.revision) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.revision) }}</td><td align="left">{{ form_widget(edit_form.revision) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.aviso) }}</td></tr>
-		<tr><td align="left">{{ form_label(edit_form.aviso) }}</td><td align="left">{{ form_widget(edit_form.aviso) }}</td></tr>
+		<tr><td align="left">{{ form_label(edit_form.aviso) }}</td><td align="left">{{ form_widget(edit_form.aviso) }} días</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.costovigencia) }}</td></tr>
 		<tr><td align="left">{{ form_label(edit_form.costovigencia) }}</td><td align="left">{{ form_widget(edit_form.costovigencia) }}</td></tr>
 		<tr><td colspan='2'>{{ form_errors(edit_form.subtotal) }}</td></tr>
