@@ -134,6 +134,7 @@ class CtcontController extends Controller
 				
 				if ($tipo == 1)
 				{
+					$servicios = 'Seguridad, Higiene, Ergonomia';
 					$actividad = 'PREVENCION SHE';
 					$anexos1 = 'ANEXO I. SEGURIDAD - HIGIENE Y ERGONOMÍA.<br/>
 								ANEXO II. CENTROS CONTRATADOS Y CONDICIONES ECONÓMICAS.';
@@ -175,6 +176,7 @@ class CtcontController extends Controller
 				{
 					if($tipo == 2)
 					{
+						$servicios = 'Vigilancia de la Salud';
 						$actividad = 'VIGILANCIA DE LA SALUD';
 						$anexos1 = 'ANEXO I. VIGILANCIA DE LA SALUD.<br/>
 									ANEXO II. CENTROS CONTRATADOS Y CONDICIONES ECONÓMICAS.';
@@ -257,6 +259,7 @@ class CtcontController extends Controller
 									<h4>ANEXO II CENTROS CONTRATADOS Y CONDICIONES ECONÓMICAS.</h4>';
 					}else
 					{
+						$servicios = 'Seguridad, Higiene, Ergonomia, Psicosociología Aplicada, Vigilancia de la Salud';
 						$actividad = 'PREVENCION SHE + VIGILANCIA DE LA SALUD';
 						$anexos1 = 'ANEXO I. SEGURIDAD - HIGIENE Y ERGONOMÍA.<br/>
 									ANEXO II. VIGILANCIA DE LA SALUD.<br/>
@@ -411,8 +414,7 @@ class CtcontController extends Controller
 				</p>
 				<p>
 				<b>II.</b> Que <b>'.$entity->getGbempr()->getNombre().'</b>, se halla interesada en
-				contratar para sus centros de trabajo, que se especificarán en este contrato, los servicios de <b>[Seguridad,
-				Higiene, Ergonomia i Psicosociologia Aplicada, i Vigilancia de la Salud]</b> que presta VIMELAB, y
+				contratar para sus centros de trabajo, que se especificarán en este contrato, los servicios de '.$servicios.' que presta VIMELAB, y
 				estando asimismo esta igualmente interesada, ambas partes acuerdan suscribir el presente contrato sujeto
 				a las siguientes:
 				</p>

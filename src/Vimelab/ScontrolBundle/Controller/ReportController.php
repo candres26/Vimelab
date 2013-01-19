@@ -155,7 +155,7 @@ class ReportController extends Controller
 
 		$pdf->SetCreator(PDF_CREATOR);
 		$pdf->SetAuthor('VIMELAB');
-		$pdf->SetTitle('Estadística por sexo');
+		$pdf->SetTitle('Estadística por edad');
 		$pdf->SetSubject('Estadística por edades en pacientes');
 		
 		$pdf->setPrintHeader(false);
@@ -170,12 +170,16 @@ class ReportController extends Controller
 		
 		$border_style = array('all' => array('width' => 0.8, 'cap' => 'square', 'join' => 'miter', 'dash' => 0, 'phase' => 0));
 		
+		$datetime1 = new \DateTime('2009-08-12');
+		$datetime2 = new \DateTime('2009-10-12');
+		$interval = $datetime1->diff($datetime2);
+		
 		
 		$nacipaci = $pacientes->getNacimiento();
 		$fechactual = date("j-m-Y");
 		$html = '<b>Estadística de Edades</b>';
 		$pdf->writeHTMLCell(100, 0, 100, 15, $html, '', 0, 0, true, 'C', true);
-		$html = '<b>'.$nacipaci->format('m-d-Y').' Fecha Actual: '.$fechactual.'</b>';
+		$html = '<b>'.$nacipaci->format('m-d-Y').' Fecha Actual: '.$fechactual.'  Diferencia: '.$interval->format('%R%a days').'</b>';
 		$pdf->writeHTMLCell(100, 0, 100, 30, $html, '', 0, 0, true, 'C', true);
 		$html=
 		'
@@ -293,5 +297,27 @@ class ReportController extends Controller
 		
 		$pdf->Output('estadisticaedad.pdf', 'I');
 		
+	}
+	
+	public function althombresAction()
+	{
+		$pdf = new \Tcpdf_Tcpdf('L', PDF_UNIT, 'A4', true, 'UTF-8', false);
+
+		$pdf->SetCreator(PDF_CREATOR);
+		$pdf->SetAuthor('VIMELAB');
+		$pdf->SetTitle('Estadística por altura en hombres');
+		$pdf->SetSubject('Estadística por altura en hombres en pacientes');
+		
+		$pdf->setPrintHeader(false);
+		$pdf->setPrintFooter(false);
+
+		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+		$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+		$pdf->SetAutoPageBreak(FALSE, 0);
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+		$pdf->AddPage();
+		
+		$pdf->Output('estadisticaedad.pdf', 'I');
 	}
 }

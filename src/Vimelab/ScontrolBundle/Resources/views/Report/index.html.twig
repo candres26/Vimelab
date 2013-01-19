@@ -11,7 +11,7 @@
 {% block area %}
 
 <h1 align="left">Reportes Estadísticos</h1>
-	<div style="width: 80%; position: absolute; margin-left: 10%;margin-top: 2%; border: solid #B3BACE">
+	<div style="width: 80%; position: absolute; margin-left: 10%;margin-top: 2%; border: solid #BFBFBF 1px; box-shadow: 1.5px 1.5px 1.5px 1.5px;">
 		<form>
 			<table align="center">
 				<tr>
@@ -39,12 +39,56 @@
 		<h3>Consulta por edad</h3>
 	</div>
 
-	<div id="btaltura" class="btreport">
-		<h3>Consulta por altura</h3>
+	<div id="btalthom" class="btreport">
+		<h3>Consulta por altura en hombres</h3>
+	</div>
+	
+	<div id="btaltmuj" class="btreport">
+		<h3>Consulta por altura en mujeres</h3>
 	</div>
 
-	<div id="btcorporal" class="btreport">
-		<h3>Consulta por masa corporal</h3>
+	<div id="btcorpohom" class="btreport">
+		<h3>Consulta por masa corporal en hombres</h3>
+	</div>
+	
+	<div id="btcorpomuj" class="btreport">
+		<h3>Consulta por masa corporal en mujeres</h3>
+	</div>
+	
+	<div id="btfumadores" class="btreport">
+		<h3>Consulta por fumadores</h3>
+	</div>
+	
+	<div id="btpartelevada" class="btreport">
+		<h3>Consulta por presión arterial elevada</h3>
+	</div>
+	
+	<div id="btaltanaliticas" class="btreport">
+		<h3>Consulta por alteraciones analíticas</h3>
+	</div>
+	
+	<div id="btespirometria" class="btreport">
+		<h3>Consulta por espirometría</h3>
+	</div>
+	
+	<div id="btcontvision" class="btreport">
+		<h3>Consulta por control de la visión</h3>
+	</div>
+	
+	<div id="btaudiometria" class="btreport">
+		<h3>Consulta por audiometría</h3>
+	</div>
+	
+	<div id="btalaplocomotor" class="btreport">
+		<h3>Consulta por aparato locomotor</h3>
+	</div>
+	
+	<div id="btdimedico" class="btreport">
+		<h3>Consulta por dictamen médico</h3>
+	</div>
+	
+	<div id="btdirilaborales" class="btreport">
+		<h3>Consulta por riesgos laborales</h3>
 	</div>
 
 {% endblock %}
@@ -61,6 +105,7 @@
 			gId('selffinal').onclick = $helpCalendar;
 			gId('btsexo').onclick = generar;
 			gId('btedad').onclick = generaredad;
+			gId('btalthom').onclick = generaralthom;
 			
 		}
 		
@@ -72,6 +117,11 @@
 		function generaredad(event)
 		{
 			window.open($base+'/'+'edad', null, 'width=800,height=600');
+		}
+		
+		function generaralthom(event)
+		{
+			window.open($base+'/'+'althombres', null, 'width=800,height=600');
 		}
 		
 	</script>

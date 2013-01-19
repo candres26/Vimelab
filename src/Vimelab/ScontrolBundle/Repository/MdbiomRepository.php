@@ -70,4 +70,37 @@ class MdbiomRepository extends EntityRepository
         $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Mdbiom m JOIN m.mdhist l JOIN l.mdpaci k WHERE $sar ORDER BY m.id ASC");
         return $querry->getResult();
     }
+    
+    public function getConsultaAltura($empresa, $finicio, $ffinal)
+    {
+		if ($empresa != '@')
+		{
+			$em = $this->getEntityManager();
+			
+			$querry = $em->createQuery("SELECT p FROM ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e, ScontrolBundle:Mdhist h WHERE p.id = h.mdpaci 
+				AND p.sexo = 'F' AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa' ORDER BY h.id ASC");
+			$resul = count($querry->getResult());
+
+			$querry = $em->createQuery("SELECT p FROM ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e, ScontrolBundle:Mdhist h WHERE p.id = h.mdpaci 
+				AND p.sexo = 'M' AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa' ORDER BY h.id ASC");
+			$resul2 = count($querry->getResult());
+			
+			return array($resul, $resul2);
+		}
+		else
+		{
+			$em = $this->getEntityManager();
+			
+			$querry = $em->createQuery("SELECT p FROM ScontrolBundle:Mdpaci p, ScontrolBundle:Mdhist h WHERE p.id = h.mdpaci AND p.sexo = 'F' 
+				AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' ORDER BY h.id ASC");
+			$resul = count($querry->getResult());
+
+			$querry = $em->createQuery("SELECT p FROM ScontrolBundle:Mdpaci p, ScontrolBundle:Mdhist h WHERE p.id = h.mdpaci AND p.sexo = 'M' 
+				AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' ORDER BY h.id ASC");
+			$resul2 = count($querry->getResult());
+			
+			return array($resul, $resul2);
+        }
+	}
+    
 }

@@ -32,6 +32,10 @@ report_sexo:
 report_edad:
     pattern:  /report/edad
     defaults: { _controller: ScontrolBundle:Report:edad }
+
+report_althombres:
+    pattern:  /report/althombres
+    defaults: { _controller: ScontrolBundle:Report:althombres }
     
 
 ######################################################

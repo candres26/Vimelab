@@ -38,25 +38,91 @@ h2
 #btsexo
 {
 	margin-left: 10%; 
-	margin-top: 20%
+	margin-top: 16%
 }
 
 #btedad
 {
 	margin-left: 37%;
-	margin-top: 20%;
+	margin-top: 16%;
 }
 
-#btaltura
+#btalthom
 {
 	margin-left: 64%;
-	margin-top: 20%;
+	margin-top: 16%;
 }
 
-#btcorporal
+#btaltmuj
 {
 	margin-left: 10%;
-	margin-top: 33%;
+	margin-top: 29%;
+}
+
+#btcorpohom
+{
+	margin-left: 37%;
+	margin-top: 29%;
+}
+
+#btcorpomuj
+{
+	margin-left: 64%;
+	margin-top: 29%;
+}
+
+#btfumadores
+{
+	margin-left: 10%;
+	margin-top: 42%;
+}
+
+#btpartelevada
+{
+	margin-left: 37%;
+	margin-top: 42%;
+}
+
+#btaltanaliticas
+{
+	margin-left: 64%;
+	margin-top: 42%;
+}
+
+#btespirometria
+{
+	margin-left: 10%;
+	margin-top: 55%;
+}
+
+#btcontvision
+{
+	margin-left: 37%;
+	margin-top: 55%;
+}
+
+#btaudiometria
+{
+	margin-left: 64%;
+	margin-top: 55%;
+}
+
+#btalaplocomotor
+{
+	margin-left: 10%;
+	margin-top: 68%;
+}
+
+#btdimedico
+{
+	margin-left: 37%;
+	margin-top: 68%;
+}
+
+#btdirilaborales
+{
+	margin-left: 64%;
+	margin-top: 68%;
 }
 
 .exitBtn
