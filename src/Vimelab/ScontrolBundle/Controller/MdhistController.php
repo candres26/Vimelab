@@ -324,7 +324,7 @@ class MdhistController extends Controller
 
 			$pdf->AddPage();					
 
-			$html = '<table>';
+			$html = '<table style="padding-left: 10mm;">';
             $html .= '<tr><td><b>No: '.$entity->getId().'</b></td></tr>';
             $html .= '<tr><td><b>Fecha: '.$entity->getFecha()->format('Y-m-d').'</b></td></tr>';
             $html .= '<tr><td><b>'.$entity->getMdpaci()->getFullName().'</b></td></tr>';
@@ -334,8 +334,8 @@ class MdhistController extends Controller
             $html .= '<tr><td><b>'.$entity->getMdpaci()->getGbSucu()->getGbempr()->getNombre().'</b></td></tr>';
             $html .= '</table>';
 
-			$pdf->SetFont('helvetica','',10);
-			$pdf->autoCell(68, 32, 20, 42, $html, 1, 1, 0, true, 'J', true);
+			$pdf->SetFont('helvetica','',11);
+			$pdf->autoCell(90, 32, 20, 42, $html, 1, 1, 0, true, 'J', true);
 			$pdf->Ln(5);
 
 			$pdf->SetFont('dejavusans', '', 10);

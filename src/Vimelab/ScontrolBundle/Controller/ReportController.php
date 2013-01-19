@@ -22,21 +22,22 @@ class ReportController extends Controller
 		$entity = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaSexo($empresa, $inicio, $fin);
 		$nombreempresa = $em->getRepository('ScontrolBundle:Gbempr')->find($empresa);
 			
-		$pdf = new \Tcpdf_Tcpdf('L', PDF_UNIT, 'A4', true, 'UTF-8', false);
-
+		$pdf = new \Tcpdf_Tcpdf('L', 'mm', 'A4', true, 'UTF-8', false);
 		$pdf->SetCreator(PDF_CREATOR);
-		$pdf->SetAuthor('VIMELAB');
-		$pdf->SetTitle('Estadística por sexo');
-		$pdf->SetSubject('Estadística por sexo en pacientes');
-		
-		$pdf->setPrintHeader(false);
-		$pdf->setPrintFooter(false);
-
+		$pdf->SetAuthor('Vimelab');
+		$pdf->SetTitle('REPORTE DE ESTADÍSTICA POR SEXO');
+		$pdf->SetSubject('Estadística por sexo en pacientes.');
+		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, '', '');
+		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+		$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
 		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-		$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-		$pdf->SetAutoPageBreak(FALSE, 0);
+		$pdf->SetMargins(20, 38, 20);
+		$pdf->SetHeaderMargin(2);
+		$pdf->SetFooterMargin(15);
+		$pdf->SetAutoPageBreak(TRUE, 21);
 		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
-
+		$pdf->setTabl(true);
+		$pdf->setMemoTitle("REPORTE DE ESTADÍSTICA POR SEXO");
 		$pdf->AddPage();
 
 		$style1 = array('width' => 0.8, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0));
@@ -70,14 +71,6 @@ class ReportController extends Controller
 		
 		$pdf->Rect(55, 180-$postvaron, 35, $postvaron, 'DF', $border_style, $fill_color = array(100,0,0,0)); // Rectángulo varón
 		$pdf->Rect(95, 180-$posthembra, 35, $posthembra, 'DF', $border_style, $fill_color = array(0,91,86,24)); // Rectángulo hembra
-		
-		$pdf->SetFont('dejavusans', '', 20);
-		$html = '<b>Estadística de Sexos</b>';
-		$pdf->writeHTMLCell(100, 0, 100, 15, $html, '', 0, 0, true, 'C', true);
-		
-		$pdf->SetFont('helvetica', '', 17);
-		$html = '<b>Gráfica por Sexos</b>';
-		$pdf->writeHTMLCell(65, 0, 168, 40, $html, '', 0, 0, true, 'C', true);
 
 		$totalpersonas = $hembra + $varon;
 		$html= '

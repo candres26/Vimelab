@@ -9,7 +9,8 @@ class Tcpdf_Tcpdf extends TCPDF
 
     private $isRevi = false;
     private $isTabl = false;
-    private $entity = null;
+    private $entity = null; 
+    private $memoTitle = "None";
     
     public function getDir()
 	{
@@ -45,7 +46,7 @@ class Tcpdf_Tcpdf extends TCPDF
 
             $html = '<table style="border-bottom: 1px solid black;">';
             $html .= '<tr><td>&nbsp;</td></tr>';
-            $html .= '<tr><td><b> REPORTE DE CURSOS REALIZADOS </b></td></tr>';
+            $html .= '<tr><td><h2> '.$this->memoTitle.' </h2></td></tr>';
             $html .= '<tr><td><b>'.$hoy->format('Y-m-d').'</b></td></tr>';
             $html .= '<tr><td><i>Salud Control V 1.0</i></td></tr>';
             $html .= '</table>';
@@ -58,6 +59,11 @@ class Tcpdf_Tcpdf extends TCPDF
     public function setRevi($val)
     {
         $this->isRevi = $val;
+    }
+
+    public function setMemoTitle($val)
+    {
+        $this->memoTitle = $val;
     }
 
     public function setTabl($val)
