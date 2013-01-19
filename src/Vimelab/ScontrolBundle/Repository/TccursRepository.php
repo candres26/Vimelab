@@ -38,4 +38,20 @@ class TccursRepository extends EntityRepository
         $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Tccurs m JOIN m.tccapa l JOIN m.mdpaci p WHERE m.empresa LIKE '%$parametro%' OR l.nombre LIKE '%$parametro%' OR p.identificacion LIKE '%$parametro%' ORDER BY m.id ASC");
         return $querry->getResult();
     }
+
+    public function listReport($empr, $paci)
+    {
+        $em = $this->getEntityManager();
+
+        if($empr == "@" && $paci == "@")
+            $querry = $em->createQuery("SELECT c FROM ScontrolBundle:Tccurs c JOIN c.mdpaci p WHERE 1=1 ORDER BY p.priape ASC");
+        else if($empr != "@" && $paci == "@")
+            $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Tccurs m JOIN m.mdpaci p JOIN p.gbsucu s JOIN s.gbempr e WHERE e.id='$empr' ORDER BY p.priape ASC");
+        else if($empr == "@" && $paci != "@")
+            $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Tccurs m JOIN m.mdpaci p WHERE p.identificacion LIKE '%$paci%' ORDER BY p.priape ASC");
+        else
+            $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Tccurs m JOIN m.mdpaci p JOIN p.gbsucu s JOIN s.gbempr e WHERE p.identificacion LIKE '%$paci%' AND e.id='$empr' ORDER BY p.priape ASC");
+
+        return $querry->getResult();
+    }
 }

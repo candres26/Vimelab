@@ -32,7 +32,6 @@ report_sexo:
 report_edad:
     pattern:  /report/edad
     defaults: { _controller: ScontrolBundle:Report:edad }
-    
 
 ######################################################
 ####                  FIN REPORTES                ####
@@ -1285,6 +1284,9 @@ tccurs_update:
 tccurs_delete:
     pattern:  /tccurs/{id}/delete
     defaults: { _controller: ScontrolBundle:Tccurs:delete }
+tccurs_report:
+    pattern:  /tccurs/{empr}/{paci}/report
+    defaults: { _controller: ScontrolBundle:Tccurs:report }
 tccurs_filter:
     pattern:  /tccurs/{param}/filter
     defaults: { _controller: ScontrolBundle:Tccurs:filter }

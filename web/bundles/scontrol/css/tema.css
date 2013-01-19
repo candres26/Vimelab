@@ -812,3 +812,70 @@ h2
 {
 	right: 5%;
 }
+
+/* ### Reporte ### */
+
+.csParDiv
+{
+	display: none;
+	position: absolute;
+	width: 50%;
+	height: 50%;
+	left: 25%;
+	top: 25%;
+	background: #FFFFFF;
+	z-index: 50;
+	border: 1px solid #203982;
+	border-radius: 10px;
+}
+
+.csParDiv b
+{
+	display: block;
+	position: absolute;
+	width: 98%;
+	height: auto;
+	left: 1%;
+	top: 1%;
+	border-bottom: 1px solid #203982;
+}
+
+.csParDivIn
+{
+	position: absolute;
+	width: 98%;
+	height: 88%;
+	bottom: 2%;
+	left: 1%;
+	background: #EEEEEE;
+	border: 1px solid #203982;
+}
+
+.csParDivIn table
+{
+	position: absolute;
+	top: 5%;
+	left: 5%;
+	width: 90%;
+	height: 90%;
+}
+
+.csParDivIn select, .csParDivIn input
+{
+	width: 100%;
+}
+
+.csParDivIn button
+{
+	background-color: #203982; 
+	color: #fff;
+	border-radius: 10px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.csParDivIn button:hover
+{
+	background-color: #FFFFFF; 
+	color: #000000;
+}
