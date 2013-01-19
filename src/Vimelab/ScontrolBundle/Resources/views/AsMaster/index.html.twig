@@ -313,8 +313,16 @@
 
 <!--- Vista Parcial De Audiometria -->
 <div id="jsAudiPar" class="csParMed">
-	<table class="csParTi">
-		<tr><th>AUDIOMETRÍA</th></tr>
+	<table class="csParTi2">
+		<tr>
+			<th>AUDIOMETRÍA</th>
+			<th class='csParTiQ'>
+				<input id="hlpAudi" placeholder="Diagnóstico Rápido" type="text">
+				<div id="hlpAudiDiv" class="hlpDiv2">
+					<table id="hlpAudiZone"><!-- AJAX --></table>
+				</div>
+			</th>
+		</tr>
 	</table>
 	
 	<div class="csParIn">
@@ -331,8 +339,16 @@
 
 <!--- Vista Parcial De Agudeza Visual -->
 <div id="jsVisuPar" class="csParMed">
-	<table class="csParTi">
-		<tr><th>AGUDEZA VISUAL</th></tr>
+	<table class="csParTi2">
+		<tr>
+			<th>AGUDEZA VISUAL</th>
+			<th class='csParTiQ'>
+				<input id="hlpVisu" placeholder="Diagnóstico Rápido" type="text">
+				<div id="hlpVisuDiv" class="hlpDiv2">
+					<table id="hlpVisuZone"><!-- AJAX --></table>
+				</div>
+			</th>
+		</tr>
 	</table>
 	
 	<div class="csParIn">
@@ -349,8 +365,16 @@
 
 <!--- Vista Parcial De Biometría -->
 <div id="jsBiomPar" class="csParTal">
-	<table class="csParTi">
-		<tr><th>BIOMETRÍA</th></tr>
+	<table class="csParTi2">
+		<tr>
+			<th>BIOMETRÍA</th>
+			<th class='csParTiQ'>
+				<input id="hlpBiom" placeholder="Diagnóstico Rápido" type="text">
+				<div id="hlpBiomDiv" class="hlpDiv2">
+					<table id="hlpBiomZone"><!-- AJAX --></table>
+				</div>
+			</th>
+		</tr>
 	</table>
 	
 	<div class="csParIn">
@@ -365,10 +389,18 @@
 	
 </div>
 
-<!--- Vista Parcial De Biometría -->
-<div id="jsEspiPar" class="csParMini">
-	<table class="csParTi">
-		<tr><th>ESPIROMETRÍA</th></tr>
+<!--- Vista Parcial De Espirometría -->
+<div id="jsEspiPar" class="csParMed">
+	<table class="csParTi2">
+		<tr>
+			<th>ESPIROMETRÍA</th>
+			<th class='csParTiQ'>
+				<input id="hlpEspi" placeholder="Diagnóstico Rápido" type="text">
+				<div id="hlpEspiDiv" class="hlpDiv2">
+					<table id="hlpEspiZone"><!-- AJAX --></table>
+				</div>
+			</th>
+		</tr>
 	</table>
 	
 	<div class="csParIn">
@@ -385,8 +417,16 @@
 
 <!--- Vista Parcial De Extremidades -->
 <div id="jsExtrPar" class="csPar">
-	<table class="csParTi">
-		<tr><th>APARATO LOCOMOTOR</th></tr>
+	<table class="csParTi2">
+		<tr>
+			<th>APARATO LOCOMOTOR</th>
+			<th class='csParTiQ'>
+				<input id="hlpExtr" placeholder="Diagnóstico Rápido" type="text">
+				<div id="hlpExtrDiv" class="hlpDiv2">
+					<table id="hlpExtrZone"><!-- AJAX --></table>
+				</div>
+			</th>
+		</tr>
 	</table>
 	
 	<div class="csParIn">
@@ -403,8 +443,16 @@
 
 <!--- Vista Parcial De R. Sistemas -->
 <div id="jsSistPar" class="csParXtal">
-	<table class="csParTi">
-		<tr><th>REVISIÓN POR SISTEMAS</th></tr>
+	<table class="csParTi2">
+		<tr>
+			<th>REVISIÓN POR SISTEMAS</th>
+			<th class='csParTiQ'>
+				<input id="hlpSist" placeholder="Diagnóstico Rápido" type="text">
+				<div id="hlpSistDiv" class="hlpDiv2">
+					<table id="hlpSistZone"><!-- AJAX --></table>
+				</div>
+			</th>
+		</tr>
 	</table>
 	
 	<div class="csParIn">
@@ -549,8 +597,24 @@
 			gId('jsExamTab').onclick = selExam;
 			gId('jsExamSav').onclick = savExam;
 			gId('jsExamDel').onclick = delExam;
+
+			/* --- EVENTOS QUICK --- */
+			gId('hlpAudi').onkeypress = getQuick;
+			gId('hlpAudiZone').onclick = saveQuick;
+			gId('hlpVisu').onkeypress = getQuick;
+			gId('hlpVisuZone').onclick = saveQuick;
+			gId('hlpBiom').onkeypress = getQuick;
+			gId('hlpBiomZone').onclick = saveQuick;
+			gId('hlpEspi').onkeypress = getQuick;
+			gId('hlpEspiZone').onclick = saveQuick;
+			gId('hlpExtr').onkeypress = getQuick;
+			gId('hlpExtrZone').onclick = saveQuick;
+			gId('hlpSist').onkeypress = getQuick;
+			gId('hlpSistZone').onclick = saveQuick;
+
+
 		}
-	
+
 	</script>
 	
 {% endblock %}

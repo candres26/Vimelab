@@ -121,6 +121,11 @@ function show(ids)
     gId(ids).style.display = 'inline';
 }
 
+function showB(ids)
+{
+    gId(ids).style.display = 'block';
+}
+
 function hide(ids)
 {
     gId(ids).style.display = 'none';

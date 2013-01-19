@@ -321,7 +321,7 @@
 	text-align: center;
 }
 
-.csParTi
+.csParTi, .csParTi2
 {
 	position: absolute;
 	top: 0%;
@@ -329,6 +329,23 @@
 	width: 98%;
 	height: 7%;
 	border-collapse: collapse;
+	text-align: left;
+}
+
+.csParTiQ
+{
+	position: absolute;
+	right: 2.5%;
+	width: 50%; 
+	text-align: right;
+}
+
+.csParTiQ input
+{
+	border: 1px solid #203982;
+	border-radius: 5px;
+	text-align: center;
+	background: #D7DEFF;
 }
 
 .csParTi td
