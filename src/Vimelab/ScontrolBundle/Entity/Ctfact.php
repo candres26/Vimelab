@@ -420,8 +420,13 @@ class Ctfact
         return $this->gbempr;
     }
 
-    public function __toString()
+    /**
+     * Set deta
+     *
+     * @param text $deta
+     */
+    public function setDeta($deta)
     {
-        return $this->id;
+        $this->deta = $deta;
     }
 }

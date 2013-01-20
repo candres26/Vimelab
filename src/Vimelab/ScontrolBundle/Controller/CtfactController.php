@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Vimelab\ScontrolBundle\Entity\Ctfact;
+use Vimelab\ScontrolBundle\Entity\Ctdeta;
 use Vimelab\ScontrolBundle\Form\CtfactType;
 use Vimelab\ScontrolBundle\Tool\Tool;
 
@@ -72,11 +73,7 @@ class CtfactController extends Controller
 				throw $this->createNotFoundException('Unable to find Ctfact entity.');
 			}
 
-			$deleteForm = $this->createDeleteForm($id);
-
-			return array(
-				'entity'      => $entity,
-				'delete_form' => $deleteForm->createView(),        );
+			return array('entity' => $entity);
 		}else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
@@ -94,11 +91,12 @@ class CtfactController extends Controller
 			$entity = new Ctfact();
 			$form   = $this->createForm(new CtfactType(), $entity);
 
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
-		}else
+			$em = $this->getDoctrine()->getEntityManager();
+            $servs = $em->getRepository('ScontrolBundle:Ctserv')->findBy(array(), array('nombre' => 'ASC'));
+
+			return array('entity' => $entity, 'form'   => $form->createView(), 'servs' => $servs);
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
@@ -118,146 +116,44 @@ class CtfactController extends Controller
 			$form    = $this->createForm(new CtfactType(), $entity);
 			$form->bindRequest($request);
 
-			if ($form->isValid()) {
+			if ($form->isValid()) 
+			{
 				$em = $this->getDoctrine()->getEntityManager();
 				$em->persist($entity);
+
+				$arr = $entity->getDetalle();
+				$arr = Tool::ofJail($arr);
+
+				foreach ($arr as $caso) 
+				{
+					$deta = new Ctdeta();
+					$deta->setCantidad($caso[2]);
+					$deta->setVuni($caso[3]);
+					$deta->setViva($caso[5]);
+					$deta->setTotal($caso[6]);
+					$deta->setCtserv($em->getRepository('ScontrolBundle:Ctserv')->find($caso[0]));
+					$deta->setCtfact($entity);
+
+					$em->persist($deta);
+				}
+
+				if($entity->getEstado() == 'F')
+				{	
+					$cont = $entity->getCtcont();
+					$cont->descontar($entity->getTotal());
+
+					$em->persist($cont);
+				}
+
 				$em->flush();
 
 				Tool::logger($this, $entity->getId());
 				return $this->redirect($this->generateUrl('ctfact_show', array('id' => $entity->getId())));
-				
 			}
 
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
+			return array('entity' => $entity,'form'   => $form->createView());
 		}else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
-
-    /**
-     * Displays a form to edit an existing Ctfact entity.
-     *
-     * @Route("/{id}/edit", name="ctfact_edit")
-     * @Template()
-     */
-    public function editAction($id)
-    {
-		if(Tool::isGrant($this))
-		{	
-			$em = $this->getDoctrine()->getEntityManager();
-
-			$entity = $em->getRepository('ScontrolBundle:Ctfact')->find($id);
-
-			if (!$entity) {
-				throw $this->createNotFoundException('Unable to find Ctfact entity.');
-			}
-
-			$editForm = $this->createForm(new CtfactType(), $entity);
-			$deleteForm = $this->createDeleteForm($id);
-
-			return array(
-				'entity'      => $entity,
-				'edit_form'   => $editForm->createView(),
-				'delete_form' => $deleteForm->createView(),
-			);
-		}else
-			return $this->render("ScontrolBundle::alertas.html.twig");
-    }
-
-    /**
-     * Edits an existing Ctfact entity.
-     *
-     * @Route("/{id}/update", name="ctfact_update")
-     * @Method("post")
-     * @Template("ScontrolBundle:Ctfact:edit.html.twig")
-     */
-    public function updateAction($id)
-    {
-		if(Tool::isGrant($this))
-		{	
-			$em = $this->getDoctrine()->getEntityManager();
-
-			$entity = $em->getRepository('ScontrolBundle:Ctfact')->find($id);
-
-			if (!$entity) {
-				throw $this->createNotFoundException('Unable to find Ctfact entity.');
-			}
-
-			$editForm   = $this->createForm(new CtfactType(), $entity);
-			$deleteForm = $this->createDeleteForm($id);
-
-			$request = $this->getRequest();
-
-			$editForm->bindRequest($request);
-
-			if ($editForm->isValid()) {
-				$em->persist($entity);
-				$em->flush();
-				
-				Tool::logger($this, $entity->getId());
-				return $this->redirect($this->generateUrl('ctfact_show', array('id' => $id)));
-			}
-
-			return array(
-				'entity'      => $entity,
-				'edit_form'   => $editForm->createView(),
-				'delete_form' => $deleteForm->createView(),
-			);
-		}else
-			return $this->render("ScontrolBundle::alertas.html.twig");
-    }
-
-    /**
-     * Deletes a Ctfact entity.
-     *
-     * @Route("/{id}/delete", name="ctfact_delete")
-     * @Method("post")
-     */
-    public function deleteAction($id)
-    {
-		if(Tool::isGrant($this))
-		{
-			try
-			{
-				$form = $this->createDeleteForm($id);
-				$request = $this->getRequest();
-	
-				$form->bindRequest($request);
-	
-				if ($form->isValid()) {
-					$em = $this->getDoctrine()->getEntityManager();
-					$entity = $em->getRepository('ScontrolBundle:Ctfact')->find($id);
-	
-					if (!$entity) {
-						throw $this->createNotFoundException('Unable to find Ctfact entity.');
-					}
-	
-					$em->remove($entity);
-					$em->flush();
-					
-					Tool::logger($this, $id);
-				}
-	
-				return $this->redirect($this->generateUrl('ctfact'));
-			}
-			catch(\Exception $ex)
-			{
-				$sesion = $this->getRequest()->getSession();
-				$sesion->setFlash('MsgVar', 'Imposible Borrar esta entidad, integridad referencial!');
-				
-				return $this->redirect($this->generateUrl('ctfact_edit', array('id' => $id)));
-			}
-		}else
-			return $this->render("ScontrolBundle::alertas.html.twig");
-    }
-
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm()
-        ;
-    }
+    
 }

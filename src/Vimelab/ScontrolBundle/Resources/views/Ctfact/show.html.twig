@@ -50,7 +50,7 @@
         </tr>
         <tr>
             <th align="left">Estado</th>
-            <td>{% if entity.estado == 'A' %} Activo {% else %} Inactivo {% endif %}</td>
+            <td>{% if entity.estado == 'F' %} Facturada {% else %} Anulada {% endif %}</td>
         </tr>
         <tr>
             <th align="left">Detalle</th>
@@ -63,10 +63,6 @@
     </tbody>
 </table>
 
-	<form id="vime-form" action="{{ path('ctfact_delete', { 'id': entity.id }) }}" method="post">
-		{{ form_widget(delete_form) }}
-	</form>
-
 {% endblock %}
 
 {% block action %}
@@ -75,8 +71,6 @@
 		<tr>
 			<td>&nbsp;&nbsp;&nbsp;</td>
 			<td onClick="go('{{ path('ctfact') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
-			<td onClick="gId('vime-form').submit()"><img src="{{ asset('bundles/scontrol/imagenes/iconos/eliminar.png') }}" title="Eliminar"></td>
-			<td onClick="go('{{ path('ctfact_edit', { 'id': entity.id }) }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar.png') }}" title="Editar"></td>
 		</tr>
 	</table>
 </div>

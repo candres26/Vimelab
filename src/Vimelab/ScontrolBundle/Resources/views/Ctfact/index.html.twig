@@ -27,7 +27,6 @@
             <th>Fecha</th>
             <th>Empresa</th>
             <th>Vencimiento</th>
-            <th>Descuento</th>
             <th>Total</th>
             <th>Estado</th>
             <th>Acciones</th>
@@ -40,12 +39,12 @@
             <td>{% if entity.fecha %}{{ entity.fecha|date('Y-m-d') }}{% endif%}</td>
             <td>{{ entity.gbempr.nombre }}</td>
             <td>{% if entity.vencimiento %}{{ entity.vencimiento|date('Y-m-d') }}{% endif%}</td>
-            <td>{{ entity.descuento }}</td>
             <td>{{ entity.total }}</td>
-            <td>{% if entity.estado == 'A' %} Activo {% else %} Inactivo {% endif %}</td>
+            <td>{% if entity.estado == 'F' %} Facturada {% else %} Anulada {% endif %}</td>
             <td align="center">
-				<a href="{{ path('ctfact_show', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/show_index.png') }}" title="Mostrar"></a>
-				<a href="{{ path('ctfact_edit', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar_index.png') }}" title="Editar"></a>
+				<a href="{{ path('ctfact_show', { 'id': entity.id }) }}">
+					<img src="{{ asset('bundles/scontrol/imagenes/iconos/show_index.png') }}" title="Mostrar">
+				</a>
             </td>
         </tr>
     {% endfor %}

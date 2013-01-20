@@ -111,15 +111,6 @@ ctfact_new:
 ctfact_create:
     pattern:  /ctfact/create
     defaults: { _controller: ScontrolBundle:Ctfact:create }
-ctfact_edit:
-    pattern:  /ctfact/{id}/edit
-    defaults: { _controller: ScontrolBundle:Ctfact:edit }
-ctfact_update:
-    pattern:  /ctfact/{id}/update
-    defaults: { _controller: ScontrolBundle:Ctfact:update }
-ctfact_delete:
-    pattern:  /ctfact/{id}/delete
-    defaults: { _controller: ScontrolBundle:Ctfact:delete }
 ctfact_filter:
     pattern:  /ctfact/{param}/filter
     defaults: { _controller: ScontrolBundle:Ctfact:filter }

@@ -1,71 +1,150 @@
 {% extends "ScontrolBundle::layout.html.twig" %}
 
-{% block title %} Factura {% endblock %}
+{% block title %} Facturación {% endblock %}
 
 {% block area %}
-<h2 align="left">Factura</h2>
+
+<div class="tit">FACTURACIÓN</div>
 
 <form  id="vime-form" action="{{ path('ctfact_create') }}" method="post" {{ form_enctype(form) }}>
+
 	<input type="submit" style="display: none" id="sender" value="send">
 	
-	<table class="vime-colum1">
-		<tr><td colspan='4'>{{ form_errors(form.estado) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.estado) }}</td><td colspan='3' align="left">{{ form_widget(form.estado) }}</td></tr>
-
-		<tr><td colspan='4'>{{ form_errors(form.ctcont) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.ctcont) }}</td><td align="left">{{ form_widget(form.ctcont) }}</td></tr>
-		
-		<tr><td colspan='4'>{{ form_errors(form.gbpers) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.gbpers) }}</td><td colspan='3' align="left">{{ form_widget(form.gbpers) }}</td></tr>
-		
-		<tr><td colspan='4'>{{ form_errors(form.gbempr) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.gbempr) }}</td><td colspan='3' align="left">{{ form_widget(form.gbempr) }}</td></tr>
-		
-		<tr><td colspan='4'>{{ form_errors(form.fecha) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.fecha) }}</td><td colspan='3' align="left">{{ form_widget(form.fecha) }} <img id="hlpFecha" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}"></td></tr>
-		<tr><td></td><td colspan='3' style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>
-		
-		<tr><td colspan='4'>{{ form_errors(form.vencimiento) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.vencimiento) }}</td><td colspan='3' align="left">{{ form_widget(form.vencimiento) }} <img id="hlpVencimiento" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}"></td></tr>
-		<tr><td></td><td colspan='3' style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>
-
-		<tr><td></td><td colspan='3'>{{ form_errors(form.perini) }}{{ form_errors(form.perfin) }}</td></tr>
+	<table class="cabs">
 		<tr>
-			<td style="display: none;" align="left">{{ form_label(form.vencimiento) }}</td>
-			<td style="display: none;" align="left">{{ form_label(form.vencimiento) }}</td>
-			<td align="left">Periodo:</td>
-			<td align="left">
-				{{ form_widget(form.perini) }} 
-				<img id="hlpPerini" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}">
-			</td>
-			<td>A</td>
-			<td>  
-				{{ form_widget(form.perfin) }}
-				<img id="hlpPerfin" class='exitBtn' src="{{ asset('bundles/scontrol/imagenes/date.gif') }}">
-			</td>
+			<td>{{ form_errors(form.estado) }}</td>
+			<td>{{ form_errors(form.ctcont) }}</td>
+			<td>{{ form_errors(form.gbpers) }}</td>	
+			<td>{{ form_errors(form.gbempr) }}</td>
 		</tr>
-		<tr><td></td><td colspan='3' style="font-size: 10px; color: silver; font-style: italic;" align="left">Fecha: Año-Mes-Día (Ej: 1984-10-15)</td></tr>
+
+		<tr>
+			<td>{{ form_label(form.estado) }}</td>
+			<td>{{ form_label(form.ctcont) }}</td>
+			<td>{{ form_label(form.gbpers) }}</td>
+			<td>{{ form_label(form.gbempr) }}</td>
+		</tr>
+
+		<tr>
+			<td>{{ form_widget(form.estado) }}</td>
+			<td>{{ form_widget(form.ctcont) }}</td>
+			<td>{{ form_widget(form.gbpers) }}</td>
+			<td>{{ form_widget(form.gbempr) }}</td>
+		</tr>
 	</table>
 
-	<table class="vime-colum2">
-		<tr><td colspan='2'>{{ form_errors(form.subtotal) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.subtotal) }}</td><td align="left">{{ form_widget(form.subtotal) }}</td></tr>
+	<table class="fech">
+		
+		<tr>
+			<td>{{ form_errors(form.fecha) }}</td>
+			<td>{{ form_errors(form.vencimiento) }}</td>
+			<td>{{ form_errors(form.perini) }}</td>
+			<td></td>
+			<td>{{ form_errors(form.perfin) }}</td>
+		</tr>
 
-		<tr><td colspan='2'>{{ form_errors(form.iva) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.iva) }}</td><td align="left">{{ form_widget(form.iva) }}</td></tr>
-		
-		<tr><td colspan='2'>{{ form_errors(form.descuento) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.descuento) }}</td><td align="left">{{ form_widget(form.descuento) }}</td></tr>
+		<tr>
+			<td>{{ form_label(form.fecha) }}</td>
+			<td>{{ form_label(form.vencimiento) }}</td>
+			<td style="display: none;">{{ form_label(form.vencimiento) }}</td>
+			<td style="display: none;">{{ form_label(form.vencimiento) }}</td>
+			<td colspan="3">Periodo</td>
+		</tr>
 
-		<tr><td colspan='2'>{{ form_errors(form.total) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.total) }}</td><td align="left">{{ form_widget(form.total) }}</td></tr>
+		<tr>
+			<td>{{ form_widget(form.fecha) }}</td>
+
+			<td>{{ form_widget(form.vencimiento) }}</td>
+
+			<td>{{ form_widget(form.perini) }}</td>
+
+			<td><b>A</b></td>
+
+			<td>{{ form_widget(form.perfin) }}</td>
+		</tr>
 		
-		<tr><td colspan='2'>{{ form_errors(form.detalle) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.detalle) }}</td><td align="left">{{ form_widget(form.detalle) }}</td></tr>
+	</table>
+
+	<table class="vals">
+		<tr>
+			<td>{{ form_errors(form.subtotal) }}</td>
+			<td>{{ form_errors(form.iva) }}</td>
+			<td>{{ form_errors(form.descuento) }}</td>
+			<td>{{ form_errors(form.total) }}</td>
+		</tr>
+
+		<tr>
+			<td>{{ form_label(form.subtotal) }}</td>
+			<td>{{ form_label(form.iva) }}</td>
+			<td>{{ form_label(form.descuento) }}</td>
+			<td>{{ form_label(form.total) }}</td>
+		</tr>
 		
+		<tr>
+			<td class="only">{{ form_widget(form.subtotal) }}</td>
+			<td class="only">{{ form_widget(form.iva) }}</td>
+			<td>{{ form_widget(form.descuento) }}</td>
+			<td class="only">{{ form_widget(form.total) }}</td>
+		</tr>
+
+	</table>
+
+	<table class="obser">
 		<tr><td colspan='2'>{{ form_errors(form.observaciones) }}</td></tr>
-		<tr><td align="left">{{ form_label(form.observaciones) }}</td><td align="left">{{ form_widget(form.observaciones) }}</td></tr>
+		<tr><th align="rigth">{{ form_label(form.observaciones) }}:</th><td align="left">{{ form_widget(form.observaciones) }}</td></tr>
 	</table>
+
+	
+
+	<div class="grid">
+		<table class="ctrl">
+			<tr>
+				<td>Servicio</td>
+				<td>Cantidad</td>
+				<td>V. Unitario</td>
+				<td>Subtotal</td>
+				<td>IVA</td>
+				<td>Total</td>
+			</tr>
+
+			<tr>
+				<td>
+					<select id="cpServicio">
+						<option value="@">Seleccione...</option>
+						{% for s in servs %}
+							<option value="{{ s.id }}">{{ s.nombre }}</option>
+						{% endfor %}
+					</select>
+
+					<select id="cpIva" style="display: none;">
+						<option value="@">Seleccione...</option>
+						{% for s in servs %}
+							<option value="{{ s.id }}">{{ s.iva }}</option>
+						{% endfor %}
+					</select>
+				</td>
+				<td><input id="cpCantidad" /></td>
+				<td class="only"><input id="cpVuni" readonly="true" /></td>
+				<td class="only"><input id="cpVsub" readonly="true" /></td>
+				<td class="only"><input id="cpViva" readonly="true" /></td>
+				<td><input id="cptotal" /></td>
+			</tr>
+		</table>
+
+		<div class="zone">
+			<table id="zoneTab"></table>
+		</div>
+		
+		<table class="btns">
+			<tr>
+				<td><img id="btAdd" src="{{ asset('bundles/scontrol/imagenes/iconos/add.png') }}" title="Agregar"></td>
+				<td><img id="btRem" src="{{ asset('bundles/scontrol/imagenes/iconos/rem.png') }}" title="Eliminar"></td>
+			</tr>
+		</table>
+
+	</div>
+
+	<div class="deta">{{ form_errors(form.detalle) }}{{ form_label(form.detalle) }}{{ form_widget(form.detalle) }}</div>
 
     {{ form_rest(form) }}
 </form>
@@ -77,7 +156,7 @@
 		<tr>
 			<td>&nbsp;&nbsp;&nbsp;</td>
 			<td onClick="go('{{ path('ctfact') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
-			<td onClick="SimularClick('sender')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
+			<td onClick="fixData()"><img src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar"></td>
 		</tr>
 	</table>
 </div>
@@ -87,15 +166,371 @@
 	
 	<script type="text/javascript">
 		
+		var $fdet = "vimelab_scontrolbundle_ctfacttype_detalle";
+		var $fsub = "vimelab_scontrolbundle_ctfacttype_subtotal";
+		var $fiva = "vimelab_scontrolbundle_ctfacttype_iva";
+		var $fdes = "vimelab_scontrolbundle_ctfacttype_descuento";
+		var $ftot = "vimelab_scontrolbundle_ctfacttype_total";
+
+		var $ivapor = 0.0;
+		var $cant = 0.0;
+		var $uni = 0.0;
+		var $iva = 0.0;
+		var $sub = 0.0;
+		var $tot = 0.0;
+
+		var $idRow = -1;
+		var $cnRow = -1;
+
 		function $init(event)
 		{
-			gId('hlpFecha').onclick = $helpCalendar;
-			gId('hlpVencimiento').onclick = $helpCalendar;
-			gId('hlpPerini').onclick = $helpCalendar;
-			gId('hlpPerfin').onclick = $helpCalendar;
+			gId('vimelab_scontrolbundle_ctfacttype_fecha').onkeypress = $helpCalendarKey;
+			gId('vimelab_scontrolbundle_ctfacttype_vencimiento').onkeypress = $helpCalendarKey;
+			gId('vimelab_scontrolbundle_ctfacttype_perini').onkeypress = $helpCalendarKey;
+			gId('vimelab_scontrolbundle_ctfacttype_perfin').onkeypress = $helpCalendarKey;
+			
+			gId($fdes).onchange = calToto;
+			gId('cpServicio').onchange = selServ;
+			gId('cpCantidad').onblur = jumTot;
+			gId('cptotal').onchange = keyCal;
+			gId('zoneTab').onclick = touchSer;
+			gId('btAdd').onclick = addSer;
+			gId('btRem').onclick = remSer;
+
+			gId($fsub).value = "0.0";
+			gId($fiva).value = "0.0";
+			gId($fdes).value = "0.0";
+			gId($ftot).value = "0.0";
+		}
+
+		function fixData(event)
+		{
+			if(confirm("Seguro que desea proceder?"))
+			{	
+				calToto();
+
+				var marr = new Array();
+				var lrow = gId("zoneTab").rows.length;
+
+				for (var i = 0; i < lrow; i++) 
+				{
+					var trow = gId("zoneTab").rows[i];
+					var tarr = new Array();
+
+					var lcell = trow.cells.length;
+
+					for (var j = 0; j < lcell; j++) 
+						tarr.push(trow.cells[j].innerHTML);
+
+					marr.push(tarr);
+				}
+
+				gId($fdet).value = toJail(marr);
+
+				SimularClick('sender');
+			}
+		}
+
+		function calToto(event)
+		{
+			gId($ftot).value = Math.round( (parseFloat(gId($fsub).value)+parseFloat(gId($fiva).value)-parseFloat(gId($fdes).value)) *100)/100;
+		}
+
+		function touchSer(event)
+		{
+			var row = event.target.parentNode;
+			var tmp = row.id;
+
+			if(tmp != $idRow)
+			{
+				$idRow = tmp;
+				row.style.background = "#C8E2D8";
+			}
+			else
+			{
+				$idRow = -1;
+				row.style.background = "";
+			}	
+		}
+
+		function jumTot(event)
+		{
+			gId('cptotal').focus();
+		}
+
+		function selServ(event)
+		{
+			gId('cpIva').value = gId('cpServicio').value;
+			$ivapor = parseFloat(gId('cpIva').options[gId('cpIva').selectedIndex].text)/100.0;
+		}
+
+		function keyCal(event)
+		{
+			$tot = parseFloat(gId('cptotal').value);
+			$cant = parseFloat(gId('cpCantidad').value);
+			$uni = Math.round( ($tot / $cant) *100)/100;
+			$sub = Math.round( ($tot / (1+$ivapor)) *100)/100;
+			$iva = Math.round( ($tot - $sub) *100)/100;
+			gId('cpVsub').value = $sub;
+			gId('cpViva').value = $iva;
+			gId('cpVuni').value = $uni;
+		}
+
+		function addSer(event)
+		{
+			if(gId('cpServicio').value != "@" && !isNaN($iva) && !isNaN($sub) && !isNaN($tot))
+			{
+				$cnRow += 1;
+				var cont = "<tr id='"+$cnRow+"'>";
+
+				cont += "<th>"+gId('cpServicio').value+"</th>";
+				cont += "<td>"+gId('cpServicio').options[gId('cpServicio').selectedIndex].text+"</td>";
+				cont += "<td>"+$cant+"</td>";
+				cont += "<td>"+$uni+"</td>";
+				cont += "<td>"+$sub+"</td>";
+				cont += "<td>"+$iva+"</td>";
+				cont += "<td>"+$tot+"</td>";
+				cont += "</tr>";
+				gId("zoneTab").innerHTML += cont;
+
+				gId($fsub).value = Math.round( (parseFloat(gId($fsub).value)+$sub) *100)/100;
+				gId($fiva).value = Math.round( (parseFloat(gId($fiva).value)+$iva) *100)/100;
+				calToto();
+
+				gId('cpServicio').value = '@';
+				gId('cpCantidad').value = '';
+				gId('cptotal').value = '';
+				gId('cpVsub').value = '';
+				gId('cpViva').value = '';
+				gId('cpVuni').value = '';
+
+				gId('cpServicio').focus();
+			}
+			else
+				popup("Servicio inclompleto!");
+		}
+
+		function remSer(event)
+		{
+			if($idRow != "-1")
+			{
+				var oldRow = gId(""+$idRow);
+
+				gId($fsub).value = Math.round( (parseFloat(gId($fsub).value)-parseFloat(oldRow.cells[4].innerHTML)) *100)/100;
+				gId($fiva).value = Math.round( (parseFloat(gId($fiva).value)-parseFloat(oldRow.cells[5].innerHTML)) *100)/100;
+				calToto();
+
+				oldRow.parentNode.removeChild(oldRow);
+			}
+			else
+				popup("Debe seleccionar un servicio!");
 		}
 		
 	</script>
 	
+{% endblock %}
+
+{% block style %}
+	<style type="text/css">
+		
+		form
+		{
+			position: absolute;
+			top: 10%;
+			left: 0%;
+			height: 90%;
+			width: 100%;
+		}
+
+		.tit
+		{
+			position: absolute;
+			top: 1%;
+			left: 2%;
+			height: 5%;
+			width: 96%;
+			font-size: 2em;
+			border-bottom: 2px solid #283582;
+		}
+
+		.deta
+		{
+			display: none;
+			position: absolute;
+			top: 0%;
+			right: 0%;
+			width: 10%;
+			height: 10%;
+			background: red;
+		}
+
+		.deta textarea
+		{
+			width: 90%;
+			height: 50%;
+		}
+
+		.cabs
+		{
+			position: absolute;
+			top: 0%;
+			left: 2%;
+			height: auto;
+			width: 96%;
+			border-radius: 5px;
+			border: 1px solid #283582;
+			background: #FFFFFF;
+		}
+
+		.obser
+		{
+			position: absolute;
+			bottom: 2%;
+			left: 2%;
+			height: auto;
+			width: 96%;
+			border-radius: 5px;
+			border: 1px solid #283582;
+			background: #FFFFFF;
+		}
+
+		.obser th
+		{
+			width: 1%;
+		}
+
+		.obser textarea
+		{
+			width: 99%;
+		}
+
+		.vals
+		{
+			position: absolute;
+			bottom: 15%;
+			left: 2%;
+			height: auto;
+			width: 96%;
+			border-radius: 5px;
+			border: 1px solid #283582;
+			background: #FFFFFF;
+		}
+
+		.vals input, .ctrl input
+		{
+			text-align: right;
+			padding-right: 1em;
+		}
+
+		.only input
+		{
+			background: #B9BEE4;
+		}
+
+		.fech
+		{
+			position: absolute;
+			top: 12%;
+			left: 2%;
+			height: auto;
+			width: 96%;
+			border-radius: 5px;
+			border: 1px solid #283582;
+			background: #FFFFFF;	
+		}
+
+		.fech input
+		{
+			text-align: center;
+		}
+
+		.cabs input, .fech input, .vals input, .ctrl input, .cabs select, .fech select, .vals select, .ctrl select
+		{
+			width: 90%;
+		}
+
+		.grid
+		{
+			position: absolute;
+			bottom: 28%;
+			left: 2%;
+			height: 46%;
+			width: 96%;
+			border-radius: 5px;
+			border: 1px solid #283582;
+			background: #FFFFFF;	
+		}
+
+		.ctrl
+		{
+			position: absolute;
+			top: 1%;
+			left: 1%;
+			width: 98%;
+			height: auto;
+			border-collapse: collapse;
+		}
+
+		.ctrl td
+		{
+			width: 16.6%;
+		}
+
+		.btns
+		{
+			position: absolute;
+			right: 1%;
+			bottom: 1%;
+			height: auto;
+			width: auto;
+		}
+
+		.btns img
+		{
+			cursor: pointer;
+			height: 20px;
+		}
+
+		.zone
+		{
+			position: absolute;
+			overflow: auto;
+			bottom: 15%;
+			left: 1%;
+			width: 98%;
+			height: 60%;
+			background: #EFEFEF;
+			border: 1px solid #283582;
+			text-align: center;
+		}
+
+		.zone table
+		{
+			width: 100%;
+			left: 0%;
+			height: auto;
+			border-collapse: collapse;
+			margin: auto;
+			background: #FFFFFF;
+		}
+
+		.zone tr:hover
+		{
+			background: #AFC7FF;
+			cursor: pointer;
+		}
+
+		.zone td
+		{
+			border: 1px solid #283582;	
+			width: 16.66%;
+		}
+
+		.zone th
+		{
+			display: none;
+		}
+
+	</style>
 {% endblock %}
 
