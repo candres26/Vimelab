@@ -5,6 +5,7 @@
     <id name="id" type="bigint" column="id">
       <generator strategy="IDENTITY"/>
     </id>
+    <field name="tipo" type="string" column="tipo" length="1"/>
     <field name="fecha" type="date" column="fecha"/>
     <field name="inicio" type="date" column="inicio"/>
     <field name="fin" type="date" column="fin"/>
@@ -16,9 +17,12 @@
     <field name="cargocontratante" type="string" column="cargocontratante" length="50"/>
     <field name="nombrecontratante" type="string" column="nombrecontratante" length="100"/>
     <field name="direccioncontratante" type="string" column="direccioncontratante" length="100"/>
+    <field name="ntrabajadores" type="string" column="ntrabajadores" length="5"/>
+    <field name="vletras" type="string" column="vletras" length="100"/>
     <field name="revision" type="string" column="revision" length="1"/>
     <field name="aviso" type="integer" column="aviso"/>
     <field name="costovigencia" type="integer" column="costovigencia"/>
+    <field name="valrevi" type="decimal" column="valrevi"/>
     <field name="subtotal" type="decimal" column="subtotal"/>
     <field name="iva" type="decimal" column="iva"/>
     <field name="descuento" type="decimal" column="descuento"/>

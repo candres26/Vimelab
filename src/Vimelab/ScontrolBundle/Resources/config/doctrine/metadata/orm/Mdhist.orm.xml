@@ -5,8 +5,10 @@
     <id name="id" type="bigint" column="id">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="menstru" type="boolean" column="menstru"/>
+    <field name="fecha" type="date" column="fecha"/>
+    <field name="menstru" type="string" column="menstru" length="1"/>
     <field name="tipo" type="integer" column="tipo"/>
+    <field name="comentario" type="text" column="comentario"/>
     <many-to-one field="mdpaci" target-entity="Mdpaci" orphan-removal="">
       <join-columns>
         <join-column name="MdPaci_id" referenced-column-name="id"/>

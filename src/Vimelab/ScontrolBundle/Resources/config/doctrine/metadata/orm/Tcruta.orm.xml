@@ -6,7 +6,7 @@
       <generator strategy="IDENTITY"/>
     </id>
     <field name="fplaneada" type="date" column="fplaneada"/>
-    <field name="fejecutada" type="datetime" column="fejecutada"/>
+    <field name="fejecutada" type="date" column="fejecutada"/>
     <field name="personal" type="text" column="personal"/>
     <field name="unidad" type="text" column="unidad"/>
     <field name="equipo" type="text" column="equipo"/>
@@ -14,12 +14,12 @@
     <field name="encargado" type="string" column="encargado" length="100"/>
     <field name="datos" type="text" column="datos"/>
     <field name="fparciales" type="text" column="fparciales"/>
-    <field name="analitica" type="string" column="analitica" length="1"/>
-    <field name="biometria" type="string" column="biometria" length="1"/>
-    <field name="audiometria" type="string" column="audiometria" length="1"/>
-    <field name="vision" type="string" column="vision" length="1"/>
-    <field name="espirometria" type="string" column="espirometria" length="1"/>
-    <field name="medica" type="string" column="medica" length="1"/>
+    <field name="analitica" type="boolean" column="analitica"/>
+    <field name="biometria" type="boolean" column="biometria"/>
+    <field name="audiometria" type="boolean" column="audiometria"/>
+    <field name="vision" type="boolean" column="vision"/>
+    <field name="espirometria" type="boolean" column="espirometria"/>
+    <field name="medica" type="boolean" column="medica"/>
     <field name="electro" type="string" column="electro" length="1"/>
     <field name="detelectro" type="text" column="detelectro"/>
     <field name="comentarios" type="text" column="comentarios"/>

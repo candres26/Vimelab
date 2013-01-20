@@ -6,6 +6,8 @@
       <generator strategy="IDENTITY"/>
     </id>
     <field name="fecha" type="date" column="fecha"/>
+    <field name="perini" type="date" column="perini"/>
+    <field name="perfin" type="date" column="perfin"/>
     <field name="vencimiento" type="date" column="vencimiento"/>
     <field name="subtotal" type="decimal" column="subtotal"/>
     <field name="iva" type="decimal" column="iva"/>
@@ -14,11 +16,6 @@
     <field name="estado" type="string" column="estado" length="1"/>
     <field name="detalle" type="text" column="detalle"/>
     <field name="observaciones" type="text" column="observaciones"/>
-    <many-to-one field="ctcont" target-entity="Ctcont" orphan-removal="">
-      <join-columns>
-        <join-column name="CtCont_id" referenced-column-name="id"/>
-      </join-columns>
-    </many-to-one>
     <many-to-one field="gbpers" target-entity="Gbpers" orphan-removal="">
       <join-columns>
         <join-column name="GbPers_id" referenced-column-name="id"/>
@@ -27,6 +24,11 @@
     <many-to-one field="gbempr" target-entity="Gbempr" orphan-removal="">
       <join-columns>
         <join-column name="GbEmpr_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="ctcont" target-entity="Ctcont" orphan-removal="">
+      <join-columns>
+        <join-column name="CtCont_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
     <lifecycle-callbacks/>

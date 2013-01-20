@@ -244,6 +244,13 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 - Llenar campo diccionario de GbVars para completar las traducciones.
 
 - Factura -> Proceso de detalles.
+	* Eliminar relacion mdlabo
+	* Modificar entity.
+	* Modificar vistas.
+	* Modificar Master.
+	* Crear tabla CtDeta.
+	* Mapear DB.
+	* Modificar CtFact, solo crear!.
 	
 
 + Maquillar vista de contrato

@@ -29,6 +29,8 @@
     <field name="miret" type="string" column="miret" length="1"/>
     <field name="mdsme" type="string" column="mdsme" length="1"/>
     <field name="misme" type="string" column="misme" length="1"/>
+    <field name="pdmov" type="string" column="pdmov" length="1"/>
+    <field name="pimov" type="string" column="pimov" length="1"/>
     <field name="pddef" type="string" column="pddef" length="1"/>
     <field name="pidef" type="string" column="pidef" length="1"/>
     <field name="pdins" type="string" column="pdins" length="1"/>

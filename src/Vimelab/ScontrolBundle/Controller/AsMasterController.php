@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Vimelab\ScontrolBundle\Tool\Tool;
 
 use Vimelab\ScontrolBundle\Entity\Gbpers;
-use Vimelab\ScontrolBundle\Entity\Ctserv;
 use Vimelab\ScontrolBundle\Entity\TcRuta;
 use Vimelab\ScontrolBundle\Entity\Mdpaci;
 use Vimelab\ScontrolBundle\Entity\Mdhist;
@@ -31,10 +30,9 @@ class AsMasterController extends Controller
 			
 			$em = $this->getDoctrine()->getEntityManager();
 			$entity = $em->getRepository('ScontrolBundle:Gbpers')->getForUser($ussys);
-			$servs = $em->getRepository('ScontrolBundle:Ctserv')->findBy(array('tipo' => '1'), array('nombre' => 'ASC'));
 			$exams = $em->getRepository('ScontrolBundle:Mdexam')->findBy(array(), array('nombre' => 'ASC'));
 				
-			return $this->render('ScontrolBundle:AsMaster:index.html.twig', array('GbPers' => $entity, 'exams' => $exams, 'servs' => $servs, 'LOAD' => 'NONE'));
+			return $this->render('ScontrolBundle:AsMaster:index.html.twig', array('GbPers' => $entity, 'exams' => $exams, 'LOAD' => 'NONE'));
 		}
 		else
 			return $this->render('ScontrolBundle::alertas.html.twig');
@@ -49,7 +47,6 @@ class AsMasterController extends Controller
 			
 			$em = $this->getDoctrine()->getEntityManager();
 			$entity = $em->getRepository('ScontrolBundle:Gbpers')->getForUser($ussys);
-			$servs = $em->getRepository('ScontrolBundle:Ctserv')->findBy(array('tipo' => '1'), array('nombre' => 'ASC'));
 			$exams = $em->getRepository('ScontrolBundle:Mdexam')->findBy(array(), array('nombre' => 'ASC'));
 			
 			$loader = array();
@@ -80,7 +77,7 @@ class AsMasterController extends Controller
 			
 			$loader = Tool::toJail($loader);
 				
-			return $this->render('ScontrolBundle:AsMaster:index.html.twig', array('GbPers' => $entity, 'exams' => $exams, 'servs' => $servs, 'LOAD' => $loader));
+			return $this->render('ScontrolBundle:AsMaster:index.html.twig', array('GbPers' => $entity, 'exams' => $exams, 'LOAD' => $loader));
 		}
 		else
 			return $this->render('ScontrolBundle::alertas.html.twig');
@@ -490,7 +487,7 @@ class AsMasterController extends Controller
 				$res = array();
 				foreach($entities as $caso)
 					$res[] = $caso->getId()."=>".$caso->getMdexam()->getNombre()."=>".$caso->getEstado()."=>".$caso->getResultado().
-							"=>".$caso->getMdexam()->getId()."=>".$caso->getCtserv()->getId();
+							"=>".$caso->getMdexam()->getId();
 				
 				return new Response(join("|-|", $res));
 			}
@@ -514,12 +511,10 @@ class AsMasterController extends Controller
 					
 					$histo = $em->getRepository('ScontrolBundle:Mdhist')->find($request->request->get("hist"));
 					$exam = $em->getRepository('ScontrolBundle:Mdexam')->find($request->request->get("jsExamEx"));
-					$serv = $em->getRepository('ScontrolBundle:Ctserv')->find($request->request->get("jsExamSr"));
 					
 					$entity = new Mdlabo();
 					$entity->setMdhist($histo);
 					$entity->setMdexam($exam);
-					$entity->setCtserv($serv);
 					$entity->setEstado($request->request->get("esta"));
 					$entity->setResultado($request->request->get("jsExamDet"));
 					

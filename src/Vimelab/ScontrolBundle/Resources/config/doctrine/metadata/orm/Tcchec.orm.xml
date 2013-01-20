@@ -10,7 +10,7 @@
     <field name="comite" type="string" column="comite" length="1"/>
     <field name="descripcion" type="text" column="descripcion"/>
     <field name="caracteristicas" type="text" column="caracteristicas"/>
-    <field name="psensible" type="text" column="psensible"/>
+    <field name="psensible" type="string" column="psensible" length="1"/>
     <field name="seguridad" type="text" column="seguridad"/>
     <field name="mfisico" type="string" column="mfisico" length="1"/>
     <field name="hfisico" type="text" column="hfisico"/>
@@ -18,18 +18,19 @@
     <field name="hquimico" type="text" column="hquimico"/>
     <field name="mbiologico" type="string" column="mbiologico" length="1"/>
     <field name="hbiologico" type="text" column="hbiologico"/>
+    <field name="rangocargas" type="string" column="rangocargas" length="1"/>
     <field name="cargas" type="text" column="cargas"/>
     <field name="carretilleros" type="string" column="carretilleros" length="1"/>
     <field name="repetitivos" type="string" column="repetitivos" length="1"/>
-    <field name="ett" type="string" column="ett" length="1"/>
-    <field name="limpieza" type="string" column="limpieza" length="1"/>
-    <field name="mantenimiento" type="string" column="mantenimiento" length="1"/>
-    <field name="otros" type="text" column="otros"/>
+    <field name="ett" type="boolean" column="ett"/>
+    <field name="limpieza" type="boolean" column="limpieza"/>
+    <field name="mantenimiento" type="boolean" column="mantenimiento"/>
+    <field name="otros" type="boolean" column="otros"/>
     <field name="emergencia" type="string" column="emergencia" length="1"/>
     <field name="simulacros" type="string" column="simulacros" length="1"/>
     <field name="planos" type="string" column="planos" length="1"/>
     <field name="eplanos" type="string" column="eplanos" length="1"/>
-    <field name="textintor" type="string" column="textintor" length="1"/>
+    <field name="textintor" type="string" column="textintor" length="3"/>
     <field name="pemergencia" type="string" column="pemergencia" length="1"/>
     <field name="lemergencia" type="string" column="lemergencia" length="1"/>
     <field name="alarmas" type="string" column="alarmas" length="1"/>

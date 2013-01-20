@@ -965,7 +965,6 @@ function selExam(event)
 		row.style.background = "#C6DCC6";
 		
 		gId("jsExamEx").value = row.cells[4].innerHTML; 
-		gId("jsExamSr").value = row.cells[5].innerHTML; 
 		
 		if(row.cells[2].innerHTML == "S")
 			gId("jsExamSel_S").checked = "checked";
@@ -985,7 +984,7 @@ function selExam(event)
 
 function savExam(event)
 {
-	if(gId("jsExamEx").value != "@" && gId("jsExamSr").value != "@" && (gId("jsExamSel_S").checked || gId("jsExamSel_N").checked) && gId("jsExamDet").value != "")
+	if(gId("jsExamEx").value != "@" && (gId("jsExamSel_S").checked || gId("jsExamSel_N").checked) && gId("jsExamDet").value != "")
 	{	
 		res = "";
 		if(gId("jsExamSel_S").checked)
@@ -995,7 +994,7 @@ function savExam(event)
 				
 		ajaxAction
 		(	
-			new Hash(["*hist => "+$histId, "jsExamEx", "jsExamSr", "*esta => "+res, "jsExamDet"]),
+			new Hash(["*hist => "+$histId, "jsExamEx", "*esta => "+res, "jsExamDet"]),
 			$_savExam,
 			setExam
 		);
@@ -1073,7 +1072,6 @@ function showExam(response)
 function clearExam(event)
 {
 	gId("jsExamEx").value = "@"; 
-	gId("jsExamSr").value = "@";	
 	gId("jsExamSel_S").checked = "";
 	gId("jsExamSel_N").checked = "";
 	gId("jsExamDet").value = "";

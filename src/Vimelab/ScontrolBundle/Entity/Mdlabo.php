@@ -56,18 +56,6 @@ class Mdlabo
     private $mdhist;
 
     /**
-     * @var Ctserv
-     *
-     * @ORM\ManyToOne(targetEntity="Ctserv")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="CtServ_id", referencedColumnName="id")
-     * })
-     */
-    private $ctserv;
-
-
-
-    /**
      * Get id
      *
      * @return bigint
@@ -155,26 +143,6 @@ class Mdlabo
     public function getMdhist()
     {
         return $this->mdhist;
-    }
-
-    /**
-     * Set ctserv
-     *
-     * @param Vimelab\ScontrolBundle\Entity\Ctserv $ctserv
-     */
-    public function setCtserv(\Vimelab\ScontrolBundle\Entity\Ctserv $ctserv)
-    {
-        $this->ctserv = $ctserv;
-    }
-
-    /**
-     * Get ctserv
-     *
-     * @return Vimelab\ScontrolBundle\Entity\Ctserv
-     */
-    public function getCtserv()
-    {
-        return $this->ctserv;
     }
 
     public function __toString()

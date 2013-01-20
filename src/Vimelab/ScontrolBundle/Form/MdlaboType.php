@@ -14,7 +14,6 @@ class MdlaboType extends AbstractType
             ->add('resultado')
             ->add('mdexam', 'entity', array('class' => 'ScontrolBundle:Mdexam', 'label' => 'Exámen'))
             ->add('mdhist', 'entity', array('class' => 'ScontrolBundle:Mdhist', 'label' => 'Historia'))
-            ->add('ctserv', 'entity', array('class' => 'ScontrolBundle:Ctserv', 'label' => 'Servicio'))
         ;
     }
 

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Gbcorp" table="GbCorp">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="identificacion" type="string" column="identificacion" length="25"/>
+    <field name="nombre" type="string" column="nombre" length="50"/>
+    <field name="rplegal" type="string" column="rplegal" length="100"/>
+    <field name="identrplegal" type="string" column="identrplegal" length="20"/>
+    <field name="direccion" type="string" column="direccion" length="50"/>
+    <field name="telefono" type="string" column="telefono" length="25"/>
+    <field name="fax" type="string" column="fax" length="25"/>
+    <field name="correo" type="string" column="correo" length="50"/>
+    <field name="web" type="string" column="web" length="50"/>
+    <field name="logo" type="text" column="logo"/>
+    <many-to-one field="empresagbiden" target-entity="Gbiden" orphan-removal="">
+      <join-columns>
+        <join-column name="EmpresaGbIden_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="representantegbiden" target-entity="Gbiden" orphan-removal="">
+      <join-columns>
+        <join-column name="RepresentanteGbIden_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="gbciud" target-entity="Gbciud" orphan-removal="">
+      <join-columns>
+        <join-column name="GbCiud_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>
