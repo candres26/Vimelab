@@ -55,27 +55,94 @@ class CtfactController extends Controller
             return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
-    /**
-     * Finds and displays a Ctfact entity.
-     *
-     * @Route("/{id}/show", name="ctfact_show")
-     * @Template()
-     */
+    
     public function showAction($id)
     {
-		if(Tool::isGrant($this))
+    	$em = $this->getDoctrine()->getEntityManager();
+        $fac = $em->getRepository('ScontrolBundle:Ctfact')->find($id);
+        $dts = $em->getRepository('ScontrolBundle:Ctdeta')->findByCtfact($id);
+        $emp = $fac->getCtcont()->getGbempr();
+        $act = $emp->getGbcnae();
+
+		$pdf = new \Tcpdf_Tcpdf('l', 'mm', 'A4', true, 'UTF-8', false);
+		$pdf->SetCreator(PDF_CREATOR);
+		$pdf->SetAuthor('Vimelab');
+		$pdf->SetTitle('Factura');
+		$pdf->SetSubject('Factura');
+		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, '', '');
+		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+		$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+		$pdf->SetMargins(20, 38, 20);
+		$pdf->SetHeaderMargin(2);
+		$pdf->SetFooterMargin(15);
+		$pdf->SetAutoPageBreak(TRUE, 21);
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+		$pdf->setTabl(true);
+		$pdf->setMemoTitle('<h2>FACTURA DE SERVICIOS PRESTADOS N° : '.$id.'</h2>');
+		$pdf->SetFont('dejavusans', '', 10);
+		$pdf->AddPage();
+		
+		$html = '<table border="1" bgcolor="#E1EBF9">';
+		$html .= '<tr>';
+		$html .= '<td align="right"><b>Fecha:&nbsp;&nbsp;&nbsp;</b></td><td>'.$fac->getFecha()->format('Y-m-d').'</td>';		
+		$html .= '<td align="right"><b>Vencimiento:&nbsp;&nbsp;&nbsp;</b></td><td>'.$fac->getVencimiento()->format('Y-m-d').'</td>';
+		$html .= '</tr>';
+		$html .= '<tr>';
+		$html .= '<td align="right"><b>Periodo:&nbsp;&nbsp;&nbsp;</b></td><td colspan="3">'.$fac->getPerini()->format('Y-m-d').' <b>A</b> '.$fac->getPerfin()->format('Y-m-d').'</td>';		
+		$html .= '</tr>';
+		$html .= '<tr>';
+		$html .= '<td align="right"><b>Cliente:&nbsp;&nbsp;&nbsp;</b></td><td>'.$emp->getNombre().'</td>';		
+		$html .= '<td align="right"><b>NIF:&nbsp;&nbsp;&nbsp;</b></td><td>'.$emp->getIdentificacion().'</td>';
+		$html .= '</tr>';
+		$html .= '<tr>';
+		$html .= '<td align="right"><b>Sector:&nbsp;&nbsp;&nbsp;</b></td><td colspan="3">'.$act->getActecon().'</td>';		
+		$html .= '</tr>';		
+		$html .= '</table>';
+		$pdf->autoCell(0, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'C', true);
+
+		$pdf->SetFont('dejavusansmono', '', 10);
+		$pdf->ln(5);
+		$html = '<table border="1">';
+		$html .= '<tr bgcolor="#E3E3E3"><td><b>CÓDIGO</b></td><td><b>CONCEPTO</b></td><td><b>CANTIDAD</b></td><td><b>SUBTOTAL €</b></td><td><b>IVA €</b></td><td><b>TOTAL €</b></td></tr>';
+
+		foreach ($dts as $caso) 
 		{
-			$em = $this->getDoctrine()->getEntityManager();
+			$ser = $caso->getCtserv();
 
-			$entity = $em->getRepository('ScontrolBundle:Ctfact')->find($id);
+			$html .= '<tr>';
+			$html .= '<td>'.$ser->getCodigo().'</td><td>'.$ser->getNombre().'</td><td>'.$caso->getCantidad().'</td><td align="right">'.$this->separateChar($caso->getSub()).'&nbsp;&nbsp;&nbsp;</td><td align="right">'.$this->separateChar($caso->getViva()).'&nbsp;&nbsp;&nbsp;</td><td align="right">'.$this->separateChar($caso->getTotal()).'&nbsp;&nbsp;&nbsp;</td>';
+			$html .= '</tr>';
+		}
 
-			if (!$entity) {
-				throw $this->createNotFoundException('Unable to find Ctfact entity.');
-			}
+		$html .= '<tr bgcolor="#E3E3E3">';
+		$html .= '<td colspan="3"><b>SUB TOTAL</b></td><td align="right"><b>'.$this->separateChar($fac->getSubtotal()).'</b>&nbsp;&nbsp;&nbsp;</td><td align="right"><b>'.$this->separateChar($fac->getIva()).'</b>&nbsp;&nbsp;&nbsp;</td><td align="right"><b>'.$this->separateChar($fac->getSupra()).'</b>&nbsp;&nbsp;&nbsp;</td>';
+		$html .= '</tr>';
+		$html .= '<tr bgcolor="#E3E3E3">';
+		$html .= '<td colspan="3"><b>DESCUENTO</b></td><td align="right"><b>0.00&nbsp;&nbsp;&nbsp;</b></td><td align="right"><b>0.00&nbsp;&nbsp;&nbsp;</b></td><td align="right"><b>'.$this->separateChar($fac->getDescuento()).'</b>&nbsp;&nbsp;&nbsp;</td>';
+		$html .= '</tr>';
+		$html .= '<tr bgcolor="#E3E3E3">';
+		$html .= '<td colspan="3"><b>TOTAL</b></td><td align="right"><b>'.$this->separateChar($fac->getSubtotal()).'</b>&nbsp;&nbsp;&nbsp;</td><td align="right"><b>'.$this->separateChar($fac->getIva()).'</b>&nbsp;&nbsp;&nbsp;</td><td align="right"><b>'.$this->separateChar($fac->getTotal()).'</b>&nbsp;&nbsp;&nbsp;</td>';
+		$html .= '</tr>';
+		$html .= '</table>';
+		$pdf->autoCell(0, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'C', true);		
+		
+		$pdf->SetFont('dejavusans', '', 10);
+		$pdf->ln(5);
+		$html = '<table border="1" bgcolor="#E1EBF9">';
+		$html .= '<tr>';
+		$html .= '<td><b>FACTURADO POR</b></td>';
+		$html .= '<td><b>ESTADO</b></td>';
+		$html .= '</tr>';
+		$html .= '<tr>';
+		$html .= '<td><br><br><br><br><br><br><br>_______________________________________________________<br><b>'.$fac->getGbpers()->getFullName().'</b><br><i>Id: '.$fac->getGbpers()->getIdentificacion().'</i></td>';
+		$html .= '<td><br><br><br><h1>'.($fac->getEstado() == 'F' ? 'FACTURADA' : 'ANULADA').'</h1></td>';
+		$html .= '</tr>';
+		$html .= '</table>';
+		$pdf->autoCell(0, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'C', true);		
 
-			return array('entity' => $entity);
-		}else
-			return $this->render("ScontrolBundle::alertas.html.twig");
+		ob_end_clean();
+		$pdf->Output('factura_'.$id.'.pdf', 'I');
     }
 
     /**
@@ -155,5 +222,36 @@ class CtfactController extends Controller
 		}else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
+
+    private function separateChar($str, $char='.', $len=3)
+	{
+		$str = "".$str;
+		$tmp = explode(".", $str);
+		
+		$tmx = '';
+
+		$tam = strlen($tmp[0]);
+		$num = ($tam / $len) - 1;
+		$sob = ($tam % $len) == 0 ? 1 : $len-($tam % $len)+1;
+		
+		if($num > 0)
+		{
+			for($i = 0; $i < $tam; $i++)
+			{
+				$tmx .= $tmp[0][$i];
+				if( (($i+$sob) % $len) == 0 && $i < ($tam - 1))
+					$tmx .= $char;
+			}
+		}
+		else
+			$tmx = $tmp[0];
+		
+		if(count($tmp) == 1)
+			$tmp = $tmx.".00";
+		else
+			$tmp = $tmx.".".$tmp[1];
+
+		return $tmp;
+	}
     
 }

@@ -200,4 +200,12 @@ class Ctdeta
     {
         return $this->ctfact;
     }
+
+    public function getSub()
+    {
+        $vtot = floatval($this->getTotal());
+        $viva = floatval($this->getViva());
+
+        return $vtot-$viva;
+    }
 }

@@ -42,8 +42,8 @@
             <td>{{ entity.total }}</td>
             <td>{% if entity.estado == 'F' %} Facturada {% else %} Anulada {% endif %}</td>
             <td align="center">
-				<a href="{{ path('ctfact_show', { 'id': entity.id }) }}">
-					<img src="{{ asset('bundles/scontrol/imagenes/iconos/show_index.png') }}" title="Mostrar">
+				<a href="{{ path('ctfact_show', { 'id': entity.id }) }}" target="_blank" onClick="window.open(this.href, this.target, 'width=800,height=600'); return false;">
+					<img src="{{ asset('bundles/scontrol/imagenes/iconos/show_index.png') }}" title="Mostrar" >
 				</a>
             </td>
         </tr>

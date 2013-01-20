@@ -429,4 +429,12 @@ class Ctfact
     {
         $this->deta = $deta;
     }
+
+    public function getSupra()
+    {
+        $vtot = floatval($this->getTotal());
+        $vdes = floatval($this->getDescuento());
+
+        return ($vtot+$vdes)/1.0;
+    }
 }

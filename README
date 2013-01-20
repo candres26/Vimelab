@@ -256,7 +256,7 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 	* Codificar datos de detalle.
 	* Proceso para generar CtDeta.
 	* Proceso para descontar saldo de CtCont.
-	- Reporte factura.
+	* Reporte factura.
 	! El campo detalle de ctfact contiene los datos de detalle codificados.
 	! Pulsando enter sobre el campo de fecha se activa la ayuda del calendario.
 	! Pulsando enter sobre los campos de Total y Descuento se activa el calculo de valores.
@@ -266,6 +266,7 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 	! La validacion html5 esta activada.
 	! Se puede generar una factura de valor 0 sin servicios a cobrar.
 	! Es posible agregar y eliminar servicios arbitrariamente.
+	! El reporte se genera desde la funcion "Mostrar".
 	
 
 + Maquillar vista de contrato
