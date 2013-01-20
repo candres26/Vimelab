@@ -233,17 +233,7 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 * Lanzar diagnostico en los iframes Medicas.
 * Reporte de Cursos por Empresa y Paciente.
 * R. Tecnica, control de asistencia.
-
-# --- CAMBIOS EN PROGRESO --- #
-
-
-# --- CAMBIOS PENDIENTES --- #
- 
-- Revisar vistas de Hoja de ruta, faltan etiquetas por modificar.
-- Verificar vista de hoja de ruta, el formulario no se ve bien.
-- Llenar campo diccionario de GbVars para completar las traducciones.
-
-- Factura -> Proceso y Reporte.
+* Factura -> Proceso y Reporte.
 	* Eliminar relacion mdlabo
 	* Modificar entity.
 	* Modificar vistas.
@@ -267,6 +257,15 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 	! Se puede generar una factura de valor 0 sin servicios a cobrar.
 	! Es posible agregar y eliminar servicios arbitrariamente.
 	! El reporte se genera desde la funcion "Mostrar".
+
+# --- CAMBIOS EN PROGRESO --- #
+
+
+# --- CAMBIOS PENDIENTES --- #
+ 
+- Revisar vistas de Hoja de ruta, faltan etiquetas por modificar.
+- Verificar vista de hoja de ruta, el formulario no se ve bien.
+- Llenar campo diccionario de GbVars para completar las traducciones.
 	
 
 + Maquillar vista de contrato
