@@ -272,7 +272,7 @@ class TccursController extends Controller
 		$pdf->SetAutoPageBreak(TRUE, 21);
 		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 		$pdf->setTabl(true);
-		$pdf->setMemoTitle("REPORTE DE CURSOS");
+		$pdf->setMemoTitle("<h2>REPORTE DE CURSOS</h2>");
 		$pdf->AddPage();
 		
 		$em = $this->getDoctrine()->getEntityManager();
@@ -301,6 +301,7 @@ class TccursController extends Controller
 		$pdf->SetFont('dejavusans', '', 10);
 		$pdf->autoCell(0, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'C', true);
 		
+		ob_end_clean();
 		$pdf->Output('r_curso_.pdf', 'I');
     }
 

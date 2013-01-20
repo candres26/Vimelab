@@ -232,6 +232,7 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 * Periodo de facturacion.
 * Lanzar diagnostico en los iframes Medicas.
 * Reporte de Cursos por Empresa y Paciente.
+* R. Tecnica, control de asistencia.
 
 # --- CAMBIOS EN PROGRESO --- #
 
@@ -242,9 +243,8 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 - Verificar vista de hoja de ruta, el formulario no se ve bien.
 - Llenar campo diccionario de GbVars para completar las traducciones.
 
-- Reportes:
-	- Factura.
-	- R. Tecnica.
+- Factura -> Proceso de detalles.
+	
 
 + Maquillar vista de contrato
 + Tipo de contrato

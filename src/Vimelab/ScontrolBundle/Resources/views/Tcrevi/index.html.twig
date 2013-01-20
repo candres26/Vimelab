@@ -28,8 +28,6 @@
             <th>Fecha</th>
             <th>Inicio</th>
             <th>Sucursal</th>
-            <th>Entrevistados</th>
-            <th>Resumen</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -40,11 +38,12 @@
             <td>{% if entity.fecha %}{{ entity.fecha|date('Y-m-d') }}{% endif%}</td>
             <td>{% if entity.inicio %}{{ entity.inicio|date('H:i:s') }}{% endif%}</td>
             <td>{{ entity.gbsucu.__toString() }}</td>
-            <td>{{ entity.entrevistados }}</td>
-            <td>{{ entity.resumen }}</td>
             <td align="center">
 				<a href="{{ path('tcrevi_show', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/show_index.png') }}" title="Mostrar"></a>
 				<a href="{{ path('tcrevi_edit', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar_index.png') }}" title="Editar"></a>
+				<a href="{{ path('tcrevi_control', { 'id': entity.id }) }}" target="_blank" onClick="window.open(this.href, this.target, 'width=800,height=600'); return false;">
+					<img id="" img src="{{ asset('bundles/scontrol/imagenes/iconos/report_index.png') }}" title="Reporte">	
+				</a>
             </td>
         </tr>
     {% endfor %}

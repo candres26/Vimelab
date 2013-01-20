@@ -1348,6 +1348,9 @@ tcrevi_delete:
 tcrevi_filter:
     pattern:  /tcrevi/{param}/filter
     defaults: { _controller: ScontrolBundle:Tcrevi:filter }
+tcrevi_control:
+    pattern:  /tcrevi/{id}/control
+    defaults: { _controller: ScontrolBundle:Tcrevi:control }
 
 # TcRuta Routes
 tcruta:

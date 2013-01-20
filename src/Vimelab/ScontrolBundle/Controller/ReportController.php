@@ -37,7 +37,7 @@ class ReportController extends Controller
 		$pdf->SetAutoPageBreak(TRUE, 21);
 		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 		$pdf->setTabl(true);
-		$pdf->setMemoTitle("REPORTE DE ESTADÍSTICA POR SEXO");
+		$pdf->setMemoTitle("<h2>REPORTE DE ESTADÍSTICA POR SEXO</h2>");
 		$pdf->AddPage();
 
 		$style1 = array('width' => 0.8, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0));

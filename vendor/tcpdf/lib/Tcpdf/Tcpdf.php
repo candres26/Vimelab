@@ -46,7 +46,7 @@ class Tcpdf_Tcpdf extends TCPDF
 
             $html = '<table style="border-bottom: 1px solid black;">';
             $html .= '<tr><td>&nbsp;</td></tr>';
-            $html .= '<tr><td><h2> '.$this->memoTitle.' </h2></td></tr>';
+            $html .= '<tr><td>'.$this->memoTitle.'</td></tr>';
             $html .= '<tr><td><b>'.$hoy->format('Y-m-d').'</b></td></tr>';
             $html .= '<tr><td><i>Salud Control V 1.0</i></td></tr>';
             $html .= '</table>';
