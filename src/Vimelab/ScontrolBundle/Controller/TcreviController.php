@@ -275,6 +275,84 @@ class TcreviController extends Controller
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
+    public function controlAction($id)
+    {
+    	$pdf = new \Tcpdf_Tcpdf('P', 'mm', 'A4', true, 'UTF-8', false);
+		$pdf->SetCreator(PDF_CREATOR);
+		$pdf->SetAuthor('Vimelab');
+		$pdf->SetTitle('Control De Visita');
+		$pdf->SetSubject('R. Técnica');
+		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, '', '');
+		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+		$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+		$pdf->SetMargins(20, 38, 20);
+		$pdf->SetHeaderMargin(2);
+		$pdf->SetFooterMargin(15);
+		$pdf->SetAutoPageBreak(TRUE, 21);
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+		$pdf->setTabl(true);
+		$pdf->setMemoTitle('<h3>CONTROL DE VISITA EFECTUADA EN LA EMPRESA</h3>');
+		$pdf->SetFont('dejavusans', '', 10);
+		$pdf->AddPage();
+		
+		$em = $this->getDoctrine()->getEntityManager();
+		$caso = $em->getRepository('ScontrolBundle:Tcrevi')->find($id);
+		
+		$pdf->ln(5);
+		$html = '<table border="1">';
+		$html .= '<tr>';
+		$html .= '<td><b>Empresa:</b></td>';
+		$html .= '<td>'.$caso->getGbsucu()->getGbempr()->getNombre().'</td>';
+		$html .= '<td><b>Sucursal:</b></td>';
+		$html .= '<td>'.$caso->getGbsucu()->getNombre().'</td>';
+		$html .= '</tr>';
+		$html .= '<tr>';
+		$html .= '<td><b>Fecha:</b></td>';
+		$html .= '<td>'.$caso->getFecha()->format('Y-m-d').'</td>';
+		$html .= '<td><b>Horario:</b></td>';
+		$html .= '<td>'.$caso->getInicio()->format('H:i').' a '.$caso->getFin()->format('H:i').'</td>';
+		$html .= '</tr>';
+
+		$html .= '<tr>';
+		$html .= '<td colspan="4"><b>PERSONAS ENTREVISTADAS</b></td>';
+		$html .= '</tr>';
+		
+		$html .= '<tr>';
+		$html .= '<td colspan="2">';
+		$html .= '<br><br><br><br><br><br><br><br><br><br>';
+		$html .= '<div style="border-top: 1px dotted black;"><b>Revisión Técnica: '.$id.'</b></div>';
+		$html .= '</td>';
+
+		$html .= '<td colspan="2">';
+		$pers = explode("\n", $caso->getEntrevistados());
+		$html .= '<ul>';
+		foreach ($pers as $p) 
+			$html .= '<li>'.$p.'</li>';
+		$html .= '</ul>';
+		$html .= '</td>';
+		$html .= '</tr>';
+
+		$html .= '</table>';
+		$pdf->autoCell(0, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'C', true);
+
+		$pdf->ln(5);
+		$html = '<table border="1"  style="margin: 2em 2em 2em 2em;"><tr><td><b>RESUMEN DE LA VISITA:</b><p>'.$caso->getResumen().'</p></td></tr></table>';
+		$pdf->autoCell(0, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'J', true);
+
+		$pdf->ln(5);
+		$html = '<table>';
+		$html .= '<tr>';
+		$html .= '<td><b>CONFIRMACIÓN DE LA ASISTENCIA</b><br><i>Sello y firma de la empresa</i></td>';
+		$html .= '<td><b>IC6 - PREVENCIÓN LABORAL</b><br><i>Nombre, apellidos y firma del Técnico</i></td>';
+		$html .= '</tr>';
+		$html .= '</table>';
+		$pdf->autoCell(0, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'C', true);		
+		
+		ob_end_clean();
+		$pdf->Output('c_rTecnica_'.$id.'.pdf', 'I');
+    }
+
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder(array('id' => $id))

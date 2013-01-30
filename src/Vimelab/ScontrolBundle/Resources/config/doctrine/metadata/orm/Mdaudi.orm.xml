@@ -6,20 +6,20 @@
       <generator strategy="IDENTITY"/>
     </id>
     <field name="realizado" type="string" column="realizado" length="1"/>
-    <field name="d500" type="decimal" column="d500"/>
-    <field name="i500" type="decimal" column="i500"/>
-    <field name="d1000" type="decimal" column="d1000"/>
-    <field name="i1000" type="decimal" column="i1000"/>
-    <field name="d2000" type="decimal" column="d2000"/>
-    <field name="i2000" type="decimal" column="i2000"/>
-    <field name="d3000" type="decimal" column="d3000"/>
-    <field name="i3000" type="decimal" column="i3000"/>
-    <field name="d4000" type="decimal" column="d4000"/>
-    <field name="i4000" type="decimal" column="i4000"/>
-    <field name="d6000" type="decimal" column="d6000"/>
-    <field name="i6000" type="decimal" column="i6000"/>
-    <field name="d8000" type="decimal" column="d8000"/>
-    <field name="i8000" type="decimal" column="i8000"/>
+    <field name="d500" type="string" column="d500" length="3"/>
+    <field name="i500" type="string" column="i500" length="3"/>
+    <field name="d1000" type="string" column="d1000" length="3"/>
+    <field name="i1000" type="string" column="i1000" length="3"/>
+    <field name="d2000" type="string" column="d2000" length="3"/>
+    <field name="i2000" type="string" column="i2000" length="3"/>
+    <field name="d3000" type="string" column="d3000" length="3"/>
+    <field name="i3000" type="string" column="i3000" length="3"/>
+    <field name="d4000" type="string" column="d4000" length="3"/>
+    <field name="i4000" type="string" column="i4000" length="3"/>
+    <field name="d6000" type="string" column="d6000" length="3"/>
+    <field name="i6000" type="string" column="i6000" length="3"/>
+    <field name="d8000" type="string" column="d8000" length="3"/>
+    <field name="i8000" type="string" column="i8000" length="3"/>
     <many-to-one field="mdhist" target-entity="Mdhist" orphan-removal="">
       <join-columns>
         <join-column name="MdHist_id" referenced-column-name="id"/>

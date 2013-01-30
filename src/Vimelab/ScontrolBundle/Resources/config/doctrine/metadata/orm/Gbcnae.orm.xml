@@ -5,6 +5,7 @@
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
+    <field name="codigo" type="string" column="codigo" length="15"/>
     <field name="actEcon" type="string" column="act_econ" length="50"/>
     <field name="alternativo" type="string" column="alternativo" length="50"/>
     <lifecycle-callbacks/>

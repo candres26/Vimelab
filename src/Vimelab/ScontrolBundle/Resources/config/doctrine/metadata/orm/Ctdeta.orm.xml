@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="Mdlabo" table="MdLabo">
+  <entity name="Ctdeta" table="CtDeta">
     <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
     <id name="id" type="bigint" column="id">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="estado" type="string" column="estado" length="1"/>
-    <field name="resultado" type="text" column="resultado"/>
-    <many-to-one field="mdhist" target-entity="Mdhist" orphan-removal="">
+    <field name="cantidad" type="integer" column="cantidad"/>
+    <field name="vuni" type="decimal" column="vuni"/>
+    <field name="viva" type="decimal" column="viva"/>
+    <field name="total" type="decimal" column="total"/>
+    <many-to-one field="ctserv" target-entity="Ctserv" orphan-removal="">
       <join-columns>
-        <join-column name="MdHist_id" referenced-column-name="id"/>
+        <join-column name="CtServ_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="mdexam" target-entity="Mdexam" orphan-removal="">
+    <many-to-one field="ctfact" target-entity="Ctfact" orphan-removal="">
       <join-columns>
-        <join-column name="MdExam_id" referenced-column-name="id"/>
+        <join-column name="CtFact_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
     <lifecycle-callbacks/>

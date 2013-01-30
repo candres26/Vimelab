@@ -230,3 +230,9 @@ function $helpCalendar(event)
 	elem = gTag(cell, 'input')[0];
 	showCalendar(elem.id);
 }
+
+function $helpCalendarKey(event)
+{
+	if(event.type == "keypress" && event.keyCode == 13)
+		showCalendar(this.id);
+}

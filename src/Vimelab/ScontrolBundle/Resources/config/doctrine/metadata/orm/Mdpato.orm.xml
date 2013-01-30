@@ -6,8 +6,13 @@
       <generator strategy="IDENTITY"/>
     </id>
     <field name="codigo" type="string" column="codigo" length="10"/>
-    <field name="nombre" type="string" column="nombre" length="50"/>
-    <field name="alternativo" type="string" column="alternativo" length="50"/>
+    <field name="nombre" type="string" column="nombre" length="250"/>
+    <field name="alternativo" type="string" column="alternativo" length="250"/>
+    <many-to-one field="mdgrup" target-entity="Mdgrup" orphan-removal="">
+      <join-columns>
+        <join-column name="MdGrup_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
     <lifecycle-callbacks/>
   </entity>
 </doctrine-mapping>

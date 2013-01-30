@@ -232,6 +232,31 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 * Periodo de facturacion.
 * Lanzar diagnostico en los iframes Medicas.
 * Reporte de Cursos por Empresa y Paciente.
+* R. Tecnica, control de asistencia.
+* Factura -> Proceso y Reporte.
+	* Eliminar relacion mdlabo
+	* Modificar entity.
+	* Modificar vistas.
+	* Modificar Master.
+	* Crear tabla CtDeta.
+	* Mapear DB.
+	* Modificar CtFact, solo crear!.
+	* Modificar vista de new - CtFact.
+	* Crear eventos de facturación.
+	* Codificar datos de detalle.
+	* Proceso para generar CtDeta.
+	* Proceso para descontar saldo de CtCont.
+	* Reporte factura.
+	! El campo detalle de ctfact contiene los datos de detalle codificados.
+	! Pulsando enter sobre el campo de fecha se activa la ayuda del calendario.
+	! Pulsando enter sobre los campos de Total y Descuento se activa el calculo de valores.
+	! La factura no puede editarse o eliminarse una vez creada.
+	! La factua puede tener 2 estados Facturasa: Descuenta de CtCont, Anulada: No descuenta se considera nula.
+	! Antes de guardar se procede a confirmar.
+	! La validacion html5 esta activada.
+	! Se puede generar una factura de valor 0 sin servicios a cobrar.
+	! Es posible agregar y eliminar servicios arbitrariamente.
+	! El reporte se genera desde la funcion "Mostrar".
 
 # --- CAMBIOS EN PROGRESO --- #
 
@@ -241,10 +266,7 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 - Revisar vistas de Hoja de ruta, faltan etiquetas por modificar.
 - Verificar vista de hoja de ruta, el formulario no se ve bien.
 - Llenar campo diccionario de GbVars para completar las traducciones.
-
-- Reportes:
-	- Factura.
-	- R. Tecnica.
+	
 
 + Maquillar vista de contrato
 + Tipo de contrato

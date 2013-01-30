@@ -834,6 +834,14 @@ class Ctcont
         return $this->legalgbciud;
     }
 
+    public function descontar($valor)
+    {
+        $vvalor = floatval($valor);
+        $vsaldo = floatval($this->getSaldo());
+        $vsaldo = $vsaldo-$vvalor;
+        $this->setSaldo($vsaldo);
+    }
+
     public function __toString()
     {
         return $this->getGbempr()->getNombre().": ".$this->id;

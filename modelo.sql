@@ -114,6 +114,38 @@ LOCK TABLES `CtCoti` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `CtDeta`
+--
+
+DROP TABLE IF EXISTS `CtDeta`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CtDeta` (
+  `id` bigint(99) unsigned NOT NULL AUTO_INCREMENT,
+  `CtFact_id` bigint(99) unsigned NOT NULL,
+  `CtServ_id` int(10) unsigned NOT NULL,
+  `cantidad` int(10) unsigned NOT NULL,
+  `vuni` decimal(10,2) unsigned NOT NULL,
+  `viva` decimal(10,2) unsigned NOT NULL,
+  `total` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `CtFact_id` (`CtFact_id`),
+  KEY `CtServ_id` (`CtServ_id`),
+  CONSTRAINT `CtDeta_ibfk_2` FOREIGN KEY (`CtServ_id`) REFERENCES `CtServ` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `CtDeta_ibfk_1` FOREIGN KEY (`CtFact_id`) REFERENCES `CtFact` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CtDeta`
+--
+
+LOCK TABLES `CtDeta` WRITE;
+/*!40000 ALTER TABLE `CtDeta` DISABLE KEYS */;
+/*!40000 ALTER TABLE `CtDeta` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `CtFact`
 --
 
@@ -1077,16 +1109,13 @@ DROP TABLE IF EXISTS `MdLabo`;
 CREATE TABLE `MdLabo` (
   `id` bigint(99) unsigned NOT NULL AUTO_INCREMENT,
   `MdHist_id` bigint(99) unsigned NOT NULL,
-  `CtServ_id` int(10) unsigned NOT NULL,
   `MdExam_id` int(10) unsigned NOT NULL,
   `estado` char(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'O',
   `resultado` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `MdHist_id` (`MdHist_id`),
-  KEY `CtServ_id` (`CtServ_id`),
   KEY `GbLabo_id` (`MdExam_id`),
   CONSTRAINT `MdLabo_ibfk_1` FOREIGN KEY (`MdHist_id`) REFERENCES `MdHist` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `MdLabo_ibfk_2` FOREIGN KEY (`CtServ_id`) REFERENCES `CtServ` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `MdLabo_ibfk_3` FOREIGN KEY (`MdExam_id`) REFERENCES `MdExam` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1636,4 +1665,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-01-13 15:13:20
+-- Dump completed on 2013-01-20  2:43:10

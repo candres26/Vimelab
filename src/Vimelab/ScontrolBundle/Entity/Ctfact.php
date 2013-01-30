@@ -420,8 +420,21 @@ class Ctfact
         return $this->gbempr;
     }
 
-    public function __toString()
+    /**
+     * Set deta
+     *
+     * @param text $deta
+     */
+    public function setDeta($deta)
     {
-        return $this->id;
+        $this->deta = $deta;
+    }
+
+    public function getSupra()
+    {
+        $vtot = floatval($this->getTotal());
+        $vdes = floatval($this->getDescuento());
+
+        return ($vtot+$vdes)/1.0;
     }
 }

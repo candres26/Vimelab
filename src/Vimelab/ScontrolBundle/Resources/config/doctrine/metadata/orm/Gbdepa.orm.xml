@@ -5,7 +5,7 @@
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="codigo" type="string" column="codigo" length="2"/>
+    <field name="codigo" type="string" column="codigo" length="6"/>
     <field name="nombre" type="string" column="nombre" length="50"/>
     <many-to-one field="gbpais" target-entity="Gbpais" orphan-removal="">
       <join-columns>

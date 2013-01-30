@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Vimelab\ScontrolBundle\Entity\Ctfact;
+use Vimelab\ScontrolBundle\Entity\Ctdeta;
 use Vimelab\ScontrolBundle\Form\CtfactType;
 use Vimelab\ScontrolBundle\Tool\Tool;
 
@@ -54,31 +55,94 @@ class CtfactController extends Controller
             return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
-    /**
-     * Finds and displays a Ctfact entity.
-     *
-     * @Route("/{id}/show", name="ctfact_show")
-     * @Template()
-     */
+    
     public function showAction($id)
     {
-		if(Tool::isGrant($this))
+    	$em = $this->getDoctrine()->getEntityManager();
+        $fac = $em->getRepository('ScontrolBundle:Ctfact')->find($id);
+        $dts = $em->getRepository('ScontrolBundle:Ctdeta')->findByCtfact($id);
+        $emp = $fac->getCtcont()->getGbempr();
+        $act = $emp->getGbcnae();
+
+		$pdf = new \Tcpdf_Tcpdf('l', 'mm', 'A4', true, 'UTF-8', false);
+		$pdf->SetCreator(PDF_CREATOR);
+		$pdf->SetAuthor('Vimelab');
+		$pdf->SetTitle('Factura');
+		$pdf->SetSubject('Factura');
+		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, '', '');
+		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+		$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+		$pdf->SetMargins(20, 38, 20);
+		$pdf->SetHeaderMargin(2);
+		$pdf->SetFooterMargin(15);
+		$pdf->SetAutoPageBreak(TRUE, 21);
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+		$pdf->setTabl(true);
+		$pdf->setMemoTitle('<h2>FACTURA DE SERVICIOS PRESTADOS N° : '.$id.'</h2>');
+		$pdf->SetFont('dejavusans', '', 10);
+		$pdf->AddPage();
+		
+		$html = '<table border="1" bgcolor="#E1EBF9">';
+		$html .= '<tr>';
+		$html .= '<td align="right"><b>Fecha:&nbsp;&nbsp;&nbsp;</b></td><td>'.$fac->getFecha()->format('Y-m-d').'</td>';		
+		$html .= '<td align="right"><b>Vencimiento:&nbsp;&nbsp;&nbsp;</b></td><td>'.$fac->getVencimiento()->format('Y-m-d').'</td>';
+		$html .= '</tr>';
+		$html .= '<tr>';
+		$html .= '<td align="right"><b>Periodo:&nbsp;&nbsp;&nbsp;</b></td><td colspan="3">'.$fac->getPerini()->format('Y-m-d').' <b>A</b> '.$fac->getPerfin()->format('Y-m-d').'</td>';		
+		$html .= '</tr>';
+		$html .= '<tr>';
+		$html .= '<td align="right"><b>Cliente:&nbsp;&nbsp;&nbsp;</b></td><td>'.$emp->getNombre().'</td>';		
+		$html .= '<td align="right"><b>NIF:&nbsp;&nbsp;&nbsp;</b></td><td>'.$emp->getIdentificacion().'</td>';
+		$html .= '</tr>';
+		$html .= '<tr>';
+		$html .= '<td align="right"><b>Sector:&nbsp;&nbsp;&nbsp;</b></td><td colspan="3">'.$act->getActecon().'</td>';		
+		$html .= '</tr>';		
+		$html .= '</table>';
+		$pdf->autoCell(0, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'C', true);
+
+		$pdf->SetFont('dejavusansmono', '', 10);
+		$pdf->ln(5);
+		$html = '<table border="1">';
+		$html .= '<tr bgcolor="#E3E3E3"><td><b>CÓDIGO</b></td><td><b>CONCEPTO</b></td><td><b>CANTIDAD</b></td><td><b>SUBTOTAL €</b></td><td><b>IVA €</b></td><td><b>TOTAL €</b></td></tr>';
+
+		foreach ($dts as $caso) 
 		{
-			$em = $this->getDoctrine()->getEntityManager();
+			$ser = $caso->getCtserv();
 
-			$entity = $em->getRepository('ScontrolBundle:Ctfact')->find($id);
+			$html .= '<tr>';
+			$html .= '<td>'.$ser->getCodigo().'</td><td>'.$ser->getNombre().'</td><td>'.$caso->getCantidad().'</td><td align="right">'.$this->separateChar($caso->getSub()).'&nbsp;&nbsp;&nbsp;</td><td align="right">'.$this->separateChar($caso->getViva()).'&nbsp;&nbsp;&nbsp;</td><td align="right">'.$this->separateChar($caso->getTotal()).'&nbsp;&nbsp;&nbsp;</td>';
+			$html .= '</tr>';
+		}
 
-			if (!$entity) {
-				throw $this->createNotFoundException('Unable to find Ctfact entity.');
-			}
+		$html .= '<tr bgcolor="#E3E3E3">';
+		$html .= '<td colspan="3"><b>SUB TOTAL</b></td><td align="right"><b>'.$this->separateChar($fac->getSubtotal()).'</b>&nbsp;&nbsp;&nbsp;</td><td align="right"><b>'.$this->separateChar($fac->getIva()).'</b>&nbsp;&nbsp;&nbsp;</td><td align="right"><b>'.$this->separateChar($fac->getSupra()).'</b>&nbsp;&nbsp;&nbsp;</td>';
+		$html .= '</tr>';
+		$html .= '<tr bgcolor="#E3E3E3">';
+		$html .= '<td colspan="3"><b>DESCUENTO</b></td><td align="right"><b>0.00&nbsp;&nbsp;&nbsp;</b></td><td align="right"><b>0.00&nbsp;&nbsp;&nbsp;</b></td><td align="right"><b>'.$this->separateChar($fac->getDescuento()).'</b>&nbsp;&nbsp;&nbsp;</td>';
+		$html .= '</tr>';
+		$html .= '<tr bgcolor="#E3E3E3">';
+		$html .= '<td colspan="3"><b>TOTAL</b></td><td align="right"><b>'.$this->separateChar($fac->getSubtotal()).'</b>&nbsp;&nbsp;&nbsp;</td><td align="right"><b>'.$this->separateChar($fac->getIva()).'</b>&nbsp;&nbsp;&nbsp;</td><td align="right"><b>'.$this->separateChar($fac->getTotal()).'</b>&nbsp;&nbsp;&nbsp;</td>';
+		$html .= '</tr>';
+		$html .= '</table>';
+		$pdf->autoCell(0, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'C', true);		
+		
+		$pdf->SetFont('dejavusans', '', 10);
+		$pdf->ln(5);
+		$html = '<table border="1" bgcolor="#E1EBF9">';
+		$html .= '<tr>';
+		$html .= '<td><b>FACTURADO POR</b></td>';
+		$html .= '<td><b>ESTADO</b></td>';
+		$html .= '</tr>';
+		$html .= '<tr>';
+		$html .= '<td><br><br><br><br><br><br><br>_______________________________________________________<br><b>'.$fac->getGbpers()->getFullName().'</b><br><i>Id: '.$fac->getGbpers()->getIdentificacion().'</i></td>';
+		$html .= '<td><br><br><br><h1>'.($fac->getEstado() == 'F' ? 'FACTURADA' : 'ANULADA').'</h1></td>';
+		$html .= '</tr>';
+		$html .= '</table>';
+		$pdf->autoCell(0, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'C', true);		
 
-			$deleteForm = $this->createDeleteForm($id);
-
-			return array(
-				'entity'      => $entity,
-				'delete_form' => $deleteForm->createView(),        );
-		}else
-			return $this->render("ScontrolBundle::alertas.html.twig");
+		ob_end_clean();
+		$pdf->Output('factura_'.$id.'.pdf', 'I');
     }
 
     /**
@@ -94,11 +158,12 @@ class CtfactController extends Controller
 			$entity = new Ctfact();
 			$form   = $this->createForm(new CtfactType(), $entity);
 
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
-		}else
+			$em = $this->getDoctrine()->getEntityManager();
+            $servs = $em->getRepository('ScontrolBundle:Ctserv')->findBy(array(), array('nombre' => 'ASC'));
+
+			return array('entity' => $entity, 'form'   => $form->createView(), 'servs' => $servs);
+		}
+		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
@@ -118,146 +183,75 @@ class CtfactController extends Controller
 			$form    = $this->createForm(new CtfactType(), $entity);
 			$form->bindRequest($request);
 
-			if ($form->isValid()) {
+			if ($form->isValid()) 
+			{
 				$em = $this->getDoctrine()->getEntityManager();
 				$em->persist($entity);
+
+				$arr = $entity->getDetalle();
+				$arr = Tool::ofJail($arr);
+
+				foreach ($arr as $caso) 
+				{
+					$deta = new Ctdeta();
+					$deta->setCantidad($caso[2]);
+					$deta->setVuni($caso[3]);
+					$deta->setViva($caso[5]);
+					$deta->setTotal($caso[6]);
+					$deta->setCtserv($em->getRepository('ScontrolBundle:Ctserv')->find($caso[0]));
+					$deta->setCtfact($entity);
+
+					$em->persist($deta);
+				}
+
+				if($entity->getEstado() == 'F')
+				{	
+					$cont = $entity->getCtcont();
+					$cont->descontar($entity->getTotal());
+
+					$em->persist($cont);
+				}
+
 				$em->flush();
 
 				Tool::logger($this, $entity->getId());
 				return $this->redirect($this->generateUrl('ctfact_show', array('id' => $entity->getId())));
-				
 			}
 
-			return array(
-				'entity' => $entity,
-				'form'   => $form->createView()
-			);
+			return array('entity' => $entity,'form'   => $form->createView());
 		}else
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
-    /**
-     * Displays a form to edit an existing Ctfact entity.
-     *
-     * @Route("/{id}/edit", name="ctfact_edit")
-     * @Template()
-     */
-    public function editAction($id)
-    {
-		if(Tool::isGrant($this))
-		{	
-			$em = $this->getDoctrine()->getEntityManager();
+    private function separateChar($str, $char='.', $len=3)
+	{
+		$str = "".$str;
+		$tmp = explode(".", $str);
+		
+		$tmx = '';
 
-			$entity = $em->getRepository('ScontrolBundle:Ctfact')->find($id);
-
-			if (!$entity) {
-				throw $this->createNotFoundException('Unable to find Ctfact entity.');
-			}
-
-			$editForm = $this->createForm(new CtfactType(), $entity);
-			$deleteForm = $this->createDeleteForm($id);
-
-			return array(
-				'entity'      => $entity,
-				'edit_form'   => $editForm->createView(),
-				'delete_form' => $deleteForm->createView(),
-			);
-		}else
-			return $this->render("ScontrolBundle::alertas.html.twig");
-    }
-
-    /**
-     * Edits an existing Ctfact entity.
-     *
-     * @Route("/{id}/update", name="ctfact_update")
-     * @Method("post")
-     * @Template("ScontrolBundle:Ctfact:edit.html.twig")
-     */
-    public function updateAction($id)
-    {
-		if(Tool::isGrant($this))
-		{	
-			$em = $this->getDoctrine()->getEntityManager();
-
-			$entity = $em->getRepository('ScontrolBundle:Ctfact')->find($id);
-
-			if (!$entity) {
-				throw $this->createNotFoundException('Unable to find Ctfact entity.');
-			}
-
-			$editForm   = $this->createForm(new CtfactType(), $entity);
-			$deleteForm = $this->createDeleteForm($id);
-
-			$request = $this->getRequest();
-
-			$editForm->bindRequest($request);
-
-			if ($editForm->isValid()) {
-				$em->persist($entity);
-				$em->flush();
-				
-				Tool::logger($this, $entity->getId());
-				return $this->redirect($this->generateUrl('ctfact_show', array('id' => $id)));
-			}
-
-			return array(
-				'entity'      => $entity,
-				'edit_form'   => $editForm->createView(),
-				'delete_form' => $deleteForm->createView(),
-			);
-		}else
-			return $this->render("ScontrolBundle::alertas.html.twig");
-    }
-
-    /**
-     * Deletes a Ctfact entity.
-     *
-     * @Route("/{id}/delete", name="ctfact_delete")
-     * @Method("post")
-     */
-    public function deleteAction($id)
-    {
-		if(Tool::isGrant($this))
+		$tam = strlen($tmp[0]);
+		$num = ($tam / $len) - 1;
+		$sob = ($tam % $len) == 0 ? 1 : $len-($tam % $len)+1;
+		
+		if($num > 0)
 		{
-			try
+			for($i = 0; $i < $tam; $i++)
 			{
-				$form = $this->createDeleteForm($id);
-				$request = $this->getRequest();
-	
-				$form->bindRequest($request);
-	
-				if ($form->isValid()) {
-					$em = $this->getDoctrine()->getEntityManager();
-					$entity = $em->getRepository('ScontrolBundle:Ctfact')->find($id);
-	
-					if (!$entity) {
-						throw $this->createNotFoundException('Unable to find Ctfact entity.');
-					}
-	
-					$em->remove($entity);
-					$em->flush();
-					
-					Tool::logger($this, $id);
-				}
-	
-				return $this->redirect($this->generateUrl('ctfact'));
+				$tmx .= $tmp[0][$i];
+				if( (($i+$sob) % $len) == 0 && $i < ($tam - 1))
+					$tmx .= $char;
 			}
-			catch(\Exception $ex)
-			{
-				$sesion = $this->getRequest()->getSession();
-				$sesion->setFlash('MsgVar', 'Imposible Borrar esta entidad, integridad referencial!');
-				
-				return $this->redirect($this->generateUrl('ctfact_edit', array('id' => $id)));
-			}
-		}else
-			return $this->render("ScontrolBundle::alertas.html.twig");
-    }
+		}
+		else
+			$tmx = $tmp[0];
+		
+		if(count($tmp) == 1)
+			$tmp = $tmx.".00";
+		else
+			$tmp = $tmx.".".$tmp[1];
 
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm()
-        ;
-    }
+		return $tmp;
+	}
+    
 }
