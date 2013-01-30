@@ -230,6 +230,8 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 	! Examenes por Pruebas.
 	! Servicio por tipo.
 * Periodo de facturacion.
+* Lanzar diagnostico en los iframes Medicas.
+* Reporte de Cursos por Empresa y Paciente.
 
 # --- CAMBIOS EN PROGRESO --- #
 
@@ -240,10 +242,8 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 - Verificar vista de hoja de ruta, el formulario no se ve bien.
 - Llenar campo diccionario de GbVars para completar las traducciones.
 
-- Lanzar diagnostico en los iframes Medicas.
 - Reportes:
 	- Factura.
-	- Cursos - Emp, Pac
 	- R. Tecnica.
 
 + Maquillar vista de contrato

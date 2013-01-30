@@ -48,4 +48,5 @@ class MdpaciRepository extends EntityRepository
             $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Mdpaci m WHERE m.id = '".substr($par, 1)."' ORDER BY m.priape ASC");
         return $querry->getResult();
 	}
+
 }

@@ -30,13 +30,24 @@ report_sexo:
     defaults: { _controller: ScontrolBundle:Report:sexo }
 
 report_edad:
-    pattern:  /report/edad
+    pattern:  /report/{empresa}/{inicio}/{fin}/edad
     defaults: { _controller: ScontrolBundle:Report:edad }
 
 report_althombres:
-    pattern:  /report/althombres
+    pattern:  /report/{empresa}/{inicio}/{fin}/althombres
     defaults: { _controller: ScontrolBundle:Report:althombres }
-    
+
+report_altmujeres:
+    pattern:  /report/{empresa}/{inicio}/{fin}/altmujeres
+    defaults: { _controller: ScontrolBundle:Report:altmujeres }
+
+report_imchombres:
+    pattern:  /report/{empresa}/{inicio}/{fin}/imchombres
+    defaults: { _controller: ScontrolBundle:Report:imchombres }
+
+report_imcmujeres:
+    pattern:  /report/{empresa}/{inicio}/{fin}/imcmujeres
+    defaults: { _controller: ScontrolBundle:Report:imcmujeres }
 
 ######################################################
 ####                  FIN REPORTES                ####
@@ -1289,6 +1300,9 @@ tccurs_update:
 tccurs_delete:
     pattern:  /tccurs/{id}/delete
     defaults: { _controller: ScontrolBundle:Tccurs:delete }
+tccurs_report:
+    pattern:  /tccurs/{empr}/{paci}/report
+    defaults: { _controller: ScontrolBundle:Tccurs:report }
 tccurs_filter:
     pattern:  /tccurs/{param}/filter
     defaults: { _controller: ScontrolBundle:Tccurs:filter }

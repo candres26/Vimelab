@@ -48,6 +48,40 @@
     {% endfor %}
     </tbody>
 </table>
+
+<!--- Vista Parcial De Reporte -->
+<div id="jsRepoPar" class="csParDiv">
+	<b>REPORTE</b>
+
+	<div class="csParDivIn">
+		<table>
+			<tr>
+				<td align="right">Empresa:</td>
+				<td>
+					<select id="jsRepoEmpr">
+						<option value="@">Seleccione...</option>
+						{% for empresa in empresas %}
+							<option value="{{ empresa.id }}">{{ empresa.nombre }}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">Paciente (Id):</td>
+				<td> <input id="jsRepoPaci" type="text"> </td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td align="right">
+					<button onclick="genRepo()">Generar</button>
+					<button onclick="clsRepo()">Cancelar</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+</div>
+
 {% endblock %}
 
 {% block uscript %}
@@ -75,6 +109,28 @@
 					location = basePath+"/"+pag+"/pag";
 			}
 		}
+
+		function frmRepo(event)
+		{
+			show("vime-vitral");
+			showB("jsRepoPar");
+		}
+
+		function clsRepo(event)
+		{
+			hide("vime-vitral");
+			hide("jsRepoPar");
+			gId('jsRepoEmpr').value = '@';
+			gId('jsRepoPaci').value = '';
+		}
+
+		function genRepo(event)
+		{
+			if(gId('jsRepoPaci').value == '')
+				gId('jsRepoPaci').value = '@';
+
+			window.open(basePath+'/'+gId('jsRepoEmpr').value+'/'+gId('jsRepoPaci').value+'/report', null, 'width=800,height=600');	
+		}
 		
 	</script>
 {% endblock %}
@@ -84,6 +140,7 @@
 	<table>
 		<tr>
 			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="frmRepo()"><img src="{{ asset('bundles/scontrol/imagenes/iconos/report.png') }}" title="Reporte"></td>
 			<td onClick="go('{{ path('tccurs') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Listar"></td>
 			<td onClick="go('{{ path('tccurs_new') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/agregar.png') }}" title="Agregar"></td>
 		</tr>

@@ -8,7 +8,9 @@ class Tcpdf_Tcpdf extends TCPDF
     /* --- */
 
     private $isRevi = false;
-    private $entity = null;
+    private $isTabl = false;
+    private $entity = null; 
+    private $memoTitle = "None";
     
     public function getDir()
 	{
@@ -35,13 +37,38 @@ class Tcpdf_Tcpdf extends TCPDF
             $html .= '</table>';
             
             $this->SetFont('helvetica','',10);
-            $this->writeHTMLCell(170, 0, 20, 17, $html, 0, 1, 0, true, 'R', true);
+            $this->writeHTMLCell(0, 0, 20, 17, $html, 0, 1, 0, true, 'R', true);
+        }
+
+        if($this->isTabl)
+        {
+            $hoy = new \DateTime();
+
+            $html = '<table style="border-bottom: 1px solid black;">';
+            $html .= '<tr><td>&nbsp;</td></tr>';
+            $html .= '<tr><td><h2> '.$this->memoTitle.' </h2></td></tr>';
+            $html .= '<tr><td><b>'.$hoy->format('Y-m-d').'</b></td></tr>';
+            $html .= '<tr><td><i>Salud Control V 1.0</i></td></tr>';
+            $html .= '</table>';
+            
+            $this->SetFont('helvetica','',10);
+            $this->writeHTMLCell(0, 0, 20, 17, $html, 0, 1, 0, true, 'R', true);   
         }
     }
 
     public function setRevi($val)
     {
         $this->isRevi = $val;
+    }
+
+    public function setMemoTitle($val)
+    {
+        $this->memoTitle = $val;
+    }
+
+    public function setTabl($val)
+    {
+        $this->isTabl = $val;   
     }
 
     public function setEntity($entity)

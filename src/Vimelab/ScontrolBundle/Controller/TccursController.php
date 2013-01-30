@@ -34,8 +34,9 @@ class TccursController extends Controller
 			$pag = $pag > $pages ? $pages: $pag;
 			
 			$entities = $em->getRepository('ScontrolBundle:Tccurs')->getPage(20, $pag);
+			$empresas = $em->getRepository('ScontrolBundle:Gbempr')->findBy(array(),array('nombre' => 'ASC'));
 
-			return array('entities' => $entities, 'pages' => $pages, 'pag' => $pag);
+			return array('entities' => $entities, 'pages' => $pages, 'pag' => $pag, 'empresas' => $empresas);
 		}
 		else
 			return $this->render("ScontrolBundle::alertas.html.twig");
@@ -252,6 +253,55 @@ class TccursController extends Controller
 			}
 		}else
 			return $this->render("ScontrolBundle::alertas.html.twig");
+    }
+
+    public function reportAction($empr, $paci)
+    {
+    	$pdf = new \Tcpdf_Tcpdf('L', 'mm', 'A4', true, 'UTF-8', false);
+		$pdf->SetCreator(PDF_CREATOR);
+		$pdf->SetAuthor('Vimelab');
+		$pdf->SetTitle('REPORTE DE CURSOS');
+		$pdf->SetSubject('R. Cursos');
+		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, '', '');
+		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+		$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+		$pdf->SetMargins(20, 38, 20);
+		$pdf->SetHeaderMargin(2);
+		$pdf->SetFooterMargin(15);
+		$pdf->SetAutoPageBreak(TRUE, 21);
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+		$pdf->setTabl(true);
+		$pdf->setMemoTitle("REPORTE DE CURSOS");
+		$pdf->AddPage();
+		
+		$em = $this->getDoctrine()->getEntityManager();
+		$casos = $em->getRepository('ScontrolBundle:Tccurs')->listReport($empr, $paci);
+		$html = '<table border="1">';
+		$html .= '<tr bgcolor="#CAC5C5"><td><b>PACIENTE</b></td><td><b>CAPACITACIÓN</b></td><td><b>F. CULMINACIÓN</b></td><td><b>EMPRESA</b></td></tr>';
+		$pic = '#C7D8E9';
+
+		foreach ($casos as $caso) 
+		{
+			$paci = $caso->getMdpaci();
+			$capa = $caso->getTccapa();
+			$empr = $paci->getGbsucu()->getGbempr();
+
+			$pic = $pic == '#C7D8E9' ? '#FFFFFF' : '#C7D8E9';
+
+			$html .= '<tr bgcolor="'.$pic.'">';
+			$html .= '<td>'.strtoupper($paci->getFullName()).'</td>';
+			$html .= '<td>'.strtoupper($capa->getNombre()).'</td>';
+			$html .= '<td>'.$caso->getFin()->format('Y-m-d').'</td>';
+			$html .= '<td>'.strtoupper($empr->getNombre()).'</td>';
+			$html .= '</tr>';
+		}
+
+		$html .= '</table>';
+		$pdf->SetFont('dejavusans', '', 10);
+		$pdf->autoCell(0, 0, 20, $pdf->GetY(), $html, 0, 1, 0, true, 'C', true);
+		
+		$pdf->Output('r_curso_.pdf', 'I');
     }
 
     private function createDeleteForm($id)

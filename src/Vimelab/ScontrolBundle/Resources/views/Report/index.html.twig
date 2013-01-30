@@ -106,6 +106,9 @@
 			gId('btsexo').onclick = generar;
 			gId('btedad').onclick = generaredad;
 			gId('btalthom').onclick = generaralthom;
+			gId('btaltmuj').onclick = generaraltmuj;
+			gId('btcorpohom').onclick = generarimchom;
+			gId('btcorpomuj').onclick = generarimcmuj;
 			
 		}
 		
@@ -116,12 +119,27 @@
 		
 		function generaredad(event)
 		{
-			window.open($base+'/'+'edad', null, 'width=800,height=600');
+			window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/edad', null, 'width=800,height=600');
 		}
 		
 		function generaralthom(event)
 		{
-			window.open($base+'/'+'althombres', null, 'width=800,height=600');
+			window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/althombres', null, 'width=800,height=600');
+		}
+		
+		function generaraltmuj(event)
+		{
+			window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/altmujeres', null, 'width=800,height=600');
+		}
+		
+		function generarimchom(event)
+		{
+			window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/imchombres', null, 'width=800,height=600');
+		}
+		
+		function generarimcmuj(event)
+		{
+			window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/imcmujeres', null, 'width=800,height=600');
 		}
 		
 	</script>

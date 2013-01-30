@@ -202,4 +202,23 @@ class Mdbiom
     {
         return $this->id;
     }
+    
+    public function getImc()
+    {
+		$talla = intval($this->talla) / 100;
+		$peso = intval($this->peso);
+		
+		$imc = $peso / ($talla * $talla);
+		
+		if ($imc <= 18)
+			$tipo = 1;
+		else if($imc >= 18.1 && $imc <= 24.9)
+			$tipo = 2;
+		else if($imc >= 25 && $imc <= 29.9)
+			$tipo = 3;
+		else
+			$tipo = 4;
+		
+		return $tipo;
+	}
 }

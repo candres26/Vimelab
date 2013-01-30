@@ -71,36 +71,162 @@ class MdbiomRepository extends EntityRepository
         return $querry->getResult();
     }
     
-    public function getConsultaAltura($empresa, $finicio, $ffinal)
+    public function getConsultaAlturaHombres($empresa, $finicio, $ffinal)
     {
 		if ($empresa != '@')
 		{
 			$em = $this->getEntityManager();
 			
-			$querry = $em->createQuery("SELECT p FROM ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e, ScontrolBundle:Mdhist h WHERE p.id = h.mdpaci 
-				AND p.sexo = 'F' AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa' ORDER BY h.id ASC");
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'M' AND b.talla < 140 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal' 
+				AND e.id = '$empresa'");
 			$resul = count($querry->getResult());
-
-			$querry = $em->createQuery("SELECT p FROM ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e, ScontrolBundle:Mdhist h WHERE p.id = h.mdpaci 
-				AND p.sexo = 'M' AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa' ORDER BY h.id ASC");
+			
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'M' AND b.talla >= 141 AND b.talla <= 150 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal' 
+				AND e.id = '$empresa'");
 			$resul2 = count($querry->getResult());
 			
-			return array($resul, $resul2);
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'M' AND b.talla >= 151 AND b.talla <= 160 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal' 
+				AND e.id = '$empresa'");
+			$resul3 = count($querry->getResult());
+			
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'M' AND b.talla >= 161 AND b.talla <= 170 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal' 
+				AND e.id = '$empresa'");
+			$resul4 = count($querry->getResult());
+			
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'M' AND b.talla >= 171 AND b.talla <= 180 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal' 
+				AND e.id = '$empresa'");
+			$resul5 = count($querry->getResult());
+			
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'M' AND b.talla >= 181 AND b.talla <= 190 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal' 
+				AND e.id = '$empresa'");
+			$resul6 = count($querry->getResult());
+			
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'M' AND b.talla > 190 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal' 
+				AND e.id = '$empresa'");
+			$resul7 = count($querry->getResult());
+			
+			return array($resul, $resul2, $resul3, $resul4, $resul5, $resul6, $resul7);
 		}
 		else
 		{
 			$em = $this->getEntityManager();
 			
-			$querry = $em->createQuery("SELECT p FROM ScontrolBundle:Mdpaci p, ScontrolBundle:Mdhist h WHERE p.id = h.mdpaci AND p.sexo = 'F' 
-				AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' ORDER BY h.id ASC");
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'M' AND b.talla < 140 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal'");
 			$resul = count($querry->getResult());
-
-			$querry = $em->createQuery("SELECT p FROM ScontrolBundle:Mdpaci p, ScontrolBundle:Mdhist h WHERE p.id = h.mdpaci AND p.sexo = 'M' 
-				AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' ORDER BY h.id ASC");
+			
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'M' AND b.talla >= 141 AND b.talla <= 150 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal'");
 			$resul2 = count($querry->getResult());
 			
-			return array($resul, $resul2);
-        }
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'M' AND b.talla >= 151 AND b.talla <= 160 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal'");
+			$resul3 = count($querry->getResult());
+			
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'M' AND b.talla >= 161 AND b.talla <= 170 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal'");
+			$resul4 = count($querry->getResult());
+			
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'M' AND b.talla >= 171 AND b.talla <= 180 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal'");
+			$resul5 = count($querry->getResult());
+			
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'M' AND b.talla >= 181 AND b.talla <= 190 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal'");
+			$resul6 = count($querry->getResult());
+			
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'M' AND b.talla > 190 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal'");
+			$resul7 = count($querry->getResult());
+			
+			return array($resul, $resul2, $resul3, $resul4, $resul5, $resul6, $resul7);
+		}	
 	}
     
+    public function getConsultaAlturaMujeres($empresa, $finicio, $ffinal)
+    {
+		if ($empresa != '@')
+		{
+			$em = $this->getEntityManager();
+			
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'F' AND b.talla < 140 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal' 
+				AND e.id = '$empresa'");
+			$resul = count($querry->getResult());
+			
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'F' AND b.talla >= 141 AND b.talla <= 150 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal' 
+				AND e.id = '$empresa'");
+			$resul2 = count($querry->getResult());
+			
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'F' AND b.talla >= 151 AND b.talla <= 160 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal' 
+				AND e.id = '$empresa'");
+			$resul3 = count($querry->getResult());
+			
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'F' AND b.talla >= 161 AND b.talla <= 170 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal' 
+				AND e.id = '$empresa'");
+			$resul4 = count($querry->getResult());
+			
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'F' AND b.talla >= 171 AND b.talla <= 180 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal' 
+				AND e.id = '$empresa'");
+			$resul5 = count($querry->getResult());
+			
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'F' AND b.talla >= 181 AND b.talla <= 190 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal' 
+				AND e.id = '$empresa'");
+			$resul6 = count($querry->getResult());
+			
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'F' AND b.talla > 190 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal' 
+				AND e.id = '$empresa'");
+			$resul7 = count($querry->getResult());
+			
+			return array($resul, $resul2, $resul3, $resul4, $resul5, $resul6, $resul7);
+		}
+		else
+		{
+			$em = $this->getEntityManager();
+			
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'F' AND b.talla < 140 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal'");
+			$resul = count($querry->getResult());
+			
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'F' AND b.talla >= 141 AND b.talla <= 150 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal'");
+			$resul2 = count($querry->getResult());
+			
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'F' AND b.talla >= 151 AND b.talla <= 160 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal'");
+			$resul3 = count($querry->getResult());
+			
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'F' AND b.talla >= 161 AND b.talla <= 170 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal'");
+			$resul4 = count($querry->getResult());
+			
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'F' AND b.talla >= 171 AND b.talla <= 180 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal'");
+			$resul5 = count($querry->getResult());
+			
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'F' AND b.talla >= 181 AND b.talla <= 190 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal'");
+			$resul6 = count($querry->getResult());
+			
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+				WHERE p.id = h.mdpaci AND b.mdhist = h.id AND p.sexo = 'F' AND b.talla > 190 AND h.fecha >= '$finicio' AND h.fecha <= '$ffinal'");
+			$resul7 = count($querry->getResult());
+			
+			return array($resul, $resul2, $resul3, $resul4, $resul5, $resul6, $resul7);
+		}	
+	}
+
 }

@@ -102,7 +102,98 @@ class MdhistRepository extends EntityRepository
 			return array($resul, $resul2);
         }
 	}
-
+	
+	public function getConsultaEdad($empresa, $finicio, $ffinal)
+	{
+		$em = $this->getEntityManager();
+		
+		if ($empresa != '@')
+			$querry = $em->createQuery("SELECT p FROM ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e, ScontrolBundle:Mdhist h WHERE p.id = h.mdpaci 
+				AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa' ORDER BY h.id ASC");
+		else
+			$querry = $em->createQuery("SELECT p FROM ScontrolBundle:Mdpaci p, ScontrolBundle:Mdhist h WHERE p.id = h.mdpaci 
+				AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' ORDER BY h.id ASC");
+		
+		$resul = $querry->getResult();
+		
+		$edades = array('0-16'=> 0,'17-20'=> 0,'21-35'=> 0,'36-45'=> 0,'46-55'=> 0,'56-65'=> 0,'66-200'=> 0);
+		
+		foreach ($resul as $caso)
+		{
+			$edad  = $caso->getEdad();
+			
+			foreach($edades as $key => $val)
+			{
+				$lim = explode('-', $key);
+				$inf = intval($lim[0]);
+				$sup = intval($lim[1]);
+				
+				if ($edad >= $inf && $edad <= $sup)
+				{
+					$edades[$key] += 1;
+					
+					break;
+				}
+			}
+		}
+		
+		ksort($edades);
+		
+		return $edades;
+	}
+	
+	public function getConsultaImcHombres($empresa, $finicio, $ffinal)
+	{
+		$em = $this->getEntityManager();
+		
+		if ($empresa != '@')
+		
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e
+				WHERE h.id = b.mdhist AND p.id = h.mdpaci AND p.sexo = 'M' AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa'");
+		else
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b, ScontrolBundle:Mdhist h, ScontrolBundle:Mdpaci p WHERE p.id = h.mdpaci 
+			AND b.mdhist = h.id AND p.sexo = 'M' AND h.fecha >= '$finicio' AND h.fecha < '$ffinal'");
+		
+		$resul = $querry->getResult();
+		
+		$marcas = array('1' => 'Delgadez', '2' => 'Peso Normal', '3' => 'Sobrepeso', '4' => 'Obesidad');
+		$pesos = array($marcas['1'] => 0, $marcas['2'] => 0, $marcas['3'] => 0, $marcas['4'] => 0);
+		
+		foreach($resul as $caso)
+			$pesos[$marcas[''.$caso->getImc()]] += 1;
+		
+		return $pesos;
+	}
+	
+	public function getConsultaImcMujeres($empresa, $finicio, $ffinal)
+	{
+		$em = $this->getEntityManager();
+		
+		if ($empresa != '@')
+		
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e
+			WHERE h.id = b.mdhist AND p.id = h.mdpaci AND p.sexo = 'F' AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa'");
+		else
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b, ScontrolBundle:Mdhist h, ScontrolBundle:Mdpaci p WHERE p.id = h.mdpaci 
+			AND b.mdhist = h.id AND p.sexo = 'F' AND h.fecha >= '$finicio' AND h.fecha < '$ffinal'");
+		
+		$resul = $querry->getResult();
+		
+		$marcas = array('1' => 'Delgadez', '2' => 'Peso Normal', '3' => 'Sobrepeso', '4' => 'Obesidad');
+		$pesos = array($marcas['1'] => 0, $marcas['2'] => 0, $marcas['3'] => 0, $marcas['4'] => 0);
+		
+		foreach($resul as $caso)
+			$pesos[$marcas[''.$caso->getImc()]] += 1;
+		
+		return $pesos;
+	}
+	
+	public function getConsultaFumadores()
+	{
+		$querry = $em->createQuery("SELECT a FROM ScontrolBundle:Hspers a JOIN a.mdpaci p, ScontrolBundle:Mdhist h 
+		WHERE p.id = h.mdpaci AND a.fumador = 'F' AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa'");
+	}
+	
     public function getAlertas()
     {
         $lim = new \DateTime();

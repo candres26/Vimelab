@@ -754,19 +754,29 @@ h2
 	width: 500px;
 }
 
-.hlpDiv
+.hlpDiv, .hlpDiv2
 {
 	display: none;
 	position: absolute;
 	opacity: 0.9;
 	background: #FFFFFF;
 	overflow: auto;
-	width: 500px;
 	height: 70px;
 	border: 1px solid #203982;
+	z-index: 50;
 }
 
-.hlpDiv table
+.hlpDiv
+{
+	width: 500px;
+}
+
+.hlpDiv2
+{
+	width: 100%;
+}
+
+.hlpDiv table, .hlpDiv2 table
 {
 	width: 98%;
 	margin: auto;
@@ -774,22 +784,23 @@ h2
 	cursor: pointer;
 }
 
-.hlpDiv td
+.hlpDiv td, .hlpDiv2 td
 {
 	border: 1px solid #203982;	
+	text-align: center;
 }
 
-.hlpDiv tr
+.hlpDiv tr, .hlpDiv2 tr
 {
 	background: #F2F2F2;
 }
 
-.hlpDiv tr:hover
+.hlpDiv tr:hover, .hlpDiv2 tr:hover
 {
 	background: #A8BBFA;	
 }
 
-.hlpDiv th
+.hlpDiv th, .hlpDiv2 th
 {
 	display: none;
 }
@@ -866,4 +877,71 @@ h2
 .vime-qalertR
 {
 	right: 5%;
+}
+
+/* ### Reporte ### */
+
+.csParDiv
+{
+	display: none;
+	position: absolute;
+	width: 50%;
+	height: 50%;
+	left: 25%;
+	top: 25%;
+	background: #FFFFFF;
+	z-index: 50;
+	border: 1px solid #203982;
+	border-radius: 10px;
+}
+
+.csParDiv b
+{
+	display: block;
+	position: absolute;
+	width: 98%;
+	height: auto;
+	left: 1%;
+	top: 1%;
+	border-bottom: 1px solid #203982;
+}
+
+.csParDivIn
+{
+	position: absolute;
+	width: 98%;
+	height: 88%;
+	bottom: 2%;
+	left: 1%;
+	background: #EEEEEE;
+	border: 1px solid #203982;
+}
+
+.csParDivIn table
+{
+	position: absolute;
+	top: 5%;
+	left: 5%;
+	width: 90%;
+	height: 90%;
+}
+
+.csParDivIn select, .csParDivIn input
+{
+	width: 100%;
+}
+
+.csParDivIn button
+{
+	background-color: #203982; 
+	color: #fff;
+	border-radius: 10px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.csParDivIn button:hover
+{
+	background-color: #FFFFFF; 
+	color: #000000;
 }

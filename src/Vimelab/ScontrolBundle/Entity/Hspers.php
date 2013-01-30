@@ -742,6 +742,10 @@ class Hspers
     public function setDetfumador($detfumador)
     {
         $this->detfumador = $detfumador;
+        if ($this->detfumador == '0')
+			$this->fumador = 'N';
+		else
+			$this->fumador = 'S';
     }
 
     /**

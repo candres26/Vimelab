@@ -134,7 +134,7 @@ class CtcontController extends Controller
 				
 				if ($tipo == 1)
 				{
-					$servicios = 'Seguridad, Higiene, Ergonomia';
+					$servicios = 'Seguridad, Higiene, Ergonomia, Psicosociología Aplicada';
 					$actividad = 'PREVENCION SHE';
 					$anexos1 = 'ANEXO I. SEGURIDAD - HIGIENE Y ERGONOMÍA.<br/>
 								ANEXO II. CENTROS CONTRATADOS Y CONDICIONES ECONÓMICAS.';
@@ -391,12 +391,10 @@ class CtcontController extends Controller
 				$html = '<h4 align="right">CONTRATO DE PRESTACIÓN DE SERVICIOS DE PREVENCIÓN</h4>
 				<p>En '.$entity->getFirmagbciud().', a '.$fecha->format('d').' de '.$meses[intval($fecha->format('m'))-1].' de ' .$fecha->format('Y').' </p>
 				<h3 align="center">REUNIDOS</h3>
-				<p><b>Información del Contratante</b></p>
 				<p>
 				De una parte, '.$entity->getNombrecontratante().', mayor de edad, con N.I.F '.$entity->getIdentcontratante().' en representación de
 				<b>'.$entity->getGbempr()->getNombre().'</b> en adelante Empresa, con domicilio social en '.$sucu->getDireccion().', CP '.$ciud->getCodigo().' '.$ciud->getNombre().', 
 				provista de CIF Nº '.$entity->getGbempr()->getIdentificacion().'. Tel.: '.$sucu->getTelefono().', E-mail: '.$sucu->getCorreo().'.</p>
-				<p><b>Información del Contratista</b></p>
 				<p>
 				Y de otra, '.$entity->getNombrecontratista().', con NIF '.$entity->getIdentcontratista().' quien actúa en calidad de
 				'.$entity->getCargocontratista().' de la entidad, <b>'.$corp->getNombre().'</b>, en adelante VIMELAB, con 

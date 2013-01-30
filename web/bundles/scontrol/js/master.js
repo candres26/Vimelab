@@ -1189,3 +1189,95 @@ function masterLoad(event)
 	refreshDiag();
 	getExam();
 }
+
+/* ##################################################################################### */
+/* ## LANZADOR QUICK DE DIGANOSTICOS 												  ## */
+/* ##################################################################################### */
+
+function getQuick(event)
+{
+	if(event.type == "keypress" && event.keyCode == 13)
+	{	
+		showB(this.id+"Div");
+		ajaxAction
+		(
+			new Hash(["param => "+this.id, "*min => 0", "*max => 19"]),
+			$_getPato,
+			setQuick,
+			this.id
+		);
+	}
+}
+
+function setQuick(response, id)
+{
+	if(response.responseText != "")
+	{
+		fil = response.responseText.split("|-|");
+		
+		cont = ""
+		
+		for(i = 0; i < fil.length; i ++)
+		{
+			cam = fil[i].split("=>");
+			cont += "<tr><th>"+cam[0]+"</th><td>"+cam[1]+"</td><td>"+cam[2].toUpperCase()+"</td></tr>";
+		}	
+	}
+	else
+		cont = "<tr><td><B>NO SE HALLARON COINCIDENCIAS</B></td></tr>";
+	
+	gId(id+"Zone").innerHTML = cont;
+}
+
+function saveQuick(event)
+{
+	var basId = this.id.substring(0, this.id.length-4);
+	hide(basId+"Div");
+	gId(basId).value = "";
+	gId(basId).focus();
+
+	row = event.target.parentNode;
+	tmp = row.cells[0].innerHTML;
+	
+	$diagSrIdx = tmp;
+
+	ajaxAction
+	(
+		new Hash(["*jsHistId => "+$histId, "*jsPatoId => "+$diagSrIdx]),
+		$_newDiag,
+		showQuick
+	);
+}
+
+function showQuick(response)
+{
+	if(response.responseText == "0")
+		popup("Diagnostico creado con exito!");
+	else
+		popup("Imposible crear Diagnostico!");
+
+	ajaxAction
+	(
+		new Hash(["*param => "+$histId, "*min => 0", "*max => 19"]),
+		$_getDiag,
+		refreshQuick
+	);
+}
+
+function refreshQuick(response)
+{
+	cont = ""
+
+	if(response.responseText != "")
+	{
+		fil = response.responseText.split("|-|");
+		
+		for(i = 0; i < fil.length; i ++)
+		{
+			cam = fil[i].split("=>");
+			cont += "<tr><th>"+cam[0]+"</th><td>"+cam[1]+"</td></tr>";
+		}	
+	}
+
+	gId("jsDiagTab").innerHTML = cont;
+}
