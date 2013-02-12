@@ -131,8 +131,8 @@ CREATE TABLE `CtDeta` (
   PRIMARY KEY (`id`),
   KEY `CtFact_id` (`CtFact_id`),
   KEY `CtServ_id` (`CtServ_id`),
-  CONSTRAINT `CtDeta_ibfk_2` FOREIGN KEY (`CtServ_id`) REFERENCES `CtServ` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `CtDeta_ibfk_1` FOREIGN KEY (`CtFact_id`) REFERENCES `CtFact` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `CtDeta_ibfk_1` FOREIGN KEY (`CtFact_id`) REFERENCES `CtFact` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `CtDeta_ibfk_2` FOREIGN KEY (`CtServ_id`) REFERENCES `CtServ` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1079,6 +1079,7 @@ CREATE TABLE `MdHist` (
   `fecha` date NOT NULL,
   `menstru` char(1) COLLATE utf8_unicode_ci DEFAULT NULL,
   `tipo` int(1) unsigned NOT NULL,
+  `dictamen` int(1) unsigned NOT NULL,
   `comentario` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `MdPaci_id` (`MdPaci_id`),
@@ -1665,4 +1666,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-01-20  2:43:10
+-- Dump completed on 2013-02-12 14:26:09

@@ -345,7 +345,7 @@ function newCome(event)
 	{
 		ajaxAction
 		(
-			new Hash(["jsComeDta", "*jsHistId => "+$histId]),
+			new Hash(["jsComeDta", "jsComeDic", "*jsHistId => "+$histId]),
 			$_newCome,
 			setCome
 		);
@@ -359,14 +359,14 @@ function setCome(response)
 	par = response.responseText.split(":");
 	
 	if(par[0] == "0")
-		gId("jsComeDta").style.background = "";
+		gId("jsCome").style.background = "";
 	
 	popup(par[1]);
 }
 
 function tipCome(event) 
 {
-	  gId("jsComeDta").style.background = "#FDC2C1";
+	  gId("jsCome").style.background = "#FDC2C1";
 }
 
 function vistaReco(event)
@@ -1118,7 +1118,8 @@ function masterLoad(event)
 	gId("jsHistTipo").innerHTML = txTipo;
 	gId("jsHistRuta").innerHTML = his[2];
 	gId("jsProtTra").innerHTML = $ptraTi;
-	gId("jsComeDta").value = his[4];
+	gId("jsComeDic").value = his[4];
+	gId("jsComeDta").value = his[5];
 	
 	if(sim[0] != -1)
 	{

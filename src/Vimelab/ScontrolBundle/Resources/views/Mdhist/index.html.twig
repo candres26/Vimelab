@@ -29,6 +29,7 @@
             <th>Paciente</th>
             <th>Hoja de Ruta</th>
             <th>Tipo</th>
+            <th>Dictamen</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -40,7 +41,8 @@
             <td>{{ entity.mdpaci }}</td>
             <td>{{ entity.MdPaci.prinom }} {{ entity.MdPaci.segnom }} {{ entity.MdPaci.priape }} {{ entity.MdPaci.segape }}</td>
             <td>{{ entity.TcRuta.__toString() }}</td>
-            <td>{{ entity.tipo }}</td>
+            <td>{{ entity.getSTipo() }}</td>
+            <td>{{ entity.getSDictamen() }}</td>
             <td align="center">
 				<a href="{{ path('mdhist_show', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/show_index.png') }}" title="Mostrar"></a>
 				<a href="{{ path('mdhist_edit', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar_index.png') }}" title="Editar"></a>

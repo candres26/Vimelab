@@ -213,11 +213,14 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 		! Popup refinado.
 	* Colores en espirometria Rojo <-> Azul.
 	* Tamaño MdEspi 5,2
+	* Agregado campo DICTAMEN a los formularios y el reporte.
+	* Barra de acciones para limpiar assitente y generar reporte.
 * Alerta de contrato y revisiones.
 	! Contrato por año - 30 dias.
 	! Revi por año - 30 dias.
 	! Las alertas desaparecen si se supera un plazo de 30 dias bencidos.
 	! Al dar click se redirije al show del registro.
+	! Incluida funcion nativa de MySQL DATE_ADD.
 * Tabla de a. visual en reporte.
 * Eliminar - Ocultar F. Resp
 * Poner datos de paciente en modo sobre.
