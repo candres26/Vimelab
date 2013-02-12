@@ -244,7 +244,8 @@ class MdhistRepository extends EntityRepository
         $sub->sub(new \DateInterval('P30D'));
         
         $em = $this->getEntityManager();
-        $querry = $em->createQuery("SELECT h FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p WHERE h.fecha < '".$lim->format('Y-m-d')."' AND h.fecha > '".$sub->format('Y-m-d')."' ORDER BY p.priape ASC");
+        //$querry = $em->createQuery("SELECT h FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p WHERE h.fecha < '".$lim->format('Y-m-d')."' AND h.fecha > '".$sub->format('Y-m-d')."' ORDER BY p.priape ASC");
+        $querry = $em->createQuery("SELECT h FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p WHERE DATE_ADD(h.fecha, 12, 'MONTH') < '".$lim->format('Y-m-d')."' AND DATE_ADD(h.fecha, 12, 'MONTH') > '".$sub->format('Y-m-d')."' ORDER BY p.priape ASC");
         return $querry->getResult();
     }
 }
