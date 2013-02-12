@@ -1162,7 +1162,7 @@ function masterLoad(event)
 	
 	if(sim[5] != -1)
 	{
-		$sistId = sim[4];
+		$sistId = sim[5];
 		gId("ifSist").contentWindow.location = $_sist+"/"+$sistId+"/show/4";
 		hide("jsSistCre");
 		gId('jsSistLed').style.background = "#0000FF";
