@@ -109,6 +109,8 @@
 			gId('btaltmuj').onclick = generaraltmuj;
 			gId('btcorpohom').onclick = generarimchom;
 			gId('btcorpomuj').onclick = generarimcmuj;
+			gId('btfumadores').onclick = generarfumadores;
+			gId('btpartelevada').onclick = generarpresion;
 			
 		}
 		
@@ -140,6 +142,16 @@
 		function generarimcmuj(event)
 		{
 			window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/imcmujeres', null, 'width=800,height=600');
+		}
+		
+		function generarfumadores(event)
+		{
+			window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/fumadores', null, 'width=800,height=600');
+		}
+		
+		function generarpresion(event)
+		{
+			window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/presion', null, 'width=800,height=600');
 		}
 		
 	</script>

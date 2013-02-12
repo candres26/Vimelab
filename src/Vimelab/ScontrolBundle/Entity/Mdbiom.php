@@ -221,4 +221,29 @@ class Mdbiom
 		
 		return $tipo;
 	}
+	
+	public function getPresion()
+	{
+		$presistolica = intval($this->pasisto);
+		$prediastolica = intval($this->padiasto);
+		
+		$presion=-1;
+		
+		if ($presistolica == 120 && $prediastolica == 80)
+			$presion = 1;
+		else if (($presistolica > 120 && $presistolica <= 129) && ($prediastolica > 80 && $prediastolica <= 84))
+			$presion = 2;
+		else if (($presistolica >= 130 && $presistolica <= 139) && ($prediastolica >= 85 && $prediastolica <= 89))
+			$presion = 3;
+		else if (($presistolica >= 140 && $presistolica <= 159) && ($prediastolica >= 90 && $prediastolica <= 99))
+			$presion = 4;
+		else if (($presistolica >= 160 && $presistolica <= 179) && ($prediastolica >= 100 && $prediastolica <= 109))
+			$presion = 5;
+		else if (($presistolica >= 180 ) && ($prediastolica >= 110))
+			$presion = 6;
+		else 
+			$presion = 7;
+		
+		return $presion;
+	}
 }

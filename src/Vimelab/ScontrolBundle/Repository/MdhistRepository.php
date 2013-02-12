@@ -188,11 +188,52 @@ class MdhistRepository extends EntityRepository
 		return $pesos;
 	}
 	
-	public function getConsultaFumadores()
+	public function getConsultaFumadores($empresa, $finicio, $ffinal)
 	{
-		$querry = $em->createQuery("SELECT a FROM ScontrolBundle:Hspers a JOIN a.mdpaci p, ScontrolBundle:Mdhist h 
-		WHERE p.id = h.mdpaci AND a.fumador = 'F' AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa'");
+		$em = $this->getEntityManager();
+		
+		if ($empresa != '@')
+		
+			$querry = $em->createQuery("SELECT a FROM ScontrolBundle:Hspers a JOIN a.mdpaci p JOIN p.gbsucu s JOIN s.gbempr e, ScontrolBundle:Mdhist h  
+			WHERE p.id = h.mdpaci AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa'");
+		else
+			$querry = $em->createQuery("SELECT a FROM ScontrolBundle:Hspers a JOIN a.mdpaci p, ScontrolBundle:Mdhist h  
+			WHERE p.id = h.mdpaci AND h.fecha >= '$finicio' AND h.fecha < '$ffinal'");
+		
+		$resul = $querry->getResult();
+		
+		$marcas = array('0' => 'No fumador', '1' => 'Ex fumador', '2' => 'Fumador esporádico', '3' => 'de 0 a 5 cigarrillos', '4' => 'de 6 a 10 cigarrillos', '5' => 'de 11 a 20 cigarrillos', '6' => 'de 21 a 40 cigarrillos', '7' => 'Más de 40 cigarrillos', '8' => 'Otros(Pipa, Otros ...)');
+		$fumador = array($marcas['0'] => 0, $marcas['1'] => 0, $marcas['2'] => 0, $marcas['3'] => 0, $marcas['4'] => 0, $marcas['5'] => 0, $marcas['6'] => 0, $marcas['7'] => 0, $marcas['8'] => 0);
+		
+		foreach($resul as $caso)
+			$fumador[$marcas[''.$caso->getDetfumador()]] += 1;
+		
+		return $fumador;
 	}
+	
+	public function getConsultaPresion($empresa, $finicio, $ffinal)
+	{
+		$em = $this->getEntityManager();
+		
+		if ($empresa != '@')
+
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e 
+			WHERE h.id = b.mdhist AND p.id = h.mdpaci AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa' ORDER by b.id");
+		else
+			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p WHERE h.id = b.mdhist 
+			AND p.id = h.mdpaci ORDER by b.id");
+		
+		$resul = $querry->getResult();
+		
+		$marcas = array('1' => 'Óptima', '2' => 'Normal', '3' => 'Normal alta', '4' => 'Hipertensión grado 1', '5' => 'Hipertensión grado 2', '6' => 'Hipertensión grado 3', '7' => 'Hipertensión no identificada');
+		$presiones = array($marcas['1'] => 0, $marcas['2'] => 0, $marcas['3'] => 0, $marcas['4'] => 0, $marcas['5'] => 0, $marcas['6'] => 0, $marcas['7'] => 0);
+		
+		foreach($resul as $caso)
+			$presiones[$marcas[''.$caso->getPresion()]] += 1;
+		
+		return $presiones; 
+	}
+	
 	
     public function getAlertas()
     {

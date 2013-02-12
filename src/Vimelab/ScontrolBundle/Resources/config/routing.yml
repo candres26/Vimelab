@@ -49,6 +49,14 @@ report_imcmujeres:
     pattern:  /report/{empresa}/{inicio}/{fin}/imcmujeres
     defaults: { _controller: ScontrolBundle:Report:imcmujeres }
 
+report_fumadores:
+    pattern:  /report/{empresa}/{inicio}/{fin}/fumadores
+    defaults: { _controller: ScontrolBundle:Report:fumadores }
+
+report_presion:
+    pattern:  /report/{empresa}/{inicio}/{fin}/presion
+    defaults: { _controller: ScontrolBundle:Report:presion }
+
 ######################################################
 ####                  FIN REPORTES                ####
 ######################################################

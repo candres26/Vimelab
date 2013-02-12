@@ -780,20 +780,96 @@ class ReportController extends Controller
 		}
 		
 		$pdf->Line(43, 38, 43, 193, $style1); // Eje Y
-		$pdf->Line(43, 193, 200, 193, $style1); // Eje X
+		$pdf->Line(43, 193, 170, 193, $style1); // Eje X
 		
 		
-		$pdf->Rect(55, 193-$postrango1, 10, $postrango1, 'DF', $border_style, $fill_color = array(100,0,0,0)); // Rectángulo talla1
-		$pdf->Rect(75, 193-$postrango2, 10, $postrango2, 'DF', $border_style, $fill_color = array(0,57,54,20)); // Rectángulo talla2
-		$pdf->Rect(95, 193-$postrango3, 10, $postrango3, 'DF', $border_style, $fill_color = array(0,2,43,4)); // Rectángulo talla3
-		$pdf->Rect(115, 193-$postrango4, 10, $postrango4, 'DF', $border_style, $fill_color = array(52,0,42,2)); // Rectángulo talla4
+		$pdf->Rect(55, 193-$postrango1, 10, $postrango1, 'DF', $border_style, $fill_color = array(100,0,0,0)); // Rectángulo rango1
+		$pdf->Rect(75, 193-$postrango2, 10, $postrango2, 'DF', $border_style, $fill_color = array(0,57,54,20)); // Rectángulo rango2
+		$pdf->Rect(95, 193-$postrango3, 10, $postrango3, 'DF', $border_style, $fill_color = array(0,2,43,4)); // Rectángulo rango3
+		$pdf->Rect(115, 193-$postrango4, 10, $postrango4, 'DF', $border_style, $fill_color = array(52,0,42,2)); // Rectángulo rango4
 		
+		$pdf->SetDrawColor(100, 0, 0, 0);
+		$pdf->SetFillColor(100, 0, 0, 0);
+		$pdf->Rect(206, 51, 2, 2, 'DF', $border_style);
 		
-		/*$html = '';
-		foreach ($entity as $key => $val)
-		{
-			$html .= $key.':'.$val.'<br>';
-		}*/
+		$pdf->SetDrawColor(0,57,54,20);
+		$pdf->SetFillColor(0,57,54,20);
+		$pdf->Rect(206, 55.5, 2, 2, 'DF', $border_style);
+
+		$pdf->SetDrawColor(0,2,43,4);
+		$pdf->SetFillColor(0,2,43,4);
+		$pdf->Rect(206, 60, 2, 2, 'DF', $border_style);
+
+		$pdf->SetDrawColor(52,0,42,2);
+		$pdf->SetFillColor(52,0,42,2);
+		$pdf->Rect(206, 64.5, 2, 2, 'DF', $border_style);
+		
+		$html = '
+		<table>
+			<tr>
+				<td align="left">Delgadez</td>
+			</tr>
+			<tr>
+				<td align="left">Peso normal</td>
+			</tr>
+			<tr>
+				<td align="left">Sobrepeso</td>
+			</tr>
+			<tr>
+				<td align="left">Obesidad</td>
+			</tr>
+		</table>';
+		$pdf->SetFont('dejavusans', '', 10);
+		$pdf->writeHTMLCell(55, 0, 209, 50, $html, '', 0, 0, true, 'C', true);
+		
+		$html= '
+		<table border="1">
+			<tr>
+				<td><b>Clasificación</b></td>
+				<td><b>Total</b></td>
+			</tr>
+			<tr>
+				<td align="left"> Delgadez</td>
+				<td>'.$rango1.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Peso normal</td>
+				<td>'.$rango2.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Sobrepeso</td>
+				<td>'.$rango3.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Obesidad</td>
+				<td>'.$rango4.'</td>
+			</tr>
+		</table>';
+		$pdf->SetFont('dejavusans', '', 11);
+		$pdf->writeHTMLCell(70,0,205,100,$html, '', 0, 0, true, 'C', true);
+				
+		$html= '
+		<table border="1">
+			<tr>
+				<td><b>Búsqueda</b></td>
+				<td><b>Resultados</b></td>
+			</tr>
+			<tr>
+				<td align="left"> Empresa</td>
+				<td>'.$nombreempresa.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Fecha Inicial</td>
+				<td>'.$inicio.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Fecha Final</td>
+				<td>'.$fin.'</td>
+			</tr>
+		</table>';
+		
+		$pdf->SetFont('dejavusans', '', 11);
+		$pdf->writeHTMLCell(70,0,205,130,$html, '', 0, 0, true, 'C', true);
 		
 		$pdf->Output('estadisticaimchombres.pdf', 'I');
 	}
@@ -853,26 +929,519 @@ class ReportController extends Controller
 		}
 		
 		$pdf->Line(43, 38, 43, 193, $style1); // Eje Y
-		$pdf->Line(43, 193, 200, 193, $style1); // Eje X
+		$pdf->Line(43, 193, 170, 193, $style1); // Eje X
 		
 		
-		$pdf->Rect(55, 193-$postrango1, 10, $postrango1, 'DF', $border_style, $fill_color = array(100,0,0,0)); // Rectángulo talla1
-		$pdf->Rect(75, 193-$postrango2, 10, $postrango2, 'DF', $border_style, $fill_color = array(0,57,54,20)); // Rectángulo talla2
-		$pdf->Rect(95, 193-$postrango3, 10, $postrango3, 'DF', $border_style, $fill_color = array(0,2,43,4)); // Rectángulo talla3
-		$pdf->Rect(115, 193-$postrango4, 10, $postrango4, 'DF', $border_style, $fill_color = array(52,0,42,2)); // Rectángulo talla4
+		$pdf->Rect(55, 193-$postrango1, 10, $postrango1, 'DF', $border_style, $fill_color = array(100,0,0,0)); // Rectángulo rango1
+		$pdf->Rect(75, 193-$postrango2, 10, $postrango2, 'DF', $border_style, $fill_color = array(0,57,54,20)); // Rectángulo rango2
+		$pdf->Rect(95, 193-$postrango3, 10, $postrango3, 'DF', $border_style, $fill_color = array(0,2,43,4)); // Rectángulo rango3
+		$pdf->Rect(115, 193-$postrango4, 10, $postrango4, 'DF', $border_style, $fill_color = array(52,0,42,2)); // Rectángulo rango4
 		
+		$pdf->SetDrawColor(100, 0, 0, 0);
+		$pdf->SetFillColor(100, 0, 0, 0);
+		$pdf->Rect(206, 51, 2, 2, 'DF', $border_style);
 		
-		/*$html = '';
-		foreach ($entity as $key => $val)
-		{
-			$html .= $key.':'.$val.'<br>';
-		}*/
+		$pdf->SetDrawColor(0,57,54,20);
+		$pdf->SetFillColor(0,57,54,20);
+		$pdf->Rect(206, 55.5, 2, 2, 'DF', $border_style);
+
+		$pdf->SetDrawColor(0,2,43,4);
+		$pdf->SetFillColor(0,2,43,4);
+		$pdf->Rect(206, 60, 2, 2, 'DF', $border_style);
+
+		$pdf->SetDrawColor(52,0,42,2);
+		$pdf->SetFillColor(52,0,42,2);
+		$pdf->Rect(206, 64.5, 2, 2, 'DF', $border_style);
+		
+		$html = '
+		<table>
+			<tr>
+				<td align="left">Delgadez</td>
+			</tr>
+			<tr>
+				<td align="left">Peso normal</td>
+			</tr>
+			<tr>
+				<td align="left">Sobrepeso</td>
+			</tr>
+			<tr>
+				<td align="left">Obesidad</td>
+			</tr>
+		</table>';
+		$pdf->SetFont('dejavusans', '', 10);
+		$pdf->writeHTMLCell(55, 0, 209, 50, $html, '', 0, 0, true, 'C', true);
+		
+		$html= '
+		<table border="1">
+			<tr>
+				<td><b>Clasificación</b></td>
+				<td><b>Total</b></td>
+			</tr>
+			<tr>
+				<td align="left"> Delgadez</td>
+				<td>'.$rango1.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Peso normal</td>
+				<td>'.$rango2.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Sobrepeso</td>
+				<td>'.$rango3.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Obesidad</td>
+				<td>'.$rango4.'</td>
+			</tr>
+		</table>';
+		$pdf->SetFont('dejavusans', '', 11);
+		$pdf->writeHTMLCell(70,0,205,100,$html, '', 0, 0, true, 'C', true);
+				
+		$html= '
+		<table border="1">
+			<tr>
+				<td><b>Búsqueda</b></td>
+				<td><b>Resultados</b></td>
+			</tr>
+			<tr>
+				<td align="left"> Empresa</td>
+				<td>'.$nombreempresa.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Fecha Inicial</td>
+				<td>'.$inicio.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Fecha Final</td>
+				<td>'.$fin.'</td>
+			</tr>
+		</table>';
+		
+		$pdf->SetFont('dejavusans', '', 11);
+		$pdf->writeHTMLCell(70,0,205,130,$html, '', 0, 0, true, 'C', true);
+		
+		$pdf->Output('estadisticaimchombres.pdf', 'I');
 		
 		$pdf->Output('estadisticaimcmujeres.pdf', 'I');
 	}
 	
-	public function fumadoresAction()
+	public function fumadoresAction($empresa, $inicio, $fin)
 	{
+		$pdf = new \Tcpdf_Tcpdf('L', PDF_UNIT, 'A4', true, 'UTF-8', false);
+		$em = $this->getDoctrine()->getEntityManager();
+		$fumadores = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaFumadores($empresa, $inicio, $fin);
+		$nombreempresa = $em->getRepository('ScontrolBundle:Gbempr')->find($empresa);
 		
+		$pdf = new \Tcpdf_Tcpdf('L', 'mm', 'A4', true, 'UTF-8', false);
+		$pdf->SetCreator(PDF_CREATOR);
+		$pdf->SetAuthor('Vimelab');
+		$pdf->SetTitle('REPORTE DE ESTADÍSTICA POR FUMADORES');
+		$pdf->SetSubject('Estadística por fumadores.');
+		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, '', '');
+		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+		$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+		$pdf->SetMargins(20, 38, 20);
+		$pdf->SetHeaderMargin(2);
+		$pdf->SetFooterMargin(15);
+		$pdf->SetAutoPageBreak(FALSE, 21);
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+		$pdf->setTabl(true);
+		$pdf->setMemoTitle("REPORTE DE ESTADÍSTICA POR FUMADORES");
+		$pdf->AddPage();
+		
+		$style1 = array('width' => 0.8, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0));
+		$style2 = array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 255, 0));
+		$style3 = array('width' => 10, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(255, 0, 0));
+		$style4 = array('width' => 10, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 255));
+		$border_style = array('all' => array('width' => 0.8, 'cap' => 'square', 'join' => 'miter', 'dash' => 0, 'phase' => 0));
+		
+		$rango1 = $fumadores['No fumador'];
+		$rango2 = $fumadores['Ex fumador'];
+		$rango3 = $fumadores['Fumador esporádico'];
+		$rango4 = $fumadores['de 0 a 5 cigarrillos'];
+		$rango5 = $fumadores['de 6 a 10 cigarrillos'];
+		$rango6 = $fumadores['de 11 a 20 cigarrillos'];
+		$rango7 = $fumadores['de 21 a 40 cigarrillos'];
+		$rango8 = $fumadores['Más de 40 cigarrillos'];
+		$rango9 = $fumadores['Otros(Pipa, Otros ...)'];
+		
+		arsort($fumadores);
+		$max = max($fumadores);
+		$max = intval(($max + 10) /10.0) * 10;
+		
+		$postrango1 = ((150 * $rango1)/$max);
+		$postrango2 = ((150 * $rango2)/$max);
+		$postrango3 = ((150 * $rango3)/$max);
+		$postrango4 = ((150 * $rango4)/$max);
+		$postrango5 = ((150 * $rango5)/$max);
+		$postrango6 = ((150 * $rango6)/$max);
+		$postrango7 = ((150 * $rango7)/$max);
+		$postrango8 = ((150 * $rango8)/$max);
+		$postrango9 = ((150 * $rango9)/$max);
+
+		$par = $max / 20;
+		
+		for($i = 1; $i <= 20; $i++)
+		{
+			$pos = 193-(150*($par*$i))/$max;
+			$pdf->writeHTMLCell(20, 20, 20, $pos-2,'<div style="color: #000; text-align: rigth;"><b>'.$par*$i.'</b></div>');
+			$pdf->Line(40, $pos, 46, $pos, $style1);
+		}
+		
+		$pdf->Line(43, 38, 43, 193, $style1); // Eje Y
+		$pdf->Line(43, 193, 175, 193, $style1); // Eje X
+		
+		$pdf->Rect(55, 193-$postrango1, 7, $postrango1, 'DF', $border_style, $fill_color = array(100,0,0,0)); // Rectángulo rango1
+		$pdf->Rect(65, 193-$postrango2, 7, $postrango2, 'DF', $border_style, $fill_color = array(0,57,54,20)); // Rectángulo rango2
+		$pdf->Rect(75, 193-$postrango3, 7, $postrango3, 'DF', $border_style, $fill_color = array(0,2,43,4)); // Rectángulo rango3
+		$pdf->Rect(85, 193-$postrango4, 7, $postrango4, 'DF', $border_style, $fill_color = array(52,0,42,2)); // Rectángulo rango4
+		$pdf->Rect(95, 193-$postrango5, 7, $postrango5, 'DF', $border_style, $fill_color = array(0,100,100,50)); // Rectángulo rango5
+		$pdf->Rect(105, 193-$postrango6, 7, $postrango6, 'DF', $border_style, $fill_color = array(0,60,15,1)); // Rectángulo rango6
+		$pdf->Rect(115, 193-$postrango7, 7, $postrango7, 'DF', $border_style, $fill_color = array(94,40,0,18)); // Rectángulo rango7
+		$pdf->Rect(125, 193-$postrango8, 7, $postrango8, 'DF', $border_style, $fill_color = array(30,19,0,7)); // Rectángulo rango8
+		$pdf->Rect(135, 193-$postrango9, 7, $postrango9, 'DF', $border_style, $fill_color = array(67,51,0,75)); // Rectángulo rango9
+		
+		$pdf->SetDrawColor(100, 0, 0, 0);
+		$pdf->SetFillColor(100, 0, 0, 0);
+		$pdf->Rect(186, 51, 2, 2, 'DF', $border_style);
+		
+		$pdf->SetDrawColor(0,57,54,20);
+		$pdf->SetFillColor(0,57,54,20);
+		$pdf->Rect(186, 55.5, 2, 2, 'DF', $border_style);
+
+		$pdf->SetDrawColor(0,2,43,4);
+		$pdf->SetFillColor(0,2,43,4);
+		$pdf->Rect(186, 60, 2, 2, 'DF', $border_style);
+
+		$pdf->SetDrawColor(52,0,42,2);
+		$pdf->SetFillColor(52,0,42,2);
+		$pdf->Rect(186, 64.5, 2, 2, 'DF', $border_style);
+
+		$pdf->SetDrawColor(0,100,100,50);
+		$pdf->SetFillColor(0,100,100,50);
+		$pdf->Rect(186, 69, 2, 2, 'DF', $border_style);
+
+		$pdf->SetDrawColor(0,60,15,1);
+		$pdf->SetFillColor(0,60,15,1);
+		$pdf->Rect(186, 73.5, 2, 2, 'DF', $border_style);
+
+		$pdf->SetDrawColor(94,40,0,18);
+		$pdf->SetFillColor(94,40,0,18);
+		$pdf->Rect(186, 78, 2, 2, 'DF', $border_style);
+
+		$pdf->SetDrawColor(30,19,0,7);
+		$pdf->SetFillColor(30,19,0,7);
+		$pdf->Rect(186, 82.5, 2, 2, 'DF', $border_style);
+
+		$pdf->SetDrawColor(67,51,0,75);
+		$pdf->SetFillColor(67,51,0,75);
+		$pdf->Rect(186, 87, 2, 2, 'DF', $border_style);
+		
+		$html = '
+		<table>
+			<tr>
+				<td align="left">No fumador</td>
+			</tr>
+			<tr>
+				<td align="left">Ex fumador</td>
+			</tr>
+			<tr>
+				<td align="left">Fumador esporádico</td>
+			</tr>
+			<tr>
+				<td align="left">de 0 a 5 cigarrillos</td>
+			</tr>
+			<tr>
+				<td align="left">de 6 a 10 cigarrillos</td>
+			</tr>
+			<tr>
+				<td align="left">de 11 a 20 cigarrillos</td>
+			</tr>
+			<tr>
+				<td align="left">de 21 a 40 cigarrillos</td>
+			</tr>
+			<tr>
+				<td align="left">Más de 40 cigarrillos</td>
+			</tr>
+			<tr>
+				<td align="left">Otros(Pipa, Otros ...)</td>
+			</tr>
+		</table>';
+		$pdf->SetFont('dejavusans', '', 10);
+		$pdf->writeHTMLCell(55, 0, 190, 50, $html, '', 0, 0, true, 'C', true);
+		
+		$html= '
+		<table border="1">
+			<tr>
+				<td><b>Alturas</b></td>
+				<td><b>Total</b></td>
+			</tr>
+			<tr>
+				<td align="left"> No fumador</td>
+				<td>'.$rango1.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Ex fumador</td>
+				<td>'.$rango2.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Fumador esporádico</td>
+				<td>'.$rango3.'</td>
+			</tr>
+			<tr>
+				<td align="left"> de 0 a 5 cigarrillos</td>
+				<td>'.$rango4.'</td>
+			</tr>
+			<tr>
+				<td align="left"> de 6 a 10 cigarrillos</td>
+				<td>'.$rango5.'</td>
+			</tr>
+			<tr>
+				<td align="left"> de 11 a 20 cigarrillos</td>
+				<td>'.$rango6.'</td>
+			</tr>
+			<tr>
+				<td align="left"> de 21 a 40 cigarrillos</td>
+				<td>'.$rango7.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Más de 40 cigarrillos</td>
+				<td>'.$rango8.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Otros(Pipa, Otros ...)</td>
+				<td>'.$rango9.'</td>
+			</tr>
+		</table>';
+		$pdf->SetFont('dejavusans', '', 11);
+		$pdf->writeHTMLCell(90,0,185,100,$html, '', 0, 0, true, 'C', true);
+				
+		$html= '
+		<table border="1">
+			<tr>
+				<td><b>Búsqueda</b></td>
+				<td><b>Resultados</b></td>
+			</tr>
+			<tr>
+				<td align="left"> Empresa</td>
+				<td>'.$nombreempresa.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Fecha Inicial</td>
+				<td>'.$inicio.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Fecha Final</td>
+				<td>'.$fin.'</td>
+			</tr>
+		</table>';
+		
+		$pdf->SetFont('dejavusans', '', 11);
+		$pdf->writeHTMLCell(90,0,185,155,$html, '', 0, 0, true, 'C', true);
+
+		
+		$pdf->Output('estadisticafumadores.pdf', 'I');
+	}
+	
+	public function presionAction($empresa, $inicio, $fin)
+	{
+		$pdf = new \Tcpdf_Tcpdf('L', PDF_UNIT, 'A4', true, 'UTF-8', false);
+		$em = $this->getDoctrine()->getEntityManager();
+		$presionarte = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaPresion($empresa, $inicio, $fin);
+		$nombreempresa = $em->getRepository('ScontrolBundle:Gbempr')->find($empresa);
+		
+		$pdf = new \Tcpdf_Tcpdf('L', 'mm', 'A4', true, 'UTF-8', false);
+		$pdf->SetCreator(PDF_CREATOR);
+		$pdf->SetAuthor('Vimelab');
+		$pdf->SetTitle('REPORTE DE ESTADÍSTICA POR PRESION ARTERIAL');
+		$pdf->SetSubject('Estadística por presion arterial.');
+		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, '', '');
+		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+		$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+		$pdf->SetMargins(20, 38, 20);
+		$pdf->SetHeaderMargin(2);
+		$pdf->SetFooterMargin(15);
+		$pdf->SetAutoPageBreak(FALSE, 21);
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+		$pdf->setTabl(true);
+		$pdf->setMemoTitle("REPORTE DE ESTADÍSTICA POR PRESION ARTERIAL");
+		$pdf->AddPage();
+		
+		$style1 = array('width' => 0.8, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0));
+		$style2 = array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 255, 0));
+		$style3 = array('width' => 10, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(255, 0, 0));
+		$style4 = array('width' => 10, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 255));
+		$border_style = array('all' => array('width' => 0.8, 'cap' => 'square', 'join' => 'miter', 'dash' => 0, 'phase' => 0));
+		
+		$presion1 = $presionarte['Óptima'];
+		$presion2 = $presionarte['Normal'];
+		$presion3 = $presionarte['Normal alta'];
+		$presion4 = $presionarte['Hipertensión grado 1'];
+		$presion5 = $presionarte['Hipertensión grado 2'];
+		$presion6 = $presionarte['Hipertensión grado 3'];
+		$presion7 = $presionarte['Hipertensión no identificada'];
+		
+		arsort($presionarte);
+		$max = max($presionarte);
+		$max = intval(($max + 10) /10.0) * 10;
+		
+		$postpresion1 = ((150 * $presion1)/$max);
+		$postpresion2 = ((150 * $presion2)/$max);
+		$postpresion3 = ((150 * $presion3)/$max);
+		$postpresion4 = ((150 * $presion4)/$max);
+		$postpresion5 = ((150 * $presion5)/$max);
+		$postpresion6 = ((150 * $presion6)/$max);
+		$postpresion7 = ((150 * $presion7)/$max);
+
+
+		$par = $max / 20;
+		
+		for($i = 1; $i <= 20; $i++)
+		{
+			$pos = 193-(150*($par*$i))/$max;
+			$pdf->writeHTMLCell(20, 20, 20, $pos-2,'<div style="color: #000; text-align: rigth;"><b>'.$par*$i.'</b></div>');
+			$pdf->Line(40, $pos, 46, $pos, $style1);
+		}
+		
+		$pdf->Line(43, 38, 43, 193, $style1); // Eje Y
+		$pdf->Line(43, 193, 160, 193, $style1); // Eje X
+		
+		$pdf->Rect(55, 193-$postpresion1, 7, $postpresion1, 'DF', $border_style, $fill_color = array(100,0,0,0)); // Rectángulo presion1
+		$pdf->Rect(65, 193-$postpresion2, 7, $postpresion2, 'DF', $border_style, $fill_color = array(0,57,54,20)); // Rectángulo presion2
+		$pdf->Rect(75, 193-$postpresion3, 7, $postpresion3, 'DF', $border_style, $fill_color = array(0,2,43,4)); // Rectángulo presion3
+		$pdf->Rect(85, 193-$postpresion4, 7, $postpresion4, 'DF', $border_style, $fill_color = array(52,0,42,2)); // Rectángulo presion4
+		$pdf->Rect(95, 193-$postpresion5, 7, $postpresion5, 'DF', $border_style, $fill_color = array(0,100,100,50)); // Rectángulo presion5
+		$pdf->Rect(105, 193-$postpresion6, 7, $postpresion6, 'DF', $border_style, $fill_color = array(0,60,15,1)); // Rectángulo presion6
+		$pdf->Rect(115, 193-$postpresion7, 7, $postpresion7, 'DF', $border_style, $fill_color = array(94,40,0,18)); // Rectángulo presion7
+		
+		$pdf->SetDrawColor(100, 0, 0, 0);
+		$pdf->SetFillColor(100, 0, 0, 0);
+		$pdf->Rect(186, 51, 2, 2, 'DF', $border_style);
+		
+		$pdf->SetDrawColor(0,57,54,20);
+		$pdf->SetFillColor(0,57,54,20);
+		$pdf->Rect(186, 55.5, 2, 2, 'DF', $border_style);
+
+		$pdf->SetDrawColor(0,2,43,4);
+		$pdf->SetFillColor(0,2,43,4);
+		$pdf->Rect(186, 60, 2, 2, 'DF', $border_style);
+
+		$pdf->SetDrawColor(52,0,42,2);
+		$pdf->SetFillColor(52,0,42,2);
+		$pdf->Rect(186, 64.5, 2, 2, 'DF', $border_style);
+
+		$pdf->SetDrawColor(0,100,100,50);
+		$pdf->SetFillColor(0,100,100,50);
+		$pdf->Rect(186, 69, 2, 2, 'DF', $border_style);
+
+		$pdf->SetDrawColor(0,60,15,1);
+		$pdf->SetFillColor(0,60,15,1);
+		$pdf->Rect(186, 73.5, 2, 2, 'DF', $border_style);
+
+		$pdf->SetDrawColor(94,40,0,18);
+		$pdf->SetFillColor(94,40,0,18);
+		$pdf->Rect(186, 78, 2, 2, 'DF', $border_style);
+		
+		$html = '
+		<table>
+			<tr>
+				<td align="left">Óptima</td>
+			</tr>
+			<tr>
+				<td align="left">Normal</td>
+			</tr>
+			<tr>
+				<td align="left">Normal alta</td>
+			</tr>
+			<tr>
+				<td align="left">Hipertensión grado 1</td>
+			</tr>
+			<tr>
+				<td align="left">Hipertensión grado 2</td>
+			</tr>
+			<tr>
+				<td align="left">Hipertensión grado 3</td>
+			</tr>
+			<tr>
+				<td align="left">Hipertensión no identificada</td>
+			</tr>
+		</table>';
+		$pdf->SetFont('dejavusans', '', 10);
+		$pdf->writeHTMLCell(55, 0, 190, 50, $html, '', 0, 0, true, 'C', true);
+		
+		$html= '
+		<table border="1">
+			<tr>
+				<td><b>Tipo</b></td>
+				<td><b>Total</b></td>
+			</tr>
+			<tr>
+				<td align="left"> Óptima</td>
+				<td>'.$presion1.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Normal</td>
+				<td>'.$presion2.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Normal alta</td>
+				<td>'.$presion3.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Hipertensión grado 1</td>
+				<td>'.$presion4.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Hipertensión grado 2</td>
+				<td>'.$presion5.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Hipertensión grado 3</td>
+				<td>'.$presion6.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Hipertensión no identificada</td>
+				<td>'.$presion7.'</td>
+			</tr>
+		</table>';
+		$pdf->SetFont('dejavusans', '', 11);
+		$pdf->writeHTMLCell(90,0,185,100,$html, '', 0, 0, true, 'C', true);
+				
+		$html= '
+		<table border="1">
+			<tr>
+				<td><b>Búsqueda</b></td>
+				<td><b>Resultados</b></td>
+			</tr>
+			<tr>
+				<td align="left"> Empresa</td>
+				<td>'.$nombreempresa.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Fecha Inicial</td>
+				<td>'.$inicio.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Fecha Final</td>
+				<td>'.$fin.'</td>
+			</tr>
+		</table>';
+		
+		$pdf->SetFont('dejavusans', '', 11);
+		$pdf->writeHTMLCell(90,0,185,155,$html, '', 0, 0, true, 'C', true);
+
+		
+		
+		/*$html = '';
+		
+		foreach($presionarte as $key => $caso)
+			$html .=$key.':'.$caso.'<br>';
+			
+		$pdf->writeHTMLCell(90,0,185,155,$html, '', 0, 0, true, 'C', true);*/
+
+		
+		$pdf->Output('estadisticapresionarterial.pdf', 'I');
 	}
 }

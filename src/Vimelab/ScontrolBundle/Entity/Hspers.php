@@ -731,7 +731,7 @@ class Hspers
      */
     public function getFumador()
     {
-        return $this->fumador;
+		return $this->fumador;
     }
 
     /**
