@@ -46,7 +46,13 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: %kernel.debug%
-        auto_mapping: true
+        entity_managers:
+            default:
+                mappings: 
+                    ScontrolBundle: ~
+                dql:
+                    datetime_functions:
+                        test_datetime: Vimelab\ScontrolBundle\DQL\DateAdd
 
 # Swiftmailer Configuration
 swiftmailer:

@@ -232,7 +232,7 @@ class Mdhist
     {
         return $this->tcruta;
     }
-
+    
     public function __toString()
     {
         return $this->id;
