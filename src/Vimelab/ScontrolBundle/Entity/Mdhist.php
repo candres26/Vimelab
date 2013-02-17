@@ -41,6 +41,13 @@ class Mdhist
      * @ORM\Column(name="tipo", type="integer", nullable=false)
      */
     private $tipo;
+
+    /**
+     * @var integer $dictamen
+     *
+     * @ORM\Column(name="dictamen", type="integer", nullable=false)
+     */
+    private $dictamen;
 	
 	/**
      * @var text $comentario
@@ -151,6 +158,26 @@ class Mdhist
     {
         return $this->tipo;
     }
+
+    /**
+     * Set dictamen
+     *
+     * @param integer $dictamen
+     */
+    public function setDictamen($dictamen)
+    {
+        $this->dictamen = $dictamen;
+    }
+
+    /**
+     * Get dictamen
+     *
+     * @return integer
+     */
+    public function getDictamen()
+    {
+        return $this->dictamen;
+    }
 	
 	 /**
      * Set comentario
@@ -233,6 +260,18 @@ class Mdhist
         return $this->tcruta;
     }
     
+    public function getSTipo()
+    {
+        $tip = array(0 => 'Ingreso', 1 => 'Periodico', 2 => 'Cambio de puesto', 3 => 'Reincorporacion', 4 => 'Egreso');
+        return strtoupper($tip[$this->tipo]);
+    }
+
+    public function getSDictamen()
+    {
+        $dic = array(0 => 'No definido', 1 => 'Apto', 2 => 'Apto Condicional', 3 => 'No Apto');
+        return strtoupper($dic[$this->dictamen]);
+    }
+
     public function __toString()
     {
         return $this->id;

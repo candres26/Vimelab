@@ -725,7 +725,9 @@ class MdhistController extends Controller
 
 			$pdf->SetFont('dejavusans', '', 10);
 
-			$html = '<b>OBSERVACIONES FINALES:</b>';
+			$html = '<b>DICTAMEN:</b> Para el cargo <b>'.strtoupper($entity->getMdpaci()->getGbptra()->getNombre()).'</b> ';
+			$html .= 'se considera al paciente: <b>'.$entity->getSDictamen().'.</b><br><br>';
+			$html .= '<b>OBSERVACIONES FINALES:</b>';
 			$html .= '<p>'.$entity->getComentario().'</p>';
 			$pdf->autoCell(170, 0, 20, $p11, $html, '', 0, 0, true, 'J', true);			
 

@@ -61,8 +61,15 @@
 	</div>
 	
 	<div class="csCome" id="jsCome">
-		<b>COMENTARIOS</b><br>
-		<textarea id="jsComeDta">&nbsp;</textarea>
+		<b>DICTAMEN</b><br>
+
+		<select id="jsComeDic">
+			{% for k, v in dicts %}
+				<option value="{{ k }}">{{ v }}</option>
+			{% endfor %}
+		</select>		
+
+		<textarea id="jsComeDta" placeholder="OBSERVACIONES FINALES!..." >&nbsp;</textarea>
 		<img id="jsComeBtn" src="{{ asset('bundles/scontrol/imagenes/iconos/guardar.png') }}" title="Guardar">
 	</div>
 	
@@ -119,17 +126,17 @@
 			<input type="radio" id="jsProtSel_N" name="nProtSel" value="N"/>NO
 		</div>
 		
-		<textarea id="jsProtDet">&nbsp;</textarea>
+		<textarea id="jsProtDet" placeholder="RESULTADO DEL TEST!...">&nbsp;</textarea>
 		
 	</div>
 	
 	<div id="jsExam" class="csExam">
-		<b>PRUEBAS</b>
+		<b>ANALÍTICAS</b>
 		
 		<div class="csExamChoi">
 			<table>
 				<tr>
-					<th>Prueba:</th>
+					<th>Analítica:</th>
 					<td>
 						<select id="jsExamEx">
 							<option value='@'>Seleccione...</option>
@@ -159,7 +166,7 @@
 			<input type="radio" id="jsExamSel_N" name="nProtSel" value="N"/>NO
 		</div>
 		
-		<textarea id="jsExamDet">&nbsp;</textarea>
+		<textarea id="jsExamDet" placeholder="RESULTADO DE LA ANALÍTICA!...">&nbsp;</textarea>
 	</div>
 	
 </div>
@@ -457,6 +464,18 @@
 {% endblock %}
 
 
+{% block action %}
+<div class="vime-action">
+	<table>
+		<tr>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td onClick="go('{{ path('as_master') }}')"><img src="{{ asset('bundles/scontrol/imagenes/iconos/listar.png') }}" title="Limpiar Asistente"></td>
+			<td><img id="" img src="{{ asset('bundles/scontrol/imagenes/iconos/report.png') }}" title="Generar Reporte" onclick="qReport()"></td>
+		</tr>
+	</table>
+</div>
+{% endblock %}
+
 
 {% block uscript %}
 	
@@ -487,6 +506,7 @@
 		$_getExam = "{{ path('as_master_getExam') }}";
 		$_savExam = "{{ path('as_master_savExam') }}";
 		$_delExam = "{{ path('as_master_delExam') }}";
+		$_genRepo = "{{ path('mdhist') }}";
 		
 		function $init()
 		{
@@ -514,8 +534,9 @@
 			gId('jsHistCre').onclick = newHist;
 			gId('jsHistCx').onclick = hidePartial;
 			
-			/* --- EVENTOS DE COMENTARIO -- */
-			gId('jsComeDta').onkeydown = tipCome;
+			/* --- EVENTOS DE DICTAMEN -- */
+			gId('jsComeDta').onchange = tipCome;
+			gId('jsComeDic').onchange = tipCome;
 			gId('jsComeBtn').onclick = newCome;
 			
 			/* --- EVENTOS DE RECOMENDACIONES --- */
@@ -598,8 +619,14 @@
 			gId('hlpExtrZone').onclick = saveQuick;
 			gId('hlpSist').onkeypress = getQuick;
 			gId('hlpSistZone').onclick = saveQuick;
+		}
 
-
+		function qReport(event)
+		{
+			if($histId != "")
+				window.open($_genRepo+'/'+$histId+'/report', '_blank', 'width=800,height=600');
+			else
+				popup("No se ha definido la Revisión Medica!");
 		}
 
 	</script>

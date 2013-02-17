@@ -20,7 +20,9 @@ use Vimelab\ScontrolBundle\Entity\Mdexam;
 use Vimelab\ScontrolBundle\Entity\Mdlabo;
 
 class AsMasterController extends Controller
-{
+{	
+	public $_DIC = array(0 => 'No definido', 1 => 'Apto', 2 => 'Apto Condicional', 3 => 'No Apto');
+
 	public function indexAction()
 	{
 		if(Tool::isGrant($this))
@@ -32,7 +34,7 @@ class AsMasterController extends Controller
 			$entity = $em->getRepository('ScontrolBundle:Gbpers')->getForUser($ussys);
 			$exams = $em->getRepository('ScontrolBundle:Mdexam')->findBy(array(), array('nombre' => 'ASC'));
 				
-			return $this->render('ScontrolBundle:AsMaster:index.html.twig', array('GbPers' => $entity, 'exams' => $exams, 'LOAD' => 'NONE'));
+			return $this->render('ScontrolBundle:AsMaster:index.html.twig', array('GbPers' => $entity, 'exams' => $exams, 'dicts' => $this->_DIC ,'LOAD' => 'NONE'));
 		}
 		else
 			return $this->render('ScontrolBundle::alertas.html.twig');
@@ -72,12 +74,12 @@ class AsMasterController extends Controller
 								$paci->getGbptra()->getNombre()
 							);
 							
-			$loader[] = array($hist->getId(), $hist->getTcruta()->getId(), $hist->getTcruta()->__toString(), $hist->getTipo(), $hist->getComentario());
+			$loader[] = array($hist->getId(), $hist->getTcruta()->getId(), $hist->getTcruta()->__toString(), $hist->getTipo(), $hist->getDictamen(), $hist->getComentario());
 			$loader[] = array($audi, $visu, $biom, $espi, $extr, $sist);
 			
 			$loader = Tool::toJail($loader);
 				
-			return $this->render('ScontrolBundle:AsMaster:index.html.twig', array('GbPers' => $entity, 'exams' => $exams, 'LOAD' => $loader));
+			return $this->render('ScontrolBundle:AsMaster:index.html.twig', array('GbPers' => $entity, 'exams' => $exams, 'dicts' => $this->_DIC, 'LOAD' => $loader));
 		}
 		else
 			return $this->render('ScontrolBundle::alertas.html.twig');
@@ -151,6 +153,7 @@ class AsMasterController extends Controller
 					$entity->setTcruta($em->getRepository('ScontrolBundle:Tcruta')->find($request->request->get("jsHistRut")));
 					$entity->setMenstru($request->request->get("jsHistMes"));
 					$entity->setTipo($request->request->get("jsHistTip"));
+					$entity->setDictamen(0);
 					
 					$em->persist($entity);
 					$em->flush();
@@ -180,15 +183,16 @@ class AsMasterController extends Controller
 					$em = $this->getDoctrine()->getEntityManager();
 				
 					$entity = $em->getRepository('ScontrolBundle:Mdhist')->find($request->request->get("jsHistId"));
+					$entity->setDictamen($request->request->get("jsComeDic"));
 					$entity->setComentario($request->request->get("jsComeDta"));
 					
 					$em->persist($entity);
 					$em->flush();
-					return new Response("0:Ok Comentario guardado con exito!");
+					return new Response("0:Ok Dictamen guardado con exito!");
 				}
 				catch(\Exception $e)
 				{
-					return new Response("1:Error, imposible guardar Comentario!");
+					return new Response("1:Error, imposible guardar Dictamen!");
 				}
 			}
 			else

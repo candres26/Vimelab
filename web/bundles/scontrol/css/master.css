@@ -113,10 +113,19 @@
 .csCome textarea
 {
 	position: absolute;
-	top: 16%;
+	bottom: 2%;
 	left: 5%;
 	width: 80%;
-	height: 77%;
+	height: 50%;
+}
+
+.csCome select
+{
+	position: absolute;
+	bottom: 61%;
+	left: 5%;
+	width: 81.5%;
+	height: auto;
 }
 
 .csCome img
@@ -693,7 +702,7 @@
 	bottom: 1%;
 	left: 1%;
 	width: 48%;
-	height: 68%;
+	height: 80%;
 	background: #FFFFFF;
 	border: 1px solid #203982;
 	border-collapse: collapse;
