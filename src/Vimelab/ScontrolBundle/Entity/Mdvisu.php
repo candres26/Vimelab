@@ -499,4 +499,24 @@ class Mdvisu
     {
         return $this->id;
     }
+    
+    public function getVisual()
+    {
+		$miopia = $this->miopia;
+		$hipermetropia = $this->hipermetropia;
+		$astigmatismo = $this->astigmatismo;
+		
+		$visu = -1;
+		
+		if ($miopia == 1)
+			$visu = 2;
+		else if ($hipermetropia == 1)
+			$visu = 2;
+		else if ($astigmatismo == 1)
+			$visu = 2;
+		else 
+			$visu = 1;
+			
+		return $visu;
+	}
 }

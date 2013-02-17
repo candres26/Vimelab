@@ -13,7 +13,7 @@ class MdespiType extends AbstractType
             ->add('realizado', 'choice', array('choices' => array('S' => 'SI', 'N' => 'NO'), 'expanded' => 'true', 'attr' => array('onClick' => 'isMode()')))
             ->add('cv','text', array('label' => 'CV'))
             ->add('vems','text', array('label' => 'VEMS'))
-            ->add('tiff', 'text', array('label' => 'TIFF'))
+            ->add('tiff', 'text', array('label' => 'FEV1/FVC'))
             ->add('mdhist', 'entity', array('class' => 'ScontrolBundle:Mdhist', 'label' => 'Historia'))
         ;
     }

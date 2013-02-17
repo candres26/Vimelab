@@ -221,7 +221,7 @@ class MdhistRepository extends EntityRepository
 			WHERE h.id = b.mdhist AND p.id = h.mdpaci AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa' ORDER by b.id");
 		else
 			$querry = $em->createQuery("SELECT b FROM ScontrolBundle:Mdbiom b JOIN b.mdhist h, ScontrolBundle:Mdpaci p WHERE h.id = b.mdhist 
-			AND p.id = h.mdpaci ORDER by b.id");
+			AND p.id = h.mdpaci AND p.id = h.mdpaci AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' ORDER by b.id");
 		
 		$resul = $querry->getResult();
 		
@@ -232,6 +232,29 @@ class MdhistRepository extends EntityRepository
 			$presiones[$marcas[''.$caso->getPresion()]] += 1;
 		
 		return $presiones; 
+	}
+	
+	public function getConsultaVisual($empresa, $finicio, $ffinal)
+	{
+		$em = $this->getEntityManager();
+		
+		if ($empresa != '@')
+		
+			$querry = $em->createQuery("SELECT v FROM ScontrolBundle:Mdvisu v JOIN v.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e
+			WHERE v.mdhist = h.id AND p.id = h.mdpaci AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa' ORDER by v.id");
+		else
+			$querry = $em->createQuery("SELECT v FROM ScontrolBundle:Mdvisu v JOIN v.mdhist h, ScontrolBundle:Mdpaci p WHERE v.mdhist = h.id 
+			AND p.id = h.mdpaci AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' ORDER by v.id");
+		
+		$resul = $querry->getResult();
+		
+		$marcas = array('1' => 'Normal', '2' => 'Con patología');
+		$visiones = array($marcas['1'] => 0, $marcas['2'] => 0);
+		
+		foreach($resul as $caso)
+			$visiones[$marcas[''.$caso->getVisual()]] += 1;
+		
+		return $visiones;
 	}
 	
 	

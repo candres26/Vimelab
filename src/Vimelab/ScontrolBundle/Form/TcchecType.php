@@ -35,7 +35,7 @@ class TcchecType extends AbstractType
             ->add('simulacros', 'choice', array('choices' => array('S' => 'SI', 'N' => 'NO'), 'expanded' => 'true','label' => 'Realización Simulacros'))
             ->add('planos', 'choice', array('choices' => array('S' => 'SI', 'N' => 'NO'), 'expanded' => 'true','label' => 'Planos'))
             ->add('eplanos', 'choice', array('choices' => array('I' => 'Inicial', 'A' => 'Avanzado'), 'expanded' => 'true','label' => 'Estado del Plano'))
-            ->add('textintor', 'choice', array('choices' => array('ABC' => 'ABC', 'CO2' => 'CO2'), 'expanded' => 'true','label' => 'Tipo de Extintor'))
+            ->add('textintor', 'choice', array('choices' => array('ABC' => 'ABC', 'CO2' => 'CO2', 'AMB' => 'AMBOS'), 'expanded' => 'true','label' => 'Tipo de Extintor'))
             ->add('pemergencia', 'choice', array('choices' => array('S' => 'SI', 'N' => 'NO'), 'expanded' => 'true','label' => 'Puertas de Emergencia'))
             ->add('lemergencia', 'choice', array('choices' => array('S' => 'SI', 'N' => 'NO'), 'expanded' => 'true','label' => 'Luces de Emergencia'))
             ->add('alarmas', 'choice', array('choices' => array('S' => 'SI', 'N' => 'NO'), 'expanded' => 'true','label' => 'Detector de Incendios / Alarma'))
