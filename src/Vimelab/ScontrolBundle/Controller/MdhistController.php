@@ -320,6 +320,7 @@ class MdhistController extends Controller
 			$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 			
 			$pdf->setRevi(true);
+			$pdf->setMkLateral(true);
 			$pdf->setEntity($entity);
 
 			$pdf->AddPage();					
