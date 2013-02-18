@@ -57,6 +57,10 @@ report_presion:
     pattern:  /report/{empresa}/{inicio}/{fin}/presion
     defaults: { _controller: ScontrolBundle:Report:presion }
 
+report_vision:
+    pattern:  /report/{empresa}/{inicio}/{fin}/vision
+    defaults: { _controller: ScontrolBundle:Report:vision }
+
 ######################################################
 ####                  FIN REPORTES                ####
 ######################################################

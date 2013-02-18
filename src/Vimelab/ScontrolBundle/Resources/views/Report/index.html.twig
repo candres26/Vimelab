@@ -111,6 +111,7 @@
 			gId('btcorpomuj').onclick = generarimcmuj;
 			gId('btfumadores').onclick = generarfumadores;
 			gId('btpartelevada').onclick = generarpresion;
+			gId('btcontvision').onclick = generarvision;
 			
 		}
 		
@@ -152,6 +153,11 @@
 		function generarpresion(event)
 		{
 			window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/presion', null, 'width=800,height=600');
+		}
+		
+		function generarvision(event)
+		{
+			window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/vision', null, 'width=800,height=600');
 		}
 		
 	</script>
