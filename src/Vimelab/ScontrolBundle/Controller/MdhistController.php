@@ -254,7 +254,7 @@ class MdhistController extends Controller
 			return $this->render("ScontrolBundle::alertas.html.twig");
     }
 
-    public function reportAction($id)
+    public function reportAction($id, $lv)
     {
     	if(Tool::isGrant($this))
 		{
@@ -319,8 +319,17 @@ class MdhistController extends Controller
 			$pdf->SetAutoPageBreak(TRUE, 21);
 			$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 			
-			$pdf->setRevi(true);
-			$pdf->setEntity($entity);
+			if($lv == 1)
+			{
+				$pdf->setRevi(true);
+				$pdf->setMkLateral(true);
+				$pdf->setEntity($entity);
+			}
+			else
+			{
+				$pdf->setWLogo(false);
+				$pdf->setFoot(false);
+			}
 
 			$pdf->AddPage();					
 

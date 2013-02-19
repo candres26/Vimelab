@@ -47,7 +47,7 @@
 				<a href="{{ path('mdhist_show', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/show_index.png') }}" title="Mostrar"></a>
 				<a href="{{ path('mdhist_edit', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/editar_index.png') }}" title="Editar"></a>
 				<a href="{{ path('as_master_load', { 'id': entity.id }) }}"><img src="{{ asset('bundles/scontrol/imagenes/iconos/asis_index.png') }}" title="Asistente"></a>
-				<a href="{{ path('mdhist_report', { 'id': entity.id }) }}" target="_blank" onClick="window.open(this.href, this.target, 'width=800,height=600'); return false;">
+				<a href="{{ path('mdhist_report', { 'id': entity.id }) }}" target="_blank" onClick="reqReport(this)">
 					<img id="" img src="{{ asset('bundles/scontrol/imagenes/iconos/report_index.png') }}" title="Reporte">	
 				</a>
 				
@@ -82,6 +82,16 @@
 				if(!isNaN(pag))
 					location = basePath+"/"+pag+"/pag";
 			}
+		}
+
+		function reqReport(elem)
+		{
+			var url = elem.href;
+			if(!confirm("Generar membrete corporativo?"))
+				url = elem.href+"/2";
+
+			window.open(url, elem.target, 'width=800,height=600'); 
+			return false;
 		}		
 	</script>
 {% endblock %}

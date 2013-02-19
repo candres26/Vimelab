@@ -257,7 +257,20 @@ class MdhistRepository extends EntityRepository
 		return $visiones;
 	}
 	
-	
+	public function getConsultaDictamen($empresa, $finicio, $ffinal)
+    {
+    	$em = $this->getEntityManager();
+
+		if ($empresa != '@')
+			$querry = $em->createQuery("SELECT h FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p JOIN p.gbsucu s JOIN s.gbempr e WHERE 
+				h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa' ORDER BY e.id, s.id, h.fecha ASC");
+		else
+			$querry = $em->createQuery("SELECT h FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p JOIN p.gbsucu s JOIN s.gbempr e WHERE 
+				h.fecha >= '$finicio' AND h.fecha < '$ffinal' ORDER BY e.id, s.id, h.fecha ASC");
+		
+		return $querry->getResult();
+	}
+
     public function getAlertas()
     {
         $lim = new \DateTime();
@@ -267,7 +280,6 @@ class MdhistRepository extends EntityRepository
         $sub->sub(new \DateInterval('P30D'));
         
         $em = $this->getEntityManager();
-        //$querry = $em->createQuery("SELECT h FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p WHERE h.fecha < '".$lim->format('Y-m-d')."' AND h.fecha > '".$sub->format('Y-m-d')."' ORDER BY p.priape ASC");
         $querry = $em->createQuery("SELECT h FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p WHERE DATE_ADD(h.fecha, 12, 'MONTH') < '".$lim->format('Y-m-d')."' AND DATE_ADD(h.fecha, 12, 'MONTH') > '".$sub->format('Y-m-d')."' ORDER BY p.priape ASC");
         return $querry->getResult();
     }

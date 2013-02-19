@@ -13,7 +13,7 @@ class MdhistType extends AbstractType
             ->add('fecha', 'date', array('widget' => 'single_text', 'format' => 'y-MM-dd','label' => 'Fecha'))
             ->add('menstru', 'choice', array('choices' => array('S' => 'SI', 'N' => 'NO'), 'expanded' => 'true', 'label' => 'Menstruación', 'required' => false))
             ->add('tipo', 'choice', array('choices' => array(0 => 'Ingreso', 1 => 'Periódico', 2 => 'Cambio de puesto', 3 => 'Reincorporación', 4 => 'Egreso')))
-            ->add('dictamen', 'choice', array('choices' => array(0 => 'No definido', 1 => 'Apto', 2 => 'Apto Condicional', 3 => 'No Apto')))
+            ->add('dictamen', 'choice', array('choices' => array(0 => 'No calificado', 1 => 'Apto', 2 => 'No Apto', 3 => 'Apto Con Limitaciones')))
 			->add('comentario')
             ->add('mdpaci', 'entity', array('class' => 'ScontrolBundle:Mdpaci', 'label' => 'Paciente'))
             ->add('gbpers', 'entity', array('class' => 'ScontrolBundle:Gbpers', 'label' => 'Personal'))

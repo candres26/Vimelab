@@ -1566,6 +1566,7 @@ class ReportController extends Controller
 		
 		$pdf->Output('estadisticacontrolvision.pdf', 'I');
 	}
+
 	
 	public function memoriaAction($empresa)
 	{
@@ -1611,5 +1612,115 @@ class ReportController extends Controller
 		$pdf -> writeHTMLCell(170, 0, 20, 45, $html, 0, 0, 0, true, 'J', true);
 		
 		$pdf->Output('memoriaporempresa.pdf', 'I');
+	}
+
+	public function dictamenAction($empresa, $inicio, $fin, $lv)
+	{
+		$em = $this->getDoctrine()->getEntityManager();
+		$casos = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaDictamen($empresa, $inicio, $fin);
+
+		$pdf = new \Tcpdf_Tcpdf('L', 'mm', 'A4', true, 'UTF-8', false);
+		$pdf->SetCreator(PDF_CREATOR);
+		$pdf->SetAuthor('Vimelab');
+		$pdf->SetTitle('INFORME DE DICTAMEN MÉDICO');
+		$pdf->SetSubject('R. Médica');
+		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, '', '');
+		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+		$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+		$pdf->SetMargins(20, 38, 20);
+		$pdf->SetHeaderMargin(2);
+		$pdf->SetFooterMargin(15);
+		$pdf->SetAutoPageBreak(TRUE, 21);
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+		
+		$pdf->SetFont('dejavusans', '', 10);
+		$pdf->setGrPaginate(true);
+
+		if($lv == 1)
+		{
+			$pdf->setMkLateral(true);
+		}
+		else
+		{
+			$pdf->setWLogo(false);
+			$pdf->setFoot(false);
+		}
+
+		$idx = -1;
+
+		foreach ($casos as $caso) 
+		{
+			$sucu = $caso->getMdpaci()->getGbsucu();
+			$emp = $sucu->getGbempr();
+
+			if($sucu->getId() != $idx) 
+			{
+				if($idx != -1)
+					$this->finalDicatmen($pdf);
+
+				$idx = $sucu->getId();
+				$pdf->startPageGroup();
+
+				$pdf->AddPage();
+				
+				$html =  '<table style="border-bottom: 2px solid #000000;">';
+				$html .= '<tr><td><h3>NOMBRE DE LA EMPRESA: '.$emp->getNombre().'</h3></td></tr>';
+				$html .= '<tr><td><h3>CENTRO DE TRABAJO: '.$sucu->getNombre().'</h3></td></tr>';
+				$html .= '</table>';
+
+				$html .= '<p>A/A RESPONSABLE DE LA REVICIÓN</p>';
+				$html .= '<p>Tras el examen de salud realizado al personal de su empresa en el periodo '.$inicio.' - '.$fin.' les informamos de las conclusiones en relación con las aptitudes:</p>';
+				$pdf->autoCell(0, 0, 20, $pdf->GetY()-8, $html, 0, 2, false, true, 'J');
+				$pdf->Ln(5);
+
+				$head = '<tr bgcolor="#C9DEE9"><td><b>APELLIDOS Y NOMBRES</b></td><td><b>PUESTO DE TRABAJO</b></td><td><b>PROTOCOLOS</b></td><td><b>TIPO DE EXAMEN</b></td><td><b>REESULTADO</b></td></tr>';
+				$mac = '<table border="1">'.$head.'</table>';
+				$pdf->autoCell(0, 0, 20, $pdf->GetY(), $mac, 0, 2, false, true, 'C');
+			}
+
+			$prot = array();
+
+			$res = $em->getRepository('ScontrolBundle:Mdresp')->findByMdhist($caso->getId());
+
+			foreach ($res as $rq)
+			{
+				$npr = $rq->getMdques()->getMdprot()->getNombre();
+				if(!in_array($npr, $prot))
+					$prot[] = $npr;
+			}
+				
+			$row = '<table border="1"><tr>';
+			$row .= '<td>'.strtoupper($caso->getMdpaci()->getFullName()).'</td>';
+			$row .= '<td>'.strtoupper($caso->getMdpaci()->getGbptra()->getNombre()).'</td>';
+			$row .= '<td>'.join($prot, '+').'</td>';
+			$row .= '<td>'.$caso->getSTipo().'</td>';
+			$row .= '<td>'.$caso->getSDictamen().'</td>';
+			$row .= '</tr></table>';
+			
+			$pdf->autoCell(0, 0, 20, $pdf->GetY(), $row, 0, 2, false, true, 'C', true, 10);
+		}
+
+		$this->finalDicatmen($pdf);					
+
+		ob_end_clean();
+		$pdf->Output('r_Dictamen.pdf', 'I');
+	}
+
+	private function finalDicatmen($pdf)
+	{
+		$html = '<b><u>OBSERVACIONES:</u></b><br>';
+		$html .= '<ul>';
+		$html .= '<li>ESTA APTITUD ES EN RELACIÓN A SU PUESTO DE TRABAJO HABITUAL.</li>';
+		$html .= '<li>SIENDO SU VALIDEZ DE UN AÑO.</li>';
+		$html .= '</ul>';
+
+		$pdf->Ln();
+		$pdf->autoCell(0, 0, 20, $pdf->GetY(), $html, 0, 2, false, true, 'J', true, 62);
+
+		$html = "________________________________________________________<br><b>FIRMA Y SELLO DE QUIEN EXPIDE</b>";
+		$pdf->Ln();
+		$pdf->Ln();
+		$pdf->autoCell(0, 0, 20, $pdf->GetY(), $html, 0, 2, false, true, 'C', true, 0);
 	}
 }
