@@ -21,7 +21,7 @@ use Vimelab\ScontrolBundle\Entity\Mdlabo;
 
 class AsMasterController extends Controller
 {	
-	public $_DIC = array(0 => 'No definido', 1 => 'Apto', 2 => 'Apto Condicional', 3 => 'No Apto');
+	public $_DIC = array(0 => 'No calificado', 1 => 'Apto', 2 => 'No Apto', 3 => 'Apto Con Limitaciones');
 
 	public function indexAction()
 	{

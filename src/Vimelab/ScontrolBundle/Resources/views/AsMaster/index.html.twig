@@ -624,7 +624,12 @@
 		function qReport(event)
 		{
 			if($histId != "")
-				window.open($_genRepo+'/'+$histId+'/report', '_blank', 'width=800,height=600');
+			{
+				var picLv = '';
+				if(!confirm("Generar membrete corporativo?"))
+					picLv = '/2'
+				window.open($_genRepo+'/'+$histId+'/report'+picLv, '_blank', 'width=800,height=600');
+			}	
 			else
 				popup("No se ha definido la Revisión Medica!");
 		}

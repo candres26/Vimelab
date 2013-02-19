@@ -215,6 +215,8 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 	* Tamaño MdEspi 5,2
 	* Agregado campo DICTAMEN a los formularios y el reporte.
 	* Barra de acciones para limpiar assitente y generar reporte.
+	* Marca lateral agregada.
+	* Mebrete corporativo optativo R. Medica.
 * Alerta de contrato y revisiones.
 	! Contrato por año - 30 dias.
 	! Revi por año - 30 dias.
@@ -260,6 +262,7 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 	! Se puede generar una factura de valor 0 sin servicios a cobrar.
 	! Es posible agregar y eliminar servicios arbitrariamente.
 	! El reporte se genera desde la funcion "Mostrar".
+* MdVisu/Show Corregido
 
 # --- CAMBIOS EN PROGRESO --- #
 
@@ -274,6 +277,8 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 + Maquillar vista de contrato
 + Tipo de contrato
 + Valor revision en contrato
+
+- INCLUIR SEGURIDAD EN EL GENERADOR DE REPORTES!
 
 # --- NOTAS --- #
 

@@ -113,53 +113,87 @@
 			gId('btpartelevada').onclick = generarpresion;
 			gId('btcontvision').onclick = generarvision;
 			
+			/* Dictamen Médico */
+			gId('btdimedico').onclick = generarDictamen;
 		}
 		
 		function generar(event)
 		{
-			window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/sexo', null, 'width=800,height=600');
+			if(valRange())
+				window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/sexo', null, 'width=800,height=600');
 		}
 		
 		function generaredad(event)
 		{
-			window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/edad', null, 'width=800,height=600');
+			if(valRange())
+				window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/edad', null, 'width=800,height=600');
 		}
 		
 		function generaralthom(event)
 		{
-			window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/althombres', null, 'width=800,height=600');
+			if(valRange())
+				window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/althombres', null, 'width=800,height=600');
 		}
 		
 		function generaraltmuj(event)
 		{
-			window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/altmujeres', null, 'width=800,height=600');
+			if(valRange())
+				window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/altmujeres', null, 'width=800,height=600');
 		}
 		
 		function generarimchom(event)
 		{
-			window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/imchombres', null, 'width=800,height=600');
+			if(valRange())
+				window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/imchombres', null, 'width=800,height=600');
 		}
 		
 		function generarimcmuj(event)
 		{
-			window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/imcmujeres', null, 'width=800,height=600');
+			if(valRange())
+				window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/imcmujeres', null, 'width=800,height=600');
 		}
 		
 		function generarfumadores(event)
 		{
-			window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/fumadores', null, 'width=800,height=600');
+			if(valRange())
+				window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/fumadores', null, 'width=800,height=600');
 		}
 		
 		function generarpresion(event)
 		{
-			window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/presion', null, 'width=800,height=600');
+			if(valRange())
+				window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/presion', null, 'width=800,height=600');
 		}
 		
 		function generarvision(event)
 		{
-			window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/vision', null, 'width=800,height=600');
+			if(valRange())
+				window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/vision', null, 'width=800,height=600');
 		}
 		
+		function generarDictamen(event)
+		{
+			if(valRange())
+			{
+				var picLv = '';
+				if(!confirm("Generar membrete corporativo?"))
+					picLv = '/2'
+				
+				window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/dictamen'+picLv, null, 'width=800,height=600');		
+			}
+		}
+
+		function valRange()
+		{
+			if(gId('finicio').value != '' && gId('ffin').value != '')
+				return true;
+			else
+			{	
+				popup("Rango de consulta no definido!");
+				return false;
+			}
+		}
+
 	</script>
 	
 {% endblock %}

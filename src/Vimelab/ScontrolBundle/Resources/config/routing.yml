@@ -19,47 +19,53 @@ home:
 ######################################################
 ####                  REPORTES                    ####
 ######################################################
-
-# ReSexo
+#
+#   Index
 report:
     pattern:  /report
     defaults: { _controller: ScontrolBundle:Report:index }
-
+#   Sexo
 report_sexo:
     pattern:  /report/{empresa}/{inicio}/{fin}/sexo
     defaults: { _controller: ScontrolBundle:Report:sexo }
-
+#   Edad
 report_edad:
     pattern:  /report/{empresa}/{inicio}/{fin}/edad
     defaults: { _controller: ScontrolBundle:Report:edad }
-
+#   Altura M.
 report_althombres:
     pattern:  /report/{empresa}/{inicio}/{fin}/althombres
     defaults: { _controller: ScontrolBundle:Report:althombres }
-
+#   Altura F.
 report_altmujeres:
     pattern:  /report/{empresa}/{inicio}/{fin}/altmujeres
     defaults: { _controller: ScontrolBundle:Report:altmujeres }
-
+#   IMC M.
 report_imchombres:
     pattern:  /report/{empresa}/{inicio}/{fin}/imchombres
     defaults: { _controller: ScontrolBundle:Report:imchombres }
-
+#   IMC F.
 report_imcmujeres:
     pattern:  /report/{empresa}/{inicio}/{fin}/imcmujeres
     defaults: { _controller: ScontrolBundle:Report:imcmujeres }
-
+#   Fumador
 report_fumadores:
     pattern:  /report/{empresa}/{inicio}/{fin}/fumadores
     defaults: { _controller: ScontrolBundle:Report:fumadores }
-
+#   Presion Arterial
 report_presion:
     pattern:  /report/{empresa}/{inicio}/{fin}/presion
     defaults: { _controller: ScontrolBundle:Report:presion }
-
+#   A. Visual
 report_vision:
     pattern:  /report/{empresa}/{inicio}/{fin}/vision
     defaults: { _controller: ScontrolBundle:Report:vision }
+#
+#   DICTAMEN MEDICO
+#
+report_vision:
+    pattern:  /report/{empresa}/{inicio}/{fin}/dictamen/{lv}
+    defaults: { _controller: ScontrolBundle:Report:dictamen, lv: 1}
 
 ######################################################
 ####                  FIN REPORTES                ####
@@ -895,8 +901,8 @@ mdhist_delete:
     pattern:  /mdhist/{id}/delete
     defaults: { _controller: ScontrolBundle:Mdhist:delete }
 mdhist_report:
-    pattern:  /mdhist/{id}/report
-    defaults: { _controller: ScontrolBundle:Mdhist:report }
+    pattern:  /mdhist/{id}/report/{lv}
+    defaults: { _controller: ScontrolBundle:Mdhist:report, lv: 1 }
 mdhist_filter:
     pattern:  /mdhist/{param}/filter
     defaults: { _controller: ScontrolBundle:Mdhist:filter }
