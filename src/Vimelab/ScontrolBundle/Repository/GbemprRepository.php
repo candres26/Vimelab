@@ -38,4 +38,11 @@ class GbemprRepository extends EntityRepository
         $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Gbempr m WHERE m.nombre LIKE '%$parametro%' or m.identificacion LIKE '%$parametro%' or m.tipo LIKE '%$parametro%' ORDER BY m.id ASC");
         return $querry->getResult();
     }
+    
+    public function getEmpresa($empresa)
+    {
+		$em = $this->getEntityManager();
+		$querry = $em->createQuery("SELECT e FROM ScontrolBundle:Gbempr e WHERE e.id = $empresa ORDER BY e.id");
+		return $querry->getResult();
+	}
 }

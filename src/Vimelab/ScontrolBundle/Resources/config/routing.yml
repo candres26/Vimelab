@@ -61,6 +61,10 @@ report_vision:
     pattern:  /report/{empresa}/{inicio}/{fin}/vision
     defaults: { _controller: ScontrolBundle:Report:vision }
 
+report_memoria:
+    pattern:  /report/{empresa}/memoria
+    defaults: { _controller: ScontrolBundle:Report:memoria }
+
 ######################################################
 ####                  FIN REPORTES                ####
 ######################################################

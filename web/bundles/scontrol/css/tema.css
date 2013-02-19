@@ -35,6 +35,17 @@ h2
 	width: 25%;
 }
 
+.btreport2
+{
+	background-color: #E1628A; 
+	box-shadow: 1.5px 1px 1.5px 1px; 
+	cursor: pointer; 
+	border: solid #B3BACE; 
+	border-radius: 1em; 
+	position: absolute;
+	width: 25%;
+}
+
 #btsexo
 {
 	margin-left: 10%; 
@@ -123,6 +134,12 @@ h2
 {
 	margin-left: 64%;
 	margin-top: 68%;
+}
+
+#btmemoria
+{
+	margin-left: 10%;
+	margin-top: 81%;
 }
 
 .exitBtn

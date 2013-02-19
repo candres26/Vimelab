@@ -90,6 +90,10 @@
 	<div id="btdirilaborales" class="btreport">
 		<h3>Consulta por riesgos laborales</h3>
 	</div>
+	
+	<div id="btmemoria" class="btreport2">
+		<h3>Memoria por empresa</h3>
+	</div>
 
 {% endblock %}
 
@@ -112,6 +116,7 @@
 			gId('btfumadores').onclick = generarfumadores;
 			gId('btpartelevada').onclick = generarpresion;
 			gId('btcontvision').onclick = generarvision;
+			gId('btmemoria').onclick = generarmemoria;
 			
 		}
 		
@@ -158,6 +163,11 @@
 		function generarvision(event)
 		{
 			window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/vision', null, 'width=800,height=600');
+		}
+		
+		function generarmemoria(event)
+		{
+			window.open($base+'/'+gId('empresa').value+'/memoria', null, 'width=800,height=600');
 		}
 		
 	</script>

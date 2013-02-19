@@ -1566,4 +1566,50 @@ class ReportController extends Controller
 		
 		$pdf->Output('estadisticacontrolvision.pdf', 'I');
 	}
+	
+	public function memoriaAction($empresa)
+	{
+		$em = $this->getDoctrine()->getEntityManager();
+		$datosempresa = $em->getRepository('ScontrolBundle:Gbempr')->getEmpresa($empresa);
+		
+		$pdf = new \Tcpdf_Tcpdf(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+		// set document information
+		$pdf->SetCreator(PDF_CREATOR);
+		$pdf->SetAuthor('Vimelab');
+		$pdf->SetTitle('Memoria de Vigilancia de la Salud');
+		$pdf->SetSubject('Memoria');
+		//$pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+		
+		// set default header data
+		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, '', '');
+		
+		// set header and footer fonts
+		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+		$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+		
+		// set default monospaced font
+		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+		
+		//set margins
+		$pdf->SetMargins(20, 35, 20);
+		$pdf->SetHeaderMargin(2);
+		$pdf->SetFooterMargin(15);
+		
+		//set auto page breaks
+		$pdf->SetAutoPageBreak(TRUE, 21);
+		
+		//set image scale factor
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+		$pdf->AddPage();
+		 
+		$html = 
+		'
+		<h4>EMPRESA:'.$datosempresa[0].'</h4>
+		<p>NIF: B-60564077</p>
+		';
+		$pdf->SetFont('dejavusans', '', 10);
+		$pdf -> writeHTMLCell(170, 0, 20, 45, $html, 0, 0, 0, true, 'J', true);
+		
+		$pdf->Output('memoriaporempresa.pdf', 'I');
+	}
 }
