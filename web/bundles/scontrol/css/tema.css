@@ -24,6 +24,17 @@ h2
 	padding-right: 1px;
 }
 
+.report-bar
+{
+	position: absolute; 
+	width: 80%; 
+	height: auto;
+	left: 10%;
+	top: 18%; 
+	border: solid #BFBFBF 1px;
+	box-shadow: 1.5px 1.5px 1.5px 1.5px;
+}
+
 .btreport
 {
 	background-color: #F4ED98; 
@@ -33,6 +44,7 @@ h2
 	border-radius: 1em; 
 	position: absolute;
 	width: 25%;
+	height: auto;
 }
 
 .btreport2
@@ -44,102 +56,53 @@ h2
 	border-radius: 1em; 
 	position: absolute;
 	width: 25%;
+	height: auto;
 }
 
-#btsexo
+#btsexo, #btedad, #btalthom
 {
-	margin-left: 10%; 
-	margin-top: 16%
+	top: 28%;
 }
 
-#btedad
+#btaltmuj, #btcorpohom, #btcorpomuj
 {
-	margin-left: 37%;
-	margin-top: 16%;
+	top: 40%;
 }
 
-#btalthom
+#btfumadores, #btpartelevada, #btaltanaliticas
 {
-	margin-left: 64%;
-	margin-top: 16%;
+	top: 52%;
 }
 
-#btaltmuj
+#btespirometria, #btcontvision, #btaudiometria
 {
-	margin-left: 10%;
-	margin-top: 29%;
+	top: 64%;
 }
 
-#btcorpohom
+#btalaplocomotor, #btdimedico, #btdirilaborales
 {
-	margin-left: 37%;
-	margin-top: 29%;
+	top: 76%;
 }
 
-#btcorpomuj
+#btsexo, #btaltmuj, #btfumadores, #btespirometria, #btalaplocomotor
 {
-	margin-left: 64%;
-	margin-top: 29%;
+	left: 10%;
 }
 
-#btfumadores
+#btedad, #btcorpohom, #btpartelevada, #btcontvision, #btdimedico
 {
-	margin-left: 10%;
-	margin-top: 42%;
+	left: 37.5%;
 }
 
-#btpartelevada
+#btalthom, #btcorpomuj, #btaltanaliticas, #btaudiometria, #btdirilaborales
 {
-	margin-left: 37%;
-	margin-top: 42%;
-}
-
-#btaltanaliticas
-{
-	margin-left: 64%;
-	margin-top: 42%;
-}
-
-#btespirometria
-{
-	margin-left: 10%;
-	margin-top: 55%;
-}
-
-#btcontvision
-{
-	margin-left: 37%;
-	margin-top: 55%;
-}
-
-#btaudiometria
-{
-	margin-left: 64%;
-	margin-top: 55%;
-}
-
-#btalaplocomotor
-{
-	margin-left: 10%;
-	margin-top: 68%;
-}
-
-#btdimedico
-{
-	margin-left: 37%;
-	margin-top: 68%;
-}
-
-#btdirilaborales
-{
-	margin-left: 64%;
-	margin-top: 68%;
+	right: 10%;
 }
 
 #btmemoria
 {
-	margin-left: 10%;
-	margin-top: 81%;
+	top: 88%;
+	left: 37.5%;
 }
 
 .exitBtn

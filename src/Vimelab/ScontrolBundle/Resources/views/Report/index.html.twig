@@ -11,7 +11,7 @@
 {% block area %}
 
 <h1 align="left">Reportes Estadísticos</h1>
-	<div style="width: 80%; position: absolute; margin-left: 10%;margin-top: 2%; border: solid #BFBFBF 1px; box-shadow: 1.5px 1.5px 1.5px 1.5px;">
+	<div class="report-bar">
 		<form>
 			<table align="center">
 				<tr>
@@ -31,6 +31,7 @@
 			</table>
 		</form>
 	</div>
+
 	<div id="btsexo" class="btreport">
 		<h3>Consulta por sexo</h3>
 	</div>
@@ -178,7 +179,13 @@
 		
 		function generarmemoria(event)
 		{
-			window.open($base+'/'+gId('empresa').value+'/memoria', null, 'width=800,height=600');
+			if(valRange())
+			{
+				if(gId('empresa').value != '@')
+					window.open($base+'/'+gId('empresa').value+'/memoria', null, 'width=800,height=600');
+				else
+					popup("Debe seleccionar una empresa!");
+			}
 		}
 		
 		function generarDictamen(event)
