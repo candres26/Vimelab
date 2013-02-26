@@ -1879,61 +1879,69 @@ class ReportController extends Controller
 			$pdf->setFoot(false);
 		}
 
-		$idx = -1;
-
-		foreach ($casos as $caso) 
+		if(count($casos) > 0)
 		{
-			$sucu = $caso->getMdpaci()->getGbsucu();
-			$emp = $sucu->getGbempr();
+			$idx = -1;
 
-			if($sucu->getId() != $idx) 
+			foreach ($casos as $caso) 
 			{
-				if($idx != -1)
-					$this->finalDicatmen($pdf);
+				$sucu = $caso->getMdpaci()->getGbsucu();
+				$emp = $sucu->getGbempr();
 
-				$idx = $sucu->getId();
-				$pdf->startPageGroup();
+				if($sucu->getId() != $idx) 
+				{
+					if($idx != -1)
+						$this->finalDicatmen($pdf);
 
-				$pdf->AddPage();
+					$idx = $sucu->getId();
+					$pdf->startPageGroup();
+
+					$pdf->AddPage();
+					
+					$html =  '<table style="border-bottom: 2px solid #000000;">';
+					$html .= '<tr><td><h3>NOMBRE DE LA EMPRESA: '.$emp->getNombre().'</h3></td></tr>';
+					$html .= '<tr><td><h3>CENTRO DE TRABAJO: '.$sucu->getNombre().'</h3></td></tr>';
+					$html .= '</table>';
+
+					$html .= '<p>A/A RESPONSABLE DE LA REVICIÓN</p>';
+					$html .= '<p>Tras el examen de salud realizado al personal de su empresa en el periodo '.$inicio.' - '.$fin.' les informamos de las conclusiones en relación con las aptitudes:</p>';
+					$pdf->autoCell(0, 0, 20, $pdf->GetY()-8, $html, 0, 2, false, true, 'J');
+					$pdf->Ln(5);
+
+					$head = '<tr bgcolor="#C9DEE9"><td><b>APELLIDOS Y NOMBRES</b></td><td><b>PUESTO DE TRABAJO</b></td><td><b>PROTOCOLOS</b></td><td><b>TIPO DE EXAMEN</b></td><td><b>REESULTADO</b></td></tr>';
+					$mac = '<table border="1">'.$head.'</table>';
+					$pdf->autoCell(0, 0, 20, $pdf->GetY(), $mac, 0, 2, false, true, 'C');
+				}
+
+				$prot = array();
+
+				$res = $em->getRepository('ScontrolBundle:Mdresp')->findByMdhist($caso->getId());
+
+				foreach ($res as $rq)
+				{
+					$npr = $rq->getMdques()->getMdprot()->getNombre();
+					if(!in_array($npr, $prot))
+						$prot[] = $npr;
+				}
+					
+				$row = '<table border="1"><tr>';
+				$row .= '<td>'.strtoupper($caso->getMdpaci()->getFullName()).'</td>';
+				$row .= '<td>'.strtoupper($caso->getMdpaci()->getGbptra()->getNombre()).'</td>';
+				$row .= '<td>'.join($prot, '+').'</td>';
+				$row .= '<td>'.$caso->getSTipo().'</td>';
+				$row .= '<td>'.$caso->getSDictamen().'</td>';
+				$row .= '</tr></table>';
 				
-				$html =  '<table style="border-bottom: 2px solid #000000;">';
-				$html .= '<tr><td><h3>NOMBRE DE LA EMPRESA: '.$emp->getNombre().'</h3></td></tr>';
-				$html .= '<tr><td><h3>CENTRO DE TRABAJO: '.$sucu->getNombre().'</h3></td></tr>';
-				$html .= '</table>';
-
-				$html .= '<p>A/A RESPONSABLE DE LA REVICIÓN</p>';
-				$html .= '<p>Tras el examen de salud realizado al personal de su empresa en el periodo '.$inicio.' - '.$fin.' les informamos de las conclusiones en relación con las aptitudes:</p>';
-				$pdf->autoCell(0, 0, 20, $pdf->GetY()-8, $html, 0, 2, false, true, 'J');
-				$pdf->Ln(5);
-
-				$head = '<tr bgcolor="#C9DEE9"><td><b>APELLIDOS Y NOMBRES</b></td><td><b>PUESTO DE TRABAJO</b></td><td><b>PROTOCOLOS</b></td><td><b>TIPO DE EXAMEN</b></td><td><b>REESULTADO</b></td></tr>';
-				$mac = '<table border="1">'.$head.'</table>';
-				$pdf->autoCell(0, 0, 20, $pdf->GetY(), $mac, 0, 2, false, true, 'C');
+				$pdf->autoCell(0, 0, 20, $pdf->GetY(), $row, 0, 2, false, true, 'C', true, 10);
 			}
 
-			$prot = array();
-
-			$res = $em->getRepository('ScontrolBundle:Mdresp')->findByMdhist($caso->getId());
-
-			foreach ($res as $rq)
-			{
-				$npr = $rq->getMdques()->getMdprot()->getNombre();
-				if(!in_array($npr, $prot))
-					$prot[] = $npr;
-			}
-				
-			$row = '<table border="1"><tr>';
-			$row .= '<td>'.strtoupper($caso->getMdpaci()->getFullName()).'</td>';
-			$row .= '<td>'.strtoupper($caso->getMdpaci()->getGbptra()->getNombre()).'</td>';
-			$row .= '<td>'.join($prot, '+').'</td>';
-			$row .= '<td>'.$caso->getSTipo().'</td>';
-			$row .= '<td>'.$caso->getSDictamen().'</td>';
-			$row .= '</tr></table>';
-			
-			$pdf->autoCell(0, 0, 20, $pdf->GetY(), $row, 0, 2, false, true, 'C', true, 10);
+			$this->finalDicatmen($pdf);
 		}
-
-		$this->finalDicatmen($pdf);					
+		else
+		{
+			$pdf->AddPage();
+			$pdf->autoCell(0, 0, 20, $pdf->GetY(), '<h1 color="red">NO SE HAN ENCONTRADO DATOS!</h1>', 0, 2, false, true, 'C', true, 10);
+		}					
 
 		ob_end_clean();
 		$pdf->Output('r_Dictamen.pdf', 'I');
