@@ -1439,6 +1439,186 @@ class ReportController extends Controller
 		$pdf->Output('estadisticapresionarterial.pdf', 'I');
 	}
 	
+	public function espirometriaAction($empresa, $inicio, $fin)
+	{
+		$em = $this->getDoctrine()->getEntityManager();
+		$vision = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaEspirometria($empresa, $inicio, $fin);
+		$nombreempresa = $em->getRepository('ScontrolBundle:Gbempr')->find($empresa);
+		
+		$pdf = new \Tcpdf_Tcpdf('L', 'mm', 'A4', true, 'UTF-8', false);
+		$pdf->SetCreator(PDF_CREATOR);
+		$pdf->SetAuthor('Vimelab');
+		$pdf->SetTitle('REPORTE DE ESTADÍSTICA POR CONTROL DE VISIÓN');
+		$pdf->SetSubject('Estadística por control de visión.');
+		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, '', '');
+		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+		$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+		$pdf->SetMargins(20, 38, 20);
+		$pdf->SetHeaderMargin(2);
+		$pdf->SetFooterMargin(15);
+		$pdf->SetAutoPageBreak(FALSE, 21);
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+		$pdf->setTabl(true);
+		$pdf->setMemoTitle("REPORTE DE ESTADÍSTICA POR CONTROL DE VISIÓN");
+		$pdf->AddPage();
+		
+		$visionarreglo = array();
+		$flag = -1;
+		
+		foreach ($vision as $caso)
+		{
+			if($caso->getMdpaci()->getId() != $flag)
+			{
+				$flag = $caso->getMdpaci()->getId();
+				$visionarreglo[$flag] = array();
+			}
+			
+			$diag = $em->getRepository('ScontrolBundle:Mddiag')->findByMdhist($caso->getId());
+			
+			foreach ($diag as $caso2)
+				$visionarreglo[$flag][] = $caso2->getMdpato()->getCodigo();
+		}
+		
+		$clases = array('Con patologías' => 0, 'Normal' => 0, 'No realizada' => 0);
+		
+		foreach ($visionarreglo as $caso)
+		{
+			if (in_array('1400', $caso))
+				$clases['Normal'] += 1;
+			else if($this->rangoInArray(1413, 1487, $caso))
+				$clases['Con patologías'] += 1;
+			else
+				$clases['No realizada'] += 1;
+		}
+		
+		/*$html = '';
+		
+		foreach($clases as $k => $v)
+			$html .= $k.': '.$v.'<br>';
+		
+		$pdf->writeHTMLCell(90,0,185,155,$html, '', 0, 0, true, 'C', true);*/
+			
+			
+		$style1 = array('width' => 0.8, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0));
+		$style2 = array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 255, 0));
+		$style3 = array('width' => 10, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(255, 0, 0));
+		$style4 = array('width' => 10, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 255));
+		$border_style = array('all' => array('width' => 0.8, 'cap' => 'square', 'join' => 'miter', 'dash' => 0, 'phase' => 0));
+		
+		$vision1 = $clases['Normal'];
+		$vision2 = $clases['Con patologías'];
+		$vision3 = $clases['No realizada'];
+		
+		arsort($clases);
+		$max = max($clases);
+		$max = intval(($max + 10) /10.0) * 10;
+		
+		$postvision1 = ((150 * $vision1)/$max);
+		$postvision2 = ((150 * $vision2)/$max);
+		$postvision3 = ((150 * $vision3)/$max);
+
+
+		$par = $max / 20;
+		
+		for($i = 1; $i <= 20; $i++)
+		{
+			$pos = 193-(150*($par*$i))/$max;
+			$pdf->writeHTMLCell(20, 20, 20, $pos-2,'<div style="color: #000; text-align: rigth;"><b>'.$par*$i.'</b></div>');
+			$pdf->Line(40, $pos, 46, $pos, $style1);
+		}
+		
+		$pdf->Line(43, 38, 43, 193, $style1); // Eje Y
+		$pdf->Line(43, 193, 160, 193, $style1); // Eje X
+		
+		$pdf->Rect(55, 193-$postvision1, 25, $postvision1, 'DF', $border_style, $fill_color = array(100,0,0,0)); // Rectángulo vision1
+		$pdf->Rect(85, 193-$postvision2, 25, $postvision2, 'DF', $border_style, $fill_color = array(0,57,54,20)); // Rectángulo vision2
+		$pdf->Rect(115, 193-$postvision3, 25, $postvision3, 'DF', $border_style, $fill_color = array(0,3,91,22)); // Rectángulo vision3
+		
+		$pdf->SetDrawColor(100, 0, 0, 0);
+		$pdf->SetFillColor(100, 0, 0, 0);
+		$pdf->Rect(186, 71, 2, 2, 'DF', $border_style);
+		
+		$pdf->SetDrawColor(0,57,54,20);
+		$pdf->SetFillColor(0,57,54,20);
+		$pdf->Rect(186, 75.5, 2, 2, 'DF', $border_style);
+		
+		$pdf->SetDrawColor(0,3,91,22);
+		$pdf->SetFillColor(0,3,91,22);
+		$pdf->Rect(186, 79.5, 2, 2, 'DF', $border_style);
+
+		
+		$html = '
+		<table>
+			<tr>
+				<td align="left">Normal</td>
+			</tr>
+			<tr>
+				<td align="left">Con patología</td>
+			</tr>
+			<tr>
+				<td align="left">No realizada</td>
+			</tr>
+		</table>';
+		$pdf->SetFont('dejavusans', '', 10);
+		$pdf->writeHTMLCell(55, 0, 190, 70, $html, '', 0, 0, true, 'C', true);
+		
+		$html= '
+		<table border="1">
+			<tr>
+				<td><b>Tipo</b></td>
+				<td><b>Total</b></td>
+			</tr>
+			<tr>
+				<td align="left"> Normal</td>
+				<td>'.$vision1.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Con patología</td>
+				<td>'.$vision2.'</td>
+			</tr>
+			<tr>
+				<td align="left"> No realizada</td>
+				<td>'.$vision3.'</td>
+			</tr>
+		</table>';
+		$pdf->SetFont('dejavusans', '', 11);
+		$pdf->writeHTMLCell(90,0,185,100,$html, '', 0, 0, true, 'C', true);
+				
+		$html= '
+		<table border="1">
+			<tr>
+				<td><b>Búsqueda</b></td>
+				<td><b>Resultados</b></td>
+			</tr>
+			<tr>
+				<td align="left"> Empresa</td>
+				<td>'.$nombreempresa.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Fecha Inicial</td>
+				<td>'.$inicio.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Fecha Final</td>
+				<td>'.$fin.'</td>
+			</tr>
+		</table>';
+		
+		$pdf->SetFont('dejavusans', '', 11);
+		$pdf->writeHTMLCell(90,0,185,130,$html, '', 0, 0, true, 'C', true);
+		
+		/*$html = '';
+		
+		foreach($vision as $key => $caso)
+			$html .=$key.':'.$caso.'<br>';
+			
+		$pdf->writeHTMLCell(90,0,185,155,$html, '', 0, 0, true, 'C', true);*/
+		
+		$pdf->Output('estadisticacontrolvision.pdf', 'I');
+	}
+
+	
 	public function visionAction($empresa, $inicio, $fin)
 	{
 		$em = $this->getDoctrine()->getEntityManager();
@@ -1463,21 +1643,60 @@ class ReportController extends Controller
 		$pdf->setMemoTitle("REPORTE DE ESTADÍSTICA POR CONTROL DE VISIÓN");
 		$pdf->AddPage();
 		
+		$visionarreglo = array();
+		$flag = -1;
+		
+		foreach ($vision as $caso)
+		{
+			if($caso->getMdpaci()->getId() != $flag)
+			{
+				$flag = $caso->getMdpaci()->getId();
+				$visionarreglo[$flag] = array();
+			}
+			
+			$diag = $em->getRepository('ScontrolBundle:Mddiag')->findByMdhist($caso->getId());
+			
+			foreach ($diag as $caso2)
+				$visionarreglo[$flag][] = $caso2->getMdpato()->getCodigo();
+		}
+		
+		$clases = array('Con patologías' => 0, 'Normal' => 0, 'No realizada' => 0);
+		
+		foreach ($visionarreglo as $caso)
+		{
+			if (in_array('1400', $caso))
+				$clases['Normal'] += 1;
+			else if($this->rangoInArray(1413, 1487, $caso))
+				$clases['Con patologías'] += 1;
+			else
+				$clases['No realizada'] += 1;
+		}
+		
+		/*$html = '';
+		
+		foreach($clases as $k => $v)
+			$html .= $k.': '.$v.'<br>';
+		
+		$pdf->writeHTMLCell(90,0,185,155,$html, '', 0, 0, true, 'C', true);*/
+			
+			
 		$style1 = array('width' => 0.8, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0));
 		$style2 = array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 255, 0));
 		$style3 = array('width' => 10, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(255, 0, 0));
 		$style4 = array('width' => 10, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 255));
 		$border_style = array('all' => array('width' => 0.8, 'cap' => 'square', 'join' => 'miter', 'dash' => 0, 'phase' => 0));
 		
-		$vision1 = $vision['Normal'];
-		$vision2 = $vision['Con patología'];
+		$vision1 = $clases['Normal'];
+		$vision2 = $clases['Con patologías'];
+		$vision3 = $clases['No realizada'];
 		
-		arsort($vision);
-		$max = max($vision);
+		arsort($clases);
+		$max = max($clases);
 		$max = intval(($max + 10) /10.0) * 10;
 		
 		$postvision1 = ((150 * $vision1)/$max);
 		$postvision2 = ((150 * $vision2)/$max);
+		$postvision3 = ((150 * $vision3)/$max);
 
 
 		$par = $max / 20;
@@ -1494,6 +1713,7 @@ class ReportController extends Controller
 		
 		$pdf->Rect(55, 193-$postvision1, 25, $postvision1, 'DF', $border_style, $fill_color = array(100,0,0,0)); // Rectángulo vision1
 		$pdf->Rect(85, 193-$postvision2, 25, $postvision2, 'DF', $border_style, $fill_color = array(0,57,54,20)); // Rectángulo vision2
+		$pdf->Rect(115, 193-$postvision3, 25, $postvision3, 'DF', $border_style, $fill_color = array(0,3,91,22)); // Rectángulo vision3
 		
 		$pdf->SetDrawColor(100, 0, 0, 0);
 		$pdf->SetFillColor(100, 0, 0, 0);
@@ -1502,6 +1722,10 @@ class ReportController extends Controller
 		$pdf->SetDrawColor(0,57,54,20);
 		$pdf->SetFillColor(0,57,54,20);
 		$pdf->Rect(186, 75.5, 2, 2, 'DF', $border_style);
+		
+		$pdf->SetDrawColor(0,3,91,22);
+		$pdf->SetFillColor(0,3,91,22);
+		$pdf->Rect(186, 79.5, 2, 2, 'DF', $border_style);
 
 		
 		$html = '
@@ -1511,6 +1735,9 @@ class ReportController extends Controller
 			</tr>
 			<tr>
 				<td align="left">Con patología</td>
+			</tr>
+			<tr>
+				<td align="left">No realizada</td>
 			</tr>
 		</table>';
 		$pdf->SetFont('dejavusans', '', 10);
@@ -1529,6 +1756,10 @@ class ReportController extends Controller
 			<tr>
 				<td align="left"> Con patología</td>
 				<td>'.$vision2.'</td>
+			</tr>
+			<tr>
+				<td align="left"> No realizada</td>
+				<td>'.$vision3.'</td>
 			</tr>
 		</table>';
 		$pdf->SetFont('dejavusans', '', 11);
@@ -1598,6 +1829,7 @@ class ReportController extends Controller
 		
 		//set auto page breaks
 		$pdf->SetAutoPageBreak(TRUE, 21);
+		$pdf->setMkLateral(true);
 		
 		//set image scale factor
 		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
@@ -1722,5 +1954,21 @@ class ReportController extends Controller
 		$pdf->Ln();
 		$pdf->Ln();
 		$pdf->autoCell(0, 0, 20, $pdf->GetY(), $html, 0, 2, false, true, 'C', true, 0);
+	}
+	
+	private function rangoInArray($ini, $fin, $arr)
+	{
+		$flag = false;
+		
+		for($i = $ini; $i <= $fin; $i++)
+		{
+			if(in_array(''.$i, $arr))
+			{
+				$flag = true;
+				break;
+			}
+		}
+		
+		return $flag;
 	}
 }

@@ -115,6 +115,7 @@
 			gId('btcorpomuj').onclick = generarimcmuj;
 			gId('btfumadores').onclick = generarfumadores;
 			gId('btpartelevada').onclick = generarpresion;
+			gId('btespirometria').onclick = generarespirometria;
 			gId('btcontvision').onclick = generarvision;
 			gId('btmemoria').onclick = generarmemoria;
 			
@@ -168,6 +169,12 @@
 		{
 			if(valRange())
 				window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/presion', null, 'width=800,height=600');
+		}
+		
+		function generarespirometria(event)
+		{
+			if(valRange())
+				window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/espirometria', null, 'width=800,height=600');
 		}
 		
 		function generarvision(event)

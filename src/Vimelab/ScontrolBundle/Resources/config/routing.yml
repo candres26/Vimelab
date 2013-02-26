@@ -56,6 +56,10 @@ report_fumadores:
 report_presion:
     pattern:  /report/{empresa}/{inicio}/{fin}/presion
     defaults: { _controller: ScontrolBundle:Report:presion }
+#   Espirometria
+report_espirometria:
+    pattern:  /report/{empresa}/{inicio}/{fin}/espirometria
+    defaults: { _controller: ScontrolBundle:Report:espirometria }
 #   A. Visual
 report_vision:
     pattern:  /report/{empresa}/{inicio}/{fin}/vision

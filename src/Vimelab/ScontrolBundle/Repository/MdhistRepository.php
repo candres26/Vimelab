@@ -234,27 +234,38 @@ class MdhistRepository extends EntityRepository
 		return $presiones; 
 	}
 	
+	public function getConsultaEspirometria($empresa, $finicio, $ffinal)
+	{
+		$em = $this->getEntityManager();
+		
+		if ($empresa != '@')
+		
+			$querry = $em->createQuery("SELECT h FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p JOIN p.gbsucu s JOIN s.gbempr e WHERE p.id = h.mdpaci 
+			AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa' ORDER by p.id");
+		else
+			$querry = $em->createQuery("SELECT h FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p WHERE h.fecha >= '$finicio' AND h.fecha < '$ffinal' 
+			ORDER by p.id");
+		
+		$resul = $querry->getResult();
+		
+		return $resul;
+	}
+	
 	public function getConsultaVisual($empresa, $finicio, $ffinal)
 	{
 		$em = $this->getEntityManager();
 		
 		if ($empresa != '@')
 		
-			$querry = $em->createQuery("SELECT v FROM ScontrolBundle:Mdvisu v JOIN v.mdhist h, ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e
-			WHERE v.mdhist = h.id AND p.id = h.mdpaci AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa' ORDER by v.id");
+			$querry = $em->createQuery("SELECT h FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p JOIN p.gbsucu s JOIN s.gbempr e WHERE p.id = h.mdpaci 
+			AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa' ORDER by p.id");
 		else
-			$querry = $em->createQuery("SELECT v FROM ScontrolBundle:Mdvisu v JOIN v.mdhist h, ScontrolBundle:Mdpaci p WHERE v.mdhist = h.id 
-			AND p.id = h.mdpaci AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' ORDER by v.id");
+			$querry = $em->createQuery("SELECT h FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p WHERE h.fecha >= '$finicio' AND h.fecha < '$ffinal' 
+			ORDER by p.id");
 		
 		$resul = $querry->getResult();
 		
-		$marcas = array('1' => 'Normal', '2' => 'Con patología');
-		$visiones = array($marcas['1'] => 0, $marcas['2'] => 0);
-		
-		foreach($resul as $caso)
-			$visiones[$marcas[''.$caso->getVisual()]] += 1;
-		
-		return $visiones;
+		return $resul;
 	}
 	
 	public function getConsultaDictamen($empresa, $finicio, $ffinal)
