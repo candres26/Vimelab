@@ -118,6 +118,8 @@
 			gId('btpartelevada').onclick = generarpresion;
 			gId('btespirometria').onclick = generarespirometria;
 			gId('btcontvision').onclick = generarvision;
+			gId('btaudiometria').onclick = generaraudio;
+			gId('btalaplocomotor').onclick = generaraparato;
 			gId('btmemoria').onclick = generarmemoria;
 			
 			/* Dictamen Médico */
@@ -182,6 +184,18 @@
 		{
 			if(valRange())
 				window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/vision', null, 'width=800,height=600');
+		}
+		
+		function generaraudio(event)
+		{
+			if(valRange())
+				window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/audio', null, 'width=800,height=600');
+		}
+		
+		function generaraparato(event)
+		{
+			if(valRange())
+				window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/aparato', null, 'width=800,height=600');
 		}
 		
 		function generarmemoria(event)

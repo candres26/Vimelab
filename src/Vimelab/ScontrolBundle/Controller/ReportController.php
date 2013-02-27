@@ -1368,8 +1368,8 @@ class ReportController extends Controller
 		$html= '
 		<table border="1">
 			<tr>
-				<td><b>Tipo</b></td>
-				<td><b>Total</b></td>
+				<td width="200"><b>Tipo</b></td>
+				<td width="110"><b>Total</b></td>
 			</tr>
 			<tr>
 				<td align="left"> Óptima</td>
@@ -1424,7 +1424,7 @@ class ReportController extends Controller
 		</table>';
 		
 		$pdf->SetFont('dejavusans', '', 11);
-		$pdf->writeHTMLCell(90,0,185,155,$html, '', 0, 0, true, 'C', true);
+		$pdf->writeHTMLCell(90,0,185,145,$html, '', 0, 0, true, 'C', true);
 
 		
 		
@@ -1442,14 +1442,14 @@ class ReportController extends Controller
 	public function espirometriaAction($empresa, $inicio, $fin)
 	{
 		$em = $this->getDoctrine()->getEntityManager();
-		$vision = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaEspirometria($empresa, $inicio, $fin);
+		$espi = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaEspirometria($empresa, $inicio, $fin);
 		$nombreempresa = $em->getRepository('ScontrolBundle:Gbempr')->find($empresa);
 		
 		$pdf = new \Tcpdf_Tcpdf('L', 'mm', 'A4', true, 'UTF-8', false);
 		$pdf->SetCreator(PDF_CREATOR);
 		$pdf->SetAuthor('Vimelab');
-		$pdf->SetTitle('REPORTE DE ESTADÍSTICA POR CONTROL DE VISIÓN');
-		$pdf->SetSubject('Estadística por control de visión.');
+		$pdf->SetTitle('REPORTE DE ESTADÍSTICA POR ESPIROMETRÍA');
+		$pdf->SetSubject('Estadística por espirometria.');
 		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, '', '');
 		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
 		$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
@@ -1460,33 +1460,33 @@ class ReportController extends Controller
 		$pdf->SetAutoPageBreak(FALSE, 21);
 		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 		$pdf->setTabl(true);
-		$pdf->setMemoTitle("REPORTE DE ESTADÍSTICA POR CONTROL DE VISIÓN");
+		$pdf->setMemoTitle("REPORTE DE ESTADÍSTICA POR ESPIROMETRÍA");
 		$pdf->AddPage();
 		
-		$visionarreglo = array();
+		$espiarreglo = array();
 		$flag = -1;
 		
-		foreach ($vision as $caso)
+		foreach ($espi as $caso)
 		{
 			if($caso->getMdpaci()->getId() != $flag)
 			{
 				$flag = $caso->getMdpaci()->getId();
-				$visionarreglo[$flag] = array();
+				$espiarreglo[$flag] = array();
 			}
 			
 			$diag = $em->getRepository('ScontrolBundle:Mddiag')->findByMdhist($caso->getId());
 			
 			foreach ($diag as $caso2)
-				$visionarreglo[$flag][] = $caso2->getMdpato()->getCodigo();
+				$espiarreglo[$flag][] = $caso2->getMdpato()->getCodigo();
 		}
 		
-		$clases = array('Con patologías' => 0, 'Normal' => 0, 'No realizada' => 0);
+		$clases = array('Normal' => 0, 'Con patologías' => 0, 'No realizada' => 0);
 		
-		foreach ($visionarreglo as $caso)
+		foreach ($espiarreglo as $caso)
 		{
-			if (in_array('1400', $caso))
+			if (in_array('1600', $caso))
 				$clases['Normal'] += 1;
-			else if($this->rangoInArray(1413, 1487, $caso))
+			else if($this->rangoInArray(1601, 1631, $caso))
 				$clases['Con patologías'] += 1;
 			else
 				$clases['No realizada'] += 1;
@@ -1506,17 +1506,17 @@ class ReportController extends Controller
 		$style4 = array('width' => 10, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 255));
 		$border_style = array('all' => array('width' => 0.8, 'cap' => 'square', 'join' => 'miter', 'dash' => 0, 'phase' => 0));
 		
-		$vision1 = $clases['Normal'];
-		$vision2 = $clases['Con patologías'];
-		$vision3 = $clases['No realizada'];
+		$espi1 = $clases['Normal'];
+		$espi2 = $clases['Con patologías'];
+		$espi3 = $clases['No realizada'];
 		
 		arsort($clases);
 		$max = max($clases);
 		$max = intval(($max + 10) /10.0) * 10;
 		
-		$postvision1 = ((150 * $vision1)/$max);
-		$postvision2 = ((150 * $vision2)/$max);
-		$postvision3 = ((150 * $vision3)/$max);
+		$postespi1 = ((150 * $espi1)/$max);
+		$postespi2 = ((150 * $espi2)/$max);
+		$postespi3 = ((150 * $espi3)/$max);
 
 
 		$par = $max / 20;
@@ -1531,9 +1531,9 @@ class ReportController extends Controller
 		$pdf->Line(43, 38, 43, 193, $style1); // Eje Y
 		$pdf->Line(43, 193, 160, 193, $style1); // Eje X
 		
-		$pdf->Rect(55, 193-$postvision1, 25, $postvision1, 'DF', $border_style, $fill_color = array(100,0,0,0)); // Rectángulo vision1
-		$pdf->Rect(85, 193-$postvision2, 25, $postvision2, 'DF', $border_style, $fill_color = array(0,57,54,20)); // Rectángulo vision2
-		$pdf->Rect(115, 193-$postvision3, 25, $postvision3, 'DF', $border_style, $fill_color = array(0,3,91,22)); // Rectángulo vision3
+		$pdf->Rect(55, 193-$postespi1, 25, $postespi1, 'DF', $border_style, $fill_color = array(100,0,0,0)); // Rectángulo espi1
+		$pdf->Rect(85, 193-$postespi2, 25, $postespi2, 'DF', $border_style, $fill_color = array(0,57,54,20)); // Rectángulo espi2
+		$pdf->Rect(115, 193-$postespi3, 25, $postespi3, 'DF', $border_style, $fill_color = array(0,3,91,22)); // Rectángulo espi3
 		
 		$pdf->SetDrawColor(100, 0, 0, 0);
 		$pdf->SetFillColor(100, 0, 0, 0);
@@ -1571,15 +1571,15 @@ class ReportController extends Controller
 			</tr>
 			<tr>
 				<td align="left"> Normal</td>
-				<td>'.$vision1.'</td>
+				<td>'.$espi1.'</td>
 			</tr>
 			<tr>
 				<td align="left"> Con patología</td>
-				<td>'.$vision2.'</td>
+				<td>'.$espi2.'</td>
 			</tr>
 			<tr>
 				<td align="left"> No realizada</td>
-				<td>'.$vision3.'</td>
+				<td>'.$espi3.'</td>
 			</tr>
 		</table>';
 		$pdf->SetFont('dejavusans', '', 11);
@@ -1615,7 +1615,7 @@ class ReportController extends Controller
 			
 		$pdf->writeHTMLCell(90,0,185,155,$html, '', 0, 0, true, 'C', true);*/
 		
-		$pdf->Output('estadisticacontrolvision.pdf', 'I');
+		$pdf->Output('estadisticaespirometria.pdf', 'I');
 	}
 
 	
@@ -1798,6 +1798,395 @@ class ReportController extends Controller
 		$pdf->Output('estadisticacontrolvision.pdf', 'I');
 	}
 
+	public function audioAction($empresa, $inicio, $fin)
+	{
+		$em = $this->getDoctrine()->getEntityManager();
+		$audiometria = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaAudio($empresa, $inicio, $fin);
+		$nombreempresa = $em->getRepository('ScontrolBundle:Gbempr')->find($empresa);
+		
+		$pdf = new \Tcpdf_Tcpdf('L', 'mm', 'A4', true, 'UTF-8', false);
+		$pdf->SetCreator(PDF_CREATOR);
+		$pdf->SetAuthor('Vimelab');
+		$pdf->SetTitle('REPORTE DE ESTADÍSTICA POR AUDIOMETRÍA');
+		$pdf->SetSubject('Estadística por audiometría.');
+		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, '', '');
+		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+		$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+		$pdf->SetMargins(20, 38, 20);
+		$pdf->SetHeaderMargin(2);
+		$pdf->SetFooterMargin(15);
+		$pdf->SetAutoPageBreak(FALSE, 21);
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+		$pdf->setTabl(true);
+		$pdf->setMemoTitle("REPORTE DE ESTADÍSTICA POR AUDIOMETRÍA");
+		$pdf->AddPage();
+		
+		$audiometriaarreglo = array();
+		$flag = -1;
+		
+		foreach ($audiometria as $caso)
+		{
+			if($caso->getMdpaci()->getId() != $flag)
+			{
+				$flag = $caso->getMdpaci()->getId();
+				$audiometriaarreglo[$flag] = array();
+			}
+			
+			$diag = $em->getRepository('ScontrolBundle:Mddiag')->findByMdhist($caso->getId());
+			
+			foreach ($diag as $caso2)
+				$audiometriaarreglo[$flag][] = $caso2->getMdpato()->getCodigo();
+		}
+		
+		$clases = array('Normal' => 0, 'Posible trauma acústico' => 0, 'Posible presbiacusia' => 0, 'Hipoacusia global' => 0, 'No realizada' => 0);
+		
+		foreach ($audiometriaarreglo as $caso)
+		{
+			if (in_array('1500', $caso))
+				$clases['Normal'] += 1;
+			else if($this->rangoInArray(1561, 1563, $caso))
+				$clases['Posible trauma acústico'] += 1;
+			else if($this->rangoInArray(1571, 1573, $caso) OR $this->rangoInArray(1551, 1553, $caso))
+				$clases['Posible presbiacusia'] += 1;
+			else if($this->rangoInArray(1511, 1547, $caso))
+				$clases['Hipoacusia global'] += 1;
+			else
+				$clases['No realizada'] += 1;
+		}
+		
+		/*$html = '';
+		
+		foreach($clases as $k => $v)
+			$html .= $k.': '.$v.'<br>';
+		
+		$pdf->writeHTMLCell(90,0,185,155,$html, '', 0, 0, true, 'C', true);*/
+			
+			
+		$style1 = array('width' => 0.8, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0));
+		$style2 = array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 255, 0));
+		$style3 = array('width' => 10, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(255, 0, 0));
+		$style4 = array('width' => 10, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 255));
+		$border_style = array('all' => array('width' => 0.8, 'cap' => 'square', 'join' => 'miter', 'dash' => 0, 'phase' => 0));
+		
+		$audio1 = $clases['Normal'];
+		$audio2 = $clases['Posible trauma acústico'];
+		$audio3 = $clases['Posible presbiacusia'];
+		$audio4 = $clases['Hipoacusia global'];
+		$audio5 = $clases['No realizada'];
+		
+		arsort($clases);
+		$max = max($clases);
+		$max = intval(($max + 10) /10.0) * 10;
+		
+		$postaudio1 = ((150 * $audio1)/$max);
+		$postaudio2 = ((150 * $audio2)/$max);
+		$postaudio3 = ((150 * $audio3)/$max);
+		$postaudio4 = ((150 * $audio4)/$max);
+		$postaudio5 = ((150 * $audio5)/$max);
+
+
+		$par = $max / 20;
+		
+		for($i = 1; $i <= 20; $i++)
+		{
+			$pos = 193-(150*($par*$i))/$max;
+			$pdf->writeHTMLCell(20, 20, 20, $pos-2,'<div style="color: #000; text-align: rigth;"><b>'.$par*$i.'</b></div>');
+			$pdf->Line(40, $pos, 46, $pos, $style1);
+		}
+		
+		$pdf->Line(43, 38, 43, 193, $style1); // Eje Y
+		$pdf->Line(43, 193, 160, 193, $style1); // Eje X
+		
+		$pdf->Rect(55, 193-$postaudio1, 10, $postaudio1, 'DF', $border_style, $fill_color = array(100,0,0,0)); // Rectángulo audio1
+		$pdf->Rect(75, 193-$postaudio2, 10, $postaudio2, 'DF', $border_style, $fill_color = array(0,57,54,20)); // Rectángulo audio2
+		$pdf->Rect(95, 193-$postaudio3, 10, $postaudio3, 'DF', $border_style, $fill_color = array(0,2,43,4)); // Rectángulo audio3
+		$pdf->Rect(115, 193-$postaudio4, 10, $postaudio4, 'DF', $border_style, $fill_color = array(52,0,42,2)); // Rectángulo audio4
+		$pdf->Rect(135, 193-$postaudio5, 10, $postaudio5, 'DF', $border_style, $fill_color = array(0,3,91,22)); // Rectángulo audio5
+		
+		$pdf->SetDrawColor(100, 0, 0, 0);
+		$pdf->SetFillColor(100, 0, 0, 0);
+		$pdf->Rect(186, 71, 2, 2, 'DF', $border_style);
+		
+		$pdf->SetDrawColor(0,57,54,20);
+		$pdf->SetFillColor(0,57,54,20);
+		$pdf->Rect(186, 75.5, 2, 2, 'DF', $border_style);
+		
+		$pdf->SetDrawColor(0,2,43,4);
+		$pdf->SetFillColor(0,2,43,4);
+		$pdf->Rect(186, 79.5, 2, 2, 'DF', $border_style);
+		
+		$pdf->SetDrawColor(52,0,42,2);
+		$pdf->SetFillColor(52,0,42,2);
+		$pdf->Rect(186, 84, 2, 2, 'DF', $border_style);
+		
+		$pdf->SetDrawColor(0,3,91,22);
+		$pdf->SetFillColor(0,3,91,22);
+		$pdf->Rect(186, 88.5, 2, 2, 'DF', $border_style);
+
+		
+		$html = '
+		<table>
+			<tr>
+				<td align="left">Normal</td>
+			</tr>
+			<tr>
+				<td align="left">Posible trauma acústico</td>
+			</tr>
+			<tr>
+				<td align="left">Posible presbiacusia</td>
+			</tr>
+			<tr>
+				<td align="left">Hipoacusia global</td>
+			</tr>
+			<tr>
+				<td align="left">No realizada</td>
+			</tr>
+		</table>';
+		$pdf->SetFont('dejavusans', '', 10);
+		$pdf->writeHTMLCell(55, 0, 190, 70, $html, '', 0, 0, true, 'C', true);
+		
+		$html= '
+		<table border="1">
+			<tr>
+				<td><b>Tipo</b></td>
+				<td width="90" ><b>Total</b></td>
+			</tr>
+			<tr>
+				<td align="left"> Normal</td>
+				<td>'.$audio1.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Posible trauma acústico</td>
+				<td>'.$audio2.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Posible presbiacusia</td>
+				<td>'.$audio3.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Hipoacusia global</td>
+				<td>'.$audio4.'</td>
+			</tr>
+			<tr>
+				<td align="left"> No realizada</td>
+				<td>'.$audio5.'</td>
+			</tr>
+		</table>';
+		$pdf->SetFont('dejavusans', '', 11);
+		$pdf->writeHTMLCell(105,0,185,100,$html, '', 0, 0, true, 'C', true);
+				
+		$html= '
+		<table border="1">
+			<tr>
+				<td><b>Búsqueda</b></td>
+				<td><b>Resultados</b></td>
+			</tr>
+			<tr>
+				<td align="left"> Empresa</td>
+				<td>'.$nombreempresa.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Fecha Inicial</td>
+				<td>'.$inicio.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Fecha Final</td>
+				<td>'.$fin.'</td>
+			</tr>
+		</table>';
+		
+		$pdf->SetFont('dejavusans', '', 11);
+		$pdf->writeHTMLCell(80,0,185,140,$html, '', 0, 0, true, 'C', true);
+		
+		/*$html = '';
+		
+		foreach($vision as $key => $caso)
+			$html .=$key.':'.$caso.'<br>';
+			
+		$pdf->writeHTMLCell(90,0,185,155,$html, '', 0, 0, true, 'C', true);*/
+		
+		$pdf->Output('estadisticaaudiometría.pdf', 'I');
+	}
+
+	public function aparatoAction($empresa, $inicio, $fin)
+	{
+		$em = $this->getDoctrine()->getEntityManager();
+		$pacientes = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaPacientes($empresa, $inicio, $fin);
+		$nombreempresa = $em->getRepository('ScontrolBundle:Gbempr')->find($empresa);
+		
+		$pdf = new \Tcpdf_Tcpdf('L', 'mm', 'A4', true, 'UTF-8', false);
+		$pdf->SetCreator(PDF_CREATOR);
+		$pdf->SetAuthor('Vimelab');
+		$pdf->SetTitle('REPORTE DE ESTADÍSTICA POR APARATO LOCOMOTOR');
+		$pdf->SetSubject('Estadística por aparato locomotor.');
+		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, '', '');
+		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+		$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+		$pdf->SetMargins(20, 38, 20);
+		$pdf->SetHeaderMargin(2);
+		$pdf->SetFooterMargin(15);
+		$pdf->SetAutoPageBreak(FALSE, 21);
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+		$pdf->setTabl(true);
+		$pdf->setMemoTitle("REPORTE DE ESTADÍSTICA POR APARATO LOCOMOTOR");
+		$pdf->AddPage();
+		
+		$aparatoarreglo = array();
+		$flag = -1;
+		
+		foreach ($pacientes as $caso)
+		{
+			if($caso->getMdpaci()->getId() != $flag)
+			{
+				$flag = $caso->getMdpaci()->getId();
+				$aparatoarreglo[$flag] = array();
+			}
+			
+			$diag = $em->getRepository('ScontrolBundle:Mddiag')->findByMdhist($caso->getId());
+			
+			foreach ($diag as $caso2)
+				$aparatoarreglo[$flag][] = $caso2->getMdpato()->getCodigo();
+		}
+		
+		$clases = array('Normal' => 0, 'Alteraciones' => 0, 'Sin exploración' => 0);
+		
+		foreach ($aparatoarreglo as $caso)
+		{
+			if (in_array('1000', $caso))
+				$clases['Normal'] += 1;
+			else if($this->rangoInArray(1719, 1723, $caso))
+				$clases['Alteraciones'] += 1;
+			else if (in_array('1780', $caso))
+				$clases['Sin exploración'] += 1;
+		}
+		
+		/*$html = '';
+		
+		foreach($clases as $k => $v)
+			$html .= $k.': '.$v.'<br>';
+		
+		$pdf->writeHTMLCell(90,0,185,155,$html, '', 0, 0, true, 'C', true);*/
+			
+			
+		$style1 = array('width' => 0.8, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0));
+		$style2 = array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 255, 0));
+		$style3 = array('width' => 10, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(255, 0, 0));
+		$style4 = array('width' => 10, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 255));
+		$border_style = array('all' => array('width' => 0.8, 'cap' => 'square', 'join' => 'miter', 'dash' => 0, 'phase' => 0));
+		
+		$aparato1 = $clases['Normal'];
+		$aparato2 = $clases['Alteraciones'];
+		$aparato3 = $clases['Sin exploración'];
+		
+		arsort($clases);
+		$max = max($clases);
+		$max = intval(($max + 10) /10.0) * 10;
+		
+		$postaparato1 = ((150 * $aparato1)/$max);
+		$postaparato2 = ((150 * $aparato2)/$max);
+		$postaparato3 = ((150 * $aparato3)/$max);
+
+
+		$par = $max / 20;
+		
+		for($i = 1; $i <= 20; $i++)
+		{
+			$pos = 193-(150*($par*$i))/$max;
+			$pdf->writeHTMLCell(20, 20, 20, $pos-2,'<div style="color: #000; text-align: rigth;"><b>'.$par*$i.'</b></div>');
+			$pdf->Line(40, $pos, 46, $pos, $style1);
+		}
+		
+		$pdf->Line(43, 38, 43, 193, $style1); // Eje Y
+		$pdf->Line(43, 193, 160, 193, $style1); // Eje X
+		
+		$pdf->Rect(55, 193-$postaparato1, 25, $postaparato1, 'DF', $border_style, $fill_color = array(100,0,0,0)); // Rectángulo aparato1
+		$pdf->Rect(85, 193-$postaparato2, 25, $postaparato2, 'DF', $border_style, $fill_color = array(0,57,54,20)); // Rectángulo aparato2
+		$pdf->Rect(115, 193-$postaparato3, 25, $postaparato3, 'DF', $border_style, $fill_color = array(0,3,91,22)); // Rectángulo aparato3
+		
+		$pdf->SetDrawColor(100, 0, 0, 0);
+		$pdf->SetFillColor(100, 0, 0, 0);
+		$pdf->Rect(186, 71, 2, 2, 'DF', $border_style);
+		
+		$pdf->SetDrawColor(0,57,54,20);
+		$pdf->SetFillColor(0,57,54,20);
+		$pdf->Rect(186, 75.5, 2, 2, 'DF', $border_style);
+		
+		$pdf->SetDrawColor(0,3,91,22);
+		$pdf->SetFillColor(0,3,91,22);
+		$pdf->Rect(186, 79.5, 2, 2, 'DF', $border_style);
+
+		
+		$html = '
+		<table>
+			<tr>
+				<td align="left">Normal</td>
+			</tr>
+			<tr>
+				<td align="left">Alteraciones</td>
+			</tr>
+			<tr>
+				<td align="left">Sin exploración</td>
+			</tr>
+		</table>';
+		$pdf->SetFont('dejavusans', '', 10);
+		$pdf->writeHTMLCell(55, 0, 190, 70, $html, '', 0, 0, true, 'C', true);
+		
+		$html= '
+		<table border="1">
+			<tr>
+				<td><b>Tipo</b></td>
+				<td><b>Total</b></td>
+			</tr>
+			<tr>
+				<td align="left"> Normal</td>
+				<td>'.$aparato1.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Alteraciones</td>
+				<td>'.$aparato2.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Sin exploración</td>
+				<td>'.$aparato3.'</td>
+			</tr>
+		</table>';
+		$pdf->SetFont('dejavusans', '', 11);
+		$pdf->writeHTMLCell(90,0,185,100,$html, '', 0, 0, true, 'C', true);
+				
+		$html= '
+		<table border="1">
+			<tr>
+				<td><b>Búsqueda</b></td>
+				<td><b>Resultados</b></td>
+			</tr>
+			<tr>
+				<td align="left"> Empresa</td>
+				<td>'.$nombreempresa.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Fecha Inicial</td>
+				<td>'.$inicio.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Fecha Final</td>
+				<td>'.$fin.'</td>
+			</tr>
+		</table>';
+		
+		$pdf->SetFont('dejavusans', '', 11);
+		$pdf->writeHTMLCell(90,0,185,130,$html, '', 0, 0, true, 'C', true);
+		
+		/*$html = '';
+		
+		foreach($vision as $key => $caso)
+			$html .=$key.':'.$caso.'<br>';
+			
+		$pdf->writeHTMLCell(90,0,185,155,$html, '', 0, 0, true, 'C', true);*/
+		
+		$pdf->Output('estadisticaaparatolocomotor.pdf', 'I');
+	}
 	
 	public function memoriaAction($empresa)
 	{

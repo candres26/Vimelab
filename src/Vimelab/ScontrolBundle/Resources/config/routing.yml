@@ -64,6 +64,14 @@ report_espirometria:
 report_vision:
     pattern:  /report/{empresa}/{inicio}/{fin}/vision
     defaults: { _controller: ScontrolBundle:Report:vision }
+#   Audiometría
+report_audio:
+    pattern:  /report/{empresa}/{inicio}/{fin}/audio
+    defaults: { _controller: ScontrolBundle:Report:audio }
+#   Aparato Locomotor
+report_aparato:
+    pattern:  /report/{empresa}/{inicio}/{fin}/aparato
+    defaults: { _controller: ScontrolBundle:Report:aparato }
 #
 #   DICTAMEN MEDICO
 #

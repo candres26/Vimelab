@@ -268,6 +268,40 @@ class MdhistRepository extends EntityRepository
 		return $resul;
 	}
 	
+	public function getConsultaAudio($empresa, $finicio, $ffinal)
+	{
+		$em = $this->getEntityManager();
+		
+		if ($empresa != '@')
+		
+			$querry = $em->createQuery("SELECT h FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p JOIN p.gbsucu s JOIN s.gbempr e WHERE p.id = h.mdpaci 
+			AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa' ORDER by p.id");
+		else
+			$querry = $em->createQuery("SELECT h FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p WHERE h.fecha >= '$finicio' AND h.fecha < '$ffinal' 
+			ORDER by p.id");
+		
+		$resul = $querry->getResult();
+		
+		return $resul;
+	}
+	
+	public function getConsultaPacientes($empresa, $finicio, $ffinal)
+	{
+		$em = $this->getEntityManager();
+		
+		if ($empresa != '@')
+		
+			$querry = $em->createQuery("SELECT h FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p JOIN p.gbsucu s JOIN s.gbempr e WHERE p.id = h.mdpaci 
+			AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa' ORDER by p.id");
+		else
+			$querry = $em->createQuery("SELECT h FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p WHERE h.fecha >= '$finicio' AND h.fecha < '$ffinal' 
+			ORDER by p.id");
+		
+		$resul = $querry->getResult();
+		
+		return $resul;
+	}
+	
 	public function getConsultaDictamen($empresa, $finicio, $ffinal)
     {
     	$em = $this->getEntityManager();
