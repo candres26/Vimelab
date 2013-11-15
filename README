@@ -285,3 +285,5 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 ! Revisar campos de contratos (Revisión) es char(1), deberia ser un de selección.
 ! En los formularios que tienen 2 columnas Ej: Nuevo Paciente usar <table class="vime-colum1"> y <table class="vime-colum2"> para mejorar la respuesta a cambios de tamaño.
 ! Se ha cambiado el tamaño de letra, ancho y poscición (Centrado arriba) del popup, resulta mas comodo en los asistentes.
+
+! AGREGADO SISTEMA ESTATICO PARA CADUCAR SESIÓN TRAS 10 MINUTOS DE INACTIVIDAD
