@@ -265,7 +265,9 @@ No se incluye este archivo ya que cada uno tiene datos de conexion diferente.
 * MdVisu/Show Corregido
 
 # --- CAMBIOS EN PROGRESO --- #
-
++ Reporte de alteraciones analiticas por codigo
+	* Algoritmo de busqueda y clasificacion de datos
+	! Crear tabla y graficas
 
 # --- CAMBIOS PENDIENTES --- #
  

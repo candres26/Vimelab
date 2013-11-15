@@ -66,7 +66,12 @@ report_vision:
 report_dictamen:
     pattern:  /report/{empresa}/{inicio}/{fin}/dictamen/{lv}
     defaults: { _controller: ScontrolBundle:Report:dictamen, lv: 1}
-
+#
+#   Alteraciones Analiticas
+report_anali:
+    pattern:  /report/{empresa}/{inicio}/{fin}/anali
+    defaults: { _controller: ScontrolBundle:Report:analitica }
+#   Memoria
 report_memoria:
     pattern:  /report/{empresa}/memoria
     defaults: { _controller: ScontrolBundle:Report:memoria }

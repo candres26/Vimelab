@@ -1613,7 +1613,90 @@ class ReportController extends Controller
 		
 		$pdf->Output('memoriaporempresa.pdf', 'I');
 	}
-
+    
+    public function analiticaAction($empresa, $inicio, $fin)
+	{
+		$em = $this->getDoctrine()->getEntityManager();
+		$hist = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaDictamen($empresa, $inicio, $fin);
+		$nombreempresa = $em->getRepository('ScontrolBundle:Gbempr')->find($empresa);
+		
+		$pdf = new \Tcpdf_Tcpdf('L', 'mm', 'A4', true, 'UTF-8', false);
+		$pdf->SetCreator(PDF_CREATOR);
+		$pdf->SetAuthor('Vimelab');
+		$pdf->SetTitle('REPORTE DE ESTADÍSTICA DE ALTERACIONES ANÁLITICAS');
+		$pdf->SetSubject('Estadística de alteraciones analiticas.');
+		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, '', '');
+		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+		$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+		$pdf->SetMargins(20, 38, 20);
+		$pdf->SetHeaderMargin(2);
+		$pdf->SetFooterMargin(15);
+		$pdf->SetAutoPageBreak(FALSE, 21);
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+		$pdf->setTabl(true);
+		$pdf->setMemoTitle("REPORTE DE ESTADÍSTICA DE ALTERACIONES ANÁLITICAS");
+		$pdf->AddPage();
+		
+        $marcas = array();
+        $marcas["Alteraciones Hematológicas"] = array("1201", "1202", "1203", "1206", "1214", "1240", "1246", "1275");
+        $marcas["Alteraciones Hepáticas"] = array("1215", "1216", "1217", "1218", "1223", "1224", "1248");
+        $marcas["Dislipemias"] = array("1210", "1211", "1212", "1270", "1271");
+        $marcas["Glucosa"] = array("1208", "1220", "1221");
+        $marcas["Normal"] = array("1200");
+        
+        $valores = array("Alteraciones Hematológicas" => 0, "Alteraciones Hepáticas" => 0, "Dislipemias" => 0, "Glucosa" => 0, "Normal" => 0, "No Evaluada" => 0);
+        
+        foreach($hist as $caso)
+        {
+            $diags = $em->getRepository('ScontrolBundle:Mddiag')->findByMdhist($caso->getId());
+            $codes = array();
+            
+            foreach($diags as $uni)
+                $codes[] = $uni->getMdpato()->getCodigo();
+            
+            $noev = true;
+            
+            if( $this->arrayVerify($codes, $marcas["Alteraciones Hematológicas"]) )
+            {
+                $valores["Alteraciones Hematológicas"] += 1;
+                $noev = false;
+            }
+            
+            if( $this->arrayVerify($codes, $marcas["Alteraciones Hepáticas"]) )
+            {
+                $valores["Alteraciones Hepáticas"] += 1;
+                $noev = false;
+            }
+            
+            if( $this->arrayVerify($codes, $marcas["Dislipemias"]) )
+            {
+                $valores["Dislipemias"] += 1;
+                $noev = false;
+            }
+            
+            if( $this->arrayVerify($codes, $marcas["Glucosa"]) )
+            {
+                $valores["Glucosa"] += 1;
+                $noev = false;
+            }
+            
+            if( $this->arrayVerify($codes, $marcas["Normal"]) )
+            {
+                $valores["Normal"] += 1;
+                $noev = false;
+            }
+            
+            if($noev)
+                $valores["No Evaluada"] += 1;
+        }
+		
+        foreach($valores as $k => $v)
+            $pdf->autoCell(0, 0, 20, $pdf->GetY(), $k.": ".$v, 0, 2, false, true, 'C', true, 20);
+        
+		$pdf->Output('estadistica_alt_analitica.pdf', 'I');
+	}
+    
 	public function dictamenAction($empresa, $inicio, $fin, $lv)
 	{
 		$em = $this->getDoctrine()->getEntityManager();
@@ -1731,4 +1814,19 @@ class ReportController extends Controller
 		$pdf->Ln();
 		$pdf->autoCell(0, 0, 20, $pdf->GetY(), $html, 0, 2, false, true, 'C', true, 0);
 	}
+    
+    function arrayVerify($vals, $opts)
+    {
+        $flag = false;
+        foreach($vals as $v)
+        {
+            if( in_array($v, $opts) )
+            {
+                $flag = true;
+                break;
+            }
+        }
+        
+        return $flag;
+    }
 }
