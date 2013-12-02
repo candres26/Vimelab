@@ -3166,7 +3166,6 @@ class ReportController extends Controller
 		$pdf->Ln();
 		$pdf->autoCell(0, 0, 20, $pdf->GetY(), $html, 0, 2, false, true, 'C', true, 0);
 	}
-<<<<<<< HEAD
 	
 	private function rangoInArray($ini, $fin, $arr)
 	{
@@ -3183,8 +3182,6 @@ class ReportController extends Controller
 		
 		return $flag;
 	}
-	
-=======
     
     function arrayVerify($vals, $opts)
     {
@@ -3200,5 +3197,4 @@ class ReportController extends Controller
         
         return $flag;
     }
->>>>>>> e8261e75f5727bb3cd5a0a2135f8625c55fdc7ae
 }

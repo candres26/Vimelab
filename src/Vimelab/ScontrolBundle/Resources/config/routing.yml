@@ -72,6 +72,10 @@ report_audio:
 report_aparato:
     pattern:  /report/{empresa}/{inicio}/{fin}/aparato
     defaults: { _controller: ScontrolBundle:Report:aparato }
+#   Alteraciones Analiticas
+report_anali:
+    pattern:  /report/{empresa}/{inicio}/{fin}/anali
+    defaults: { _controller: ScontrolBundle:Report:analitica }
 #
 #   DICTAMEN MEDICO
 #
@@ -79,7 +83,6 @@ report_dictamen:
     pattern:  /report/{empresa}/{inicio}/{fin}/dictamen/{lv}
     defaults: { _controller: ScontrolBundle:Report:dictamen, lv: 1}
 #
-<<<<<<< HEAD
 #   Riesgos
 #
 report_riesgos:
@@ -88,14 +91,6 @@ report_riesgos:
 #
 #   Memoria
 #
-
-=======
-#   Alteraciones Analiticas
-report_anali:
-    pattern:  /report/{empresa}/{inicio}/{fin}/anali
-    defaults: { _controller: ScontrolBundle:Report:analitica }
-#   Memoria
->>>>>>> e8261e75f5727bb3cd5a0a2135f8625c55fdc7ae
 report_memoria:
     pattern:  /report/{empresa}/{inicio}/{fin}/memoria
     defaults: { _controller: ScontrolBundle:Report:memoria }
