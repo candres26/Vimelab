@@ -6,6 +6,8 @@
 
 <h2 align="left">Descripción de Presupuesto</h2>
 
+<iframe src="{{ path('ctcoti_show', { 'id': entity.id, 'lv': 2 }) }}" width="80%" height="110%"><!-- Internal --></iframe><br>
+<!--
 <table class="vime-table-des" align="center">
     <tbody>
         <tr>
@@ -54,7 +56,7 @@
         </tr>
     </tbody>
 </table>
-
+-->
 	<form id="vime-form" action="{{ path('ctcoti_delete', { 'id': entity.id }) }}" method="post">
 		{{ form_widget(delete_form) }}
 	</form>

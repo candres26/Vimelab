@@ -78,9 +78,18 @@ report_aparato:
 report_dictamen:
     pattern:  /report/{empresa}/{inicio}/{fin}/dictamen/{lv}
     defaults: { _controller: ScontrolBundle:Report:dictamen, lv: 1}
+#
+#   Riesgos
+#
+report_riesgos:
+    pattern:  /report/{empresa}/{inicio}/{fin}/riesgos
+    defaults: { _controller: ScontrolBundle:Report:riesgos }
+#
+#   Memoria
+#
 
 report_memoria:
-    pattern:  /report/{empresa}/memoria
+    pattern:  /report/{empresa}/{inicio}/{fin}/memoria
     defaults: { _controller: ScontrolBundle:Report:memoria }
 
 ######################################################
@@ -124,8 +133,8 @@ ctcoti_pag:
     pattern:  /ctcoti/{pag}/pag
     defaults: { _controller: ScontrolBundle:Ctcoti:index, pag: 1 }
 ctcoti_show:
-    pattern:  /ctcoti/{id}/show
-    defaults: { _controller: ScontrolBundle:Ctcoti:show }
+    pattern:  /ctcoti/{id}/show/{lv}
+    defaults: { _controller: ScontrolBundle:Ctcoti:show, lv: 1 }
 ctcoti_new:
     pattern:  /ctcoti/new
     defaults: { _controller: ScontrolBundle:Ctcoti:new }

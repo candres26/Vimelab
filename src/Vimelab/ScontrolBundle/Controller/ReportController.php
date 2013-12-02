@@ -1442,7 +1442,7 @@ class ReportController extends Controller
 	public function espirometriaAction($empresa, $inicio, $fin)
 	{
 		$em = $this->getDoctrine()->getEntityManager();
-		$espi = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaEspirometria($empresa, $inicio, $fin);
+		$espi = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaPacientes($empresa, $inicio, $fin);
 		$nombreempresa = $em->getRepository('ScontrolBundle:Gbempr')->find($empresa);
 		
 		$pdf = new \Tcpdf_Tcpdf('L', 'mm', 'A4', true, 'UTF-8', false);
@@ -1622,7 +1622,7 @@ class ReportController extends Controller
 	public function visionAction($empresa, $inicio, $fin)
 	{
 		$em = $this->getDoctrine()->getEntityManager();
-		$vision = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaVisual($empresa, $inicio, $fin);
+		$vision = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaPacientes($empresa, $inicio, $fin);
 		$nombreempresa = $em->getRepository('ScontrolBundle:Gbempr')->find($empresa);
 		
 		$pdf = new \Tcpdf_Tcpdf('L', 'mm', 'A4', true, 'UTF-8', false);
@@ -1801,7 +1801,7 @@ class ReportController extends Controller
 	public function audioAction($empresa, $inicio, $fin)
 	{
 		$em = $this->getDoctrine()->getEntityManager();
-		$audiometria = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaAudio($empresa, $inicio, $fin);
+		$audiometria = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaPacientes($empresa, $inicio, $fin);
 		$nombreempresa = $em->getRepository('ScontrolBundle:Gbempr')->find($empresa);
 		
 		$pdf = new \Tcpdf_Tcpdf('L', 'mm', 'A4', true, 'UTF-8', false);
@@ -2188,10 +2188,26 @@ class ReportController extends Controller
 		$pdf->Output('estadisticaaparatolocomotor.pdf', 'I');
 	}
 	
-	public function memoriaAction($empresa)
+	public function memoriaAction($empresa, $inicio, $fin)
 	{
 		$em = $this->getDoctrine()->getEntityManager();
-		$datosempresa = $em->getRepository('ScontrolBundle:Gbempr')->getEmpresa($empresa);
+		$datosempresa = $em->getRepository('ScontrolBundle:Gbempr');
+		$sucu = $em->getRepository('ScontrolBundle:Gbsucu')->find($empresa);
+		$ciud = $sucu->getGbciud();
+		$ries = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaPacientes($empresa, $inicio, $fin);
+		$casos = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaDictamen($empresa, $inicio, $fin);
+		$imchombres = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaImcHombres($empresa, $inicio, $fin);
+		$imcmujeres = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaImcMujeres($empresa, $inicio, $fin);
+		$consulsexoedad = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaSexoEdad($empresa, $inicio, $fin);
+		$fumadores = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaFumadores($empresa, $inicio, $fin);
+		$presionarte = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaPresion($empresa, $inicio, $fin);
+		$espi = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaPacientes($empresa, $inicio, $fin);
+		$vision = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaPacientes($empresa, $inicio, $fin);
+		$audiometria = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaPacientes($empresa, $inicio, $fin);
+		$pacientes = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaPacientes($empresa, $inicio, $fin);
+		$nombreempresa = $em->getRepository('ScontrolBundle:Gbempr')->find($empresa);
+		
+		$meses = array('Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
 		
 		$pdf = new \Tcpdf_Tcpdf(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 		// set document information
@@ -2223,13 +2239,660 @@ class ReportController extends Controller
 		//set image scale factor
 		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 		$pdf->AddPage();
-		 
+		
 		$html = 
 		'
-		<h4>EMPRESA:'.$datosempresa[0].'</h4>
-		<p>NIF: B-60564077</p>
+		<p style="font-size: 1.5em"><b>EMPRESA:</b> '.$datosempresa->find($empresa)->getNombre().'<br>
+		<b>NIF:</b>'.$datosempresa->find($empresa)->getIdentificacion().'</p>
+		<p>MEMORIA AÑO '.date('Y').'</p>
+		<p>Periodo estudiado: '.$inicio.' '.$fin.'</p>
+		<p>Fecha de realización: '.$meses[intval(date('m'))-1].' '.date('Y').'</p>
+		<p><b>UNIDAD BASICA DE SALUD</b>
+		<p>Dr. Ildefonso Tristán Burguesa <br>
+		Especialista en Medicina del Trabajo</p>
+        <p>Sra .Eva Real Real<br>
+		Diplomada Universitaria en Enfermería de Empresa</p>
 		';
-		$pdf->SetFont('dejavusans', '', 10);
+		$pdf->SetFont('dejavusans', '', 12);
+		$pdf -> writeHTMLCell(170, 0, 20, 45, $html, 0, 0, 0, true, 'J', true);
+		$pdf->AddPage();
+		$html = 
+		'
+		<table border="1">
+		  <thead>
+			<tr>
+			  <th width="80%" style="font-size: 1.7em; border-top: none"><b>Sumario</b></th>
+			  <th width="20%"></th>
+			</tr>
+		  </thead>
+		  <tbody>
+			<tr>
+				<td width="80%"></td>
+				<td width="20%"></td>
+			</tr>
+			<tr>
+			  <td>1. Marco Legal</td>
+			  <td style="text-align: center">pag #</td>
+			</tr>
+			<tr>
+			  <td>2. Presentación de la empresa</td>
+			  <td style="text-align: center">pag #</td>
+			</tr>
+			<tr>
+			  <td>3. Reconocimientos médicos laborales</td>
+			  <td style="text-align: center">pag #</td>
+			</tr>
+			<tr>
+			  <td>4. Resultados</td>
+			  <td style="text-align: center">pag #</td>
+			</tr>
+			<tr>
+			  <td>5. Principales conclusiones</td>
+			  <td style="text-align: center">pag #</td>
+			</tr>
+			<tr>
+			  <td>6. Formación</td>
+			  <td style="text-align: center">pag #</td>
+			</tr>
+			<tr>
+			  <td>7. Información y asesoramiento</td>
+			  <td style="text-align: center">pag #</td>
+			</tr>
+			<tr>
+			  <td>8. Estadística</td>
+			  <td style="text-align: center">pag #</td>
+			</tr>
+		  </tbody>
+		</table>
+		';
+		$pdf->SetFont('dejavusans', '', 12);
+		$pdf -> writeHTMLCell(170, 0, 20, 45, $html, 0, 0, 0, true, 'J', true);
+		$pdf->AddPage();
+		$html = '
+		<h3>1. Marco Legal</h3>
+
+		<p>Según el Reglamento de los Servicios de Prevención, la elaboración de una Memoria anual, además de constituir una importante herramienta 
+		técnica para la prevención de riesgos laborales, constituye una exigencia legal. Así, en el artículo 20 apartado 2 de dicha ley, se señala que:</p>
+			
+		<p>Las entidades especializadas que actúen como servicios de prevención.... deberán facilitar a las empresas para las que actúan como servicio 
+		de prevención la memoria y la programación anual a las que se refiere el apartado 2 d) del artículo 39 de la Ley de Prevención de Riesgos Laborales, 
+		afín de que pueda ser conocida por el comité de Seguridad y Salud en los términos previstos en el artículo citado.</p>
+
+		<p>El artículo 39 de la Ley de Prevención de Riesgos Laborales, en su apartado 2 d) establece que:</p>
+
+		<p>En el ejercicio de sus competencias, el Comité de Seguridad y Salud estará facultado para:
+		d) Conocer e informar la memoria y programación anual de servicios de prevención.</p>
+
+		<p>Este documento constituye la Memoria de actividades de Vigilancia de la Salud.</p>
+		';
+		$pdf->SetFont('dejavusans', '', 12);
+		$pdf -> writeHTMLCell(170, 0, 20, 45, $html, 0, 0, 0, true, 'J', true);
+		$pdf->AddPage();
+		$html = '
+		<h3>2. Presentación de la empresa</h3>
+
+		<p><b>EMPRESA:</b> '.$datosempresa->find($empresa)->getNombre().', es una empresa cuyo domicilio social se encuentra ubicado  en '. $ciud->getNombre() .' .</p>
+		
+		<p><b>Domicilio Social:</b> '. $sucu->getDireccion() .' S/N C.P.: '. $ciud->getCodigo() .'</p>
+		<p><b>Actividad principal:</b> '. $datosempresa->find($empresa)->getGbcnae() .'.</p>
+		<p><b>Nº trabajadores:</b> Son un total de 192 trabajadores  en  5 centros de trabajo.</p>
+		';
+		$pdf->SetFont('dejavusans', '', 12);
+		$pdf -> writeHTMLCell(170, 0, 20, 45, $html, 0, 0, 0, true, 'J', true);
+		$pdf->AddPage();
+		$html = '
+		<!-- <h3>3. Reconocimientos Médicos Laborales</h3>
+
+		<h4>Introducción:</h4>
+		 
+		<p>La obligatoriedad y necesidad de reconocimientos médicos laborales está recogida en diversas disposiciones legales.</p>
+
+		<ul>
+			<li>
+			<strong>Ley de Prevención de Riesgos Laborales:</strong>
+				<blockquote>
+				<p>Artículo 14:</p>	
+				<p style="text-align: justify">Los derechos de información, consulta y participación, formación en materia preventiva, paralización de la actividad en 
+				caso de riesgo grave e inminente y vigilancia de su estado de salud, en los términos previstos en la presente Ley, forman parte 
+				del derecho de los trabajadores a una protección eficaz en materia de seguridad y salud en el trabajo.</p>
+				</blockquote>
+			</li>
+			<li>
+			<strong>Vigilancia de la salud:</strong>
+				<blockquote>
+				<p>Artículo 22:</p>
+				<p>El empresario garantizará a los trabajadores a su servicio la vigilancia periódica de su estado de salud en función de los 
+				riesgos inherentes al trabajo.</p>
+				</blockquote>
+			</li>
+			<li>
+			<strong>Reglamento de los Servicios de Prevención:</strong>
+				<blockquote>
+				<p>Artículo 37.3:</p>	
+				<p style="text-align: justify">Las funciones de vigilancia y control de la salud de los trabajadores serán desempeñadas por personal sanitario con competencia 
+				técnica, formación y capacidad acreditada con arreglo a la normativa vigente y a lo establecido en los párrafos siguientes:</p>
+				<ol type="a">
+					<li> .../...</li>
+					<li style="text-align: justify">En materia de vigilancia de la salud, la actividad sanitaria deberá abarcar, en las condiciones fijadas por el artículo 22 de la Ley 31/1995, de prevención de riesgos laborales:</li>
+					<br>
+						<ol>
+							<li style="text-align: justify">Una evaluación de la salud de los trabajadores inicial, después de la incorporación al trabajo o después de la asignación de 
+							tareas específicas con nuevos riesgos para la salud.</li>
+							<br>
+							<li style="text-align: justify">Una evaluación de la salud de los trabajadores que reanuden el trabajo tras una ausencia prolongada por motivos de salud, con 
+							la finalidad de descubrir sus eventuales orígenes profesionales y recomendar una acción apropiada para proteger a los trabajadores.</li>
+							<br>
+							<li style="text-align: justify">Una vigilancia de la salud a intervalos periódicos.</li>
+						</ol>
+					<br>	
+					<li style="text-align: justify">La vigilancia de la salud estará protegida  protocolos específicos u otros medios existentes con respecto a los factores de riesgo a los que esté expuesto el trabajador.</li>
+				</ol>
+			</blockquote>
+			</li>
+		</ul>
+
+		Los reconocimientos médicos constituyen un conjunto de acciones orientadas a evaluar el estado de salud de un trabajador y resultan indispensables para cumplir el precepto legal de vigilancia de la salud por parte del empresario hacia sus trabajadores. El contenido de estos reconocimientos debe adaptarse a la prevención y detección de riesgos y patologías relacionadas con cada actividad laboral concreta.
+
+		La información obtenida permite mejorar las condiciones de seguridad y salud de los trabajadores, reduce riesgos al proporcionar la información necesaria para cumplir el principio general de adaptar el trabajo a las personas y contribuye de manera significativa en la mejora de la productividad de la empresa. 
+		
+		<h4>4. Resultados</h4>
+		
+		<p><strong>4.1 Número total de reconocimientos efectuados: [155]</strong></p>
+		
+		<p>Riesgos laborales declarados</p>
+		-->
+		';
+		$pdf->SetFont('dejavusans', '', 12);
+		$pdf -> writeHTMLCell(170, 0, 20, 45,$html, 0, 0, 0, true, 'J', true);
+		
+		$boxes = array();
+		$dboxes = array();
+		
+		$total = count($ries);
+		
+		foreach($ries as $caso)
+		{
+			$ptra = $caso->getMdpaci()->getGbptra();
+			$procs = $em->getRepository('ScontrolBundle:Mdproc')->findByGbptra($ptra->getId());			
+			
+			foreach($procs as $uni)
+			{
+				$prot = $uni->getMdprot();
+				
+				if(isset($boxes[$prot->getCodigo()]))
+					$boxes[$prot->getCodigo()] += 1;
+				else
+					$boxes[$prot->getCodigo()] = 1;
+					
+				if(!isset($dboxes[$prot->getCodigo()]))
+					$dboxes[$prot->getCodigo()] = $prot->getNombre();
+			}
+			
+		}			
+				
+		$row = '<table border="1">';
+		$row .= '<tr style="background-color: #BFBFBF"; font-size: 2em><td>Código</td><td>Descripción</td><td>Cantidad de Casos</td><td>% Total Explorados</td></tr>';
+		foreach($boxes as $key => $val)
+		{
+			$row .= '<tr>';
+			$row .= '<td>'.$key.'</td>';
+			$row .= '<td>'.$dboxes[$key].'</td>';
+			$row .= '<td>'.$val.'</td>';
+			$row .= '<td>'.round((($val/$total)*100),2)." %".'</td>';
+			$row .= '</tr>';
+			//$pdf->autoCell(0, 0, 20, $pdf->GetY(), $key." ".$dboxes[$key]." ".$val." ".round((($val/$total)*100),2)."%", 0, 2, false, true, 'C', true, 0);
+		}
+		$row .= '</table>';
+
+		$pdf->autoCell(0, 0, 20, $pdf->GetY(), $row, 0, 2, false, true, 'C', true, 10);
+		
+		$html = '<br/>';
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'C', true, 10);
+		
+		$row = '<table border="1">';
+		$row .= '<tr style="background-color: #BFBFBF"; font-size: 2em><td>Calificación</td><td>Número</td></tr>';			
+		
+		$apto = 0;
+		$noapto = 0;
+		$nocalificado = 0;
+		$aptoconlimitaciones = 0;
+		
+		foreach($casos as $caso)
+		{
+			
+			if($caso->getDictamen() == 0)
+			{
+				$nocalificado++;
+			}elseif($caso->getDictamen() == 1){
+				$apto++;
+			}elseif($caso->getDictamen() == 2){
+				$noapto++;
+			}else{
+				$aptoconlimitaciones++;
+				
+			}
+		}
+		$totalvalores = $apto + $noapto + $aptoconlimitaciones + $nocalificado;
+		$row .= '<tr><td style="text-align: left; font-style: bold">Apto</td><td>'.$apto.'</td></tr>';
+		$row .= '<tr><td style="text-align: left">No Apto</td><td>'.$noapto.'</td></tr>';
+		$row .= '<tr><td style="text-align: left">Apto con limitaciones</td><td>'.$aptoconlimitaciones.'</td></tr>';
+		$row .= '<tr><td style="text-align: left">No calificado</td><td>'.$nocalificado.'</td></tr>';
+		$row .= '<tr><td>Total</td><td>'.$totalvalores.'</td></tr>';
+		$row .= '</table>';
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 10);
+		
+		/*$html = '
+		<p>Los casos no calificados se corresponden con reconocimientos incompletos, o denegación  
+		del consentimiento para la realización del reconocimiento médico o la no asistencia por 
+		parte del trabajador que no permiten asignar una calificación de aptitud para el trabajo.</p>
+		';
+		$pdf->writeHTMLCell(170, 0, 20, 45,$html, 0, 0, 0, true, 'J', true);*/
+
+		$html = '<br/>';
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'C', true, 10);
+		$row = '<table border="1">';
+		//foreach($consulsexoedad['0-16'] as $casosex)
+		//{
+			$row .= '<tr><td colspan="5">Resumen por edades y sexo</td></tr>';
+			$row .= '<tr style="background-color: #BFBFBF"><td>Rangos</td><td>Hembras</td><td>%</td><td>Varones</td><td>%</td></tr>';
+			$row .= '<tr><td>menos de 16 años</td><td>'.$valsem1 = $consulsexoedad[0]['0-16'].'</td><td>'.$porcen1 = round((($consulsexoedad[0]['0-16']/$total)*100),2).' %</td><td>'.$valseh1 = $consulsexoedad[1]['0-16'].'</td><td>'.$porcen8 = round((($consulsexoedad[1]['0-16']/$total)*100),2).' %</td></tr>';
+			$row .= '<tr><td>de 17 a 20 años</td><td>'.$valsem2 = $consulsexoedad[0]['17-20'].'</td><td>'.$porcen2 = round((($consulsexoedad[0]['17-20']/$total)*100),2).' %</td><td>'.$valseh2 = $consulsexoedad[1]['17-20'].'</td><td>'.$porcen9 = round((($consulsexoedad[1]['17-20']/$total)*100),2).' %</td></tr>';
+			$row .= '<tr><td>de 21 a 35 años</td><td>'.$valsem3 = $consulsexoedad[0]['21-35'].'</td><td>'.$porcen3 = round((($consulsexoedad[0]['21-35']/$total)*100),2).' %</td><td>'.$valseh3 = $consulsexoedad[1]['21-35'].'</td><td>'.$porcen10 = round((($consulsexoedad[1]['21-35']/$total)*100),2).' %</td></tr>';
+			$row .= '<tr><td>de 36 a 45 años</td><td>'.$valsem4 = $consulsexoedad[0]['36-45'].'</td><td>'.$porcen4 = round((($consulsexoedad[0]['36-45']/$total)*100),2).' %</td><td>'.$valseh4 = $consulsexoedad[1]['36-45'].'</td><td>'.$porcen11 = round((($consulsexoedad[1]['36-45']/$total)*100),2).' %</td></tr>';
+			$row .= '<tr><td>de 46 a 55 años</td><td>'.$valsem5 = $consulsexoedad[0]['46-55'].'</td><td>'.$porcen5 = round((($consulsexoedad[0]['46-55']/$total)*100),2).' %</td><td>'.$valseh5 = $consulsexoedad[1]['46-55'].'</td><td>'.$porcen12 = round((($consulsexoedad[1]['46-55']/$total)*100),2).' %</td></tr>';
+			$row .= '<tr><td>de 56 a 65 años</td><td>'.$valsem6 = $consulsexoedad[0]['56-65'].'</td><td>'.$porcen6 = round((($consulsexoedad[0]['56-65']/$total)*100),2).' %</td><td>'.$valseh6 = $consulsexoedad[1]['56-65'].'</td><td>'.$porcen13 = round((($consulsexoedad[1]['56-65']/$total)*100),2).' %</td></tr>';
+			$row .= '<tr><td>más de 65 años</td><td>'.$valsem7 = $consulsexoedad[0]['66-200'].'</td><td>'.$porcen7 = round((($consulsexoedad[0]['66-200']/$total)*100),2).' %</td><td>'.$valseh7 = $consulsexoedad[1]['66-200'].'</td><td>'.$porcen14 = round((($consulsexoedad[1]['66-200']/$total)*100),2).' %</td></tr>';
+			$row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$total1 = $valsem1 + $valsem2 + $valsem3 + $valsem4 + $valsem5 + $valsem6 + $valsem7 .'</td><td>'.$totalporc1 = $porcen1 + $porcen2 + $porcen3 + $porcen4 + $porcen5 + $porcen6 + $porcen7.' %</td><td>'.$total2 = $valseh1 + $valseh2 + $valseh3 + $valseh4 + $valseh5 + $valseh6 + $valseh7.'</td><td>'.$totalporc2 = $porcen8 + $porcen9 + $porcen10 + $porcen11 + $porcen12 + $porcen13 + $porcen14.' %</td></tr>';
+		//}
+		//$row .= '<tr style="bakground-color: #BFBFBF"><td>Rangos</td><td>Varones</td><td>%</td><td>Hembras</td><td>%</td></tr>';
+		
+		$row .= '</table>';
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 10);
+		
+		$html = '<br/>';
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'C', true, 10);
+		$row = '<table border="1">';
+		$row .= '<tr><td colspan="5">Resumen masa corporal por sexos</td></tr>';
+		$row .= '<tr style="background-color: #BFBFBF"><td>Peso</td><td>Hembras</td><td>%</td><td>Varones</td><td>%</td></tr>';
+		$row .= '<tr><td>Delgadez</td><td>'.$valimcm1 = $imcmujeres['Delgadez'].'</td><td>'.$porcimcm1 = round((($imcmujeres['Delgadez']/$total)*100),2).' %</td><td>'.$valimch1 = $imchombres['Delgadez'].'</td><td>'.$porcimch1 = round((($imchombres['Delgadez']/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Peso Normal</td><td>'.$valimcm2 = $imcmujeres['Peso Normal'].'</td><td>'.$porcimcm2 = round((($imcmujeres['Peso Normal']/$total)*100),2).' %</td><td>'.$valimch2 = $imchombres['Peso Normal'].'</td><td>'.$porcimch2 = round((($imchombres['Peso Normal']/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Sobrepeso</td><td>'.$valimcm3 = $imcmujeres['Sobrepeso'].'</td><td>'.$porcimcm3 = round((($imcmujeres['Sobrepeso']/$total)*100),2).' %</td><td>'.$valimch3 = $imchombres['Sobrepeso'].'</td><td>'.$porcimch3 = round((($imchombres['Sobrepeso']/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Obesidad</td><td>'.$valimcm4 = $imcmujeres['Obesidad'].'</td><td>'.$porcimcm4 = round((($imcmujeres['Obesidad']/$total)*100),2).' %</td><td>'.$valimch4 = $imchombres['Obesidad'].'</td><td>'.$porcimch4 = round((($imchombres['Obesidad']/$total)*100),2).' %</td></tr>';
+		$row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$totalimcm = $valimcm1 + $valimcm2 + $valimcm3 + $valimcm4.'</td><td>'.$totalporcimcm = $porcimcm1 + $porcimcm2 + $porcimcm3 + $porcimcm4.' %</td><td>'.$totalimch = $valimch1 + $valimch2 + $valimch3 + $valimch4.'</td><td>'.$totalporcimch = $porcimch1 + $porcimch2 + $porcimch3 + $porcimch4.' %</td></tr>';
+		$row .= '</table>';
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 10);
+		
+		$rango1 = $fumadores['No fumador'];
+		$rango2 = $fumadores['Ex fumador'];
+		$rango3 = $fumadores['Fumador esporádico'];
+		$rango4 = $fumadores['de 0 a 5 cigarrillos'];
+		$rango5 = $fumadores['de 6 a 10 cigarrillos'];
+		$rango6 = $fumadores['de 11 a 20 cigarrillos'];
+		$rango7 = $fumadores['de 21 a 40 cigarrillos'];
+		$rango8 = $fumadores['Más de 40 cigarrillos'];
+		$rango9 = $fumadores['Otros(Pipa, Otros ...)'];
+		
+		$html = '<br/>';
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'C', true, 10);
+		$row = '<table border="1">';
+		$row .= '<tr><td colspan="3">Tabaquismo</td></tr>';
+		$row .= '<tr style="background-color: #BFBFBF"><td>Consumo</td><td>Personas</td><td>%</td></tr>';
+		$row .= '<tr><td>No fumador</td><td>'.$rango1.'</td><td>'.$porfum1 = round((($rango1/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Ex fumador</td><td>'.$rango2.'</td><td>'.$porfum2 = round((($rango2/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Fumador esporádico</td><td>'.$rango3.'</td><td>'.$porfum3 = round((($rango3/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>de 0 a 5 cigarillos</td><td>'.$rango4.'</td><td>'.$porfum4 = round((($rango4/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>de 6 a 10 cigarillos</td><td>'.$rango5.'</td><td>'.$porfum5 = round((($rango5/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>de 11 a 20 cigarillos</td><td>'.$rango6.'</td><td>'.$porfum6 = round((($rango6/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>de 21 a 40 cigarillos</td><td>'.$rango7.'</td><td>'.$porfum7 = round((($rango7/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Más de 40 cigarillos</td><td>'.$rango8.'</td><td>'.$porfum8 = round((($rango8/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Otros(Pipa, Otros ...)</td><td>'.$rango9.'</td><td>'.$porfum9 = round((($rango9/$total)*100),2).' %</td></tr>';
+		$row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$totalfum = $rango1 + $rango2 + $rango3 + $rango4 + $rango5 + $rango6 + $rango7 + $rango8 + $rango9.'</td><td>'.$totalporcfum = $porfum1 + $porfum2 + $porfum3 + $porfum4 + $porfum5 + $porfum6 + $porfum7 + $porfum8 + $porfum9.' %</td></tr>';
+		$row .= '</table>';
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 10);
+		
+		$presion1 = $presionarte['Óptima'];
+		$presion2 = $presionarte['Normal'];
+		$presion3 = $presionarte['Normal alta'];
+		$presion4 = $presionarte['Hipertensión grado 1'];
+		$presion5 = $presionarte['Hipertensión grado 2'];
+		$presion6 = $presionarte['Hipertensión grado 3'];
+		$presion7 = $presionarte['Hipertensión no identificada'];
+		
+		$html = '<br/>';
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'C', true, 10);
+		$row = '<table border="1">';
+		$row .= '<tr><td colspan="3">Presión Arterial</td></tr>';
+		$row .= '<tr style="background-color: #BFBFBF"><td>Tipo</td><td>Personas</td><td>%</td></tr>';
+		$row .= '<tr><td>Óptima</td><td>'.$presion1.'</td><td>'.$porpre1 = round((($presion1/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Normal</td><td>'.$presion2.'</td><td>'.$porpre2 = round((($presion2/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Normal alta</td><td>'.$presion3.'</td><td>'.$porpre3 = round((($presion3/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Hipertensión grado 1</td><td>'.$presion4.'</td><td>'.$porpre4 = round((($presion4/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Hipertensión grado 2</td><td>'.$presion5.'</td><td>'.$porpre5 = round((($presion5/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Hipertensión grado 3</td><td>'.$presion6.'</td><td>'.$porpre6 = round((($presion6/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Hipertensión no identificada</td><td>'.$presion7.'</td><td>'.$porpre7 = round((($presion7/$total)*100),2).' %</td></tr>';
+		$row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$totalpre = $presion1 + $presion2 + $presion3 + $presion4 + $presion5 + $presion6 + $presion7.'</td><td>'.$totalporcpre = $porpre1 + $porpre2 + $porpre3 + $porpre4 + $porpre5 + $porpre6 + $porpre7.' %</td></tr>';
+		$row .= '</table>';
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 10);
+		
+		$html = '<br/><br/><br/><p>!!!!!!!!!! Pendiente tabla analíticas !!!!!!!!!¡¡¡¡¡¡¡¡¡¡¡¡¡¡</p>';
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'C', true, 40);
+		
+		
+		$html = '<br/>';
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'C', true, 40);
+		
+		$espiarreglo = array();
+		$flag = -1;
+		
+		foreach ($espi as $caso)
+		{
+			if($caso->getMdpaci()->getId() != $flag)
+			{
+				$flag = $caso->getMdpaci()->getId();
+				$espiarreglo[$flag] = array();
+			}
+			
+			$diag = $em->getRepository('ScontrolBundle:Mddiag')->findByMdhist($caso->getId());
+			
+			foreach ($diag as $caso2)
+				$espiarreglo[$flag][] = $caso2->getMdpato()->getCodigo();
+		}
+		
+		$clases = array('Normal' => 0, 'Con patologías' => 0, 'No realizada' => 0);
+		
+		foreach ($espiarreglo as $caso)
+		{
+			if (in_array('1600', $caso))
+				$clases['Normal'] += 1;
+			else if($this->rangoInArray(1601, 1631, $caso))
+				$clases['Con patologías'] += 1;
+			else
+				$clases['No realizada'] += 1;
+		}
+		
+		$espi1 = $clases['Normal'];
+		$espi2 = $clases['Con patologías'];
+		$espi3 = $clases['No realizada'];
+		
+		$row = '<table border="1">';
+		$row .= '<tr><td colspan="3">Espirometría</td></tr>';
+		$row .= '<tr style="background-color: #BFBFBF"><td>Tipo</td><td>Exploraciones</td><td>%</td></tr>';
+		$row .= '<tr><td>Normal</td><td>'.$espi1.'</td><td>'.$porespi1 = round((($espi1/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Con patologías</td><td>'.$espi2.'</td><td>'.$porespi2 = round((($espi2/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>No realizada</td><td>'.$espi3.'</td><td>'.$porespi3 = round((($espi3/$total)*100),2).' %</td></tr>';
+		$row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$totalespi = $espi1 + $espi2 + $espi3.'</td><td>'.$totalporcespi = $porespi1 + $porespi2 + $porespi3.' %</td></tr>';
+		$row .= '</table>';
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 10);
+		
+		$html = '<br/>';
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'C', true, 40);
+		
+		$visionarreglo = array();
+		$flag = -1;
+		
+		foreach ($vision as $caso)
+		{
+			if($caso->getMdpaci()->getId() != $flag)
+			{
+				$flag = $caso->getMdpaci()->getId();
+				$visionarreglo[$flag] = array();
+			}
+			
+			$diag = $em->getRepository('ScontrolBundle:Mddiag')->findByMdhist($caso->getId());
+			
+			foreach ($diag as $caso2)
+				$visionarreglo[$flag][] = $caso2->getMdpato()->getCodigo();
+		}
+		
+		$clases = array('Con patologías' => 0, 'Normal' => 0, 'No realizada' => 0);
+		
+		foreach ($visionarreglo as $caso)
+		{
+			if (in_array('1400', $caso))
+				$clases['Normal'] += 1;
+			else if($this->rangoInArray(1413, 1487, $caso))
+				$clases['Con patologías'] += 1;
+			else
+				$clases['No realizada'] += 1;
+		}
+		
+		$vision1 = $clases['Normal'];
+		$vision2 = $clases['Con patologías'];
+		$vision3 = $clases['No realizada'];
+		
+		$row = '<table border="1">';
+		$row .= '<tr><td colspan="3">Agudeza Visual</td></tr>';
+		$row .= '<tr style="background-color: #BFBFBF"><td>Tipo</td><td>Exploraciones</td><td>%</td></tr>';
+		$row .= '<tr><td>Normal</td><td>'.$vision1.'</td><td>'.$porvision1 = round((($vision1/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Con patologías</td><td>'.$vision2.'</td><td>'.$porvision2 = round((($vision2/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>No realizada</td><td>'.$vision3.'</td><td>'.$porvision3 = round((($vision3/$total)*100),2).' %</td></tr>';
+		$row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$totalvision = $vision1 + $vision2 + $vision3.'</td><td>'.$totalporcvision = $porvision1 + $porvision2 + $porvision3.' %</td></tr>';
+		$row .= '</table>';
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 10);
+		
+		$html = '<br/>';
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'C', true, 40);
+		
+		$audiometriaarreglo = array();
+		$flag = -1;
+		
+		foreach ($audiometria as $caso)
+		{
+			if($caso->getMdpaci()->getId() != $flag)
+			{
+				$flag = $caso->getMdpaci()->getId();
+				$audiometriaarreglo[$flag] = array();
+			}
+			
+			$diag = $em->getRepository('ScontrolBundle:Mddiag')->findByMdhist($caso->getId());
+			
+			foreach ($diag as $caso2)
+				$audiometriaarreglo[$flag][] = $caso2->getMdpato()->getCodigo();
+		}
+		
+		$clases = array('Normal' => 0, 'Posible trauma acústico' => 0, 'Posible presbiacusia' => 0, 'Hipoacusia global' => 0, 'No realizada' => 0);
+		
+		foreach ($audiometriaarreglo as $caso)
+		{
+			if (in_array('1500', $caso))
+				$clases['Normal'] += 1;
+			else if($this->rangoInArray(1561, 1563, $caso))
+				$clases['Posible trauma acústico'] += 1;
+			else if($this->rangoInArray(1571, 1573, $caso) OR $this->rangoInArray(1551, 1553, $caso))
+				$clases['Posible presbiacusia'] += 1;
+			else if($this->rangoInArray(1511, 1547, $caso))
+				$clases['Hipoacusia global'] += 1;
+			else
+				$clases['No realizada'] += 1;
+		}
+		
+		$audio1 = $clases['Normal'];
+		$audio2 = $clases['Posible trauma acústico'];
+		$audio3 = $clases['Posible presbiacusia'];
+		$audio4 = $clases['Hipoacusia global'];
+		$audio5 = $clases['No realizada'];
+		
+		$row = '<table border="1">';
+		$row .= '<tr><td colspan="3">Audiometría</td></tr>';
+		$row .= '<tr style="background-color: #BFBFBF"><td>Tipo</td><td>Exploraciones</td><td>%</td></tr>';
+		$row .= '<tr><td>Normal</td><td>'.$audio1.'</td><td>'.$poraudio1 = round((($audio1/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Posible trauma acústico</td><td>'.$audio2.'</td><td>'.$poraudio2 = round((($audio2/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Posible presbiacusia</td><td>'.$audio3.'</td><td>'.$poraudio3 = round((($audio3/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Hipoacusia global</td><td>'.$audio4.'</td><td>'.$poraudio4 = round((($audio4/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>No realizada</td><td>'.$audio5.'</td><td>'.$poraudio5 = round((($audio5/$total)*100),2).' %</td></tr>';
+		$row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$totalaudio = $audio1 + $audio2 + $audio3 + $audio4 + $audio5.'</td><td>'.$totalporcaudio = $poraudio1 + $poraudio2 + $poraudio3 + $poraudio4 + $poraudio5.' %</td></tr>';
+		$row .= '</table>';
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 10);
+		
+		
+		$html = '<br/>';
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'C', true, 40);
+		
+		$aparatoarreglo = array();
+		$flag = -1;
+		
+		foreach ($pacientes as $caso)
+		{
+			if($caso->getMdpaci()->getId() != $flag)
+			{
+				$flag = $caso->getMdpaci()->getId();
+				$aparatoarreglo[$flag] = array();
+			}
+			
+			$diag = $em->getRepository('ScontrolBundle:Mddiag')->findByMdhist($caso->getId());
+			
+			foreach ($diag as $caso2)
+				$aparatoarreglo[$flag][] = $caso2->getMdpato()->getCodigo();
+		}
+		
+		$clases = array('Normal' => 0, 'Alteraciones' => 0, 'Sin exploración' => 0);
+		
+		foreach ($aparatoarreglo as $caso)
+		{
+			if (in_array('1000', $caso))
+				$clases['Normal'] += 1;
+			else if($this->rangoInArray(1719, 1723, $caso))
+				$clases['Alteraciones'] += 1;
+			else if (in_array('1780', $caso))
+				$clases['Sin exploración'] += 1;
+		}
+		
+		$aparato1 = $clases['Normal'];
+		$aparato2 = $clases['Alteraciones'];
+		$aparato3 = $clases['Sin exploración'];
+		
+		$row = '<table border="1">';
+		$row .= '<tr><td colspan="3">Aparato Locomotor</td></tr>';
+		$row .= '<tr style="background-color: #BFBFBF"><td>Tipo</td><td>Exploraciones</td><td>%</td></tr>';
+		$row .= '<tr><td>Normal</td><td>'.$aparato1.'</td><td>'.$poraparato1 = round((($aparato1/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Alteraciones</td><td>'.$aparato2.'</td><td>'.$poraparato2 = round((($aparato2/$total)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Sin exploraciones</td><td>'.$aparato3.'</td><td>'.$poraparato3 = round((($aparato3/$total)*100),2).' %</td></tr>';
+		$row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$totalaparato = $aparato1 + $aparato2 + $aparato3.'</td><td>'.$totalporcaparato = $poraparato1 + $poraparato2 + $poraparato3.' %</td></tr>';
+		$row .= '</table>';
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 10);
+		
+		$html = '<p>Aquí va la tabla de dictamen que hace falta ==================</p>';
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'C', true, 40);
+		
+		$html = '
+		<h4>6. Formación</h4>
+		<p>La formación es un derecho de los trabajadores recogido en diferentes disposiciones legales:</p>
+
+		<strong>Estatuto de los Trabajadores:</strong>
+
+		<p><i>Artículo 19.4 señala:</i></p>
+
+		<p><i>“El empresario está obligado a facilitar una formación práctica y adecuada en materia de seguridad e higiene a los trabajadores que 
+		contrata, o cuando cambien de puesto de trabajo o tengan que aplicar nueva técnica..., ya sea con servicios propios, o con la intervención de 
+		los servicios oficiales correspondientes.</i></p>
+
+		<p>Ley de Prevención de Riesgos Laborales:</p>
+ 
+		<p><i>Artículo 14, apartado 1 párrafo 3:</i></p>
+
+		<p><i>Los derechos de información consulta y participación, formación en materia preventiva, paralización de la actividad en caso de riesgo grave e 
+		inminente y vigilancia de su estado de salud, en los términos previstos en la presente Ley, forman parte del derecho de los trabajadores a una 
+		protección eficaz en materia de seguridad y salud en el trabajo.</i></p>
+
+		<p><i>Artículo 19. Formación de los trabajadores:</i></p>
+
+		<p><i>En cumplimiento del deber de protección, el empresario deberá garantizar que cada trabajador reciba una formación teórica y práctica, 
+		suficiente y adecuada, en materia preventiva, tanto en el momento de su contratación cualquiera que sea la modalidad o duración de ésta, como 
+		cuando se produzcan cambios en las funciones que desempeñe o se introduzcan nuevas tecnologías o cambios en los equipos de trabajo.</i></p>
+		
+		<p><strong>Reglamento de los Servicios de Prevención:</strong></p>
+
+		<p><i>Artículo 3, definición:</i></p>
+
+		<p><i>Cuando de la evaluación realizada resulte necesaria la adopción de medidas preventivas deberán ponerse claramente de manifiesto las 
+		situaciones en que sea necesario:</i></p>
+		<ol type="a">
+			<li>
+			<p style="text-align: justify"><i>Eliminar o reducir el riesgo, mediante medidas de prevención en el origen, organizativas, de protección 
+			colectiva, de protección individual, o de formación e información a los trabajadores</i></p>
+			
+			<p style="text-align: justify"><i>Artículo 18: Recursos materiales y humanos de las entidades especializadas que actúen 
+			como servicios de prevención:</i></p>
+			</li>
+		</ol>
+		
+		<p><i>Los expertos en las especialidades mencionadas (las diferentes disciplinas preventivas) actuarán de forma coordinada, en particular en 
+		relación con las funciones relativas al diseño preventivo de los puestos de trabajo, l identificación y evaluación de los riesgos, los planes 
+		de prevención y los planes de formación de los trabajadores.</i></p>
+
+		<p><i>La formación se concreta en forma de cursos, seminarios y otras actividades similares referidas al ámbito sanitario del trabajo, pero siempre 
+		orientadas a objetivos específicos relacionados con las necesidades directas de la empresa.</i></p>
+		
+		<p><i>La formación es un derecho de los trabajadores, por lo que se trata de una actividad de realización obligatoria. Sin embargo, más allá de las 
+		exigencias legales, la formación genera beneficios al promover la cultura preventiva dentro de la empresa y hacer más seguro el trabajo disminuyendo 
+		los riesgos.</i></p>
+
+
+		<p><strong>Número de trabajadores que han realizado cursos de formación:</strong></p>
+		<ul>	
+			<li>Primeros auxilios:   0</li>
+		</ul>
+		<p><strong>Número de trabajadores que han realizado  profilaxis riesgo biológico: 17</strong></p>
+		';
+		$pdf->SetFont('dejavusans', '', 12);
+		$pdf -> writeHTMLCell(170, 0, 20, 45, $html, 0, 0, 0, true, 'J', true);
+		$pdf->AddPage();
+		$html= '
+		<h4>7. Información y Asesoramiento</h4>
+
+		<p>Las obligaciones derivadas del actual marco legal ocasionan la necesidad por parte del empresario de sentirse apoyado y respaldado en todo momento 
+		por los servicios de prevención en materia de vigilancia de la salud: Dar respuesta a las dudas y necesidades e informar a la empresa en materia de 
+		salud laboral es una faceta importante de la disciplina de Vigilancia a la Salud.</p>
+		
+		<p>Por otra parte, la información es un derecho de los trabajadores, que debe ser satisfecho bien directamente por el empresario, bien a través de 
+		los órganos o personas que tengan establecida dicha labor.</p> 
+		
+		<p><strong>Ley de prevención de Riesgos Laborales:</strong></p>
+
+		<p><i><Artículo 14.1.3</i></p>
+
+		<p><i>Los derechos de información. . . en los términos previstos en la presente Ley,  forman parte del derecho de los trabajadores a una protección 
+		eficaz en materia de seguridad y salud en el trabajo.</i></p>
+
+		<p><strong>Reglamento de los Servicios de Prevención:</strong></p> 
+		 
+		<p><i>Artículo 3º:</i></p>
+
+		<p><i>Cuando de la evaluación realizada resulte necesaria la adopción de medidas preventivas, deberán ponerse claramente de manifiesto las situaciones 
+		en que sea necesario.</i></p>
+		<ol type="a">
+			<li><i>Eliminar o reducir el riesgo, mediante medidas de prevención en el origen, organizativas, de protección colectiva, de protección individual, 
+			o de formación e información a los trabajadores.</i></li>
+		</ol>
+		
+		<p><strong>Información, consulta y participación de los trabajadores:</strong></p>
+
+		<p><i>Artículo 18:</i></p>
+		<ol>
+			<li>
+			<p><i>A fin de dar cumplimiento al deber de protección establecido en la presente Ley, el empresario adoptará las medidas adecuadas para que los 
+			trabajadores reciban todas las informaciones necesarias en relación con:</i></p>
+			<ol type="a">
+				<li style="text-align: justify"><i>Los riesgos para la seguridad y la salud de los trabajadores en el trabajo, tanto aquellos que afecten a la empresa en</i></li>
+				<li style="text-align: justify"><i>Su conjunto como a cada tipo de puesto de trabajo o función.</i></li>
+				<li style="text-align: justify"><i>Las medidas y actividades de protección y prevención aplicables a los riesgos señalados en el apartado anterior</i></li>
+				<li style="text-align: justify"><i>Las medidas adoptadas de conformidad con lo dispuesto en el artículo 20 de la presente Ley.</i></li>
+			</ol>
+			</li>
+		</ol>
+
+		<p><i>La presente memoria es una relación de las actividades de Vigilancia de la Salud realizadas durante el periodo de vigencia del concierto.</i></p>
+		<p style="text-align: right">Barcelona, '.$meses[intval(date('m'))-1].' '.date('Y').'</p>
+		<br/><br/><br/>
+		<p>Firmado:</p>
+		<br/><br/><br/>
+		<p>Dr. Ildefonso Tristán Burguesa</p>
+		<p>Medico de Vigilancia de la Salud</p>
+		<br/><br/><br/>
+		<p>Sra. Eva Real Real.</p>
+		<p>Diplomada Universitaria en Enfermería de Empresa</p>
+		';
+		$pdf->SetFont('dejavusans', '', 12);
 		$pdf -> writeHTMLCell(170, 0, 20, 45, $html, 0, 0, 0, true, 'J', true);
 		
 		$pdf->Output('memoriaporempresa.pdf', 'I');
@@ -2297,7 +2960,7 @@ class ReportController extends Controller
 					$pdf->autoCell(0, 0, 20, $pdf->GetY()-8, $html, 0, 2, false, true, 'J');
 					$pdf->Ln(5);
 
-					$head = '<tr bgcolor="#C9DEE9"><td><b>APELLIDOS Y NOMBRES</b></td><td><b>PUESTO DE TRABAJO</b></td><td><b>PROTOCOLOS</b></td><td><b>TIPO DE EXAMEN</b></td><td><b>REESULTADO</b></td></tr>';
+					$head = '<tr bgcolor="#C9DEE9"><td><b>APELLIDOS Y NOMBRES</b></td><td><b>PUESTO DE TRABAJO</b></td><td><b>PROTOCOLOS</b></td><td><b>TIPO DE EXAMEN</b></td><td><b>RESULTADO</b></td></tr>';
 					$mac = '<table border="1">'.$head.'</table>';
 					$pdf->autoCell(0, 0, 20, $pdf->GetY(), $mac, 0, 2, false, true, 'C');
 				}
@@ -2335,6 +2998,74 @@ class ReportController extends Controller
 		ob_end_clean();
 		$pdf->Output('r_Dictamen.pdf', 'I');
 	}
+	
+	public function riesgosAction($empresa, $inicio, $fin)
+	{
+		$em = $this->getDoctrine()->getEntityManager();
+		$ries = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaPacientes($empresa, $inicio, $fin);
+		$nombreempresa = $em->getRepository('ScontrolBundle:Gbempr')->find($empresa);
+		
+		$pdf = new \Tcpdf_Tcpdf('L', 'mm', 'A4', true, 'UTF-8', false);
+		$pdf->SetCreator(PDF_CREATOR);
+		$pdf->SetAuthor('Vimelab');
+		$pdf->SetTitle('REPORTE DE ESTADÍSTICA POR RIESGOS LABORALES');
+		$pdf->SetSubject('Estadística por riesgos laborales.');
+		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, '', '');
+		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+		$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+		$pdf->SetMargins(20, 38, 20);
+		$pdf->SetHeaderMargin(2);
+		$pdf->SetFooterMargin(15);
+		$pdf->SetAutoPageBreak(FALSE, 21);
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+		$pdf->setTabl(true);
+		$pdf->setMemoTitle("REPORTE DE ESTADÍSTICA POR RIESGOS LABORALES");
+		$pdf->AddPage();
+		
+		$boxes = array();
+		$dboxes = array();
+		
+		$total = count($ries);
+		
+		foreach($ries as $caso)
+		{
+			$ptra = $caso->getMdpaci()->getGbptra();
+			$procs = $em->getRepository('ScontrolBundle:Mdproc')->findByGbptra($ptra->getId());			
+			
+			foreach($procs as $uni)
+			{
+				$prot = $uni->getMdprot();
+				
+				if(isset($boxes[$prot->getCodigo()]))
+					$boxes[$prot->getCodigo()] += 1;
+				else
+					$boxes[$prot->getCodigo()] = 1;
+					
+				if(!isset($dboxes[$prot->getCodigo()]))
+					$dboxes[$prot->getCodigo()] = $prot->getNombre();
+			}
+			
+		}			
+				
+		$row = '<table border="1">';
+		$row .= '<tr style="background-color: #BFBFBF"; font-size: 2em><td>Código</td><td>Descripción</td><td>Cantidad de Casos</td><td>% Total Explorados</td></tr>';
+		foreach($boxes as $key => $val)
+		{
+			$row .= '<tr>';
+			$row .= '<td>'.$key.'</td>';
+			$row .= '<td>'.$dboxes[$key].'</td>';
+			$row .= '<td>'.$val.'</td>';
+			$row .= '<td>'.round((($val/$total)*100),2)." %".'</td>';
+			$row .= '</tr>';
+			//$pdf->autoCell(0, 0, 20, $pdf->GetY(), $key." ".$dboxes[$key]." ".$val." ".round((($val/$total)*100),2)."%", 0, 2, false, true, 'C', true, 0);
+		}
+		$row .= '</table>';
+		$pdf->autoCell(0, 0, 20, $pdf->GetY(), $row, 0, 2, false, true, 'C', true, 10);
+		
+		$pdf->Output('estadisticariesgos.pdf', 'I');
+	}
+	
 
 	private function finalDicatmen($pdf)
 	{
@@ -2368,4 +3099,5 @@ class ReportController extends Controller
 		
 		return $flag;
 	}
+	
 }

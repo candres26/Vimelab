@@ -38,4 +38,29 @@ class CtcotiRepository extends EntityRepository
         $querry = $em->createQuery("SELECT m FROM ScontrolBundle:Ctcoti m JOIN m.gbempr l WHERE m.fecha LIKE '%$parametro%' or l.nombre LIKE '%$parametro%'  or m.modalidad LIKE '%$parametro%' ORDER BY m.id ASC");
         return $querry->getResult();
     }
+    
+	public function getSucursal($empresa, $nombre)
+    {
+        $em = $this->getEntityManager();
+
+		try
+        {	
+			$querry = $em->createQuery("SELECT s FROM ScontrolBundle:Gbsucu s JOIN s.gbempr e WHERE e.id = '$empresa' and s.nombre LIKE '%$nombre%' ORDER BY s.nombre ASC");
+            $sucu = $querry->getSingleResult();
+            return $sucu;
+		}
+		catch(\Exception $e)
+		{
+            try
+            {
+                $querry = $em->createQuery("SELECT s FROM ScontrolBundle:Gbsucu s JOIN s.gbempr e WHERE e.id = '$empresa' ORDER BY s.nombre ASC");
+                $sucu = $querry->getSingleResult();
+                return $sucu;
+            }
+            catch(\Exception $e)
+            {
+                return null;   
+            }
+		}
+	}
 }

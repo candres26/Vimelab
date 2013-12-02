@@ -142,6 +142,90 @@ class MdhistRepository extends EntityRepository
 		return $edades;
 	}
 	
+	public function getConsultaSexoEdad($empresa, $finicio, $ffinal)
+	{
+		if ($empresa != '@')
+		{
+			$em = $this->getEntityManager();
+			
+			$querry = $em->createQuery("SELECT p FROM ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e, ScontrolBundle:Mdhist h WHERE p.id = h.mdpaci 
+				AND p.sexo = 'F' AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa' ORDER BY h.id ASC");
+			$sexo = $querry->getResult();
+
+			$querry = $em->createQuery("SELECT p FROM ScontrolBundle:Mdpaci p JOIN p.gbsucu s JOIN s.gbempr e, ScontrolBundle:Mdhist h WHERE p.id = h.mdpaci 
+				AND p.sexo = 'M' AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa' ORDER BY h.id ASC");
+			$sexo2 = $querry->getResult();
+			
+			$resul = array($sexo, $sexo2);
+			 
+			//return $resul;
+		}
+		else
+		{
+			$em = $this->getEntityManager();
+			
+			$querry = $em->createQuery("SELECT p FROM ScontrolBundle:Mdpaci p, ScontrolBundle:Mdhist h WHERE p.id = h.mdpaci AND p.sexo = 'F' 
+				AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' ORDER BY h.id ASC");
+			$sexo = $querry->getResult();
+
+			$querry = $em->createQuery("SELECT p FROM ScontrolBundle:Mdpaci p, ScontrolBundle:Mdhist h WHERE p.id = h.mdpaci AND p.sexo = 'M' 
+				AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' ORDER BY h.id ASC");
+			$sexo2 = $querry->getResult();
+			
+			$resul = array($sexo, $sexo2);
+			 
+			//return $resul;
+        }
+		
+		$edadesmujeres = array('0-16'=> 0,'17-20'=> 0,'21-35'=> 0,'36-45'=> 0,'46-55'=> 0,'56-65'=> 0,'66-200'=> 0);
+		$edadeshombres = array('0-16'=> 0,'17-20'=> 0,'21-35'=> 0,'36-45'=> 0,'46-55'=> 0,'56-65'=> 0,'66-200'=> 0);
+		
+		foreach ($resul[0] as $caso)
+		{
+			$edad  = $caso->getEdad();
+			
+			foreach($edadesmujeres as $key => $val)
+			{
+				$lim = explode('-', $key);
+				$inf = intval($lim[0]);
+				$sup = intval($lim[1]);
+				
+				if ($edad >= $inf && $edad <= $sup)
+				{
+					$edadesmujeres[$key] += 1;
+					
+					break;
+				}
+			}
+		}
+		
+		foreach ($resul[1] as $caso)
+		{
+			$edad  = $caso->getEdad();
+			
+			foreach($edadeshombres as $key => $val)
+			{
+				$lim = explode('-', $key);
+				$inf = intval($lim[0]);
+				$sup = intval($lim[1]);
+				
+				if ($edad >= $inf && $edad <= $sup)
+				{
+					$edadeshombres[$key] += 1;
+					
+					break;
+				}
+			}
+		}
+		
+		ksort($edadesmujeres);
+		ksort($edadeshombres);
+		$resulconsulta[0] = $edadesmujeres;
+		$resulconsulta[1] = $edadeshombres;
+		
+		return $resulconsulta;
+	}
+	
 	public function getConsultaImcHombres($empresa, $finicio, $ffinal)
 	{
 		$em = $this->getEntityManager();
@@ -232,57 +316,6 @@ class MdhistRepository extends EntityRepository
 			$presiones[$marcas[''.$caso->getPresion()]] += 1;
 		
 		return $presiones; 
-	}
-	
-	public function getConsultaEspirometria($empresa, $finicio, $ffinal)
-	{
-		$em = $this->getEntityManager();
-		
-		if ($empresa != '@')
-		
-			$querry = $em->createQuery("SELECT h FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p JOIN p.gbsucu s JOIN s.gbempr e WHERE p.id = h.mdpaci 
-			AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa' ORDER by p.id");
-		else
-			$querry = $em->createQuery("SELECT h FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p WHERE h.fecha >= '$finicio' AND h.fecha < '$ffinal' 
-			ORDER by p.id");
-		
-		$resul = $querry->getResult();
-		
-		return $resul;
-	}
-	
-	public function getConsultaVisual($empresa, $finicio, $ffinal)
-	{
-		$em = $this->getEntityManager();
-		
-		if ($empresa != '@')
-		
-			$querry = $em->createQuery("SELECT h FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p JOIN p.gbsucu s JOIN s.gbempr e WHERE p.id = h.mdpaci 
-			AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa' ORDER by p.id");
-		else
-			$querry = $em->createQuery("SELECT h FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p WHERE h.fecha >= '$finicio' AND h.fecha < '$ffinal' 
-			ORDER by p.id");
-		
-		$resul = $querry->getResult();
-		
-		return $resul;
-	}
-	
-	public function getConsultaAudio($empresa, $finicio, $ffinal)
-	{
-		$em = $this->getEntityManager();
-		
-		if ($empresa != '@')
-		
-			$querry = $em->createQuery("SELECT h FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p JOIN p.gbsucu s JOIN s.gbempr e WHERE p.id = h.mdpaci 
-			AND h.fecha >= '$finicio' AND h.fecha < '$ffinal' AND e.id = '$empresa' ORDER by p.id");
-		else
-			$querry = $em->createQuery("SELECT h FROM ScontrolBundle:Mdhist h JOIN h.mdpaci p WHERE h.fecha >= '$finicio' AND h.fecha < '$ffinal' 
-			ORDER by p.id");
-		
-		$resul = $querry->getResult();
-		
-		return $resul;
 	}
 	
 	public function getConsultaPacientes($empresa, $finicio, $ffinal)

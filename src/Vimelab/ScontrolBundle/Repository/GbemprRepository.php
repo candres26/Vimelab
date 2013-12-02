@@ -42,7 +42,9 @@ class GbemprRepository extends EntityRepository
     public function getEmpresa($empresa)
     {
 		$em = $this->getEntityManager();
-		$querry = $em->createQuery("SELECT e FROM ScontrolBundle:Gbempr e WHERE e.id = $empresa ORDER BY e.id");
-		return $querry->getResult();
+		$querry = $em->createQuery("SELECT e FROM ScontrolBundle:Gbempr e WHERE e.id = '$empresa' ORDER BY e.id");		
+		$resul = $querry->getResult();
+        
+        return $resul;
 	}
 }
