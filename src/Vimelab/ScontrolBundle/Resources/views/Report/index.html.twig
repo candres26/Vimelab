@@ -121,6 +121,7 @@
 			gId('btaudiometria').onclick = generaraudio;
 			gId('btalaplocomotor').onclick = generaraparato;
 			gId('btdirilaborales').onclick = generarriesgos;
+			gId('btaltanaliticas').onclick = generaranali;
 			gId('btmemoria').onclick = generarmemoria;
 			
 			/* Dictamen Médico */
@@ -208,6 +209,10 @@
 				else
 					popup("Debe seleccionar una empresa!");
 			}
+        function generaranali(event)
+		{
+			if(valRange())
+				window.open($base+'/'+gId('empresa').value+'/'+gId('finicio').value+'/'+gId('ffin').value+'/anali', null, 'width=800,height=600');
 		}
 		
 		function generarmemoria(event)

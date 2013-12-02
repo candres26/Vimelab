@@ -64,3 +64,10 @@ swiftmailer:
 jms_security_extra:
     secure_controllers:  true
     secure_all_services: false
+# services
+services:
+    before_listener:
+        class: Vimelab\ScontrolBundle\EventListener\BeforeListener
+        arguments: 
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
