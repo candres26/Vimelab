@@ -2206,6 +2206,28 @@ class ReportController extends Controller
 		$audiometria = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaPacientes($empresa, $inicio, $fin);
 		$pacientes = $em->getRepository('ScontrolBundle:Mdhist')->getConsultaPacientes($empresa, $inicio, $fin);
 		$nombreempresa = $em->getRepository('ScontrolBundle:Gbempr')->find($empresa);
+		$cursos = $em->getRepository('ScontrolBundle:Tccurs')->findAll();
+        
+        
+        $numtra = array();
+        $numsucu = array();
+        
+        
+        foreach($pacientes as $caso)
+        {
+            $idx = $caso->getMdpaci()->getId();
+            
+            if(!in_array($idx, $numtra))
+                $numtra[] = $idx;
+        }
+        
+        foreach($pacientes as $caso)
+        {
+            $idx = $caso->getMdpaci()->getGbsucu();
+            
+            if(!in_array($idx, $numsucu))
+                $numsucu[] = $idx;
+        }
 		
 		$meses = array('Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
 		
@@ -2215,7 +2237,6 @@ class ReportController extends Controller
 		$pdf->SetAuthor('Vimelab');
 		$pdf->SetTitle('Memoria de Vigilancia de la Salud');
 		$pdf->SetSubject('Memoria');
-		//$pdf->SetKeywords('TCPDF, PDF, example, test, guide');
 		
 		// set default header data
 		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, '', '');
@@ -2233,13 +2254,16 @@ class ReportController extends Controller
 		$pdf->SetFooterMargin(15);
 		
 		//set auto page breaks
-		$pdf->SetAutoPageBreak(TRUE, 21);
+		$pdf->SetAutoPageBreak(TRUE, 15);
 		$pdf->setMkLateral(true);
 		
 		//set image scale factor
 		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
-		$pdf->AddPage();
 		
+        $pdf->SetFont('dejavusans', '', 12);
+        
+        $idconte = array(0,0,0,0,0,0,0);
+        
 		$html = 
 		'
 		<p style="font-size: 1.5em"><b>EMPRESA:</b> '.$datosempresa->find($empresa)->getNombre().'<br>
@@ -2253,96 +2277,45 @@ class ReportController extends Controller
         <p>Sra .Eva Real Real<br>
 		Diplomada Universitaria en Enfermería de Empresa</p>
 		';
-		$pdf->SetFont('dejavusans', '', 12);
-		$pdf -> writeHTMLCell(170, 0, 20, 45, $html, 0, 0, 0, true, 'J', true);
+        $pdf->AddPage();
+        $pdf->autoCell(0, 0, 20, $pdf->GetY(), $html, 0, 2, false, true, 'J', true, 25);
+		
+        
+		
 		$pdf->AddPage();
-		$html = 
-		'
-		<table border="1">
-		  <thead>
-			<tr>
-			  <th width="80%" style="font-size: 1.7em; border-top: none"><b>Sumario</b></th>
-			  <th width="20%"></th>
-			</tr>
-		  </thead>
-		  <tbody>
-			<tr>
-				<td width="80%"></td>
-				<td width="20%"></td>
-			</tr>
-			<tr>
-			  <td>1. Marco Legal</td>
-			  <td style="text-align: center">pag #</td>
-			</tr>
-			<tr>
-			  <td>2. Presentación de la empresa</td>
-			  <td style="text-align: center">pag #</td>
-			</tr>
-			<tr>
-			  <td>3. Reconocimientos médicos laborales</td>
-			  <td style="text-align: center">pag #</td>
-			</tr>
-			<tr>
-			  <td>4. Resultados</td>
-			  <td style="text-align: center">pag #</td>
-			</tr>
-			<tr>
-			  <td>5. Principales conclusiones</td>
-			  <td style="text-align: center">pag #</td>
-			</tr>
-			<tr>
-			  <td>6. Formación</td>
-			  <td style="text-align: center">pag #</td>
-			</tr>
-			<tr>
-			  <td>7. Información y asesoramiento</td>
-			  <td style="text-align: center">pag #</td>
-			</tr>
-			<tr>
-			  <td>8. Estadística</td>
-			  <td style="text-align: center">pag #</td>
-			</tr>
-		  </tbody>
-		</table>
-		';
-		$pdf->SetFont('dejavusans', '', 12);
-		$pdf -> writeHTMLCell(170, 0, 20, 45, $html, 0, 0, 0, true, 'J', true);
-		$pdf->AddPage();
-		$html = '
+		//$pdf->autoCell(0, 0, 20, $pdf->GetY(), $html, 0, 2, false, true, 'J', true, 25);
+		
+		
+        $html = '
 		<h3>1. Marco Legal</h3>
-
 		<p>Según el Reglamento de los Servicios de Prevención, la elaboración de una Memoria anual, además de constituir una importante herramienta 
 		técnica para la prevención de riesgos laborales, constituye una exigencia legal. Así, en el artículo 20 apartado 2 de dicha ley, se señala que:</p>
-			
 		<p>Las entidades especializadas que actúen como servicios de prevención.... deberán facilitar a las empresas para las que actúan como servicio 
 		de prevención la memoria y la programación anual a las que se refiere el apartado 2 d) del artículo 39 de la Ley de Prevención de Riesgos Laborales, 
 		afín de que pueda ser conocida por el comité de Seguridad y Salud en los términos previstos en el artículo citado.</p>
-
 		<p>El artículo 39 de la Ley de Prevención de Riesgos Laborales, en su apartado 2 d) establece que:</p>
-
 		<p>En el ejercicio de sus competencias, el Comité de Seguridad y Salud estará facultado para:
 		d) Conocer e informar la memoria y programación anual de servicios de prevención.</p>
-
 		<p>Este documento constituye la Memoria de actividades de Vigilancia de la Salud.</p>
 		';
-		$pdf->SetFont('dejavusans', '', 12);
-		$pdf -> writeHTMLCell(170, 0, 20, 45, $html, 0, 0, 0, true, 'J', true);
-		$pdf->AddPage();
-		$html = '
+        $pdf->AddPage();
+        $idconte[0] = $pdf->getPage();
+		$pdf->autoCell(0, 0, 20, $pdf->GetY(), $html, 0, 2, false, true, 'J', true, 25);
+        
+        $html = '
 		<h3>2. Presentación de la empresa</h3>
-
 		<p><b>EMPRESA:</b> '.$datosempresa->find($empresa)->getNombre().', es una empresa cuyo domicilio social se encuentra ubicado  en '. $ciud->getNombre() .' .</p>
-		
 		<p><b>Domicilio Social:</b> '. $sucu->getDireccion() .' S/N C.P.: '. $ciud->getCodigo() .'</p>
 		<p><b>Actividad principal:</b> '. $datosempresa->find($empresa)->getGbcnae() .'.</p>
-		<p><b>Nº trabajadores:</b> Son un total de 192 trabajadores  en  5 centros de trabajo.</p>
+		<p><b>Nº trabajadores:</b> Son un total de '.count($numtra).' trabajadores  en  '.count($numsucu).' centros de trabajo.</p>
 		';
-		$pdf->SetFont('dejavusans', '', 12);
-		$pdf -> writeHTMLCell(170, 0, 20, 45, $html, 0, 0, 0, true, 'J', true);
 		$pdf->AddPage();
-		$html = '
-		<!-- <h3>3. Reconocimientos Médicos Laborales</h3>
-
+        $idconte[1] = $pdf->getPage();
+		$pdf->autoCell(0, 0, 20, $pdf->GetY(), $html, 0, 2, false, true, 'J', true, 25);
+        
+        
+        $html = '
+		<h3>3. Reconocimientos Médicos Laborales</h3>
 		<h4>Introducción:</h4>
 		 
 		<p>La obligatoriedad y necesidad de reconocimientos médicos laborales está recogida en diversas disposiciones legales.</p>
@@ -2394,17 +2367,25 @@ class ReportController extends Controller
 		Los reconocimientos médicos constituyen un conjunto de acciones orientadas a evaluar el estado de salud de un trabajador y resultan indispensables para cumplir el precepto legal de vigilancia de la salud por parte del empresario hacia sus trabajadores. El contenido de estos reconocimientos debe adaptarse a la prevención y detección de riesgos y patologías relacionadas con cada actividad laboral concreta.
 
 		La información obtenida permite mejorar las condiciones de seguridad y salud de los trabajadores, reduce riesgos al proporcionar la información necesaria para cumplir el principio general de adaptar el trabajo a las personas y contribuye de manera significativa en la mejora de la productividad de la empresa. 
-		
-		<h4>4. Resultados</h4>
+		';
+		$pdf->AddPage();
+        $idconte[2] = $pdf->getPage();
+		$pdf->autoCell(0, 0, 20, $pdf->GetY(), $html, 0, 2, false, true, 'J', true, 25);
+        
+        
+        $html = '
+        <h4>4. Resultados</h4>
 		
 		<p><strong>4.1 Número total de reconocimientos efectuados: [155]</strong></p>
 		
 		<p>Riesgos laborales declarados</p>
-		-->
-		';
-		$pdf->SetFont('dejavusans', '', 12);
-		$pdf -> writeHTMLCell(170, 0, 20, 45,$html, 0, 0, 0, true, 'J', true);
-		
+        ';
+        
+        $pdf->AddPage();
+        $idconte[3] = $pdf->getPage();
+		$pdf->autoCell(0, 0, 20, $pdf->GetY(), $html, 0, 2, false, true, 'J', true, 25);
+        $pdf->Ln(2);
+        
 		$boxes = array();
 		$dboxes = array();
 		
@@ -2440,15 +2421,16 @@ class ReportController extends Controller
 			$row .= '<td>'.$val.'</td>';
 			$row .= '<td>'.round((($val/$total)*100),2)." %".'</td>';
 			$row .= '</tr>';
-			//$pdf->autoCell(0, 0, 20, $pdf->GetY(), $key." ".$dboxes[$key]." ".$val." ".round((($val/$total)*100),2)."%", 0, 2, false, true, 'C', true, 0);
 		}
 		$row .= '</table>';
 
 		$pdf->autoCell(0, 0, 20, $pdf->GetY(), $row, 0, 2, false, true, 'C', true, 10);
+		$pdf->Ln(5);
 		
-		$html = '<br/>';
-		$pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'C', true, 10);
-		
+        $html = '<h4>4.2 Calificaciones:</h4>';
+        $pdf->autoCell(0, 0, 20, $pdf->GetY(), $html, 0, 2, false, true, 'J', true, 10);
+		$pdf->Ln(2);
+        
 		$row = '<table border="1">';
 		$row .= '<tr style="background-color: #BFBFBF"; font-size: 2em><td>Calificación</td><td>Número</td></tr>';			
 		
@@ -2473,44 +2455,49 @@ class ReportController extends Controller
 			}
 		}
 		$totalvalores = $apto + $noapto + $aptoconlimitaciones + $nocalificado;
-		$row .= '<tr><td style="text-align: left; font-style: bold">Apto</td><td>'.$apto.'</td></tr>';
-		$row .= '<tr><td style="text-align: left">No Apto</td><td>'.$noapto.'</td></tr>';
-		$row .= '<tr><td style="text-align: left">Apto con limitaciones</td><td>'.$aptoconlimitaciones.'</td></tr>';
-		$row .= '<tr><td style="text-align: left">No calificado</td><td>'.$nocalificado.'</td></tr>';
+		$row .= '<tr><td style="text-align: left; font-style: bold; text-indent:5pt;">Apto</td><td>'.$apto.'</td></tr>';
+		$row .= '<tr><td style="text-align: left; text-indent:5pt;">No Apto</td><td>'.$noapto.'</td></tr>';
+		$row .= '<tr><td style="text-align: left; text-indent:5pt;">Apto con limitaciones</td><td>'.$aptoconlimitaciones.'</td></tr>';
+		$row .= '<tr><td style="text-align: left; text-indent:5pt;">No calificado</td><td>'.$nocalificado.'</td></tr>';
 		$row .= '<tr><td>Total</td><td>'.$totalvalores.'</td></tr>';
 		$row .= '</table>';
 		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 10);
 		
-		/*$html = '
+        $html = '
 		<p>Los casos no calificados se corresponden con reconocimientos incompletos, o denegación  
 		del consentimiento para la realización del reconocimiento médico o la no asistencia por 
 		parte del trabajador que no permiten asignar una calificación de aptitud para el trabajo.</p>
 		';
-		$pdf->writeHTMLCell(170, 0, 20, 45,$html, 0, 0, 0, true, 'J', true);*/
+        $pdf->Ln(5);
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'J', true, 10);
 
-		$html = '<br/>';
-		$pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'C', true, 10);
+
+        $pdf->AddPage();
+        $idconte[4] = $pdf->getPage();
+        $html = '
+        <h4>5. PRINCIPALES CONCLUSIONES</h4>
+        ';
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'J', true, 10);
+        $pdf->Ln(5);
+        
+        $total1 = $consulsexoedad[0]['0-16']+$consulsexoedad[0]['17-20']+$consulsexoedad[0]['21-35']+$consulsexoedad[0]['36-45']+$consulsexoedad[0]['46-55']+$consulsexoedad[0]['56-65']+$consulsexoedad[0]['66-200'];
+        $total2 = $consulsexoedad[1]['0-16']+$consulsexoedad[1]['17-20']+$consulsexoedad[1]['21-35']+$consulsexoedad[1]['36-45']+$consulsexoedad[1]['46-55']+$consulsexoedad[1]['56-65']+$consulsexoedad[1]['66-200'];
+        
 		$row = '<table border="1">';
-		//foreach($consulsexoedad['0-16'] as $casosex)
-		//{
-			$row .= '<tr><td colspan="5">Resumen por edades y sexo</td></tr>';
-			$row .= '<tr style="background-color: #BFBFBF"><td>Rangos</td><td>Hembras</td><td>%</td><td>Varones</td><td>%</td></tr>';
-			$row .= '<tr><td>menos de 16 años</td><td>'.$valsem1 = $consulsexoedad[0]['0-16'].'</td><td>'.$porcen1 = round((($consulsexoedad[0]['0-16']/$total)*100),2).' %</td><td>'.$valseh1 = $consulsexoedad[1]['0-16'].'</td><td>'.$porcen8 = round((($consulsexoedad[1]['0-16']/$total)*100),2).' %</td></tr>';
-			$row .= '<tr><td>de 17 a 20 años</td><td>'.$valsem2 = $consulsexoedad[0]['17-20'].'</td><td>'.$porcen2 = round((($consulsexoedad[0]['17-20']/$total)*100),2).' %</td><td>'.$valseh2 = $consulsexoedad[1]['17-20'].'</td><td>'.$porcen9 = round((($consulsexoedad[1]['17-20']/$total)*100),2).' %</td></tr>';
-			$row .= '<tr><td>de 21 a 35 años</td><td>'.$valsem3 = $consulsexoedad[0]['21-35'].'</td><td>'.$porcen3 = round((($consulsexoedad[0]['21-35']/$total)*100),2).' %</td><td>'.$valseh3 = $consulsexoedad[1]['21-35'].'</td><td>'.$porcen10 = round((($consulsexoedad[1]['21-35']/$total)*100),2).' %</td></tr>';
-			$row .= '<tr><td>de 36 a 45 años</td><td>'.$valsem4 = $consulsexoedad[0]['36-45'].'</td><td>'.$porcen4 = round((($consulsexoedad[0]['36-45']/$total)*100),2).' %</td><td>'.$valseh4 = $consulsexoedad[1]['36-45'].'</td><td>'.$porcen11 = round((($consulsexoedad[1]['36-45']/$total)*100),2).' %</td></tr>';
-			$row .= '<tr><td>de 46 a 55 años</td><td>'.$valsem5 = $consulsexoedad[0]['46-55'].'</td><td>'.$porcen5 = round((($consulsexoedad[0]['46-55']/$total)*100),2).' %</td><td>'.$valseh5 = $consulsexoedad[1]['46-55'].'</td><td>'.$porcen12 = round((($consulsexoedad[1]['46-55']/$total)*100),2).' %</td></tr>';
-			$row .= '<tr><td>de 56 a 65 años</td><td>'.$valsem6 = $consulsexoedad[0]['56-65'].'</td><td>'.$porcen6 = round((($consulsexoedad[0]['56-65']/$total)*100),2).' %</td><td>'.$valseh6 = $consulsexoedad[1]['56-65'].'</td><td>'.$porcen13 = round((($consulsexoedad[1]['56-65']/$total)*100),2).' %</td></tr>';
-			$row .= '<tr><td>más de 65 años</td><td>'.$valsem7 = $consulsexoedad[0]['66-200'].'</td><td>'.$porcen7 = round((($consulsexoedad[0]['66-200']/$total)*100),2).' %</td><td>'.$valseh7 = $consulsexoedad[1]['66-200'].'</td><td>'.$porcen14 = round((($consulsexoedad[1]['66-200']/$total)*100),2).' %</td></tr>';
-			$row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$total1 = $valsem1 + $valsem2 + $valsem3 + $valsem4 + $valsem5 + $valsem6 + $valsem7 .'</td><td>'.$totalporc1 = $porcen1 + $porcen2 + $porcen3 + $porcen4 + $porcen5 + $porcen6 + $porcen7.' %</td><td>'.$total2 = $valseh1 + $valseh2 + $valseh3 + $valseh4 + $valseh5 + $valseh6 + $valseh7.'</td><td>'.$totalporc2 = $porcen8 + $porcen9 + $porcen10 + $porcen11 + $porcen12 + $porcen13 + $porcen14.' %</td></tr>';
-		//}
-		//$row .= '<tr style="bakground-color: #BFBFBF"><td>Rangos</td><td>Varones</td><td>%</td><td>Hembras</td><td>%</td></tr>';
-		
+        $row .= '<tr><td colspan="5">Resumen por edades y sexo</td></tr>';
+        $row .= '<tr style="background-color: #BFBFBF"><td>Rangos</td><td>Hembras</td><td>%</td><td>Varones</td><td>%</td></tr>';
+        $row .= '<tr><td>menos de 16 años</td><td>'.$consulsexoedad[0]['0-16'].'</td><td>'.round((($consulsexoedad[0]['0-16']/$total1)*100),2).' %</td><td>'.$consulsexoedad[1]['0-16'].'</td><td>'.round((($consulsexoedad[1]['0-16']/$total2)*100),2).' %</td></tr>';
+        $row .= '<tr><td>de 17 a 20 años</td><td>'.$consulsexoedad[0]['17-20'].'</td><td>'.round((($consulsexoedad[0]['17-20']/$total1)*100),2).' %</td><td>'.$consulsexoedad[1]['17-20'].'</td><td>'.round((($consulsexoedad[1]['17-20']/$total2)*100),2).' %</td></tr>';
+        $row .= '<tr><td>de 21 a 35 años</td><td>'.$consulsexoedad[0]['21-35'].'</td><td>'.round((($consulsexoedad[0]['21-35']/$total1)*100),2).' %</td><td>'.$consulsexoedad[1]['21-35'].'</td><td>'.round((($consulsexoedad[1]['21-35']/$total2)*100),2).' %</td></tr>';
+        $row .= '<tr><td>de 36 a 45 años</td><td>'.$consulsexoedad[0]['36-45'].'</td><td>'.round((($consulsexoedad[0]['36-45']/$total1)*100),2).' %</td><td>'.$consulsexoedad[1]['36-45'].'</td><td>'.round((($consulsexoedad[1]['36-45']/$total2)*100),2).' %</td></tr>';
+        $row .= '<tr><td>de 46 a 55 años</td><td>'.$consulsexoedad[0]['46-55'].'</td><td>'.round((($consulsexoedad[0]['46-55']/$total1)*100),2).' %</td><td>'.$consulsexoedad[1]['46-55'].'</td><td>'.round((($consulsexoedad[1]['46-55']/$total2)*100),2).' %</td></tr>';
+        $row .= '<tr><td>de 56 a 65 años</td><td>'.$consulsexoedad[0]['56-65'].'</td><td>'.round((($consulsexoedad[0]['56-65']/$total1)*100),2).' %</td><td>'.$consulsexoedad[1]['56-65'].'</td><td>'.round((($consulsexoedad[1]['56-65']/$total2)*100),2).' %</td></tr>';
+        $row .= '<tr><td>más de 65 años</td><td>'.$consulsexoedad[0]['66-200'].'</td><td>'.round((($consulsexoedad[0]['66-200']/$total1)*100),2).' %</td><td>'.$consulsexoedad[1]['66-200'].'</td><td>'.round((($consulsexoedad[1]['66-200']/$total2)*100),2).' %</td></tr>';
+        $row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$total1.'</td><td>100%</td><td>'.$total2.'</td><td>100%</td></tr>';
 		$row .= '</table>';
 		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 10);
 		
-		$html = '<br/>';
-		$pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'C', true, 10);
+		$pdf->Ln(5);
 		$row = '<table border="1">';
 		$row .= '<tr><td colspan="5">Resumen masa corporal por sexos</td></tr>';
 		$row .= '<tr style="background-color: #BFBFBF"><td>Peso</td><td>Hembras</td><td>%</td><td>Varones</td><td>%</td></tr>';
@@ -2522,6 +2509,7 @@ class ReportController extends Controller
 		$row .= '</table>';
 		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 10);
 		
+        
 		$rango1 = $fumadores['No fumador'];
 		$rango2 = $fumadores['Ex fumador'];
 		$rango3 = $fumadores['Fumador esporádico'];
@@ -2532,8 +2520,7 @@ class ReportController extends Controller
 		$rango8 = $fumadores['Más de 40 cigarrillos'];
 		$rango9 = $fumadores['Otros(Pipa, Otros ...)'];
 		
-		$html = '<br/>';
-		$pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'C', true, 10);
+		$pdf->Ln(5);
 		$row = '<table border="1">';
 		$row .= '<tr><td colspan="3">Tabaquismo</td></tr>';
 		$row .= '<tr style="background-color: #BFBFBF"><td>Consumo</td><td>Personas</td><td>%</td></tr>';
@@ -2558,8 +2545,7 @@ class ReportController extends Controller
 		$presion6 = $presionarte['Hipertensión grado 3'];
 		$presion7 = $presionarte['Hipertensión no identificada'];
 		
-		$html = '<br/>';
-		$pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'C', true, 10);
+		$pdf->Ln(5);
 		$row = '<table border="1">';
 		$row .= '<tr><td colspan="3">Presión Arterial</td></tr>';
 		$row .= '<tr style="background-color: #BFBFBF"><td>Tipo</td><td>Personas</td><td>%</td></tr>';
@@ -2572,15 +2558,89 @@ class ReportController extends Controller
 		$row .= '<tr><td>Hipertensión no identificada</td><td>'.$presion7.'</td><td>'.$porpre7 = round((($presion7/$total)*100),2).' %</td></tr>';
 		$row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$totalpre = $presion1 + $presion2 + $presion3 + $presion4 + $presion5 + $presion6 + $presion7.'</td><td>'.$totalporcpre = $porpre1 + $porpre2 + $porpre3 + $porpre4 + $porpre5 + $porpre6 + $porpre7.' %</td></tr>';
 		$row .= '</table>';
-		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 10);
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 50);
 		
-		$html = '<br/><br/><br/><p>!!!!!!!!!! Pendiente tabla analíticas !!!!!!!!!¡¡¡¡¡¡¡¡¡¡¡¡¡¡</p>';
-		$pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'C', true, 40);
+        
+		$marcas = array();
+        $marcas["Alteraciones Hematológicas"] = array("1201", "1202", "1203", "1206", "1214", "1240", "1246", "1275");
+        $marcas["Alteraciones Hepáticas"] = array("1215", "1216", "1217", "1218", "1223", "1224", "1248");
+        $marcas["Dislipemias"] = array("1210", "1211", "1212", "1270", "1271");
+        $marcas["Glucosa"] = array("1208", "1220", "1221");
+        $marcas["Normal"] = array("1200");
+        
+        $valores = array("Alteraciones Hematológicas" => 0, "Alteraciones Hepáticas" => 0, "Dislipemias" => 0, "Glucosa" => 0, "Normal" => 0, "No Evaluada" => 0);
+        
+        foreach($casos as $caso)
+        {
+            $diags = $em->getRepository('ScontrolBundle:Mddiag')->findByMdhist($caso->getId());
+            $codes = array();
+            
+            foreach($diags as $uni)
+                $codes[] = $uni->getMdpato()->getCodigo();
+            
+            $noev = true;
+            
+            if( $this->arrayVerify($codes, $marcas["Alteraciones Hematológicas"]) )
+            {
+                $valores["Alteraciones Hematológicas"] += 1;
+                $noev = false;
+            }
+            
+            if( $this->arrayVerify($codes, $marcas["Alteraciones Hepáticas"]) )
+            {
+                $valores["Alteraciones Hepáticas"] += 1;
+                $noev = false;
+            }
+            
+            if( $this->arrayVerify($codes, $marcas["Dislipemias"]) )
+            {
+                $valores["Dislipemias"] += 1;
+                $noev = false;
+            }
+            
+            if( $this->arrayVerify($codes, $marcas["Glucosa"]) )
+            {
+                $valores["Glucosa"] += 1;
+                $noev = false;
+            }
+            
+            if( $this->arrayVerify($codes, $marcas["Normal"]) )
+            {
+                $valores["Normal"] += 1;
+                $noev = false;
+            }
+            
+            if($noev)
+                $valores["No Evaluada"] += 1;
+        }
 		
+        $alteradas = $valores["Alteraciones Hematológicas"]+$valores["Alteraciones Hepáticas"]+$valores["Dislipemias"]+$valores["Glucosa"];
+        $totalana = $alteradas+$valores["Normal"]+$valores["No Evaluada"];
+        
+        $pdf->Ln(5);
+		$row = '<table border="1">';
+		$row .= '<tr><td colspan="3">Analíticas</td></tr>';
+		$row .= '<tr style="background-color: #BFBFBF"><td>Tipo</td><td>Casos</td><td>%</td></tr>';
+		$row .= '<tr><td>Normales</td><td>'.$valores["Normal"].'</td><td>'.round( ($valores["Normal"]*100)/$totalana, 2 ).'%</td></tr>';
+		$row .= '<tr><td>Alteradas</td><td>'.$alteradas.'</td><td>'.round( ($alteradas*100)/$totalana, 2 ).'%</td></tr>';
+		$row .= '<tr><td>No Realizadas</td><td>'.$valores["No Evaluada"].'</td><td>'.round( ($valores["No Evaluada"]*100)/$totalana, 2 ).'%</td></tr>';
+        $row .= '<tr style="background-color: #BFBFBF"><td>TOTAL</td><td>'.$totalana.'</td><td>100%</td></tr>';
+		$row .= '</table>';
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 50);
+        
+        $pdf->Ln(5);
+		$row = '<table border="1">';
+		$row .= '<tr><td colspan="2">Alteraciones Analíticas</td></tr>';
+		$row .= '<tr style="background-color: #BFBFBF"><td>Tipo</td><td>Casos</td></tr>';
+		$row .= '<tr><td>Hematológicas</td><td>'.$valores["Alteraciones Hematológicas"].'</td></tr>';
+		$row .= '<tr><td>Hepáticas</td><td>'.$valores["Alteraciones Hepáticas"].'</td></tr>';
+		$row .= '<tr><td>Dislipemias</td><td>'.$valores["Dislipemias"].'</td></tr>';
+		$row .= '<tr><td>Glucosa</td><td>'.$valores["Glucosa"].'</td></tr>';
+		$row .= '</table>';
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 50);
 		
-		$html = '<br/>';
-		$pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'C', true, 40);
-		
+         
+		$pdf->Ln(5);
 		$espiarreglo = array();
 		$flag = -1;
 		
@@ -2624,9 +2684,8 @@ class ReportController extends Controller
 		$row .= '</table>';
 		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 10);
 		
-		$html = '<br/>';
-		$pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'C', true, 40);
-		
+        
+		$pdf->Ln(5);
 		$visionarreglo = array();
 		$flag = -1;
 		
@@ -2670,9 +2729,8 @@ class ReportController extends Controller
 		$row .= '</table>';
 		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 10);
 		
-		$html = '<br/>';
-		$pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'C', true, 40);
-		
+        
+		$pdf->Ln(5);
 		$audiometriaarreglo = array();
 		$flag = -1;
 		
@@ -2722,12 +2780,10 @@ class ReportController extends Controller
 		$row .= '<tr><td>No realizada</td><td>'.$audio5.'</td><td>'.$poraudio5 = round((($audio5/$total)*100),2).' %</td></tr>';
 		$row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$totalaudio = $audio1 + $audio2 + $audio3 + $audio4 + $audio5.'</td><td>'.$totalporcaudio = $poraudio1 + $poraudio2 + $poraudio3 + $poraudio4 + $poraudio5.' %</td></tr>';
 		$row .= '</table>';
-		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 10);
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 60);
 		
 		
-		$html = '<br/>';
-		$pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'C', true, 40);
-		
+		$pdf->Ln(5);
 		$aparatoarreglo = array();
 		$flag = -1;
 		
@@ -2771,9 +2827,35 @@ class ReportController extends Controller
 		$row .= '</table>';
 		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 10);
 		
-		$html = '<p>Aquí va la tabla de dictamen que hace falta ==================</p>';
-		$pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'C', true, 40);
+        $explo = $apto+$noapto+$aptoconlimitaciones;
+        $pdf->Ln(5);
+		$row = '<table border="1">';
+		$row .= '<tr><td colspan="3">Dictamen Médico</td></tr>';
+		$row .= '<tr style="background-color: #BFBFBF"><td>Tipo</td><td>Casos</td><td>%</td></tr>';
+		$row .= '<tr><td>Aptos</td><td>'.$apto.'</td><td>'.round( ($apto*100)/$explo, 2 ).'%</td></tr>';
+		$row .= '<tr><td>No se puede dar</td><td>'.$noapto.'</td><td>'.round( ($noapto*100)/$explo, 2 ).'%</td></tr>';
+		$row .= '<tr><td>Condicionado/P.E.S.</td><td>'.$aptoconlimitaciones.'</td><td>'.round( ($aptoconlimitaciones*100)/$explo, 2 ).'%</td></tr>';
+        $row .= '<tr style="background-color: #BFBFBF"><td>TOTAL</td><td>'.$explo.'</td><td>100%</td></tr>';
+		$row .= '</table>';
+		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 50);
 		
+        
+        $capacitas = array();
+        
+        foreach($cursos as $ccca)
+        {
+            $idpa = $ccca->getMdpaci()->getId();
+            $capx = $ccca->getTccapa()->getNombre();
+            
+            if(in_array($idpa, $numtra))
+            {
+                if(isset($capacitas[$capx]))
+                    $capacitas[$capx] += 1;
+                else
+                    $capacitas[$capx] = 1;
+            }
+        }
+        
 		$html = '
 		<h4>6. Formación</h4>
 		<p>La formación es un derecho de los trabajadores recogido en diferentes disposiciones legales:</p>
@@ -2829,15 +2911,19 @@ class ReportController extends Controller
 
 
 		<p><strong>Número de trabajadores que han realizado cursos de formación:</strong></p>
-		<ul>	
-			<li>Primeros auxilios:   0</li>
-		</ul>
-		<p><strong>Número de trabajadores que han realizado  profilaxis riesgo biológico: 17</strong></p>
-		';
-		$pdf->SetFont('dejavusans', '', 12);
-		$pdf -> writeHTMLCell(170, 0, 20, 45, $html, 0, 0, 0, true, 'J', true);
-		$pdf->AddPage();
-		$html= '
+		<ul>';
+        
+        foreach($capacitas as $k => $v)
+        {
+            $html .= '<li>'.$k.': '.$v.'</li>';
+        }
+        
+        $pdf->AddPage();
+        $idconte[5] = $pdf->getPage();
+        $pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'J', true, 15);
+		
+        
+        $html= '
 		<h4>7. Información y Asesoramiento</h4>
 
 		<p>Las obligaciones derivadas del actual marco legal ocasionan la necesidad por parte del empresario de sentirse apoyado y respaldado en todo momento 
@@ -2848,8 +2934,8 @@ class ReportController extends Controller
 		los órganos o personas que tengan establecida dicha labor.</p> 
 		
 		<p><strong>Ley de prevención de Riesgos Laborales:</strong></p>
-
-		<p><i><Artículo 14.1.3</i></p>
+        
+        <p><i>Artículo 14.1.3</i></p>
 
 		<p><i>Los derechos de información. . . en los términos previstos en la presente Ley,  forman parte del derecho de los trabajadores a una protección 
 		eficaz en materia de seguridad y salud en el trabajo.</i></p>
@@ -2885,16 +2971,74 @@ class ReportController extends Controller
 		<p style="text-align: right">Barcelona, '.$meses[intval(date('m'))-1].' '.date('Y').'</p>
 		<br/><br/><br/>
 		<p>Firmado:</p>
-		<br/><br/><br/>
-		<p>Dr. Ildefonso Tristán Burguesa</p>
-		<p>Medico de Vigilancia de la Salud</p>
-		<br/><br/><br/>
-		<p>Sra. Eva Real Real.</p>
-		<p>Diplomada Universitaria en Enfermería de Empresa</p>
+		<br/>&nbsp;
+		<br/>&nbsp;
+		<br/>&nbsp;
+		<br/>&nbsp;
+		<br/>&nbsp;
+		<br/>&nbsp;
+		<p>Dr. Ildefonso Tristán Burguesa<br />
+        Medico de Vigilancia de la Salud</p>
+		<br/>&nbsp;
+		<br/>&nbsp;
+		<br/>&nbsp;
+		<br/>&nbsp;
+		<br/>&nbsp;
+		<br/>&nbsp;
+		<p>Sra. Eva Real Real.<br />
+        Diplomada Universitaria en Enfermería de Empresa</p>
 		';
-		$pdf->SetFont('dejavusans', '', 12);
-		$pdf -> writeHTMLCell(170, 0, 20, 45, $html, 0, 0, 0, true, 'J', true);
+		$pdf->AddPage();
+        $idconte[6] = $pdf->getPage();
+        $pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'J', true, 15);
 		
+        $html = 
+		'
+		<table border="0">
+		  <thead>
+			<tr>
+			  <th width="80%" style="font-size: 1.7em; border-top: none" colspan="2"><b>Sumario</b></th>
+			</tr>
+		  </thead>
+		  <tbody>
+			<tr>
+				<td width="80%"></td>
+				<td width="20%"></td>
+			</tr>
+			<tr>
+			  <td>1. Marco Legal</td>
+			  <td style="text-align: left">pag '.$idconte[0].'</td>
+			</tr>
+			<tr>
+			  <td>2. Presentación de la empresa</td>
+			  <td style="text-align: left">pag '.$idconte[1].'</td>
+			</tr>
+			<tr>
+			  <td>3. Reconocimientos médicos laborales</td>
+			  <td style="text-align: left">pag '.$idconte[2].'</td>
+			</tr>
+			<tr>
+			  <td>4. Resultados</td>
+			  <td style="text-align: left">pag '.$idconte[3].'</td>
+			</tr>
+			<tr>
+			  <td>5. Principales conclusiones</td>
+			  <td style="text-align: left">pag '.$idconte[4].'</td>
+			</tr>
+			<tr>
+			  <td>6. Formación</td>
+			  <td style="text-align: left">pag '.$idconte[5].'</td>
+			</tr>
+			<tr>
+			  <td>7. Información y asesoramiento</td>
+			  <td style="text-align: left">pag '.$idconte[6].'</td>
+			</tr>
+		  </tbody>
+		</table>
+		';
+        $pdf->setPage(2, true);
+        $pdf->autoCell(0,0,20, $pdf->GetY(), $html, 0,2, false, true, 'J', true, 15);
+        
 		$pdf->Output('memoriaporempresa.pdf', 'I');
 	}
     
