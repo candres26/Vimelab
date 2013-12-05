@@ -2975,8 +2975,20 @@ class ReportController extends Controller
                 $valores["No Evaluada"] += 1;
         }
 		
+		$row = '<table border="1">';
+		$row .= '<tr><td style="width: 200pt"><b>Tipo</b></td><td style="width: 80pt"><b>Cantidad</b></td></tr>';
         foreach($valores as $k => $v)
-            $pdf->autoCell(0, 0, 20, $pdf->GetY(), $k.": ".$v, 0, 2, false, true, 'C', true, 20);
+        {
+			$row .= '<tr>';
+			$row .= '<td>'.$k.'</td>';
+			$row .= '<td>'.$v.'</td>';
+			$row .= '</tr>';
+        }
+		$row .= '</table>';
+
+		$pdf->autoCell(0, 0, 175, $pdf->GetY(), $row, 0, 2, false, true, 'C', true, 20);    
+        
+            
         
 		$pdf->Output('estadistica_alt_analitica.pdf', 'I');
 	}
