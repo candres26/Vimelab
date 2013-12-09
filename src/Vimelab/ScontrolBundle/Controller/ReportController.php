@@ -2376,7 +2376,7 @@ class ReportController extends Controller
         $html = '
         <h4>4. Resultados</h4>
 		
-		<p><strong>4.1 Número total de reconocimientos efectuados: [155]</strong></p>
+		<p><strong>4.1 Número total de reconocimientos efectuados: '.count($ries).'</strong></p>
 		
 		<p>Riesgos laborales declarados</p>
         ';
@@ -2498,14 +2498,17 @@ class ReportController extends Controller
 		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 10);
 		
 		$pdf->Ln(5);
+		
+		$total3 = $imcmujeres['Delgadez']+$imcmujeres['Peso Normal']+$imcmujeres['Sobrepeso']+$imcmujeres['Obesidad'];
+		$total4 = $imchombres['Delgadez']+$imchombres['Peso Normal']+$imchombres['Sobrepeso']+$imchombres['Obesidad'];
 		$row = '<table border="1">';
 		$row .= '<tr><td colspan="5">Resumen masa corporal por sexos</td></tr>';
 		$row .= '<tr style="background-color: #BFBFBF"><td>Peso</td><td>Hembras</td><td>%</td><td>Varones</td><td>%</td></tr>';
-		$row .= '<tr><td>Delgadez</td><td>'.$valimcm1 = $imcmujeres['Delgadez'].'</td><td>'.$porcimcm1 = round((($imcmujeres['Delgadez']/$total)*100),2).' %</td><td>'.$valimch1 = $imchombres['Delgadez'].'</td><td>'.$porcimch1 = round((($imchombres['Delgadez']/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>Peso Normal</td><td>'.$valimcm2 = $imcmujeres['Peso Normal'].'</td><td>'.$porcimcm2 = round((($imcmujeres['Peso Normal']/$total)*100),2).' %</td><td>'.$valimch2 = $imchombres['Peso Normal'].'</td><td>'.$porcimch2 = round((($imchombres['Peso Normal']/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>Sobrepeso</td><td>'.$valimcm3 = $imcmujeres['Sobrepeso'].'</td><td>'.$porcimcm3 = round((($imcmujeres['Sobrepeso']/$total)*100),2).' %</td><td>'.$valimch3 = $imchombres['Sobrepeso'].'</td><td>'.$porcimch3 = round((($imchombres['Sobrepeso']/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>Obesidad</td><td>'.$valimcm4 = $imcmujeres['Obesidad'].'</td><td>'.$porcimcm4 = round((($imcmujeres['Obesidad']/$total)*100),2).' %</td><td>'.$valimch4 = $imchombres['Obesidad'].'</td><td>'.$porcimch4 = round((($imchombres['Obesidad']/$total)*100),2).' %</td></tr>';
-		$row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$totalimcm = $valimcm1 + $valimcm2 + $valimcm3 + $valimcm4.'</td><td>'.$totalporcimcm = $porcimcm1 + $porcimcm2 + $porcimcm3 + $porcimcm4.' %</td><td>'.$totalimch = $valimch1 + $valimch2 + $valimch3 + $valimch4.'</td><td>'.$totalporcimch = $porcimch1 + $porcimch2 + $porcimch3 + $porcimch4.' %</td></tr>';
+		$row .= '<tr><td>Delgadez</td><td>'.$imcmujeres['Delgadez'].'</td><td>'.round((($imcmujeres['Delgadez']/$total3)*100),2).' %</td><td>'.$imchombres['Delgadez'].'</td><td>'.round((($imchombres['Delgadez']/$total4)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Peso Normal</td><td>'.$imcmujeres['Peso Normal'].'</td><td>'.round((($imcmujeres['Peso Normal']/$total3)*100),2).' %</td><td>'.$imchombres['Peso Normal'].'</td><td>'.round((($imchombres['Peso Normal']/$total4)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Sobrepeso</td><td>'.$imcmujeres['Sobrepeso'].'</td><td>'.round((($imcmujeres['Sobrepeso']/$total3)*100),2).' %</td><td>'.$imchombres['Sobrepeso'].'</td><td>'.round((($imchombres['Sobrepeso']/$total4)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Obesidad</td><td>'.$imcmujeres['Obesidad'].'</td><td>'.round((($imcmujeres['Obesidad']/$total3)*100),2).' %</td><td>'.$imchombres['Obesidad'].'</td><td>'.round((($imchombres['Obesidad']/$total4)*100),2).' %</td></tr>';
+		$row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$total3.'</td><td>100 %</td><td>'.$total4.'</td><td>100 %</td></tr>';
 		$row .= '</table>';
 		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 10);
 		
@@ -2521,19 +2524,22 @@ class ReportController extends Controller
 		$rango9 = $fumadores['Otros(Pipa, Otros ...)'];
 		
 		$pdf->Ln(5);
+		
+		$total5 = $rango1+$rango2+$rango3+$rango4+$rango5+$rango6+$rango7+$rango8+$rango9;
+		
 		$row = '<table border="1">';
 		$row .= '<tr><td colspan="3">Tabaquismo</td></tr>';
 		$row .= '<tr style="background-color: #BFBFBF"><td>Consumo</td><td>Personas</td><td>%</td></tr>';
-		$row .= '<tr><td>No fumador</td><td>'.$rango1.'</td><td>'.$porfum1 = round((($rango1/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>Ex fumador</td><td>'.$rango2.'</td><td>'.$porfum2 = round((($rango2/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>Fumador esporádico</td><td>'.$rango3.'</td><td>'.$porfum3 = round((($rango3/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>de 0 a 5 cigarillos</td><td>'.$rango4.'</td><td>'.$porfum4 = round((($rango4/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>de 6 a 10 cigarillos</td><td>'.$rango5.'</td><td>'.$porfum5 = round((($rango5/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>de 11 a 20 cigarillos</td><td>'.$rango6.'</td><td>'.$porfum6 = round((($rango6/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>de 21 a 40 cigarillos</td><td>'.$rango7.'</td><td>'.$porfum7 = round((($rango7/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>Más de 40 cigarillos</td><td>'.$rango8.'</td><td>'.$porfum8 = round((($rango8/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>Otros(Pipa, Otros ...)</td><td>'.$rango9.'</td><td>'.$porfum9 = round((($rango9/$total)*100),2).' %</td></tr>';
-		$row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$totalfum = $rango1 + $rango2 + $rango3 + $rango4 + $rango5 + $rango6 + $rango7 + $rango8 + $rango9.'</td><td>'.$totalporcfum = $porfum1 + $porfum2 + $porfum3 + $porfum4 + $porfum5 + $porfum6 + $porfum7 + $porfum8 + $porfum9.' %</td></tr>';
+		$row .= '<tr><td>No fumador</td><td>'.$rango1.'</td><td>'.round((($rango1/$total5)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Ex fumador</td><td>'.$rango2.'</td><td>'.round((($rango2/$total5)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Fumador esporádico</td><td>'.$rango3.'</td><td>'.round((($rango3/$total5)*100),2).' %</td></tr>';
+		$row .= '<tr><td>de 0 a 5 cigarillos</td><td>'.$rango4.'</td><td>'.round((($rango4/$total5)*100),2).' %</td></tr>';
+		$row .= '<tr><td>de 6 a 10 cigarillos</td><td>'.$rango5.'</td><td>'.round((($rango5/$total5)*100),2).' %</td></tr>';
+		$row .= '<tr><td>de 11 a 20 cigarillos</td><td>'.$rango6.'</td><td>'.round((($rango6/$total5)*100),2).' %</td></tr>';
+		$row .= '<tr><td>de 21 a 40 cigarillos</td><td>'.$rango7.'</td><td>'.round((($rango7/$total5)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Más de 40 cigarillos</td><td>'.$rango8.'</td><td>'.round((($rango8/$total5)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Otros(Pipa, Otros ...)</td><td>'.$rango9.'</td><td>'.round((($rango9/$total5)*100),2).' %</td></tr>';
+		$row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$total5.'</td><td>100 %</td></tr>';
 		$row .= '</table>';
 		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 10);
 		
@@ -2546,17 +2552,19 @@ class ReportController extends Controller
 		$presion7 = $presionarte['Hipertensión no identificada'];
 		
 		$pdf->Ln(5);
+		$total6 = $presion1+$presion2+$presion3+$presion4+$presion5+$presion6+$presion7;
+		
 		$row = '<table border="1">';
 		$row .= '<tr><td colspan="3">Presión Arterial</td></tr>';
 		$row .= '<tr style="background-color: #BFBFBF"><td>Tipo</td><td>Personas</td><td>%</td></tr>';
-		$row .= '<tr><td>Óptima</td><td>'.$presion1.'</td><td>'.$porpre1 = round((($presion1/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>Normal</td><td>'.$presion2.'</td><td>'.$porpre2 = round((($presion2/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>Normal alta</td><td>'.$presion3.'</td><td>'.$porpre3 = round((($presion3/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>Hipertensión grado 1</td><td>'.$presion4.'</td><td>'.$porpre4 = round((($presion4/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>Hipertensión grado 2</td><td>'.$presion5.'</td><td>'.$porpre5 = round((($presion5/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>Hipertensión grado 3</td><td>'.$presion6.'</td><td>'.$porpre6 = round((($presion6/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>Hipertensión no identificada</td><td>'.$presion7.'</td><td>'.$porpre7 = round((($presion7/$total)*100),2).' %</td></tr>';
-		$row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$totalpre = $presion1 + $presion2 + $presion3 + $presion4 + $presion5 + $presion6 + $presion7.'</td><td>'.$totalporcpre = $porpre1 + $porpre2 + $porpre3 + $porpre4 + $porpre5 + $porpre6 + $porpre7.' %</td></tr>';
+		$row .= '<tr><td>Óptima</td><td>'.$presion1.'</td><td>'.round((($presion1/$total6)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Normal</td><td>'.$presion2.'</td><td>'.round((($presion2/$total6)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Normal alta</td><td>'.$presion3.'</td><td>'.round((($presion3/$total6)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Hipertensión grado 1</td><td>'.$presion4.'</td><td>'.round((($presion4/$total6)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Hipertensión grado 2</td><td>'.$presion5.'</td><td>'.round((($presion5/$total6)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Hipertensión grado 3</td><td>'.$presion6.'</td><td>'.round((($presion6/$total6)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Hipertensión no identificada</td><td>'.$presion7.'</td><td>'.round((($presion7/$total6)*100),2).' %</td></tr>';
+		$row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$total6.'</td><td>100 %</td></tr>';
 		$row .= '</table>';
 		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 50);
 		
@@ -2674,13 +2682,15 @@ class ReportController extends Controller
 		$espi2 = $clases['Con patologías'];
 		$espi3 = $clases['No realizada'];
 		
+		$total7 = $espi1+$espi2+$espi3;
+		
 		$row = '<table border="1">';
 		$row .= '<tr><td colspan="3">Espirometría</td></tr>';
 		$row .= '<tr style="background-color: #BFBFBF"><td>Tipo</td><td>Exploraciones</td><td>%</td></tr>';
-		$row .= '<tr><td>Normal</td><td>'.$espi1.'</td><td>'.$porespi1 = round((($espi1/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>Con patologías</td><td>'.$espi2.'</td><td>'.$porespi2 = round((($espi2/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>No realizada</td><td>'.$espi3.'</td><td>'.$porespi3 = round((($espi3/$total)*100),2).' %</td></tr>';
-		$row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$totalespi = $espi1 + $espi2 + $espi3.'</td><td>'.$totalporcespi = $porespi1 + $porespi2 + $porespi3.' %</td></tr>';
+		$row .= '<tr><td>Normal</td><td>'.$espi1.'</td><td>'.$porespi1 = round((($espi1/$total7)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Con patologías</td><td>'.$espi2.'</td><td>'.$porespi2 = round((($espi2/$total7)*100),2).' %</td></tr>';
+		$row .= '<tr><td>No realizada</td><td>'.$espi3.'</td><td>'.$porespi3 = round((($espi3/$total7)*100),2).' %</td></tr>';
+		$row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$total7.'</td><td>'.$totalporcespi = $porespi1 + $porespi2 + $porespi3.' %</td></tr>';
 		$row .= '</table>';
 		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 10);
 		
@@ -2719,13 +2729,15 @@ class ReportController extends Controller
 		$vision2 = $clases['Con patologías'];
 		$vision3 = $clases['No realizada'];
 		
+		$total8 = $vision1+$vision2+$vision3;
+		
 		$row = '<table border="1">';
 		$row .= '<tr><td colspan="3">Agudeza Visual</td></tr>';
 		$row .= '<tr style="background-color: #BFBFBF"><td>Tipo</td><td>Exploraciones</td><td>%</td></tr>';
-		$row .= '<tr><td>Normal</td><td>'.$vision1.'</td><td>'.$porvision1 = round((($vision1/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>Con patologías</td><td>'.$vision2.'</td><td>'.$porvision2 = round((($vision2/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>No realizada</td><td>'.$vision3.'</td><td>'.$porvision3 = round((($vision3/$total)*100),2).' %</td></tr>';
-		$row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$totalvision = $vision1 + $vision2 + $vision3.'</td><td>'.$totalporcvision = $porvision1 + $porvision2 + $porvision3.' %</td></tr>';
+		$row .= '<tr><td>Normal</td><td>'.$vision1.'</td><td>'.$porvision1 = round((($vision1/$total8)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Con patologías</td><td>'.$vision2.'</td><td>'.$porvision2 = round((($vision2/$total8)*100),2).' %</td></tr>';
+		$row .= '<tr><td>No realizada</td><td>'.$vision3.'</td><td>'.$porvision3 = round((($vision3/$total8)*100),2).' %</td></tr>';
+		$row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$total8.'</td><td>'.$totalporcvision = $porvision1 + $porvision2 + $porvision3.' %</td></tr>';
 		$row .= '</table>';
 		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 10);
 		
@@ -2770,15 +2782,16 @@ class ReportController extends Controller
 		$audio4 = $clases['Hipoacusia global'];
 		$audio5 = $clases['No realizada'];
 		
+		$total9  = $audio1 + $audio2 + $audio3 + $audio4 + $audio5; 
 		$row = '<table border="1">';
 		$row .= '<tr><td colspan="3">Audiometría</td></tr>';
 		$row .= '<tr style="background-color: #BFBFBF"><td>Tipo</td><td>Exploraciones</td><td>%</td></tr>';
-		$row .= '<tr><td>Normal</td><td>'.$audio1.'</td><td>'.$poraudio1 = round((($audio1/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>Posible trauma acústico</td><td>'.$audio2.'</td><td>'.$poraudio2 = round((($audio2/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>Posible presbiacusia</td><td>'.$audio3.'</td><td>'.$poraudio3 = round((($audio3/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>Hipoacusia global</td><td>'.$audio4.'</td><td>'.$poraudio4 = round((($audio4/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>No realizada</td><td>'.$audio5.'</td><td>'.$poraudio5 = round((($audio5/$total)*100),2).' %</td></tr>';
-		$row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$totalaudio = $audio1 + $audio2 + $audio3 + $audio4 + $audio5.'</td><td>'.$totalporcaudio = $poraudio1 + $poraudio2 + $poraudio3 + $poraudio4 + $poraudio5.' %</td></tr>';
+		$row .= '<tr><td>Normal</td><td>'.$audio1.'</td><td>'.$poraudio1 = round((($audio1/$total9)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Posible trauma acústico</td><td>'.$audio2.'</td><td>'.$poraudio2 = round((($audio2/$total9)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Posible presbiacusia</td><td>'.$audio3.'</td><td>'.$poraudio3 = round((($audio3/$total9)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Hipoacusia global</td><td>'.$audio4.'</td><td>'.$poraudio4 = round((($audio4/$total9)*100),2).' %</td></tr>';
+		$row .= '<tr><td>No realizada</td><td>'.$audio5.'</td><td>'.$poraudio5 = round((($audio5/$total9)*100),2).' %</td></tr>';
+		$row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$total9.'</td><td>'.$totalporcaudio = $poraudio1 + $poraudio2 + $poraudio3 + $poraudio4 + $poraudio5.' %</td></tr>';
 		$row .= '</table>';
 		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 60);
 		
@@ -2817,13 +2830,14 @@ class ReportController extends Controller
 		$aparato2 = $clases['Alteraciones'];
 		$aparato3 = $clases['Sin exploración'];
 		
+		$total10 = $aparato1 + $aparato2 + $aparato3;
 		$row = '<table border="1">';
 		$row .= '<tr><td colspan="3">Aparato Locomotor</td></tr>';
 		$row .= '<tr style="background-color: #BFBFBF"><td>Tipo</td><td>Exploraciones</td><td>%</td></tr>';
-		$row .= '<tr><td>Normal</td><td>'.$aparato1.'</td><td>'.$poraparato1 = round((($aparato1/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>Alteraciones</td><td>'.$aparato2.'</td><td>'.$poraparato2 = round((($aparato2/$total)*100),2).' %</td></tr>';
-		$row .= '<tr><td>Sin exploraciones</td><td>'.$aparato3.'</td><td>'.$poraparato3 = round((($aparato3/$total)*100),2).' %</td></tr>';
-		$row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$totalaparato = $aparato1 + $aparato2 + $aparato3.'</td><td>'.$totalporcaparato = $poraparato1 + $poraparato2 + $poraparato3.' %</td></tr>';
+		$row .= '<tr><td>Normal</td><td>'.$aparato1.'</td><td>'.$poraparato1 = round((($aparato1/$total10)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Alteraciones</td><td>'.$aparato2.'</td><td>'.$poraparato2 = round((($aparato2/$total10)*100),2).' %</td></tr>';
+		$row .= '<tr><td>Sin exploraciones</td><td>'.$aparato3.'</td><td>'.$poraparato3 = round((($aparato3/$total10)*100),2).' %</td></tr>';
+		$row .= '<tr style="background-color: #BFBFBF"><td>Total</td><td>'.$total10.'</td><td>'.$totalporcaparato = $poraparato1 + $poraparato2 + $poraparato3.' %</td></tr>';
 		$row .= '</table>';
 		$pdf->autoCell(0,0,20, $pdf->GetY(), $row, 0,2, false, true, 'C', true, 10);
 		
@@ -3123,16 +3137,135 @@ class ReportController extends Controller
 		$row .= '<tr><td style="width: 200pt"><b>Tipo</b></td><td style="width: 80pt"><b>Cantidad</b></td></tr>';
         foreach($valores as $k => $v)
         {
-			$row .= '<tr>';
+			$row .= '<tr style="text-align: left; text-indent:5pt">';
 			$row .= '<td>'.$k.'</td>';
-			$row .= '<td>'.$v.'</td>';
+			$row .= '<td style="text-align: center">'.$v.'</td>';
 			$row .= '</tr>';
         }
 		$row .= '</table>';
 
-		$pdf->autoCell(0, 0, 175, $pdf->GetY(), $row, 0, 2, false, true, 'C', true, 20);    
+		$pdf->autoCell(0, 0, 175, $pdf->GetY(), $row, 0, 2, false, true, 'C', true, 20);
+		
+		/*===========================================*/
+		
+		$style1 = array('width' => 0.8, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0));
+		$style2 = array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 255, 0));
+		$style3 = array('width' => 10, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(255, 0, 0));
+		$style4 = array('width' => 10, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 255));
+		$border_style = array('all' => array('width' => 0.8, 'cap' => 'square', 'join' => 'miter', 'dash' => 0, 'phase' => 0));
+		
+		$rango1 = $valores["Alteraciones Hematológicas"];
+		$rango2 = $valores["Alteraciones Hepáticas"];
+		$rango3 = $valores["Dislipemias"];
+		$rango4 = $valores["Glucosa"];
+		$rango5 = $valores["Normal"];
+		$rango6 = $valores["No Evaluada"];
+		
+		arsort($valores);
+		$max = max($valores);
+		$max = intval(($max + 10) /10.0) * 10;
+		
+		$postrango1 = ((150 * $rango1)/$max);
+		$postrango2 = ((150 * $rango2)/$max);
+		$postrango3 = ((150 * $rango3)/$max);
+		$postrango4 = ((150 * $rango4)/$max);
+		$postrango5 = ((150 * $rango5)/$max);
+		$postrango6 = ((150 * $rango6)/$max);
+
+		$par = $max / 20;
+		
+		for($i = 1; $i <= 20; $i++)
+		{
+			$pos = 193-(150*($par*$i))/$max;
+			$pdf->writeHTMLCell(20, 20, 20, $pos-2,'<div style="color: #000; text-align: rigth;"><b>'.$par*$i.'</b></div>');
+			$pdf->Line(40, $pos, 46, $pos, $style1);
+		}
+		
+		$pdf->Line(43, 38, 43, 193, $style1); // Eje Y
+		$pdf->Line(43, 193, 175, 193, $style1); // Eje X
+		
+		$pdf->Rect(55, 193-$postrango1, 7, $postrango1, 'DF', $border_style, $fill_color = array(100,0,0,0)); // Rectángulo rango1
+		$pdf->Rect(65, 193-$postrango2, 7, $postrango2, 'DF', $border_style, $fill_color = array(0,57,54,20)); // Rectángulo rango2
+		$pdf->Rect(75, 193-$postrango3, 7, $postrango3, 'DF', $border_style, $fill_color = array(0,2,43,4)); // Rectángulo rango3
+		$pdf->Rect(85, 193-$postrango4, 7, $postrango4, 'DF', $border_style, $fill_color = array(52,0,42,2)); // Rectángulo rango4
+		$pdf->Rect(95, 193-$postrango5, 7, $postrango5, 'DF', $border_style, $fill_color = array(0,100,100,50)); // Rectángulo rango5
+		$pdf->Rect(105, 193-$postrango6, 7, $postrango6, 'DF', $border_style, $fill_color = array(0,60,15,1)); // Rectángulo rango6
+
+		
+		/*===========================================*/
         
-            
+        $html= '
+		<table border="1">
+			<tr>
+				<td><b>Búsqueda</b></td>
+				<td><b>Resultados</b></td>
+			</tr>
+			<tr>
+				<td align="left"> Empresa</td>
+				<td>'.$nombreempresa.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Fecha Inicial</td>
+				<td>'.$inicio.'</td>
+			</tr>
+			<tr>
+				<td align="left"> Fecha Final</td>
+				<td>'.$fin.'</td>
+			</tr>
+		</table>';
+		
+		$pdf->SetFont('dejavusans', '', 11);
+		$pdf->writeHTMLCell(70,0,205,130,$html, '', 0, 0, true, 'C', true);
+		
+		$pdf->SetDrawColor(100, 0, 0, 0);
+		$pdf->SetFillColor(100, 0, 0, 0);
+		$pdf->Rect(217, 91.1, 2, 2, 'DF', $border_style);
+		
+		$pdf->SetDrawColor(0,57,54,20);
+		$pdf->SetFillColor(0,57,54,20);
+		$pdf->Rect(217, 95.6, 2, 2, 'DF', $border_style);
+
+		$pdf->SetDrawColor(0,2,43,4);
+		$pdf->SetFillColor(0,2,43,4);
+		$pdf->Rect(217, 100.1, 2, 2, 'DF', $border_style);
+
+		$pdf->SetDrawColor(52,0,42,2);
+		$pdf->SetFillColor(52,0,42,2);
+		$pdf->Rect(217, 104.6, 2, 2, 'DF', $border_style);
+
+		$pdf->SetDrawColor(0,100,100,50);
+		$pdf->SetFillColor(0,100,100,50);
+		$pdf->Rect(217, 109.1, 2, 2, 'DF', $border_style);
+
+		$pdf->SetDrawColor(0,60,15,1);
+		$pdf->SetFillColor(0,60,15,1);
+		$pdf->Rect(217, 113.6, 2, 2, 'DF', $border_style);
+		
+		$html = '		
+		<table>
+			<tr>
+				<td align="left">Alteraciones Hematológicas</td>
+			</tr>
+			<tr>
+				<td align="left">Alteraciones Hepáticas</td>
+			</tr>
+			<tr>
+				<td align="left">Dislipemias</td>
+			</tr>
+			<tr>
+				<td align="left">Glucosa</td>
+			</tr>
+			<tr>
+				<td align="left">Normal</td>
+			</tr>
+			<tr>
+				<td align="left">No Evaluada</td>
+			</tr>
+		</table>';
+		$pdf->SetFont('dejavusans', '', 10);
+		$pdf->writeHTMLCell(55, 0, 220, 90, $html, '', 0, 0, true, 'C', true);
+		
+		
         
 		$pdf->Output('estadistica_alt_analitica.pdf', 'I');
 	}
@@ -3285,10 +3418,11 @@ class ReportController extends Controller
 					$dboxes[$prot->getCodigo()] = $prot->getNombre();
 			}
 			
-		}			
-				
+		}
+		
 		$row = '<table border="1">';
 		$row .= '<tr style="background-color: #BFBFBF"; font-size: 2em><td>Código</td><td>Descripción</td><td>Cantidad de Casos</td><td>% Total Explorados</td></tr>';
+
 		foreach($boxes as $key => $val)
 		{
 			$row .= '<tr>';
@@ -3297,10 +3431,10 @@ class ReportController extends Controller
 			$row .= '<td>'.$val.'</td>';
 			$row .= '<td>'.round((($val/$total)*100),2)." %".'</td>';
 			$row .= '</tr>';
-			//$pdf->autoCell(0, 0, 20, $pdf->GetY(), $key." ".$dboxes[$key]." ".$val." ".round((($val/$total)*100),2)."%", 0, 2, false, true, 'C', true, 0);
+			$valores[] = $val;
 		}
 		$row .= '</table>';
-		$pdf->autoCell(0, 0, 20, $pdf->GetY(), $row, 0, 2, false, true, 'C', true, 10);
+		$pdf->autoCell(0, 0, 20, $pdf->GetY(), $row, 0, 2, false, true, 'C', true, 10);		
 		
 		$pdf->Output('estadisticariesgos.pdf', 'I');
 	}
